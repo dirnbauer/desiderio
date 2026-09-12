@@ -40,11 +40,11 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
  */
 final class CoreContentElements
 {
-    public const HOST = 'core';
+    public const string HOST = 'core';
 
-    private const IMAGE_PRIMARY = 'Resources/Public/Styleguide/Unsplash/laptop-mimi-thian.jpg';
-    private const IMAGE_SECONDARY = 'Resources/Public/Styleguide/Unsplash/laptop-glenn-carstens-peters.jpg';
-    private const IMAGE_TERTIARY = 'Resources/Public/Styleguide/Unsplash/workspace-marvin-meyer.jpg';
+    private const string IMAGE_PRIMARY = 'Resources/Public/Styleguide/Unsplash/laptop-mimi-thian.jpg';
+    private const string IMAGE_SECONDARY = 'Resources/Public/Styleguide/Unsplash/laptop-glenn-carstens-peters.jpg';
+    private const string IMAGE_TERTIARY = 'Resources/Public/Styleguide/Unsplash/workspace-marvin-meyer.jpg';
 
     /**
      * Every defined core element, regardless of whether its gate extension is
@@ -367,7 +367,7 @@ final class CoreContentElements
     {
         return array_values(array_filter(
             self::all(),
-            static fn (array $element): bool => $element['gateExtension'] === null
+            static fn(array $element): bool => $element['gateExtension'] === null
                 || ExtensionManagementUtility::isLoaded($element['gateExtension']),
         ));
     }
@@ -383,7 +383,7 @@ final class CoreContentElements
     {
         return array_values(array_filter(
             self::available(),
-            static fn (array $element): bool => $element['gateExtension'] === null,
+            static fn(array $element): bool => $element['gateExtension'] === null,
         ));
     }
 
@@ -394,6 +394,6 @@ final class CoreContentElements
      */
     public static function cTypes(): array
     {
-        return array_map(static fn (array $element): string => $element['cType'], self::all());
+        return array_map(static fn(array $element): string => $element['cType'], self::all());
     }
 }

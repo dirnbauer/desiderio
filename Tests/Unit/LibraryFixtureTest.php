@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Yaml\Yaml;
 use Webconsulting\Desiderio\Data\ContentBlockDefinitionRegistry;
 use Webconsulting\Desiderio\Icon\IconRegistry;
+use Webconsulting\Desiderio\Seeding\ElementLibraryValueGenerator;
 
 /**
  * Guards the element library's demo content (library.json per content element).
@@ -24,11 +25,11 @@ use Webconsulting\Desiderio\Icon\IconRegistry;
  */
 final class LibraryFixtureTest extends TestCase
 {
-    private const CONTENT_BLOCKS_DIR = __DIR__ . '/../../ContentBlocks/ContentElements';
-    private const LIBRARY_ASSET_DIR = __DIR__ . '/../../Resources/Public/Styleguide/Library';
+    private const string CONTENT_BLOCKS_DIR = __DIR__ . '/../../ContentBlocks/ContentElements';
+    private const string LIBRARY_ASSET_DIR = __DIR__ . '/../../Resources/Public/Styleguide/Library';
 
     /** Fields whose value is the element's visible headline. */
-    private const HEADLINE_FIELDS = ['header', 'headline', 'title'];
+    private const array HEADLINE_FIELDS = ['header', 'headline', 'title'];
 
     /**
      * The generic subjects the shared vocabulary pool used to emit, plus the
@@ -37,7 +38,7 @@ final class LibraryFixtureTest extends TestCase
      *
      * @var list<string>
      */
-    private const BANNED_SUBSTRINGS = [
+    private const array BANNED_SUBSTRINGS = [
         'Support that scales with you',
         'Simple, powerful, reliable',
         'Built for growing teams',
@@ -361,8 +362,8 @@ final class LibraryFixtureTest extends TestCase
 
     public function testEveryDemoCastMemberHasAMatchingPortrait(): void
     {
-        $generator = new \Webconsulting\Desiderio\Seeding\ElementLibraryValueGenerator();
-        $people = (new \ReflectionClass($generator))->getMethod('demoPeople')->invoke($generator);
+        $generator = new ElementLibraryValueGenerator();
+        $people = new \ReflectionClass($generator)->getMethod('demoPeople')->invoke($generator);
         self::assertIsArray($people);
 
         $found = glob(self::LIBRARY_ASSET_DIR . '/lib-portrait-*');

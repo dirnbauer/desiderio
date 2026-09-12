@@ -27,7 +27,7 @@ final class ElementLibrarySeedCommandTest extends TestCase
         self::assertStringContainsString("'/library.json'", $source);
         // The fallback must be unconditional: a language that only translates
         // some elements still seeds a complete folder.
-        self::assertStringContainsString("if (\$libraryFixture === []) {", $source);
+        self::assertStringContainsString('if ($libraryFixture === []) {', $source);
     }
 
     public function testSeedCommandExposesTheLocaleOption(): void

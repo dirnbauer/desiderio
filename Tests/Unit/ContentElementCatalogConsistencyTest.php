@@ -9,8 +9,8 @@ use Symfony\Component\Yaml\Yaml;
 
 final class ContentElementCatalogConsistencyTest extends TestCase
 {
-    private const ROOT = __DIR__ . '/../..';
-    private const CONTENT_BLOCKS_DIR = self::ROOT . '/ContentBlocks/ContentElements';
+    private const string ROOT = __DIR__ . '/../..';
+    private const string CONTENT_BLOCKS_DIR = self::ROOT . '/ContentBlocks/ContentElements';
 
     public function testStyleguideManifestsMirrorContentBlockTitlesAndGroups(): void
     {

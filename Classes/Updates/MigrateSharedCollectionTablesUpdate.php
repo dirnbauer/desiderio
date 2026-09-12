@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Webconsulting\Desiderio\Updates;
 
-use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Install\Attribute\UpgradeWizard;
-use TYPO3\CMS\Install\Updates\ChattyInterface;
-use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use TYPO3\CMS\Core\Attribute\UpgradeWizard;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Upgrades\ChattyInterface;
+use TYPO3\CMS\Core\Upgrades\UpgradeWizardInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Moves collection child rows into the shared record-type tables.
@@ -40,7 +40,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 #[UpgradeWizard('desiderioSharedCollectionTables')]
 final class MigrateSharedCollectionTablesUpdate implements UpgradeWizardInterface, ChattyInterface
 {
-    private const MAP_TABLE = 'tx_desiderio_collection_uid_map';
+    private const string MAP_TABLE = 'tx_desiderio_collection_uid_map';
 
     private ?OutputInterface $output = null;
 

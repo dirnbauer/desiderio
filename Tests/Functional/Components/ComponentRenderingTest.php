@@ -10,8 +10,8 @@ use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
 use TYPO3\CMS\Core\Http\ServerRequest;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextFactory;
-use TYPO3Fluid\Fluid\View\TemplateView;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
+use TYPO3Fluid\Fluid\View\TemplateView;
 use Webconsulting\Desiderio\Components\ComponentCollection;
 
 /**
@@ -107,7 +107,7 @@ final class ComponentRenderingTest extends FunctionalTestCase
     {
         $fixtures = require __DIR__ . '/../Fixtures/component-arguments.php';
         self::assertIsArray($fixtures);
-        $components = (new ComponentCollection())->getAvailableComponents();
+        $components = new ComponentCollection()->getAvailableComponents();
         sort($components);
 
         self::assertSame(self::componentsOnDisk(), $components, 'The collection must expose exactly the components on disk');
@@ -125,7 +125,7 @@ final class ComponentRenderingTest extends FunctionalTestCase
             'websiteTitle' => 'Desiderio',
             'languages' => [['languageId' => 0, 'title' => 'English', 'locale' => 'en_US.UTF-8', 'base' => '/']],
         ]);
-        return (new ServerRequest('https://example.com/', 'GET'))
+        return new ServerRequest('https://example.com/', 'GET')
             ->withAttribute('applicationType', SystemEnvironmentBuilder::REQUESTTYPE_FE)
             ->withAttribute('site', $site)
             ->withAttribute('language', $site->getDefaultLanguage());

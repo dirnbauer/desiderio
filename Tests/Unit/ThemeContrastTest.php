@@ -20,7 +20,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class ThemeContrastTest extends TestCase
 {
-    private const TEXT_MINIMUM = 4.5;
+    private const float TEXT_MINIMUM = 4.5;
 
     public function testEveryPresetMeetsWcagContrastInBothColorSchemes(): void
     {
@@ -324,7 +324,7 @@ final class ThemeContrastTest extends TestCase
 
     private function luminance(float $red, float $green, float $blue): float
     {
-        $linear = static fn (float $channel): float => $channel <= 0.04045 ? $channel / 12.92 : (($channel + 0.055) / 1.055) ** 2.4;
+        $linear = static fn(float $channel): float => $channel <= 0.04045 ? $channel / 12.92 : (($channel + 0.055) / 1.055) ** 2.4;
 
         return 0.2126 * $linear($red) + 0.7152 * $linear($green) + 0.0722 * $linear($blue);
     }

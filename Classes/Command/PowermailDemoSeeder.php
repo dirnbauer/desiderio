@@ -8,8 +8,8 @@ use Doctrine\DBAL\ArrayParameterType;
 use Doctrine\DBAL\ParameterType;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use TYPO3\CMS\Core\Database\ConnectionPool;
-use Webconsulting\Desiderio\Seeding\DatabaseSchemaHelper;
 use Webconsulting\Desiderio\Data\PowermailDemoFormDefinitions;
+use Webconsulting\Desiderio\Seeding\DatabaseSchemaHelper;
 
 /**
  * Seeds optional powermail demo records for the existing Desiderio styleguide command.
@@ -22,9 +22,9 @@ use Webconsulting\Desiderio\Data\PowermailDemoFormDefinitions;
  * @phpstan-type DemoPage array{titleEn: string, titleDe: string, fields: list<DemoField>}
  * @phpstan-type DemoForm array{slug: string, titleEn: string, titleDe: string, pageTitleEn: string, pageTitleDe: string, introEn: string, introDe: string, thankTitleEn: string, thankTitleDe: string, thankBodyEn: string, thankBodyDe: string, moresteps: bool, pages: list<DemoPage>}
  */
-final class PowermailDemoSeeder
+final readonly class PowermailDemoSeeder
 {
-    private const REQUIRED_TABLES = [
+    private const array REQUIRED_TABLES = [
         'pages',
         'tt_content',
         'tx_powermail_domain_model_form',
@@ -33,19 +33,13 @@ final class PowermailDemoSeeder
     ];
 
     public function __construct(
-        private readonly ConnectionPool $connectionPool,
-        private readonly DatabaseSchemaHelper $databaseSchema,
+        private ConnectionPool $connectionPool,
+        private DatabaseSchemaHelper $databaseSchema,
     ) {}
 
     public function canSeed(): bool
     {
-        foreach (self::REQUIRED_TABLES as $table) {
-            if (!$this->tableExists($table)) {
-                return false;
-            }
-        }
-
-        return true;
+        return array_all(self::REQUIRED_TABLES, fn($table) => $this->tableExists($table));
     }
 
     /**
@@ -273,6 +267,10 @@ final class PowermailDemoSeeder
         return PowermailDemoFormDefinitions::demoForms();
     }
 
+    /**
+     * @param array<string, mixed> $form one entry of PowermailDemoFormDefinitions::demoForms()
+     * @return array{default: int, german: int} uids of the created form and its translation
+     */
     private function insertPowermailForm(int $storagePid, array $form, int $germanLanguageUid, int $now): array
     {
         $formColumns = $this->databaseSchema->getColumnNames('tx_powermail_domain_model_form');

@@ -6,7 +6,7 @@ namespace Webconsulting\Desiderio\Icon;
 
 final class IconRegistry
 {
-    public const DEFAULT_LIBRARY = 'tabler';
+    public const string DEFAULT_LIBRARY = 'tabler';
 
     /**
      * @return list<string>
@@ -111,11 +111,7 @@ final class IconRegistry
         $key = strtolower(trim($key));
         $aliases = self::aliases();
 
-        if (isset($aliases[$key])) {
-            return $aliases[$key];
-        }
-
-        return isset(self::icons()[$key]) ? $key : 'sparkles';
+        return $aliases[$key] ?? (isset(self::icons()[$key]) ? $key : 'sparkles');
     }
 
     /**

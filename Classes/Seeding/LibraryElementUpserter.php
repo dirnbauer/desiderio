@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Webconsulting\Desiderio\Seeding;
 
+use Doctrine\DBAL\ArrayParameterType;
 use Doctrine\DBAL\ParameterType;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Resource\StorageRepository;
@@ -25,20 +26,20 @@ use Webconsulting\Desiderio\Library\CoreContentElements;
  * the shared definition registry. Native TYPO3 elements use their manifest
  * fixtures instead.
  */
-final class LibraryElementUpserter
+final readonly class LibraryElementUpserter
 {
-    private const FAL_FOLDER = 'desiderio-element-library';
+    private const string FAL_FOLDER = 'desiderio-element-library';
 
-    private readonly ExtensionFalSeeder $falSeeder;
-    private readonly CollectionRecordSeeder $collectionRecordSeeder;
+    private ExtensionFalSeeder $falSeeder;
+    private CollectionRecordSeeder $collectionRecordSeeder;
 
     public function __construct(
-        private readonly ConnectionPool $connectionPool,
+        private ConnectionPool $connectionPool,
         StorageRepository $storageRepository,
-        private readonly DatabaseSchemaHelper $databaseSchema,
-        private readonly StyleguideFixtureResolver $fixtureResolver,
-        private readonly CollectionCleanupService $collectionCleanupService,
-        private readonly ContentBlockCollectionMap $collectionMap,
+        private DatabaseSchemaHelper $databaseSchema,
+        private StyleguideFixtureResolver $fixtureResolver,
+        private CollectionCleanupService $collectionCleanupService,
+        private ContentBlockCollectionMap $collectionMap,
     ) {
         $this->falSeeder = new ExtensionFalSeeder(
             $connectionPool,
@@ -140,7 +141,7 @@ final class LibraryElementUpserter
             ->where(
                 $update->expr()->in(
                     'uid',
-                    $update->createNamedParameter($duplicateUids, \Doctrine\DBAL\ArrayParameterType::INTEGER)
+                    $update->createNamedParameter($duplicateUids, ArrayParameterType::INTEGER)
                 )
             )
             ->executeStatement();
@@ -166,7 +167,7 @@ final class LibraryElementUpserter
             $queryBuilder->andWhere(
                 $queryBuilder->expr()->notIn(
                     'CType',
-                    $queryBuilder->createNamedParameter($knownCTypes, \Doctrine\DBAL\ArrayParameterType::STRING)
+                    $queryBuilder->createNamedParameter($knownCTypes, ArrayParameterType::STRING)
                 )
             );
         }

@@ -17,7 +17,7 @@ final class ExtbasePluginRequestSanitizerMiddlewareTest extends TestCase
         $middleware = new ExtbasePluginRequestSanitizerMiddleware();
         $request = $this->createMock(ServerRequestInterface::class);
         $handler = $this->createMock(RequestHandlerInterface::class);
-        $response = $this->createMock(ResponseInterface::class);
+        $response = self::createStub(ResponseInterface::class);
 
         $request->method('getMethod')->willReturn('POST');
         $request->method('getQueryParams')->willReturn([
@@ -65,7 +65,7 @@ final class ExtbasePluginRequestSanitizerMiddlewareTest extends TestCase
         $middleware = new ExtbasePluginRequestSanitizerMiddleware();
         $request = $this->createMock(ServerRequestInterface::class);
         $handler = $this->createMock(RequestHandlerInterface::class);
-        $response = $this->createMock(ResponseInterface::class);
+        $response = self::createStub(ResponseInterface::class);
 
         $queryParams = [
             'tx_news_pi1' => [

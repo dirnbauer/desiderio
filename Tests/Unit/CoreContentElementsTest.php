@@ -14,8 +14,8 @@ use Webconsulting\Desiderio\Library\CoreContentElements;
  */
 final class CoreContentElementsTest extends TestCase
 {
-    private const ROOT = __DIR__ . '/../..';
-    private const ALLOWED_GROUPS = ['content', 'navigation', 'conversion'];
+    private const string ROOT = __DIR__ . '/../..';
+    private const array ALLOWED_GROUPS = ['content', 'navigation', 'conversion'];
 
     public function testManifestEntriesAreWellFormedAndUnique(): void
     {
@@ -35,14 +35,14 @@ final class CoreContentElementsTest extends TestCase
 
     public function testEveryCoreElementShipsACustomIcon(): void
     {
-        $iconsSource = (string) file_get_contents(self::ROOT . '/Configuration/Icons.php');
+        $iconsSource = (string)file_get_contents(self::ROOT . '/Configuration/Icons.php');
 
         foreach (CoreContentElements::all() as $element) {
             $slug = $element['iconSlug'];
             $iconFile = self::ROOT . '/Resources/Public/Icons/ContentElements/core-' . $slug . '.svg';
             self::assertFileExists($iconFile, $element['cType'] . ' must ship a custom icon');
 
-            $svg = (string) file_get_contents($iconFile);
+            $svg = (string)file_get_contents($iconFile);
             self::assertStringContainsString('viewBox="0 0 16 16"', $svg, $slug . ' icon must use the 16x16 viewBox');
             self::assertStringContainsString('currentColor', $svg, $slug . ' icon must use currentColor');
             self::assertStringNotContainsString('prefers-color-scheme', $svg, $slug . ' must not depend on prefers-color-scheme');
@@ -83,7 +83,7 @@ final class CoreContentElementsTest extends TestCase
         // The icon/description override must run on AfterTcaCompilationEvent (after
         // ALL extensions' TCA), not in Overrides/tt_content.php — otherwise CType
         // items registered later than Desiderio (e.g. felogin's "login") are missed.
-        $listener = (string) file_get_contents(self::ROOT . '/Classes/EventListener/CoreContentElementIcons.php');
+        $listener = (string)file_get_contents(self::ROOT . '/Classes/EventListener/CoreContentElementIcons.php');
         self::assertStringContainsString('AfterTcaCompilationEvent', $listener);
         self::assertStringContainsString('CoreContentElements::all()', $listener);
         self::assertStringContainsString("'desiderio-ce-'", $listener);
@@ -91,8 +91,8 @@ final class CoreContentElementsTest extends TestCase
         self::assertStringContainsString('typeicon_classes', $listener);
 
         // ...and must NOT be duplicated in the TCA/Overrides pass.
-        $tca = (string) file_get_contents(self::ROOT . '/Configuration/TCA/Overrides/tt_content.php');
-        self::assertStringNotContainsString("typeicon_classes", $tca);
+        $tca = (string)file_get_contents(self::ROOT . '/Configuration/TCA/Overrides/tt_content.php');
+        self::assertStringNotContainsString('typeicon_classes', $tca);
     }
 
     public function testPluginsAreGatedAndNativeElementsAreNot(): void
@@ -116,6 +116,6 @@ final class CoreContentElementsTest extends TestCase
 
     private function load(string $file): string
     {
-        return (string) file_get_contents(self::ROOT . '/Resources/Private/Language/' . $file);
+        return (string)file_get_contents(self::ROOT . '/Resources/Private/Language/' . $file);
     }
 }

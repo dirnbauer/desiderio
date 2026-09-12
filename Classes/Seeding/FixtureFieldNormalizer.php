@@ -136,7 +136,7 @@ final class FixtureFieldNormalizer
             }
         }
 
-        return implode("\n", array_filter($scalars, static fn (string $item): bool => $item !== ''));
+        return implode("\n", array_filter($scalars, static fn(string $item): bool => $item !== ''));
     }
 
     /**
@@ -150,7 +150,7 @@ final class FixtureFieldNormalizer
             $items[] = trim((string)$normalized);
         }
 
-        return implode($separator, array_filter($items, static fn (string $item): bool => $item !== ''));
+        return implode($separator, array_filter($items, static fn(string $item): bool => $item !== ''));
     }
 
     /**
@@ -158,13 +158,7 @@ final class FixtureFieldNormalizer
      */
     public function containsNestedArray(array $values): bool
     {
-        foreach ($values as $value) {
-            if (is_array($value)) {
-                return true;
-            }
-        }
-
-        return false;
+        return array_any($values, fn($value) => is_array($value));
     }
 
     public function buildReadableFileTitle(string $value, string $emptyFallback = 'Asset'): string

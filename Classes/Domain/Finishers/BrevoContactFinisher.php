@@ -17,10 +17,10 @@ use Webconsulting\Desiderio\Utility\DesiderioFormIdentifier;
  */
 final class BrevoContactFinisher extends AbstractFinisher
 {
-    private const CONTACT_ENDPOINT = 'https://api.brevo.com/v3/contacts';
-    private const DOUBLE_OPT_IN_ENDPOINT = 'https://api.brevo.com/v3/contacts/doubleOptinConfirmation';
-    private const EVENT_ENDPOINT = 'https://api.brevo.com/v3/events';
-    private const SKIPPED_FIELDS = [
+    private const string CONTACT_ENDPOINT = 'https://api.brevo.com/v3/contacts';
+    private const string DOUBLE_OPT_IN_ENDPOINT = 'https://api.brevo.com/v3/contacts/doubleOptinConfirmation';
+    private const string EVENT_ENDPOINT = 'https://api.brevo.com/v3/events';
+    private const array SKIPPED_FIELDS = [
         'friendlycaptcha' => true,
     ];
 

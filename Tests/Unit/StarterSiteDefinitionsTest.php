@@ -32,7 +32,7 @@ final class StarterSiteDefinitionsTest extends TestCase
             self::assertNotEmpty($starter['home']['content'] ?? [], $slug . ' homepage needs content elements');
             $visibleNavPages = array_values(array_filter(
                 $starter['subpages'],
-                static fn (array $page): bool => !($page['navHidden'] ?? false)
+                static fn(array $page): bool => !($page['navHidden'] ?? false)
             ));
             self::assertGreaterThanOrEqual(4, count($visibleNavPages), $slug . ' needs useful primary navigation');
             self::assertLessThanOrEqual(7, count($visibleNavPages), $slug . ' must keep primary navigation scannable');
@@ -117,7 +117,7 @@ final class StarterSiteDefinitionsTest extends TestCase
 
         foreach (StarterSiteDefinitions::all() as $slug => $starter) {
             $ctypes = array_map(
-                static fn (array $block): string => (string)$block['ctype'],
+                static fn(array $block): string => (string)$block['ctype'],
                 $this->collectContentBlocks($starter)
             );
 
@@ -176,7 +176,7 @@ final class StarterSiteDefinitionsTest extends TestCase
 
         foreach (StarterSiteDefinitions::all() as $slug => $starter) {
             $homepageCtypes = array_map(
-                static fn (array $block): string => (string)$block['ctype'],
+                static fn(array $block): string => (string)$block['ctype'],
                 $starter['home']['content']
             );
 

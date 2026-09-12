@@ -26,7 +26,7 @@ use Webconsulting\Desiderio\Utility\SiteSettingsBoolean;
 
 final class BlogCommentFormFactory extends AbstractFormFactory
 {
-    private const FRIENDLY_CAPTCHA_TEST_MODE_SETTING = 'desiderio.forms.friendlyCaptchaTestMode';
+    private const string FRIENDLY_CAPTCHA_TEST_MODE_SETTING = 'desiderio.forms.friendlyCaptchaTestMode';
 
     public function __construct(
         private readonly ConfigurationService $formConfigurationService,

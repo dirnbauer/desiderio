@@ -37,7 +37,7 @@ final class FriendlyCaptchaTestModeEnabledViewHelperTest extends TestCase
         $renderingContext = new RenderingContext();
         $renderingContext->setAttribute(
             ServerRequestInterface::class,
-            (new ServerRequest())->withAttribute('site', $site)
+            new ServerRequest()->withAttribute('site', $site)
         );
 
         $viewHelper = new FriendlyCaptchaTestModeEnabledViewHelper();

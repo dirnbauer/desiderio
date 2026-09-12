@@ -11,7 +11,7 @@ final class FileIconNameViewHelper extends AbstractViewHelper
     /**
      * @var array<string, string>
      */
-    private const EXTENSION_ICON_MAP = [
+    private const array EXTENSION_ICON_MAP = [
         'pdf' => 'file-pdf',
         'doc' => 'file-word',
         'docx' => 'file-word',
@@ -65,7 +65,7 @@ final class FileIconNameViewHelper extends AbstractViewHelper
     /**
      * @var array<string, true>
      */
-    private const IMAGE_EXTENSIONS = [
+    private const array IMAGE_EXTENSIONS = [
         'avif' => true,
         'bmp' => true,
         'gif' => true,

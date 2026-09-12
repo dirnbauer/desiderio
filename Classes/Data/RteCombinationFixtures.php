@@ -15,7 +15,7 @@ namespace Webconsulting\Desiderio\Data;
 final class RteCombinationFixtures
 {
     /** @var list<string> */
-    private const PRIMARY_BLOCK_TYPES = [
+    private const array PRIMARY_BLOCK_TYPES = [
         'p',
         'h1',
         'h2',
@@ -27,7 +27,7 @@ final class RteCombinationFixtures
         'blockquote',
     ];
 
-    private const BLOCK_COUNT = 100;
+    private const int BLOCK_COUNT = 100;
 
     public static function bodytext(): string
     {
@@ -50,7 +50,7 @@ final class RteCombinationFixtures
             $destinations = self::PRIMARY_BLOCK_TYPES;
             usort(
                 $destinations,
-                static fn (string $left, string $right): int => strcmp(
+                static fn(string $left, string $right): int => strcmp(
                     hash('sha256', 'desiderio-rte|' . $from . '|' . $left),
                     hash('sha256', 'desiderio-rte|' . $from . '|' . $right)
                 )

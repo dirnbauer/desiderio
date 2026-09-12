@@ -27,17 +27,17 @@ use PHPUnit\Framework\TestCase;
  */
 final class AtomicDesignConformanceTest extends TestCase
 {
-    private const ROOT = __DIR__ . '/../..';
-    private const COMPONENTS = 'Resources/Private/Components';
+    private const string ROOT = __DIR__ . '/../..';
+    private const string COMPONENTS = 'Resources/Private/Components';
 
     /** Content elements that are not sections (overlays, bars, footers): no d:layout.section root required. */
-    private const NON_SECTION_ELEMENTS = [
+    private const array NON_SECTION_ELEMENTS = [
         'back-to-top', 'content-divider', 'cookie-banner', 'cta-floating', 'gdpr-banner', 'legal-links',
         'footer', 'footer-app-links', 'footer-brand', 'footer-columns', 'footer-contact', 'footer-dark',
         'footer-mega', 'footer-minimal', 'footer-newsletter', 'footer-social', 'footer-split',
     ];
 
-    private const RAW_SIGNATURES = [
+    private const array RAW_SIGNATURES = [
         'button-like' => '/<(?:a|button)\b[^>]*\bclass="[^"]*\binline-flex\b[^"]*\brounded-md\b[^"]*\bfont-medium\b[^"]*"/',
         'card-like' => '/class="[^"]*\brounded-xl\b[^"]*\bbg-card\b[^"]*"/',
         'badge-like' => '/class="[^"]*\brounded-full\b[^"]*\btext-xs\b[^"]*\bfont-(?:medium|semibold)\b[^"]*"/',
@@ -45,7 +45,7 @@ final class AtomicDesignConformanceTest extends TestCase
         'inline-svg' => '/<svg\b/',
     ];
 
-    private const FORMAT_RAW_ALLOWLIST = [
+    private const array FORMAT_RAW_ALLOWLIST = [
         'Resources/Private/ClassicContent/Templates/Generic.fluid.html' => '{content} is the TYPO3-rendered output of f:cObject (already HTML)',
         'Resources/Private/ClassicContent/Templates/BlogArchive.fluid.html' => '{content} is the TYPO3-rendered plugin output of f:cObject',
         'Resources/Private/ClassicContent/Templates/BlogAuthorposts.fluid.html' => '{content} is the TYPO3-rendered plugin output of f:cObject',
@@ -145,7 +145,7 @@ final class AtomicDesignConformanceTest extends TestCase
         self::assertGreaterThan(200, count($elements));
         foreach ($elements as $absolute) {
             $path = $this->relative($absolute);
-            $element = basename(dirname(dirname($absolute)));
+            $element = basename(dirname($absolute, 2));
             $source = $this->stripComments((string)file_get_contents($absolute));
             if (preg_match('/<d:[a-z]+\.[a-zA-Z]+/', $source) !== 1) {
                 $violations[] = $this->finding($path, 'A3', 'uses no d: component');

@@ -1,0 +1,28 @@
+# Single static-analysis configuration. Run: vendor/bin/phpstan analyse
+#
+# phpstan-typo3 (TYPO3 core reflection), phpstan-phpunit and
+# phpstan-strict-rules are wired automatically by phpstan/extension-installer.
+parameters:
+    phpVersion: 80400
+    level: 8
+    paths:
+        - Classes/
+        - Configuration/Icons.php
+        - Tests/
+        - ext_emconf.php
+        - ext_localconf.php
+    bootstrapFiles:
+        # Class stubs for the OPTIONAL extensions Desiderio integrates with
+        # (studiomitte/friendlycaptcha). They are not installed in CI, so
+        # without the stubs their integration code would be unanalysable.
+        - Build/PhpStanStubs/bootstrap.php
+    tmpDir: var/phpstan
+    # PHPDoc types are documentation, not proof; keep runtime checks that
+    # "cannot" fail according to a docblock.
+    treatPhpDocTypesAsCertain: false
+    reportUnmatchedIgnoredErrors: true
+    ignoreErrors:
+        # TYPO3 injects $_EXTKEY at runtime when loading ext_emconf.php.
+        -
+            message: '#^Variable \$_EXTKEY might not be defined\.$#'
+            path: ext_emconf.php

@@ -180,7 +180,7 @@ final class PowermailIntegrationTest extends TestCase
         self::assertStringContainsString('data-powermail-morestep-show="{iterationPages.index - 1}"', $page);
         self::assertStringContainsString("{field.type} != 'submit'", $page);
         self::assertStringContainsString('{iterationPages.isLast}', $page);
-        self::assertStringContainsString("class=\"ms-auto\"", $page);
+        self::assertStringContainsString('class="ms-auto"', $page);
         self::assertStringContainsString("{field.type} == 'submit'", $page);
 
         $javascript = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Js/desiderio.js');
@@ -190,7 +190,7 @@ final class PowermailIntegrationTest extends TestCase
         self::assertStringContainsString("form.dataset.powermailA11ySubmitted = 'true';", $javascript);
         self::assertStringContainsString("message.className = 'd-powermail-field-error-message';", $javascript);
         self::assertStringContainsString("list.className = 'd-powermail-field-error-list';", $javascript);
-        self::assertStringNotContainsString("d-powermail-field-error-icon", $javascript);
+        self::assertStringNotContainsString('d-powermail-field-error-icon', $javascript);
         self::assertStringContainsString('powermailGeneratedErrorSelector', $javascript);
         self::assertStringContainsString("trim().replace(',', '.')", $javascript);
         self::assertStringContainsString('removePowermailGeneratedErrors(field);', $javascript);
@@ -261,8 +261,8 @@ final class PowermailIntegrationTest extends TestCase
     public function testPowermailDemoSeederDefinesSixStandardFormsWithFriendlyCaptcha(): void
     {
         $seeder = new PowermailDemoSeeder(
-            $this->createMock(ConnectionPool::class),
-            new DatabaseSchemaHelper($this->createMock(ConnectionPool::class)),
+            self::createStub(ConnectionPool::class),
+            new DatabaseSchemaHelper(self::createStub(ConnectionPool::class)),
         );
         $forms = $seeder->getDemoForms();
 
@@ -315,7 +315,7 @@ final class PowermailIntegrationTest extends TestCase
         $files = glob(__DIR__ . '/../../Resources/Private/Css/desiderio/components-*.css');
         self::assertIsArray($files);
         self::assertNotSame([], $files);
-        return implode("\n", array_map(static fn(string $file): string => (string) file_get_contents($file), $files));
+        return implode("\n", array_map(static fn(string $file): string => (string)file_get_contents($file), $files));
     }
 
 }

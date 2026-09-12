@@ -16,13 +16,13 @@ use TYPO3\CMS\Core\Site\SiteFinder;
  * URL once so the rendered output sits in the TYPO3 page cache before any
  * editor opens the picker.
  */
-final class PreviewWarmer
+final readonly class PreviewWarmer
 {
     public function __construct(
-        private readonly ConnectionPool $connectionPool,
-        private readonly RequestFactory $requestFactory,
-        private readonly PreviewUrlBuilder $previewUrlBuilder,
-        private readonly SiteFinder $siteFinder,
+        private ConnectionPool $connectionPool,
+        private RequestFactory $requestFactory,
+        private PreviewUrlBuilder $previewUrlBuilder,
+        private SiteFinder $siteFinder,
     ) {}
 
     public function resolveSite(int $storagePid): Site

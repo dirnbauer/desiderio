@@ -38,7 +38,7 @@ final class StyleguideContentGroups
         // derived from the single CoreContentElements manifest (plugins excluded:
         // they need a configured form/flexform and Powermail has its own seeder).
         $coreElements = array_map(
-            static fn (array $element): array => ['name' => $element['name'], 'ctype' => $element['cType']],
+            static fn(array $element): array => ['name' => $element['name'], 'ctype' => $element['cType']],
             CoreContentElements::styleguideElements(),
         );
         if ($coreElements !== []) {

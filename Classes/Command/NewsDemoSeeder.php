@@ -32,9 +32,9 @@ use Webconsulting\Desiderio\Seeding\StarterContentBuilder;
  */
 final class NewsDemoSeeder
 {
-    private const IMPORT_SOURCE = 'desiderio_styleguide_seed';
-    private const NEWS_TABLE = 'tx_news_domain_model_news';
-    private const REPO_URL = 'https://github.com/dirnbauer/desiderio';
+    private const string IMPORT_SOURCE = 'desiderio_styleguide_seed';
+    private const string NEWS_TABLE = 'tx_news_domain_model_news';
+    private const string REPO_URL = 'https://github.com/dirnbauer/desiderio';
 
     private ?DesiderioContentCleaner $contentCleaner = null;
 

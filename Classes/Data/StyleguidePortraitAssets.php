@@ -12,11 +12,11 @@ namespace Webconsulting\Desiderio\Data;
  */
 final class StyleguidePortraitAssets
 {
-    public const UNSPLASH_COLLECTION_ID = 25880;
+    public const int UNSPLASH_COLLECTION_ID = 25880;
 
-    private const RELATIVE_DIRECTORY = 'Resources/Public/Styleguide/Unsplash/People';
+    private const string RELATIVE_DIRECTORY = 'Resources/Public/Styleguide/Unsplash/People';
 
-    private const TEAM_GRID_PREFIX = 'team-grid-';
+    private const string TEAM_GRID_PREFIX = 'team-grid-';
 
     /**
      * @return list<string> Relative extension paths (without EXT:desiderio/ prefix).
@@ -36,7 +36,7 @@ final class StyleguidePortraitAssets
         natsort($files);
 
         return array_values(array_map(
-            static fn (string $absolutePath): string => self::RELATIVE_DIRECTORY . '/' . basename($absolutePath),
+            static fn(string $absolutePath): string => self::RELATIVE_DIRECTORY . '/' . basename($absolutePath),
             $files
         ));
     }

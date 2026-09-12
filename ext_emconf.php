@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+/** @var array<string, mixed> $EM_CONF */
+$EM_CONF ??= [];
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Desiderio',
     'description' => 'Desiderio — shadcn/ui-inspired Fluid 5 component library, 244 Desiderio Content Blocks, and theme layer for TYPO3 14.3 LTS.',
@@ -9,7 +11,6 @@ $EM_CONF[$_EXTKEY] = [
     'author' => 'webconsulting studio',
     'author_email' => '',
     'state' => 'stable',
-    'clearCacheOnLoad' => 1,
     'version' => '4.0.6',
     'constraints' => [
         'depends' => [

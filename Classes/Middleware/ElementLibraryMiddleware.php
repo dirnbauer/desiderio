@@ -8,11 +8,13 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use TYPO3\CMS\Core\Authentication\AbstractUserAuthentication;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\FormProtection\FormProtectionFactory;
 use TYPO3\CMS\Core\Http\JsonResponse;
 use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
 use TYPO3\CMS\Core\Site\Entity\Site;
+use Webconsulting\Desiderio\Library\CoreContentElements;
 use Webconsulting\Desiderio\Library\ElementCatalog;
 use Webconsulting\Desiderio\Library\ElementSearchService;
 use Webconsulting\Desiderio\Library\PreviewUrlBuilder;
@@ -30,16 +32,16 @@ use Webconsulting\Desiderio\Library\PreviewWarmer;
  *
  * @phpstan-type CatalogEntry array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, keywords: list<string>, iconUrl: string}
  */
-final class ElementLibraryMiddleware implements MiddlewareInterface
+final readonly class ElementLibraryMiddleware implements MiddlewareInterface
 {
     public function __construct(
-        private readonly Context $context,
-        private readonly FormProtectionFactory $formProtectionFactory,
-        private readonly ElementCatalog $elementCatalog,
-        private readonly ElementSearchService $elementSearchService,
-        private readonly PreviewUrlBuilder $previewUrlBuilder,
-        private readonly PreviewWarmer $previewWarmer,
-        private readonly LanguageServiceFactory $languageServiceFactory,
+        private Context $context,
+        private FormProtectionFactory $formProtectionFactory,
+        private ElementCatalog $elementCatalog,
+        private ElementSearchService $elementSearchService,
+        private PreviewUrlBuilder $previewUrlBuilder,
+        private PreviewWarmer $previewWarmer,
+        private LanguageServiceFactory $languageServiceFactory,
     ) {}
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
@@ -62,7 +64,7 @@ final class ElementLibraryMiddleware implements MiddlewareInterface
         }
 
         $backendUser = $GLOBALS['BE_USER'] ?? null;
-        $languageService = $backendUser instanceof \TYPO3\CMS\Core\Authentication\AbstractUserAuthentication
+        $languageService = $backendUser instanceof AbstractUserAuthentication
             ? $this->languageServiceFactory->createFromUserPreferences($backendUser)
             : $this->languageServiceFactory->create('default');
 
@@ -84,7 +86,7 @@ final class ElementLibraryMiddleware implements MiddlewareInterface
             $rawQuery = $queryParams['elementLibrarySearch'] ?? '';
             $query = is_string($rawQuery) ? $rawQuery : '';
             $langKey = 'default';
-            if ($backendUser instanceof \TYPO3\CMS\Core\Authentication\AbstractUserAuthentication && is_array($backendUser->user)) {
+            if ($backendUser instanceof AbstractUserAuthentication && is_array($backendUser->user)) {
                 $lang = $backendUser->user['lang'] ?? null;
                 $langKey = is_string($lang) && $lang !== '' ? $lang : 'default';
             }
@@ -125,7 +127,7 @@ final class ElementLibraryMiddleware implements MiddlewareInterface
             // this shorter one. Falls back to the full text when none is authored.
             // Core elements have no own extension; their short blurbs live in
             // Desiderio's library_short.xlf, keyed by the bare core cType.
-            $shortHost = $element['hostExtension'] === \Webconsulting\Desiderio\Library\CoreContentElements::HOST
+            $shortHost = $element['hostExtension'] === CoreContentElements::HOST
                 ? 'desiderio'
                 : $element['hostExtension'];
             $shortFile = 'LLL:EXT:' . $shortHost . '/Resources/Private/Language/library_short.xlf:';

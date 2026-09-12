@@ -16,8 +16,8 @@ use PHPUnit\Framework\TestCase;
  */
 final class ElementTitleUniquenessTest extends TestCase
 {
-    private const CONTENT_BLOCKS_DIR = __DIR__ . '/../../ContentBlocks/ContentElements';
-    private const LANGUAGE_DIR = __DIR__ . '/../../Resources/Private/Language';
+    private const string CONTENT_BLOCKS_DIR = __DIR__ . '/../../ContentBlocks/ContentElements';
+    private const string LANGUAGE_DIR = __DIR__ . '/../../Resources/Private/Language';
 
     public function testEnglishTitlesAreUnique(): void
     {

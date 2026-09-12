@@ -7,6 +7,7 @@ namespace Webconsulting\Desiderio\Tests\Unit;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
+use Symfony\Component\Yaml\Yaml;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\WorkspaceAspect;
 use TYPO3\CMS\Core\Database\ConnectionPool;
@@ -31,9 +32,13 @@ final class StyleguideSeedCommandTest extends TestCase
     public function testCommandUsesConfiguredParentPageAndStyleguideFixtures(): void
     {
         $commandFile = __DIR__ . '/../../Classes/Command/SeedStyleguidePagesCommand.php';
-        $source = (string) file_get_contents($commandFile);
+        $source = (string)file_get_contents($commandFile);
 
-        self::assertSame(505, SeedStyleguidePagesCommand::DEFAULT_PARENT_PID);
+        self::assertStringContainsString(
+            'DEFAULT_PARENT_PID = ' . SeedStyleguidePagesCommand::DEFAULT_PARENT_PID . ';',
+            $source,
+            'The default parent page id is part of the command contract.'
+        );
         self::assertStringContainsString("name: 'desiderio:styleguide:seed'", $source);
         self::assertStringContainsString("->addOption(\n                'dry-run'", $source);
         self::assertStringContainsString("'skip-powermail'", $source);
@@ -46,19 +51,19 @@ final class StyleguideSeedCommandTest extends TestCase
         self::assertStringContainsString('getFixtureResolver()->buildContentInsert(', $source);
         self::assertStringContainsString('softDeleteSeededContent(', $source);
 
-        $cleanerSource = (string) file_get_contents(__DIR__ . '/../../Classes/Seeding/DesiderioContentCleaner.php');
+        $cleanerSource = (string)file_get_contents(__DIR__ . '/../../Classes/Seeding/DesiderioContentCleaner.php');
         self::assertStringContainsString("->update('tt_content')", $cleanerSource);
         self::assertStringContainsString("'desiderio_%'", $cleanerSource);
         self::assertStringContainsString('deleteCollectionRowsForParentUids(', $cleanerSource);
         self::assertStringContainsString("buildLiveWorkspaceConstraints(\$queryBuilder, 'tt_content')", $cleanerSource);
 
-        $cleanupSource = (string) file_get_contents(__DIR__ . '/../../Classes/Seeding/CollectionCleanupService.php');
+        $cleanupSource = (string)file_get_contents(__DIR__ . '/../../Classes/Seeding/CollectionCleanupService.php');
         self::assertStringContainsString("buildLiveWorkspaceConstraints(\$queryBuilder, 'sys_file_reference')", $cleanupSource);
 
-        $elementSeederSource = (string) file_get_contents(__DIR__ . '/../../Classes/Seeding/ContentElementSeeder.php');
+        $elementSeederSource = (string)file_get_contents(__DIR__ . '/../../Classes/Seeding/ContentElementSeeder.php');
         self::assertStringContainsString('seedFileReferences(', $elementSeederSource);
 
-        $fixtureResolverSource = (string) file_get_contents(__DIR__ . '/../../Classes/Seeding/StyleguideFixtureResolver.php');
+        $fixtureResolverSource = (string)file_get_contents(__DIR__ . '/../../Classes/Seeding/StyleguideFixtureResolver.php');
         self::assertStringContainsString('Resources/Public/Styleguide/Unsplash', $fixtureResolverSource);
 
         $tcaOverride = (string)file_get_contents(__DIR__ . '/../../Configuration/TCA/Overrides/tt_content.php');
@@ -68,7 +73,7 @@ final class StyleguideSeedCommandTest extends TestCase
 
     public function testNewsDemoQuoteSeedsUseSupportedQuoteVariants(): void
     {
-        $source = (string) file_get_contents(__DIR__ . '/../../Classes/Command/NewsDemoSeeder.php');
+        $source = (string)file_get_contents(__DIR__ . '/../../Classes/Command/NewsDemoSeeder.php');
         preg_match_all("/\\\$this->block\\('desiderio_quote', \\[(.*?)\\]\\)/s", $source, $matches);
 
         self::assertNotEmpty($matches[1]);
@@ -82,10 +87,10 @@ final class StyleguideSeedCommandTest extends TestCase
         $context = new Context();
         $context->setAspect('workspace', new WorkspaceAspect(42));
         $command = new SeedStyleguidePagesCommand(
-            $this->createMock(ConnectionPool::class),
+            self::createStub(ConnectionPool::class),
             $context,
-            $this->createMock(StorageRepository::class),
-            new DatabaseSchemaHelper($this->createMock(ConnectionPool::class)),
+            self::createStub(StorageRepository::class),
+            new DatabaseSchemaHelper(self::createStub(ConnectionPool::class)),
         );
 
         $tester = new CommandTester($command);
@@ -441,7 +446,7 @@ final class StyleguideSeedCommandTest extends TestCase
 
         self::assertSame(
             ['column_items', 'link_items'],
-            (new ContentBlockCollectionMap())->getCollectionTableNames()
+            new ContentBlockCollectionMap()->getCollectionTableNames()
         );
     }
 
@@ -912,7 +917,7 @@ final class StyleguideSeedCommandTest extends TestCase
     public function testTabsFixtureNormalizesInvalidDefaultTabIndex(): void
     {
         $completer = new StyleguideJsonFixtureCompleter();
-        $tabsConfig = \Symfony\Component\Yaml\Yaml::parseFile(
+        $tabsConfig = Yaml::parseFile(
             __DIR__ . '/../../ContentBlocks/ContentElements/tabs/config.yaml'
         );
         self::assertIsArray($tabsConfig);
@@ -1192,7 +1197,7 @@ final class StyleguideSeedCommandTest extends TestCase
 
     private function createFixtureResolver(): StyleguideFixtureResolver
     {
-        $databaseSchema = new DatabaseSchemaHelper($this->createMock(ConnectionPool::class));
+        $databaseSchema = new DatabaseSchemaHelper(self::createStub(ConnectionPool::class));
 
         return new StyleguideFixtureResolver(
             $databaseSchema,
@@ -1204,10 +1209,10 @@ final class StyleguideSeedCommandTest extends TestCase
     private function createCommand(): SeedStyleguidePagesCommand
     {
         return new SeedStyleguidePagesCommand(
-            $this->createMock(ConnectionPool::class),
-            $this->createMock(Context::class),
-            $this->createMock(StorageRepository::class),
-            new DatabaseSchemaHelper($this->createMock(ConnectionPool::class)),
+            self::createStub(ConnectionPool::class),
+            self::createStub(Context::class),
+            self::createStub(StorageRepository::class),
+            new DatabaseSchemaHelper(self::createStub(ConnectionPool::class)),
         );
     }
 

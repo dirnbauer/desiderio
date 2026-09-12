@@ -28,8 +28,8 @@ namespace Webconsulting\Desiderio\Data;
  */
 final class StyleguideShowcasePages
 {
-    private const REPO_URL = 'https://github.com/dirnbauer/desiderio';
-    private const CREATE_URL = 'https://ui.shadcn.com/create';
+    private const string REPO_URL = 'https://github.com/dirnbauer/desiderio';
+    private const string CREATE_URL = 'https://ui.shadcn.com/create';
 
     /**
      * @return array<int, StarterBlock>
@@ -1404,7 +1404,6 @@ final class StyleguideShowcasePages
             ],
         ];
     }
-
 
     /**
      * @return ShowcasePage
@@ -3372,7 +3371,6 @@ ddev exec vendor/bin/typo3 skillflow:sync
             'source' => self::REPO_URL,
         ];
     }
-
 
     /**
      * @return array{file: string, title: string, alternative: string, description: string, source: string}

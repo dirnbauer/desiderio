@@ -14,13 +14,13 @@ use TYPO3\CMS\Core\Database\Query\QueryBuilder;
  * removes their file references and collection child rows. Only live
  * workspace rows are touched.
  */
-final class DesiderioContentCleaner
+final readonly class DesiderioContentCleaner
 {
     public function __construct(
-        private readonly ConnectionPool $connectionPool,
-        private readonly LiveWorkspaceQueryHelper $liveWorkspaceQueryHelper,
-        private readonly CollectionCleanupService $collectionCleanupService,
-        private readonly ContentBlockCollectionMap $contentBlockCollectionMap,
+        private ConnectionPool $connectionPool,
+        private LiveWorkspaceQueryHelper $liveWorkspaceQueryHelper,
+        private CollectionCleanupService $collectionCleanupService,
+        private ContentBlockCollectionMap $contentBlockCollectionMap,
     ) {}
 
     /**

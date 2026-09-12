@@ -14,7 +14,7 @@ namespace Webconsulting\Desiderio\Data;
  */
 final class PowermailDemoFormDefinitions
 {
-    private const AUTOCOMPLETE_TOKENS_BY_MARKER = [
+    private const array AUTOCOMPLETE_TOKENS_BY_MARKER = [
         'name' => 'name',
         'email' => 'email',
         'phone' => 'tel',
@@ -251,6 +251,10 @@ final class PowermailDemoFormDefinitions
         ];
     }
 
+    /**
+     * @param array<string, mixed> $options overrides merged over the defaults
+     * @return DemoField
+     */
     private static function field(string $type, string $marker, string $titleEn, string $titleDe, array $options = []): array
     {
         return $options + [

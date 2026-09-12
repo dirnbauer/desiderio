@@ -182,7 +182,7 @@ final class StarterSiteDefinitions
             self::headerSection($title, $eyebrow, $abstract, 'left'),
             self::textMedia($title . ' overview', $abstract, 'This page gives a buyer enough context to understand the offer, compare it with internal needs, and choose a next step without asking for a brochure.', 'media-right'),
             self::featureList($title . ' priorities', $eyebrow, 'These priorities answer the questions a serious stakeholder brings to this page.', array_map(
-                static fn (string $topic, int $index): array => ['icon' => ['shield-check', 'settings', 'users'][$index % 3], 'title' => $topic, 'description' => 'Explain scope, ownership, and proof for ' . strtolower($topic) . '.'],
+                static fn(string $topic, int $index): array => ['icon' => ['shield-check', 'settings', 'users'][$index % 3], 'title' => $topic, 'description' => 'Explain scope, ownership, and proof for ' . strtolower($topic) . '.'],
                 $topics,
                 array_keys($topics)
             )),
@@ -297,7 +297,6 @@ final class StarterSiteDefinitions
         ]);
     }
 
-
     /**
      * @return StarterBlock
      */
@@ -321,7 +320,7 @@ final class StarterSiteDefinitions
             'header' => $header,
             'variant' => $variant,
             'tabs' => array_map(
-                static fn (array $tab, int $index): array => [
+                static fn(array $tab, int $index): array => [
                     'label' => $tab['label'],
                     'link' => $tab['link'],
                     'active' => $tab['active'] ?? $index === 0,
@@ -487,7 +486,6 @@ final class StarterSiteDefinitions
         ]);
     }
 
-
     /**
      * @param list<array{title: string, type_label: string, description: string, link: string}> $items
      * @return StarterBlock
@@ -512,9 +510,9 @@ final class StarterSiteDefinitions
             'eyebrow' => $eyebrow,
             'subheadline' => $subheadline,
             'plans' => array_map(
-                static fn (array $plan): array => [
+                static fn(array $plan): array => [
                     ...$plan,
-                    'features' => array_map(static fn (string $feature): array => ['text' => $feature], $plan['features']),
+                    'features' => array_map(static fn(string $feature): array => ['text' => $feature], $plan['features']),
                 ],
                 $plans
             ),
@@ -531,7 +529,7 @@ final class StarterSiteDefinitions
             'header' => $header,
             'subheadline' => $subheadline,
             'items' => array_map(
-                static fn (array $item): array => ['question' => $item['question'], 'answer' => '<p>' . $item['answer'] . '</p>'],
+                static fn(array $item): array => ['question' => $item['question'], 'answer' => '<p>' . $item['answer'] . '</p>'],
                 $items
             ),
         ]);

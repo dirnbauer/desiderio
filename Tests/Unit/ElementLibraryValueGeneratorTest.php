@@ -18,7 +18,7 @@ final class ElementLibraryValueGeneratorTest extends TestCase
      * Words that would make a seeded library record read as a design-system
      * advert instead of a neutral example the editor can keep or edit.
      */
-    private const PROMOTIONAL_NEEDLES = [
+    private const array PROMOTIONAL_NEEDLES = [
         'shadcn',
         'Desiderio',
         'styleguide',
@@ -155,7 +155,7 @@ final class ElementLibraryValueGeneratorTest extends TestCase
         // Exercises the exact path the library seeder uses for desiderio
         // elements: an empty fixture run through the fixture resolver with the
         // neutral generator, which must fill every field and collection.
-        $schema = new DatabaseSchemaHelper($this->createMock(ConnectionPool::class));
+        $schema = new DatabaseSchemaHelper(self::createStub(ConnectionPool::class));
         $resolver = new StyleguideFixtureResolver(
             $schema,
             new ElementLibraryValueGenerator(),

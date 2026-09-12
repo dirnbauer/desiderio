@@ -12,7 +12,7 @@ final class SearchSnippetViewHelper extends AbstractViewHelper
      * Upper bound for highlighted terms, keeps the alternation pattern in
      * termPattern() small even for hostile multi-term search queries.
      */
-    private const MAX_TERMS = 10;
+    private const int MAX_TERMS = 10;
 
     protected $escapeOutput = false;
 

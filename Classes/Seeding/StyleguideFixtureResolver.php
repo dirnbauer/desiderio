@@ -10,7 +10,7 @@ use Webconsulting\Desiderio\Icon\IconRegistry;
 
 final class StyleguideFixtureResolver
 {
-    public const FIELD_SKIP = '__skip__';
+    public const string FIELD_SKIP = '__skip__';
 
     /**
      * Native tt_content FAL columns. For core CTypes (no Content Block
@@ -19,7 +19,7 @@ final class StyleguideFixtureResolver
      *
      * @var list<string>
      */
-    private const NATIVE_FILE_COLUMNS = ['assets', 'image', 'media'];
+    private const array NATIVE_FILE_COLUMNS = ['assets', 'image', 'media'];
 
     /**
      * Set only by the element library seeder. When present, file fields are
@@ -220,9 +220,9 @@ final class StyleguideFixtureResolver
             $items = [];
 
             for ($index = 0; $index < $targetItemCount; $index++) {
-            $item = $existingItems[$index] ?? [];
-            $item = is_array($item) ? ContentBlockDefinitionRegistry::normalizeStringKeyedArray($item) : [];
-            $completedItem = $this->completeCollectionItem($ctype, $name, $field, $collection, $item, $index);
+                $item = $existingItems[$index] ?? [];
+                $item = is_array($item) ? ContentBlockDefinitionRegistry::normalizeStringKeyedArray($item) : [];
+                $completedItem = $this->completeCollectionItem($ctype, $name, $field, $collection, $item, $index);
                 if ($completedItem !== []) {
                     $items[] = $completedItem;
                 }
@@ -428,7 +428,7 @@ final class StyleguideFixtureResolver
         $references = [];
 
         for ($offset = 0; $offset < $count; $offset++) {
-            $assetIndex = (int)(abs(crc32($field . ':' . ($index + $offset))) % count($assets));
+            $assetIndex = abs(crc32($field . ':' . ($index + $offset))) % count($assets);
             $asset = $assets[$assetIndex];
             $references[] = [
                 'file' => $asset['file'],
@@ -628,8 +628,6 @@ final class StyleguideFixtureResolver
     {
         return $this->fieldNormalizer->isEmptySeedValue($value);
     }
-
-
 
     /**
      * @param array<string, array<string, mixed>> $fields
@@ -894,7 +892,7 @@ final class StyleguideFixtureResolver
         if ($normalizedItem === [] && ($this->databaseSchema->tableHasColumn($this->getCollectionTable($collection), 'row_data') || isset($collection['fields']['row_data']))) {
             $values = array_values($item);
             if (!$this->containsNestedArray($values)) {
-                $normalizedItem['row_data'] = implode('|', array_map(static fn (mixed $value): string => trim((string)$value), $values));
+                $normalizedItem['row_data'] = implode('|', array_map(static fn(mixed $value): string => trim((string)$value), $values));
                 foreach ($values as $index => $value) {
                     $columnName = 'col' . ($index + 1);
                     if ($this->databaseSchema->tableHasColumn($this->getCollectionTable($collection), $columnName)) {
@@ -997,7 +995,7 @@ final class StyleguideFixtureResolver
         }
 
         if (str_contains($value, '|')) {
-            [$label, $link] = array_pad(array_map('trim', explode('|', $value, 2)), 2, '');
+            [$label, $link] = array_pad(array_map(trim(...), explode('|', $value, 2)), 2, '');
 
             return [$label, $link !== '' ? $link : $this->demoValueGenerator->buildDemoUrl($label)];
         }
@@ -1100,6 +1098,9 @@ final class StyleguideFixtureResolver
         return self::FIELD_SKIP;
     }
 
+    /**
+     * @param array<string, mixed> $fieldConfig
+     */
     public function normalizeFieldValue(mixed $value, array $fieldConfig): mixed
     {
         $normalized = $this->normalizeScalarValue($value);
@@ -1150,6 +1151,9 @@ final class StyleguideFixtureResolver
 
         return $this->demoValueGenerator->buildDefaultSelectValue($fieldConfig);
     }
+    /**
+     * @param array<string, mixed> $collection
+     */
     public function findPreferredTextField(array $collection): ?string
     {
         foreach (['label', 'title', 'name', 'feature_name', 'row_label', 'text', 'value', 'question', 'row_data', 'links', 'features_list', 'description'] as $candidate) {
@@ -1166,7 +1170,6 @@ final class StyleguideFixtureResolver
         return $this->fieldNormalizer->normalizeScalarValue($value);
     }
 
-
     /**
      * @param array<int|string, mixed> $value
      */
@@ -1175,14 +1178,7 @@ final class StyleguideFixtureResolver
         if (!array_is_list($value)) {
             return false;
         }
-
-        foreach ($value as $item) {
-            if (is_array($item)) {
-                return false;
-            }
-        }
-
-        return true;
+        return array_all($value, fn($item) => !is_array($item));
     }
 
     /**
@@ -1192,7 +1188,6 @@ final class StyleguideFixtureResolver
     {
         return $this->fieldNormalizer->containsNestedArray($values);
     }
-
 
     public function singularize(string $value): string
     {

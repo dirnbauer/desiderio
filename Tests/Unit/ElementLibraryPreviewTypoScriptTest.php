@@ -12,7 +12,7 @@ final class ElementLibraryPreviewTypoScriptTest extends TestCase
     #[Test]
     public function previewFluidTemplateUsesAResolvableTemplateFile(): void
     {
-        $typoScript = (string) file_get_contents(
+        $typoScript = (string)file_get_contents(
             __DIR__ . '/../../Configuration/Sets/Desiderio/setup.typoscript',
         );
 

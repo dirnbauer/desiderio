@@ -20,7 +20,7 @@ use Webconsulting\Desiderio\Seeding\BlogPageTreeSeeder;
  */
 final class SeedStyleguidePagesCommandBlogFunctionalTest extends FunctionalTestCase
 {
-    private const CONTENT_TYPE_GROUP_IDS = [
+    private const array CONTENT_TYPE_GROUP_IDS = [
         'hero',
         'navigation',
         'content',
@@ -33,7 +33,7 @@ final class SeedStyleguidePagesCommandBlogFunctionalTest extends FunctionalTestC
         'footer',
     ];
 
-    private const CONTENT_TYPE_SUPPORT_PAGE_COUNT = 4;
+    private const int CONTENT_TYPE_SUPPORT_PAGE_COUNT = 4;
 
     protected array $coreExtensionsToLoad = [
         'form',
@@ -70,7 +70,7 @@ final class SeedStyleguidePagesCommandBlogFunctionalTest extends FunctionalTestC
         // The list page leads with the paginated blog_posts plugin.
         self::assertSame(
             1,
-            $this->countRows('tt_content', "deleted = 0 AND pid = " . $listPageUid . " AND CType = 'blog_posts'")
+            $this->countRows('tt_content', 'deleted = 0 AND pid = ' . $listPageUid . " AND CType = 'blog_posts'")
         );
 
         $blogPages = $this->blogShowcasePages();
@@ -108,7 +108,7 @@ final class SeedStyleguidePagesCommandBlogFunctionalTest extends FunctionalTestC
         self::assertSame($distinctCategories, $this->countRows('sys_category', 'deleted = 0 AND pid = ' . $listPageUid));
         self::assertSame($distinctCategories, $this->countRows(
             'sys_category',
-            "deleted = 0 AND pid = " . $listPageUid
+            'deleted = 0 AND pid = ' . $listPageUid
             . ' AND record_type = ' . BlogPageTreeSeeder::BLOG_CATEGORY_RECORD_TYPE
             . " AND slug <> ''"
         ));
@@ -267,7 +267,6 @@ final class SeedStyleguidePagesCommandBlogFunctionalTest extends FunctionalTestC
 
         return new CommandTester($command);
     }
-
 
     /**
      * @param array<string, mixed> $row

@@ -37,16 +37,16 @@ final class ElementCatalog
      * Host extensions shipped by us. Further providers register themselves in
      * their ext_localconf.php; see hostExtensions().
      */
-    private const HOST_EXTENSIONS = ['desiderio', 'innesto'];
+    private const array HOST_EXTENSIONS = ['desiderio', 'innesto'];
 
     /**
      * Cache holding the built picker metadata. Registered in ext_localconf.php
      * (group "system"), so a normal "flush all caches" clears it; the cache key
      * additionally fingerprints every config.yaml mtime, so edits self-invalidate.
      */
-    private const METADATA_CACHE_IDENTIFIER = 'desiderio_library';
-    private const METADATA_CACHE_VERSION = 'metadata-v3';
-    private const SEARCH_FINGERPRINT_VERSION = 'config-keywords-v1';
+    private const string METADATA_CACHE_IDENTIFIER = 'desiderio_library';
+    private const string METADATA_CACHE_VERSION = 'metadata-v3';
+    private const string SEARCH_FINGERPRINT_VERSION = 'config-keywords-v1';
 
     /** @var array<string, list<array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, keywords: list<string>, vendor: string, config: array<string, mixed>, fixture: array<string, mixed>, libraryFixture: array<string, mixed>}>> keyed by locale ('' = source language) */
     private array $elements = [];
@@ -289,7 +289,7 @@ final class ElementCatalog
                 return [];
             }
             return array_values(array_filter(
-                array_map('trim', explode(' | ', $value)),
+                array_map(trim(...), explode(' | ', $value)),
                 static fn(string $term): bool => $term !== '',
             ));
         };

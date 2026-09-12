@@ -36,12 +36,12 @@ final class IconRegistryTest extends TestCase
             $cssFile = $publicRoot . $relativePath;
             self::assertFileExists($cssFile, $library . ' icon font stylesheet must ship with the package');
 
-            $css = (string) file_get_contents($cssFile);
+            $css = (string)file_get_contents($cssFile);
             self::assertStringNotContainsString('url("http', $css, $library . ' stylesheet must not load external resources');
             self::assertStringNotContainsString("url('http", $css, $library . ' stylesheet must not load external resources');
 
             $woff2 = preg_replace('/\.css$/', '.woff2', $cssFile);
-            self::assertFileExists((string) $woff2, $library . ' woff2 font must ship with the package');
+            self::assertFileExists((string)$woff2, $library . ' woff2 font must ship with the package');
         }
 
         self::assertSame(IconRegistry::fontStylesheet(IconRegistry::DEFAULT_LIBRARY), IconRegistry::fontStylesheet('unknown'));
@@ -58,14 +58,14 @@ final class IconRegistryTest extends TestCase
 
         // The official hugeicons webfont must not be redistributed; the bundled
         // one is generated in-house from MIT SVG data and must say so.
-        $hugeiconsLicense = (string) file_get_contents($iconFontRoot . '/hugeicons/LICENSE-MIT.txt');
+        $hugeiconsLicense = (string)file_get_contents($iconFontRoot . '/hugeicons/LICENSE-MIT.txt');
         self::assertStringContainsString('@hugeicons/core-free-icons', $hugeiconsLicense);
         self::assertStringContainsString('NOT the official hugeicons webfont', $hugeiconsLicense);
     }
 
     public function testPageLayoutLoadsNoExternalIconFontCdn(): void
     {
-        $layout = (string) file_get_contents(
+        $layout = (string)file_get_contents(
             dirname(__DIR__, 2) . '/Resources/Private/Templates/Layouts/Pages/Default.fluid.html'
         );
 

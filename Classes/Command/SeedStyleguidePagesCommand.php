@@ -13,12 +13,11 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use TYPO3\CMS\Core\Context\Context;
-use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Resource\StorageRepository;
 use Webconsulting\Desiderio\Data\StyleguideContentGroups;
-use Webconsulting\Desiderio\Library\CoreContentElements;
 use Webconsulting\Desiderio\Data\StyleguideShowcasePages;
+use Webconsulting\Desiderio\Library\CoreContentElements;
 use Webconsulting\Desiderio\Seeding\BlogPageTreeSeeder;
 use Webconsulting\Desiderio\Seeding\CollectionCleanupService;
 use Webconsulting\Desiderio\Seeding\ContentBlockCollectionMap;
@@ -38,8 +37,8 @@ use Webconsulting\Desiderio\Seeding\StyleguideFixtureResolver;
 )]
 final class SeedStyleguidePagesCommand extends Command
 {
-    public const DEFAULT_PARENT_PID = 505;
-    private const STYLEGUIDE_FAL_FOLDER = 'desiderio-styleguide';
+    public const int DEFAULT_PARENT_PID = 505;
+    private const string STYLEGUIDE_FAL_FOLDER = 'desiderio-styleguide';
 
     /**
      * Core CTypes additionally cleared on seeder-owned showcase subpages so
@@ -47,14 +46,14 @@ final class SeedStyleguidePagesCommand extends Command
      * blocks. Never applied to the root page, which may hold other content.
      * The blog plugins cover the seeded category/tag helper pages.
      */
-    private const SHOWCASE_ADDITIONAL_CLEANUP_CTYPES = ['text', 'textmedia', 'html', 'bullets', 'blog_posts', 'blog_category', 'blog_tag'];
+    private const array SHOWCASE_ADDITIONAL_CLEANUP_CTYPES = ['text', 'textmedia', 'html', 'bullets', 'blog_posts', 'blog_category', 'blog_tag'];
 
     /**
      * One house preset per styleguide page so the seeded tree doubles as a
      * live theme showcase. Applied via pages.tx_desiderio_shadcn_preset and
      * picked up by the body tag TypoScript (levelfield slide).
      */
-    private const STYLEGUIDE_PAGE_PRESETS = [
+    private const array STYLEGUIDE_PAGE_PRESETS = [
         'aurora',
         'marine',
         'forest',
@@ -67,17 +66,17 @@ final class SeedStyleguidePagesCommand extends Command
         'citrus',
     ];
 
-    private const CONTENT_TYPES_PAGE_TITLE = 'Content types';
-    private const CONTENT_TYPES_PAGE_NAV_TITLE = 'Content types';
-    private const CONTENT_TYPES_PAGE_SLUG = '/content-types';
-    private const CONTENT_TYPES_PAGE_SORTING = 258;
+    private const string CONTENT_TYPES_PAGE_TITLE = 'Content types';
+    private const string CONTENT_TYPES_PAGE_NAV_TITLE = 'Content types';
+    private const string CONTENT_TYPES_PAGE_SLUG = '/content-types';
+    private const int CONTENT_TYPES_PAGE_SORTING = 258;
 
     /**
      * Canonical public content-type chapters, in the same order as the cleaned
      * live tree below /content-types. TYPO3 core elements are deliberately not
      * part of this public menu.
      */
-    private const CONTENT_TYPE_GROUP_SLUGS = [
+    private const array CONTENT_TYPE_GROUP_SLUGS = [
         'hero' => 'hero-landing-intros',
         'navigation' => 'navigation-wayfinding',
         'content' => 'content-editorial',
@@ -90,7 +89,7 @@ final class SeedStyleguidePagesCommand extends Command
         'footer' => 'footers-utility-areas',
     ];
 
-    private const CONTENT_TYPE_GROUP_PRESETS = [
+    private const array CONTENT_TYPE_GROUP_PRESETS = [
         'hero' => 'lagoon',
         'navigation' => 'gold',
         'content' => 'aurora',
@@ -103,7 +102,7 @@ final class SeedStyleguidePagesCommand extends Command
         'footer' => 'bloom',
     ];
 
-    private const LEGACY_ROOT_PAGE_SLUGS = [
+    private const array LEGACY_ROOT_PAGE_SLUGS = [
         '/desiderio-content',
         '/desiderio-conversion',
         '/desiderio-data',
@@ -123,7 +122,7 @@ final class SeedStyleguidePagesCommand extends Command
     /**
      * @var list<array{title: string, slug: string, parentTarget: string, linkTarget: string, header: string, bodytext: string}>
      */
-    private const CONTENT_TYPE_SUPPORT_PAGES = [
+    private const array CONTENT_TYPE_SUPPORT_PAGES = [
         [
             'title' => 'Wayfinding patterns',
             'slug' => '/content-types/navigation-wayfinding/wayfinding-patterns',
@@ -197,12 +196,6 @@ final class SeedStyleguidePagesCommand extends Command
                 'Only print the planned pages and content element count.'
             )
             ->addOption(
-                'allow-production',
-                null,
-                InputOption::VALUE_NONE,
-                'Run even when Application Context is Production. Required to seed against production data.'
-            )
-            ->addOption(
                 'skip-powermail',
                 null,
                 InputOption::VALUE_NONE,
@@ -234,6 +227,7 @@ final class SeedStyleguidePagesCommand extends Command
                 'sys_language_uid used for German powermail demo translations.',
                 '1'
             );
+        ProductionContextGuard::addOption($this);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -241,7 +235,6 @@ final class SeedStyleguidePagesCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $parentPid = (int)$input->getOption('parent');
         $dryRun = (bool)$input->getOption('dry-run');
-        $allowProduction = (bool)$input->getOption('allow-production');
         $skipPowermail = (bool)$input->getOption('skip-powermail');
         $skipNews = (bool)$input->getOption('skip-news');
         $includeVideo = (bool)$input->getOption('include-video');
@@ -257,9 +250,7 @@ final class SeedStyleguidePagesCommand extends Command
 
             return self::FAILURE;
         }
-
-        if (!$allowProduction && Environment::getContext()->isProduction()) {
-            $io->error('Refusing to run in Production application context. Pass --allow-production to override (and only do so on a sandbox).');
+        if (!ProductionContextGuard::allows($input, $io)) {
 
             return self::FAILURE;
         }
@@ -288,7 +279,7 @@ final class SeedStyleguidePagesCommand extends Command
             unset($showcasePage);
         }
         $totalElements = array_sum(array_map(
-            static fn (array $group): int => count($group['elements']),
+            static fn(array $group): int => count($group['elements']),
             $groups
         )) + $this->countChapterFramingElements($groups) + count(self::CONTENT_TYPE_SUPPORT_PAGES) + StyleguideShowcasePages::contentElementCount();
 
@@ -315,13 +306,13 @@ final class SeedStyleguidePagesCommand extends Command
             if (!$skipPowermail) {
                 $powermailForms = $this->getPowermailDemoSeeder()->getDemoForms();
                 $io->listing(array_map(
-                    static fn (array $form): string => sprintf('Powermail demo: %s', $form['pageTitleEn']),
+                    static fn(array $form): string => sprintf('Powermail demo: %s', $form['pageTitleEn']),
                     $powermailForms
                 ));
             }
             if (!$skipNews) {
                 $io->listing(array_map(
-                    static fn (array $news): string => sprintf('News demo: %s', $news['title']),
+                    static fn(array $news): string => sprintf('News demo: %s', $news['title']),
                     $this->getNewsDemoSeeder()->getDemoNews()
                 ));
             }
@@ -764,7 +755,7 @@ final class SeedStyleguidePagesCommand extends Command
                 $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($parentPid, ParameterType::INTEGER)),
                 $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)),
                 $queryBuilder->expr()->in('slug', $queryBuilder->createNamedParameter($slugs, ArrayParameterType::STRING)),
-                ...(new LiveWorkspaceQueryHelper($this->databaseSchema))->buildLiveWorkspaceConstraints($queryBuilder, 'pages')
+                ...new LiveWorkspaceQueryHelper($this->databaseSchema)->buildLiveWorkspaceConstraints($queryBuilder, 'pages')
             )
             ->executeQuery()
             ->fetchAllAssociative();
@@ -853,7 +844,7 @@ final class SeedStyleguidePagesCommand extends Command
 
             $values[$key] = (string)preg_replace_callback(
                 '/\{\{page:([^}]+)\}\}/',
-                static fn (array $matches): string => isset($linkTargets[$matches[1]])
+                static fn(array $matches): string => isset($linkTargets[$matches[1]])
                     ? 't3://page?uid=' . $linkTargets[$matches[1]]
                     : 'https://github.com/dirnbauer/desiderio',
                 $value

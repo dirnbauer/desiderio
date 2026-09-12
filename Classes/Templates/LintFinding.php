@@ -13,9 +13,9 @@ namespace Webconsulting\Desiderio\Templates;
  */
 final readonly class LintFinding
 {
-    public const SEVERITY_ERROR = 'error';
-    public const SEVERITY_WARNING = 'warning';
-    public const SEVERITY_SKIPPED = 'skipped';
+    public const string SEVERITY_ERROR = 'error';
+    public const string SEVERITY_WARNING = 'warning';
+    public const string SEVERITY_SKIPPED = 'skipped';
 
     public function __construct(
         public string $file,

@@ -10,10 +10,10 @@ use Webconsulting\Desiderio\Icon\IconRegistry;
 /**
  * Completes Content Block fixture.json files with deterministic demo values.
  */
-final class StyleguideJsonFixtureCompleter
+final readonly class StyleguideJsonFixtureCompleter
 {
     public function __construct(
-        private readonly StyleguideDemoValueGenerator $demoValueGenerator = new StyleguideDemoValueGenerator(),
+        private StyleguideDemoValueGenerator $demoValueGenerator = new StyleguideDemoValueGenerator(),
     ) {}
 
     /**

@@ -12,7 +12,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Context\Context;
-use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Resource\StorageRepository;
 use Webconsulting\Desiderio\Library\ElementCatalog;
@@ -33,9 +32,9 @@ use Webconsulting\Desiderio\Seeding\StyleguideFixtureResolver;
 )]
 final class SeedElementLibraryCommand extends Command
 {
-    private const FOLDER_TITLE = 'Element Library';
-    private const FOLDER_SLUG = '/element-library';
-    private const DOKTYPE_SYSFOLDER = 254;
+    private const string FOLDER_TITLE = 'Element Library';
+    private const string FOLDER_SLUG = '/element-library';
+    private const int DOKTYPE_SYSFOLDER = 254;
 
     public function __construct(
         private readonly ConnectionPool $connectionPool,
@@ -58,7 +57,8 @@ final class SeedElementLibraryCommand extends Command
             ->addOption('hosts', null, InputOption::VALUE_REQUIRED, 'Comma-separated host extensions to seed, e.g. "desiderio,innesto,core" ("core" = native TYPO3 content types). Default: a folder that already has records keeps the hosts it has; a fresh folder gets every host. Records of other hosts already in the folder are removed, so this scopes a site\'s library folder to the theme it uses.')
             ->addOption('include-video', null, InputOption::VALUE_NONE, 'Opt in to seeding video content elements. Video components remain installed but are excluded from generated content by default.')
             ->addOption('no-warm', null, InputOption::VALUE_NONE, 'Skip warming the preview page cache after seeding.')
-            ->addOption('allow-production', null, InputOption::VALUE_NONE, 'Run even when Application Context is Production.');
+        ;
+        ProductionContextGuard::addOption($this);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -77,8 +77,7 @@ final class SeedElementLibraryCommand extends Command
             $io->error(sprintf('Refusing to seed inside workspace #%d. Switch to the live workspace first.', $workspaceId));
             return self::FAILURE;
         }
-        if (!(bool)$input->getOption('allow-production') && Environment::getContext()->isProduction()) {
-            $io->error('Refusing to run in Production application context. Pass --allow-production on a sandbox only.');
+        if (!ProductionContextGuard::allows($input, $io)) {
             return self::FAILURE;
         }
 

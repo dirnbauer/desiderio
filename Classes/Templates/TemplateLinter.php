@@ -9,10 +9,10 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextFactory;
 use TYPO3Fluid\Fluid\Core\Component\AbstractComponentCollection;
 use TYPO3Fluid\Fluid\Core\Parser\Exception as ParserException;
-use TYPO3Fluid\Fluid\Core\Parser\UnknownNamespaceException;
 use TYPO3Fluid\Fluid\Core\Parser\TemplateLocation;
-use TYPO3Fluid\Fluid\Core\TemplateLocationException;
+use TYPO3Fluid\Fluid\Core\Parser\UnknownNamespaceException;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
+use TYPO3Fluid\Fluid\Core\TemplateLocationException;
 use TYPO3Fluid\Fluid\Core\ViewHelper\InvalidArgumentValueException;
 use TYPO3Fluid\Fluid\Core\ViewHelper\UndeclaredArgumentException;
 
@@ -41,13 +41,13 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\UndeclaredArgumentException;
  */
 final class TemplateLinter
 {
-    public const RULE_PARSE = 'parse';
-    public const RULE_NAMESPACE_USAGE = 'namespace-usage';
-    public const RULE_PARTIAL_RESOLVES = 'partial-resolves';
-    public const RULE_DEPRECATED_CONSTRUCTS = 'deprecated-constructs';
-    public const RULE_COMPONENT_ARGUMENTS = 'component-arguments';
+    public const string RULE_PARSE = 'parse';
+    public const string RULE_NAMESPACE_USAGE = 'namespace-usage';
+    public const string RULE_PARTIAL_RESOLVES = 'partial-resolves';
+    public const string RULE_DEPRECATED_CONSTRUCTS = 'deprecated-constructs';
+    public const string RULE_COMPONENT_ARGUMENTS = 'component-arguments';
 
-    public const RULES = [
+    public const array RULES = [
         self::RULE_PARSE,
         self::RULE_NAMESPACE_USAGE,
         self::RULE_PARTIAL_RESOLVES,
@@ -55,11 +55,11 @@ final class TemplateLinter
         self::RULE_COMPONENT_ARGUMENTS,
     ];
 
-    private const NAMESPACE_URI_PREFIX = 'http://typo3.org/ns/';
-    private const CANONICAL_FLUID_URI = 'http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers';
+    private const string NAMESPACE_URI_PREFIX = 'http://typo3.org/ns/';
+    private const string CANONICAL_FLUID_URI = 'http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers';
 
     /** Directory names never scanned when a directory is given. */
-    private const SKIPPED_DIRECTORIES = [
+    private const array SKIPPED_DIRECTORIES = [
         '.git', '.ddev', '.idea', '.phpunit.cache', 'node_modules', 'vendor', 'var', 'public', 'Public',
         'Build', 'Tests', 'Documentation',
     ];
@@ -68,15 +68,15 @@ final class TemplateLinter
      * Parser errors that are a consequence of an earlier error: an
      * unresolvable opening tag leaves its closing tag orphaned.
      */
-    private const CASCADE_MESSAGES = [
+    private const array CASCADE_MESSAGES = [
         'You closed a templating tag which you never opened',
         'Not all tags were closed',
         'Templating tags not properly nested',
     ];
 
-    private const CASCADE_MARKER = '[cascade] ';
+    private const string CASCADE_MARKER = '[cascade] ';
 
-    private const DEPRECATED_CONSTRUCTS = [
+    private const array DEPRECATED_CONSTRUCTS = [
         '/(?<!\\\\)\{namespace\s/' => 'The {namespace} declaration is deprecated; declare ViewHelper namespaces with xmlns: attributes on the root tag',
         '/(?:<\/?|\{|->\s*)f:widget\./' => 'f:widget.* ViewHelpers were removed with TYPO3 v12; use pagination partials or components',
         '/(?:<\/?|\{|->\s*)f:be\./' => 'f:be.* ViewHelpers are backend-only and removed in TYPO3 v13; use core:* or plain markup',
@@ -321,7 +321,7 @@ final class TemplateLinter
             $displayPath,
             self::RULE_PARSE,
             LintFinding::SEVERITY_ERROR,
-            sprintf('%s: %s', (new \ReflectionClass($throwable))->getShortName(), $message),
+            sprintf('%s: %s', new \ReflectionClass($throwable)->getShortName(), $message),
             $line,
         );
     }
@@ -665,7 +665,7 @@ final class TemplateLinter
             if ($this->partialExists($partial['name'], $roots)) {
                 continue;
             }
-            $rootList = $roots === [] ? 'no partial root path applies to this template' : 'searched: ' . implode(', ', array_map(fn(string $root): string => $this->shortenPath($root), $roots));
+            $rootList = $roots === [] ? 'no partial root path applies to this template' : 'searched: ' . implode(', ', array_map($this->shortenPath(...), $roots));
             if ($missingExtensions !== [] && !$strict) {
                 $findings[] = new LintFinding($displayPath, self::RULE_PARTIAL_RESOLVES, LintFinding::SEVERITY_SKIPPED, sprintf('Partial "%s" not found locally; EXT:%s is not installed, its partials were not checked (%s)', $partial['name'], implode(', EXT:', $missingExtensions), $rootList), $partial['line']);
                 continue;
@@ -750,7 +750,7 @@ final class TemplateLinter
             }
         }
         return [
-            'roots' => array_values(array_unique(array_filter($roots, 'is_dir'))),
+            'roots' => array_values(array_unique(array_filter($roots, is_dir(...)))),
             'missingExtensions' => $missing,
         ];
     }

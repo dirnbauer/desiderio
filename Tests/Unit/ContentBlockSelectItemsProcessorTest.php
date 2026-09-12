@@ -68,9 +68,9 @@ final class ContentBlockSelectItemsProcessorTest extends TestCase
             ]),
         );
 
-        $processedItems = (new ContentBlockSelectItemsProcessor())->processItems($items, $context);
+        $processedItems = new ContentBlockSelectItemsProcessor()->processItems($items, $context);
         $processedValues = array_map(
-            static fn ($item): int|string|null => $item->getValue(),
+            static fn($item): int|string|null => $item->getValue(),
             $processedItems->toArray()
         );
 

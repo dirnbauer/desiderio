@@ -2,10 +2,15 @@
 
 declare(strict_types=1);
 
+use Webconsulting\Desiderio\Middleware\ElementLibraryMiddleware;
+use Webconsulting\Desiderio\Middleware\ElementPreviewCacheableMiddleware;
+use Webconsulting\Desiderio\Middleware\ExtbasePluginRequestSanitizerMiddleware;
+use Webconsulting\Desiderio\Middleware\FriendlyCaptchaTestModeMiddleware;
+
 return [
     'frontend' => [
         'webconsulting/desiderio-extbase-plugin-request-sanitizer' => [
-            'target' => \Webconsulting\Desiderio\Middleware\ExtbasePluginRequestSanitizerMiddleware::class,
+            'target' => ExtbasePluginRequestSanitizerMiddleware::class,
             'after' => [
                 'typo3/cms-frontend/site',
             ],
@@ -14,7 +19,7 @@ return [
             ],
         ],
         'webconsulting/desiderio-friendlycaptcha-test-mode' => [
-            'target' => \Webconsulting\Desiderio\Middleware\FriendlyCaptchaTestModeMiddleware::class,
+            'target' => FriendlyCaptchaTestModeMiddleware::class,
             'after' => [
                 'typo3/cms-frontend/site',
             ],
@@ -23,7 +28,7 @@ return [
             ],
         ],
         'webconsulting/desiderio-element-library' => [
-            'target' => \Webconsulting\Desiderio\Middleware\ElementLibraryMiddleware::class,
+            'target' => ElementLibraryMiddleware::class,
             'after' => [
                 'typo3/cms-frontend/site',
                 'typo3/cms-frontend/backend-user-authentication',
@@ -38,7 +43,7 @@ return [
         // EXT:workspaces' preview), so the preview is not flagged no_cache and is
         // served from the warmed live page cache.
         'webconsulting/desiderio-element-preview-cacheable' => [
-            'target' => \Webconsulting\Desiderio\Middleware\ElementPreviewCacheableMiddleware::class,
+            'target' => ElementPreviewCacheableMiddleware::class,
             'after' => [
                 'typo3/cms-frontend/backend-user-authentication',
             ],

@@ -31,9 +31,9 @@ SUITES=("$SUITE")
 for suite in "${SUITES[@]}"; do
     case "$suite" in
         phpstan) "$PHP" -d memory_limit=2G vendor/bin/phpstan analyse --no-progress ;;
-        phpunit|unit) "$PHP" vendor/bin/phpunit ;;
+        phpunit|unit) "$PHP" vendor/bin/phpunit -c Build/phpunit/UnitTests.xml ;;
         functional) Build/Scripts/runFunctionalTests.sh ;;
-        audit) "$PHP" vendor/bin/phpunit --filter ContentElementAuditTest ;;
+        audit) "$PHP" vendor/bin/phpunit -c Build/phpunit/UnitTests.xml --filter ContentElementAuditTest ;;
         validate)
             "$PHP" "$(command -v composer)" validate --strict --no-check-publish
             "$PHP" "$(command -v composer)" audit --abandoned=fail

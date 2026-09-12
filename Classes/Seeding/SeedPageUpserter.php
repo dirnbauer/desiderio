@@ -12,12 +12,12 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
  * Shared find-or-create/update logic for seeded pages. Matching is done by
  * parent + (title or slug) on live, default-language rows only.
  */
-final class SeedPageUpserter
+final readonly class SeedPageUpserter
 {
     public function __construct(
-        private readonly ConnectionPool $connectionPool,
-        private readonly DatabaseSchemaHelper $databaseSchema,
-        private readonly LiveWorkspaceQueryHelper $liveWorkspaceQueryHelper,
+        private ConnectionPool $connectionPool,
+        private DatabaseSchemaHelper $databaseSchema,
+        private LiveWorkspaceQueryHelper $liveWorkspaceQueryHelper,
     ) {}
 
     /**

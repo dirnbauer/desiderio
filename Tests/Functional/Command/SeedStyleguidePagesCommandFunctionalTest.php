@@ -14,7 +14,7 @@ use Webconsulting\Desiderio\Data\StyleguideShowcasePages;
 
 final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
 {
-    private const CONTENT_TYPE_GROUP_IDS = [
+    private const array CONTENT_TYPE_GROUP_IDS = [
         'hero',
         'navigation',
         'content',
@@ -27,7 +27,7 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
         'footer',
     ];
 
-    private const CONTENT_TYPE_PRESETS_BY_SLUG = [
+    private const array CONTENT_TYPE_PRESETS_BY_SLUG = [
         '/content-types/hero-landing-intros' => 'lagoon',
         '/content-types/navigation-wayfinding' => 'gold',
         '/content-types/content-editorial' => 'aurora',
@@ -40,14 +40,14 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
         '/content-types/footers-utility-areas' => 'bloom',
     ];
 
-    private const CONTENT_TYPE_SUPPORT_PAGE_SLUGS = [
+    private const array CONTENT_TYPE_SUPPORT_PAGE_SLUGS = [
         '/content-types/navigation-wayfinding/wayfinding-patterns',
         '/content-types/navigation-wayfinding/wayfinding-patterns/breadcrumb-trails',
         '/content-types/navigation-wayfinding/wayfinding-patterns/breadcrumb-trails/truncation-behaviour',
         '/content-types/navigation-wayfinding/wayfinding-patterns/breadcrumb-trails/truncation-behaviour/deeply-nested-example',
     ];
 
-    private const LEGACY_ROOT_PAGE_SLUGS = [
+    private const array LEGACY_ROOT_PAGE_SLUGS = [
         '/desiderio-content',
         '/desiderio-conversion',
         '/desiderio-data',
@@ -269,7 +269,7 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
                 $group = $groupsById[$groupId];
                 $group['elements'] = array_values(array_filter(
                     $group['elements'],
-                    static fn (array $element): bool => !is_string($element['ctype'] ?? null)
+                    static fn(array $element): bool => !is_string($element['ctype'] ?? null)
                         || !str_contains(strtolower($element['ctype']), 'video')
                 ));
                 $seededGroups[] = $group;
@@ -304,7 +304,7 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
     {
         return count(array_filter(
             StyleguideShowcasePages::subpages(),
-            static fn (array $page): bool => ($page['parentSlug'] ?? null) === null
+            static fn(array $page): bool => ($page['parentSlug'] ?? null) === null
         ));
     }
 

@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class PresetOverviewTest extends TestCase
 {
-    private const EXTENSION_ROOT = __DIR__ . '/../..';
+    private const string EXTENSION_ROOT = __DIR__ . '/../..';
 
     public function testEverySelectablePresetHasALiveSample(): void
     {

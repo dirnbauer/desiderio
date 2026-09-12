@@ -24,8 +24,8 @@ namespace Webconsulting\Desiderio\Seeding;
  */
 final class LibraryImageAssetProvider
 {
-    private const STYLEGUIDE = 'Resources/Public/Styleguide';
-    private const LIBRARY = self::STYLEGUIDE . '/Library';
+    private const string STYLEGUIDE = 'Resources/Public/Styleguide';
+    private const string LIBRARY = self::STYLEGUIDE . '/Library';
 
     /**
      * Roles in resolution order. The first matching rule wins, so the narrow
@@ -34,7 +34,7 @@ final class LibraryImageAssetProvider
      *
      * @var list<array{role: string, needles: list<string>}>
      */
-    private const ROLE_RULES = [
+    private const array ROLE_RULES = [
         ['role' => 'captions', 'needles' => ['captions', 'subtitle', 'vtt', 'transcript']],
         ['role' => 'video', 'needles' => ['video', 'movie', 'clip']],
         ['role' => 'audio', 'needles' => ['audio', 'podcast', 'sound', 'track']],

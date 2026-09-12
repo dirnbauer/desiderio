@@ -41,10 +41,10 @@ use TYPO3\CMS\Core\Context\WorkspaceAspect;
  * served from the standard TYPO3 page cache, which any normal "flush caches"
  * clears (cache tags pages_<rootId> / tt_content_<uid>).
  */
-final class ElementPreviewCacheableMiddleware implements MiddlewareInterface
+final readonly class ElementPreviewCacheableMiddleware implements MiddlewareInterface
 {
     public function __construct(
-        private readonly Context $context,
+        private Context $context,
     ) {}
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface

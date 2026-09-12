@@ -6,6 +6,6 @@ namespace Webconsulting\Desiderio\Seeding;
 
 final class SeedingPayloadKeys
 {
-    public const FILE_REFERENCES = '__fileReferences';
-    public const NESTED_COLLECTIONS = '__collections';
+    public const string FILE_REFERENCES = '__fileReferences';
+    public const string NESTED_COLLECTIONS = '__collections';
 }

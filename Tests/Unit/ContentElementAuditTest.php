@@ -17,7 +17,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class ContentElementAuditTest extends TestCase
 {
-    private const STRICT_CATEGORIES = [
+    private const array STRICT_CATEGORIES = [
         'fixture_missing_field',
         'collection_child_seed_gap',
         'missing_table_key',
@@ -57,7 +57,7 @@ final class ContentElementAuditTest extends TestCase
         $output = shell_exec(escapeshellcmd(PHP_BINARY) . ' ' . escapeshellarg($script));
         self::assertIsString($output);
 
-        $report = json_decode((string) $output, true);
+        $report = json_decode($output, true);
         self::assertIsArray($report);
         self::assertArrayHasKey('summary', $report);
         self::assertArrayHasKey('problems', $report);
@@ -76,7 +76,9 @@ final class ContentElementAuditTest extends TestCase
                 foreach ($issues as $issue) {
                     if (($issue['type'] ?? null) === $category) {
                         $samples[] = "$element: " . json_encode(array_diff_key($issue, ['type' => true]));
-                        if (count($samples) >= 5) break 2;
+                        if (count($samples) >= 5) {
+                            break 2;
+                        }
                     }
                 }
             }

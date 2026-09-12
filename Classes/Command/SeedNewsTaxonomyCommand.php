@@ -46,8 +46,8 @@ final class SeedNewsTaxonomyCommand extends Command
 
         $categoryTitle = trim($this->optionString($input, 'category'));
         $tagTitles = array_values(array_filter(
-            array_map('trim', explode(',', $this->optionString($input, 'tags'))),
-            static fn (string $tagTitle): bool => $tagTitle !== ''
+            array_map(trim(...), explode(',', $this->optionString($input, 'tags'))),
+            static fn(string $tagTitle): bool => $tagTitle !== ''
         ));
         if ($categoryTitle === '' && $tagTitles === []) {
             $io->error('Provide at least one category or tag title.');

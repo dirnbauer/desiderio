@@ -77,16 +77,16 @@ final class ShadcnThemeTest extends TestCase
 
     public function testTypoScriptIncludesShadcnAssetsAndBodyAttributes(): void
     {
-        $typoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/setup.typoscript');
-        $cssEntry = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Assets/Main.entry.css');
-        $javascriptEntry = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Assets/Components.entry.js');
+        $typoScript = (string)file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/setup.typoscript');
+        $cssEntry = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Assets/Main.entry.css');
+        $javascriptEntry = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Assets/Components.entry.js');
         $viteEntrypoints = json_decode(
-            (string) file_get_contents(__DIR__ . '/../../Configuration/ViteEntrypoints.json'),
+            (string)file_get_contents(__DIR__ . '/../../Configuration/ViteEntrypoints.json'),
             true,
             512,
             JSON_THROW_ON_ERROR,
         );
-        $layout = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Templates/Layouts/Pages/Default.fluid.html');
+        $layout = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Templates/Layouts/Pages/Default.fluid.html');
 
         self::assertStringContainsString('../../Public/Css/shadcn-theme.css', $cssEntry);
         self::assertStringContainsString('../../Public/Css/desiderio-tailwind.css', $cssEntry);
@@ -111,7 +111,7 @@ final class ShadcnThemeTest extends TestCase
 
     public function testThemeCssContainsLightDarkAndPresetTokens(): void
     {
-        $themeCss = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Css/shadcn-theme.css');
+        $themeCss = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Css/shadcn-theme.css');
 
         foreach (['--background', '--foreground', '--card', '--primary', '--border', '--ring', '--chart-1', '--sidebar'] as $token) {
             self::assertStringContainsString($token . ':', $themeCss);
@@ -151,7 +151,7 @@ final class ShadcnThemeTest extends TestCase
     {
         // Approach D: component shape (radius + control density) follows preset-switchable
         // tokens, so switching the shadcn preset re-cascades shape at runtime.
-        $tailwindSource = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Tailwind/desiderio.css');
+        $tailwindSource = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Tailwind/desiderio.css');
         foreach (['@utility d-control-h', '@utility d-control-text', '@utility d-control-px'] as $utility) {
             self::assertStringContainsString($utility, $tailwindSource);
         }
@@ -159,25 +159,25 @@ final class ShadcnThemeTest extends TestCase
 
         // Token VALUES live per preset in shadcn-theme.css: default profile in :root,
         // compact profile in the flat radix-lyra preset block.
-        $themeCss = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Css/shadcn-theme.css');
+        $themeCss = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Css/shadcn-theme.css');
         self::assertStringContainsString('--d-control-h: 2.25rem;', $themeCss);
         self::assertStringContainsString('--d-control-h: 2rem;', $themeCss);
         self::assertStringContainsString('--d-control-text: 0.875rem;', $themeCss);
 
         // The generated atoms reference the tokens instead of frozen literals.
-        $input = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Components/Atom/Input/Input.fluid.html');
+        $input = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Components/Atom/Input/Input.fluid.html');
         self::assertStringContainsString('d-control-h', $input);
         self::assertStringContainsString('rounded-md', $input);
         self::assertStringContainsString('d-control-text', $input);
         self::assertStringNotContainsString('rounded-none', $input);
 
         // Radio buttons must stay circular regardless of preset.
-        $controlClass = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Components/Atom/ControlClass/ControlClass.fluid.html');
+        $controlClass = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Components/Atom/ControlClass/ControlClass.fluid.html');
         self::assertStringContainsString('rounded-full', $controlClass);
 
         // Focus-ring width and card elevation are tokenized too.
         self::assertStringContainsString('ring-(length:--d-ring-width)', $input);
-        $card = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Components/Molecule/Card/Card.fluid.html');
+        $card = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Components/Molecule/Card/Card.fluid.html');
         self::assertStringContainsString('shadow-[var(--d-surface-shadow)]', $card);
         self::assertStringContainsString('--d-ring-width: 3px;', $themeCss);
         self::assertStringContainsString('--d-surface-shadow: 0 0 #0000;', $themeCss);
@@ -185,7 +185,7 @@ final class ShadcnThemeTest extends TestCase
         self::assertMatchesRegularExpression('/body\[data-shadcn-preset="b6G5977cw"\][^}]*--d-ring-width: 1px;/s', $themeCss);
 
         // The custom utilities compile and resolve their per-preset variables.
-        $tailwindCss = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Css/desiderio-tailwind.css');
+        $tailwindCss = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Css/desiderio-tailwind.css');
         self::assertStringContainsString('height:var(--d-control-h', $tailwindCss);
         self::assertStringContainsString('font-size:var(--d-control-text', $tailwindCss);
         self::assertStringContainsString('var(--d-ring-width)', $tailwindCss);
@@ -209,7 +209,7 @@ final class ShadcnThemeTest extends TestCase
         }
 
         // Each house preset has a light + dark token block keyed on the body attribute.
-        $themeCss = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Css/shadcn-theme.css');
+        $themeCss = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Css/shadcn-theme.css');
         foreach ($housePresets as $preset) {
             self::assertStringContainsString('body[data-shadcn-preset="' . $preset . '"]', $themeCss);
             self::assertStringContainsString('.dark body[data-shadcn-preset="' . $preset . '"]', $themeCss);
@@ -230,7 +230,7 @@ final class ShadcnThemeTest extends TestCase
 
     public function testTailwindBuildScansFluidComponentsAndContentBlocks(): void
     {
-        $tailwindCss = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Tailwind/desiderio.css');
+        $tailwindCss = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Tailwind/desiderio.css');
         $componentsJson = self::decodeJsonFile(__DIR__ . '/../../components.json');
         $packageJson = self::decodeJsonFile(__DIR__ . '/../../package.json');
 
@@ -277,7 +277,7 @@ final class ShadcnThemeTest extends TestCase
 
     public function testShadcnFluidSyncSupportsAllCreateStylesAndIconLibraries(): void
     {
-        $script = (string) file_get_contents(__DIR__ . '/../../Build/Scripts/sync-shadcn-fluid-primitives.php');
+        $script = (string)file_get_contents(__DIR__ . '/../../Build/Scripts/sync-shadcn-fluid-primitives.php');
 
         foreach (['radix-vega', 'radix-nova', 'radix-maia', 'radix-lyra', 'radix-mira', 'radix-luma', 'radix-sera', 'radix-rhea'] as $style) {
             self::assertStringContainsString($style, $script);
@@ -322,9 +322,9 @@ final class ShadcnThemeTest extends TestCase
 
     public function testSolrFacetTemplateReusesSuggestStyles(): void
     {
-        $facetTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Solr/Partials/Facets/Options.html');
-        $frequentlySearchedTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Solr/Partials/Search/FrequentlySearched.html');
-        $desiderioCss = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Css/desiderio.css');
+        $facetTemplate = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Solr/Partials/Facets/Options.html');
+        $frequentlySearchedTemplate = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Solr/Partials/Search/FrequentlySearched.html');
+        $desiderioCss = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Css/desiderio.css');
 
         self::assertStringContainsString('d-solr-suggest d-solr-suggest--facet', $facetTemplate);
         self::assertStringContainsString('d-solr-suggest__option', $facetTemplate);
@@ -338,8 +338,8 @@ final class ShadcnThemeTest extends TestCase
 
     public function testSolrSuggestDropdownUsesContentTypeLabels(): void
     {
-        $formTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Solr/Partials/Search/Form.html');
-        $javascript = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Js/desiderio.js');
+        $formTemplate = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Solr/Partials/Search/Form.html');
+        $javascript = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Js/desiderio.js');
 
         self::assertStringContainsString("data-d-solr-type-label-pages=\"{f:translate(key: 'solr.contentType.pages'", $formTemplate);
         self::assertStringContainsString("data-d-solr-type-label-news=\"{f:translate(key: 'solr.contentType.news'", $formTemplate);
@@ -354,7 +354,7 @@ final class ShadcnThemeTest extends TestCase
         $generatedCssPath = __DIR__ . '/../../Resources/Public/Css/desiderio-tailwind.css';
         self::assertFileExists($generatedCssPath, 'Run npm run build:css after changing Fluid class recipes.');
 
-        $generatedCss = (string) file_get_contents($generatedCssPath);
+        $generatedCss = (string)file_get_contents($generatedCssPath);
         foreach (['.bg-card', '.text-card-foreground', '.rounded-lg', '.border-border', '.data-active\\:bg-background', '.results-highlight'] as $class) {
             self::assertStringContainsString($class, $generatedCss);
         }
@@ -368,7 +368,7 @@ final class ShadcnThemeTest extends TestCase
 
     public function testLoadedDesiderioCssKeepsSolrControlsFromInheritingProseLinkUnderlines(): void
     {
-        $css = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Css/desiderio.css');
+        $css = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Css/desiderio.css');
 
         // The bundle is minified at build time (build-desiderio-css.mjs):
         // whitespace around commas and trailing semicolons are collapsed.
@@ -380,7 +380,7 @@ final class ShadcnThemeTest extends TestCase
 
     public function testStyleguidePageListsEveryElementOverview(): void
     {
-        $template = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Templates/Pages/DesiderioStyleguide.fluid.html');
+        $template = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Templates/Pages/DesiderioStyleguide.fluid.html');
         $contentBlockConfigs = glob(__DIR__ . '/../../ContentBlocks/ContentElements/*/config.yaml');
         self::assertIsArray($contentBlockConfigs);
         $contentBlockCount = count($contentBlockConfigs);
@@ -409,7 +409,7 @@ final class ShadcnThemeTest extends TestCase
      */
     private static function decodeJsonFile(string $path): array
     {
-        $data = json_decode((string) file_get_contents($path), true, 512, JSON_THROW_ON_ERROR);
+        $data = json_decode((string)file_get_contents($path), true, 512, JSON_THROW_ON_ERROR);
         self::assertIsArray($data);
 
         /** @var array<string, mixed> $data */
@@ -425,7 +425,7 @@ final class ShadcnThemeTest extends TestCase
         $files = glob(__DIR__ . '/../../Resources/Private/Css/desiderio/components-*.css');
         self::assertIsArray($files);
         self::assertNotSame([], $files);
-        return implode("\n", array_map(static fn(string $file): string => (string) file_get_contents($file), $files));
+        return implode("\n", array_map(static fn(string $file): string => (string)file_get_contents($file), $files));
     }
 
 }

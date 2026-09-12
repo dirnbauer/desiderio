@@ -93,7 +93,7 @@ final class ElementLibraryHostsTest extends TestCase
      */
     private function filterHosts(array $catalog, array $allowedHosts): array
     {
-        $middleware = (new \ReflectionClass(ElementLibraryMiddleware::class))->newInstanceWithoutConstructor();
+        $middleware = new \ReflectionClass(ElementLibraryMiddleware::class)->newInstanceWithoutConstructor();
         $method = new \ReflectionMethod($middleware, 'filterByHosts');
 
         /** @var list<array{cType: string}> $filtered */
@@ -130,7 +130,7 @@ final class ElementLibraryHostsTest extends TestCase
 
     public function testTheSearchIndexIsNarrowedToTheAllowedElements(): void
     {
-        $service = (new \ReflectionClass(ElementSearchService::class))->newInstanceWithoutConstructor();
+        $service = new \ReflectionClass(ElementSearchService::class)->newInstanceWithoutConstructor();
         $method = new \ReflectionMethod($service, 'restrictIndex');
 
         $index = [
@@ -153,7 +153,7 @@ final class ElementLibraryHostsTest extends TestCase
 
     public function testAnUnrestrictedSearchKeepsTheSharedIndexUntouched(): void
     {
-        $service = (new \ReflectionClass(ElementSearchService::class))->newInstanceWithoutConstructor();
+        $service = new \ReflectionClass(ElementSearchService::class)->newInstanceWithoutConstructor();
         $method = new \ReflectionMethod($service, 'restrictIndex');
 
         $index = [

@@ -12,8 +12,8 @@ final class ContentRenderingTemplateTest extends TestCase
 {
     public function testPageTitleUsesShadcnH1TypographyAndSeparator(): void
     {
-        $template = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Components/Organism/PageHeader/PageHeader.fluid.html');
-        $layoutCss = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Css/desiderio/00-intro-layout.css');
+        $template = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Components/Organism/PageHeader/PageHeader.fluid.html');
+        $layoutCss = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Css/desiderio/00-intro-layout.css');
 
         self::assertStringContainsString('tag="h1" variant="h1"', $template);
         self::assertStringContainsString('<f:argument name="newsDetailUid" type="string" optional="{true}" default="" />', $template);
@@ -27,7 +27,7 @@ final class ContentRenderingTemplateTest extends TestCase
     public function testCorporateInnerPagesReuseTheSharedPageHeader(): void
     {
         foreach (['DesiderioContentpage', 'DesiderioContentpageSidebar', 'DesiderioSearch'] as $templateName) {
-            $template = (string) file_get_contents(
+            $template = (string)file_get_contents(
                 __DIR__ . '/../../Resources/Private/Presets/Corporate/Templates/Pages/' . $templateName . '.fluid.html',
             );
 
@@ -89,7 +89,7 @@ final class ContentRenderingTemplateTest extends TestCase
 
     public function testContentTypoScriptUsesCTypeBasedTemplateResolution(): void
     {
-        $typoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/TypoScript/content.typoscript');
+        $typoScript = (string)file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/TypoScript/content.typoscript');
 
         self::assertStringContainsString('field = CType', $typoScript);
         self::assertStringContainsString('case = uppercamelcase', $typoScript);
@@ -116,10 +116,10 @@ final class ContentRenderingTemplateTest extends TestCase
 
     public function testMenuPagesUsesCoreMenuProcessorAndShadcnStyleClasses(): void
     {
-        $typoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/TypoScript/content.typoscript');
-        $template = (string) file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Templates/MenuPages.fluid.html');
-        $partial = (string) file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Partials/Menu.fluid.html');
-        $css = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Css/desiderio.css');
+        $typoScript = (string)file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/TypoScript/content.typoscript');
+        $template = (string)file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Templates/MenuPages.fluid.html');
+        $partial = (string)file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Partials/Menu.fluid.html');
+        $css = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Css/desiderio.css');
 
         self::assertStringContainsString('tt_content.menu_pages =< lib.desiderioMenuSelectedPages', $typoScript);
         self::assertStringContainsString('dataProcessing.20 = menu', $typoScript);
@@ -143,11 +143,11 @@ final class ContentRenderingTemplateTest extends TestCase
 
     public function testClassicContentUsesPresetAwareShadcnSources(): void
     {
-        $layout = (string) file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Layouts/Default.fluid.html');
-        $header = (string) file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Partials/Header.fluid.html');
-        $tailwind = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Tailwind/desiderio.css');
-        $contentTypoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/TypoScript/content.typoscript');
-        $settings = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/settings.yaml');
+        $layout = (string)file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Layouts/Default.fluid.html');
+        $header = (string)file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Partials/Header.fluid.html');
+        $tailwind = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Tailwind/desiderio.css');
+        $contentTypoScript = (string)file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/TypoScript/content.typoscript');
+        $settings = (string)file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/settings.yaml');
 
         self::assertStringContainsString('xmlns:dc="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"', $layout);
         self::assertStringContainsString('dc:layout.section', $layout);
@@ -165,11 +165,11 @@ final class ContentRenderingTemplateTest extends TestCase
 
     public function testClassicContentMediaTemplatesUseFilesProcessorFileObjects(): void
     {
-        $partial = (string) file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Partials/Media.fluid.html');
-        $textmediaTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Templates/Textmedia.fluid.html');
-        $textpicTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Templates/Textpic.fluid.html');
-        $imageTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Templates/Image.fluid.html');
-        $uploadsTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Templates/Uploads.fluid.html');
+        $partial = (string)file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Partials/Media.fluid.html');
+        $textmediaTemplate = (string)file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Templates/Textmedia.fluid.html');
+        $textpicTemplate = (string)file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Templates/Textpic.fluid.html');
+        $imageTemplate = (string)file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Templates/Image.fluid.html');
+        $uploadsTemplate = (string)file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Templates/Uploads.fluid.html');
 
         self::assertStringContainsString('<f:argument name="files" type="iterable" optional="true"/>', $partial);
         self::assertStringContainsString('<f:argument name="position" type="string" optional="true"/>', $partial);
@@ -209,7 +209,7 @@ final class ContentRenderingTemplateTest extends TestCase
                     continue;
                 }
 
-                $template = (string) file_get_contents($path);
+                $template = (string)file_get_contents($path);
                 if (preg_match_all('/(?:alt|src|href|title|aria-label)="[^"\n]*\{[^"\n]*->\s*f:render\.text\(/', $template, $matches, PREG_OFFSET_CAPTURE) === false) {
                     continue;
                 }
@@ -247,7 +247,7 @@ final class ContentRenderingTemplateTest extends TestCase
                     continue;
                 }
 
-                $template = (string) file_get_contents($path);
+                $template = (string)file_get_contents($path);
                 if (preg_match_all('/<f:link\\.typolink\\b[^>]*\\brel\\s*=/s', $template, $matches, PREG_OFFSET_CAPTURE) === false) {
                     continue;
                 }
@@ -264,8 +264,8 @@ final class ContentRenderingTemplateTest extends TestCase
 
     public function testPricingSliderTemplateIsConnectedToSharedRuntime(): void
     {
-        $template = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/pricing-slider/templates/frontend.html');
-        $javascript = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Js/desiderio.js');
+        $template = (string)file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/pricing-slider/templates/frontend.html');
+        $javascript = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Js/desiderio.js');
 
         self::assertStringContainsString('data-d-pricing-slider', $template);
         self::assertStringContainsString('data-d-pricing-slider-range', $template);
@@ -296,9 +296,9 @@ final class ContentRenderingTemplateTest extends TestCase
 
     public function testCounterTemplatesAreConnectedToSharedRuntime(): void
     {
-        $counterTemplate = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/counter/templates/frontend.html');
-        $statsCounterTemplate = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/stats-counter/templates/frontend.html');
-        $javascript = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Js/astro.js');
+        $counterTemplate = (string)file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/counter/templates/frontend.html');
+        $statsCounterTemplate = (string)file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/stats-counter/templates/frontend.html');
+        $javascript = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Js/astro.js');
 
         self::assertStringContainsString('data-astro-counter', $counterTemplate);
         self::assertStringContainsString('data-astro-target="{item.target_value}"', $counterTemplate);
@@ -310,11 +310,11 @@ final class ContentRenderingTemplateTest extends TestCase
 
     public function testCodeBlockTemplateIsConnectedToAstroHighlightRuntime(): void
     {
-        $template = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/code-block/templates/frontend.html');
-        $javascript = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Js/astro.js');
-        $css = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/code-block/assets/frontend.css');
-        $viteEntry = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Assets/Components.entry.js');
-        $prism = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Js/prism-lite.js');
+        $template = (string)file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/code-block/templates/frontend.html');
+        $javascript = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Js/astro.js');
+        $css = (string)file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/code-block/assets/frontend.css');
+        $viteEntry = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Assets/Components.entry.js');
+        $prism = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Js/prism-lite.js');
 
         self::assertStringContainsString('data-astro-highlight', $template);
         self::assertStringContainsString('data-astro-language="{data.language}"', $template);
@@ -333,8 +333,8 @@ final class ContentRenderingTemplateTest extends TestCase
 
     public function testGenericChartTemplateIsConnectedToLegendAndAnimationRuntime(): void
     {
-        $template = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/chart/templates/frontend.html');
-        $javascript = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Js/charts.js');
+        $template = (string)file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/chart/templates/frontend.html');
+        $javascript = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Js/charts.js');
 
         self::assertStringContainsString('data-chart-type', $template);
         self::assertStringContainsString('data-show-legend', $template);
@@ -348,7 +348,7 @@ final class ContentRenderingTemplateTest extends TestCase
 
     public function testContentCarouselThumbnailControlsStayInsideTheRuntimeRoot(): void
     {
-        $template = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/content-carousel/templates/frontend.html');
+        $template = (string)file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/content-carousel/templates/frontend.html');
 
         $rootPosition = strpos($template, 'data-astro-content-carousel');
         $thumbnailPosition = strpos($template, 'data-astro-content-carousel-thumb');
@@ -363,9 +363,9 @@ final class ContentRenderingTemplateTest extends TestCase
 
     public function testCarouselDotsHaveAccessibleHitAreasWithoutLeakingCardStyles(): void
     {
-        $contentCss = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/content-carousel/assets/frontend.css');
-        $heroCss = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/hero-carousel/assets/frontend.css');
-        $testimonialCss = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/testimonial-carousel/assets/frontend.css');
+        $contentCss = (string)file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/content-carousel/assets/frontend.css');
+        $heroCss = (string)file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/hero-carousel/assets/frontend.css');
+        $testimonialCss = (string)file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/testimonial-carousel/assets/frontend.css');
 
         self::assertStringContainsString('.content-carousel .card__image', $contentCss);
         self::assertDoesNotMatchRegularExpression('/(?m)^\.card__(?:image|body|title|description)\b/', $contentCss);
@@ -376,9 +376,9 @@ final class ContentRenderingTemplateTest extends TestCase
 
     public function testConsentContentBlocksUseTheSharedConsentRuntime(): void
     {
-        $cookieTemplate = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/cookie-banner/templates/frontend.html');
-        $gdprTemplate = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/gdpr-banner/templates/frontend.html');
-        $javascript = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Js/desiderio.js');
+        $cookieTemplate = (string)file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/cookie-banner/templates/frontend.html');
+        $gdprTemplate = (string)file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/gdpr-banner/templates/frontend.html');
+        $javascript = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Js/desiderio.js');
 
         self::assertStringContainsString('<div class="cookie-banner', $cookieTemplate);
         self::assertStringContainsString('     hidden', $cookieTemplate);
@@ -396,7 +396,7 @@ final class ContentRenderingTemplateTest extends TestCase
     {
         foreach (['feature-video', 'hero-video', 'testimonial-video', 'video-embed'] as $contentElement) {
             $fixturePath = __DIR__ . '/../../ContentBlocks/ContentElements/' . $contentElement . '/fixture.json';
-            $fixture = json_decode((string) file_get_contents($fixturePath), true, 512, JSON_THROW_ON_ERROR);
+            $fixture = json_decode((string)file_get_contents($fixturePath), true, 512, JSON_THROW_ON_ERROR);
             self::assertIsArray($fixture);
             self::assertSame('', $fixture['video_url'] ?? '');
             self::assertSame([], $fixture['video_file'] ?? []);
@@ -405,9 +405,9 @@ final class ContentRenderingTemplateTest extends TestCase
 
     public function testTabsTemplateConnectsTriggersToPanelsThroughSharedComponents(): void
     {
-        $template = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/tabs/templates/frontend.html');
-        $trigger = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Components/Molecule/TabsTrigger/TabsTrigger.fluid.html');
-        $content = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Components/Molecule/TabsContent/TabsContent.fluid.html');
+        $template = (string)file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/tabs/templates/frontend.html');
+        $trigger = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Components/Molecule/TabsTrigger/TabsTrigger.fluid.html');
+        $content = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Components/Molecule/TabsContent/TabsContent.fluid.html');
 
         self::assertStringContainsString('id="{triggerId}"', $template);
         self::assertStringContainsString('controls="{panelId}"', $template);
@@ -424,7 +424,7 @@ final class ContentRenderingTemplateTest extends TestCase
 
     public function testFeatureTabsAlsoConnectsTriggersToPanels(): void
     {
-        $template = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/feature-tabs/templates/frontend.html');
+        $template = (string)file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/feature-tabs/templates/frontend.html');
 
         self::assertStringContainsString('id="{triggerId}"', $template);
         self::assertStringContainsString('controls="{panelId}"', $template);
@@ -435,7 +435,7 @@ final class ContentRenderingTemplateTest extends TestCase
 
     public function testTabsRuntimeUsesRovingFocusAndStandardKeyboardNavigation(): void
     {
-        $javascript = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Js/desiderio.js');
+        $javascript = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Js/desiderio.js');
 
         self::assertStringContainsString('t.tabIndex = active ? 0 : -1', $javascript);
         self::assertStringContainsString("root.addEventListener('keydown'", $javascript);
@@ -451,7 +451,7 @@ final class ContentRenderingTemplateTest extends TestCase
 
     public function testTabsListSupportsNarrowViewportScrolling(): void
     {
-        $tabsList = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Components/Molecule/TabsList/TabsList.fluid.html');
+        $tabsList = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Components/Molecule/TabsList/TabsList.fluid.html');
 
         self::assertStringContainsString('max-w-full', $tabsList);
         self::assertStringContainsString('overflow-x-auto', $tabsList);
@@ -502,7 +502,7 @@ final class ContentRenderingTemplateTest extends TestCase
             $fields = self::requireArray($page['renderables'] ?? null);
             $friendlyCaptchaFields = array_values(array_filter(
                 $fields,
-                static fn (mixed $field): bool => is_array($field)
+                static fn(mixed $field): bool => is_array($field)
                     && ($field['identifier'] ?? '') === 'friendlycaptcha'
                     && ($field['type'] ?? '') === 'Friendlycaptcha'
             ));
@@ -667,7 +667,7 @@ final class ContentRenderingTemplateTest extends TestCase
         $fields = self::requireArray($page['renderables'] ?? null);
         $ratingFields = array_values(array_filter(
             $fields,
-            static fn (mixed $field): bool => is_array($field)
+            static fn(mixed $field): bool => is_array($field)
                 && ($field['identifier'] ?? '') === 'rating'
                 && ($field['type'] ?? '') === 'RadioButton'
         ));
@@ -735,9 +735,9 @@ final class ContentRenderingTemplateTest extends TestCase
         $newsSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/DesiderioNews/config.yaml');
         $blogSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/DesiderioBlog/config.yaml');
         $blogStandaloneSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/DesiderioBlogStandalone/config.yaml');
-        $solrTypoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioSolr/setup.typoscript');
-        $newsTypoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioNews/setup.typoscript');
-        $blogTypoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioBlog/setup.typoscript');
+        $solrTypoScript = (string)file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioSolr/setup.typoscript');
+        $newsTypoScript = (string)file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioNews/setup.typoscript');
+        $blogTypoScript = (string)file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioBlog/setup.typoscript');
 
         self::assertIsArray($baseSet);
         self::assertIsArray($solrSet);
@@ -813,7 +813,7 @@ final class ContentRenderingTemplateTest extends TestCase
         ];
 
         foreach ($groupTemplates as $relativePath) {
-            $template = (string) file_get_contents(__DIR__ . '/../../' . $relativePath);
+            $template = (string)file_get_contents(__DIR__ . '/../../' . $relativePath);
 
             self::assertStringContainsString('<d:molecule.fieldSet', $template);
             self::assertStringContainsString('<d:molecule.fieldLegend', $template);
@@ -877,7 +877,7 @@ final class ContentRenderingTemplateTest extends TestCase
             'Resources/Private/Extensions/Blog/Partials/Post/Author.html',
         ];
         foreach ($shadcnBackedTemplates as $relativePath) {
-            $template = (string) file_get_contents(__DIR__ . '/../../' . $relativePath);
+            $template = (string)file_get_contents(__DIR__ . '/../../' . $relativePath);
             self::assertStringContainsString('Webconsulting/Desiderio/Components/ComponentCollection', $template, "{$relativePath} should declare the Desiderio component namespace");
             self::assertMatchesRegularExpression('/<d:(atom|molecule|layout)\\./', $template, "{$relativePath} should render with shadcn <d:…> components");
         }
@@ -901,7 +901,7 @@ final class ContentRenderingTemplateTest extends TestCase
             'Resources/Private/Extensions/Blog/Partials/List/Archive.html',
         ];
         foreach ($typedPartials as $relativePath) {
-            $partial = (string) file_get_contents(__DIR__ . '/../../' . $relativePath);
+            $partial = (string)file_get_contents(__DIR__ . '/../../' . $relativePath);
             self::assertMatchesRegularExpression('/<f:argument\\s+name="[^"]+"\\s+type="[^"]+"/', $partial, "{$relativePath} must declare typed <f:argument> for Fluid 5.3 strict typing");
         }
 
@@ -918,7 +918,7 @@ final class ContentRenderingTemplateTest extends TestCase
                 continue;
             }
 
-            $template = (string) file_get_contents($templateFile->getPathname());
+            $template = (string)file_get_contents($templateFile->getPathname());
             if (!str_contains($template, 'blogvh:')) {
                 continue;
             }
@@ -936,7 +936,7 @@ final class ContentRenderingTemplateTest extends TestCase
                 continue;
             }
 
-            $template = (string) file_get_contents($templateFile->getPathname());
+            $template = (string)file_get_contents($templateFile->getPathname());
             if (preg_match_all('/<d:atom\.icon\b[^>]*\bname="([^"{]+)"/', $template, $iconMatches) === false) {
                 continue;
             }
@@ -947,25 +947,25 @@ final class ContentRenderingTemplateTest extends TestCase
             }
         }
 
-        $blogPageTsConfig = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioBlog/page.tsconfig');
+        $blogPageTsConfig = (string)file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioBlog/page.tsconfig');
         self::assertStringContainsString('mod.web_layout.tt_content.preview', $blogPageTsConfig);
 
-        $listPostPartial = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Blog/Partials/List/Post.html');
+        $listPostPartial = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Blog/Partials/List/Post.html');
         self::assertStringContainsString('partial="Meta/ListHeader"', $listPostPartial);
         self::assertStringNotContainsString('flex min-w-0 flex-wrap items-start gap-x-3 gap-y-2', $listPostPartial);
         self::assertStringNotContainsString('partial="Meta/Rendering/Group" arguments="{metatype: \'listheader\'}"', $listPostPartial);
 
-        $teaserPostPartial = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Blog/Partials/Teaser/Post.html');
+        $teaserPostPartial = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Blog/Partials/Teaser/Post.html');
         self::assertStringContainsString('partial="Meta/TeaserHeader"', $teaserPostPartial);
         self::assertStringNotContainsString('flex min-w-0 flex-wrap items-start gap-x-3 gap-y-2', $teaserPostPartial);
         self::assertStringNotContainsString('partial="Meta/Rendering/Group" arguments="{metatype: \'teaserheader\'}"', $teaserPostPartial);
 
-        $metaAuthorsPartial = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Blog/Partials/Meta/Elements/Authors.html');
+        $metaAuthorsPartial = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Blog/Partials/Meta/Elements/Authors.html');
         self::assertStringContainsString('<d:atom.icon name="user" size="xs"/>', $metaAuthorsPartial);
         self::assertStringNotContainsString('blogvh:uri.avatar', $metaAuthorsPartial);
         self::assertStringNotContainsString('<d:atom.avatar', $metaAuthorsPartial);
 
-        $metaRenderingSection = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Blog/Partials/Meta/Rendering/Section.html');
+        $metaRenderingSection = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Blog/Partials/Meta/Rendering/Section.html');
         self::assertStringNotContainsString('avatarSettings', $metaRenderingSection);
 
         $blogSettings = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/DesiderioBlog/settings.yaml');
@@ -993,12 +993,12 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertTrue($blogListHeaderTags['enable'] ?? false);
         self::assertTrue($blogTeaserHeaderTags['enable'] ?? false);
 
-        $blogTypoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioBlog/setup.typoscript');
+        $blogTypoScript = (string)file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioBlog/setup.typoscript');
         self::assertStringContainsString("listheader {\n      elements {\n        authors.enable = 1\n        categories.enable = 1\n        tags.enable = 1", $blogTypoScript);
         self::assertStringContainsString("teaserheader {\n      elements {\n        authors.enable = 1\n        categories.enable = 1\n        tags.enable = 1", $blogTypoScript);
 
         foreach (['Page/BlogList.html', 'Page/BlogPost.html'] as $relativeTemplate) {
-            $template = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Blog/Templates/' . $relativeTemplate);
+            $template = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Blog/Templates/' . $relativeTemplate);
             self::assertStringContainsString('lg:sticky lg:top-24', $template, "{$relativeTemplate} must keep the desktop sidebar sticky");
             self::assertStringContainsString('lg:max-h-[calc(100dvh-7rem)]', $template, "{$relativeTemplate} must cap the sidebar to the viewport");
             self::assertStringContainsString('lg:overflow-y-auto', $template, "{$relativeTemplate} must let long sidebar widget stacks scroll");
@@ -1014,7 +1014,7 @@ final class ContentRenderingTemplateTest extends TestCase
         ];
 
         foreach ($blogPageTemplates as $relativePath) {
-            $template = (string) file_get_contents(__DIR__ . '/../../' . $relativePath);
+            $template = (string)file_get_contents(__DIR__ . '/../../' . $relativePath);
 
             self::assertStringContainsString(
                 '<f:render.contentArea contentArea="{blogContentAreas.content}"',
@@ -1037,14 +1037,14 @@ final class ContentRenderingTemplateTest extends TestCase
     {
         $baseSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/Desiderio/config.yaml');
         $contentElementsSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/DesiderioContentElements/config.yaml');
-        $userTsConfig = (string) file_get_contents(__DIR__ . '/../../Configuration/user.tsconfig');
+        $userTsConfig = (string)file_get_contents(__DIR__ . '/../../Configuration/user.tsconfig');
         self::assertIsArray($baseSet);
         self::assertIsArray($contentElementsSet);
 
         $contentBlockNames = [];
-        foreach (glob(__DIR__ . '/../../ContentBlocks/ContentElements/*/config.yaml') ?: [] as $configFile) {
+        foreach (self::globList(__DIR__ . '/../../ContentBlocks/ContentElements/*/config.yaml') as $configFile) {
             $contentBlock = Yaml::parseFile($configFile);
-            $contentBlockNames[] = (string) $contentBlock['name'];
+            $contentBlockNames[] = (string)$contentBlock['name'];
         }
         sort($contentBlockNames);
 
@@ -1096,13 +1096,13 @@ final class ContentRenderingTemplateTest extends TestCase
             $absolutePartialPath = __DIR__ . '/../../' . $partialPath;
 
             self::assertFileExists($absolutePartialPath, "{$partialPath} must exist for reusable preset chrome");
-            self::assertStringContainsString($expectedMarkup, (string) file_get_contents($absolutePartialPath));
+            self::assertStringContainsString($expectedMarkup, (string)file_get_contents($absolutePartialPath));
         }
 
         foreach ($presets as $presetDirectory => $setDirectory) {
             $presetSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/' . $setDirectory . '/config.yaml');
             $presetSettings = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/' . $setDirectory . '/settings.yaml');
-            $typoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/' . $setDirectory . '/setup.typoscript');
+            $typoScript = (string)file_get_contents(__DIR__ . '/../../Configuration/Sets/' . $setDirectory . '/setup.typoscript');
             $cssName = strtolower($presetDirectory);
             $cssPath = __DIR__ . '/../../Resources/Public/Css/preset-' . $cssName . '.css';
 
@@ -1128,7 +1128,7 @@ final class ContentRenderingTemplateTest extends TestCase
 
                 self::assertFileExists($absoluteTemplatePath, "{$templatePath} must exist so {$setDirectory} is a complete page archetype");
 
-                $template = (string) file_get_contents($absoluteTemplatePath);
+                $template = (string)file_get_contents($absoluteTemplatePath);
                 self::assertStringContainsString('Pages/Default', $template);
                 self::assertStringContainsString('partial="Presets/ContentArea"', $template);
                 self::assertStringNotContainsString(
@@ -1138,15 +1138,15 @@ final class ContentRenderingTemplateTest extends TestCase
                 );
             }
 
-            $sidebarTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Presets/' . $presetDirectory . '/Templates/Pages/DesiderioContentpageSidebar.fluid.html');
+            $sidebarTemplate = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Presets/' . $presetDirectory . '/Templates/Pages/DesiderioContentpageSidebar.fluid.html');
             self::assertStringContainsString('content: content.sidebar', $sidebarTemplate);
         }
     }
 
     public function testNewsDetailViewLeadsWithTheArticleHeading(): void
     {
-        $pageTypoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/TypoScript/page.typoscript');
-        $newsTypoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioNews/setup.typoscript');
+        $pageTypoScript = (string)file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/TypoScript/page.typoscript');
+        $newsTypoScript = (string)file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioNews/setup.typoscript');
 
         // PAGEVIEW exposes the routed news argument so page templates know a
         // detail view is rendering.
@@ -1164,7 +1164,7 @@ final class ContentRenderingTemplateTest extends TestCase
         // page header, which suppresses itself on detail views so the article h1
         // is the only page heading.
         foreach (['DesiderioContentpage', 'DesiderioContentpageSidebar'] as $templateName) {
-            $template = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Presets/Corporate/Templates/Pages/' . $templateName . '.fluid.html');
+            $template = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Presets/Corporate/Templates/Pages/' . $templateName . '.fluid.html');
             self::assertStringContainsString(
                 '<d:organism.pageHeader page="{page}" newsDetailUid="{newsDetailUid}"/>',
                 $template,
@@ -1177,9 +1177,9 @@ final class ContentRenderingTemplateTest extends TestCase
     {
         $baseSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/Desiderio/config.yaml');
         $templateSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/DesiderioShadcnUiTemplates/config.yaml');
-        $typoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioShadcnUiTemplates/setup.typoscript');
-        $pageTsConfig = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioShadcnUiTemplates/page.tsconfig');
-        $backendLayoutLabels = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Language/backend_layouts.xlf');
+        $typoScript = (string)file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioShadcnUiTemplates/setup.typoscript');
+        $pageTsConfig = (string)file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioShadcnUiTemplates/page.tsconfig');
+        $backendLayoutLabels = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Language/backend_layouts.xlf');
 
         self::assertIsArray($baseSet);
         self::assertIsArray($templateSet);
@@ -1191,7 +1191,7 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertSame('webconsulting/desiderio-shadcnui-templates', $templateSet['name']);
         self::assertTrue($templateSet['hidden']);
         self::assertStringContainsString('paths.20 = EXT:desiderio/Resources/Private/ShadcnUi/Templates/', $typoScript);
-        self::assertStringContainsString("EXT:desiderio/Configuration/BackendLayouts/ShadcnUi/*.tsconfig", $pageTsConfig);
+        self::assertStringContainsString('EXT:desiderio/Configuration/BackendLayouts/ShadcnUi/*.tsconfig', $pageTsConfig);
         self::assertStringContainsString('backend_layout.desiderio_blog.title', $backendLayoutLabels);
         self::assertStringContainsString('backend_layout.desiderio_extension.title', $backendLayoutLabels);
         self::assertStringContainsString('backend_layout.desiderio_news.title', $backendLayoutLabels);
@@ -1224,7 +1224,7 @@ final class ContentRenderingTemplateTest extends TestCase
             'Resources/Private/ShadcnUi/Templates/Pages/DesiderioExtension.fluid.html',
             'Resources/Private/ShadcnUi/Templates/Pages/DesiderioNews.fluid.html',
         ] as $relativePath) {
-            $template = (string) file_get_contents(__DIR__ . '/../../' . $relativePath);
+            $template = (string)file_get_contents(__DIR__ . '/../../' . $relativePath);
 
             self::assertStringContainsString('Webconsulting/Desiderio/Components/ComponentCollection', $template);
             self::assertStringContainsString('<d:layout.section', $template);
@@ -1240,7 +1240,7 @@ final class ContentRenderingTemplateTest extends TestCase
             'Resources/Private/ShadcnUi/Templates/Pages/BlogPost.fluid.html',
             'Resources/Private/ShadcnUi/Templates/Pages/DesiderioBlog.fluid.html',
         ] as $relativePath) {
-            $template = (string) file_get_contents(__DIR__ . '/../../' . $relativePath);
+            $template = (string)file_get_contents(__DIR__ . '/../../' . $relativePath);
             self::assertStringContainsString('lg:sticky lg:top-24', $template, "{$relativePath} must keep the desktop sidebar sticky");
             self::assertStringContainsString('lg:max-h-[calc(100dvh-7rem)]', $template, "{$relativePath} must cap the sidebar to the viewport");
             self::assertStringContainsString('lg:overflow-y-auto', $template, "{$relativePath} must let long sidebar widget stacks scroll");
@@ -1282,23 +1282,23 @@ final class ContentRenderingTemplateTest extends TestCase
             'Resources/Private/Extensions/News/Templates/News/Detail.html',
             'Resources/Private/Extensions/News/Partials/List/Item.html',
         ] as $relativePath) {
-            $template = (string) file_get_contents(__DIR__ . '/../../' . $relativePath);
+            $template = (string)file_get_contents(__DIR__ . '/../../' . $relativePath);
             self::assertStringContainsString('Webconsulting/Desiderio/Components/ComponentCollection', $template, "{$relativePath} should use Desiderio Fluid components");
         }
 
-        $newsTypoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioNews/setup.typoscript');
+        $newsTypoScript = (string)file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioNews/setup.typoscript');
         self::assertStringContainsString('structuredData {', $newsTypoScript);
         self::assertStringContainsString('enabled = {$desiderio.seo.structuredDataEnabled}', $newsTypoScript);
         self::assertStringContainsString('publisherName = {$desiderio.brand.wordmark}', $newsTypoScript);
         self::assertStringContainsString('publisherLogo = {$desiderio.seo.defaultImage}', $newsTypoScript);
 
-        $detailLayout = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/News/Layouts/Detail.html');
-        $detailTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/News/Templates/News/Detail.html');
-        $listItem = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/News/Partials/List/Item.html');
-        $magazineList = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/News/Templates/News/MagazineList.html');
-        $taxonomy = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/News/Partials/Taxonomy.html');
-        $newsIcons = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/News/Partials/General/NewsIcons.html');
-        $structuredData = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/News/Partials/Detail/StructuredData.html');
+        $detailLayout = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/News/Layouts/Detail.html');
+        $detailTemplate = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/News/Templates/News/Detail.html');
+        $listItem = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/News/Partials/List/Item.html');
+        $magazineList = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/News/Templates/News/MagazineList.html');
+        $taxonomy = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/News/Partials/Taxonomy.html');
+        $newsIcons = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/News/Partials/General/NewsIcons.html');
+        $structuredData = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/News/Partials/Detail/StructuredData.html');
 
         self::assertStringContainsString('https://schema.org/NewsArticle', $detailLayout);
         self::assertStringContainsString('partial="Detail/StructuredData"', $detailTemplate);
@@ -1322,8 +1322,8 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString('width="900"', $listItem);
         self::assertStringNotContainsString('settings.list.media.image.maxHeight', $listItem);
         self::assertStringNotContainsString('dummyImage', $listItem);
-        self::assertStringContainsString('lg:grid-cols-3', (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/News/Partials/List/LoadMore.html'));
-        self::assertStringContainsString('lg:grid-cols-3', (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/News/Partials/Detail/MediaContainer.html'));
+        self::assertStringContainsString('lg:grid-cols-3', (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/News/Partials/List/LoadMore.html'));
+        self::assertStringContainsString('lg:grid-cols-3', (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/News/Partials/Detail/MediaContainer.html'));
         self::assertStringContainsString('<n:headerData>', $structuredData);
         self::assertStringContainsString('type="application/ld+json"', $structuredData);
         self::assertStringContainsString('"@type": "NewsArticle"', $structuredData);
@@ -1348,7 +1348,7 @@ final class ContentRenderingTemplateTest extends TestCase
                 continue;
             }
 
-            $template = (string) file_get_contents($templateFile->getPathname());
+            $template = (string)file_get_contents($templateFile->getPathname());
             if (!str_contains($template, '<n:') && !str_contains($template, '{n:')) {
                 continue;
             }
@@ -1377,7 +1377,7 @@ final class ContentRenderingTemplateTest extends TestCase
 
         self::assertNotEmpty($files);
         foreach ($files as $file) {
-            $contents = (string) file_get_contents($file);
+            $contents = (string)file_get_contents($file);
             $relative = str_replace(dirname(__DIR__, 2) . '/', '', $file);
             self::assertStringContainsString('urn:oasis:names:tc:xliff:document:2.0', $contents, "{$relative} must be XLIFF 2.0");
             self::assertStringContainsString('<unit ', $contents, "{$relative} must use XLIFF 2.0 <unit> elements");
@@ -1387,8 +1387,8 @@ final class ContentRenderingTemplateTest extends TestCase
 
     public function testNewsLocallangUsesIcuMessageFormatForPlurals(): void
     {
-        $english = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Language/locallang.xlf');
-        $german = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Language/de.locallang.xlf');
+        $english = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Language/locallang.xlf');
+        $german = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Language/de.locallang.xlf');
 
         self::assertStringContainsString('plural,', $english, 'locallang.xlf must use ICU MessageFormat plural rules');
         self::assertStringContainsString('plural,', $german, 'de.locallang.xlf must use ICU MessageFormat plural rules');
@@ -1433,7 +1433,7 @@ final class ContentRenderingTemplateTest extends TestCase
         ];
 
         foreach ($partials as $relativePath) {
-            $partial = (string) file_get_contents(__DIR__ . '/../../' . $relativePath);
+            $partial = (string)file_get_contents(__DIR__ . '/../../' . $relativePath);
             self::assertMatchesRegularExpression(
                 '/<f:argument\\s+name="[^"]+"\\s+type="[^"]+"/',
                 $partial,
@@ -1444,12 +1444,12 @@ final class ContentRenderingTemplateTest extends TestCase
 
     public function testPageLayoutShipsAccessibilityPrimitives(): void
     {
-        $defaultLayout = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Templates/Layouts/Pages/Default.fluid.html');
-        $headerOrganism = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Components/Organism/SiteHeader/SiteHeader.fluid.html');
-        $footerOrganism = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Components/Organism/SiteFooter/SiteFooter.fluid.html');
+        $defaultLayout = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Templates/Layouts/Pages/Default.fluid.html');
+        $headerOrganism = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Components/Organism/SiteHeader/SiteHeader.fluid.html');
+        $footerOrganism = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Components/Organism/SiteFooter/SiteFooter.fluid.html');
         $componentsCss = self::componentsCss();
-        $english = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Language/locallang.xlf');
-        $german = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Language/de.locallang.xlf');
+        $english = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Language/locallang.xlf');
+        $german = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Language/de.locallang.xlf');
 
         // Page layout must expose a skip link, a #main-content target, and a focusable <main>.
         self::assertStringContainsString('class="d-skip-link"', $defaultLayout);
@@ -1525,7 +1525,7 @@ final class ContentRenderingTemplateTest extends TestCase
             'Resources/Private/Solr/Partials/Search/LastSearches.html',
         ];
         foreach ($files as $relativePath) {
-            $template = (string) file_get_contents(__DIR__ . '/../../' . $relativePath);
+            $template = (string)file_get_contents(__DIR__ . '/../../' . $relativePath);
             self::assertMatchesRegularExpression(
                 '/<ul\\b[^>]*\\brole="list"/',
                 $template,
@@ -1563,7 +1563,18 @@ final class ContentRenderingTemplateTest extends TestCase
         $files = glob(__DIR__ . '/../../Resources/Private/Css/desiderio/components-*.css');
         self::assertIsArray($files);
         self::assertNotSame([], $files);
-        return implode("\n", array_map(static fn(string $file): string => (string) file_get_contents($file), $files));
+        return implode("\n", array_map(static fn(string $file): string => (string)file_get_contents($file), $files));
     }
 
+    /**
+     * glob() returns false on failure; the tests always expect a list.
+     *
+     * @return list<string>
+     */
+    private static function globList(string $pattern, int $flags = 0): array
+    {
+        $matches = glob($pattern, $flags);
+        self::assertIsArray($matches, 'glob() failed for ' . $pattern);
+        return $matches;
+    }
 }

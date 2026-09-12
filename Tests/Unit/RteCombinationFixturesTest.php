@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Webconsulting\Desiderio\Tests\Unit;
 
-use DOMDocument;
-use DOMElement;
-use DOMXPath;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Yaml\Yaml;
 use Webconsulting\Desiderio\Data\RteCombinationFixtures;
@@ -14,7 +11,7 @@ use Webconsulting\Desiderio\Data\StyleguideShowcasePages;
 
 final class RteCombinationFixturesTest extends TestCase
 {
-    private const PRIMARY_BLOCK_TYPES = [
+    private const array PRIMARY_BLOCK_TYPES = [
         'p',
         'h1',
         'h2',
@@ -55,7 +52,7 @@ final class RteCombinationFixturesTest extends TestCase
         $shortestTextLength = PHP_INT_MAX;
         $longestTextLength = 0;
         foreach ($container->childNodes as $node) {
-            if (!$node instanceof DOMElement) {
+            if (!$node instanceof \DOMElement) {
                 continue;
             }
             $blocks[] = strtolower($node->tagName);
@@ -74,7 +71,7 @@ final class RteCombinationFixturesTest extends TestCase
             self::assertGreaterThan(0, $document->getElementsByTagName($tag)->length, $tag);
         }
 
-        $xpath = new DOMXPath($document);
+        $xpath = new \DOMXPath($document);
         self::assertGreaterThan(0, $this->countXpath($xpath, '//*[@lang]'));
         self::assertGreaterThan(0, $this->countXpath($xpath, '//*[contains(concat(" ", normalize-space(@class), " "), " lead ")]'));
         self::assertGreaterThan(0, $this->countXpath($xpath, '//*[contains(concat(" ", normalize-space(@class), " "), " text-muted ")]'));
@@ -85,14 +82,7 @@ final class RteCombinationFixturesTest extends TestCase
 
     public function testStyleguidePageWiresTheFixtureToAnEditableCoreTextElement(): void
     {
-        $page = null;
-        foreach (StyleguideShowcasePages::subpages() as $candidate) {
-            if ($candidate['slug'] === '/content-types/rte-combinations') {
-                $page = $candidate;
-                break;
-            }
-        }
-
+        $page = array_find(StyleguideShowcasePages::subpages(), fn($candidate) => $candidate['slug'] === '/content-types/rte-combinations');
         self::assertIsArray($page);
         self::assertSame('content-types', $page['parentSlug']);
         self::assertSame('RTE.config.tt_content.bodytext.types.text.preset = desiderio', $page['pageTsConfig'] ?? null);
@@ -205,7 +195,7 @@ final class RteCombinationFixturesTest extends TestCase
         self::assertSame(1, preg_match('/allowTags\\s*=\\s*([^\\r\\n]+)/', $setup, $allowTagsMatch));
         $allowTags = $allowTagsMatch[1];
         self::assertIsString($allowTags);
-        $frontendAllowedTags = array_map('trim', explode(',', $allowTags));
+        $frontendAllowedTags = array_map(trim(...), explode(',', $allowTags));
         preg_match_all('/<([a-z][a-z0-9]*)\\b/i', RteCombinationFixtures::bodytext(), $fixtureTagMatches);
         $fixtureTags = $fixtureTagMatches[1];
         self::assertIsArray($fixtureTags);
@@ -219,12 +209,12 @@ final class RteCombinationFixturesTest extends TestCase
     }
 
     /**
-     * @return array{DOMDocument, DOMElement}
+     * @return array{\DOMDocument, \DOMElement}
      */
     private function parseBodytext(string $bodytext): array
     {
         $previous = libxml_use_internal_errors(true);
-        $document = new DOMDocument('1.0', 'UTF-8');
+        $document = new \DOMDocument('1.0', 'UTF-8');
         $loaded = $document->loadHTML(
             '<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body><div id="rte-fixture">'
             . $bodytext
@@ -236,12 +226,12 @@ final class RteCombinationFixturesTest extends TestCase
 
         self::assertTrue($loaded);
         $container = $document->getElementById('rte-fixture');
-        self::assertInstanceOf(DOMElement::class, $container);
+        self::assertInstanceOf(\DOMElement::class, $container);
 
         return [$document, $container];
     }
 
-    private function countXpath(DOMXPath $xpath, string $expression): int
+    private function countXpath(\DOMXPath $xpath, string $expression): int
     {
         $nodes = $xpath->query($expression);
         if ($nodes === false) {

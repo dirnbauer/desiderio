@@ -13,8 +13,8 @@ use Webconsulting\Desiderio\Utility\DesiderioFormIdentifier;
 
 final class ConfigureDesiderioFormEmailFinisher
 {
-    private const EMAIL_TEMPLATE_ROOT_PATH = 'EXT:desiderio/Resources/Private/Form/Email/Templates/';
-    private const EMAIL_LAYOUT_ROOT_PATH = 'EXT:desiderio/Resources/Private/Form/Email/Layouts/';
+    private const string EMAIL_TEMPLATE_ROOT_PATH = 'EXT:desiderio/Resources/Private/Form/Email/Templates/';
+    private const string EMAIL_LAYOUT_ROOT_PATH = 'EXT:desiderio/Resources/Private/Form/Email/Layouts/';
 
     #[AsEventListener('desiderio/configure-form-email-finisher')]
     public function __invoke(BeforeEmailFinisherInitializedEvent $event): void

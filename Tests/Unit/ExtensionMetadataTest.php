@@ -10,7 +10,7 @@ final class ExtensionMetadataTest extends TestCase
 {
     public function testComposerJsonHasExpectedIdentity(): void
     {
-        $composer = json_decode((string) file_get_contents(__DIR__ . '/../../composer.json'), true, 512, JSON_THROW_ON_ERROR);
+        $composer = json_decode((string)file_get_contents(__DIR__ . '/../../composer.json'), true, 512, JSON_THROW_ON_ERROR);
 
         self::assertSame('webconsulting/desiderio', $composer['name']);
         self::assertSame('typo3-cms-extension', $composer['type']);
@@ -29,7 +29,7 @@ final class ExtensionMetadataTest extends TestCase
 
     public function testExtEmconfMatchesComposer(): void
     {
-        $composer = json_decode((string) file_get_contents(__DIR__ . '/../../composer.json'), true, 512, JSON_THROW_ON_ERROR);
+        $composer = json_decode((string)file_get_contents(__DIR__ . '/../../composer.json'), true, 512, JSON_THROW_ON_ERROR);
         self::assertIsArray($composer);
         $extra = $composer['extra'] ?? null;
         self::assertIsArray($extra);
@@ -37,9 +37,7 @@ final class ExtensionMetadataTest extends TestCase
         self::assertIsArray($typo3Extra);
         $expectedVersion = $typo3Extra['version'] ?? null;
 
-        $_EXTKEY = 'desiderio';
-        require __DIR__ . '/../../ext_emconf.php';
-        $conf = $EM_CONF[$_EXTKEY];
+        $conf = self::extensionConfiguration();
 
         self::assertIsString($expectedVersion);
         self::assertSame($expectedVersion, $conf['version']);
@@ -70,8 +68,8 @@ final class ExtensionMetadataTest extends TestCase
 
     public function testSolrDefaultsSetIsOwnedByDesiderio(): void
     {
-        $config = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/SolrDefaults/config.yaml');
-        $setup = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/SolrDefaults/setup.typoscript');
+        $config = (string)file_get_contents(__DIR__ . '/../../Configuration/Sets/SolrDefaults/config.yaml');
+        $setup = (string)file_get_contents(__DIR__ . '/../../Configuration/Sets/SolrDefaults/setup.typoscript');
 
         self::assertStringContainsString('name: webconsulting/solr-defaults', $config);
         self::assertStringContainsString('webconsulting/desiderio-solr', $config);
@@ -90,4 +88,21 @@ final class ExtensionMetadataTest extends TestCase
         self::assertFileExists(__DIR__ . '/../../Resources/Private/Extensions/Blog/Partials/Pagination/Pagination.html');
         self::assertDirectoryDoesNotExist(__DIR__ . '/../../Resources/Private/Partials');
     }
+    /**
+     * ext_emconf.php writes into $EM_CONF, keyed by the $_EXTKEY the extension
+     * manager provides at runtime.
+     *
+     * @return array<string, mixed>
+     */
+    private static function extensionConfiguration(): array
+    {
+        $_EXTKEY = 'desiderio';
+        $EM_CONF = [];
+        require __DIR__ . '/../../ext_emconf.php';
+        self::assertArrayHasKey($_EXTKEY, $EM_CONF);
+        self::assertIsArray($EM_CONF[$_EXTKEY]);
+
+        return $EM_CONF[$_EXTKEY];
+    }
+
 }

@@ -165,7 +165,7 @@ final class ElementCatalogCoreElementsTest extends FunctionalTestCase
         $keywords = $catalog->localizeKeywords($element, $language);
         self::assertNotEmpty($keywords['keywords'], 'Core elements must expose primary keywords');
         self::assertNotEmpty($keywords['synonyms'], 'Core elements must expose synonyms');
-        self::assertContains('bullet list', array_map('strtolower', $keywords['keywords']));
+        self::assertContains('bullet list', array_map(strtolower(...), $keywords['keywords']));
     }
 
     public function testConfigKeywordsAreUsedWhenLocalizedKeywordUnitIsMissing(): void

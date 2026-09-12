@@ -7,10 +7,10 @@ namespace Webconsulting\Desiderio\Seeding;
 /**
  * Styleguide-specific field alias resolution for Content Block collection seeding.
  */
-final class StyleguideCollectionAliasPolicy
+final readonly class StyleguideCollectionAliasPolicy
 {
     public function __construct(
-        private readonly DatabaseSchemaHelper $databaseSchema,
+        private DatabaseSchemaHelper $databaseSchema,
     ) {}
 
     /**
@@ -145,7 +145,7 @@ final class StyleguideCollectionAliasPolicy
 
             return array_values(array_filter(
                 is_array($parts = preg_split($separator, $value)) ? $parts : [],
-                static fn (string $item): bool => trim($item) !== ''
+                static fn(string $item): bool => trim($item) !== ''
             ));
         }
 

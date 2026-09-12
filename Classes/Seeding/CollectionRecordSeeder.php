@@ -7,12 +7,12 @@ namespace Webconsulting\Desiderio\Seeding;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use Webconsulting\Desiderio\Data\ContentBlockDefinitionRegistry;
 
-final class CollectionRecordSeeder
+final readonly class CollectionRecordSeeder
 {
     public function __construct(
-        private readonly ConnectionPool $connectionPool,
-        private readonly DatabaseSchemaHelper $databaseSchema,
-        private readonly ExtensionFalSeeder $falSeeder,
+        private ConnectionPool $connectionPool,
+        private DatabaseSchemaHelper $databaseSchema,
+        private ExtensionFalSeeder $falSeeder,
     ) {}
 
     /**
@@ -184,14 +184,7 @@ final class CollectionRecordSeeder
             'tablenames' => true,
             'fieldname' => true,
         ];
-
-        foreach ($row as $field => $_value) {
-            if (!isset($systemFields[$field])) {
-                return true;
-            }
-        }
-
-        return false;
+        return array_any($row, fn($_value, $field) => !isset($systemFields[$field]));
     }
 
     public static function normalizeLastInsertId(int|string|false $lastInsertId): int

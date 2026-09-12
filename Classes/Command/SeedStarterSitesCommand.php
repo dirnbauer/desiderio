@@ -11,7 +11,6 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use TYPO3\CMS\Core\Context\Context;
-use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Resource\StorageRepository;
 use Webconsulting\Desiderio\Data\StarterSiteDefinitions;
@@ -34,10 +33,10 @@ use Webconsulting\Desiderio\Seeding\StarterContentBuilder;
 )]
 final class SeedStarterSitesCommand extends Command
 {
-    private const STARTER_FAL_FOLDER = 'desiderio-starter';
-    private const CONTENT_DELETE_SCOPE_DESIDERIO = 'desiderio';
-    private const CONTENT_DELETE_SCOPE_STARTER = 'starter';
-    private const REPLACEABLE_CORE_CTYPES = [
+    private const string STARTER_FAL_FOLDER = 'desiderio-starter';
+    private const string CONTENT_DELETE_SCOPE_DESIDERIO = 'desiderio';
+    private const string CONTENT_DELETE_SCOPE_STARTER = 'starter';
+    private const array REPLACEABLE_CORE_CTYPES = [
         'text',
         'textpic',
         'textmedia',
@@ -107,13 +106,8 @@ final class SeedStarterSitesCommand extends Command
                 null,
                 InputOption::VALUE_NONE,
                 'When root-map is used, hide existing direct child pages that are not part of the selected starter definition.'
-            )
-            ->addOption(
-                'allow-production',
-                null,
-                InputOption::VALUE_NONE,
-                'Run even when Application Context is Production. Required to seed against production data.'
             );
+        ProductionContextGuard::addOption($this);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -121,7 +115,6 @@ final class SeedStarterSitesCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $parentPid = $this->getIntegerInputOption($input, 'parent');
         $dryRun = $this->getBooleanInputOption($input, 'dry-run');
-        $allowProduction = $this->getBooleanInputOption($input, 'allow-production');
         $hideUnmanagedChildren = $this->getBooleanInputOption($input, 'hide-unmanaged-children');
         $selectedPresets = $this->resolveSelectedPresets($this->getStringInputOption($input, 'preset'), $io);
         $rootMap = $this->resolveRootMap($this->getStringInputOption($input, 'root-map'), $io);
@@ -140,9 +133,7 @@ final class SeedStarterSitesCommand extends Command
 
             return self::FAILURE;
         }
-
-        if (!$allowProduction && Environment::getContext()->isProduction()) {
-            $io->error('Refusing to run in Production application context. Pass --allow-production to override (and only do so on a sandbox).');
+        if (!ProductionContextGuard::allows($input, $io)) {
 
             return self::FAILURE;
         }
@@ -150,7 +141,7 @@ final class SeedStarterSitesCommand extends Command
         if ($dryRun) {
             $io->title('Desiderio starter site seed dry run');
             $io->listing(array_map(
-                static fn (array $starter): string => sprintf(
+                static fn(array $starter): string => sprintf(
                     '%s: 1 homepage, %d subpages, %d content elements',
                     $starter['label'],
                     count($starter['subpages']),
@@ -398,9 +389,9 @@ final class SeedStarterSitesCommand extends Command
     {
         $available = StarterSiteDefinitions::all();
         $requested = array_values(array_filter(array_map(
-            static fn (string $value): string => strtolower(trim($value)),
+            static fn(string $value): string => strtolower(trim($value)),
             explode(',', $presetOption)
-        ), static fn (string $value): bool => $value !== ''));
+        ), static fn(string $value): bool => $value !== ''));
 
         if ($requested === [] || $requested === ['all']) {
             return $available;
@@ -440,7 +431,7 @@ final class SeedStarterSitesCommand extends Command
             if ($pair === '') {
                 continue;
             }
-            $parts = array_map('trim', explode(':', $pair, 2));
+            $parts = array_map(trim(...), explode(':', $pair, 2));
             if (count($parts) !== 2 || $parts[0] === '' || $parts[1] === '') {
                 $io->error(sprintf('Invalid root-map entry "%s". Expected format is preset:uid.', $pair));
 

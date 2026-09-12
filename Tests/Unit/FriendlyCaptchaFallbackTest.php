@@ -6,13 +6,14 @@ namespace Webconsulting\Desiderio\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Yaml\Yaml;
+use TYPO3\CMS\Form\Domain\Model\FormElements\GenericFormElement;
 use Webconsulting\Desiderio\Domain\Validator\FriendlyCaptchaFallbackValidator;
 
 final class FriendlyCaptchaFallbackTest extends TestCase
 {
-    private const PLACEHOLDER_MARKER = 'frc-captcha--placeholder';
-    private const BUTTON_LABEL_KEY = 'labels.xlf:captcha.placeholder.button';
-    private const PLACEHOLDER_COMPONENT = '<d:molecule.captchaPlaceholder';
+    private const string PLACEHOLDER_MARKER = 'frc-captcha--placeholder';
+    private const string BUTTON_LABEL_KEY = 'labels.xlf:captcha.placeholder.button';
+    private const string PLACEHOLDER_COMPONENT = '<d:molecule.captchaPlaceholder';
 
     public function testExtLocalconfRegistersFallbackOnlyWithoutFriendlyCaptcha(): void
     {
@@ -38,7 +39,7 @@ final class FriendlyCaptchaFallbackTest extends TestCase
 
         $element = self::assertArrayPath($prototype, 'formElementsDefinition', 'Friendlycaptcha');
         self::assertSame(
-            \TYPO3\CMS\Form\Domain\Model\FormElements\GenericFormElement::class,
+            GenericFormElement::class,
             $element['implementationClassName'] ?? null
         );
         self::assertSame(
@@ -165,7 +166,7 @@ final class FriendlyCaptchaFallbackTest extends TestCase
         $files = glob(__DIR__ . '/../../Resources/Private/Css/desiderio/components-*.css');
         self::assertIsArray($files);
         self::assertNotSame([], $files);
-        return implode("\n", array_map(static fn(string $file): string => (string) file_get_contents($file), $files));
+        return implode("\n", array_map(static fn(string $file): string => (string)file_get_contents($file), $files));
     }
 
 }

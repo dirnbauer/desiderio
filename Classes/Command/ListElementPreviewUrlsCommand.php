@@ -66,7 +66,7 @@ final class ListElementPreviewUrlsCommand extends Command
             foreach ($this->previewWarmer->getConfiguredLibraries() as $library) {
                 $folders[] = (int)$library['storagePid'];
             }
-            $folders = array_values(array_unique(array_filter($folders, static fn (int $pid): bool => $pid > 0)));
+            $folders = array_values(array_unique(array_filter($folders, static fn(int $pid): bool => $pid > 0)));
         }
 
         if ($folders === []) {

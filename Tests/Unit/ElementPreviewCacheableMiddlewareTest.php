@@ -29,9 +29,9 @@ final class ElementPreviewCacheableMiddlewareTest extends TestCase
         $context = new Context();
         $context->setAspect('workspace', new WorkspaceAspect(1));
 
-        $request = (new ServerRequest())->withQueryParams(['elPreview' => '42']);
+        $request = new ServerRequest()->withQueryParams(['elPreview' => '42']);
 
-        (new ElementPreviewCacheableMiddleware($context))->process($request, $this->passThroughHandler());
+        new ElementPreviewCacheableMiddleware($context)->process($request, $this->passThroughHandler());
 
         // The preview must render in live (0): a workspace preview never reads the
         // warmed live page cache, so it would re-render on every open instead.
@@ -46,7 +46,7 @@ final class ElementPreviewCacheableMiddlewareTest extends TestCase
 
         $request = new ServerRequest(); // no elPreview parameter
 
-        (new ElementPreviewCacheableMiddleware($context))->process($request, $this->passThroughHandler());
+        new ElementPreviewCacheableMiddleware($context)->process($request, $this->passThroughHandler());
 
         self::assertSame(1, $context->getPropertyFromAspect('workspace', 'id'));
         self::assertTrue($context->getPropertyFromAspect('workspace', 'isOffline'));

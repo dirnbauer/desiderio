@@ -9,18 +9,18 @@ use Doctrine\DBAL\ParameterType;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use Webconsulting\Desiderio\Data\BlogDemoPostDefinitions;
 
-final class BlogPageTreeSeeder
+final readonly class BlogPageTreeSeeder
 {
-    public const DEFAULT_BACKEND_LAYOUT = 'pagets__DesiderioBlog';
-    public const BLOG_POST_DOKTYPE = 137;
+    public const string DEFAULT_BACKEND_LAYOUT = 'pagets__DesiderioBlog';
+    public const int BLOG_POST_DOKTYPE = 137;
 
     /**
      * EXT:blog types sys_category records (Constants::CATEGORY_TYPE_BLOG) and
      * its repositories only see categories of this record_type.
      */
-    public const BLOG_CATEGORY_RECORD_TYPE = 100;
+    public const int BLOG_CATEGORY_RECORD_TYPE = 100;
 
-    private const BLOG_LIST_CTYPES = [
+    private const array BLOG_LIST_CTYPES = [
         'blog_posts',
         'blog_category',
         'blog_tag',
@@ -28,11 +28,11 @@ final class BlogPageTreeSeeder
         'blog_archive',
         'blog_demandedposts',
     ];
-    private const LEGACY_DEFAULT_TAG_TITLES = ['Accessibility', 'TYPO3'];
-    private const REMOVABLE_LEGACY_TAG_TITLES = ['Accessibility'];
+    private const array LEGACY_DEFAULT_TAG_TITLES = ['Accessibility', 'TYPO3'];
+    private const array REMOVABLE_LEGACY_TAG_TITLES = ['Accessibility'];
 
     public function __construct(
-        private readonly ConnectionPool $connectionPool,
+        private ConnectionPool $connectionPool,
     ) {}
 
     /**
@@ -277,7 +277,7 @@ final class BlogPageTreeSeeder
             $categoryUids['Blog'] ?? 0,
             array_values(array_filter(
                 [$tagUids['TYPO3'] ?? 0, $tagUids['shadcn UI'] ?? 0],
-                static fn (int $tagUid): bool => $tagUid > 0
+                static fn(int $tagUid): bool => $tagUid > 0
             )),
             $authorUid
         );
@@ -1002,7 +1002,7 @@ final class BlogPageTreeSeeder
     {
         $pageUids = array_values(array_unique(array_filter(
             $pageUids,
-            static fn (int $pageUid): bool => $pageUid > 0
+            static fn(int $pageUid): bool => $pageUid > 0
         )));
         sort($pageUids);
 

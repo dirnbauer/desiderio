@@ -13,12 +13,12 @@ use TYPO3\CMS\Frontend\Page\CacheHashCalculator;
  * ElementLibrary set). The cHash signs the parameters, so only seeded
  * records below the configured storage folder are renderable.
  */
-final class PreviewUrlBuilder
+final readonly class PreviewUrlBuilder
 {
-    public const DEFAULT_TYPE_NUM = 1777200001;
+    public const int DEFAULT_TYPE_NUM = 1777200001;
 
     public function __construct(
-        private readonly CacheHashCalculator $cacheHashCalculator,
+        private CacheHashCalculator $cacheHashCalculator,
     ) {}
 
     public function build(Site $site, int $contentUid): string

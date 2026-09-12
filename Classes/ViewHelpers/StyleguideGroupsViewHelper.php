@@ -30,7 +30,11 @@ final class StyleguideGroupsViewHelper extends AbstractViewHelper
         if (!is_string($asArgument) || $asArgument === '') {
             return '';
         }
-        $variableProvider = $this->renderingContext->getVariableProvider();
+        $renderingContext = $this->renderingContext;
+        if ($renderingContext === null) {
+            return '';
+        }
+        $variableProvider = $renderingContext->getVariableProvider();
         if ($variableProvider->exists($asArgument)) {
             $variableProvider->remove($asArgument);
         }

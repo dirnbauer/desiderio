@@ -22,8 +22,8 @@ use TYPO3\CMS\Core\Site\Entity\Site;
  */
 final class FriendlyCaptchaBypass
 {
-    public const TEST_MODE_SETTING = 'desiderio.forms.friendlyCaptchaTestMode';
-    public const FORCE_REAL_SETTING = 'desiderio.forms.friendlyCaptchaForceReal';
+    public const string TEST_MODE_SETTING = 'desiderio.forms.friendlyCaptchaTestMode';
+    public const string FORCE_REAL_SETTING = 'desiderio.forms.friendlyCaptchaForceReal';
 
     public static function isEnabled(Site $site, ?ApplicationContext $context = null): bool
     {

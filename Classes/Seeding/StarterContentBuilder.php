@@ -11,13 +11,16 @@ use Webconsulting\Desiderio\Data\StyleguidePortraitAssets;
 /**
  * @phpstan-import-type StarterBlock from StarterSiteDefinitions
  */
-final class StarterContentBuilder
+final readonly class StarterContentBuilder
 {
     public function __construct(
-        private readonly DatabaseSchemaHelper $databaseSchema,
-        private readonly FixtureFieldNormalizer $fieldNormalizer = new FixtureFieldNormalizer(),
+        private DatabaseSchemaHelper $databaseSchema,
+        private FixtureFieldNormalizer $fieldNormalizer = new FixtureFieldNormalizer(),
     ) {}
 
+    /**
+     * @param array<string, mixed> $collection
+     */
     public function getCollectionTable(array $collection): string
     {
         $table = $collection['table'] ?? '';

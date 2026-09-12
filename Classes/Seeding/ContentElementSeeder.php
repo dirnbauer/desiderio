@@ -12,13 +12,13 @@ use TYPO3\CMS\Core\Resource\StorageRepository;
  * collection child records. One instance is bound to a FAL target folder
  * (per seeder command), so files land in the right fileadmin subfolder.
  */
-final class ContentElementSeeder
+final readonly class ContentElementSeeder
 {
-    private readonly ExtensionFalSeeder $falSeeder;
-    private readonly CollectionRecordSeeder $collectionRecordSeeder;
+    private ExtensionFalSeeder $falSeeder;
+    private CollectionRecordSeeder $collectionRecordSeeder;
 
     public function __construct(
-        private readonly ConnectionPool $connectionPool,
+        private ConnectionPool $connectionPool,
         StorageRepository $storageRepository,
         DatabaseSchemaHelper $databaseSchema,
         string $falFolderName,

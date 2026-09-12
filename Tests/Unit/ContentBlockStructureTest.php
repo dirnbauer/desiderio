@@ -11,8 +11,8 @@ use Webconsulting\Desiderio\Icon\IconRegistry;
 
 final class ContentBlockStructureTest extends TestCase
 {
-    private const EXPECTED_COUNT = 244;
-    private const CONTENT_BLOCKS_DIR = __DIR__ . '/../../ContentBlocks/ContentElements';
+    private const int EXPECTED_COUNT = 244;
+    private const string CONTENT_BLOCKS_DIR = __DIR__ . '/../../ContentBlocks/ContentElements';
 
     public function testExpectedNumberOfContentBlocks(): void
     {
@@ -23,7 +23,7 @@ final class ContentBlockStructureTest extends TestCase
 
     public function testEveryContentBlockHasRequiredFiles(): void
     {
-        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];
+        $blocks = self::globList(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR);
         foreach ($blocks as $block) {
             $name = basename($block);
             self::assertFileExists("{$block}/config.yaml", "Missing config.yaml in {$name}");
@@ -73,8 +73,8 @@ final class ContentBlockStructureTest extends TestCase
             'Quote must use an isolated variant column so shared tt_content.variant items cannot leak into the backend dropdown.'
         );
 
-        $englishLabels = (string) file_get_contents(self::CONTENT_BLOCKS_DIR . '/quote/language/labels.xlf');
-        $germanLabels = (string) file_get_contents(self::CONTENT_BLOCKS_DIR . '/quote/language/de.labels.xlf');
+        $englishLabels = (string)file_get_contents(self::CONTENT_BLOCKS_DIR . '/quote/language/labels.xlf');
+        $germanLabels = (string)file_get_contents(self::CONTENT_BLOCKS_DIR . '/quote/language/de.labels.xlf');
         self::assertStringContainsString('<unit id="field.variant">', $englishLabels);
         self::assertStringContainsString('<source>Variant</source>', $englishLabels);
         self::assertStringContainsString('<unit id="field.variant">', $germanLabels);
@@ -83,14 +83,14 @@ final class ContentBlockStructureTest extends TestCase
 
     public function testEveryContentBlockUsesDesiderioVendor(): void
     {
-        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];
+        $blocks = self::globList(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR);
         foreach ($blocks as $block) {
             $name = basename($block);
             $config = Yaml::parseFile("{$block}/config.yaml");
             self::assertArrayHasKey('name', $config, "{$name} missing 'name'");
-            self::assertStringStartsWith('desiderio/', (string) $config['name'], "{$name} must use desiderio/ vendor prefix");
+            self::assertStringStartsWith('desiderio/', (string)$config['name'], "{$name} must use desiderio/ vendor prefix");
             self::assertArrayHasKey('typeName', $config, "{$name} missing 'typeName'");
-            self::assertStringStartsWith('desiderio_', (string) $config['typeName'], "{$name} typeName must start with desiderio_");
+            self::assertStringStartsWith('desiderio_', (string)$config['typeName'], "{$name} typeName must start with desiderio_");
         }
     }
 
@@ -114,7 +114,7 @@ final class ContentBlockStructureTest extends TestCase
             'gdpr-banner', 'legal-links',
         ];
 
-        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];
+        $blocks = self::globList(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR);
         foreach ($blocks as $block) {
             $name = basename($block);
             $config = Yaml::parseFile("{$block}/config.yaml");
@@ -193,11 +193,11 @@ final class ContentBlockStructureTest extends TestCase
 
     public function testEveryContentBlockHasEnglishAndGermanWizardLabels(): void
     {
-        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];
+        $blocks = self::globList(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR);
         foreach ($blocks as $block) {
             $name = basename($block);
-            $english = (string) file_get_contents("{$block}/language/labels.xlf");
-            $german = (string) file_get_contents("{$block}/language/de.labels.xlf");
+            $english = (string)file_get_contents("{$block}/language/labels.xlf");
+            $german = (string)file_get_contents("{$block}/language/de.labels.xlf");
 
             self::assertStringContainsString('<xliff version="2.0"', $english, "{$name} must use TYPO3 XLIFF 2.0 for English labels");
             self::assertStringContainsString('srcLang="en"', $english, "{$name} must declare English as source language");
@@ -220,7 +220,7 @@ final class ContentBlockStructureTest extends TestCase
     {
         $titles = [];
         $descriptions = [];
-        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];
+        $blocks = self::globList(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR);
 
         foreach ($blocks as $block) {
             $name = basename($block);
@@ -271,8 +271,10 @@ final class ContentBlockStructureTest extends TestCase
         $englishLabels = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Language/labels.xlf');
         $germanLabels = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Language/de.labels.xlf');
         $styleguideGroups = json_decode((string)file_get_contents(__DIR__ . '/../../Resources/Private/Data/styleguide-content-groups.json'), true, 512, JSON_THROW_ON_ERROR);
-        $englishXliff = simplexml_load_string($englishLabels) ?: self::fail('labels.xlf must be valid XML');
-        $germanXliff = simplexml_load_string($germanLabels) ?: self::fail('de.labels.xlf must be valid XML');
+        $englishXliff = simplexml_load_string($englishLabels);
+        $germanXliff = simplexml_load_string($germanLabels);
+        self::assertInstanceOf(\SimpleXMLElement::class, $englishXliff, 'labels.xlf must be valid XML');
+        self::assertInstanceOf(\SimpleXMLElement::class, $germanXliff, 'de.labels.xlf must be valid XML');
 
         self::assertStringContainsString('addTcaSelectItemGroup', $tcaOverride);
         self::assertSame('2.0', (string)$englishXliff['version']);
@@ -294,11 +296,11 @@ final class ContentBlockStructureTest extends TestCase
 
     public function testEveryContentBlockWizardIconUsesTypo3V14SvgStyle(): void
     {
-        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];
+        $blocks = self::globList(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR);
         $normalizedIcons = [];
         foreach ($blocks as $block) {
             $name = basename($block);
-            $icon = (string) file_get_contents("{$block}/assets/icon.svg");
+            $icon = (string)file_get_contents("{$block}/assets/icon.svg");
 
             self::assertStringContainsString('viewBox="0 0 16 16"', $icon, "{$name} icon should use TYPO3 backend icon dimensions");
             self::assertStringContainsString('<title>', $icon, "{$name} icon should name the element for SVG consumers");
@@ -314,9 +316,9 @@ final class ContentBlockStructureTest extends TestCase
             $normalizedIcons[$name] = (string)preg_replace('#<title>.*?</title>\s*#s', '', $icon);
         }
 
-        self::assertSame(
+        self::assertCount(
             count($blocks),
-            count(array_unique($normalizedIcons)),
+            array_unique($normalizedIcons),
             'Every content element wizard icon should have distinct SVG geometry, not just a different title.'
         );
     }
@@ -347,7 +349,7 @@ final class ContentBlockStructureTest extends TestCase
         self::assertFileExists($previewCss, 'Shared backend preview CSS is missing');
         self::assertStringContainsString('.d-ce-preview', (string)file_get_contents($previewCss));
 
-        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];
+        $blocks = self::globList(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR);
         foreach ($blocks as $block) {
             $name = basename($block);
             $template = (string)file_get_contents("{$block}/templates/backend-preview.fluid.html");
@@ -363,11 +365,11 @@ final class ContentBlockStructureTest extends TestCase
 
     public function testContentBlockCssUsesShadcnThemeTokens(): void
     {
-        $files = glob(self::CONTENT_BLOCKS_DIR . '/*/assets/frontend.css') ?: [];
+        $files = self::globList(self::CONTENT_BLOCKS_DIR . '/*/assets/frontend.css');
         self::assertCount(self::EXPECTED_COUNT, $files);
 
         foreach ($files as $file) {
-            $css = (string) file_get_contents($file);
+            $css = (string)file_get_contents($file);
             self::assertStringNotContainsString('hsl(', $css, "{$file} must use shadcn CSS variables instead of local HSL colors");
             self::assertStringNotContainsString('#fff', strtolower($css), "{$file} must not hard-code white");
             self::assertStringNotContainsString('#000', strtolower($css), "{$file} must not hard-code black");
@@ -377,9 +379,9 @@ final class ContentBlockStructureTest extends TestCase
 
     public function testEveryFrontendTemplateDeclaresDesiderioNamespace(): void
     {
-        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];
+        $blocks = self::globList(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR);
         foreach ($blocks as $block) {
-            $template = (string) file_get_contents("{$block}/templates/frontend.html");
+            $template = (string)file_get_contents("{$block}/templates/frontend.html");
             // Skip blocks that never use a d: component (allowed for trivial blocks)
             if (!str_contains($template, '<d:')) {
                 continue;
@@ -394,11 +396,11 @@ final class ContentBlockStructureTest extends TestCase
 
     public function testContentElementsDoNotUseTypolinkForButtons(): void
     {
-        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];
+        $blocks = self::globList(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR);
 
         foreach ($blocks as $block) {
             $name = basename($block);
-            $template = (string) file_get_contents("{$block}/templates/frontend.html");
+            $template = (string)file_get_contents("{$block}/templates/frontend.html");
 
             self::assertDoesNotMatchRegularExpression(
                 '/<f:link\\.typolink\\b[^>]*class="[^"]*__button/',
@@ -415,11 +417,11 @@ final class ContentBlockStructureTest extends TestCase
 
     public function testContentElementCssDoesNotDefineButtonVariants(): void
     {
-        $files = glob(self::CONTENT_BLOCKS_DIR . '/*/assets/frontend.css') ?: [];
+        $files = self::globList(self::CONTENT_BLOCKS_DIR . '/*/assets/frontend.css');
 
         foreach ($files as $file) {
-            $css = (string) file_get_contents($file);
-            $slug = basename(dirname(dirname($file)));
+            $css = (string)file_get_contents($file);
+            $slug = basename(dirname($file, 2));
 
             self::assertDoesNotMatchRegularExpression(
                 '/__button--(?:primary|outline|secondary|ghost)/',
@@ -436,11 +438,11 @@ final class ContentBlockStructureTest extends TestCase
 
     public function testAtomButtonsDoNotDuplicateTargetAttributes(): void
     {
-        $templateFiles = glob(self::CONTENT_BLOCKS_DIR . '/*/templates/frontend.html') ?: [];
+        $templateFiles = self::globList(self::CONTENT_BLOCKS_DIR . '/*/templates/frontend.html');
 
         foreach ($templateFiles as $templateFile) {
-            $template = (string) file_get_contents($templateFile);
-            $slug = basename(dirname(dirname($templateFile)));
+            $template = (string)file_get_contents($templateFile);
+            $slug = basename(dirname($templateFile, 2));
 
             self::assertDoesNotMatchRegularExpression(
                 '/<d:atom\\.button\\b[^>]*\\btarget="[^"]*"[^>]*\\btarget="/',
@@ -466,7 +468,7 @@ final class ContentBlockStructureTest extends TestCase
         foreach ($pricingSlugs as $slug) {
             $templatePath = self::CONTENT_BLOCKS_DIR . "/{$slug}/templates/frontend.html";
             self::assertFileExists($templatePath, "{$slug} frontend template must exist");
-            $template = (string) file_get_contents($templatePath);
+            $template = (string)file_get_contents($templatePath);
 
             self::assertStringContainsString(
                 'd:molecule.card',
@@ -484,21 +486,21 @@ final class ContentBlockStructureTest extends TestCase
     public function testIconFieldsRenderThroughSharedIconAtom(): void
     {
         $templateFiles = array_merge(
-            glob(self::CONTENT_BLOCKS_DIR . '/*/templates/frontend.html') ?: [],
-            glob(self::CONTENT_BLOCKS_DIR . '/*/templates/backend-preview.fluid.html') ?: [],
+            self::globList(self::CONTENT_BLOCKS_DIR . '/*/templates/frontend.html'),
+            self::globList(self::CONTENT_BLOCKS_DIR . '/*/templates/backend-preview.fluid.html'),
         );
 
         foreach ($templateFiles as $templateFile) {
-            $template = (string) file_get_contents($templateFile);
+            $template = (string)file_get_contents($templateFile);
 
             self::assertDoesNotMatchRegularExpression(
                 '/<span(?:\\s+[^>]*)?>\\s*\\{(?:data|item|feature|counter|perk|value)\\.(?:icon|icon_name|icon_style|tab_icon)\\}\\s*<\\/span>/',
                 $template,
-                basename(dirname(dirname($templateFile))) . ' prints an icon field as text; render it through d:atom.icon instead'
+                basename(dirname($templateFile, 2)) . ' prints an icon field as text; render it through d:atom.icon instead'
             );
         }
 
-        $styleguide = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Js/styleguide.js');
+        $styleguide = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Js/styleguide.js');
         self::assertStringContainsString('function renderIcon', $styleguide);
         self::assertDoesNotMatchRegularExpression(
             '/(?:\\+\\s*(?:item|d)\\.icon\\b|\\b(?:item|d)\\.icon\\s*\\+)/',
@@ -510,7 +512,7 @@ final class ContentBlockStructureTest extends TestCase
     public function testIconFieldsUseSharedSelectableRegistry(): void
     {
         $iconFieldCount = 0;
-        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];
+        $blocks = self::globList(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR);
 
         foreach ($blocks as $block) {
             $config = Yaml::parseFile("{$block}/config.yaml");
@@ -602,10 +604,10 @@ final class ContentBlockStructureTest extends TestCase
 
     public function testFixtureIconValuesUseIconNames(): void
     {
-        $fixtureFiles = glob(self::CONTENT_BLOCKS_DIR . '/*/fixture.json') ?: [];
+        $fixtureFiles = self::globList(self::CONTENT_BLOCKS_DIR . '/*/fixture.json');
 
         foreach ($fixtureFiles as $fixtureFile) {
-            $data = json_decode((string) file_get_contents($fixtureFile), true, 512, JSON_THROW_ON_ERROR);
+            $data = json_decode((string)file_get_contents($fixtureFile), true, 512, JSON_THROW_ON_ERROR);
             self::assertIsArray($data);
             self::assertFixtureIconValuesAreKeys($data, basename(dirname($fixtureFile)));
         }
@@ -619,7 +621,7 @@ final class ContentBlockStructureTest extends TestCase
         }
 
         foreach ($fixtureFiles as $fixtureFile) {
-            $data = json_decode((string) file_get_contents($fixtureFile), true, 512, JSON_THROW_ON_ERROR);
+            $data = json_decode((string)file_get_contents($fixtureFile), true, 512, JSON_THROW_ON_ERROR);
             self::assertIsArray($data);
             self::assertFixtureIframeUrlsAreEmbeddable($data, basename(dirname($fixtureFile)));
         }
@@ -631,7 +633,7 @@ final class ContentBlockStructureTest extends TestCase
         $blocks = $blocks === false ? [] : $blocks;
         foreach ($blocks as $block) {
             $templateFile = "{$block}/templates/frontend.html";
-            $template = (string) file_get_contents($templateFile);
+            $template = (string)file_get_contents($templateFile);
 
             self::assertDoesNotMatchRegularExpression(
                 '/<d:[^>]*\\s(?:itemscope|disabled|checked|selected|autofocus|required|readonly|multiple)(?:\\s|\\/?>)/',
@@ -646,12 +648,12 @@ final class ContentBlockStructureTest extends TestCase
         $templateFiles = glob(self::CONTENT_BLOCKS_DIR . '/*/templates/frontend.html');
         $templateFiles = $templateFiles === false ? [] : $templateFiles;
         foreach ($templateFiles as $templateFile) {
-            $template = (string) file_get_contents($templateFile);
+            $template = (string)file_get_contents($templateFile);
 
             self::assertDoesNotMatchRegularExpression(
                 '/<d:layout\\.section\\b(?=[^>]*\\s(?:data|aria)-[a-z0-9_-]+\\s*=)[^>]*>/i',
                 $template,
-                basename(dirname(dirname($templateFile))) . ' passes HTML attributes directly to d:layout.section; use declared component arguments instead'
+                basename(dirname($templateFile, 2)) . ' passes HTML attributes directly to d:layout.section; use declared component arguments instead'
             );
         }
     }
@@ -659,9 +661,10 @@ final class ContentBlockStructureTest extends TestCase
     public function testTypolinkViewHelpersUseAdditionalAttributesForHtmlAttributes(): void
     {
         $typolinkCount = 0;
-        $templateFiles = glob(self::CONTENT_BLOCKS_DIR . '/*/templates/frontend.html') ?: [];
+        $templateFiles = self::globList(self::CONTENT_BLOCKS_DIR . '/*/templates/frontend.html');
         foreach ($templateFiles as $templateFile) {
-            $lines = file($templateFile, FILE_IGNORE_NEW_LINES) ?: [];
+            $lines = file($templateFile, FILE_IGNORE_NEW_LINES);
+            self::assertIsArray($lines);
             foreach ($lines as $lineNumber => $line) {
                 if (!str_contains($line, '<f:link.typolink')) {
                     continue;
@@ -671,7 +674,7 @@ final class ContentBlockStructureTest extends TestCase
                 self::assertDoesNotMatchRegularExpression(
                     '/<f:link\\.typolink\\b[^\\n]*(?:\\saria-[a-z0-9_-]+\\s*=|\\srole\\s*=|\\sdata-[a-z0-9_-]+\\s*=|\\srel\\s*=)/i',
                     $line,
-                    sprintf('%s:%d passes HTML attributes directly to f:link.typolink; use additionalAttributes instead', basename(dirname(dirname($templateFile))), $lineNumber + 1)
+                    sprintf('%s:%d passes HTML attributes directly to f:link.typolink; use additionalAttributes instead', basename(dirname($templateFile, 2)), $lineNumber + 1)
                 );
             }
         }
@@ -681,33 +684,33 @@ final class ContentBlockStructureTest extends TestCase
 
     public function testSplitViewHelpersUseTagSyntaxForArrayResults(): void
     {
-        $templateFiles = glob(self::CONTENT_BLOCKS_DIR . '/*/templates/frontend.html') ?: [];
+        $templateFiles = self::globList(self::CONTENT_BLOCKS_DIR . '/*/templates/frontend.html');
         foreach ($templateFiles as $templateFile) {
-            $template = (string) file_get_contents($templateFile);
+            $template = (string)file_get_contents($templateFile);
 
             self::assertDoesNotMatchRegularExpression(
                 '/->\\s*f:split\\(/i',
                 $template,
-                basename(dirname(dirname($templateFile))) . ' uses inline f:split(); assign array results with the <f:split> tag syntax'
+                basename(dirname($templateFile, 2)) . ' uses inline f:split(); assign array results with the <f:split> tag syntax'
             );
         }
     }
 
     public function testFalFilesAreRenderedWithPublicUrlInsteadOfResourceViewHelper(): void
     {
-        $templateFiles = glob(self::CONTENT_BLOCKS_DIR . '/*/templates/frontend.html') ?: [];
+        $templateFiles = self::globList(self::CONTENT_BLOCKS_DIR . '/*/templates/frontend.html');
         foreach ($templateFiles as $templateFile) {
-            $template = (string) file_get_contents($templateFile);
+            $template = (string)file_get_contents($templateFile);
 
             self::assertStringNotContainsString(
                 'f:uri.resource(path:',
                 $template,
-                basename(dirname(dirname($templateFile))) . ' passes FAL identifiers to f:uri.resource; use the FileReference publicUrl instead'
+                basename(dirname($templateFile, 2)) . ' passes FAL identifiers to f:uri.resource; use the FileReference publicUrl instead'
             );
             self::assertStringNotContainsString(
                 'originalFile.identifier',
                 $template,
-                basename(dirname(dirname($templateFile))) . ' reads FAL identifiers for frontend URLs; use the FileReference publicUrl instead'
+                basename(dirname($templateFile, 2)) . ' reads FAL identifiers for frontend URLs; use the FileReference publicUrl instead'
             );
         }
     }
@@ -729,7 +732,7 @@ final class ContentBlockStructureTest extends TestCase
         foreach ($blocks as $block) {
             $name = basename($block);
             $config = Yaml::parseFile("{$block}/config.yaml");
-            $template = (string) file_get_contents("{$block}/templates/frontend.html");
+            $template = (string)file_get_contents("{$block}/templates/frontend.html");
             $templateForFields = preg_replace('#<(script|style)\b[^>]*>.*?</\1>#is', '', $template) ?? $template;
 
             $fieldTypes = [];
@@ -740,7 +743,7 @@ final class ContentBlockStructureTest extends TestCase
                 }
 
                 $identifier = (string)$field['identifier'];
-                $fieldTypes[$identifier] = $field['type'] ?? (($field['useExistingField'] ?? false) ? 'Existing' : null);
+                $fieldTypes[$identifier] = $field['type'] ?? (($field['useExistingField'] ?? false) === true ? 'Existing' : null);
 
                 // A collection using `foreign_table:` declares its children in
                 // the shared record type, so that is where they must be read
@@ -760,7 +763,7 @@ final class ContentBlockStructureTest extends TestCase
             // Provided by the Desiderio/Appearance basic, consumed via
             // <d:layout.section frame=... spaceBefore=... spaceAfter=...>.
             foreach (['frame_class', 'space_before_class', 'space_after_class'] as $appearanceField) {
-                $fieldTypes[$appearanceField] = $fieldTypes[$appearanceField] ?? 'Basic';
+                $fieldTypes[$appearanceField] ??= 'Basic';
             }
 
             $usedTopFields = [];
@@ -829,7 +832,7 @@ final class ContentBlockStructureTest extends TestCase
 
     public function testDateAndTimeFieldsAreFormattedInsteadOfRenderedAsText(): void
     {
-        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];
+        $blocks = self::globList(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR);
         foreach ($blocks as $block) {
             $config = Yaml::parseFile("{$block}/config.yaml");
             $dateFieldPaths = [];
@@ -894,27 +897,27 @@ final class ContentBlockStructureTest extends TestCase
 
     public function testChartDataTemplatesHaveFrontendRenderer(): void
     {
-        $chartScript = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Js/charts.js');
-        $viteEntry = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Assets/Components.entry.js');
+        $chartScript = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Js/charts.js');
+        $viteEntry = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Assets/Components.entry.js');
 
         self::assertStringContainsString('../../Public/Js/charts.js', $viteEntry);
         self::assertStringContainsString('data-chart-data', $chartScript);
         self::assertStringContainsString('data-chart-json', $chartScript);
 
-        $templateFiles = glob(self::CONTENT_BLOCKS_DIR . '/*/templates/frontend.html') ?: [];
+        $templateFiles = self::globList(self::CONTENT_BLOCKS_DIR . '/*/templates/frontend.html');
         foreach ($templateFiles as $templateFile) {
-            $template = (string) file_get_contents($templateFile);
+            $template = (string)file_get_contents($templateFile);
             if (!str_contains($template, 'data-chart-data=') && !str_contains($template, 'data-chart-json=')) {
                 continue;
             }
 
-            self::assertStringNotContainsString('<script', $template, basename(dirname(dirname($templateFile))) . ' must use Resources/Public/Js/charts.js instead of inline scripts');
+            self::assertStringNotContainsString('<script', $template, basename(dirname($templateFile, 2)) . ' must use Resources/Public/Js/charts.js instead of inline scripts');
         }
     }
 
     public function testNoShadcn2fluidLeftovers(): void
     {
-        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];
+        $blocks = self::globList(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR);
         foreach ($blocks as $block) {
             $name = basename($block);
             $files = [
@@ -922,7 +925,7 @@ final class ContentBlockStructureTest extends TestCase
                 "{$block}/templates/frontend.html",
             ];
             foreach ($files as $file) {
-                $content = (string) file_get_contents($file);
+                $content = (string)file_get_contents($file);
                 self::assertStringNotContainsString('shadcn2fluid', $content, "{$name}:{$file} still references shadcn2fluid");
                 self::assertStringNotContainsString('<s2f:', $content, "{$name}:{$file} still uses <s2f: namespace");
                 self::assertStringNotContainsString('</s2f:', $content, "{$name}:{$file} still uses </s2f: namespace");
@@ -933,14 +936,14 @@ final class ContentBlockStructureTest extends TestCase
     public function testStyleguideGroupsReferenceEveryContentBlockTypeName(): void
     {
         $groupsFile = __DIR__ . '/../../Resources/Private/Data/styleguide-content-groups.json';
-        $groups = json_decode((string) file_get_contents($groupsFile), true);
+        $groups = json_decode((string)file_get_contents($groupsFile), true);
         self::assertIsArray($groups);
 
         $typeNames = [];
-        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];
+        $blocks = self::globList(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR);
         foreach ($blocks as $block) {
             $config = Yaml::parseFile("{$block}/config.yaml");
-            $typeName = (string) ($config['typeName'] ?? '');
+            $typeName = (string)($config['typeName'] ?? '');
             self::assertNotSame('', $typeName, basename($block) . ' has no typeName');
             self::assertFileExists("{$block}/fixture.json", basename($block) . ' has no styleguide fixture');
             $typeNames[$typeName] = true;
@@ -953,7 +956,7 @@ final class ContentBlockStructureTest extends TestCase
             self::assertIsArray($group['elements']);
             foreach ($group['elements'] as $element) {
                 self::assertIsArray($element);
-                $ctype = (string) ($element['ctype'] ?? '');
+                $ctype = (string)($element['ctype'] ?? '');
                 self::assertStringStartsWith('desiderio_', $ctype);
                 self::assertArrayHasKey($ctype, $typeNames, "{$ctype} is listed in the styleguide but has no Content Block");
                 $listedTypeNames[$ctype] = true;
@@ -967,7 +970,7 @@ final class ContentBlockStructureTest extends TestCase
 
         self::assertCount(self::EXPECTED_COUNT, $listedTypeNames);
         self::assertSame($expected, $actual);
-        self::assertStringNotContainsString('shadcn2fluid', (string) file_get_contents($groupsFile));
+        self::assertStringNotContainsString('shadcn2fluid', (string)file_get_contents($groupsFile));
     }
 
     public function testFrontendImageTagsKeepFalReferencesEditable(): void
@@ -991,7 +994,7 @@ final class ContentBlockStructureTest extends TestCase
         $seedFile = __DIR__ . '/../../Resources/Private/Data/styleguide-page-seed.json';
         self::assertFileExists($seedFile);
 
-        $seed = json_decode((string) file_get_contents($seedFile), true);
+        $seed = json_decode((string)file_get_contents($seedFile), true);
         self::assertIsArray($seed);
         self::assertSame(505, $seed['parentPid'] ?? null);
         self::assertCount(10, $seed['groups'] ?? []);
@@ -1149,4 +1152,15 @@ final class ContentBlockStructureTest extends TestCase
         return $result;
     }
 
+    /**
+     * glob() returns false on failure; the tests always expect a list.
+     *
+     * @return list<string>
+     */
+    private static function globList(string $pattern, int $flags = 0): array
+    {
+        $matches = glob($pattern, $flags);
+        self::assertIsArray($matches, 'glob() failed for ' . $pattern);
+        return $matches;
+    }
 }

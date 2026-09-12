@@ -18,7 +18,7 @@ use Webconsulting\Desiderio\DataHandling\ContentBlockSelectItemsProcessor;
  */
 final class ContentBlockSelectItemOverrides
 {
-    private const EXACT_ITEMS_PROCESSOR_KEY = 0;
+    private const int EXACT_ITEMS_PROCESSOR_KEY = 0;
 
     #[AsEventListener('desiderio/content-block-select-item-overrides')]
     public function __invoke(AfterTcaCompilationEvent $event): void

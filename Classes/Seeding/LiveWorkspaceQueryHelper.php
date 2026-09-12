@@ -7,10 +7,10 @@ namespace Webconsulting\Desiderio\Seeding;
 use Doctrine\DBAL\ParameterType;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 
-final class LiveWorkspaceQueryHelper
+final readonly class LiveWorkspaceQueryHelper
 {
     public function __construct(
-        private readonly DatabaseSchemaHelper $databaseSchema,
+        private DatabaseSchemaHelper $databaseSchema,
     ) {}
 
     /**

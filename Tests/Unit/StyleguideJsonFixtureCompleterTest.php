@@ -19,7 +19,7 @@ final class StyleguideJsonFixtureCompleterTest extends TestCase
         $definition = ContentBlockDefinitionRegistry::buildDefinitionFromConfig(
             ContentBlockDefinitionRegistry::normalizeStringKeyedArray($config),
         );
-        $completed = (new StyleguideJsonFixtureCompleter())->complete(
+        $completed = new StyleguideJsonFixtureCompleter()->complete(
             'desiderio_featurevideo',
             'feature-video',
             $definition,
@@ -46,7 +46,7 @@ final class StyleguideJsonFixtureCompleterTest extends TestCase
             'columns' => '3',
         ];
 
-        $completed = (new StyleguideJsonFixtureCompleter())->complete('desiderio_gallery', 'gallery', $definition, $fixture);
+        $completed = new StyleguideJsonFixtureCompleter()->complete('desiderio_gallery', 'gallery', $definition, $fixture);
 
         self::assertArrayHasKey('items', $completed);
         self::assertIsArray($completed['items']);
@@ -76,7 +76,7 @@ final class StyleguideJsonFixtureCompleterTest extends TestCase
             ],
         ];
 
-        $completed = (new StyleguideJsonFixtureCompleter())->complete('desiderio_badgegrid', 'badge-grid', $definition, $fixture);
+        $completed = new StyleguideJsonFixtureCompleter()->complete('desiderio_badgegrid', 'badge-grid', $definition, $fixture);
 
         self::assertIsArray($completed['items'] ?? null);
         /** @var list<array<string, mixed>> $items */

@@ -22,9 +22,9 @@ use Symfony\Component\Yaml\Yaml;
  */
 final class SharedCollectionRecordTypeTest extends TestCase
 {
-    private const ELEMENTS_DIR = __DIR__ . '/../../ContentBlocks/ContentElements';
-    private const RECORD_TYPES_DIR = __DIR__ . '/../../ContentBlocks/RecordTypes';
-    private const MAP = __DIR__ . '/../../Build/Data/collection-merge-map.json';
+    private const string ELEMENTS_DIR = __DIR__ . '/../../ContentBlocks/ContentElements';
+    private const string RECORD_TYPES_DIR = __DIR__ . '/../../ContentBlocks/RecordTypes';
+    private const string MAP = __DIR__ . '/../../Build/Data/collection-merge-map.json';
 
     /** @return array<string, array<string, mixed>> table => record type config */
     private function recordTypes(): array

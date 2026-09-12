@@ -653,7 +653,7 @@ PHP;
     public function buildDefaultPeopleList(): string
     {
         return implode("\n", array_map(
-            static fn (array $person): string => $person[0] . '|' . $person[1] . '|' . $person[2],
+            static fn(array $person): string => $person[0] . '|' . $person[1] . '|' . $person[2],
             array_slice($this->demoPeople(), 0, 3)
         ));
     }
@@ -763,13 +763,6 @@ PHP;
         if (!is_array($parts)) {
             return false;
         }
-
-        foreach ($words as $word) {
-            if (in_array(strtolower($word), $parts, true)) {
-                return true;
-            }
-        }
-
-        return false;
+        return array_any($words, fn($word) => in_array(strtolower($word), $parts, true));
     }
 }

@@ -9,7 +9,7 @@ use Symfony\Component\Yaml\Yaml;
 
 final class FeatureVideoAccessibilityTest extends TestCase
 {
-    private const ELEMENT_DIR = __DIR__ . '/../../ContentBlocks/ContentElements/feature-video';
+    private const string ELEMENT_DIR = __DIR__ . '/../../ContentBlocks/ContentElements/feature-video';
 
     public function testNativeVideoSupportsCaptionsAndFallbackPlayback(): void
     {
@@ -18,14 +18,7 @@ final class FeatureVideoAccessibilityTest extends TestCase
 
         $fields = $config['fields'] ?? null;
         self::assertIsArray($fields);
-
-        $captionsField = null;
-        foreach ($fields as $field) {
-            if (is_array($field) && ($field['identifier'] ?? null) === 'captions_file') {
-                $captionsField = $field;
-                break;
-            }
-        }
+        $captionsField = array_find($fields, fn($field) => is_array($field) && ($field['identifier'] ?? null) === 'captions_file');
 
         self::assertIsArray($captionsField);
         self::assertSame('File', $captionsField['type'] ?? null);

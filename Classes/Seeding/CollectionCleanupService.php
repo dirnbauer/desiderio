@@ -6,13 +6,15 @@ namespace Webconsulting\Desiderio\Seeding;
 
 use Doctrine\DBAL\ArrayParameterType;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\Expression\CompositeExpression;
+use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 
-final class CollectionCleanupService
+final readonly class CollectionCleanupService
 {
     public function __construct(
-        private readonly ConnectionPool $connectionPool,
-        private readonly DatabaseSchemaHelper $databaseSchema,
-        private readonly LiveWorkspaceQueryHelper $liveWorkspaceQueryHelper,
+        private ConnectionPool $connectionPool,
+        private DatabaseSchemaHelper $databaseSchema,
+        private LiveWorkspaceQueryHelper $liveWorkspaceQueryHelper,
     ) {}
 
     /**
@@ -155,10 +157,10 @@ final class CollectionCleanupService
      * they are only applied when the table actually has them — unshared tables
      * keep the original behaviour.
      *
-     * @return list<\TYPO3\CMS\Core\Database\Query\Expression\CompositeExpression|string>
+     * @return list<CompositeExpression|string>
      */
     private function buildOwnershipConstraints(
-        \TYPO3\CMS\Core\Database\Query\QueryBuilder $queryBuilder,
+        QueryBuilder $queryBuilder,
         string $table,
         ?string $parentTable,
         ?string $fieldName,

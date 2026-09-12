@@ -8,14 +8,14 @@ use PHPUnit\Framework\TestCase;
 
 final class ComponentStructureTest extends TestCase
 {
-    private const EXPECTED_TOTAL = 60;
-    private const COMPONENTS_DIR = __DIR__ . '/../../Resources/Private/Components';
-    private const EXPECTED_ATOMS = [
+    private const int EXPECTED_TOTAL = 60;
+    private const string COMPONENTS_DIR = __DIR__ . '/../../Resources/Private/Components';
+    private const array EXPECTED_ATOMS = [
         'AspectRatio', 'Avatar', 'Badge', 'Button', 'ControlClass', 'Icon', 'Image', 'Input',
         'Label', 'Link', 'Progress', 'ScrollArea', 'Select', 'Separator',
         'Skeleton', 'Textarea', 'Typography',
     ];
-    private const EXPECTED_MOLECULES = [
+    private const array EXPECTED_MOLECULES = [
         'Accordion', 'AccordionItem', 'Alert', 'AlertDescription', 'AlertTitle',
         'Card', 'CardContent', 'CardFooter', 'CardHeader', 'CheckboxControl', 'CheckedListItem', 'Field',
         'FieldGroup', 'FieldLabel', 'FieldLegend', 'FieldSet', 'FormRenderer', 'OptionLabel',
@@ -23,14 +23,14 @@ final class ComponentStructureTest extends TestCase
         'Tabs', 'TabsContent', 'TabsList', 'TabsTrigger',
         'ActionGroup', 'CaptchaPlaceholder', 'FeatureItem', 'Figure', 'Pagination', 'SectionIntro', 'Stat',
     ];
-    private const EXPECTED_LAYOUTS = ['Container', 'Grid', 'Section', 'Stack'];
-    private const EXPECTED_ORGANISMS = ['Breadcrumb', 'PageHeader', 'SiteFooter', 'SiteHeader'];
+    private const array EXPECTED_LAYOUTS = ['Container', 'Grid', 'Section', 'Stack'];
+    private const array EXPECTED_ORGANISMS = ['Breadcrumb', 'PageHeader', 'SiteFooter', 'SiteHeader'];
 
     public function testExpectedNumberOfComponents(): void
     {
-        $atoms = glob(self::COMPONENTS_DIR . '/Atom/*', GLOB_ONLYDIR) ?: [];
-        $molecules = glob(self::COMPONENTS_DIR . '/Molecule/*', GLOB_ONLYDIR) ?: [];
-        $layouts = glob(self::COMPONENTS_DIR . '/Layout/*', GLOB_ONLYDIR) ?: [];
+        $atoms = self::globList(self::COMPONENTS_DIR . '/Atom/*', GLOB_ONLYDIR);
+        $molecules = self::globList(self::COMPONENTS_DIR . '/Molecule/*', GLOB_ONLYDIR);
+        $layouts = self::globList(self::COMPONENTS_DIR . '/Layout/*', GLOB_ONLYDIR);
         $organismDirectories = glob(self::COMPONENTS_DIR . '/Organism/*', GLOB_ONLYDIR);
         $organisms = is_array($organismDirectories) ? $organismDirectories : [];
 
@@ -72,7 +72,7 @@ final class ComponentStructureTest extends TestCase
     public function testOrganismsOwnTheirMarkupInsteadOfDelegatingToLegacyPagePartials(): void
     {
         foreach (['Breadcrumb', 'SiteFooter', 'SiteHeader'] as $name) {
-            $template = (string) file_get_contents(self::COMPONENTS_DIR . "/Organism/{$name}/{$name}.fluid.html");
+            $template = (string)file_get_contents(self::COMPONENTS_DIR . "/Organism/{$name}/{$name}.fluid.html");
 
             self::assertStringNotContainsString(
                 'partial="Pages/',
@@ -93,14 +93,14 @@ final class ComponentStructureTest extends TestCase
         foreach ($all as $path) {
             $name = basename($path);
             $file = self::COMPONENTS_DIR . "/{$path}/{$name}.fluid.html";
-            $content = (string) file_get_contents($file);
+            $content = (string)file_get_contents($file);
             self::assertStringContainsString('<f:argument', $content, "{$path} lacks typed <f:argument>");
         }
     }
 
     public function testCardRootUsesPresetRingAndDirectChildPaddingFallback(): void
     {
-        $card = (string) file_get_contents(self::COMPONENTS_DIR . '/Molecule/Card/Card.fluid.html');
+        $card = (string)file_get_contents(self::COMPONENTS_DIR . '/Molecule/Card/Card.fluid.html');
 
         // Radius is tokenized to the shadcn --radius scale (rounded-xl), so it switches
         // per preset; for the flat radix-lyra preset (--radius: 0) it still renders square.
@@ -141,7 +141,7 @@ final class ComponentStructureTest extends TestCase
                     continue;
                 }
 
-                $template = (string) file_get_contents($path);
+                $template = (string)file_get_contents($path);
                 if (preg_match_all('/(?:class|value)="[^"\n]*(?:\[&amp;|&amp;&gt;|has-\[&gt;|group-has-\[&gt;)[^"\n]*"/', $template, $matches, PREG_OFFSET_CAPTURE) === false) {
                     continue;
                 }
@@ -158,7 +158,7 @@ final class ComponentStructureTest extends TestCase
 
     public function testTypographySupportsStableElementIds(): void
     {
-        $typography = (string) file_get_contents(self::COMPONENTS_DIR . '/Atom/Typography/Typography.fluid.html');
+        $typography = (string)file_get_contents(self::COMPONENTS_DIR . '/Atom/Typography/Typography.fluid.html');
 
         self::assertStringContainsString('<f:argument name="id" type="string" optional="{true}" />', $typography);
         self::assertStringContainsString('id="{id}"', $typography);
@@ -175,8 +175,20 @@ final class ComponentStructureTest extends TestCase
 
         self::assertSame(0, $exitCode, implode("\n", $output));
 
-        $badge = (string) file_get_contents(self::COMPONENTS_DIR . '/Atom/Badge/Badge.fluid.html');
+        $badge = (string)file_get_contents(self::COMPONENTS_DIR . '/Atom/Badge/Badge.fluid.html');
         self::assertStringContainsString('Generated by Build/Scripts/sync-shadcn-fluid-primitives.php.', $badge);
         self::assertStringContainsString('shadcn preset: b6G5977cw | style: radix-lyra', $badge);
+    }
+
+    /**
+     * glob() returns false on failure; the tests always expect a list.
+     *
+     * @return list<string>
+     */
+    private static function globList(string $pattern, int $flags = 0): array
+    {
+        $matches = glob($pattern, $flags);
+        self::assertIsArray($matches, 'glob() failed for ' . $pattern);
+        return $matches;
     }
 }

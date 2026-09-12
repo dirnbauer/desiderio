@@ -15,13 +15,13 @@ use TYPO3\CMS\Core\Site\Entity\Site;
 use Webconsulting\Desiderio\Utility\FriendlyCaptchaBypass;
 use Webconsulting\Desiderio\Utility\SiteSettingsBoolean;
 
-final class FriendlyCaptchaTestModeMiddleware implements MiddlewareInterface
+final readonly class FriendlyCaptchaTestModeMiddleware implements MiddlewareInterface
 {
-    private const FRIENDLY_CAPTCHA_SKIP_KEY = 'friendlycaptcha_skip_dev_validation';
+    private const string FRIENDLY_CAPTCHA_SKIP_KEY = 'friendlycaptcha_skip_dev_validation';
 
     public function __construct(
-        private readonly LoggerInterface $logger,
-        private readonly ?ApplicationContext $applicationContext = null,
+        private LoggerInterface $logger,
+        private ?ApplicationContext $applicationContext = null,
     ) {}
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface

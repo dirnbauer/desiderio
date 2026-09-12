@@ -18,8 +18,8 @@ final class DesiderioConditionFunctionsProvider implements ExpressionFunctionPro
         return [
             new ExpressionFunction(
                 'extensionLoaded',
-                static fn (): string => 'null',
-                static fn (array $arguments, mixed $extensionKey): bool => is_string($extensionKey)
+                static fn(): string => 'null',
+                static fn(array $arguments, mixed $extensionKey): bool => is_string($extensionKey)
                     && $extensionKey !== ''
                     && ExtensionManagementUtility::isLoaded($extensionKey)
             ),

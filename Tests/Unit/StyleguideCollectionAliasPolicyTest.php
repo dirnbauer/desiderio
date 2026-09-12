@@ -14,7 +14,7 @@ final class StyleguideCollectionAliasPolicyTest extends TestCase
     public function testResolveChildFieldMapsTitleToLabel(): void
     {
         $policy = new StyleguideCollectionAliasPolicy(
-            new DatabaseSchemaHelper($this->createMock(ConnectionPool::class))
+            new DatabaseSchemaHelper(self::createStub(ConnectionPool::class))
         );
 
         $collection = [
@@ -30,7 +30,7 @@ final class StyleguideCollectionAliasPolicyTest extends TestCase
     public function testNormalizeCollectionSourceItemsSplitsPipeSeparatedCells(): void
     {
         $policy = new StyleguideCollectionAliasPolicy(
-            new DatabaseSchemaHelper($this->createMock(ConnectionPool::class))
+            new DatabaseSchemaHelper(self::createStub(ConnectionPool::class))
         );
 
         self::assertSame(

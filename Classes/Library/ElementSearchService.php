@@ -20,23 +20,23 @@ use TYPO3\CMS\Core\Localization\LanguageService;
  * existing "desiderio_library" cache (fingerprint includes the keyword files,
  * so editing a keyword self-invalidates it).
  */
-final class ElementSearchService
+final readonly class ElementSearchService
 {
-    private const CACHE_IDENTIFIER = 'desiderio_library';
+    private const string CACHE_IDENTIFIER = 'desiderio_library';
 
     /**
      * Matches below this score are dropped. Kept low on purpose so the search
      * favours recall: a single solid hit on a low-weight field (e.g. a word that
      * only appears in the description) or a fuzzy near-miss still surfaces.
      */
-    private const SCORE_FLOOR = 0.3;
+    private const float SCORE_FLOOR = 0.3;
 
     /** Field weights: title beats keyword beats synonym beats group beats prose. */
-    private const WEIGHT_TITLE = 10;
-    private const WEIGHT_KEYWORD = 6;
-    private const WEIGHT_SYNONYM = 3;
-    private const WEIGHT_GROUP = 2;
-    private const WEIGHT_DESCRIPTION = 1;
+    private const int WEIGHT_TITLE = 10;
+    private const int WEIGHT_KEYWORD = 6;
+    private const int WEIGHT_SYNONYM = 3;
+    private const int WEIGHT_GROUP = 2;
+    private const int WEIGHT_DESCRIPTION = 1;
 
     /**
      * Tiny EN + DE stopword set (already umlaut-folded). Kept short on purpose:
@@ -44,7 +44,7 @@ final class ElementSearchService
      *
      * @var array<string, true>
      */
-    private const STOPWORDS = [
+    private const array STOPWORDS = [
         'the' => true, 'a' => true, 'an' => true, 'of' => true, 'and' => true,
         'to' => true, 'for' => true, 'with' => true, 'your' => true, 'you' => true,
         'in' => true, 'on' => true, 'or' => true, 'by' => true, 'is' => true,
@@ -56,8 +56,8 @@ final class ElementSearchService
     ];
 
     public function __construct(
-        private readonly ElementCatalog $elementCatalog,
-        private readonly CacheManager $cacheManager,
+        private ElementCatalog $elementCatalog,
+        private CacheManager $cacheManager,
     ) {}
 
     /**

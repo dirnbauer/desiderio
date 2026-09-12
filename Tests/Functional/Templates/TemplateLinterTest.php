@@ -18,7 +18,7 @@ use Webconsulting\Desiderio\Templates\TemplateLinter;
  */
 final class TemplateLinterTest extends FunctionalTestCase
 {
-    private const FIXTURES = __DIR__ . '/../Fixtures/Templates';
+    private const string FIXTURES = __DIR__ . '/../Fixtures/Templates';
 
     protected array $coreExtensionsToLoad = ['form', 'workspaces'];
 

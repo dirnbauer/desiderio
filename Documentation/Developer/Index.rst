@@ -38,6 +38,7 @@ content elements.
     AtomicDesign
     AddingContentElements
     DesignPhilosophy
+    ShadcnSync
     CollectionTableConsolidation
 
 ..  _developer-sets:
@@ -238,7 +239,8 @@ truth. React components are not copied into the TYPO3 frontend.
 Use ``npm run shadcn:sync-fluid`` when upstream component class contracts
 need to be synchronized into the shared Fluid primitives. Runtime theme
 presets are stored in ``Resources/Public/Css/shadcn-theme.css`` and
-selected with ``desiderio.shadcn.preset``.
+selected with ``desiderio.shadcn.preset``. :doc:`ShadcnSync` documents the
+full synchronization workflow.
 
 ..  _developer-integrations:
 

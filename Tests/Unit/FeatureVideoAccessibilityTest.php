@@ -43,10 +43,15 @@ final class FeatureVideoAccessibilityTest extends TestCase
         self::assertStringNotContainsString('autoplay', $videoTag[0]);
     }
 
-    public function testNoGeneratedVideoAssetsShipButGenerationToolingRemains(): void
+    /**
+     * The video content elements are editor features and stay; the extension
+     * ships no video files, and the render/verify scripts that produced the
+     * (never shipped) demo clips were removed with 4.1.0.
+     */
+    public function testNoGeneratedVideoAssetsShip(): void
     {
         self::assertDirectoryDoesNotExist(__DIR__ . '/../../Resources/Public/Styleguide/Video');
-        self::assertFileExists(__DIR__ . '/../../Build/Scripts/render-feature-videos.sh');
-        self::assertFileExists(__DIR__ . '/../../Build/Scripts/verify-feature-videos.sh');
+        self::assertFileDoesNotExist(__DIR__ . '/../../Build/Scripts/render-feature-videos.sh');
+        self::assertFileDoesNotExist(__DIR__ . '/../../Build/Scripts/verify-feature-videos.sh');
     }
 }

@@ -732,7 +732,6 @@ final class TemplateLinter
                 'Resources/Private/Extensions/Powermail/' => [[$private . '/Extensions/Powermail/Partials'], ['powermail' => 'Resources/Private/Partials']],
                 'Resources/Private/Solr/' => [[$private . '/Solr/Partials'], ['solr' => 'Resources/Private/Partials']],
                 'Resources/Private/Form/' => [[$private . '/Form/Partials', $private . '/Form/CaptchaOverride/Partials'], ['form' => 'Resources/Private/Frontend/Partials']],
-                'Resources/Private/FormCaptchaOverride/' => [[$private . '/FormCaptchaOverride/Partials'], ['form' => 'Resources/Private/Frontend/Partials']],
                 'ContentBlocks/' => [[$private . '/Templates/Partials', $private . '/ClassicContent/Partials'], []],
             ];
             foreach ($contexts as $prefix => [$localRoots, $externalRoots]) {

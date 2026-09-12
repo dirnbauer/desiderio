@@ -31,7 +31,7 @@ a.contact__list-value:focus-visible { outline: none; box-shadow: 0 0 0 2px var(-
 .contact__form-title { font-weight: var(--d-weight-semibold); margin-block-end: var(--d-spacing-md); }
 
 /* Form fields delegate to the shared TYPO3 Form Framework bridge
-   (.desiderio-form in components.css), which is token-driven
+   (.desiderio-form in Resources/Private/Css/desiderio/components-02-controls.css), which is token-driven
    (--input, --radius, --ring); no element-level control styling here. */
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */

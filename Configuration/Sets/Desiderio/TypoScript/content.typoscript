@@ -1,4 +1,14 @@
-# Content element rendering
+# Content element rendering.
+#
+# These root paths ARE the registration — there is no styles.templates.* site
+# setting behind them. A sitepackage overrides Desiderio's classic content
+# rendering by adding its own paths on a higher index, e.g.
+#
+#   lib.contentElement.templateRootPaths.300 = EXT:my_sitepackage/Resources/Private/Content/Templates/
+#   lib.contentElement.partialRootPaths.300  = EXT:my_sitepackage/Resources/Private/Content/Partials/
+#   lib.contentElement.layoutRootPaths.300   = EXT:my_sitepackage/Resources/Private/Content/Layouts/
+#
+# Index 300 is reserved for sitepackages; Desiderio never writes it.
 lib.contentElement = FLUIDTEMPLATE
 lib.contentElement {
   # The ClassicContent path owns the classic TYPO3 CTypes and follows the same

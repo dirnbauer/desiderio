@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Run the same checks locally and in CI. The default suite runs every gate.
 # Usage: Build/Scripts/runTests.sh [-s SUITE] [-p 8.4|8.5] [SUITE]
-# Suites: all, phpstan, unit (or phpunit), functional, audit, validate, tailwind
+# Suites: all, phpstan, unit (or phpunit), functional, audit, validate, assets
 set -euo pipefail
 cd "$(dirname "$0")/../.."
 
@@ -27,7 +27,7 @@ export PHP
 echo "Using $("$PHP" -r 'echo PHP_VERSION;')"
 
 SUITES=("$SUITE")
-[[ "$SUITE" != all ]] || SUITES=(phpstan unit functional validate tailwind)
+[[ "$SUITE" != all ]] || SUITES=(phpstan unit functional validate assets)
 for suite in "${SUITES[@]}"; do
     case "$suite" in
         phpstan) "$PHP" -d memory_limit=2G vendor/bin/phpstan analyse --no-progress ;;
@@ -38,7 +38,7 @@ for suite in "${SUITES[@]}"; do
             "$PHP" "$(command -v composer)" validate --strict --no-check-publish
             "$PHP" "$(command -v composer)" audit --abandoned=fail
             ;;
-        tailwind|css) Build/Scripts/check-tailwind-built.sh ;;
+        assets|tailwind|css) Build/Scripts/check-generated-assets.sh ;;
         *) echo "Unknown suite: $suite" >&2; exit 2 ;;
     esac
 done

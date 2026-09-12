@@ -14,9 +14,7 @@
 
 <f:section name="main">
     <f:variable name="flashMessageClass"><d:atom.controlClass slot="flashDestructive" /></f:variable>
-    <f:alias map="{flashMessageClass: flashMessageClass}">
-        <f:render partial="Misc/FlashMessages" arguments="{_all}" />
-    </f:alias>
+    <f:render partial="Misc/FlashMessages" arguments="{_all}" />
 
     <f:if condition="{form}">
         <f:then>

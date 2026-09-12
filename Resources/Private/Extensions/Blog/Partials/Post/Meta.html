@@ -36,7 +36,7 @@
     </f:if>
     <f:if condition="{settings.comments.disqus.enable} !== '1'">
         <f:then>
-            <f:alias map="{commentCount: '{f:count(subject: \'{post.activeComments}\')}'}">
+            <f:variable name="commentCount" value="{post.activeComments -> f:count()}" />
                 <span aria-hidden="true">·</span>
                 <meta itemprop="commentCount" content="{commentCount}"/>
                 <span>
@@ -44,7 +44,6 @@
                         <f:translate extensionName="desiderio" key="blog.comments.count" arguments="{count: commentCount}">{commentCount} comments</f:translate>
                     </blogvh:link.post>
                 </span>
-            </f:alias>
         </f:then>
         <f:else>
             <blogvh:link.post post="{post}" section="disqus_thread" data="{disqus-identifier: '{settings.comments.disqus.shortname}:post:{post.uid}'}" class="text-muted-foreground !no-underline transition-colors hover:text-link">

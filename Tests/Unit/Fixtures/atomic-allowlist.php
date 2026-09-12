@@ -34,11 +34,4 @@ return [
     'Resources/Private/Solr/Partials/Search/LastSearches.html' => ['A4' => 'section landmark with the id EXT:solr expects (tx-solr-lastsearches)'],
     // Styleguide-only viewport switcher glyphs (desktop/tablet/phone) that no icon library ships consistently.
     'Resources/Private/Templates/Pages/DesiderioStyleguide.fluid.html' => ['A4' => 'viewport switcher device glyphs on the styleguide page'],
-    // Replaced by Molecule/Pagination and Molecule/CaptchaPlaceholder in the cleanup step of 4.1.0.
-    'Resources/Private/Extensions/Blog/Partials/Pagination/Pagination.html' => ['A4' => 'pending: Molecule/Pagination'],
-    'Resources/Private/Extensions/News/Partials/List/Pagination.html' => ['A4' => 'pending: Molecule/Pagination'],
-    'Resources/Private/Extensions/Blog/Partials/Form/Friendlycaptcha.html' => ['A4' => 'pending: Molecule/CaptchaPlaceholder'],
-    'Resources/Private/Extensions/Powermail/Partials/Form/Field/Friendlycaptcha.html' => ['A4' => 'pending: Molecule/CaptchaPlaceholder'],
-    'Resources/Private/Form/Partials/Friendlycaptcha.html' => ['A4' => 'pending: Molecule/CaptchaPlaceholder'],
-    'Resources/Private/FormCaptchaOverride/Partials/Friendlycaptcha.html' => ['A4' => 'pending: Molecule/CaptchaPlaceholder'],
 ];

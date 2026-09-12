@@ -29,12 +29,10 @@ final class StyleguideFeatureVideoTest extends TestCase
         }
     }
 
-    public function testVideoGenerationAndAccessibleContentBlocksRemainAvailable(): void
+    public function testAccessibleVideoContentBlocksRemainAvailable(): void
     {
         $root = dirname(__DIR__, 2);
 
-        self::assertFileExists($root . '/Build/Scripts/render-feature-videos.sh');
-        self::assertFileExists($root . '/Build/Scripts/verify-feature-videos.sh');
         self::assertFileExists($root . '/ContentBlocks/ContentElements/feature-video/config.yaml');
         self::assertFileExists($root . '/ContentBlocks/ContentElements/video-embed/config.yaml');
     }

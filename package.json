@@ -4,8 +4,9 @@
   "version": "4.0.6",
   "description": "Tailwind v4 and shadcn/ui theme build for the Desiderio TYPO3 extension.",
   "scripts": {
-    "build": "npm run build:assets",
-    "build:assets": "npm run build:css && npm run build:desiderio-css && npm run build:prism && npm run build:hljs && npm run build:iconfonts",
+    "build": "npm run build:presets && npm run build:preset-overview && npm run build:css && npm run build:desiderio-css && npm run build:prism && npm run build:hljs && npm run build:iconfonts",
+    "build:presets": "php Build/Scripts/generate-shadcn-presets.php",
+    "build:preset-overview": "php Build/Scripts/build-preset-overview.php",
     "build:css": "tailwindcss -i Resources/Private/Tailwind/desiderio.css -o Resources/Public/Css/desiderio-tailwind.css --minify",
     "build:desiderio-css": "node Build/Scripts/build-desiderio-css.mjs",
     "build:prism": "node Build/Scripts/build-prism-lite.mjs",

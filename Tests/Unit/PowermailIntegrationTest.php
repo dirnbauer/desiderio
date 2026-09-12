@@ -157,7 +157,7 @@ final class PowermailIntegrationTest extends TestCase
         self::assertStringNotContainsString('has-data-checked:border-primary', $controlClass);
         self::assertStringNotContainsString('has-data-checked:bg-primary', $controlClass);
 
-        $componentsCss = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Css/components.css');
+        $componentsCss = self::componentsCss();
         self::assertStringContainsString('.d-powermail :where(input.d-shadcn-control, textarea.d-shadcn-control, select.d-shadcn-control)', $componentsCss);
         self::assertStringContainsString('border-color: var(--input);', $componentsCss);
         self::assertStringContainsString('border-color: var(--destructive);', $componentsCss);
@@ -305,4 +305,17 @@ final class PowermailIntegrationTest extends TestCase
         self::assertStringNotContainsString('$introUid = $this->insertTextContent', $source);
         self::assertStringContainsString('$this->hidePages($ownedPageUids, $now, $pageColumns);', $source);
     }
+
+    /**
+     * The former Resources/Public/Css/components.css; since 4.1.0 its source
+     * lives in the manifest of Resources/Public/Css/desiderio.css.
+     */
+    private static function componentsCss(): string
+    {
+        $files = glob(__DIR__ . '/../../Resources/Private/Css/desiderio/components-*.css');
+        self::assertIsArray($files);
+        self::assertNotSame([], $files);
+        return implode("\n", array_map(static fn(string $file): string => (string) file_get_contents($file), $files));
+    }
+
 }

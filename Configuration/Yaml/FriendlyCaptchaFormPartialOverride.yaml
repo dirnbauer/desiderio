@@ -16,4 +16,4 @@ TYPO3:
               renderingOptions:
                 partialRootPaths:
                   # Must outrank friendlycaptcha's partialRootPaths key 1689150041921 (highest wins).
-                  1789150041921: 'EXT:desiderio/Resources/Private/FormCaptchaOverride/Partials'
+                  1789150041921: 'EXT:desiderio/Resources/Private/Form/CaptchaOverride/Partials'

@@ -1,0 +1,845 @@
+/* Migrated from the hand-maintained Resources/Public/Css/components.css in
+   4.1.0: the file had no generator, so it now lives in the manifest-driven
+   source of Resources/Public/Css/desiderio.css like every other feature
+   stylesheet. Unlayered on purpose (see Documentation/Developer/Build.rst):
+   unlayered CSS beats Tailwind's layers, which is what these component
+   defaults rely on. Badge, card, typography, inputs, avatar, icon, alert, accordion, tabs, table and the remaining component classes. */
+
+   3. BADGE  (.badge)
+   ========================================================================== */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 9999px;
+  padding: 0.125rem 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.5;
+  white-space: nowrap;
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+
+.badge--default {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.badge--default:hover {
+  background-color: color-mix(in oklch, var(--primary) 80%, transparent);
+}
+
+.badge--secondary {
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+}
+
+.badge--secondary:hover {
+  background-color: color-mix(in oklch, var(--secondary) 80%, transparent);
+}
+
+.badge--outline {
+  background-color: transparent;
+  border-color: var(--border);
+  color: var(--foreground);
+}
+
+.badge--destructive {
+  background-color: var(--destructive);
+  color: var(--destructive-foreground);
+}
+
+.badge--destructive:hover {
+  background-color: color-mix(in oklch, var(--destructive) 80%, transparent);
+}
+
+/* ==========================================================================
+   4. CARD  (.card)
+   ========================================================================== */
+
+.card {
+  background-color: var(--card);
+  color: var(--card-foreground);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius, 0.375rem) + 4px);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.card__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  padding: 1.5rem;
+}
+
+.card__title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0;
+  color: inherit;
+}
+
+.card__description {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+}
+
+.card__content {
+  padding: 1.5rem;
+  padding-top: 0;
+}
+
+.card__footer {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  padding-top: 0;
+}
+
+/* ==========================================================================
+   5. TYPOGRAPHY
+   ========================================================================== */
+
+.typography--h1 {
+  margin: 0;
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: 0;
+  color: var(--foreground);
+}
+
+.typography--h2 {
+  margin: 0;
+  font-size: 1.875rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0;
+  color: var(--foreground);
+}
+
+.typography--h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: 0;
+  color: var(--foreground);
+}
+
+.typography--h4 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0;
+  color: var(--foreground);
+}
+
+.typography--p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.625;
+  color: var(--foreground);
+}
+
+.typography--lead {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+
+.typography--large {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--foreground);
+}
+
+.typography--small {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--foreground);
+}
+
+.typography--muted {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+}
+
+/* ==========================================================================
+   6. SEPARATOR
+   ========================================================================== */
+
+.separator {
+  flex-shrink: 0;
+  background-color: var(--border);
+}
+
+.separator--horizontal {
+  height: 1px;
+  width: 100%;
+}
+
+.separator--vertical {
+  width: 1px;
+  height: 100%;
+  align-self: stretch;
+}
+
+/* ==========================================================================
+   7. INPUT  (.input)
+   ========================================================================== */
+
+.input {
+  display: flex;
+  width: 100%;
+  height: 2.5rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--input);
+  border-radius: var(--radius, 0.375rem);
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: inherit;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.input::placeholder {
+  color: var(--muted-foreground);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--ring);
+  box-shadow: 0 0 0 2px color-mix(in oklch, var(--ring) 20%, transparent);
+}
+
+.input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.input:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* ==========================================================================
+   8. TEXTAREA  (.textarea)
+   ========================================================================== */
+
+.textarea {
+  display: flex;
+  width: 100%;
+  min-height: 5rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--input);
+  border-radius: var(--radius, 0.375rem);
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: inherit;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  resize: vertical;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.textarea::placeholder {
+  color: var(--muted-foreground);
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: var(--ring);
+  box-shadow: 0 0 0 2px color-mix(in oklch, var(--ring) 20%, transparent);
+}
+
+.textarea:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.textarea:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* ==========================================================================
+   9. LABEL  (.label)
+   ========================================================================== */
+
+.label {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--foreground);
+  cursor: default;
+}
+
+.label--disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* ==========================================================================
+   10. SELECT  (.select)
+   ========================================================================== */
+
+.select {
+  display: flex;
+  width: 100%;
+  height: 2.5rem;
+  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  border: 1px solid var(--input);
+  border-radius: var(--radius, 0.375rem);
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: inherit;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 1rem;
+  cursor: pointer;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.select:focus {
+  outline: none;
+  border-color: var(--ring);
+  box-shadow: 0 0 0 2px color-mix(in oklch, var(--ring) 20%, transparent);
+}
+
+.select:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.select:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* ==========================================================================
+   11. AVATAR  (.avatar)
+   ========================================================================== */
+
+.avatar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 9999px;
+  background-color: var(--muted);
+}
+
+.avatar--sm {
+  width: 2rem;
+  height: 2rem;
+}
+
+.avatar--lg {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.avatar__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+}
+
+.avatar__fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: var(--muted);
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.avatar--sm .avatar__fallback {
+  font-size: 0.75rem;
+}
+
+.avatar--lg .avatar__fallback {
+  font-size: 1.125rem;
+}
+
+/* ==========================================================================
+   12. ICON  (.icon)
+   ========================================================================== */
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.icon--sm {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.icon--lg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* ==========================================================================
+   13. IMAGE  (.image)
+   ========================================================================== */
+
+.image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.image--rounded {
+  border-radius: var(--radius, 0.375rem);
+}
+
+.image--circle {
+  border-radius: 9999px;
+}
+
+/* ==========================================================================
+   14. LINK  (.link)
+   ========================================================================== */
+
+.link {
+  /* --d-link, not raw --primary: presets with a bright accent (amber/lime)
+     override it with a solved ink so small link text holds 4.5:1. */
+  color: var(--d-link, var(--primary));
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-weight: 500;
+  transition: color 150ms ease, text-decoration-color 150ms ease;
+  cursor: pointer;
+}
+
+.link:hover {
+  /* Never fade towards transparent: 80% over a light surface dropped hover
+     text below 4.5:1. --d-primary-text is the hue-safe, scheme-aware pull
+     (mixing towards var(--foreground) would rotate the brand hue); the
+     thicker underline keeps a hover affordance where the two tokens match. */
+  color: var(--d-primary-text, var(--primary));
+  text-decoration-thickness: 2px;
+}
+
+.link--muted {
+  color: var(--muted-foreground);
+  text-decoration: none;
+}
+
+.link--muted:hover {
+  color: var(--foreground);
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   15. ALERT  (.alert)
+   ========================================================================== */
+
+.alert {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius, 0.375rem) + 2px);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--foreground);
+  background-color: var(--background);
+}
+
+.alert[data-icon]::before {
+  margin-bottom: 0.25rem;
+}
+
+.alert__title {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+.alert__description {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+/* -- Alert variants -- */
+
+.alert--destructive {
+  border-color: var(--destructive);
+  color: var(--d-danger-text);
+}
+
+.alert--destructive .alert__title {
+  color: var(--d-danger-text);
+}
+
+.alert--info {
+  border-color: var(--d-info);
+  background-color: var(--d-info-muted);
+  color: var(--d-info-text);
+}
+
+.alert--info .alert__title {
+  color: var(--d-info-text);
+}
+
+.alert--success {
+  border-color: var(--d-success);
+  background-color: var(--d-success-muted);
+  color: var(--d-success-text);
+}
+
+.alert--success .alert__title {
+  color: var(--d-success-text);
+}
+
+.alert--warning {
+  border-color: var(--d-warning);
+  background-color: var(--d-warning-muted);
+  color: var(--d-warning-text);
+}
+
+.alert--warning .alert__title {
+  color: var(--d-warning-text);
+}
+
+/* ==========================================================================
+   16. ACCORDION  (.accordion)
+   ========================================================================== */
+
+.accordion {
+  width: 100%;
+}
+
+.accordion__item {
+  border-bottom: 1px solid var(--border);
+}
+
+.accordion__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem 0;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--foreground);
+  cursor: pointer;
+  text-align: left;
+  transition: color 150ms ease;
+}
+
+.accordion__trigger:hover {
+  text-decoration: underline;
+}
+
+.accordion__trigger:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.accordion__chevron {
+  display: inline-flex;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  margin-left: 0.5rem;
+  transition: transform 200ms ease;
+}
+
+.accordion__trigger[aria-expanded="true"] .accordion__chevron {
+  transform: rotate(180deg);
+}
+
+.accordion__content {
+  overflow: hidden;
+  transition: max-height 300ms ease, opacity 300ms ease;
+  max-height: 500px;
+  opacity: 1;
+}
+
+.accordion__content--hidden {
+  max-height: 0;
+  opacity: 0;
+}
+
+.accordion__body {
+  padding-bottom: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+
+/* ==========================================================================
+   17. TABS  (.tabs)
+   ========================================================================== */
+
+.tabs {
+  width: 100%;
+}
+
+.tabs__list {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  margin: 0;
+  list-style: none;
+  background-color: var(--muted);
+  border-radius: var(--radius, 0.375rem);
+}
+
+.tabs__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  padding: 0.375rem 0.75rem;
+  border: none;
+  border-radius: calc(var(--radius, 0.375rem) - 2px);
+  background: none;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--muted-foreground);
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease, box-shadow 150ms ease;
+}
+
+.tabs__trigger:hover {
+  color: var(--foreground);
+}
+
+.tabs__trigger:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.tabs__trigger--active {
+  background-color: var(--background);
+  color: var(--foreground);
+  box-shadow: var(--shadow-sm);
+}
+
+.tabs__content {
+  margin-top: 0.5rem;
+}
+
+.tabs__content--hidden {
+  display: none;
+}
+
+/* ==========================================================================
+   18. PROGRESS  (.progress)
+   ========================================================================== */
+
+.progress {
+  position: relative;
+  width: 100%;
+  height: 0.625rem;
+  overflow: hidden;
+  border-radius: 9999px;
+  background-color: var(--secondary);
+}
+
+.progress__indicator {
+  height: 100%;
+  width: 0%;
+  border-radius: 9999px;
+  background-color: var(--primary);
+  transition: width 500ms ease;
+}
+
+/* ==========================================================================
+   19. SKELETON  (.skeleton)
+   ========================================================================== */
+
+.skeleton {
+  background-color: var(--muted);
+  border-radius: var(--radius, 0.375rem);
+  animation: skeleton-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes skeleton-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* ==========================================================================
+   20. TABLE  (.table-wrapper, .table)
+   ========================================================================== */
+
+.table-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius, 0.375rem) + 2px);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  text-align: left;
+  caption-side: bottom;
+}
+
+.table__header {
+  background-color: color-mix(in oklch, var(--muted) 50%, transparent);
+}
+
+.table__row {
+  border-bottom: 1px solid var(--border);
+  transition: background-color 150ms ease;
+}
+
+.table__row:last-child {
+  border-bottom: none;
+}
+
+tbody .table__row:hover {
+  background-color: color-mix(in oklch, var(--muted) 50%, transparent);
+}
+
+.table__head {
+  padding: 0.75rem 1rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  white-space: nowrap;
+}
+
+.table__cell {
+  padding: 0.75rem 1rem;
+  color: var(--foreground);
+  vertical-align: middle;
+}
+
+/* ==========================================================================
+   21. ASPECT RATIO  (.aspect-ratio)
+   ========================================================================== */
+
+.aspect-ratio {
+  position: relative;
+  width: 100%;
+}
+
+.aspect-ratio > * {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.aspect-ratio--16-9 {
+  aspect-ratio: 16 / 9;
+}
+
+.aspect-ratio--4-3 {
+  aspect-ratio: 4 / 3;
+}
+
+.aspect-ratio--1-1 {
+  aspect-ratio: 1 / 1;
+}
+
+.aspect-ratio--21-9 {
+  aspect-ratio: 21 / 9;
+}
+
+/* ==========================================================================
+   22. SCROLL AREA  (.scroll-area)
+   ========================================================================== */
+
+.scroll-area {
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-area__viewport {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.scroll-area__viewport::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.scroll-area__viewport::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scroll-area__viewport::-webkit-scrollbar-thumb {
+  background-color: var(--border);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.scroll-area__viewport::-webkit-scrollbar-thumb:hover {
+  background-color: color-mix(in oklch, var(--muted-foreground) 50%, transparent);
+}
+
+/* ==========================================================================

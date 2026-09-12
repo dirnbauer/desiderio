@@ -146,6 +146,7 @@ final class ContentRenderingTemplateTest extends TestCase
         $layout = (string) file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Layouts/Default.fluid.html');
         $header = (string) file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Partials/Header.fluid.html');
         $tailwind = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Tailwind/desiderio.css');
+        $contentTypoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/TypoScript/content.typoscript');
         $settings = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/settings.yaml');
 
         self::assertStringContainsString('xmlns:dc="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"', $layout);
@@ -156,7 +157,10 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString('font-style: italic;', $tailwind);
         self::assertStringContainsString('margin-block-start: 1.5rem;', $tailwind);
         self::assertStringContainsString('padding-inline-start: 1.5rem;', $tailwind);
-        self::assertStringContainsString('templateRootPath: EXT:desiderio/Resources/Private/ClassicContent/Templates/', $settings);
+        // The root paths ARE the registration; the styles.templates.* site
+        // settings that duplicated them had no consumer and are gone.
+        self::assertStringContainsString('templateRootPaths.200 = EXT:desiderio/Resources/Private/ClassicContent/Templates/', $contentTypoScript);
+        self::assertStringNotContainsString('styles:', $settings);
     }
 
     public function testClassicContentMediaTemplatesUseFilesProcessorFileObjects(): void
@@ -275,7 +279,7 @@ final class ContentRenderingTemplateTest extends TestCase
 
     public function testTypo3FormBridgeUsesNeutralBordersAndPowermailStyleErrors(): void
     {
-        $css = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Css/components.css');
+        $css = self::componentsCss();
 
         self::assertStringContainsString('.desiderio-form .form-control:focus', $css);
         self::assertStringContainsString('.desiderio-form .form-control:focus-visible', $css);
@@ -1443,7 +1447,7 @@ final class ContentRenderingTemplateTest extends TestCase
         $defaultLayout = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Templates/Layouts/Pages/Default.fluid.html');
         $headerOrganism = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Components/Organism/SiteHeader/SiteHeader.fluid.html');
         $footerOrganism = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Components/Organism/SiteFooter/SiteFooter.fluid.html');
-        $componentsCss = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Css/components.css');
+        $componentsCss = self::componentsCss();
         $english = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Language/locallang.xlf');
         $german = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Language/de.locallang.xlf');
 
@@ -1511,7 +1515,7 @@ final class ContentRenderingTemplateTest extends TestCase
     public function testStrippedListSemanticsAreRestoredAcrossOverrides(): void
     {
         $files = [
-            'Resources/Private/Extensions/News/Partials/List/Pagination.html',
+            'Resources/Private/Components/Molecule/Pagination/Pagination.fluid.html',
             'Resources/Private/Extensions/Blog/Templates/Widget/RecentPosts.html',
             'Resources/Private/Extensions/Blog/Templates/Widget/Categories.html',
             'Resources/Private/Extensions/Blog/Templates/Widget/Tags.html',
@@ -1549,4 +1553,17 @@ final class ContentRenderingTemplateTest extends TestCase
 
         return $value;
     }
+
+    /**
+     * The former Resources/Public/Css/components.css; since 4.1.0 its source
+     * lives in the manifest of Resources/Public/Css/desiderio.css.
+     */
+    private static function componentsCss(): string
+    {
+        $files = glob(__DIR__ . '/../../Resources/Private/Css/desiderio/components-*.css');
+        self::assertIsArray($files);
+        self::assertNotSame([], $files);
+        return implode("\n", array_map(static fn(string $file): string => (string) file_get_contents($file), $files));
+    }
+
 }

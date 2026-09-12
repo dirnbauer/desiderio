@@ -1,0 +1,149 @@
+/* Migrated from the hand-maintained Resources/Public/Css/components.css in
+   4.1.0: the file had no generator, so it now lives in the manifest-driven
+   source of Resources/Public/Css/desiderio.css like every other feature
+   stylesheet. Unlayered on purpose (see Documentation/Developer/Build.rst):
+   unlayered CSS beats Tailwind's layers, which is what these component
+   defaults rely on. Reset, base element defaults and the accessibility primitives (skip link, .sr-only, reduced-motion safety net). */
+
+/**
+ * desiderio -- Component Styles
+ * BEM component classes powered by CSS custom properties.
+ * Designed for TYPO3 Fluid 5 with shadcn/ui aesthetics.
+ */
+
+/* ==========================================================================
+   1. RESET & BASE
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans, ui-sans-serif, system-ui, sans-serif);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--foreground);
+  background-color: var(--background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+.d-icon[data-icon-library] {
+  display: none;
+}
+
+.d-icon[data-icon-library="tabler"] {
+  display: block;
+}
+
+body[data-icon-library] .d-icon[data-icon-library] {
+  display: none;
+}
+
+body[data-icon-library="lucide"] .d-icon[data-icon-library="lucide"],
+body[data-icon-library="tabler"] .d-icon[data-icon-library="tabler"],
+body[data-icon-library="hugeicons"] .d-icon[data-icon-library="hugeicons"],
+body[data-icon-library="phosphor"] .d-icon[data-icon-library="phosphor"],
+body[data-icon-library="remixicon"] .d-icon[data-icon-library="remixicon"] {
+  display: block;
+}
+
+.d-checked-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  min-width: 0;
+  font-size: var(--d-text-sm, 0.875rem);
+  line-height: 1.45;
+}
+
+.d-checked-list-item__marker {
+  display: inline-flex;
+  flex-shrink: 0;
+  margin-block-start: 0.1em;
+  color: var(--primary);
+}
+
+.d-checked-list-item__text {
+  min-width: 0;
+}
+
+/* ==========================================================================
+   1.1 ACCESSIBILITY PRIMITIVES
+   Skip link, screen-reader utility, reduced-motion safety net.
+   Implements WCAG 2.2 AA criteria 2.4.1 (Bypass Blocks), 2.3.3 (Animation
+   from Interactions), and 2.4.7 (Focus Visible).
+   ========================================================================== */
+
+.d-skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  z-index: 10000;
+  padding: 0.75rem 1.25rem;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom-right-radius: var(--radius);
+  transition: top 150ms ease;
+}
+
+.d-skip-link:focus,
+.d-skip-link:focus-visible {
+  top: 0;
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.sr-only,
+.d-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.d-sr-only-focusable:not(:focus):not(:focus-within) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+main:focus-visible,
+main[tabindex]:focus-visible {
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

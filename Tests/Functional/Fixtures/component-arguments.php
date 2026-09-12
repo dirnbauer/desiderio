@@ -43,6 +43,7 @@ return [
     'molecule.featureItem' => ['arguments' => ['icon' => 'check', 'title' => 'Title', 'text' => 'Text']],
     'molecule.stat' => ['arguments' => ['value' => '42', 'label' => 'Answers', 'trend' => 'up', 'delta' => '+3']],
     'molecule.figure' => ['skip' => 'needs a FAL FileReference; parsed by ShippedTemplatesLintTest'],
+    'molecule.pagination' => ['skip' => 'f:uri.action needs an Extbase request; rendered only inside the News and Blog plugins'],
     'molecule.formRenderer' => ['skip' => 'f:cObject needs a frontend request; parsed by ShippedTemplatesLintTest'],
     'organism.breadcrumb' => ['arguments' => ['breadcrumb' => []]],
     'organism.pageHeader' => ['arguments' => ['page' => static fn(): object => (object)['pageRecord' => ['uid' => 1, 'title' => 'Home', 'subtitle' => '', 'tx_desiderio_h1_sronly' => 0]]]],

@@ -1,0 +1,23 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+<f:comment>
+    Inert stand-in for the Friendly Captcha widget, shown when
+    studiomitte/friendlycaptcha is not installed at all, and when the
+    Desiderio bypass is active (Development context or test mode). The button
+    is disabled and does nothing on purpose — it only tells the editor that a
+    captcha sits here. Used by the TYPO3 Form Framework, Powermail and Blog
+    captcha partials, which all render the same placeholder.
+</f:comment>
+<f:argument name="class" type="string" optional="{true}" default="" />
+
+<div data-slot="captcha-placeholder" class="frc-captcha frc-captcha--placeholder flex w-fit max-w-full flex-wrap items-center gap-x-3 gap-y-1 rounded-md border border-input bg-muted px-3 py-2 {class -> f:format.trim()}">
+    <d:atom.button variant="outline" size="sm" disabled="{true}">
+        <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="shield-check" size="sm" class="text-primary" /></span>
+        <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:captcha.placeholder.button" />
+    </d:atom.button>
+    <span class="min-w-0 text-xs leading-snug text-muted-foreground">
+        <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:captcha.placeholder.note" />
+    </span>
+</div>
+</html>

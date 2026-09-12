@@ -1,12 +1,6 @@
 # Default values for the Desiderio base set.
 # Presets override these in their own settings.yaml.
 
-styles:
-  templates:
-    templateRootPath: EXT:desiderio/Resources/Private/ClassicContent/Templates/
-    partialRootPath: EXT:desiderio/Resources/Private/ClassicContent/Partials/
-    layoutRootPath: EXT:desiderio/Resources/Private/ClassicContent/Layouts/
-
 desiderio:
   brand:
     wordmark: ''

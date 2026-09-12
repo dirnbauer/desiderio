@@ -1,0 +1,93 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+<f:comment>
+    Shared pager for the paginated plugin lists (EXT:news, EXT:blog). Page
+    links are built with f:uri.action, so the component works for every
+    Extbase plugin that paginates with a `currentPage` argument; pass the
+    controller action through `actionName` when the list is not the default
+    action.
+
+    Callers hand over the numbers of the core PaginationInterface
+    (allPageNumbers / displayPageNumbers, currentPageNumber, first/last,
+    previous/next, hasLessPages/hasMorePages) rather than the pagination
+    object itself, so one component serves both extensions' pagination types.
+
+    EXT:solr keeps its own partial: its page URLs come from
+    s:uri.paginate.resultPage(), a ViewHelper this component cannot reference
+    without making EXT:solr a hard dependency.
+</f:comment>
+<f:argument name="pages" type="array" />
+<f:argument name="currentPage" type="integer" />
+<f:argument name="firstPage" type="integer" optional="{true}" default="{0}" />
+<f:argument name="lastPage" type="integer" optional="{true}" default="{0}" />
+<f:argument name="previousPage" type="integer" optional="{true}" default="{0}" />
+<f:argument name="nextPage" type="integer" optional="{true}" default="{0}" />
+<f:argument name="hasLessPages" type="bool" optional="{true}" default="{false}" />
+<f:argument name="hasMorePages" type="bool" optional="{true}" default="{false}" />
+<f:argument name="actionName" type="string" optional="{true}" default="" />
+<f:argument name="addQueryString" type="string" optional="{true}" default="untrusted" />
+<f:argument name="class" type="string" optional="{true}" default="" />
+
+<f:variable name="totalPages" value="{f:if(condition: lastPage, then: lastPage, else: '{pages -> f:count()}')}" />
+<f:variable name="linkClass" value="inline-flex size-9 items-center justify-center rounded-md border border-border bg-background text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-(length:--d-ring-width) focus-visible:ring-ring/50" />
+<f:variable name="stepClass" value="inline-flex h-9 items-center gap-1.5 rounded-md border border-border bg-background px-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-(length:--d-ring-width) focus-visible:ring-ring/50" />
+<f:variable name="ellipsisClass" value="inline-flex size-9 items-center justify-center text-sm text-muted-foreground" />
+
+<f:if condition="{pages -> f:count()} > 1">
+    <nav data-slot="pagination" class="d-pagination {class -> f:format.trim()}" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/locallang.xlf:pagination.aria.label', arguments: {totalPages: totalPages})}">
+        <ul role="list" class="flex flex-wrap items-center gap-1">
+            <f:if condition="{previousPage} && {previousPage} < {currentPage}">
+                <li>
+                    <a href="{f:uri.action(action: actionName, arguments: {currentPage: previousPage}, addQueryString: addQueryString)}" rel="prev" class="{stepClass}" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/locallang.xlf:pagination.aria.previous')}">
+                        <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="chevron-left" size="xs" /></span>
+                        <span><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/locallang.xlf:pagination.previous" /></span>
+                    </a>
+                </li>
+            </f:if>
+
+            <f:if condition="{hasLessPages}">
+                <f:if condition="{firstPage}">
+                    <li>
+                        <a href="{f:uri.action(action: actionName, arguments: {currentPage: firstPage}, addQueryString: addQueryString)}" class="{linkClass}" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/locallang.xlf:pagination.aria.goToPage', arguments: {page: firstPage, totalPages: totalPages})}">{firstPage}</a>
+                    </li>
+                </f:if>
+                <li><span class="{ellipsisClass}" aria-hidden="true">&#8230;</span></li>
+            </f:if>
+
+            <f:for each="{pages}" as="page">
+                <li>
+                    <f:if condition="{page} == {currentPage}">
+                        <f:then>
+                            <span class="inline-flex size-9 items-center justify-center rounded-md bg-primary text-sm font-medium text-primary-foreground" aria-current="page">
+                                {page}<span class="sr-only"> &ndash; {f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/locallang.xlf:pagination.aria.currentPage', arguments: {page: page, totalPages: totalPages})}</span>
+                            </span>
+                        </f:then>
+                        <f:else>
+                            <a href="{f:uri.action(action: actionName, arguments: {currentPage: page}, addQueryString: addQueryString)}" class="{linkClass}" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/locallang.xlf:pagination.aria.goToPage', arguments: {page: page, totalPages: totalPages})}">{page}</a>
+                        </f:else>
+                    </f:if>
+                </li>
+            </f:for>
+
+            <f:if condition="{hasMorePages}">
+                <li><span class="{ellipsisClass}" aria-hidden="true">&#8230;</span></li>
+                <f:if condition="{lastPage}">
+                    <li>
+                        <a href="{f:uri.action(action: actionName, arguments: {currentPage: lastPage}, addQueryString: addQueryString)}" class="{linkClass}" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/locallang.xlf:pagination.aria.goToPage', arguments: {page: lastPage, totalPages: totalPages})}">{lastPage}</a>
+                    </li>
+                </f:if>
+            </f:if>
+
+            <f:if condition="{nextPage} && {nextPage} > {currentPage}">
+                <li>
+                    <a href="{f:uri.action(action: actionName, arguments: {currentPage: nextPage}, addQueryString: addQueryString)}" rel="next" class="{stepClass}" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/locallang.xlf:pagination.aria.next')}">
+                        <span><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/locallang.xlf:pagination.next" /></span>
+                        <span data-icon="inline-end" aria-hidden="true"><d:atom.icon name="chevron-right" size="xs" /></span>
+                    </a>
+                </li>
+            </f:if>
+        </ul>
+    </nav>
+</f:if>
+</html>

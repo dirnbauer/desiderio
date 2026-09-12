@@ -4,8 +4,9 @@
 # Activated by running Build/Scripts/setup-hooks.sh (which sets git
 # core.hooksPath = Build/Hooks).
 #
-# Check rendering code and build dependencies without duplicating Tailwind's
-# @source list. Documentation-only and test-only commits need no CSS rebuild.
+# Check rendering code and build dependencies without duplicating the
+# generators' own source lists. Documentation-only and test-only commits need
+# no asset rebuild.
 
 set -euo pipefail
 
@@ -15,9 +16,9 @@ if git diff --cached --quiet -- Classes Configuration ContentBlocks Resources \
   exit 0
 fi
 
-echo "pre-commit: rebuilding Tailwind bundle to check it stays in sync..." >&2
-Build/Scripts/runTests.sh -s tailwind
-if ! git diff --quiet -- Resources/Public/Css/desiderio-tailwind.css; then
-  echo "pre-commit: stage Resources/Public/Css/desiderio-tailwind.css before committing." >&2
+echo "pre-commit: rebuilding generated assets to check they stay in sync..." >&2
+Build/Scripts/runTests.sh -s assets
+if ! git diff --quiet -- Resources/Public; then
+  echo "pre-commit: stage the rebuilt files under Resources/Public before committing." >&2
   exit 1
 fi

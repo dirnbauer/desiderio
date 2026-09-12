@@ -12,6 +12,7 @@ final class FriendlyCaptchaFallbackTest extends TestCase
 {
     private const PLACEHOLDER_MARKER = 'frc-captcha--placeholder';
     private const BUTTON_LABEL_KEY = 'labels.xlf:captcha.placeholder.button';
+    private const PLACEHOLDER_COMPONENT = '<d:molecule.captchaPlaceholder';
 
     public function testExtLocalconfRegistersFallbackOnlyWithoutFriendlyCaptcha(): void
     {
@@ -82,7 +83,7 @@ final class FriendlyCaptchaFallbackTest extends TestCase
         self::assertIsArray($override);
         $prototype = self::assertArrayPath($override, 'TYPO3', 'CMS', 'Form', 'prototypes', 'standard');
         $partialRootPaths = self::assertArrayPath($prototype, 'formElementsDefinition', 'Form', 'renderingOptions', 'partialRootPaths');
-        self::assertContains('EXT:desiderio/Resources/Private/FormCaptchaOverride/Partials', $partialRootPaths);
+        self::assertContains('EXT:desiderio/Resources/Private/Form/CaptchaOverride/Partials', $partialRootPaths);
         // Rendering override only — element/validator definitions stay with friendlycaptcha.
         $elementDefinitions = self::assertArrayPath($prototype, 'formElementsDefinition');
         self::assertArrayNotHasKey('Friendlycaptcha', $elementDefinitions);
@@ -91,10 +92,9 @@ final class FriendlyCaptchaFallbackTest extends TestCase
 
     public function testOverridePartialBranchesBetweenBypassAndRealWidget(): void
     {
-        $partial = (string)file_get_contents(__DIR__ . '/../../Resources/Private/FormCaptchaOverride/Partials/Friendlycaptcha.html');
+        $partial = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Form/CaptchaOverride/Partials/Friendlycaptcha.html');
 
-        self::assertStringContainsString(self::PLACEHOLDER_MARKER, $partial);
-        self::assertStringContainsString('<button type="button" disabled', $partial);
+        self::assertStringContainsString(self::PLACEHOLDER_COMPONENT, $partial);
         self::assertStringContainsString('partial="Field/Field"', $partial);
         self::assertStringContainsString('di:friendlyCaptchaTestModeEnabled', $partial);
         self::assertStringContainsString('friendlycaptcha:configuration()', $partial);
@@ -113,15 +113,19 @@ final class FriendlyCaptchaFallbackTest extends TestCase
     public function testFallbackPartialRendersInertPlaceholderButton(): void
     {
         $partial = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Form/Partials/Friendlycaptcha.html');
+        $placeholder = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Components/Molecule/CaptchaPlaceholder/CaptchaPlaceholder.fluid.html');
 
-        self::assertStringContainsString(self::PLACEHOLDER_MARKER, $partial);
-        self::assertStringContainsString('<button type="button" disabled', $partial);
+        self::assertStringContainsString(self::PLACEHOLDER_COMPONENT, $partial);
         self::assertStringContainsString('partial="Field/Field"', $partial);
-        self::assertStringContainsString(self::BUTTON_LABEL_KEY, $partial);
         self::assertStringContainsString('f:form.hidden', $partial);
-        // The button is decorative: no JavaScript hooks of any kind.
-        self::assertStringNotContainsString('onclick', $partial);
-        self::assertStringNotContainsString('<script', $partial);
+
+        // One inert placeholder for every integration: disabled, decorative,
+        // and without any JavaScript hook.
+        self::assertStringContainsString(self::PLACEHOLDER_MARKER, $placeholder);
+        self::assertStringContainsString('disabled="{true}"', $placeholder);
+        self::assertStringContainsString(self::BUTTON_LABEL_KEY, $placeholder);
+        self::assertStringNotContainsString('onclick', $placeholder);
+        self::assertStringNotContainsString('<script', $placeholder);
     }
 
     public function testPowermailAndBlogTestModeBranchesRenderPlaceholder(): void
@@ -134,16 +138,15 @@ final class FriendlyCaptchaFallbackTest extends TestCase
         );
 
         foreach ([$powermail, $blog] as $template) {
-            self::assertStringContainsString(self::PLACEHOLDER_MARKER, $template);
-            self::assertStringContainsString('<button type="button" disabled', $template);
-            self::assertStringContainsString(self::BUTTON_LABEL_KEY, $template);
+            self::assertStringContainsString(self::PLACEHOLDER_COMPONENT, $template);
+            self::assertStringContainsString('di:friendlyCaptchaTestModeEnabled', $template);
         }
         self::assertStringContainsString('partial="Field/Field"', $blog);
     }
 
     public function testPlaceholderCssWrapsLongDevelopmentModeMessage(): void
     {
-        $componentsCss = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Css/components.css');
+        $componentsCss = self::componentsCss();
         $waitlistCss = (string)file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/waitlist-signup/assets/frontend.css');
 
         self::assertStringContainsString('.desiderio-form .frc-captcha--placeholder', $componentsCss);
@@ -152,4 +155,17 @@ final class FriendlyCaptchaFallbackTest extends TestCase
         self::assertStringContainsString('.waitlist-signup__form form > .frc-captcha', $waitlistCss);
         self::assertStringContainsString('grid-row: 2;', $waitlistCss);
     }
+
+    /**
+     * The former Resources/Public/Css/components.css; since 4.1.0 its source
+     * lives in the manifest of Resources/Public/Css/desiderio.css.
+     */
+    private static function componentsCss(): string
+    {
+        $files = glob(__DIR__ . '/../../Resources/Private/Css/desiderio/components-*.css');
+        self::assertIsArray($files);
+        self::assertNotSame([], $files);
+        return implode("\n", array_map(static fn(string $file): string => (string) file_get_contents($file), $files));
+    }
+
 }

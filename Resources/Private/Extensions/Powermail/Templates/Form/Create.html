@@ -15,9 +15,7 @@
     <f:variable name="flashMessageClass"><d:atom.controlClass slot="flashDestructive" /></f:variable>
     <f:variable name="cardCompactClass"><d:atom.controlClass slot="cardCompact" /></f:variable>
 
-    <f:alias map="{flashMessageClass: flashMessageClass}">
-        <f:render partial="Misc/FlashMessages" arguments="{_all}" />
-    </f:alias>
+    <f:render partial="Misc/FlashMessages" arguments="{_all}" />
 
     <div class="mt-8 w-full max-w-2xl">
         <div data-powermail-form="{mail.form.uid}">

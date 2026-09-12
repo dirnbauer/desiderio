@@ -139,7 +139,7 @@ final class ShadcnThemeTest extends TestCase
         self::assertStringContainsString('--d-warning:', $themeCss);
         self::assertStringContainsString('--d-danger:', $themeCss);
 
-        $componentsCss = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Css/components.css');
+        $componentsCss = self::componentsCss();
         self::assertStringContainsString('body[data-icon-library="lucide"] .d-icon[data-icon-library="lucide"]', $componentsCss);
         self::assertStringContainsString('body[data-icon-library="tabler"] .d-icon[data-icon-library="tabler"]', $componentsCss);
         self::assertStringContainsString('body[data-icon-library="hugeicons"] .d-icon[data-icon-library="hugeicons"]', $componentsCss);
@@ -415,4 +415,17 @@ final class ShadcnThemeTest extends TestCase
         /** @var array<string, mixed> $data */
         return $data;
     }
+
+    /**
+     * The former Resources/Public/Css/components.css; since 4.1.0 its source
+     * lives in the manifest of Resources/Public/Css/desiderio.css.
+     */
+    private static function componentsCss(): string
+    {
+        $files = glob(__DIR__ . '/../../Resources/Private/Css/desiderio/components-*.css');
+        self::assertIsArray($files);
+        self::assertNotSame([], $files);
+        return implode("\n", array_map(static fn(string $file): string => (string) file_get_contents($file), $files));
+    }
+
 }

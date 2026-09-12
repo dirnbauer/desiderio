@@ -111,8 +111,8 @@ jobs:
       - name: Run functional tests
         run: Build/Scripts/runFunctionalTests.sh
 
-  tailwind-bundle:
-    name: Tailwind bundle is in sync with templates
+  generated-assets:
+    name: Generated assets are in sync with sources
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v5
@@ -125,5 +125,12 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
 
-      - name: Verify Tailwind bundle is current
-        run: Build/Scripts/check-tailwind-built.sh
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.4"
+          tools: composer:v2
+          coverage: none
+
+      - name: Verify generated assets are current
+        run: Build/Scripts/check-generated-assets.sh

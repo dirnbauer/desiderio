@@ -1,0 +1,403 @@
+/* Migrated from the hand-maintained Resources/Public/Css/components.css in
+   4.1.0: the file had no generator, so it now lives in the manifest-driven
+   source of Resources/Public/Css/desiderio.css like every other feature
+   stylesheet. Unlayered on purpose (see Documentation/Developer/Build.rst):
+   unlayered CSS beats Tailwind's layers, which is what these component
+   defaults rely on. Section, container, grid and stack primitives plus the page-template chrome. */
+
+   23. LAYOUT: SECTION  (.section)
+   ========================================================================== */
+
+.section {
+  width: 100%;
+}
+
+/* -- Background variants -- */
+
+.section--bg-default {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.section--bg-muted {
+  background-color: var(--muted);
+  color: var(--foreground);
+}
+
+.section--bg-primary {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.section--bg-card {
+  background-color: var(--card);
+  color: var(--card-foreground);
+}
+
+/* -- Spacing variants -- */
+
+.section--spacing-default {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.section--spacing-sm {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.section--spacing-lg {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+.section--spacing-none {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .section--spacing-default {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  .section--spacing-lg {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+}
+
+/* ==========================================================================
+   24. LAYOUT: CONTAINER  (.container)
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+.container--sm {
+  max-width: 640px;
+}
+
+.container--default {
+  max-width: 1024px;
+}
+
+.container--lg {
+  max-width: 1280px;
+}
+
+.container--xl {
+  max-width: 1536px;
+}
+
+.container--full {
+  max-width: 100%;
+}
+
+/* ==========================================================================
+   25. LAYOUT: GRID  (.grid)
+   ========================================================================== */
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+/* -- Gap variants -- */
+
+.grid--gap-sm {
+  gap: 1rem;
+}
+
+.grid--gap-default {
+  gap: 1.5rem;
+}
+
+.grid--gap-lg {
+  gap: 2rem;
+}
+
+/* -- Column variants (mobile-first) -- */
+
+.grid--cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.grid--cols-2 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.grid--cols-3 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.grid--cols-4 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.grid--cols-6 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* Tablet breakpoint */
+@media (min-width: 640px) {
+  .grid--cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid--cols-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid--cols-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid--cols-6 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Desktop breakpoint */
+@media (min-width: 1024px) {
+  .grid--cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .grid--cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .grid--cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+/* ==========================================================================
+   26. LAYOUT: STACK  (.stack)
+   ========================================================================== */
+
+.stack {
+  display: flex;
+}
+
+.stack--vertical {
+  flex-direction: column;
+}
+
+.stack--horizontal {
+  flex-direction: row;
+}
+
+/* -- Gap variants -- */
+
+.stack--gap-sm {
+  gap: 0.5rem;
+}
+
+.stack--gap-default {
+  gap: 1rem;
+}
+
+.stack--gap-lg {
+  gap: 1.5rem;
+}
+
+/* -- Alignment -- */
+
+.stack--align-start {
+  align-items: flex-start;
+}
+
+.stack--align-center {
+  align-items: center;
+}
+
+.stack--align-end {
+  align-items: flex-end;
+}
+
+.stack--align-stretch {
+  align-items: stretch;
+}
+
+/* ==========================================================================
+   PAGE TEMPLATES (Home / Sub / SubWithNav / News)
+   Styled to match shadcn/ui site chrome.
+   ========================================================================== */
+
+.d-site-header:empty,
+.d-site-footer:empty {
+  display: none;
+}
+
+.d-main {
+  display: block;
+  min-height: 40vh;
+}
+
+.d-page {
+  color: var(--foreground);
+}
+
+.d-page__title {
+  font-size: clamp(1.875rem, 1.2rem + 2vw, 3rem);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.1;
+  margin: 0 0 1rem;
+}
+
+.d-page__lead {
+  color: var(--muted-foreground);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin: 0 0 1.5rem;
+  max-width: 60ch;
+}
+
+.d-page__body {
+  margin-block: 2rem 4rem;
+}
+
+/* -- Breadcrumb -- */
+
+.d-breadcrumb {
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  margin-bottom: 1.25rem;
+}
+
+.d-breadcrumb__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.d-breadcrumb__item + .d-breadcrumb__item::before {
+  color: var(--muted-foreground);
+  content: "/";
+  margin-right: 0.5rem;
+}
+
+.d-breadcrumb__item [aria-current="page"] {
+  color: var(--foreground);
+  font-weight: 500;
+}
+
+/* -- SubWithNav layout grid -- */
+
+.d-page__grid {
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .d-page__grid {
+    grid-template-columns: 220px minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .d-page__grid {
+    grid-template-columns: 260px minmax(0, 1fr);
+  }
+}
+
+.d-page__content {
+  min-width: 0;
+}
+
+/* -- SubNav (left sidebar) -- */
+
+.d-subnav {
+  position: sticky;
+  top: 5rem;
+  align-self: start;
+}
+
+.d-subnav__list {
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.d-subnav__item {
+  margin: 0;
+}
+
+.d-subnav__link {
+  border-left: 2px solid transparent;
+  color: var(--muted-foreground);
+  display: block;
+  font-size: 0.875rem;
+  margin-left: -1px;
+  padding: 0.5rem 0.75rem;
+  text-decoration: none;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.d-subnav__link:hover {
+  color: var(--foreground);
+}
+
+.d-subnav__item--current .d-subnav__link {
+  border-left-color: var(--foreground);
+  color: var(--foreground);
+  font-weight: 500;
+}
+
+/* -- News page chrome -- */
+
+.d-news-header {
+  margin-bottom: 2.5rem;
+  max-width: 70ch;
+}
+
+.d-news-header__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.d-news-header__byline {
+  align-items: center;
+  color: var(--muted-foreground);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.875rem;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.d-news-header__byline > * + *::before {
+  content: "·";
+  margin-right: 0.75rem;
+}
+
+.d-news-body {
+  margin-inline: auto;
+  max-width: min(72ch, 100%);
+}

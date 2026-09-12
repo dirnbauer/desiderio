@@ -1,0 +1,603 @@
+/* Migrated from the hand-maintained Resources/Public/Css/components.css in
+   4.1.0: the file had no generator, so it now lives in the manifest-driven
+   source of Resources/Public/Css/desiderio.css like every other feature
+   stylesheet. Unlayered on purpose (see Documentation/Developer/Build.rst):
+   unlayered CSS beats Tailwind's layers, which is what these component
+   defaults rely on. Buttons and the form-control polish shared by the TYPO3 Form Framework and Powermail bridges. */
+
+/* ==========================================================================
+   2. BUTTON  (.btn)
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  border-radius: var(--radius, 0.375rem);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease, box-shadow 150ms ease, opacity 150ms ease;
+  padding: 0.625rem 1rem;
+  height: 2.5rem;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.btn:disabled,
+.btn--disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* -- Variants -- */
+
+.btn--default {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.btn--default:hover {
+  background-color: color-mix(in oklch, var(--primary) 90%, transparent);
+}
+
+.btn--secondary {
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+}
+
+.btn--secondary:hover {
+  background-color: color-mix(in oklch, var(--secondary) 80%, transparent);
+}
+
+/* Secondary buttons fill with --secondary, which is identical to --muted and
+   only a hair off the page/box surface — fill alone can render them invisible
+   (a secondary button on a bg-secondary section, or a muted CTA box). Give every
+   secondary button a visible --border edge so it never depends on fill. Covers
+   both the BEM button and the d:atom.button primitive; where a colored section
+   deliberately repaints the button (07-content-frames.css) its higher
+   specificity still wins. */
+.btn--secondary,
+[data-slot="button"][data-variant="secondary"] {
+  border-color: var(--border);
+}
+
+.btn--outline {
+  background-color: transparent;
+  border-color: var(--input);
+  color: var(--foreground);
+}
+
+.btn--outline:hover {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.btn--ghost {
+  background-color: transparent;
+  color: var(--foreground);
+}
+
+.btn--ghost:hover {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.btn--destructive {
+  background-color: var(--destructive);
+  color: var(--destructive-foreground);
+}
+
+.btn--destructive:hover {
+  background-color: color-mix(in oklch, var(--destructive) 90%, transparent);
+}
+
+.btn--link {
+  background-color: transparent;
+  /* --d-link, not raw --primary: presets with a bright accent (amber/lime)
+     override it with a solved ink so small link text holds 4.5:1. */
+  color: var(--d-link, var(--primary));
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  height: auto;
+  padding: 0;
+}
+
+.btn--link:hover {
+  text-decoration-thickness: 2px;
+}
+
+/* -- Sizes -- */
+
+.btn--sm {
+  height: 2.25rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8125rem;
+  border-radius: calc(var(--radius, 0.375rem) - 2px);
+}
+
+.btn--lg {
+  height: 2.75rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: calc(var(--radius, 0.375rem) + 2px);
+}
+
+.btn--icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+}
+
+/* ==========================================================================
+   2.1 TYPO3 Form Framework bridge (.desiderio-form)
+   ========================================================================== */
+
+.desiderio-form form {
+  display: grid;
+  gap: var(--d-spacing-md, 1rem);
+  margin: 0;
+}
+
+.desiderio-form .form-element {
+  display: grid;
+  gap: var(--d-spacing-2xs, 0.25rem);
+  margin: 0;
+}
+
+.desiderio-form .form-label,
+.desiderio-form legend {
+  margin: 0;
+  color: var(--foreground);
+  font-size: var(--d-text-sm, 0.875rem);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.desiderio-form .required {
+  color: var(--d-danger-text);
+  margin-inline-start: 0.125rem;
+}
+
+.desiderio-form .form-control,
+.desiderio-form .form-select,
+.desiderio-form textarea {
+  width: 100%;
+  min-height: 2.5rem;
+  border: 1px solid var(--input);
+  border-radius: var(--radius);
+  background: var(--background);
+  color: var(--foreground);
+  padding: 0.625rem 0.75rem;
+  font: inherit;
+  font-size: var(--d-text-sm, 0.875rem);
+  line-height: 1.4;
+  outline: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+}
+
+.desiderio-form textarea.form-control {
+  min-height: 7rem;
+  resize: vertical;
+}
+
+.desiderio-form .form-control::placeholder,
+.desiderio-form textarea::placeholder {
+  color: var(--muted-foreground);
+}
+
+.desiderio-form .form-control:focus,
+.desiderio-form .form-select:focus,
+.desiderio-form textarea:focus,
+.desiderio-form .form-control:focus-visible,
+.desiderio-form .form-select:focus-visible,
+.desiderio-form textarea:focus-visible {
+  border-color: var(--input);
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 24%, transparent);
+}
+
+.desiderio-form .form-check,
+.desiderio-form .form-check-wrapping-label {
+  display: flex;
+  align-items: center;
+  gap: var(--d-spacing-xs, 0.5rem);
+}
+
+.desiderio-form .form-check-input {
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  accent-color: var(--foreground);
+}
+
+.desiderio-form .form-check-input:checked {
+  border-color: var(--foreground);
+  background-color: var(--foreground);
+  color: var(--background);
+}
+
+.desiderio-form .actions,
+.desiderio-form .form-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--d-spacing-sm, 0.75rem);
+  margin: 0;
+}
+
+.desiderio-form .btn,
+.desiderio-form .btn-primary,
+.desiderio-form .btn-outline-primary {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  min-width: 0;
+  height: var(--d-control-h, 2.25rem);
+  min-height: var(--d-control-h, 2.25rem);
+  border: 1px solid transparent;
+  /* --d-radius-md, never Tailwind's --radius-md: the Tailwind theme vars
+     resolve against :root's --radius, so body[data-radius] overrides can't
+     reach them. The --d-radius-* scale is declared on body and re-cascades. */
+  border-radius: var(--d-radius-md);
+  background-clip: padding-box;
+  padding-inline: var(--d-control-px, 0.75rem);
+  padding-block: 0;
+  font-size: var(--d-control-text, 0.875rem);
+  font-weight: 500;
+  line-height: var(--d-control-leading, 1.25rem);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease, box-shadow 150ms ease, opacity 150ms ease, transform 150ms ease;
+}
+
+.desiderio-form .btn-primary {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.desiderio-form .btn-primary:hover {
+  background-color: color-mix(in oklch, var(--primary) 80%, transparent);
+}
+
+.desiderio-form .btn-primary:active {
+  transform: translateY(1px);
+}
+
+.desiderio-form .btn-outline-primary {
+  border-color: var(--input);
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.desiderio-form .btn-outline-primary:hover {
+  background-color: var(--muted);
+  color: var(--foreground);
+}
+
+.desiderio-form .btn:focus-visible,
+.desiderio-form .btn-primary:focus-visible,
+.desiderio-form .btn-outline-primary:focus-visible {
+  border-color: var(--ring);
+  box-shadow: 0 0 0 var(--d-ring-width, 3px) color-mix(in oklch, var(--ring) 50%, transparent);
+}
+
+.desiderio-form .btn:disabled,
+.desiderio-form .btn-primary:disabled,
+.desiderio-form .btn-outline-primary:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.desiderio-form .is-invalid .form-control,
+.desiderio-form .is-invalid .form-select,
+.desiderio-form .is-invalid textarea,
+.desiderio-form .form-control[aria-invalid="true"],
+.desiderio-form .form-select[aria-invalid="true"],
+.desiderio-form textarea[aria-invalid="true"],
+.desiderio-form .form-control.is-invalid,
+.desiderio-form .form-select.is-invalid,
+.desiderio-form textarea.is-invalid {
+  border-color: var(--destructive);
+}
+
+.desiderio-form .form-check-input[aria-invalid="true"],
+.desiderio-form .form-check-input.is-invalid,
+.desiderio-form .is-invalid .form-check-input {
+  border-color: var(--destructive);
+  accent-color: var(--destructive);
+}
+
+.desiderio-form .form-check-input[aria-invalid="true"]:checked,
+.desiderio-form .form-check-input.is-invalid:checked,
+.desiderio-form .is-invalid .form-check-input:checked {
+  border-color: var(--destructive);
+  background-color: var(--destructive);
+}
+
+.desiderio-form .invalid-feedback {
+  display: grid;
+  grid-template-columns: 0.875rem minmax(0, 1fr);
+  gap: 0.125rem 0.375rem;
+  width: 100%;
+  margin: 0.375rem 0 0;
+  padding: 0;
+  color: var(--d-danger-text);
+  font-size: var(--d-text-xs, 0.75rem);
+  line-height: 1.4;
+}
+
+.desiderio-form .invalid-feedback:empty {
+  display: none;
+}
+
+/* The "!" is drawn with background layers (bar + dot) instead of a text
+   glyph: glyph centering depends on the active preset font's metrics and
+   drifts off-center inside the circle. */
+.desiderio-form .invalid-feedback::before {
+  display: inline-block;
+  grid-column: 1;
+  grid-row: 1;
+  width: 0.875rem;
+  height: 0.875rem;
+  /* Centre the circle on the first text line whatever --d-text-xs
+     resolves to: half the difference between the 1.4 line box and the
+     14px icon. A fixed margin drifts when the token changes. */
+  margin-block-start: calc((1.4em - 0.875rem) / 2);
+  border: 1px solid color-mix(in oklch, var(--destructive) 45%, transparent);
+  border-radius: 9999px;
+  color: var(--destructive);
+  background-image: linear-gradient(currentColor, currentColor),
+    linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-size: 0.125rem 0.3125rem, 0.125rem 0.125rem;
+  background-position: center 0.125rem, center 0.5rem;
+  content: "";
+}
+
+.desiderio-form .form-text {
+  color: var(--muted-foreground);
+  font-size: var(--d-text-xs, 0.75rem);
+}
+
+.desiderio-form .t3g-blog-hp-wrap,
+.desiderio-form .t3g-blog-hp {
+  position: absolute !important;
+  left: -10000px !important;
+  top: auto !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+}
+
+.desiderio-form .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   2.2 Powermail shadcn bridge (.d-powermail)
+   ========================================================================== */
+
+.d-powermail :where(input.d-shadcn-control, textarea.d-shadcn-control, select.d-shadcn-control) {
+  border-color: var(--input);
+}
+
+.d-powermail :where(input.d-shadcn-control, textarea.d-shadcn-control, select.d-shadcn-control):focus,
+.d-powermail :where(input.d-shadcn-control, textarea.d-shadcn-control, select.d-shadcn-control):focus-visible {
+  border-color: var(--input);
+}
+
+.d-powermail :where(input.d-shadcn-control, textarea.d-shadcn-control, select.d-shadcn-control)[aria-invalid="true"],
+.d-powermail :where(input.d-shadcn-control, textarea.d-shadcn-control, select.d-shadcn-control).border-destructive,
+.d-powermail :where(input.d-shadcn-control, textarea.d-shadcn-control, select.d-shadcn-control).powermail_field_error {
+  border-color: var(--destructive);
+}
+
+.d-powermail :where(input[type="checkbox"].d-shadcn-control, input[type="radio"].d-shadcn-control) {
+  accent-color: var(--foreground);
+}
+
+.d-powermail :where(input[type="checkbox"].d-shadcn-control, input[type="radio"].d-shadcn-control):checked {
+  border-color: var(--foreground);
+  background-color: var(--foreground);
+  color: var(--background);
+}
+
+.d-powermail :where(input[type="checkbox"].d-shadcn-control, input[type="radio"].d-shadcn-control)[aria-invalid="true"],
+.d-powermail :where(input[type="checkbox"].d-shadcn-control, input[type="radio"].d-shadcn-control).border-destructive,
+.d-powermail :where(input[type="checkbox"].d-shadcn-control, input[type="radio"].d-shadcn-control).powermail_field_error {
+  border-color: var(--destructive);
+}
+
+.d-powermail :where(input[type="checkbox"].d-shadcn-control, input[type="radio"].d-shadcn-control)[aria-invalid="true"]:checked,
+.d-powermail :where(input[type="checkbox"].d-shadcn-control, input[type="radio"].d-shadcn-control).border-destructive:checked,
+.d-powermail :where(input[type="checkbox"].d-shadcn-control, input[type="radio"].d-shadcn-control).powermail_field_error:checked {
+  border-color: var(--destructive);
+  background-color: var(--destructive);
+}
+
+.d-powermail input[type="checkbox"].d-shadcn-control:checked + svg {
+  color: var(--background);
+}
+
+.d-powermail input[type="radio"].d-shadcn-control:checked + span {
+  background-color: var(--background);
+}
+
+/* === Powermail form polish: step circles, control contrast, type scale ===
+   Scoped to .d-powermail and driven by the shadcn tokens, so everything keeps
+   adapting to light/dark mode and the active preset. */
+.d-powermail {
+  /* +1px on control text (inputs/buttons/selects use --d-control-text, was 14px) */
+  --d-control-text: 0.9375rem;
+  /* the bare --input border is very faint; mix in the foreground so inputs,
+     selects and the radio/checkbox outlines read clearly in BOTH modes (both
+     --foreground and --border flip with the theme, so this one value adapts) */
+  --input: color-mix(in oklch, var(--foreground) 24%, var(--border));
+}
+/* nudge labels, option text, hints, errors and the card description up ~1px */
+.d-powermail [class*="text-xs"] {
+  font-size: 0.8125rem;
+  line-height: 1.15rem;
+}
+/* step-number badges become circles, sitting closer to their step label */
+.d-powermail .pm-step-num {
+  border-radius: 9999px;
+  margin-inline-end: 0.375rem;
+  font-size: 0.75rem;
+}
+/* radio + checkbox: a slightly thicker outline for presence (width only, so the
+   focus-ring + error-border states are untouched) */
+.d-powermail input[type="radio"].d-shadcn-control,
+.d-powermail input[type="checkbox"].d-shadcn-control {
+  border-width: 1.5px;
+}
+
+.d-powermail .frc-captcha,
+.desiderio-form .frc-captcha {
+  box-sizing: border-box;
+  min-width: 0;
+  max-width: 100%;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background-clip: padding-box;
+  contain: paint;
+}
+
+.d-powermail .frc-captcha--placeholder,
+.desiderio-form .frc-captcha--placeholder {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.25rem 0.75rem;
+  width: min(100%, 36rem);
+}
+
+.d-powermail .frc-captcha--placeholder > button,
+.desiderio-form .frc-captcha--placeholder > button {
+  max-width: 100%;
+  justify-self: start;
+}
+
+.d-powermail .frc-captcha--placeholder > span,
+.desiderio-form .frc-captcha--placeholder > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 30rem) {
+  .d-powermail .frc-captcha--placeholder,
+  .desiderio-form .frc-captcha--placeholder {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ==========================================================================
+   2.2 Blog media (responsive featured images)
+   ========================================================================== */
+
+.desiderio-blog figure {
+  margin: 0;
+}
+
+.desiderio-blog-media {
+  max-width: 100%;
+}
+
+.desiderio-blog-media--inline .desiderio-blog-media__image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+.desiderio-blog-media--cover {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+
+.desiderio-blog-media--card {
+  aspect-ratio: 16 / 10;
+}
+
+.desiderio-blog-media--hero {
+  aspect-ratio: 21 / 9;
+}
+
+.desiderio-blog-media--cover .desiderio-blog-media__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+}
+
+.desiderio-blog-post__media {
+  width: 100%;
+  min-width: 0;
+  max-width: 48rem;
+}
+
+.d-powermail .frc-captcha :where(iframe, div),
+.desiderio-form .frc-captcha :where(iframe, div) {
+  max-width: 100%;
+  border-radius: inherit;
+}
+
+.d-powermail :where([class*="powermail_field_error_container_"]):empty {
+  display: none;
+}
+
+.d-powermail .powermail-errors-list {
+  display: grid;
+  gap: 0.125rem;
+  width: 100%;
+  margin: 0.375rem 0 0;
+  padding: 0;
+  color: var(--d-danger-text);
+  font-size: var(--d-text-xs, 0.75rem);
+  line-height: 1.4;
+  list-style: none;
+}
+
+.d-powermail [class*="powermail_field_error_container_"] .powermail-errors-list {
+  margin-block-start: 0;
+}
+
+.d-powermail .powermail-errors-list li {
+  margin: 0;
+}
+
+.btn--icon.btn--sm {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.btn--icon.btn--lg {
+  width: 2.75rem;
+  height: 2.75rem;
+}
+
+/* ==========================================================================

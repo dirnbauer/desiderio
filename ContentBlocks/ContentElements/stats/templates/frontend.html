@@ -8,17 +8,11 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="stats">
     <d:layout.container>
         <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
-            <header class="stats__intro">
-                <f:if condition="{data.eyebrow}">
-                    <span class="stats__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
-                </f:if>
-                <f:if condition="{data.header}">
-                    <d:atom.typography tag="h2" variant="h2" class="stats__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
-                </f:if>
-                <f:if condition="{data.subheadline}">
-                    <d:atom.typography variant="lead" class="stats__description">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
-                </f:if>
-            </header>
+            <d:molecule.sectionIntro prefix="stats" class="stats__intro" headingClass="stats__headline" leadVariant="lead" leadClass="stats__description">
+                <f:fragment name="eyebrow"><f:if condition="{data.eyebrow}">{data -> f:render.text(field: 'eyebrow')}</f:if></f:fragment>
+                <f:fragment name="heading"><f:if condition="{data.header}">{data -> f:render.text(field: 'header')}</f:if></f:fragment>
+                <f:fragment name="lead"><f:if condition="{data.subheadline}">{data -> f:render.text(field: 'subheadline')}</f:if></f:fragment>
+            </d:molecule.sectionIntro>
         </f:if>
 
         <dl class="stats__grid stats__grid--cols-{data.columns -> f:or(alternative: '4')}"

@@ -19,9 +19,9 @@
                     <d:atom.typography tag="div" variant="lead" class="feature-image__description d-richtext">{data -> f:render.text(field: 'description')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.link.url} && {data.link_text}">
-                    <div class="feature-image__actions">
+                    <d:molecule.actionGroup class="feature-image__actions">
                         <d:atom.button href="{f:uri.typolink(parameter: data.link.url)}" target="{data.link.target}" size="lg">{data -> f:render.text(field: 'link_text')}</d:atom.button>
-                    </div>
+                    </d:molecule.actionGroup>
                 </f:if>
             </div>
             <f:if condition="{data.image.0}">

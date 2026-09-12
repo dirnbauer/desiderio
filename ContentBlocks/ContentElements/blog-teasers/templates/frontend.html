@@ -8,10 +8,10 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="blog-teasers">
     <d:layout.container>
         <f:if condition="{data.header} || {data.subheadline}">
-            <header class="blog-teasers__intro">
-                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-                <f:if condition="{data.subheadline}"><d:atom.typography variant="lead" class="blog-teasers__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
-            </header>
+            <d:molecule.sectionIntro prefix="blog-teasers" class="blog-teasers__intro" leadVariant="lead" leadClass="blog-teasers__subheadline">
+                <f:fragment name="heading"><f:if condition="{data.header}">{data -> f:render.text(field: 'header')}</f:if></f:fragment>
+                <f:fragment name="lead"><f:if condition="{data.subheadline}">{data -> f:render.text(field: 'subheadline')}</f:if></f:fragment>
+            </d:molecule.sectionIntro>
         </f:if>
 
         <ul class="blog-teasers__grid blog-teasers__grid--cols-{data.columns -> f:or(alternative: '3')}" role="list">

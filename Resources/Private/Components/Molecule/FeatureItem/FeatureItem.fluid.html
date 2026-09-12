@@ -1,0 +1,48 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+<f:comment>
+    Icon + title + text, the repeating unit of feature grids and benefit
+    lists. Title and text come from arguments or from the slots "title" and
+    "text"; `href` (URL) or `link` (typolink parameter) turn the title into a
+    link. `prefix` adds the
+    element's BEM hooks (`{prefix}__icon`, `__title`, `__description`) so its
+    stylesheet keeps applying.
+</f:comment>
+<f:argument name="icon" type="string" optional="{true}" default="" />
+<f:argument name="iconSize" type="string" optional="{true}" default="lg" />
+<f:argument name="title" type="string" optional="{true}" default="" />
+<f:argument name="text" type="string" optional="{true}" default="" />
+<f:argument name="href" type="string" optional="{true}" default="" />
+<f:argument name="link" type="string" optional="{true}" default="" />
+<f:argument name="target" type="string" optional="{true}" default="" />
+<f:argument name="titleTag" type="string" optional="{true}" default="h3" />
+<f:argument name="prefix" type="string" optional="{true}" default="" />
+<f:argument name="class" type="string" optional="{true}" default="" />
+<f:argument name="textClass" type="string" optional="{true}" default="" />
+
+<f:variable name="titleContent"><f:slot name="title" /></f:variable>
+<f:variable name="textContent"><f:slot name="text" /></f:variable>
+<f:variable name="titleContent">{f:if(condition: '{titleContent -> f:format.trim()}', then: titleContent, else: title)}</f:variable>
+<f:variable name="textContent">{f:if(condition: '{textContent -> f:format.trim()}', then: textContent, else: text)}</f:variable>
+<f:variable name="bem">{f:if(condition: prefix, then: '{prefix}__')}</f:variable>
+<f:variable name="titleClass">d-feature-item__title {f:if(condition: bem, then: '{bem}title')}</f:variable>
+<f:variable name="href">{f:if(condition: link, then: '{f:uri.typolink(parameter: link)}', else: href)}</f:variable>
+
+<div data-slot="feature-item" class="d-feature-item {class -> f:format.trim()}">
+    <f:if condition="{icon}">
+        <span data-slot="feature-item-icon" class="d-feature-item__icon {f:if(condition: bem, then: '{bem}icon')}" aria-hidden="true"><d:atom.icon name="{icon}" size="{iconSize}" /></span>
+    </f:if>
+    <f:if condition="{titleContent -> f:format.trim()}">
+        <d:atom.typography tag="{titleTag}" variant="large" class="{titleClass -> f:format.trim()}">
+            <f:if condition="{href}">
+                <f:then><d:atom.link href="{href}" target="{target}" variant="muted">{titleContent -> f:format.raw()}</d:atom.link></f:then>
+                <f:else>{titleContent -> f:format.raw()}</f:else>
+            </f:if>
+        </d:atom.typography>
+    </f:if>
+    <f:if condition="{textContent -> f:format.trim()}">
+        <div data-slot="feature-item-text" class="d-feature-item__text {f:if(condition: bem, then: '{bem}description')} {textClass}">{textContent -> f:format.raw()}</div>
+    </f:if>
+</div>
+</html>

@@ -8,14 +8,10 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="badge-grid-section">
     <d:layout.container>
         <f:if condition="{data.header} || {data.description}">
-            <header class="badge-grid__intro">
-                <f:if condition="{data.header}">
-                    <d:atom.typography tag="h2" variant="h2" class="badge-grid__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
-                </f:if>
-                <f:if condition="{data.description}">
-                    <d:atom.typography tag="div" variant="lead" class="badge-grid__description d-richtext">{data -> f:render.text(field: 'description')}</d:atom.typography>
-                </f:if>
-            </header>
+            <d:molecule.sectionIntro prefix="badge-grid" class="badge-grid__intro" headingClass="badge-grid__headline" leadVariant="lead" leadClass="badge-grid__description d-richtext" leadTag="div">
+                <f:fragment name="heading"><f:if condition="{data.header}">{data -> f:render.text(field: 'header')}</f:if></f:fragment>
+                <f:fragment name="lead"><f:if condition="{data.description}">{data -> f:render.text(field: 'description')}</f:if></f:fragment>
+            </d:molecule.sectionIntro>
         </f:if>
         <ul class="badge-grid__list" role="list">
             <f:for each="{data.items}" as="item">

@@ -1424,9 +1424,8 @@ final class ContentRenderingTemplateTest extends TestCase
             'Resources/Private/ClassicContent/Partials/Media.fluid.html',
             'Resources/Private/ClassicContent/Partials/Menu.fluid.html',
             'Resources/Private/ClassicContent/Partials/FileList.fluid.html',
-            'Resources/Private/Partials/List/Pagination.html',
-            'Resources/Private/Partials/Pagination/Pagination.html',
-            'Resources/Private/Partials/Pagination.html',
+            'Resources/Private/Extensions/News/Partials/List/Pagination.html',
+            'Resources/Private/Extensions/Blog/Partials/Pagination/Pagination.html',
         ];
 
         foreach ($partials as $relativePath) {

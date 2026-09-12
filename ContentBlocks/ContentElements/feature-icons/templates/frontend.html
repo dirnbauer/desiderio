@@ -15,15 +15,10 @@
 
         <div class="feature-icons__grid feature-icons__grid--cols-{data.columns -> f:or(alternative: '4')}">
             <f:for each="{data.items}" as="item">
-                <div class="feature-icons__item">
-                    <f:if condition="{item.icon}">
-                        <span class="feature-icons__icon" aria-hidden="true"><d:atom.icon name="{item.icon}" size="xl"/></span>
-                    </f:if>
-                    <h3 class="feature-icons__title">{item -> f:render.text(field: 'title')}</h3>
-                    <f:if condition="{item.description_text}">
-                        <p class="feature-icons__description">{item -> f:render.text(field: 'description_text')}</p>
-                    </f:if>
-                </div>
+                <d:molecule.featureItem prefix="feature-icons" class="feature-icons__item" icon="{item.icon}" iconSize="xl">
+                    <f:fragment name="title">{item -> f:render.text(field: 'title')}</f:fragment>
+                    <f:fragment name="text"><f:if condition="{item.description_text}">{item -> f:render.text(field: 'description_text')}</f:if></f:fragment>
+                </d:molecule.featureItem>
             </f:for>
         </div>
     </d:layout.container>

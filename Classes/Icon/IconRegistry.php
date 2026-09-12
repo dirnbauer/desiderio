@@ -523,6 +523,51 @@ final class IconRegistry
                 'group' => 'Places',
                 'paths' => '<path d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1"/><path d="M3 7h18v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 13h18"/><path d="M10 13v1h4v-1"/>',
             ],
+            'arrow-up' => [
+                'label' => 'Arrow Up',
+                'group' => 'Navigation',
+                'paths' => '<path d="m5 12 7-7 7 7"/><path d="M12 19V5"/>',
+            ],
+            'arrow-down' => [
+                'label' => 'Arrow Down',
+                'group' => 'Navigation',
+                'paths' => '<path d="M12 5v14"/><path d="m19 12-7 7-7-7"/>',
+            ],
+            'chevron-up' => [
+                'label' => 'Chevron Up',
+                'group' => 'Navigation',
+                'paths' => '<path d="m18 15-6-6-6 6"/>',
+            ],
+            'trending-up' => [
+                'label' => 'Trending Up',
+                'group' => 'Status',
+                'paths' => '<path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/>',
+            ],
+            'trending-down' => [
+                'label' => 'Trending Down',
+                'group' => 'Status',
+                'paths' => '<path d="M16 17h6v-6"/><path d="m22 17-8.5-8.5-5 5L2 7"/>',
+            ],
+            'minus' => [
+                'label' => 'Minus',
+                'group' => 'Status',
+                'paths' => '<path d="M5 12h14"/>',
+            ],
+            'x' => [
+                'label' => 'Close',
+                'group' => 'Navigation',
+                'paths' => '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
+            ],
+            'play' => [
+                'label' => 'Play',
+                'group' => 'Media',
+                'paths' => '<path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/>',
+            ],
+            'quote' => [
+                'label' => 'Quote',
+                'group' => 'General',
+                'paths' => '<path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/>',
+            ],
             'none' => [
                 'label' => 'No icon',
                 'group' => 'General',

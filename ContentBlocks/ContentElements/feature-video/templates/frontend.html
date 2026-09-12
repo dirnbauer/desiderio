@@ -10,13 +10,11 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="feature-video">
     <d:layout.container>
         <f:if condition="{data.eyebrow} || {data.header} || {data.description}">
-            <header class="feature-video__intro">
-                <f:if condition="{data.eyebrow}"><span class="feature-video__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>
-                <f:if condition="{data.header}">
-                    <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
-                </f:if>
-                <f:if condition="{data.description}"><d:atom.typography tag="div" variant="muted" class="d-richtext">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
-            </header>
+            <d:molecule.sectionIntro prefix="feature-video" class="feature-video__intro" leadClass="d-richtext" leadTag="div">
+                <f:fragment name="eyebrow"><f:if condition="{data.eyebrow}">{data -> f:render.text(field: 'eyebrow')}</f:if></f:fragment>
+                <f:fragment name="heading"><f:if condition="{data.header}">{data -> f:render.text(field: 'header')}</f:if></f:fragment>
+                <f:fragment name="lead"><f:if condition="{data.description}">{data -> f:render.text(field: 'description')}</f:if></f:fragment>
+            </d:molecule.sectionIntro>
         </f:if>
 
         <div class="feature-video__player">

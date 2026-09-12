@@ -8,10 +8,10 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="timeline">
     <d:layout.container>
         <f:if condition="{data.header} || {data.subheadline}">
-            <header class="timeline__intro">
-                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-                <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
-            </header>
+            <d:molecule.sectionIntro prefix="timeline" class="timeline__intro">
+                <f:fragment name="heading"><f:if condition="{data.header}">{data -> f:render.text(field: 'header')}</f:if></f:fragment>
+                <f:fragment name="lead"><f:if condition="{data.subheadline}">{data -> f:render.text(field: 'subheadline')}</f:if></f:fragment>
+            </d:molecule.sectionIntro>
         </f:if>
 
         <div class="timeline__list">
@@ -29,9 +29,9 @@
                             </div>
                         </f:if>
                         <f:if condition="{item.link.url} && {item.link_text}">
-                            <div class="timeline__actions">
+                            <d:molecule.actionGroup class="timeline__actions">
                                 <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="timeline__link">{item -> f:render.text(field: 'link_text')}</d:atom.link>
-                            </div>
+                            </d:molecule.actionGroup>
                         </f:if>
                     </d:molecule.card>
                 </article>

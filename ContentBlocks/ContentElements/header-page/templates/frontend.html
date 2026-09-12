@@ -18,9 +18,9 @@
                 <p class="header-page__description">{data -> f:render.text(field: 'subheadline')}</p>
             </f:if>
             <f:if condition="{data.button_text} && {data.button_link.url}">
-                <div class="header-page__actions">
+                <d:molecule.actionGroup class="header-page__actions">
                     <d:atom.button href="{f:uri.typolink(parameter: data.button_link.url)}" target="{data.button_link.target}">{data -> f:render.text(field: 'button_text')}</d:atom.button>{data -> f:render.link(field: 'button_link')}
-                </div>
+                </d:molecule.actionGroup>
             </f:if>
         </header>
     </d:layout.container>

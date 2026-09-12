@@ -1,0 +1,40 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+<f:comment>
+    FAL image with an optional caption. `image` is a FileReference; width and
+    height take the same crop notation as f:image ("720c"), `maxImageWidth`
+    the processing limit of f:image. The caption comes from the argument or
+    the default slot; `ratio` (e.g. "4/3") and `maxWidth` (e.g. "48rem") are
+    applied as inline sizes only when given.
+</f:comment>
+<f:argument name="image" type="object" />
+<f:argument name="alt" type="string" optional="{true}" default="" />
+<f:argument name="width" type="string" optional="{true}" default="" />
+<f:argument name="height" type="string" optional="{true}" default="" />
+<f:argument name="maxImageWidth" type="string" optional="{true}" default="" />
+<f:argument name="ratio" type="string" optional="{true}" default="" />
+<f:argument name="maxWidth" type="string" optional="{true}" default="" />
+<f:argument name="caption" type="string" optional="{true}" default="" />
+<f:argument name="loading" type="string" optional="{true}" default="lazy" />
+<f:argument name="class" type="string" optional="{true}" default="" />
+<f:argument name="imageClass" type="string" optional="{true}" default="" />
+<f:argument name="captionClass" type="string" optional="{true}" default="" />
+
+<f:variable name="captionContent"><f:slot /></f:variable>
+<f:variable name="captionContent">{f:if(condition: '{captionContent -> f:format.trim()}', then: captionContent, else: caption)}</f:variable>
+<f:variable name="styles">{f:if(condition: ratio, then: 'aspect-ratio: {ratio};')}{f:if(condition: maxWidth, then: ' max-width: {maxWidth};')}</f:variable>
+
+<figure data-slot="figure" class="d-figure {class -> f:format.trim()}" style="{styles -> f:format.trim()}">
+    <f:if condition="{width} && {height}">
+        <f:then>
+            <f:image image="{image}" width="{width}" height="{height}" alt="{alt}" loading="{loading}" decoding="async" class="d-figure__image {imageClass -> f:format.trim()}" />
+        </f:then>
+        <f:else>
+            <f:image image="{image}" maxWidth="{maxImageWidth}" alt="{alt}" loading="{loading}" decoding="async" class="d-figure__image {imageClass -> f:format.trim()}" />
+        </f:else>
+    </f:if>
+    <f:if condition="{captionContent -> f:format.trim()}">
+        <figcaption data-slot="figure-caption" class="d-figure__caption {captionClass -> f:format.trim()}">{captionContent -> f:format.raw()}</figcaption>
+    </f:if>
+</figure>
+</html>

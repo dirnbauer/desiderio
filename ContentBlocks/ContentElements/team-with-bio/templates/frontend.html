@@ -8,32 +8,29 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="team-with-bio">
     <d:layout.container>
         <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
-            <header class="team-with-bio__intro">
-                <f:if condition="{data.eyebrow}"><span class="team-with-bio__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>
-                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-                <f:if condition="{data.subheadline}"><d:atom.typography variant="lead">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
-            </header>
+            <d:molecule.sectionIntro prefix="team-with-bio" class="team-with-bio__intro" leadVariant="lead">
+                <f:fragment name="eyebrow"><f:if condition="{data.eyebrow}">{data -> f:render.text(field: 'eyebrow')}</f:if></f:fragment>
+                <f:fragment name="heading"><f:if condition="{data.header}">{data -> f:render.text(field: 'header')}</f:if></f:fragment>
+                <f:fragment name="lead"><f:if condition="{data.subheadline}">{data -> f:render.text(field: 'subheadline')}</f:if></f:fragment>
+            </d:molecule.sectionIntro>
         </f:if>
 
         <ul class="team-with-bio__list" role="list">
             <f:for each="{data.members}" as="member">
                 <li>
                     <article class="team-with-bio__member">
-                        <figure class="team-with-bio__image-wrapper">
+                        <div class="team-with-bio__image-wrapper">
                             <f:if condition="{member.image}">
                                 <f:then>
                                     <f:for each="{member.image}" as="fileReference">
-                                        <f:image image="{fileReference}" maxWidth="320" alt="" loading="lazy" decoding="async" class="team-with-bio__image"/>
-                                        <f:if condition="{fileReference.description}">
-                                            <figcaption class="team-with-bio__credit">{fileReference.description}</figcaption>
-                                        </f:if>
+                                        <d:molecule.figure image="{fileReference}" maxImageWidth="320" caption="{fileReference.description}" imageClass="team-with-bio__image" captionClass="team-with-bio__credit" />
                                     </f:for>
                                 </f:then>
                                 <f:else>
                                     <span class="team-with-bio__image team-with-bio__image--fallback" aria-hidden="true">{member.name -> f:format.crop(maxCharacters: 1)}</span>
                                 </f:else>
                             </f:if>
-                        </figure>
+                        </div>
                         <div class="team-with-bio__content">
                             <h3 class="team-with-bio__name">{member -> f:render.text(field: 'name')}</h3>
                             <f:if condition="{member.role}"><p class="team-with-bio__role">{member -> f:render.text(field: 'role')}</p></f:if>

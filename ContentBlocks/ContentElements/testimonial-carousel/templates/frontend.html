@@ -14,14 +14,10 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="testimonial-carousel">
     <d:layout.container>
         <f:if condition="{data.eyebrow} || {data.header}">
-            <header class="testimonial-carousel__intro">
-                <f:if condition="{data.eyebrow}">
-                    <span class="testimonial-carousel__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
-                </f:if>
-                <f:if condition="{data.header}">
-                    <d:atom.typography tag="h2" variant="h2" class="testimonial-carousel__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
-                </f:if>
-            </header>
+            <d:molecule.sectionIntro prefix="testimonial-carousel" class="testimonial-carousel__intro" headingClass="testimonial-carousel__headline">
+                <f:fragment name="eyebrow"><f:if condition="{data.eyebrow}">{data -> f:render.text(field: 'eyebrow')}</f:if></f:fragment>
+                <f:fragment name="heading"><f:if condition="{data.header}">{data -> f:render.text(field: 'header')}</f:if></f:fragment>
+            </d:molecule.sectionIntro>
         </f:if>
 
         <div class="testimonial-carousel__track hero-carousel"
@@ -41,13 +37,7 @@
                     <f:if condition="{item.rating} > 0">
                         <div class="testimonial-carousel__rating" role="img" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:rating.sr.rated', arguments: {0: item.rating}, default: 'Rated {item.rating} out of 5')}">
                             <f:for each="{0: 1, 1: 2, 2: 3, 3: 4, 4: 5}" as="star">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                     fill="{f:if(condition: '{star} <= {item.rating}', then: 'currentColor', else: 'none')}"
-                                     stroke="currentColor" stroke-width="2"
-                                     class="testimonial-carousel__star {f:if(condition: '{star} <= {item.rating}', then: 'testimonial-carousel__star--filled')}"
-                                     aria-hidden="true" focusable="false">
-                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                                </svg>
+                                <d:atom.icon name="star" size="default" class="testimonial-carousel__star {f:if(condition: '{star} <= {item.rating}', then: 'testimonial-carousel__star--filled')}" />
                             </f:for>
                         </div>
                     </f:if>

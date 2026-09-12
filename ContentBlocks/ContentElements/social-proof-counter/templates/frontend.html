@@ -8,14 +8,10 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="social-proof-counter">
     <d:layout.container>
         <f:if condition="{data.header} || {data.subheadline}">
-            <header class="social-proof-counter__intro">
-                <f:if condition="{data.header}">
-                    <d:atom.typography tag="h2" variant="h3" class="social-proof-counter__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
-                </f:if>
-                <f:if condition="{data.subheadline}">
-                    <d:atom.typography variant="muted" class="social-proof-counter__description">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
-                </f:if>
-            </header>
+            <d:molecule.sectionIntro prefix="social-proof-counter" class="social-proof-counter__intro" headingVariant="h3" headingClass="social-proof-counter__headline" leadClass="social-proof-counter__description">
+                <f:fragment name="heading"><f:if condition="{data.header}">{data -> f:render.text(field: 'header')}</f:if></f:fragment>
+                <f:fragment name="lead"><f:if condition="{data.subheadline}">{data -> f:render.text(field: 'subheadline')}</f:if></f:fragment>
+            </d:molecule.sectionIntro>
         </f:if>
 
         <dl class="social-proof-counter__row social-proof-counter__row--{data.shadcn_layout -> f:or(alternative: 'inline')}"

@@ -1,0 +1,15 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+<f:comment>
+    Row of call-to-action buttons or links. Wraps on small screens by
+    default; `align` places the row (start, center, end) and `class` keeps an
+    element's own hook (e.g. `hero__actions`) in place.
+</f:comment>
+<f:argument name="align" type="string" optional="{true}" default="start" />
+<f:argument name="wrap" type="bool" optional="{true}" default="{true}" />
+<f:argument name="class" type="string" optional="{true}" default="" />
+
+<div data-slot="action-group" data-align="{align}" data-wrap="{f:if(condition: wrap, then: 'true', else: 'false')}" class="d-action-group {class -> f:format.trim()}">
+    <f:slot />
+</div>
+</html>

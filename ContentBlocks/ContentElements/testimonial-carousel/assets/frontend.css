@@ -124,3 +124,6 @@
     display: grid;
     gap: var(--d-spacing-sm);
 }
+
+/* Star icons come from d:atom.icon (stroke only); the rating state fills them. */
+.testimonial-carousel__star--filled { fill: currentColor; }

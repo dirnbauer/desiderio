@@ -32,9 +32,7 @@
                         <p class="rating-display__score">{rating -> f:render.text(field: 'score')}</p>
                         <div class="rating-display__stars" aria-hidden="true">
                             <f:for each="{0: 1, 1: 2, 2: 3, 3: 4, 4: 5}" as="star">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="rating-display__star">
-                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                                </svg>
+                                <d:atom.icon name="star" size="default" class="rating-display__star" />
                             </f:for>
                         </div>
                         <h3 class="rating-display__platform">{rating -> f:render.text(field: 'platform')}</h3>

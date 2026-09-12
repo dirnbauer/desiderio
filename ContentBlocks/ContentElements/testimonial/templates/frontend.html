@@ -16,13 +16,7 @@
             <f:if condition="{ratingInt} > 0">
                 <div class="testimonial__rating" role="img" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:rating.sr.rated', arguments: {0: ratingInt}, default: 'Rated {ratingInt} out of 5')}">
                     <f:for each="{0: 1, 1: 2, 2: 3, 3: 4, 4: 5}" as="star">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                             fill="{f:if(condition: '{star} <= {ratingInt}', then: 'currentColor', else: 'none')}"
-                             stroke="currentColor" stroke-width="2"
-                             class="testimonial__star {f:if(condition: '{star} <= {ratingInt}', then: 'testimonial__star--filled')}"
-                             aria-hidden="true" focusable="false">
-                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                        </svg>
+                        <d:atom.icon name="star" size="default" class="testimonial__star {f:if(condition: '{star} <= {ratingInt}', then: 'testimonial__star--filled')}" />
                     </f:for>
                 </div>
             </f:if>

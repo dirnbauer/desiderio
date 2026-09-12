@@ -19,14 +19,14 @@
                     <d:atom.typography variant="lead" class="hero-asymmetric__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.primary_button_text} || {data.secondary_button_text}">
-                    <div class="hero-asymmetric__actions">
+                    <d:molecule.actionGroup class="hero-asymmetric__actions">
                         <f:if condition="{data.primary_button_text}">
                             <d:atom.button href="{f:uri.typolink(parameter: data.primary_button_link.url)}" target="{data.primary_button_link.target}" variant="default" size="lg">{data -> f:render.text(field: 'primary_button_text')}</d:atom.button>{data -> f:render.link(field: 'primary_button_link')}
                         </f:if>
                         <f:if condition="{data.secondary_button_text}">
                             <d:atom.button href="{f:uri.typolink(parameter: data.secondary_button_link.url)}" target="{data.secondary_button_link.target}" variant="outline" size="lg">{data -> f:render.text(field: 'secondary_button_text')}</d:atom.button>{data -> f:render.link(field: 'secondary_button_link')}
                         </f:if>
-                    </div>
+                    </d:molecule.actionGroup>
                 </f:if>
                 <f:if condition="{data.reassurance_text}">
                     <p class="hero-asymmetric__reassurance">{data -> f:render.text(field: 'reassurance_text')}</p>

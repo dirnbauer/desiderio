@@ -1,0 +1,46 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+<f:comment>
+    Eyebrow + heading + lead block that opens most content elements. Pass the
+    texts either as arguments (static copy) or as the slots "eyebrow",
+    "heading" and "lead" (inline-editable f:render.text output). `prefix` is
+    the element's BEM block: the eyebrow also carries `{prefix}__eyebrow`, and
+    `headingClass` / `leadClass` add the element's own hooks, so a stylesheet
+    written for those classes keeps applying.
+</f:comment>
+<f:argument name="eyebrow" type="string" optional="{true}" default="" />
+<f:argument name="heading" type="string" optional="{true}" default="" />
+<f:argument name="lead" type="string" optional="{true}" default="" />
+<f:argument name="headingTag" type="string" optional="{true}" default="h2" />
+<f:argument name="headingVariant" type="string" optional="{true}" default="h2" />
+<f:argument name="leadVariant" type="string" optional="{true}" default="muted" />
+<f:argument name="leadTag" type="string" optional="{true}" default="p" />
+<f:argument name="align" type="string" optional="{true}" default="start" />
+<f:argument name="prefix" type="string" optional="{true}" default="" />
+<f:argument name="class" type="string" optional="{true}" default="" />
+<f:argument name="headingClass" type="string" optional="{true}" default="" />
+<f:argument name="leadClass" type="string" optional="{true}" default="" />
+
+<f:variable name="eyebrowContent"><f:slot name="eyebrow" /></f:variable>
+<f:variable name="headingContent"><f:slot name="heading" /></f:variable>
+<f:variable name="leadContent"><f:slot name="lead" /></f:variable>
+<f:variable name="eyebrowContent">{f:if(condition: '{eyebrowContent -> f:format.trim()}', then: eyebrowContent, else: eyebrow)}</f:variable>
+<f:variable name="headingContent">{f:if(condition: '{headingContent -> f:format.trim()}', then: headingContent, else: heading)}</f:variable>
+<f:variable name="leadContent">{f:if(condition: '{leadContent -> f:format.trim()}', then: leadContent, else: lead)}</f:variable>
+<f:variable name="bem">{f:if(condition: prefix, then: '{prefix}__')}</f:variable>
+
+<f:if condition="{eyebrowContent -> f:format.trim()} || {headingContent -> f:format.trim()} || {leadContent -> f:format.trim()}">
+    <header data-slot="section-intro" data-align="{align}" class="d-section-intro {class -> f:format.trim()}">
+        <f:if condition="{eyebrowContent -> f:format.trim()}">
+            <span data-slot="section-intro-eyebrow" class="d-section-intro__eyebrow {f:if(condition: bem, then: '{bem}eyebrow')}">{eyebrowContent -> f:format.raw()}</span>
+        </f:if>
+        <f:if condition="{headingContent -> f:format.trim()}">
+            <d:atom.typography tag="{headingTag}" variant="{headingVariant}" class="d-section-intro__heading {headingClass}">{headingContent -> f:format.raw()}</d:atom.typography>
+        </f:if>
+        <f:if condition="{leadContent -> f:format.trim()}">
+            <d:atom.typography tag="{leadTag}" variant="{leadVariant}" class="d-section-intro__lead {leadClass}">{leadContent -> f:format.raw()}</d:atom.typography>
+        </f:if>
+    </header>
+</f:if>
+</html>

@@ -1,0 +1,68 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+<f:comment>
+    Key figure: value, label and an optional trend. `trend` is one of
+    up|down|neutral (aliases: positive, caution). The trend icon is decorative;
+    the direction is announced through the sr-only trend label and `delta`
+    (e.g. "+12 %") is printed next to it. Value and label accept arguments or
+    the slots "value", "label" and "delta"; `prefix` adds the element's BEM
+    hooks (`{prefix}__value`, `__label`, `__trend`, `__delta`).
+</f:comment>
+<f:argument name="value" type="string" optional="{true}" default="" />
+<f:argument name="label" type="string" optional="{true}" default="" />
+<f:argument name="delta" type="string" optional="{true}" default="" />
+<f:argument name="trend" type="string" optional="{true}" default="" />
+<f:argument name="labelTag" type="string" optional="{true}" default="p" />
+<f:argument name="prefix" type="string" optional="{true}" default="" />
+<f:argument name="class" type="string" optional="{true}" default="" />
+
+<f:variable name="valueContent"><f:slot name="value" /></f:variable>
+<f:variable name="labelContent"><f:slot name="label" /></f:variable>
+<f:variable name="deltaContent"><f:slot name="delta" /></f:variable>
+<f:variable name="valueContent">{f:if(condition: '{valueContent -> f:format.trim()}', then: valueContent, else: value)}</f:variable>
+<f:variable name="labelContent">{f:if(condition: '{labelContent -> f:format.trim()}', then: labelContent, else: label)}</f:variable>
+<f:variable name="deltaContent">{f:if(condition: '{deltaContent -> f:format.trim()}', then: deltaContent, else: delta)}</f:variable>
+<f:variable name="bem">{f:if(condition: prefix, then: '{prefix}__')}</f:variable>
+<f:variable name="direction">
+    <f:switch expression="{trend}">
+        <f:case value="up">up</f:case>
+        <f:case value="positive">up</f:case>
+        <f:case value="down">down</f:case>
+        <f:case value="caution">down</f:case>
+        <f:case value="neutral">neutral</f:case>
+        <f:defaultCase></f:defaultCase>
+    </f:switch>
+</f:variable>
+<f:variable name="direction">{direction -> f:format.trim()}</f:variable>
+
+<div data-slot="stat" data-trend="{direction}" class="d-stat {class -> f:format.trim()}">
+    <p data-slot="stat-value" class="d-stat__value {f:if(condition: bem, then: '{bem}value')}">
+        <f:if condition="{direction}">
+            <span data-slot="stat-trend" class="d-stat__trend {f:if(condition: bem, then: '{bem}trend')}">
+                <span aria-hidden="true">
+                    <f:switch expression="{direction}">
+                        <f:case value="up"><d:atom.icon name="trending-up" size="sm" /></f:case>
+                        <f:case value="down"><d:atom.icon name="trending-down" size="sm" /></f:case>
+                        <f:defaultCase><d:atom.icon name="minus" size="sm" /></f:defaultCase>
+                    </f:switch>
+                </span>
+                <span class="sr-only">
+                    <f:switch expression="{direction}">
+                        <f:case value="up"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:trend.positive" /></f:case>
+                        <f:case value="down"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:trend.caution" /></f:case>
+                        <f:defaultCase><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:trend.neutral" /></f:defaultCase>
+                    </f:switch>
+                </span>
+            </span>
+        </f:if>
+        <span data-slot="stat-number" class="d-stat__number {f:if(condition: bem, then: '{bem}number')}">{valueContent -> f:format.raw()}</span>
+        <f:if condition="{deltaContent -> f:format.trim()}">
+            <span data-slot="stat-delta" class="d-stat__delta {f:if(condition: bem, then: '{bem}delta')}">{deltaContent -> f:format.raw()}</span>
+        </f:if>
+    </p>
+    <f:if condition="{labelContent -> f:format.trim()}">
+        <d:atom.typography tag="{labelTag}" variant="muted" class="d-stat__label {f:if(condition: bem, then: '{bem}label')}">{labelContent -> f:format.raw()}</d:atom.typography>
+    </f:if>
+</div>
+</html>

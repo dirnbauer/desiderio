@@ -15,9 +15,9 @@
                 <p class="hero-minimal__subheadline">{data -> f:render.text(field: 'subheadline')}</p>
             </f:if>
             <f:if condition="{data.button_text} && {data.button_link.url}">
-                <div class="hero-minimal__actions">
+                <d:molecule.actionGroup class="hero-minimal__actions">
                     <d:atom.button href="{f:uri.typolink(parameter: data.button_link.url)}" target="{data.button_link.target}" size="lg">{data -> f:render.text(field: 'button_text')}</d:atom.button>{data -> f:render.link(field: 'button_link')}
-                </div>
+                </d:molecule.actionGroup>
             </f:if>
         </div>
     </d:layout.container>

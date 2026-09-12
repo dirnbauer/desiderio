@@ -8,14 +8,10 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="pricing-comparison">
     <d:layout.container>
         <f:if condition="{data.eyebrow} || {data.header}">
-            <header class="pricing-comparison__intro">
-                <f:if condition="{data.eyebrow}">
-                    <span class="pricing-comparison__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
-                </f:if>
-                <f:if condition="{data.header}">
-                    <d:atom.typography tag="h2" variant="h2" class="pricing-comparison__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
-                </f:if>
-            </header>
+            <d:molecule.sectionIntro prefix="pricing-comparison" class="pricing-comparison__intro" headingClass="pricing-comparison__headline">
+                <f:fragment name="eyebrow"><f:if condition="{data.eyebrow}">{data -> f:render.text(field: 'eyebrow')}</f:if></f:fragment>
+                <f:fragment name="heading"><f:if condition="{data.header}">{data -> f:render.text(field: 'header')}</f:if></f:fragment>
+            </d:molecule.sectionIntro>
         </f:if>
 
         <d:molecule.table class="pricing-comparison__table">

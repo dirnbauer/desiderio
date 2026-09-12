@@ -79,12 +79,15 @@ final class ExtensionMetadataTest extends TestCase
         self::assertStringNotContainsString('EXT:desiderio/Resources/Private/Solr/Templates/', $setup);
     }
 
-    public function testSharedPaginationPartialsAreAvailableFromDesiderio(): void
+    /**
+     * Pagination lives in the template set of the extension it styles; those
+     * directories are the ones the site sets register as partialRootPaths.
+     * Resources/Private/Partials/ never was, so it must stay gone.
+     */
+    public function testPaginationPartialsLiveInTheRegisteredTemplateSets(): void
     {
-        $pagination = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Partials/Pagination.html');
-
-        self::assertFileExists(__DIR__ . '/../../Resources/Private/Partials/List/Pagination.html');
-        self::assertFileExists(__DIR__ . '/../../Resources/Private/Partials/Pagination/Pagination.html');
-        self::assertStringContainsString('EXT:desiderio/Resources/Private/Language/locallang.xlf', $pagination);
+        self::assertFileExists(__DIR__ . '/../../Resources/Private/Extensions/News/Partials/List/Pagination.html');
+        self::assertFileExists(__DIR__ . '/../../Resources/Private/Extensions/Blog/Partials/Pagination/Pagination.html');
+        self::assertDirectoryDoesNotExist(__DIR__ . '/../../Resources/Private/Partials');
     }
 }

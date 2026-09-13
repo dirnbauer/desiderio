@@ -23,7 +23,7 @@ use Webconsulting\Desiderio\Components\ComponentCollection;
  */
 final class ComponentRenderingTest extends FunctionalTestCase
 {
-    protected array $coreExtensionsToLoad = ['form', 'workspaces'];
+    protected array $coreExtensionsToLoad = ['fluid_styled_content', 'form', 'workspaces'];
 
     protected array $testExtensionsToLoad = [
         'friendsoftypo3/content-blocks',

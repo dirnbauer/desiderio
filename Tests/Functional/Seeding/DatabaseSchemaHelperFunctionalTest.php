@@ -10,6 +10,7 @@ use Webconsulting\Desiderio\Seeding\DatabaseSchemaHelper;
 final class DatabaseSchemaHelperFunctionalTest extends FunctionalTestCase
 {
     protected array $coreExtensionsToLoad = [
+        'fluid_styled_content',
         'form',
         'workspaces',
     ];

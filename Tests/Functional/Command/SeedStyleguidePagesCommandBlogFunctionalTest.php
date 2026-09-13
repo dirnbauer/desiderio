@@ -36,6 +36,7 @@ final class SeedStyleguidePagesCommandBlogFunctionalTest extends FunctionalTestC
     private const int CONTENT_TYPE_SUPPORT_PAGE_COUNT = 4;
 
     protected array $coreExtensionsToLoad = [
+        'fluid_styled_content',
         'form',
         'workspaces',
     ];

@@ -16,6 +16,7 @@ use Webconsulting\Desiderio\Library\ElementCatalog;
 final class ElementCatalogCoreElementsTest extends FunctionalTestCase
 {
     protected array $coreExtensionsToLoad = [
+        'fluid_styled_content',
         'form',
         'workspaces',
     ];

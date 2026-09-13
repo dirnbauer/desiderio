@@ -20,7 +20,7 @@ final class TemplateLinterTest extends FunctionalTestCase
 {
     private const string FIXTURES = __DIR__ . '/../Fixtures/Templates';
 
-    protected array $coreExtensionsToLoad = ['form', 'workspaces'];
+    protected array $coreExtensionsToLoad = ['fluid_styled_content', 'form', 'workspaces'];
 
     protected array $testExtensionsToLoad = [
         'friendsoftypo3/content-blocks',

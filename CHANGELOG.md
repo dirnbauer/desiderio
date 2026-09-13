@@ -6,6 +6,21 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.1.6] — 2026-09-13
+
+### Fixed
+
+- Declare `typo3/cms-fluid-styled-content` as a requirement. The
+  `webconsulting/desiderio` site set has depended on the
+  `typo3/fluid-styled-content` set since 4.1.1, but nothing required the
+  package providing it, so an installation without it saw the base set — and
+  everything depending on it — become unavailable, and TYPO3 refused the site
+  with `Site main depends on unavailable sets`.
+- Require the upstream `t3g/blog` instead of a retired fork. The `^15.0.3`
+  constraint and its VCS repository entry only ever resolved against a
+  repository that no longer exists, which broke dependency resolution for
+  every consumer.
+
 ## [4.1.5] — 2026-09-13
 
 ### Fixed

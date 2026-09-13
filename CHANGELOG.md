@@ -6,6 +6,8 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.1.4] — 2026-09-13
+
 ### Fixed
 
 - The FriendlyCaptcha test-mode guard warned on every single request to a site

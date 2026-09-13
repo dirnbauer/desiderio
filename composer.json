@@ -1,7 +1,7 @@
 {
     "name": "webconsulting/desiderio",
     "type": "typo3-cms-extension",
-    "description": "Desiderio \u2014 shadcn/ui-inspired Fluid 5 component library, 244 Desiderio Content Blocks, and theme layer for TYPO3 14",
+    "description": "Desiderio — shadcn/ui-inspired Fluid 5 component library, 244 Desiderio Content Blocks, and theme layer for TYPO3 14",
     "license": "GPL-2.0-or-later",
     "authors": [
         {
@@ -27,7 +27,7 @@
         "typo3/cms-fluid": "^14.3.6",
         "typo3/cms-form": "^14.3.6",
         "typo3/cms-workspaces": "^14.3.6",
-        "webconsulting/visual-editor-enhancements": "^0.8 || dev-main"
+        "webconsulting/visual-editor-enhancements": "^0.8 || ^1.0 || dev-main"
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
@@ -37,7 +37,7 @@
         "studiomitte/friendlycaptcha": "Optional. Protects the bundled TYPO3 Form Framework and Powermail lab forms with Friendly Captcha. For TYPO3 14 install the fork: add the VCS repository https://github.com/dirnbauer/friendlycaptcha-typo3 and require studiomitte/friendlycaptcha:^14.0@dev. Without it the captcha element renders an inert placeholder and validation passes. Thank you, Studio Mitte.",
         "apache-solr-for-typo3/solr": "Optional. Drives the shadcn-styled Solr search templates. Thank you to dkd Internet Service GmbH and the TYPO3-Solr team.",
         "t3g/blog": "Optional. Drives the shadcn-styled t3g/blog overrides shipped under webconsulting/desiderio-blog. Thank you, TYPO3 GmbH.",
-        "netresearch/nr-llm": "Optional. Netresearch's AI foundation for TYPO3 \u2014 the shared LLM provider layer behind the agentic features shown in the styleguide, alongside nr-mcp-agent, nr-vault and t3-cowriter. Thank you, Netresearch DTT GmbH."
+        "netresearch/nr-llm": "Optional. Netresearch's AI foundation for TYPO3 — the shared LLM provider layer behind the agentic features shown in the styleguide, alongside nr-mcp-agent, nr-vault and t3-cowriter. Thank you, Netresearch DTT GmbH."
     },
     "autoload": {
         "psr-4": {
@@ -68,7 +68,7 @@
     "extra": {
         "typo3/cms": {
             "extension-key": "desiderio",
-            "version": "4.1.1",
+            "version": "4.1.2",
             "Package": {
                 "providesPackages": {}
             }

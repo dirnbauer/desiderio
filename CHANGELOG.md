@@ -6,6 +6,14 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.1.2] — 2026-09-13
+
+### Fixed
+
+- Allow `webconsulting/visual-editor-enhancements` 1.x. The constraint still read
+  `^0.8 || dev-main`, so installing the extension's first stable release conflicted with
+  Desiderio.
+
 ## [4.1.1] — 2026-09-13
 
 ### Fixed

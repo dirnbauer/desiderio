@@ -12,8 +12,42 @@ const manifest = readFileSync(manifestPath, 'utf8')
   .map((line) => line.trim())
   .filter(Boolean);
 
+/**
+ * Every partial must open and close its own comments. A partial that ends
+ * inside a comment does not fail here on its own — the stripper below is a
+ * non-greedy regex over the concatenated text, so it would swallow everything
+ * up to the next partial's first closer and leave the remains of that comment
+ * standing as raw text between two rules. The result is still written out and
+ * only fails much later, in whatever build consumes desiderio.css. The 4.1.0
+ * split of components.css into four partials cut two section headers exactly
+ * that way.
+ */
+function assertBalancedComments(file, source) {
+  let depth = 0;
+  for (let i = 0; i < source.length - 1; i++) {
+    if (source[i] === '/' && source[i + 1] === '*') {
+      depth++;
+      i++;
+    } else if (source[i] === '*' && source[i + 1] === '/') {
+      depth--;
+      i++;
+      if (depth < 0) {
+        throw new Error(`${file} closes a comment it never opened.`);
+      }
+    }
+  }
+  if (depth > 0) {
+    throw new Error(`${file} ends inside a comment; close it before the file ends.`);
+  }
+}
+
 const css = manifest
-  .map((file) => readFileSync(join(partialsDir, file), 'utf8').trimEnd())
+  .map((file) => {
+    const source = readFileSync(join(partialsDir, file), 'utf8').trimEnd();
+    assertBalancedComments(file, source);
+
+    return source;
+  })
   .join('\n\n')
   .concat('\n');
 

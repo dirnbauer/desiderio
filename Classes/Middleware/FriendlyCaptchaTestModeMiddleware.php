@@ -36,10 +36,23 @@ final readonly class FriendlyCaptchaTestModeMiddleware implements MiddlewareInte
         $context = $this->applicationContext ?? Environment::getContext();
         if ($context->isProduction()) {
             if (SiteSettingsBoolean::isEnabled($site, FriendlyCaptchaBypass::TEST_MODE_SETTING)) {
-                $this->logger->warning(
-                    'FriendlyCaptcha test mode is enabled via site settings but ignored in Production context.',
-                    ['site' => $site->getIdentifier(), 'setting' => FriendlyCaptchaBypass::TEST_MODE_SETTING]
-                );
+                // The setting is a standing misconfiguration, not a per-request
+                // event: warning on every hit buried the log without telling
+                // anyone anything the first line had not already said. Once per
+                // site per worker is enough to notice and to act on.
+                // Static local rather than a property: the class is readonly,
+                // which rules static properties out entirely.
+                /** @var array<string, true> $warnedSites */
+                static $warnedSites = [];
+
+                $identifier = $site->getIdentifier();
+                if (!isset($warnedSites[$identifier])) {
+                    $warnedSites[$identifier] = true;
+                    $this->logger->warning(
+                        'FriendlyCaptcha test mode is enabled via site settings but ignored in Production context.',
+                        ['site' => $identifier, 'setting' => FriendlyCaptchaBypass::TEST_MODE_SETTING]
+                    );
+                }
             }
 
             return $handler->handle($request);

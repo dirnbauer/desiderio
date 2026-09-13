@@ -6,6 +6,14 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+- The FriendlyCaptcha test-mode guard warned on every single request to a site
+  that has the setting enabled in Production, rather than once. On the
+  reference lab that was 308 identical lines in one log. The guard itself is
+  unchanged — test mode is still ignored in Production — but the misconfiguration
+  is a standing state, so it is reported once per site per worker.
+
 ## [4.1.3] — 2026-09-13
 
 ### Fixed

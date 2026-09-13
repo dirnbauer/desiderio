@@ -39,34 +39,22 @@
 
             <nav class="desiderio-footer__legal" aria-label="{f:translate(extensionName: 'desiderio', key: 'a11y.nav.legal', default: 'Legal navigation')}">
                 <ul class="desiderio-footer__legal-list" role="list">
-                    <f:if condition="{legalMenu}">
-                        <f:then>
-                            <f:for each="{legalMenu}" as="item">
-                                <li>
-                                    <f:link.typolink parameter="{item.link}" class="desiderio-footer__legal-link">
-                                        {item.title}
-                                    </f:link.typolink>
-                                </li>
-                            </f:for>
-                        </f:then>
-                        <f:else>
-                            <li>
-                                <a class="desiderio-footer__legal-link" href="{breadcrumb.0.link}imprint">
-                                    <f:translate extensionName="desiderio" key="footer.legal.imprint">Imprint</f:translate>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="desiderio-footer__legal-link" href="{breadcrumb.0.link}privacy">
-                                    <f:translate extensionName="desiderio" key="footer.legal.privacy">Privacy</f:translate>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="desiderio-footer__legal-link" href="{breadcrumb.0.link}accessibility">
-                                    <f:translate extensionName="desiderio" key="footer.legal.accessibility">Accessibility</f:translate>
-                                </a>
-                            </li>
-                        </f:else>
-                    </f:if>
+                    <!--
+                        Only pages the site actually configures through
+                        desiderio.footer.legalPageIds are linked. The previous
+                        fallback guessed the slugs "imprint", "privacy" and
+                        "accessibility" under the site root, which produced
+                        three 404s on every site that has no such pages — the
+                        Agent Nexus site advertised all three and none existed.
+                        A site without legal pages shows no legal links.
+                    -->
+                    <f:for each="{legalMenu}" as="item">
+                        <li>
+                            <f:link.typolink parameter="{item.link}" class="desiderio-footer__legal-link">
+                                {item.title}
+                            </f:link.typolink>
+                        </li>
+                    </f:for>
                 </ul>
             </nav>
         </div>

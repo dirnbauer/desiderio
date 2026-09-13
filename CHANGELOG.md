@@ -6,6 +6,22 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.1.3] — 2026-09-13
+
+### Fixed
+
+- Two section-header comments that the 4.1.0 split of `components.css` cut in
+  half left `components-02-controls.css` and `components-03-elements.css`
+  ending inside a comment. The published `desiderio.css` therefore carried the
+  remains of those headers as raw text in front of the `.badge` and `.section`
+  rule blocks, which browsers discard as one invalid rule — the base `.badge`
+  and `.section` declarations never applied, only their modifier classes did.
+  Strict parsers rejected the file outright; a Vite build consuming it aborted
+  with `Invalid empty selector`.
+- `Build/Scripts/build-desiderio-css.mjs` now refuses to concatenate a partial
+  that ends inside a comment, or that closes one it never opened, instead of
+  writing a file whose damage only appears in the consumer.
+
 ## [4.1.2] — 2026-09-13
 
 ### Fixed

@@ -5,6 +5,7 @@
    unlayered CSS beats Tailwind's layers, which is what these component
    defaults rely on. Badge, card, typography, inputs, avatar, icon, alert, accordion, tabs, table and the remaining component classes. */
 
+/* ==========================================================================
    3. BADGE  (.badge)
    ========================================================================== */
 
@@ -842,4 +843,3 @@ tbody .table__row:hover {
   background-color: color-mix(in oklch, var(--muted-foreground) 50%, transparent);
 }
 
-/* ==========================================================================

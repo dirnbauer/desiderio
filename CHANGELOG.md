@@ -6,6 +6,18 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.1.1] — 2026-09-13
+
+### Fixed
+
+- The Desiderio site set now declares `typo3/fluid-styled-content` as a dependency.
+  `lib.contentElement` is *assigned* by fluid_styled_content, which resets the object and
+  discards root paths registered before it. Desiderio extends that object, so without the
+  dependency TYPO3 was free to order fluid_styled_content later and silently drop the
+  ClassicContent templates — which happened as soon as a site added another set pulling
+  fluid_styled_content in (for example Agent Nexus), breaking every classic content element
+  with an unresolvable template.
+
 ## [4.1.0] — 2026-09-12
 
 ### Added

@@ -1,7 +1,13 @@
 name: webconsulting/desiderio
 label: "Desiderio Base"
 hidden: true
-dependencies: []
+dependencies:
+  # lib.contentElement is *assigned* by fluid_styled_content
+  # (Helper/ContentElement.typoscript), which resets the object and discards any
+  # root paths added before it. Desiderio extends that object, so it must load
+  # after it — without this edge TYPO3 is free to order FSC later and silently
+  # drop our ClassicContent templates the moment another set pulls FSC in.
+  - typo3/fluid-styled-content
 optionalDependencies:
   - webconsulting/desiderio-solr
   - webconsulting/desiderio-news

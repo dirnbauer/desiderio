@@ -6,6 +6,20 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.1.5] — 2026-09-13
+
+### Fixed
+
+- The site title printed as the literal text `site.configuration.websiteTitle`
+  on any site whose configuration omits `websiteTitle`. Fluid's elvis operator
+  treats an operand it cannot resolve as a literal string, so the intended
+  fallback to the site identifier never ran. Affected the footer, the header,
+  the SEO meta and the structured data.
+- The footer no longer invents legal links. Without a configured
+  `desiderio.footer.legalPageIds` it appended `imprint`, `privacy` and
+  `accessibility` to the site root, which answered 404 on every site without
+  those pages. Sites that configure them are unchanged.
+
 ## [4.1.4] — 2026-09-13
 
 ### Fixed

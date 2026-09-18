@@ -6,6 +6,15 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.1.7] — 2026-09-18
+
+### Changed
+
+- The Powermail set imports FriendlyCaptcha's Powermail TypoScript and
+  PageTsConfig itself (guarded by `extensionLoaded`) instead of depending on a
+  `studiomitte/friendlycaptcha` Site Set, which only the retired fork shipped.
+  Sites that listed that set must drop the line.
+
 ## [4.1.6] — 2026-09-13
 
 ### Fixed

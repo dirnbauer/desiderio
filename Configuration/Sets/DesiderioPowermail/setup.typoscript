@@ -1,3 +1,9 @@
+# FriendlyCaptcha ships no Site Set; its Powermail validator TypoScript is
+# imported here so the form works without a sys_template record.
+[extensionLoaded("friendlycaptcha_official")]
+  @import 'EXT:friendlycaptcha_official/Configuration/TypoScript/Powermail/setup.typoscript'
+[END]
+
 plugin.tx_powermail {
   view {
     templateRootPaths.1000000 = EXT:desiderio/Resources/Private/Extensions/Powermail/Templates/

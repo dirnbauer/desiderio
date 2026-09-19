@@ -22,12 +22,10 @@ use TYPO3\CMS\Form\Domain\Factory\AbstractFormFactory;
 use TYPO3\CMS\Form\Domain\Finishers\RedirectFinisher;
 use TYPO3\CMS\Form\Domain\Model\FormDefinition;
 use TYPO3\CMS\Form\Domain\Model\FormElements\GenericFormElement;
-use Webconsulting\Desiderio\Utility\SiteSettingsBoolean;
+use Webconsulting\Desiderio\Utility\FriendlyCaptchaBypass;
 
 final class BlogCommentFormFactory extends AbstractFormFactory
 {
-    private const string FRIENDLY_CAPTCHA_TEST_MODE_SETTING = 'desiderio.forms.friendlyCaptchaTestMode';
-
     public function __construct(
         private readonly ConfigurationService $formConfigurationService,
         private readonly ConfigurationManagerInterface $configurationManager,
@@ -150,7 +148,10 @@ final class BlogCommentFormFactory extends AbstractFormFactory
             return false;
         }
 
-        return SiteSettingsBoolean::isEnabled($site, self::FRIENDLY_CAPTCHA_TEST_MODE_SETTING);
+        // One rule for every Desiderio form: FriendlyCaptchaBypass also
+        // refuses in Production and honours friendlyCaptchaForceReal, which a
+        // plain read of the test-mode setting silently skipped here.
+        return FriendlyCaptchaBypass::isEnabled($site);
     }
 
     /**

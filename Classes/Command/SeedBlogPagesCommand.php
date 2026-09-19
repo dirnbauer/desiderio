@@ -12,6 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use Webconsulting\Desiderio\Seeding\BlogPageTreeLocator;
 use Webconsulting\Desiderio\Seeding\BlogPageTreeSeeder;
 
 #[AsCommand(
@@ -21,6 +22,8 @@ use Webconsulting\Desiderio\Seeding\BlogPageTreeSeeder;
 final class SeedBlogPagesCommand extends Command
 {
     private ?BlogPageTreeSeeder $blogPageTreeSeeder = null;
+
+    private ?BlogPageTreeLocator $blogPageTreeLocator = null;
 
     public function __construct(
         private readonly ConnectionPool $connectionPool,
@@ -69,8 +72,8 @@ final class SeedBlogPagesCommand extends Command
 
         $rootFilter = $this->getRootFilter($input->getOption('root'));
         $dryRun = (bool)$input->getOption('dry-run');
-        $seeder = $this->getBlogPageTreeSeeder();
-        $setups = $seeder->findBlogSetups($rootFilter);
+        $locator = $this->getBlogPageTreeLocator();
+        $setups = $locator->findBlogSetups($rootFilter);
 
         if ($setups === []) {
             $io->warning($rootFilter === null ? 'No EXT:blog setup folders were found.' : sprintf('No EXT:blog setup was found for root page uid %d.', $rootFilter));
@@ -83,7 +86,7 @@ final class SeedBlogPagesCommand extends Command
         $plannedRows = [];
 
         foreach ($setups as $setup) {
-            $pageUids = $seeder->findLayoutPageUids((int)$setup['rootUid'], (int)$setup['folderUid']);
+            $pageUids = $locator->findLayoutPageUids((int)$setup['rootUid'], (int)$setup['folderUid']);
             if ($pageUids === []) {
                 continue;
             }
@@ -96,8 +99,8 @@ final class SeedBlogPagesCommand extends Command
             ];
 
             if (!$dryRun) {
-                $changedPages += $seeder->applyBackendLayout($pageUids, $layout);
-                $seedResult = $seeder->seedDemoContent((int)$setup['folderUid'], $layout);
+                $changedPages += $locator->applyBackendLayout($pageUids, $layout);
+                $seedResult = $this->getBlogPageTreeSeeder()->seedDemoContent((int)$setup['folderUid'], $layout);
                 $seededPosts += $seedResult['posts'];
                 $seededContentElements += $seedResult['contentElements'];
             } else {
@@ -127,6 +130,11 @@ final class SeedBlogPagesCommand extends Command
     private function getBlogPageTreeSeeder(): BlogPageTreeSeeder
     {
         return $this->blogPageTreeSeeder ??= new BlogPageTreeSeeder($this->connectionPool);
+    }
+
+    private function getBlogPageTreeLocator(): BlogPageTreeLocator
+    {
+        return $this->blogPageTreeLocator ??= new BlogPageTreeLocator($this->connectionPool);
     }
 
     private function getRootFilter(mixed $value): ?int

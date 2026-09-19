@@ -104,17 +104,8 @@ final class ElementCatalog
                 $libraryFixture = $this->readJsonFile($directory . '/library.json');
             }
 
-            $title = $config['title'] ?? null;
-            $description = $config['description'] ?? null;
-            $group = $config['group'] ?? null;
             $elements[] = [
-                'cType' => $this->resolveCType($entry['hostExtension'], $entry['name'], $config),
-                'name' => $entry['name'],
-                'hostExtension' => $entry['hostExtension'],
-                'title' => is_string($title) && $title !== '' ? $title : $entry['name'],
-                'description' => is_string($description) ? $description : '',
-                'group' => is_string($group) && $group !== '' ? $group : 'default',
-                'keywords' => $this->normalizeStringList($config['keywords'] ?? []),
+                ...$this->baseEntry($entry),
                 'vendor' => $entry['vendor'],
                 'config' => $config,
                 'fixture' => $fixture,
@@ -124,13 +115,7 @@ final class ElementCatalog
 
         foreach (CoreContentElements::available() as $core) {
             $elements[] = [
-                'cType' => $core['cType'],
-                'name' => $core['name'],
-                'hostExtension' => CoreContentElements::HOST,
-                'title' => $core['name'],
-                'description' => '',
-                'group' => $core['group'],
-                'keywords' => [],
+                ...self::coreBaseEntry($core),
                 'vendor' => CoreContentElements::HOST,
                 'config' => [],
                 'fixture' => $core['fixture'],
@@ -225,6 +210,19 @@ final class ElementCatalog
     }
 
     /**
+     * The per-host language file of a catalog label set.
+     *
+     * Core (native) CTypes have no extension of their own, so their units live
+     * in Desiderio's copy of the file, keyed by the bare cType.
+     */
+    public static function languageFile(string $hostExtension, string $fileName): string
+    {
+        $host = $hostExtension === CoreContentElements::HOST ? 'desiderio' : $hostExtension;
+
+        return 'LLL:EXT:' . $host . '/Resources/Private/Language/' . $fileName . ':';
+    }
+
+    /**
      * Localized title/description for one catalog element.
      *
      * @param array{cType: string, name: string, hostExtension: string, title: string, description: string} $element
@@ -270,12 +268,7 @@ final class ElementCatalog
      */
     public function localizeKeywords(array $element, LanguageService $languageService): array
     {
-        // Core elements carry no own extension; their keyword units live in
-        // Desiderio's library_keywords.xlf, keyed by the bare core cType.
-        $hostExtension = $element['hostExtension'] === CoreContentElements::HOST
-            ? 'desiderio'
-            : $element['hostExtension'];
-        $file = 'LLL:EXT:' . $hostExtension . '/Resources/Private/Language/library_keywords.xlf:';
+        $file = self::languageFile($element['hostExtension'], 'library_keywords.xlf');
         $raw = $languageService->sL($file . $element['cType']);
         if ($raw === '') {
             return [
@@ -358,6 +351,37 @@ final class ElementCatalog
     private function scanContentElementConfigs(): array
     {
         $entries = [];
+        foreach (self::contentElementConfigPaths() as ['name' => $name, 'hostExtension' => $hostExtension, 'configPath' => $configPath]) {
+            if (!is_readable($configPath)) {
+                continue;
+            }
+            $config = Yaml::parseFile($configPath);
+            if (!is_array($config)) {
+                continue;
+            }
+            /** @var array<string, mixed> $config */
+            $entries[] = [
+                'name' => $name,
+                'hostExtension' => $hostExtension,
+                'vendor' => $this->resolveVendor($hostExtension, $config),
+                'configPath' => $configPath,
+                'config' => $config,
+            ];
+        }
+        return $entries;
+    }
+
+    /**
+     * Every `ContentBlocks/ContentElements/<name>/config.yaml` a loaded host
+     * extension could contribute, without reading any of them. The scan and
+     * the cache fingerprint walk the same list: one filters it by "parses",
+     * the other by "has an mtime".
+     *
+     * @return list<array{name: string, hostExtension: string, configPath: string}>
+     */
+    private static function contentElementConfigPaths(): array
+    {
+        $paths = [];
         foreach (self::hostExtensions() as $hostExtension) {
             if (!ExtensionManagementUtility::isLoaded($hostExtension)) {
                 continue;
@@ -374,25 +398,61 @@ final class ElementCatalog
                 if ($directory === '.' || $directory === '..') {
                     continue;
                 }
-                $configPath = $basePath . '/' . $directory . '/config.yaml';
-                if (!is_readable($configPath)) {
-                    continue;
-                }
-                $config = Yaml::parseFile($configPath);
-                if (!is_array($config)) {
-                    continue;
-                }
-                /** @var array<string, mixed> $config */
-                $entries[] = [
+                $paths[] = [
                     'name' => $directory,
                     'hostExtension' => $hostExtension,
-                    'vendor' => $this->resolveVendor($hostExtension, $config),
-                    'configPath' => $configPath,
-                    'config' => $config,
+                    'configPath' => $basePath . '/' . $directory . '/config.yaml',
                 ];
             }
         }
-        return $entries;
+
+        return $paths;
+    }
+
+    /**
+     * The identity every catalog view shares. getElements() adds the payload
+     * (config, fixtures), buildMetadata() adds the icon URL; neither restates
+     * how a title, description or group is read.
+     *
+     * @param array{name: string, hostExtension: string, vendor: string, configPath: string, config: array<string, mixed>} $entry
+     * @return array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, keywords: list<string>}
+     */
+    private function baseEntry(array $entry): array
+    {
+        $config = $entry['config'];
+        $title = $config['title'] ?? null;
+        $description = $config['description'] ?? null;
+        $group = $config['group'] ?? null;
+
+        return [
+            'cType' => $this->resolveCType($entry['hostExtension'], $entry['name'], $config),
+            'name' => $entry['name'],
+            'hostExtension' => $entry['hostExtension'],
+            'title' => is_string($title) && $title !== '' ? $title : $entry['name'],
+            'description' => is_string($description) ? $description : '',
+            'group' => is_string($group) && $group !== '' ? $group : 'default',
+            'keywords' => $this->normalizeStringList($config['keywords'] ?? []),
+        ];
+    }
+
+    /**
+     * The same identity for a native CType, whose labels live in XLIFF rather
+     * than in a config.yaml.
+     *
+     * @param array{cType: string, name: string, group: string} $core
+     * @return array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, keywords: list<string>}
+     */
+    private static function coreBaseEntry(array $core): array
+    {
+        return [
+            'cType' => $core['cType'],
+            'name' => $core['name'],
+            'hostExtension' => CoreContentElements::HOST,
+            'title' => $core['name'],
+            'description' => '',
+            'group' => $core['group'],
+            'keywords' => [],
+        ];
     }
 
     /**
@@ -405,31 +465,15 @@ final class ElementCatalog
     {
         $metadata = [];
         foreach ($this->scanContentElementConfigs() as $entry) {
-            $config = $entry['config'];
-            $title = $config['title'] ?? null;
-            $description = $config['description'] ?? null;
-            $group = $config['group'] ?? null;
             $metadata[] = [
-                'cType' => $this->resolveCType($entry['hostExtension'], $entry['name'], $config),
-                'name' => $entry['name'],
-                'hostExtension' => $entry['hostExtension'],
-                'title' => is_string($title) && $title !== '' ? $title : $entry['name'],
-                'description' => is_string($description) ? $description : '',
-                'group' => is_string($group) && $group !== '' ? $group : 'default',
-                'keywords' => $this->normalizeStringList($config['keywords'] ?? []),
+                ...$this->baseEntry($entry),
                 'iconUrl' => $this->resolveIconWebPath($entry['hostExtension'], $entry['vendor'], $entry['name']),
             ];
         }
 
         foreach (CoreContentElements::available() as $core) {
             $metadata[] = [
-                'cType' => $core['cType'],
-                'name' => $core['name'],
-                'hostExtension' => CoreContentElements::HOST,
-                'title' => $core['name'],
-                'description' => '',
-                'group' => $core['group'],
-                'keywords' => [],
+                ...self::coreBaseEntry($core),
                 'iconUrl' => $this->resolveCoreIconWebPath($core['iconSlug']),
             ];
         }
@@ -447,31 +491,13 @@ final class ElementCatalog
      */
     private function computeFingerprint(): string
     {
-        $hostExtensions = self::hostExtensions();
         // Part of the fingerprint itself: registering or removing a provider
         // changes the catalog even when no config.yaml mtime moved.
-        $parts = ['hosts:' . implode(',', $hostExtensions)];
-        foreach ($hostExtensions as $hostExtension) {
-            if (!ExtensionManagementUtility::isLoaded($hostExtension)) {
-                continue;
-            }
-            $basePath = GeneralUtility::getFileAbsFileName('EXT:' . $hostExtension . '/ContentBlocks/ContentElements');
-            if ($basePath === '' || !is_dir($basePath)) {
-                continue;
-            }
-            $directories = scandir($basePath);
-            if ($directories === false) {
-                continue;
-            }
-            foreach ($directories as $directory) {
-                if ($directory === '.' || $directory === '..') {
-                    continue;
-                }
-                $configPath = $basePath . '/' . $directory . '/config.yaml';
-                $mtime = @filemtime($configPath);
-                if ($mtime !== false) {
-                    $parts[] = $configPath . ':' . $mtime;
-                }
+        $parts = ['hosts:' . implode(',', self::hostExtensions())];
+        foreach (self::contentElementConfigPaths() as ['configPath' => $configPath]) {
+            $mtime = @filemtime($configPath);
+            if ($mtime !== false) {
+                $parts[] = $configPath . ':' . $mtime;
             }
         }
         // Core elements are defined in PHP + library_core.xlf, not config.yaml, so
@@ -577,35 +603,42 @@ final class ElementCatalog
     }
 
     /**
+     * Extra search terms for elements that carry no authored keywords, keyed
+     * by the substring of "title description cType group" that earns them.
+     * Longest/most specific needles first: the terms of every match are kept,
+     * in this order, and de-duplicated by the caller.
+     *
+     * @var array<string, list<string>>
+     */
+    private const array KEYWORD_HINTS = [
+        'case stud' => ['case studies', 'customer success', 'social proof', 'metrics'],
+        'marquee' => ['marquee', 'ticker', 'scrolling', 'motion'],
+        'orbit' => ['orbiting circles', 'radial', 'animation', 'motion'],
+        'terminal' => ['terminal', 'console', 'command line', 'code'],
+        'stats' => ['stats', 'metrics', 'kpi'],
+        'metric' => ['stats', 'metrics', 'kpi'],
+        'dashboard' => ['dashboard', 'overview'],
+        'progress' => ['progress', 'percentage', 'target'],
+        'usage' => ['usage', 'limits', 'resources'],
+        'breakdown' => ['breakdown', 'comparison'],
+        'badge' => ['badges', 'status'],
+        'link' => ['links', 'navigation'],
+        'trend' => ['trend', 'change'],
+        'area chart' => ['area chart', 'chart', 'data'],
+        'chart' => ['chart', 'data visualization'],
+        'card' => ['cards', 'grid'],
+        'border' => ['borders', 'comparison'],
+    ];
+
+    /**
      * @return list<string>
      */
     private function keywordHintsForContext(string $context): array
     {
         $hints = [];
-
-        foreach ([
-            [str_contains($context, 'case stud'), ['case studies', 'customer success', 'social proof', 'metrics']],
-            [str_contains($context, 'marquee'), ['marquee', 'ticker', 'scrolling', 'motion']],
-            [str_contains($context, 'orbit'), ['orbiting circles', 'radial', 'animation', 'motion']],
-            [str_contains($context, 'terminal'), ['terminal', 'console', 'command line', 'code']],
-            [str_contains($context, 'stats') || str_contains($context, 'metric'), ['stats', 'metrics', 'kpi']],
-            [str_contains($context, 'dashboard'), ['dashboard', 'overview']],
-            [str_contains($context, 'progress'), ['progress', 'percentage', 'target']],
-            [str_contains($context, 'usage'), ['usage', 'limits', 'resources']],
-            [str_contains($context, 'breakdown'), ['breakdown', 'comparison']],
-            [str_contains($context, 'badge'), ['badges', 'status']],
-            [str_contains($context, 'link'), ['links', 'navigation']],
-            [str_contains($context, 'trend'), ['trend', 'change']],
-            [str_contains($context, 'area chart'), ['area chart', 'chart', 'data']],
-            [str_contains($context, 'chart'), ['chart', 'data visualization']],
-            [str_contains($context, 'card'), ['cards', 'grid']],
-            [str_contains($context, 'border'), ['borders', 'comparison']],
-        ] as [$condition, $terms]) {
-            if (!$condition) {
-                continue;
-            }
-            foreach ($terms as $term) {
-                $hints[] = $term;
+        foreach (self::KEYWORD_HINTS as $needle => $terms) {
+            if (str_contains($context, $needle)) {
+                $hints = [...$hints, ...$terms];
             }
         }
 

@@ -158,7 +158,7 @@ final class BrevoConfigurationResolver
     /**
      * @param mixed ...$candidates
      */
-    public function resolveString(...$candidates): string
+    private function resolveString(...$candidates): string
     {
         foreach ($candidates as $candidate) {
             if (is_string($candidate) && trim($candidate) !== '') {

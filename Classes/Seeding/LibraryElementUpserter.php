@@ -57,9 +57,8 @@ final readonly class LibraryElementUpserter
 
     /**
      * @param array{cType: string, name: string, hostExtension: string, fixture: array<string, mixed>, libraryFixture?: array<string, mixed>} $element
-     * @return array{0: 'created'|'updated', 1: int} status and tt_content uid
      */
-    public function upsert(int $folderPid, array $element, int $sorting, int $now): array
+    public function upsert(int $folderPid, array $element, int $sorting, int $now): UpsertStatus
     {
         $columns = $this->databaseSchema->getColumnNames('tt_content');
         $contentData = $this->buildContentData($folderPid, $element, $sorting, $now, $columns);
@@ -71,7 +70,7 @@ final readonly class LibraryElementUpserter
             $contentUid = CollectionRecordSeeder::normalizeLastInsertId($connection->lastInsertId());
             $this->seedChildren($contentUid, $folderPid, $now, $contentData);
             $this->removeDuplicateVisibleRows($folderPid, $element['cType'], $contentUid, $now);
-            return ['created', $contentUid];
+            return UpsertStatus::Created;
         }
 
         // uid-stable update: clear children + file references, update the row, reseed
@@ -88,7 +87,7 @@ final readonly class LibraryElementUpserter
         $this->seedChildren($existingUid, $folderPid, $now, $contentData);
         $this->removeDuplicateVisibleRows($folderPid, $element['cType'], $existingUid, $now);
 
-        return ['updated', $existingUid];
+        return UpsertStatus::Updated;
     }
 
     /**

@@ -30,16 +30,23 @@ final class StyleguideFixtureResolver
      */
     private ?LibraryImageAssetProvider $imageAssetProvider = null;
 
+    private readonly CollectionSchema $schema;
+
+    private readonly FixtureLinkSlots $linkSlots;
+
     public function __construct(
         private readonly DatabaseSchemaHelper $databaseSchema,
         private readonly StyleguideDemoValueGenerator $demoValueGenerator,
         private readonly StyleguideCollectionAliasPolicy $collectionAliasPolicy,
         private readonly FixtureFieldNormalizer $fieldNormalizer = new FixtureFieldNormalizer(),
-    ) {}
+    ) {
+        $this->schema = new CollectionSchema($databaseSchema);
+        $this->linkSlots = new FixtureLinkSlots($this->schema, $this->fieldNormalizer, $demoValueGenerator);
+    }
 
     public function useRoleBasedImageAssets(): void
     {
-        $this->imageAssetProvider = new LibraryImageAssetProvider($this);
+        $this->imageAssetProvider = new LibraryImageAssetProvider();
     }
 
     /**
@@ -117,7 +124,7 @@ final class StyleguideFixtureResolver
                 if (is_array($value)) {
                     continue;
                 }
-                $row[$field] = $this->normalizeScalarValue($value);
+                $row[$field] = $this->fieldNormalizer->normalizeScalarValue($value);
             }
 
             return [$row, [], $fileReferences];
@@ -196,7 +203,7 @@ final class StyleguideFixtureResolver
         $fileReferences = [];
 
         foreach ($definition['fields'] as $field => $fieldConfig) {
-            if ($this->isFileField($fieldConfig)) {
+            if ($this->fieldNormalizer->isFileField($fieldConfig)) {
                 $explicitReferences = $this->buildFileReferenceFixturesFromFixtureValue($fixture[$field] ?? null, $fieldConfig);
                 unset($resolvedFields[$field]);
                 $fileReferences[$field] = $explicitReferences !== []
@@ -205,7 +212,7 @@ final class StyleguideFixtureResolver
                 continue;
             }
 
-            if (!array_key_exists($field, $resolvedFields) || $this->isEmptySeedValue($resolvedFields[$field])) {
+            if (!array_key_exists($field, $resolvedFields) || $this->fieldNormalizer->isEmptySeedValue($resolvedFields[$field])) {
                 $default = $this->demoValueGenerator->buildFixtureBackedFieldValue($field, $fixture)
                     ?? $this->demoValueGenerator->buildDefaultFieldValue($ctype, $name, $field, $fieldConfig, 0);
                 if ($default !== self::FIELD_SKIP) {
@@ -318,7 +325,7 @@ final class StyleguideFixtureResolver
                 continue;
             }
             $fieldConfig = ContentBlockDefinitionRegistry::normalizeStringKeyedArray($fieldConfig);
-            if ($this->isFileField($fieldConfig)) {
+            if ($this->fieldNormalizer->isFileField($fieldConfig)) {
                 $explicitReferences = $this->buildFileReferenceFixturesFromFixtureValue($item[$field] ?? null, $fieldConfig);
                 unset($item[$field]);
                 $fileReferences[$field] = $explicitReferences !== []
@@ -328,7 +335,7 @@ final class StyleguideFixtureResolver
                 continue;
             }
 
-            if (!array_key_exists($field, $item) || $this->isEmptySeedValue($item[$field])) {
+            if (!array_key_exists($field, $item) || $this->fieldNormalizer->isEmptySeedValue($item[$field])) {
                 $default = $this->demoValueGenerator->buildDefaultFieldValue($ctype, $name, $field, $fieldConfig, $index);
                 if ($default !== self::FIELD_SKIP) {
                     $item[$field] = $default;
@@ -403,10 +410,6 @@ final class StyleguideFixtureResolver
 
     /**
      * @param array<string, mixed> $fieldConfig
-     */
-
-    /**
-     * @param array<string, mixed> $fieldConfig
      * @return list<array{file: string, title: string, alternative: string, description: string, source: string}>
      */
     public function buildFileReferenceFixtures(string $field, array $fieldConfig, int $index): array
@@ -421,10 +424,10 @@ final class StyleguideFixtureResolver
         }
 
         $assets = $this->isAudioFileField($field, $fieldConfig)
-            ? $this->getStyleguideAudioAssets()
+            ? StyleguideDemoAssets::seederAudioAssets()
             : (StyleguidePortraitAssets::isPortraitField($field, $fieldConfig)
-                ? $this->getStyleguidePortraitAssets()
-                : $this->getStyleguideImageAssets());
+                ? StyleguideDemoAssets::seederPortraitAssets()
+                : StyleguideDemoAssets::seederImageAssets());
         $references = [];
 
         for ($offset = 0; $offset < $count; $offset++) {
@@ -446,7 +449,7 @@ final class StyleguideFixtureResolver
      * @param array<string, mixed> $fieldConfig
      * @return list<array{file: string, title: string, alternative: string, description: string, source: string}>
      */
-    public function buildFileReferenceFixturesFromFixtureValue(mixed $value, array $fieldConfig): array
+    private function buildFileReferenceFixturesFromFixtureValue(mixed $value, array $fieldConfig): array
     {
         return $this->fieldNormalizer->buildFileReferenceFixturesFromFixtureValue($value, $fieldConfig, 'Styleguide image');
     }
@@ -454,7 +457,7 @@ final class StyleguideFixtureResolver
     /**
      * @param array<string, mixed> $fieldConfig
      */
-    public function isAudioFileField(string $field, array $fieldConfig): bool
+    private function isAudioFileField(string $field, array $fieldConfig): bool
     {
         $identifier = $fieldConfig['identifier'] ?? '';
         $label = $fieldConfig['label'] ?? '';
@@ -470,169 +473,9 @@ final class StyleguideFixtureResolver
     }
 
     /**
-     * @return list<array{file: string, title: string, alt: string, credit: string, source: string}>
-     */
-    public function getStyleguideAudioAssets(): array
-    {
-        return [
-            [
-                'file' => 'Resources/Public/Styleguide/Audio/editorial-brief.wav',
-                'title' => 'Editorial brief audio',
-                'alt' => 'Short generated audio tone for the Audio Player styleguide fixture.',
-                'credit' => 'Generated demo audio for Desiderio styleguide seeding.',
-                'source' => 'EXT:desiderio/Resources/Public/Styleguide/Audio/editorial-brief.wav',
-            ],
-        ];
-    }
-
-    /**
-     * @return list<array{file: string, title: string, alt: string, credit: string, source: string}>
-     */
-    public function getStyleguidePortraitAssets(): array
-    {
-        $assets = [];
-        foreach (StyleguidePortraitAssets::teamGridPortraitFiles() as $index => $file) {
-            $reference = StyleguidePortraitAssets::fileReferenceForIndex($index);
-            if ($reference['file'] === '') {
-                continue;
-            }
-
-            $assets[] = [
-                'file' => $reference['file'],
-                'title' => $reference['title'],
-                'alt' => $reference['alternative'],
-                'credit' => $reference['description'],
-                'source' => $reference['source'],
-            ];
-        }
-
-        return $assets !== [] ? $assets : $this->getStyleguideImageAssets();
-    }
-
-    /**
-     * @return list<array{file: string, title: string, alt: string, credit: string, source: string}>
-     */
-    public function getStyleguideImageAssets(): array
-    {
-        return [
-            [
-                'file' => 'Resources/Public/Styleguide/Unsplash/workspace-marvin-meyer.jpg',
-                'title' => 'Collaborative workspace',
-                'alt' => 'People working together around laptops in a collaborative workspace.',
-                'credit' => 'Copyright/credit: Photo by Marvin Meyer on Unsplash. Used as seeded demo imagery.',
-                'source' => 'https://unsplash.com/photos/people-sitting-down-near-table-with-assorted-laptop-computers-SYTO3xs06fU',
-            ],
-            [
-                'file' => 'Resources/Public/Styleguide/Unsplash/laptop-mimi-thian.jpg',
-                'title' => 'Laptop work session',
-                'alt' => 'A laptop open on a person\'s lap during a focused work session.',
-                'credit' => 'Copyright/credit: Photo by Mimi Thian on Unsplash. Used as seeded demo imagery.',
-                'source' => 'https://unsplash.com/photos/macbook-on-womans-lap-i5cd_SlY8XY',
-            ],
-            [
-                'file' => 'Resources/Public/Styleguide/Unsplash/laptop-glenn-carstens-peters.jpg',
-                'title' => 'Planning on a laptop',
-                'alt' => 'Hands using a laptop while planning work on a wooden desk.',
-                'credit' => 'Copyright/credit: Photo by Glenn Carstens-Peters on Unsplash. Used as seeded demo imagery.',
-                'source' => 'https://unsplash.com/photos/person-using-macbook-pro-npxXWgQ33ZQ',
-            ],
-            [
-                'file' => 'Resources/Public/Styleguide/Unsplash/forest-marvin-meyer.jpg',
-                'title' => 'Forest path',
-                'alt' => 'Tall green trees lining a quiet forest path in daylight.',
-                'credit' => 'Copyright/credit: Photo by Marvin Meyer on Unsplash. Used as seeded demo imagery.',
-                'source' => 'https://unsplash.com/photos/green-trees-on-forest-during-daytime-qLTsA_plc1k',
-            ],
-            [
-                'file' => 'Resources/Public/Styleguide/Unsplash/river-marvin-meyer.jpg',
-                'title' => 'City river walk',
-                'alt' => 'People walking beside a city river with buildings in the distance.',
-                'credit' => 'Copyright/credit: Photo by Marvin Meyer on Unsplash. Used as seeded demo imagery.',
-                'source' => 'https://unsplash.com/photos/people-walking-beside-river-WpCviXDvoyQ',
-            ],
-            [
-                'file' => 'Resources/Public/Styleguide/Unsplash/office-turquo-cabbit.jpg',
-                'title' => 'Modern office atrium',
-                'alt' => 'A modern multi-level office atrium with glass railings and warm light.',
-                'credit' => 'Copyright/credit: Photo by Turquo Cabbit on Unsplash. Used as seeded demo imagery.',
-                'source' => 'https://unsplash.com/photos/modern-office-building-interior-with-multiple-floors-QkGDA4Q4Vdk',
-            ],
-            [
-                'file' => 'Resources/Public/Styleguide/Unsplash/workspace-david-kristianto.jpg',
-                'title' => 'Organized product workspace',
-                'alt' => 'A modern organized workspace with a laptop, design tools, and warm task lighting.',
-                'credit' => 'Copyright/credit: Photo by David Kristianto on Unsplash. Used as seeded demo imagery.',
-                'source' => 'https://unsplash.com/photos/a-modern-organized-workspace-with-a-laptop-aN8yRTfGYXY',
-            ],
-            [
-                'file' => 'Resources/Public/Styleguide/Unsplash/dashboard-neil-fernandez.jpg',
-                'title' => 'Dark product dashboard',
-                'alt' => 'A laptop displaying a dark modern dashboard interface.',
-                'credit' => 'Copyright/credit: Photo by Neil Fernandez on Unsplash. Used as seeded demo imagery.',
-                'source' => 'https://unsplash.com/photos/a-modern-laptop-displaying-a-dark-themed-dashboard-6-0ajRI1cgs',
-            ],
-            [
-                'file' => 'Resources/Public/Styleguide/Unsplash/office-e-vos.jpg',
-                'title' => 'Glass office walkways',
-                'alt' => 'A modern office interior with glass walls, walkways, and open communal space.',
-                'credit' => 'Copyright/credit: Photo by E Vos on Unsplash. Used as seeded demo imagery.',
-                'source' => 'https://unsplash.com/photos/modern-office-interior-with-glass-walls-and-walkways-V_yQ8IyCmYY',
-            ],
-            [
-                'file' => 'Resources/Public/Styleguide/Unsplash/facade-fabian-kleiser.jpg',
-                'title' => 'Geometric glass facade',
-                'alt' => 'A blue glass office facade with geometric reflections and evening light.',
-                'credit' => 'Copyright/credit: Photo by Fabian Kleiser on Unsplash. Used as seeded demo imagery.',
-                'source' => 'https://unsplash.com/photos/glass-facade-of-a-modern-office-building-V5vF94h52r0',
-            ],
-            [
-                'file' => 'Resources/Public/Styleguide/Unsplash/office-deliberate-directions.jpg',
-                'title' => 'Glass-walled modern office',
-                'alt' => 'A bright modern office with glass walls, teal accents, and clean work areas.',
-                'credit' => 'Copyright/credit: Photo by Deliberate Directions on Unsplash. Used as seeded demo imagery.',
-                'source' => 'https://unsplash.com/photos/modern-office-space-with-glass-walls-and-light-decor-wlHBYkK2y4k',
-            ],
-            [
-                'file' => 'Resources/Public/Styleguide/Unsplash/whiteboard-vitaly-gariev.jpg',
-                'title' => 'Strategy whiteboard session',
-                'alt' => 'A modern team reviewing a whiteboard strategy session in a creative office.',
-                'credit' => 'Copyright/credit: Photo by Vitaly Gariev on Unsplash. Used as seeded demo imagery.',
-                'source' => 'https://unsplash.com/photos/team-collaborating-around-a-whiteboard-in-an-office-CdTQI-Nh7J4',
-            ],
-            [
-                'file' => 'Resources/Public/Styleguide/Unsplash/desk-logan-weaver.jpg',
-                'title' => 'Minimal product desk',
-                'alt' => 'A refined modern desk setup with laptop, keyboard, books, and warm task light.',
-                'credit' => 'Copyright/credit: Photo by LOGAN WEAVER | @LGNWVR on Unsplash. Used as seeded demo imagery.',
-                'source' => 'https://unsplash.com/photos/a-modern-desk-setup-with-laptop-and-books-xjyHDnA93Pk',
-            ],
-            [
-                'file' => 'Resources/Public/Styleguide/Unsplash/planning-blue-sky.jpg',
-                'title' => 'Agile planning board',
-                'alt' => 'A team discussing tasks at a whiteboard during an agile planning session.',
-                'credit' => 'Copyright/credit: Photo by blue sky on Unsplash. Used as seeded demo imagery.',
-                'source' => 'https://unsplash.com/photos/four-men-gathered-around-a-whiteboard-with-sticky-notes-MLWk6FFWURU',
-            ],
-        ];
-    }
-
-    /**
-     * @param array<string, mixed> $fieldConfig
-     */
-    public function isFileField(array $fieldConfig): bool
-    {
-        return $this->fieldNormalizer->isFileField($fieldConfig);
-    }
-
-    public function isEmptySeedValue(mixed $value): bool
-    {
-        return $this->fieldNormalizer->isEmptySeedValue($value);
-    }
-
-    /**
      * @param array<string, array<string, mixed>> $fields
      */
-    public function resolveScalarField(string $field, array $fields): ?string
+    private function resolveScalarField(string $field, array $fields): ?string
     {
         if (isset($fields[$field])) {
             return $field;
@@ -651,7 +494,7 @@ final class StyleguideFixtureResolver
      * @param array<int|string, mixed> $value
      * @param array{collections: array<string, array<string, mixed>>} $definition
      */
-    public function resolveCollectionField(string $field, array $value, array $definition): ?string
+    private function resolveCollectionField(string $field, array $value, array $definition): ?string
     {
         if (isset($definition['collections'][$field])) {
             return $field;
@@ -689,7 +532,7 @@ final class StyleguideFixtureResolver
      * @param array<int|string, mixed> $value
      * @param array<string, mixed> $collection
      */
-    public function scoreCollectionCandidate(string $field, array $value, string $identifier, array $collection): float
+    private function scoreCollectionCandidate(string $field, array $value, string $identifier, array $collection): float
     {
         $score = 0.0;
         $normalizedField = $this->demoValueGenerator->normalizeIdentifier($field);
@@ -716,7 +559,7 @@ final class StyleguideFixtureResolver
 
         if ($this->isListOfScalars($value)) {
             foreach (['label', 'title', 'name', 'feature_name', 'row_label', 'text', 'value', 'question', 'row_data', 'links', 'features', 'features_list'] as $candidate) {
-                if (isset($collection['fields'][$candidate]) || $this->databaseSchema->tableHasColumn($this->getCollectionTable($collection), $candidate)) {
+                if (isset($collection['fields'][$candidate]) || $this->databaseSchema->tableHasColumn($this->schema->table($collection), $candidate)) {
                     $score += 1.0;
                     break;
                 }
@@ -754,7 +597,7 @@ final class StyleguideFixtureResolver
      * @param array<string, mixed> $collection
      * @return list<array<string, mixed>>
      */
-    public function normalizeCollectionItems(array $items, array $collection): array
+    private function normalizeCollectionItems(array $items, array $collection): array
     {
         if ($items === []) {
             return [];
@@ -796,7 +639,7 @@ final class StyleguideFixtureResolver
      * @param array<string, mixed> $collection
      * @return array<string, mixed>
      */
-    public function normalizeCollectionItem(mixed $item, array $collection): array
+    private function normalizeCollectionItem(mixed $item, array $collection): array
     {
         if (!is_array($item)) {
             $targetField = $this->findPreferredTextField($collection);
@@ -804,12 +647,12 @@ final class StyleguideFixtureResolver
                 return [];
             }
 
-            $fieldConfig = $this->getCollectionFieldConfig($collection, $targetField);
+            $fieldConfig = $this->schema->fieldConfig($collection, $targetField);
 
             return [
                 $targetField => $fieldConfig !== null
                     ? $this->normalizeFieldValue($item, $fieldConfig)
-                    : $this->normalizeScalarValue($item),
+                    : $this->fieldNormalizer->normalizeScalarValue($item),
             ];
         }
 
@@ -850,8 +693,8 @@ final class StyleguideFixtureResolver
                 if ($normalized === self::FIELD_SKIP) {
                     continue;
                 }
-                $fieldConfig = $this->getCollectionFieldConfig($collection, $resolvedField);
-                if (is_array($normalized) && $fieldConfig !== null && $this->isFileField($fieldConfig)) {
+                $fieldConfig = $this->schema->fieldConfig($collection, $resolvedField);
+                if (is_array($normalized) && $fieldConfig !== null && $this->fieldNormalizer->isFileField($fieldConfig)) {
                     // Keep explicit file fixtures (file/title/alternative/…) in their
                     // array shape: completeCollectionItem() turns them into
                     // sys_file_reference rows. normalizeFieldValue() would collapse
@@ -867,18 +710,18 @@ final class StyleguideFixtureResolver
 
             $normalizedItem[$resolvedField] = isset($collection['fields'][$resolvedField])
                 ? $this->normalizeFieldValue($value, $collection['fields'][$resolvedField])
-                : $this->normalizeScalarValue($value);
+                : $this->fieldNormalizer->normalizeScalarValue($value);
         }
 
-        $normalizedItem = $this->populateFixedLinkSlots($normalizedItem, $item, $collection);
+        $normalizedItem = $this->linkSlots->populate($normalizedItem, $item, $collection);
 
         if ($normalizedItem === [] && $this->collectionAliasPolicy->collectionHasNestedCollection($collection, 'cells')) {
             $values = array_values($item);
-            if (!$this->containsNestedArray($values)) {
+            if (!$this->fieldNormalizer->containsNestedArray($values)) {
                 $cellItems = $this->normalizeCollectionItems($values, $collection['collections']['cells']);
                 if ($cellItems !== []) {
                     if (isset($collection['fields']['row_label'])) {
-                        $normalizedItem['row_label'] = $this->normalizeScalarValue($values[0] ?? '');
+                        $normalizedItem['row_label'] = $this->fieldNormalizer->normalizeScalarValue($values[0] ?? '');
                     }
                     $normalizedItem[SeedingPayloadKeys::NESTED_COLLECTIONS]['cells'] = [
                         'table' => $collection['collections']['cells']['table'],
@@ -889,14 +732,14 @@ final class StyleguideFixtureResolver
             }
         }
 
-        if ($normalizedItem === [] && ($this->databaseSchema->tableHasColumn($this->getCollectionTable($collection), 'row_data') || isset($collection['fields']['row_data']))) {
+        if ($normalizedItem === [] && ($this->databaseSchema->tableHasColumn($this->schema->table($collection), 'row_data') || isset($collection['fields']['row_data']))) {
             $values = array_values($item);
-            if (!$this->containsNestedArray($values)) {
+            if (!$this->fieldNormalizer->containsNestedArray($values)) {
                 $normalizedItem['row_data'] = implode('|', array_map(static fn(mixed $value): string => trim((string)$value), $values));
                 foreach ($values as $index => $value) {
                     $columnName = 'col' . ($index + 1);
-                    if ($this->databaseSchema->tableHasColumn($this->getCollectionTable($collection), $columnName)) {
-                        $normalizedItem[$columnName] = $this->normalizeScalarValue($value);
+                    if ($this->databaseSchema->tableHasColumn($this->schema->table($collection), $columnName)) {
+                        $normalizedItem[$columnName] = $this->fieldNormalizer->normalizeScalarValue($value);
                     }
                 }
             }
@@ -906,193 +749,46 @@ final class StyleguideFixtureResolver
     }
 
     /**
-     * @param array<string, mixed> $normalizedItem
-     * @param array<string, mixed> $sourceItem
-     * @param array<string, mixed> $collection
-     * @return array<string, mixed>
-     */
-    public function populateFixedLinkSlots(array $normalizedItem, array $sourceItem, array $collection): array
-    {
-        $normalizedItem = $this->populateNumberedLinkSlots(
-            $normalizedItem,
-            $sourceItem['links'] ?? null,
-            $collection,
-            'link_%d_label',
-            'link_%d'
-        );
-
-        return $this->populateNumberedLinkSlots(
-            $normalizedItem,
-            $sourceItem['children'] ?? null,
-            $collection,
-            'child_%d_label',
-            'child_%d_link'
-        );
-    }
-
-    /**
-     * @param array<string, mixed> $normalizedItem
-     * @param array<string, mixed> $collection
-     * @return array<string, mixed>
-     */
-    public function populateNumberedLinkSlots(
-        array $normalizedItem,
-        mixed $sourceLinks,
-        array $collection,
-        string $labelPattern,
-        string $linkPattern,
-    ): array {
-        if ($sourceLinks === null || $sourceLinks === '') {
-            return $normalizedItem;
-        }
-
-        if (is_string($sourceLinks)) {
-            $splitLinks = preg_split('/\R/', $sourceLinks);
-            $sourceLinks = is_array($splitLinks) ? $splitLinks : [];
-        }
-
-        if (!is_array($sourceLinks)) {
-            return $normalizedItem;
-        }
-
-        $slot = 1;
-        foreach ($sourceLinks as $sourceLink) {
-            $labelField = sprintf($labelPattern, $slot);
-            $linkField = sprintf($linkPattern, $slot);
-            if (!$this->collectionHasField($collection, $labelField) && !$this->collectionHasField($collection, $linkField)) {
-                break;
-            }
-
-            [$label, $link] = $this->normalizeLinkFixture($sourceLink);
-            if ($label !== '' && $this->collectionHasField($collection, $labelField) && $this->isEmptySeedValue($normalizedItem[$labelField] ?? null)) {
-                $normalizedItem[$labelField] = $label;
-            }
-            if ($link !== '' && $this->collectionHasField($collection, $linkField) && $this->isEmptySeedValue($normalizedItem[$linkField] ?? null)) {
-                $normalizedItem[$linkField] = $link;
-            }
-
-            $slot++;
-        }
-
-        return $normalizedItem;
-    }
-
-    /**
-     * @return array{0: string, 1: string}
-     */
-    public function normalizeLinkFixture(mixed $sourceLink): array
-    {
-        if (is_array($sourceLink)) {
-            $label = trim((string)($sourceLink['label'] ?? $sourceLink['title'] ?? $sourceLink['text'] ?? $sourceLink['name'] ?? ''));
-            $link = trim((string)($sourceLink['link'] ?? $sourceLink['url'] ?? $sourceLink['href'] ?? ''));
-
-            return [$label, $link !== '' ? $link : $this->demoValueGenerator->buildDemoUrl($label)];
-        }
-
-        $value = trim((string)$sourceLink);
-        if ($value === '') {
-            return ['', ''];
-        }
-
-        if (str_contains($value, '|')) {
-            [$label, $link] = array_pad(array_map(trim(...), explode('|', $value, 2)), 2, '');
-
-            return [$label, $link !== '' ? $link : $this->demoValueGenerator->buildDemoUrl($label)];
-        }
-
-        return [$value, $this->demoValueGenerator->buildDemoUrl($value)];
-    }
-
-    /**
-     * @param array<string, mixed> $collection
-     */
-    public function collectionHasField(array $collection, string $field): bool
-    {
-        return isset($collection['fields'][$field])
-            || $this->databaseSchema->tableHasColumn($this->getCollectionTable($collection), $field);
-    }
-
-    /**
-     * @param array<string, mixed> $collection
-     */
-    public function getCollectionTable(array $collection): string
-    {
-        $table = $collection['table'] ?? '';
-        return is_string($table) ? $table : '';
-    }
-
-    /**
-     * @param array<string, mixed> $collection
-     * @return array<string, mixed>|null
-     */
-    public function getCollectionFieldConfig(array $collection, string $field): ?array
-    {
-        $fields = $collection['fields'] ?? [];
-        if (!is_array($fields)) {
-            return null;
-        }
-
-        $fieldConfig = $fields[$field] ?? null;
-        if (!is_array($fieldConfig)) {
-            return null;
-        }
-
-        return ContentBlockDefinitionRegistry::normalizeStringKeyedArray($fieldConfig);
-    }
-
-    /**
-     * @param array{collections?: array<string, array<string, mixed>>} $collection
-     */
-
-    /**
      * @param array<int, mixed> $value
      */
-    public function normalizeArrayForScalarField(array $value, string $field): mixed
+    private function normalizeArrayForScalarField(array $value, string $field): mixed
     {
         if ($value === []) {
             return '';
         }
 
-        if ($field === 'row_data' && !$this->containsNestedArray($value)) {
-            return $this->formatFlatScalarList($value, '|');
+        if ($field === 'row_data' && !$this->fieldNormalizer->containsNestedArray($value)) {
+            return $this->fieldNormalizer->formatFlatScalarList($value, '|');
         }
 
-        if (!$this->containsNestedArray($value)) {
-            return $this->formatFlatScalarList($value, "\n");
+        if (!$this->fieldNormalizer->containsNestedArray($value)) {
+            return $this->fieldNormalizer->formatFlatScalarList($value, "\n");
         }
 
         return self::FIELD_SKIP;
     }
 
     /**
-     * @param array<int, mixed> $values
-     */
-    public function formatFlatScalarList(array $values, string $separator): string
-    {
-        return $this->fieldNormalizer->formatFlatScalarList($values, $separator);
-    }
-
-    /**
      * @param array<int, mixed> $value
      * @param array<string, mixed> $collection
      */
-    public function normalizeArrayForCollectionField(array $value, string $field, array $collection): mixed
+    private function normalizeArrayForCollectionField(array $value, string $field, array $collection): mixed
     {
         if ($value === []) {
             return '';
         }
 
-        $fieldConfig = $this->getCollectionFieldConfig($collection, $field);
-        if ($fieldConfig !== null && $this->isFileField($fieldConfig)) {
+        $fieldConfig = $this->schema->fieldConfig($collection, $field);
+        if ($fieldConfig !== null && $this->fieldNormalizer->isFileField($fieldConfig)) {
             return $value;
         }
 
-        if ($field === 'row_data' && !$this->containsNestedArray($value)) {
-            return $this->formatFlatScalarList($value, '|');
+        if ($field === 'row_data' && !$this->fieldNormalizer->containsNestedArray($value)) {
+            return $this->fieldNormalizer->formatFlatScalarList($value, '|');
         }
 
-        if (!$this->containsNestedArray($value)) {
-            return $this->formatFlatScalarList($value, "\n");
+        if (!$this->fieldNormalizer->containsNestedArray($value)) {
+            return $this->fieldNormalizer->formatFlatScalarList($value, "\n");
         }
 
         return self::FIELD_SKIP;
@@ -1101,16 +797,16 @@ final class StyleguideFixtureResolver
     /**
      * @param array<string, mixed> $fieldConfig
      */
-    public function normalizeFieldValue(mixed $value, array $fieldConfig): mixed
+    private function normalizeFieldValue(mixed $value, array $fieldConfig): mixed
     {
-        $normalized = $this->normalizeScalarValue($value);
+        $normalized = $this->fieldNormalizer->normalizeScalarValue($value);
         $type = $fieldConfig['type'] ?? '';
         if (!is_string($type)) {
             $type = '';
         }
 
         if (in_array($type, ['Date', 'DateTime'], true)) {
-            return $this->normalizeDateTimeFieldValue($normalized);
+            return $this->fieldNormalizer->normalizeDateTimeFieldValue($normalized);
         }
 
         if ($type !== 'Select') {
@@ -1120,15 +816,10 @@ final class StyleguideFixtureResolver
         return $this->normalizeSelectValue($normalized, $fieldConfig);
     }
 
-    public function normalizeDateTimeFieldValue(mixed $value): int|string
-    {
-        return $this->fieldNormalizer->normalizeDateTimeFieldValue($value);
-    }
-
     /**
      * @param array<string, mixed> $fieldConfig
      */
-    public function normalizeSelectValue(mixed $value, array $fieldConfig): mixed
+    private function normalizeSelectValue(mixed $value, array $fieldConfig): mixed
     {
         if (!is_scalar($value)) {
             return $this->demoValueGenerator->buildDefaultSelectValue($fieldConfig);
@@ -1154,10 +845,10 @@ final class StyleguideFixtureResolver
     /**
      * @param array<string, mixed> $collection
      */
-    public function findPreferredTextField(array $collection): ?string
+    private function findPreferredTextField(array $collection): ?string
     {
         foreach (['label', 'title', 'name', 'feature_name', 'row_label', 'text', 'value', 'question', 'row_data', 'links', 'features_list', 'description'] as $candidate) {
-            if (isset($collection['fields'][$candidate]) || $this->databaseSchema->tableHasColumn($this->getCollectionTable($collection), $candidate)) {
+            if (isset($collection['fields'][$candidate]) || $this->databaseSchema->tableHasColumn($this->schema->table($collection), $candidate)) {
                 return $candidate;
             }
         }
@@ -1165,15 +856,10 @@ final class StyleguideFixtureResolver
         return null;
     }
 
-    public function normalizeScalarValue(mixed $value): int|string
-    {
-        return $this->fieldNormalizer->normalizeScalarValue($value);
-    }
-
     /**
      * @param array<int|string, mixed> $value
      */
-    public function isListOfScalars(array $value): bool
+    private function isListOfScalars(array $value): bool
     {
         if (!array_is_list($value)) {
             return false;
@@ -1181,15 +867,7 @@ final class StyleguideFixtureResolver
         return array_all($value, fn($item) => !is_array($item));
     }
 
-    /**
-     * @param array<int, mixed> $values
-     */
-    public function containsNestedArray(array $values): bool
-    {
-        return $this->fieldNormalizer->containsNestedArray($values);
-    }
-
-    public function singularize(string $value): string
+    private function singularize(string $value): string
     {
         return match (true) {
             str_ends_with($value, 'ies') => substr($value, 0, -3) . 'y',
@@ -1197,5 +875,4 @@ final class StyleguideFixtureResolver
             default => $value,
         };
     }
-
 }

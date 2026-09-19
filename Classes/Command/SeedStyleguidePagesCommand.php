@@ -48,26 +48,7 @@ final class SeedStyleguidePagesCommand extends Command
      */
     private const array SHOWCASE_ADDITIONAL_CLEANUP_CTYPES = ['text', 'textmedia', 'html', 'bullets', 'blog_posts', 'blog_category', 'blog_tag'];
 
-    /**
-     * One house preset per styleguide page so the seeded tree doubles as a
-     * live theme showcase. Applied via pages.tx_desiderio_shadcn_preset and
-     * picked up by the body tag TypoScript (levelfield slide).
-     */
-    private const array STYLEGUIDE_PAGE_PRESETS = [
-        'aurora',
-        'marine',
-        'forest',
-        'ember',
-        'bloom',
-        'lagoon',
-        'gold',
-        'midnight',
-        'blossom',
-        'citrus',
-    ];
-
     private const string CONTENT_TYPES_PAGE_TITLE = 'Content types';
-    private const string CONTENT_TYPES_PAGE_NAV_TITLE = 'Content types';
     private const string CONTENT_TYPES_PAGE_SLUG = '/content-types';
     private const int CONTENT_TYPES_PAGE_SORTING = 258;
 
@@ -89,6 +70,13 @@ final class SeedStyleguidePagesCommand extends Command
         'footer' => 'footers-utility-areas',
     ];
 
+    /**
+     * One house preset per content-type chapter so the seeded tree doubles as
+     * a live theme showcase. Applied via pages.tx_desiderio_shadcn_preset and
+     * picked up by the body tag TypoScript (levelfield slide). Every key of
+     * CONTENT_TYPE_GROUP_SLUGS must appear here — ContentTypeChapterPresetTest
+     * enforces it, which is what makes presetForContentTypeGroup() total.
+     */
     private const array CONTENT_TYPE_GROUP_PRESETS = [
         'hero' => 'lagoon',
         'navigation' => 'gold',
@@ -296,7 +284,7 @@ final class SeedStyleguidePagesCommand extends Command
                     '%s: %d elements — theme "%s"',
                     $group['groupTitle'],
                     count($group['elements']),
-                    $this->presetForContentTypeGroup((string)$group['groupId'], $index)
+                    $this->presetForContentTypeGroup((string)$group['groupId'])
                 );
             }
             foreach (self::CONTENT_TYPE_SUPPORT_PAGES as $page) {
@@ -340,7 +328,7 @@ final class SeedStyleguidePagesCommand extends Command
         $linkTargets = [];
 
         $contentTypesPageAttributes = [
-            'nav_title' => self::CONTENT_TYPES_PAGE_NAV_TITLE,
+            'nav_title' => self::CONTENT_TYPES_PAGE_TITLE,
             ...$this->buildSeoPageAttributes(
                 self::CONTENT_TYPES_PAGE_TITLE,
                 'Browse Desiderio content types by chapter: heroes, navigation, editorial content, features, pricing, trust, people, data, conversion, and footer patterns.'
@@ -382,7 +370,7 @@ final class SeedStyleguidePagesCommand extends Command
             $slug = $this->contentTypeSlugForGroup($groupId);
             $sorting = ($index + 1) * 256;
 
-            $preset = $this->presetForContentTypeGroup($groupId, $index);
+            $preset = $this->presetForContentTypeGroup($groupId);
             $pageAttributes = [
                 'tx_desiderio_shadcn_preset' => $preset,
                 ...$this->buildSeoPageAttributes($title, sprintf(
@@ -460,7 +448,6 @@ final class SeedStyleguidePagesCommand extends Command
             $now,
             $createdPages
         );
-        $deletedLegacyPages = 0;
 
         // Marketing showcase: subpages first (so internal links resolve), then
         // homepage content on the parent page itself, then subpage content.
@@ -678,14 +665,9 @@ final class SeedStyleguidePagesCommand extends Command
         return self::CONTENT_TYPES_PAGE_SLUG . '/' . self::CONTENT_TYPE_GROUP_SLUGS[$groupId];
     }
 
-    private function presetForContentTypeGroup(string $groupId, int $fallbackIndex): string
+    private function presetForContentTypeGroup(string $groupId): string
     {
-        return self::CONTENT_TYPE_GROUP_PRESETS[$groupId] ?? $this->presetForPageIndex($fallbackIndex);
-    }
-
-    private function presetForPageIndex(int $index): string
-    {
-        return self::STYLEGUIDE_PAGE_PRESETS[$index % count(self::STYLEGUIDE_PAGE_PRESETS)];
+        return self::CONTENT_TYPE_GROUP_PRESETS[$groupId];
     }
 
     /**

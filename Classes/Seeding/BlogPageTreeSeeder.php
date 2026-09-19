@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Webconsulting\Desiderio\Seeding;
 
-use Doctrine\DBAL\ArrayParameterType;
 use Doctrine\DBAL\ParameterType;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use Webconsulting\Desiderio\Data\BlogDemoPostDefinitions;
@@ -20,216 +19,12 @@ final readonly class BlogPageTreeSeeder
      */
     public const int BLOG_CATEGORY_RECORD_TYPE = 100;
 
-    private const array BLOG_LIST_CTYPES = [
-        'blog_posts',
-        'blog_category',
-        'blog_tag',
-        'blog_authorposts',
-        'blog_archive',
-        'blog_demandedposts',
-    ];
     private const array LEGACY_DEFAULT_TAG_TITLES = ['Accessibility', 'TYPO3'];
     private const array REMOVABLE_LEGACY_TAG_TITLES = ['Accessibility'];
 
     public function __construct(
         private ConnectionPool $connectionPool,
     ) {}
-
-    /**
-     * @return list<array{rootUid: int, folderUid: int}>
-     */
-    public function findBlogSetups(?int $rootFilter): array
-    {
-        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('pages');
-        $queryBuilder->getRestrictions()->removeAll();
-
-        $conditions = [
-            $queryBuilder->expr()->eq('module', $queryBuilder->createNamedParameter('blog')),
-            $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)),
-            $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)),
-            $queryBuilder->expr()->gt('pid', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)),
-        ];
-
-        if ($rootFilter !== null) {
-            $conditions[] = $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($rootFilter, ParameterType::INTEGER));
-        }
-
-        $rows = $queryBuilder
-            ->select('uid', 'pid')
-            ->from('pages')
-            ->where(...$conditions)
-            ->orderBy('pid')
-            ->addOrderBy('uid')
-            ->executeQuery()
-            ->fetchAllAssociative();
-
-        $setups = [];
-        foreach ($rows as $row) {
-            $rootUid = $this->getIntegerRowValue($row, 'pid');
-            $folderUid = $this->getIntegerRowValue($row, 'uid');
-            if ($rootUid <= 0 || $folderUid <= 0) {
-                continue;
-            }
-
-            if (isset($setups[$rootUid])) {
-                continue;
-            }
-            $setups[$rootUid] = [
-                'rootUid' => $rootUid,
-                'folderUid' => $folderUid,
-            ];
-        }
-
-        return array_values($setups);
-    }
-
-    /**
-     * @return list<int>
-     */
-    public function findLayoutPageUids(int $rootUid, int $folderUid): array
-    {
-        $folderPages = $this->findBlogFolderPageUids($rootUid);
-        $rootAndListPages = $this->findRootAndListPageUids($rootUid);
-        $postPages = $this->findPostPageUids($folderUid);
-
-        $pageUids = $this->normalizePageUids(array_merge([$rootUid, $folderUid], $folderPages, $rootAndListPages, $postPages));
-        return $this->normalizePageUids(array_merge($pageUids, $this->findTranslationPageUids($pageUids)));
-    }
-
-    /**
-     * @return list<int>
-     */
-    public function findBlogFolderPageUids(int $rootUid): array
-    {
-        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('pages');
-        $queryBuilder->getRestrictions()->removeAll();
-
-        $rows = $queryBuilder
-            ->select('uid')
-            ->from('pages')
-            ->where(
-                $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($rootUid, ParameterType::INTEGER)),
-                $queryBuilder->expr()->eq('module', $queryBuilder->createNamedParameter('blog')),
-                $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER))
-            )
-            ->executeQuery()
-            ->fetchFirstColumn();
-
-        return $this->mapIntegerColumn($rows);
-    }
-
-    /**
-     * @return list<int>
-     */
-    public function findRootAndListPageUids(int $rootUid): array
-    {
-        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('pages');
-        $queryBuilder->getRestrictions()->removeAll();
-
-        $rows = $queryBuilder
-            ->select('pages.uid')
-            ->from('pages')
-            ->join(
-                'pages',
-                'tt_content',
-                'content',
-                (string)$queryBuilder->expr()->and(
-                    $queryBuilder->expr()->eq('content.pid', $queryBuilder->quoteIdentifier('pages.uid')),
-                    $queryBuilder->expr()->eq('content.deleted', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)),
-                    $queryBuilder->expr()->in(
-                        'content.CType',
-                        $queryBuilder->createNamedParameter(self::BLOG_LIST_CTYPES, ArrayParameterType::STRING)
-                    )
-                )
-            )
-            ->where(
-                $queryBuilder->expr()->eq('pages.deleted', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)),
-                $queryBuilder->expr()->or(
-                    $queryBuilder->expr()->eq('pages.uid', $queryBuilder->createNamedParameter($rootUid, ParameterType::INTEGER)),
-                    $queryBuilder->expr()->eq('pages.pid', $queryBuilder->createNamedParameter($rootUid, ParameterType::INTEGER))
-                )
-            )
-            ->groupBy('pages.uid')
-            ->executeQuery()
-            ->fetchFirstColumn();
-
-        return $this->mapIntegerColumn($rows);
-    }
-
-    /**
-     * @param list<int> $pageUids
-     * @return list<int>
-     */
-    public function findTranslationPageUids(array $pageUids): array
-    {
-        if ($pageUids === []) {
-            return [];
-        }
-
-        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('pages');
-        $queryBuilder->getRestrictions()->removeAll();
-
-        $rows = $queryBuilder
-            ->select('uid')
-            ->from('pages')
-            ->where(
-                $queryBuilder->expr()->in(
-                    'l10n_parent',
-                    $queryBuilder->createNamedParameter($pageUids, ArrayParameterType::INTEGER)
-                ),
-                $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER))
-            )
-            ->executeQuery()
-            ->fetchFirstColumn();
-
-        return $this->mapIntegerColumn($rows);
-    }
-
-    /**
-     * @return list<int>
-     */
-    public function findPostPageUids(int $folderUid): array
-    {
-        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('pages');
-        $queryBuilder->getRestrictions()->removeAll();
-
-        $rows = $queryBuilder
-            ->select('uid')
-            ->from('pages')
-            ->where(
-                $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($folderUid, ParameterType::INTEGER)),
-                $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER))
-            )
-            ->executeQuery()
-            ->fetchFirstColumn();
-
-        return $this->mapIntegerColumn($rows);
-    }
-
-    /**
-     * @param list<int> $pageUids
-     */
-    public function applyBackendLayout(array $pageUids, string $layout): int
-    {
-        if ($pageUids === []) {
-            return 0;
-        }
-
-        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('pages');
-        $queryBuilder->getRestrictions()->removeAll();
-
-        return $queryBuilder
-            ->update('pages')
-            ->set('backend_layout', $layout)
-            ->set('backend_layout_next_level', $layout)
-            ->where(
-                $queryBuilder->expr()->in(
-                    'uid',
-                    $queryBuilder->createNamedParameter($pageUids, ArrayParameterType::INTEGER)
-                )
-            )
-            ->executeStatement();
-    }
 
     /**
      * @return array{posts: int, contentElements: int}
@@ -760,18 +555,18 @@ final readonly class BlogPageTreeSeeder
 
         $now = time();
         foreach ($rows as $index => $row) {
-            $postUid = $this->getIntegerRowValue($row, 'uid');
+            $postUid = DbRowValues::integer($row, 'uid');
             if ($postUid <= 0) {
                 continue;
             }
 
-            $title = $this->nonEmptyString($row['title'] ?? null, 'Blog post');
-            $description = $this->nonEmptyString($row['description'] ?? null, '');
+            $title = DbRowValues::nonEmptyString($row['title'] ?? null, 'Blog post');
+            $description = DbRowValues::nonEmptyString($row['description'] ?? null, '');
             if ($description === '') {
                 $description = sprintf('Seeded fallback metadata for "%s" so the shadcn Blog list and detail templates can show a complete article preview.', $title);
             }
 
-            $publishDate = $this->getIntegerRowValue($row, 'publish_date');
+            $publishDate = DbRowValues::integer($row, 'publish_date');
             if ($publishDate <= 0) {
                 $publishDate = $now - (($index + 1) * 86400);
             }
@@ -779,8 +574,8 @@ final readonly class BlogPageTreeSeeder
             $this->connectionPool->getConnectionForTable('pages')->update('pages', [
                 'tstamp' => $now,
                 'SYS_LASTCHANGED' => $now,
-                'subtitle' => $this->nonEmptyString($row['subtitle'] ?? null, 'Blog template coverage entry'),
-                'abstract' => $this->nonEmptyString($row['abstract'] ?? null, 'Complete sample metadata for the Desiderio Blog list template.'),
+                'subtitle' => DbRowValues::nonEmptyString($row['subtitle'] ?? null, 'Blog template coverage entry'),
+                'abstract' => DbRowValues::nonEmptyString($row['abstract'] ?? null, 'Complete sample metadata for the Desiderio Blog list template.'),
                 'description' => $description,
                 'seo_title' => $title,
                 'og_title' => $title,
@@ -795,14 +590,14 @@ final readonly class BlogPageTreeSeeder
                 'backend_layout_next_level' => $layout,
             ], ['uid' => $postUid]);
 
-            if ($defaultCategoryUid > 0 && $this->getIntegerRowValue($row, 'categories') <= 0) {
+            if ($defaultCategoryUid > 0 && DbRowValues::integer($row, 'categories') <= 0) {
                 $this->replaceCategoryRelations($postUid, [$defaultCategoryUid]);
             }
             $hasLegacyDefaultTags = $this->isSameTitleSet($this->findPostTagTitles($postUid), self::LEGACY_DEFAULT_TAG_TITLES);
-            if ($defaultTagUids !== [] && ($this->getIntegerRowValue($row, 'tags') <= 0 || $hasLegacyDefaultTags)) {
+            if ($defaultTagUids !== [] && (DbRowValues::integer($row, 'tags') <= 0 || $hasLegacyDefaultTags)) {
                 $this->replaceTagRelations($postUid, $defaultTagUids);
             }
-            if ($authorUid > 0 && $this->getIntegerRowValue($row, 'authors') <= 0) {
+            if ($authorUid > 0 && DbRowValues::integer($row, 'authors') <= 0) {
                 $this->replaceAuthorRelations($postUid, [$authorUid]);
             }
 
@@ -865,7 +660,7 @@ final readonly class BlogPageTreeSeeder
             $queryBuilder = $this->connectionPool->getQueryBuilderForTable('tx_blog_domain_model_tag');
             $queryBuilder->getRestrictions()->removeAll();
 
-            $tagUids = $this->mapIntegerColumn($queryBuilder
+            $tagUids = DbRowValues::integers($queryBuilder
                 ->select('uid')
                 ->from('tx_blog_domain_model_tag')
                 ->where(
@@ -947,65 +742,4 @@ final readonly class BlogPageTreeSeeder
         return $slug !== '' ? $slug : 'item';
     }
 
-    public function nonEmptyString(mixed $value, string $fallback): string
-    {
-        if (is_string($value) && trim($value) !== '') {
-            return trim($value);
-        }
-
-        return $fallback;
-    }
-
-    /**
-     * @param array<string, mixed> $row
-     */
-    public function getIntegerRowValue(array $row, string $key): int
-    {
-        $value = $row[$key] ?? null;
-        if (is_int($value)) {
-            return $value;
-        }
-
-        if (is_string($value) && is_numeric($value)) {
-            return (int)$value;
-        }
-
-        return 0;
-    }
-
-    /**
-     * @param array<mixed> $values
-     * @return list<int>
-     */
-    public function mapIntegerColumn(array $values): array
-    {
-        $integers = [];
-        foreach ($values as $value) {
-            if (is_int($value)) {
-                $integers[] = $value;
-                continue;
-            }
-
-            if (is_string($value) && is_numeric($value)) {
-                $integers[] = (int)$value;
-            }
-        }
-
-        return $integers;
-    }
-
-    /**
-     * @param array<int> $pageUids
-     * @return list<int>
-     */
-    public function normalizePageUids(array $pageUids): array
-    {
-        $pageUids = array_values(array_unique(array_filter(
-            $pageUids,
-            static fn(int $pageUid): bool => $pageUid > 0
-        )));
-        sort($pageUids);
-
-        return $pageUids;
-    }
 }

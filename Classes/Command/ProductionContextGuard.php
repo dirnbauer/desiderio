@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Webconsulting\Desiderio\Command;
 
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Style\SymfonyStyle;
@@ -21,19 +20,14 @@ final class ProductionContextGuard
 {
     public const string OPTION = 'allow-production';
 
-    public static function addOption(InputDefinition|Command $target): void
+    public static function addOption(Command $command): void
     {
-        $option = new InputOption(
+        $command->getDefinition()->addOption(new InputOption(
             self::OPTION,
             null,
             InputOption::VALUE_NONE,
             'Run even when the Application Context is Production. Use on a sandbox only.'
-        );
-        if ($target instanceof InputDefinition) {
-            $target->addOption($option);
-            return;
-        }
-        $target->getDefinition()->addOption($option);
+        ));
     }
 
     /**

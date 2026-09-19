@@ -52,10 +52,6 @@ final class LibraryImageAssetProvider
     /** @var array<string, list<array{file: string, title: string, alt: string, credit: string, source: string}>>|null */
     private ?array $pools = null;
 
-    public function __construct(
-        private readonly StyleguideFixtureResolver $fallbackAssets,
-    ) {}
-
     /**
      * @param array<string, mixed> $fieldConfig
      * @return list<array{file: string, title: string, alternative: string, description: string, source: string}>
@@ -187,7 +183,7 @@ final class LibraryImageAssetProvider
             'video' => $this->mediaPool('Video', '*-feature-video.mp4', 'Feature video'),
             'poster' => $this->mediaPool('Video', '*-feature-video-poster.webp', 'Video poster frame'),
             'captions' => $this->mediaPool('Video', '*-feature-video.en.vtt', 'English captions'),
-            'audio' => $this->fallbackAssets->getStyleguideAudioAssets(),
+            'audio' => StyleguideDemoAssets::seederAudioAssets(),
             // Cast portraits ONLY, never mixed with the generic Unsplash pool:
             // the pool is indexed with the same modulus as the demo cast, so
             // adding overflow faces would silently desynchronise name and face
@@ -202,7 +198,7 @@ final class LibraryImageAssetProvider
             'document' => $this->libraryPool('doc', 'Demo document'),
             'editorial' => array_merge(
                 $this->libraryPool('editorial', 'Editorial photo'),
-                $this->fallbackAssets->getStyleguideImageAssets(),
+                StyleguideDemoAssets::seederImageAssets(),
             ),
         ];
     }
@@ -219,7 +215,7 @@ final class LibraryImageAssetProvider
     {
         $pool = $this->libraryPool('portrait', 'Portrait');
 
-        return $pool !== [] ? $pool : $this->fallbackAssets->getStyleguidePortraitAssets();
+        return $pool !== [] ? $pool : StyleguideDemoAssets::seederPortraitAssets();
     }
 
     /**

@@ -9,9 +9,13 @@ namespace Webconsulting\Desiderio\Seeding;
  */
 final readonly class StyleguideCollectionAliasPolicy
 {
+    private CollectionSchema $schema;
+
     public function __construct(
         private DatabaseSchemaHelper $databaseSchema,
-    ) {}
+    ) {
+        $this->schema = new CollectionSchema($databaseSchema);
+    }
 
     /**
      * @param array<string, mixed> $collection
@@ -52,10 +56,10 @@ final readonly class StyleguideCollectionAliasPolicy
         if (
             in_array($field, ['links', 'children'], true)
             && (
-                $this->collectionHasField($collection, 'link_1')
-                || $this->collectionHasField($collection, 'link_1_label')
-                || $this->collectionHasField($collection, 'child_1_link')
-                || $this->collectionHasField($collection, 'child_1_label')
+                $this->schema->hasField($collection, 'link_1')
+                || $this->schema->hasField($collection, 'link_1_label')
+                || $this->schema->hasField($collection, 'child_1_link')
+                || $this->schema->hasField($collection, 'child_1_label')
             )
         ) {
             return true;
@@ -75,60 +79,42 @@ final readonly class StyleguideCollectionAliasPolicy
      */
     public function resolveChildField(string $field, mixed $value, array $collection): ?string
     {
-        $fields = $collection['fields'] ?? null;
-        if (is_array($fields) && isset($fields[$field])) {
-            return $field;
-        }
+        $declaredFields = $collection['fields'] ?? null;
+        $declaredFields = is_array($declaredFields) ? $declaredFields : [];
+        $table = $this->schema->table($collection);
+        $candidates = $this->childFieldCandidates($field, $value);
 
-        foreach ($this->getChildFieldAliases()[$field] ?? [] as $candidate) {
-            if (is_array($fields) && isset($fields[$candidate])) {
-                return $candidate;
-            }
-        }
-
-        if ($field === 'title') {
-            foreach (['label', 'name'] as $candidate) {
-                if (is_array($fields) && isset($fields[$candidate])) {
-                    return $candidate;
-                }
-            }
-        }
-
-        if (is_scalar($value) && $field === 'link') {
-            foreach (['url', 'button_link'] as $candidate) {
-                if (is_array($fields) && isset($fields[$candidate])) {
-                    return $candidate;
-                }
-            }
-        }
-
-        if ($this->databaseSchema->tableHasColumn($this->getCollectionTable($collection), $field)) {
-            return $field;
-        }
-
-        foreach ($this->getChildFieldAliases()[$field] ?? [] as $candidate) {
-            if ($this->databaseSchema->tableHasColumn($this->getCollectionTable($collection), $candidate)) {
-                return $candidate;
-            }
-        }
-
-        if ($field === 'title') {
-            foreach (['label', 'name'] as $candidate) {
-                if ($this->databaseSchema->tableHasColumn($this->getCollectionTable($collection), $candidate)) {
-                    return $candidate;
-                }
-            }
-        }
-
-        if (is_scalar($value) && $field === 'link') {
-            foreach (['url', 'button_link'] as $candidate) {
-                if ($this->databaseSchema->tableHasColumn($this->getCollectionTable($collection), $candidate)) {
+        // A field the Content Block declares always wins over a column the
+        // shared collection table happens to carry, so the whole candidate
+        // list is tried against the definition before the schema.
+        foreach ([
+            static fn(string $candidate): bool => isset($declaredFields[$candidate]),
+            fn(string $candidate): bool => $this->databaseSchema->tableHasColumn($table, $candidate),
+        ] as $accepts) {
+            foreach ($candidates as $candidate) {
+                if ($accepts($candidate)) {
                     return $candidate;
                 }
             }
         }
 
         return null;
+    }
+
+    /**
+     * The field name itself, then its configured aliases, then the two
+     * well-known renames, in the order they should be tried.
+     *
+     * @return list<string>
+     */
+    private function childFieldCandidates(string $field, mixed $value): array
+    {
+        return [
+            $field,
+            ...($this->getChildFieldAliases()[$field] ?? []),
+            ...($field === 'title' ? ['label', 'name'] : []),
+            ...(is_scalar($value) && $field === 'link' ? ['url', 'button_link'] : []),
+        ];
     }
 
     /**
@@ -222,24 +208,5 @@ final readonly class StyleguideCollectionAliasPolicy
             'row_data' => ['cells'],
             'cells' => ['cells'],
         ];
-    }
-
-    /**
-     * @param array<string, mixed> $collection
-     */
-    private function collectionHasField(array $collection, string $field): bool
-    {
-        $fields = $collection['fields'] ?? null;
-        return (is_array($fields) && isset($fields[$field]))
-            || $this->databaseSchema->tableHasColumn($this->getCollectionTable($collection), $field);
-    }
-
-    /**
-     * @param array<string, mixed> $collection
-     */
-    private function getCollectionTable(array $collection): string
-    {
-        $table = $collection['table'] ?? '';
-        return is_string($table) ? $table : '';
     }
 }

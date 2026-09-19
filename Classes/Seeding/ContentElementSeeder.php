@@ -44,9 +44,8 @@ final readonly class ContentElementSeeder
      *     collections: array<string, array{table: string, column?: string, items: list<array<string, mixed>>}>,
      *     fileReferences: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>>
      * } $contentData
-     * @return int The uid of the inserted tt_content row
      */
-    public function insert(int $pageUid, int $now, array $contentData): int
+    public function insert(int $pageUid, int $now, array $contentData): void
     {
         $connection = $this->connectionPool->getConnectionForTable('tt_content');
         $connection->insert('tt_content', $contentData['row']);
@@ -54,7 +53,5 @@ final readonly class ContentElementSeeder
 
         $this->falSeeder->seedFileReferences('tt_content', $contentUid, $pageUid, $now, $contentData['fileReferences']);
         $this->collectionRecordSeeder->seed($contentUid, $pageUid, $now, $contentData['collections']);
-
-        return $contentUid;
     }
 }

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Webconsulting\Desiderio\Domain\Finishers;
 
-use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Http\RequestFactory;
 use TYPO3\CMS\Core\Site\Entity\Site;
@@ -110,20 +109,15 @@ final class BrevoContactFinisher extends AbstractFinisher
             $payload['listIds'] = $configuration['listIds'];
         }
 
-        $response = $this->sendRequest(self::CONTACT_ENDPOINT, $payload, $configuration, $formIdentifier, 'contact');
-        if (!$response instanceof ResponseInterface) {
-            return;
-        }
-
-        $statusCode = $response->getStatusCode();
-        if ($statusCode < 200 || $statusCode >= 300) {
-            $this->failOrLog(
-                'Brevo contact sync returned a non-success response.',
-                ['formIdentifier' => $formIdentifier, 'statusCode' => $statusCode],
-                $configuration['strict'],
-                1762361001
-            );
-        }
+        $this->post(
+            self::CONTACT_ENDPOINT,
+            $payload,
+            $configuration,
+            $formIdentifier,
+            'contact',
+            'Brevo contact sync returned a non-success response.',
+            1762361001
+        );
     }
 
     /**
@@ -179,20 +173,15 @@ final class BrevoContactFinisher extends AbstractFinisher
             $payload['redirectionUrl'] = $configuration['doubleOptInRedirectUrl'];
         }
 
-        $response = $this->sendRequest(self::DOUBLE_OPT_IN_ENDPOINT, $payload, $configuration, $formIdentifier, 'double-opt-in');
-        if (!$response instanceof ResponseInterface) {
-            return;
-        }
-
-        $statusCode = $response->getStatusCode();
-        if ($statusCode < 200 || $statusCode >= 300) {
-            $this->failOrLog(
-                'Brevo double opt-in returned a non-success response.',
-                ['formIdentifier' => $formIdentifier, 'statusCode' => $statusCode],
-                $configuration['strict'],
-                1762361004
-            );
-        }
+        $this->post(
+            self::DOUBLE_OPT_IN_ENDPOINT,
+            $payload,
+            $configuration,
+            $formIdentifier,
+            'double-opt-in',
+            'Brevo double opt-in returned a non-success response.',
+            1762361004
+        );
     }
 
     /**
@@ -209,35 +198,38 @@ final class BrevoContactFinisher extends AbstractFinisher
             'event_properties' => $this->buildEventProperties($values, $formIdentifier),
         ];
 
-        $response = $this->sendRequest(self::EVENT_ENDPOINT, $payload, $configuration, $formIdentifier, 'event');
-        if (!$response instanceof ResponseInterface) {
-            return;
-        }
-
-        $statusCode = $response->getStatusCode();
-        if ($statusCode < 200 || $statusCode >= 300) {
-            $this->failOrLog(
-                'Brevo event tracking returned a non-success response.',
-                ['formIdentifier' => $formIdentifier, 'statusCode' => $statusCode],
-                $configuration['strict'],
-                1762361002
-            );
-        }
+        $this->post(
+            self::EVENT_ENDPOINT,
+            $payload,
+            $configuration,
+            $formIdentifier,
+            'event',
+            'Brevo event tracking returned a non-success response.',
+            1762361002
+        );
     }
 
     /**
+     * POST one payload to Brevo and report anything but a 2xx.
+     *
+     * Every Brevo call has the same failure modes — the request throws, or it
+     * answers with a non-success status — and the same handling: fail the form
+     * in strict mode, log otherwise. Only the message and the error code differ.
+     *
      * @param array<string, mixed> $payload
      * @param BrevoConfiguration $configuration
      */
-    private function sendRequest(
+    private function post(
         string $endpoint,
         array $payload,
         array $configuration,
         string $formIdentifier,
-        string $operation
-    ): ?ResponseInterface {
+        string $operation,
+        string $failureMessage,
+        int $failureCode
+    ): void {
         try {
-            return $this->requestFactory->request(
+            $response = $this->requestFactory->request(
                 $endpoint,
                 'POST',
                 [
@@ -260,9 +252,19 @@ final class BrevoContactFinisher extends AbstractFinisher
                 1762361003,
                 $exception
             );
+
+            return;
         }
 
-        return null;
+        $statusCode = $response->getStatusCode();
+        if ($statusCode < 200 || $statusCode >= 300) {
+            $this->failOrLog(
+                $failureMessage,
+                ['formIdentifier' => $formIdentifier, 'statusCode' => $statusCode],
+                $configuration['strict'],
+                $failureCode
+            );
+        }
     }
 
     /**

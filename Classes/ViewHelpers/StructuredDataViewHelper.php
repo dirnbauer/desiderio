@@ -4,11 +4,7 @@ declare(strict_types=1);
 
 namespace Webconsulting\Desiderio\ViewHelpers;
 
-use Psr\Http\Message\ServerRequestInterface;
-use TYPO3\CMS\Core\Security\ContentSecurityPolicy\ConsumableNonce;
-use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
-
-final class StructuredDataViewHelper extends AbstractViewHelper
+final class StructuredDataViewHelper extends AbstractRequestAwareViewHelper
 {
     protected $escapeOutput = false;
 
@@ -59,13 +55,6 @@ final class StructuredDataViewHelper extends AbstractViewHelper
         return '<script type="application/ld+json" data-desiderio-structured-data' . $this->nonceAttribute() . '>' . $json . '</script>';
     }
 
-    private function stringArgument(string $name, string $default = ''): string
-    {
-        $value = $this->arguments[$name] ?? null;
-
-        return is_scalar($value) || $value instanceof \Stringable ? (string)$value : $default;
-    }
-
     private function absoluteUrl(string $url): string
     {
         $url = trim($url);
@@ -80,10 +69,7 @@ final class StructuredDataViewHelper extends AbstractViewHelper
             return '';
         }
 
-        $request = $this->renderingContext?->hasAttribute(ServerRequestInterface::class) === true
-            ? $this->renderingContext->getAttribute(ServerRequestInterface::class)
-            : null;
-        $uri = $request instanceof ServerRequestInterface ? $request->getUri() : null;
+        $uri = $this->request()?->getUri();
         if ($uri === null) {
             return $url;
         }
@@ -106,22 +92,5 @@ final class StructuredDataViewHelper extends AbstractViewHelper
         $normalized = preg_replace('/[^A-Za-z0-9_\\[\\]-]/', '', $queryParameter);
 
         return $normalized === null || $normalized === '' ? 'q' : $normalized;
-    }
-
-    private function nonceAttribute(): string
-    {
-        $request = $this->renderingContext?->hasAttribute(ServerRequestInterface::class) === true
-            ? $this->renderingContext->getAttribute(ServerRequestInterface::class)
-            : null;
-        if (!$request instanceof ServerRequestInterface) {
-            return '';
-        }
-
-        $nonce = $request->getAttribute('nonce');
-        if (!$nonce instanceof ConsumableNonce) {
-            return '';
-        }
-
-        return ' nonce="' . htmlspecialchars($nonce->consume(), ENT_QUOTES | ENT_HTML5) . '"';
     }
 }

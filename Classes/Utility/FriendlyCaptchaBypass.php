@@ -32,14 +32,14 @@ final class FriendlyCaptchaBypass
         if ($context !== null && $context->isProduction()) {
             return false;
         }
-        if (SiteSettingsBoolean::isEnabled($site, self::FORCE_REAL_SETTING)) {
+        if (SiteSettings::isEnabled($site, self::FORCE_REAL_SETTING)) {
             return false;
         }
         if ($context !== null && $context->isDevelopment()) {
             return true;
         }
 
-        return SiteSettingsBoolean::isEnabled($site, self::TEST_MODE_SETTING);
+        return SiteSettings::isEnabled($site, self::TEST_MODE_SETTING);
     }
 
     private static function resolveContext(): ?ApplicationContext

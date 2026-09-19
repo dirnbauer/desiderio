@@ -1,5 +1,13 @@
 name: CI
 
+# One workflow for the whole PHP side of the extension:
+#   lint        php -l over every PHP file the extension ships
+#   cgl         typo3/coding-standards via php-cs-fixer, plus composer metadata
+#   phpstan     level 8, no baseline
+#   unit        PHPUnit unit suite
+#   functional  PHPUnit functional suite against MariaDB 10.11
+#   assets      generated files under Resources/Public are in sync (optional)
+
 on:
   push:
     branches: [main]
@@ -7,18 +15,24 @@ on:
     branches: [main]
   workflow_dispatch:
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
+env:
+  TYPO3_VERSION: "^14.3.6"
+
 jobs:
-  static-analysis:
-    name: PHPStan + audit (PHP ${{ matrix.php-version }} · TYPO3 ${{ matrix.typo3-version }})
+  lint:
+    name: PHP syntax lint
     runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
         php-version: ["8.4", "8.5"]
-        typo3-version: ["^14.3.6"]
     steps:
       - uses: actions/checkout@v5
 
@@ -29,14 +43,29 @@ jobs:
           tools: composer:v2
           coverage: none
 
+      - name: Lint
+        run: |
+          find Classes Configuration Tests ext_emconf.php ext_localconf.php \
+            -name '*.php' -print0 | xargs -0 -n1 -P4 php -l > /dev/null
+
+  cgl:
+    name: Coding standards + composer metadata
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Set up PHP 8.4
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.4"
+          tools: composer:v2
+          coverage: none
+
       - name: Cache composer dependencies
         uses: actions/cache@v6
         with:
           path: ~/.cache/composer
-          key: composer-${{ matrix.php-version }}-${{ matrix.typo3-version }}-${{ hashFiles('composer.json') }}
-
-      - name: Pin TYPO3 version (${{ matrix.typo3-version }})
-        run: composer require --no-update --no-interaction "typo3/cms-core:${{ matrix.typo3-version }}" "typo3/cms-fluid:${{ matrix.typo3-version }}" "typo3/cms-workspaces:${{ matrix.typo3-version }}"
+          key: composer-cgl-${{ hashFiles('composer.json') }}
 
       - name: Install
         run: composer update --no-interaction --no-progress --prefer-dist
@@ -50,17 +79,13 @@ jobs:
       - name: Check coding standards
         run: vendor/bin/php-cs-fixer fix --dry-run --diff
 
-      - name: Run PHPStan (level 8)
-        run: vendor/bin/phpstan analyse --no-progress --memory-limit=2G
-
-  unit-tests:
-    name: PHPUnit (PHP ${{ matrix.php-version }} · TYPO3 ${{ matrix.typo3-version }})
+  phpstan:
+    name: PHPStan level 8 (PHP ${{ matrix.php-version }})
     runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
         php-version: ["8.4", "8.5"]
-        typo3-version: ["^14.3.6"]
     steps:
       - uses: actions/checkout@v5
 
@@ -69,10 +94,48 @@ jobs:
         with:
           php-version: ${{ matrix.php-version }}
           tools: composer:v2
-          coverage: xdebug
+          coverage: none
 
-      - name: Pin TYPO3 version (${{ matrix.typo3-version }})
-        run: composer require --no-update --no-interaction "typo3/cms-core:${{ matrix.typo3-version }}" "typo3/cms-fluid:${{ matrix.typo3-version }}" "typo3/cms-workspaces:${{ matrix.typo3-version }}"
+      - name: Cache composer dependencies
+        uses: actions/cache@v6
+        with:
+          path: ~/.cache/composer
+          key: composer-${{ matrix.php-version }}-${{ hashFiles('composer.json') }}
+
+      - name: Pin TYPO3 version (${{ env.TYPO3_VERSION }})
+        run: composer require --no-update --no-interaction "typo3/cms-core:${TYPO3_VERSION}" "typo3/cms-fluid:${TYPO3_VERSION}" "typo3/cms-workspaces:${TYPO3_VERSION}"
+
+      - name: Install
+        run: composer update --no-interaction --no-progress --prefer-dist
+
+      - name: Run PHPStan
+        run: vendor/bin/phpstan analyse --configuration=phpstan.neon --no-progress --memory-limit=2G
+
+  unit-tests:
+    name: PHPUnit unit (PHP ${{ matrix.php-version }})
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version: ["8.4", "8.5"]
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Set up PHP ${{ matrix.php-version }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          tools: composer:v2
+          coverage: none
+
+      - name: Cache composer dependencies
+        uses: actions/cache@v6
+        with:
+          path: ~/.cache/composer
+          key: composer-${{ matrix.php-version }}-${{ hashFiles('composer.json') }}
+
+      - name: Pin TYPO3 version (${{ env.TYPO3_VERSION }})
+        run: composer require --no-update --no-interaction "typo3/cms-core:${TYPO3_VERSION}" "typo3/cms-fluid:${TYPO3_VERSION}" "typo3/cms-workspaces:${TYPO3_VERSION}"
 
       - name: Install
         run: composer update --no-interaction --no-progress --prefer-dist
@@ -81,13 +144,32 @@ jobs:
         run: vendor/bin/phpunit -c Build/phpunit/UnitTests.xml --testdox
 
   functional-tests:
-    name: Functional tests (PHP ${{ matrix.php-version }} · TYPO3 ${{ matrix.typo3-version }} · SQLite)
+    name: PHPUnit functional (PHP ${{ matrix.php-version }} · MariaDB 10.11)
     runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
         php-version: ["8.4", "8.5"]
-        typo3-version: ["^14.3.6"]
+    services:
+      mariadb:
+        image: mariadb:10.11
+        env:
+          MARIADB_ROOT_PASSWORD: funcp
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+    env:
+      TYPO3_CONTEXT: Testing
+      typo3DatabaseDriver: mysqli
+      typo3DatabaseHost: 127.0.0.1
+      typo3DatabasePort: "3306"
+      typo3DatabaseUsername: root
+      typo3DatabasePassword: funcp
+      typo3DatabaseName: desiderio_functional
     steps:
       - uses: actions/checkout@v5
 
@@ -95,7 +177,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-version }}
-          extensions: pdo_sqlite
+          extensions: mysqli
           tools: composer:v2
           coverage: none
 
@@ -103,16 +185,18 @@ jobs:
         uses: actions/cache@v6
         with:
           path: ~/.cache/composer
-          key: composer-${{ matrix.php-version }}-${{ matrix.typo3-version }}-${{ hashFiles('composer.json') }}
+          key: composer-${{ matrix.php-version }}-${{ hashFiles('composer.json') }}
 
-      - name: Pin TYPO3 version (${{ matrix.typo3-version }})
-        run: composer require --no-update --no-interaction "typo3/cms-core:${{ matrix.typo3-version }}" "typo3/cms-fluid:${{ matrix.typo3-version }}" "typo3/cms-workspaces:${{ matrix.typo3-version }}" "typo3/cms-form:${{ matrix.typo3-version }}"
+      - name: Pin TYPO3 version (${{ env.TYPO3_VERSION }})
+        run: composer require --no-update --no-interaction "typo3/cms-core:${TYPO3_VERSION}" "typo3/cms-fluid:${TYPO3_VERSION}" "typo3/cms-workspaces:${TYPO3_VERSION}" "typo3/cms-form:${TYPO3_VERSION}"
 
       - name: Install
         run: composer update --no-interaction --no-progress --prefer-dist
 
       - name: Run functional tests
-        run: Build/Scripts/runFunctionalTests.sh
+        env:
+          TYPO3_PATH_ROOT: ${{ github.workspace }}/Build/Functional/document-root
+        run: php -d memory_limit=1G vendor/bin/phpunit -c Build/phpunit/FunctionalTests.xml --testdox
 
   generated-assets:
     name: Generated assets are in sync with sources

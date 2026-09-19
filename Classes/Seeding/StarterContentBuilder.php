@@ -5,32 +5,27 @@ declare(strict_types=1);
 namespace Webconsulting\Desiderio\Seeding;
 
 use Webconsulting\Desiderio\Data\ContentBlockDefinitionRegistry;
-use Webconsulting\Desiderio\Data\StarterSiteDefinitions;
 use Webconsulting\Desiderio\Data\StyleguidePortraitAssets;
 
 /**
- * @phpstan-import-type StarterBlock from StarterSiteDefinitions
+ * Turns one starter-site block definition into the rows the seeder inserts:
+ * the tt_content row, its collection children and its file references.
  */
 final readonly class StarterContentBuilder
 {
+    private CollectionSchema $schema;
+
     public function __construct(
         private DatabaseSchemaHelper $databaseSchema,
         private FixtureFieldNormalizer $fieldNormalizer = new FixtureFieldNormalizer(),
-    ) {}
-
-    /**
-     * @param array<string, mixed> $collection
-     */
-    public function getCollectionTable(array $collection): string
-    {
-        $table = $collection['table'] ?? '';
-        return is_string($table) ? $table : '';
+    ) {
+        $this->schema = new CollectionSchema($databaseSchema);
     }
 
     /**
      * @param array<string, mixed> $collection
      */
-    public function getCollectionColumn(array $collection, string $fallback): string
+    private function getCollectionColumn(array $collection, string $fallback): string
     {
         $column = $collection['column'] ?? $fallback;
         return is_string($column) ? $column : $fallback;
@@ -79,14 +74,14 @@ final readonly class StarterContentBuilder
      * @param array<string, mixed> $fixture
      * @return array{0: array<string, mixed>, 1: array<string, array{table: string, column: string, items: list<array<string, mixed>>}>, 2: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>>}
      */
-    public function resolveFixtureFields(string $ctype, array $fixture): array
+    private function resolveFixtureFields(string $ctype, array $fixture): array
     {
         $definition = ContentBlockDefinitionRegistry::getDefinition($ctype);
         if ($definition === null) {
             $row = [];
             foreach ($fixture as $field => $value) {
                 if (!is_array($value)) {
-                    $row[$field] = $this->normalizeScalarValue($value);
+                    $row[$field] = $this->fieldNormalizer->normalizeScalarValue($value);
                 }
             }
 
@@ -103,7 +98,7 @@ final readonly class StarterContentBuilder
                 $items = $this->normalizeCollectionItems($value, $collection);
                 if ($items !== []) {
                     $collections[$field] = [
-                        'table' => $this->getCollectionTable($collection),
+                        'table' => $this->schema->table($collection),
                         'column' => $this->getCollectionColumn($collection, $field),
                         'items' => $items,
                     ];
@@ -117,8 +112,8 @@ final readonly class StarterContentBuilder
             }
 
             $storageField = $this->resolveFieldStorageIdentifier($field, $fieldConfig);
-            if ($this->isFileField($fieldConfig)) {
-                $references = $this->buildFileReferenceFixturesFromFixtureValue($value);
+            if ($this->fieldNormalizer->isFileField($fieldConfig)) {
+                $references = $this->fieldNormalizer->buildFileReferenceFixturesFromFixtureValue($value, [], 'Starter asset');
                 if ($references !== []) {
                     $fileReferences[$storageField] = $references;
                 }
@@ -126,8 +121,8 @@ final readonly class StarterContentBuilder
             }
 
             $resolvedFields[$storageField] = is_array($value)
-                ? $this->normalizeArrayForScalarField($value)
-                : $this->normalizeFieldValue($value, $fieldConfig);
+                ? $this->fieldNormalizer->normalizeStarterArrayForScalarField($value)
+                : $this->fieldNormalizer->normalizeStarterFieldValue($value, $fieldConfig);
         }
 
         return [$resolvedFields, $collections, $fileReferences];
@@ -138,7 +133,7 @@ final readonly class StarterContentBuilder
      * @param array<string, mixed> $collection
      * @return list<array<string, mixed>>
      */
-    public function normalizeCollectionItems(array $items, array $collection): array
+    private function normalizeCollectionItems(array $items, array $collection): array
     {
         $normalizedItems = [];
         foreach ($items as $index => $item) {
@@ -155,11 +150,11 @@ final readonly class StarterContentBuilder
      * @param array<string, mixed> $collection
      * @return array<string, mixed>
      */
-    public function normalizeCollectionItem(mixed $item, array $collection, int $index = 0): array
+    private function normalizeCollectionItem(mixed $item, array $collection, int $index = 0): array
     {
         if (!is_array($item)) {
             $textField = $this->findPreferredTextField($collection);
-            return $textField === null ? [] : [$textField => $this->normalizeScalarValue($item)];
+            return $textField === null ? [] : [$textField => $this->fieldNormalizer->normalizeScalarValue($item)];
         }
 
         $item = ContentBlockDefinitionRegistry::normalizeStringKeyedArray($item);
@@ -173,7 +168,7 @@ final readonly class StarterContentBuilder
                 $items = $this->normalizeCollectionItems($value, $nestedCollection);
                 if ($items !== []) {
                     $nestedCollections[$field] = [
-                        'table' => $this->getCollectionTable($nestedCollection),
+                        'table' => $this->schema->table($nestedCollection),
                         'column' => $this->getCollectionColumn($nestedCollection, $field),
                         'items' => $items,
                     ];
@@ -182,13 +177,13 @@ final readonly class StarterContentBuilder
                 continue;
             }
 
-            $fieldConfig = $this->getCollectionFieldConfig($collection, $field);
+            $fieldConfig = $this->schema->fieldConfig($collection, $field);
             if ($fieldConfig === null) {
                 continue;
             }
 
-            if ($this->isFileField($fieldConfig)) {
-                $references = $this->buildFileReferenceFixturesFromFixtureValue($value);
+            if ($this->fieldNormalizer->isFileField($fieldConfig)) {
+                $references = $this->fieldNormalizer->buildFileReferenceFixturesFromFixtureValue($value, [], 'Starter asset');
                 if ($references !== []) {
                     $fileReferences[$field] = $references;
                     $normalizedItem[$field] = count($references);
@@ -197,11 +192,11 @@ final readonly class StarterContentBuilder
             }
 
             $normalizedItem[$field] = is_array($value)
-                ? $this->normalizeArrayForScalarField($value)
-                : $this->normalizeFieldValue($value, $fieldConfig);
+                ? $this->fieldNormalizer->normalizeStarterArrayForScalarField($value)
+                : $this->fieldNormalizer->normalizeStarterFieldValue($value, $fieldConfig);
         }
 
-        $memberName = $this->stringFromMixed($normalizedItem['name'] ?? $item['name'] ?? '');
+        $memberName = $this->fieldNormalizer->stringFromMixed($normalizedItem['name'] ?? $item['name'] ?? '');
         $collectionFields = $collection['fields'] ?? null;
         if (!is_array($collectionFields)) {
             $collectionFields = [];
@@ -211,7 +206,7 @@ final readonly class StarterContentBuilder
                 continue;
             }
             $fieldConfig = ContentBlockDefinitionRegistry::normalizeStringKeyedArray($fieldConfig);
-            if (!$this->isFileField($fieldConfig) || !StyleguidePortraitAssets::isPortraitField($fieldName, $fieldConfig)) {
+            if (!$this->fieldNormalizer->isFileField($fieldConfig) || !StyleguidePortraitAssets::isPortraitField($fieldName, $fieldConfig)) {
                 continue;
             }
 
@@ -237,10 +232,10 @@ final readonly class StarterContentBuilder
     /**
      * @param array<string, mixed> $collection
      */
-    public function findPreferredTextField(array $collection): ?string
+    private function findPreferredTextField(array $collection): ?string
     {
         foreach (['title', 'label', 'name', 'text', 'value', 'question', 'answer', 'description'] as $field) {
-            if ($this->getCollectionFieldConfig($collection, $field) !== null) {
+            if ($this->schema->fieldConfig($collection, $field) !== null) {
                 return $field;
             }
         }
@@ -252,22 +247,7 @@ final readonly class StarterContentBuilder
      * @param array<string, mixed> $collection
      * @return array<string, mixed>|null
      */
-    public function getCollectionFieldConfig(array $collection, string $field): ?array
-    {
-        $fields = $collection['fields'] ?? null;
-        if (!is_array($fields)) {
-            return null;
-        }
-
-        $fieldConfig = $fields[$field] ?? null;
-        return is_array($fieldConfig) ? ContentBlockDefinitionRegistry::normalizeStringKeyedArray($fieldConfig) : null;
-    }
-
-    /**
-     * @param array<string, mixed> $collection
-     * @return array<string, mixed>|null
-     */
-    public function getNestedCollection(array $collection, string $field): ?array
+    private function getNestedCollection(array $collection, string $field): ?array
     {
         $collections = $collection['collections'] ?? null;
         if (!is_array($collections)) {
@@ -276,48 +256,6 @@ final readonly class StarterContentBuilder
 
         $nestedCollection = $collections[$field] ?? null;
         return is_array($nestedCollection) ? ContentBlockDefinitionRegistry::normalizeStringKeyedArray($nestedCollection) : null;
-    }
-
-    /**
-     * @param array<string, mixed> $fieldConfig
-     */
-    public function normalizeFieldValue(mixed $value, array $fieldConfig): int|string
-    {
-        return $this->fieldNormalizer->normalizeStarterFieldValue($value, $fieldConfig);
-    }
-
-    /**
-     * @param array<int|string, mixed> $value
-     */
-    public function normalizeArrayForScalarField(array $value): string
-    {
-        return $this->fieldNormalizer->normalizeStarterArrayForScalarField($value);
-    }
-
-    public function normalizeScalarValue(mixed $value): int|string
-    {
-        return $this->fieldNormalizer->normalizeScalarValue($value);
-    }
-
-    public function stringFromMixed(mixed $value): string
-    {
-        return $this->fieldNormalizer->stringFromMixed($value);
-    }
-
-    /**
-     * @return list<array{file: string, title: string, alternative: string, description: string, source: string}>
-     */
-    public function buildFileReferenceFixturesFromFixtureValue(mixed $value): array
-    {
-        return $this->fieldNormalizer->buildFileReferenceFixturesFromFixtureValue($value, [], 'Starter asset');
-    }
-
-    /**
-     * @param array<string, mixed> $fieldConfig
-     */
-    public function isFileField(array $fieldConfig): bool
-    {
-        return $this->fieldNormalizer->isFileField($fieldConfig);
     }
 
     /**

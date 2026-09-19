@@ -6,7 +6,7 @@ namespace Webconsulting\Desiderio\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 use Webconsulting\Desiderio\Icon\IconRegistry;
-use Webconsulting\Desiderio\ViewHelpers\FileIconNameViewHelper;
+use Webconsulting\Desiderio\Utility\FileTypes;
 
 final class FileIconNameViewHelperTest extends TestCase
 {
@@ -27,15 +27,15 @@ final class FileIconNameViewHelperTest extends TestCase
         ];
 
         foreach ($expected as $extension => $iconName) {
-            self::assertSame($iconName, FileIconNameViewHelper::iconNameForExtension($extension));
+            self::assertSame($iconName, FileTypes::iconName($extension));
             self::assertContains($iconName, IconRegistry::keys());
         }
     }
 
     public function testDetectsImageExtensionsForThumbnailMode(): void
     {
-        self::assertTrue(FileIconNameViewHelper::isImageExtension('webp'));
-        self::assertTrue(FileIconNameViewHelper::isImageExtension('.SVG'));
-        self::assertFalse(FileIconNameViewHelper::isImageExtension('pdf'));
+        self::assertTrue(FileTypes::isImage('webp'));
+        self::assertTrue(FileTypes::isImage('.SVG'));
+        self::assertFalse(FileTypes::isImage('pdf'));
     }
 }

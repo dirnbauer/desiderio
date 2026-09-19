@@ -14,11 +14,11 @@ use TYPO3\CMS\Core\FormProtection\FormProtectionFactory;
 use TYPO3\CMS\Core\Http\JsonResponse;
 use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
 use TYPO3\CMS\Core\Site\Entity\Site;
-use Webconsulting\Desiderio\Library\CoreContentElements;
 use Webconsulting\Desiderio\Library\ElementCatalog;
 use Webconsulting\Desiderio\Library\ElementSearchService;
 use Webconsulting\Desiderio\Library\PreviewUrlBuilder;
 use Webconsulting\Desiderio\Library\PreviewWarmer;
+use Webconsulting\Desiderio\Utility\SiteSettings;
 
 /**
  * Frontend JSON endpoint for visual element pickers: ?elementLibrary=1
@@ -102,8 +102,7 @@ final readonly class ElementLibraryMiddleware implements MiddlewareInterface
             );
         }
 
-        $configuredStoragePid = $site->getSettings()->get('elementLibrary.storagePid', 0);
-        $storagePid = is_numeric($configuredStoragePid) ? (int)$configuredStoragePid : 0;
+        $storagePid = SiteSettings::integer($site, 'elementLibrary.storagePid');
         if ($storagePid <= 0) {
             return new JsonResponse(
                 ['error' => 'Element library not configured: run desiderio:library:seed and set elementLibrary.storagePid in the site settings'],
@@ -125,12 +124,7 @@ final readonly class ElementLibraryMiddleware implements MiddlewareInterface
             // by cType in a per-host catalog file. The full description stays the
             // "description" above and is shown in the enlarged preview; cards show
             // this shorter one. Falls back to the full text when none is authored.
-            // Core elements have no own extension; their short blurbs live in
-            // Desiderio's library_short.xlf, keyed by the bare core cType.
-            $shortHost = $element['hostExtension'] === CoreContentElements::HOST
-                ? 'desiderio'
-                : $element['hostExtension'];
-            $shortFile = 'LLL:EXT:' . $shortHost . '/Resources/Private/Language/library_short.xlf:';
+            $shortFile = ElementCatalog::languageFile($element['hostExtension'], 'library_short.xlf');
             $shortDescription = $languageService->sL($shortFile . $element['cType']);
             // Keyword chips: cards show the first ~10 (ranked); the detail view
             // shows keywords + synonyms. Both also feed the client-side search

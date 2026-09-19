@@ -745,14 +745,6 @@ PHP;
         return strtolower(preg_replace('/[^a-z0-9]+/', '', $value) ?? '');
     }
 
-    public function buildReadableFileTitle(string $value): string
-    {
-        $title = preg_replace('/[^a-zA-Z0-9]+/', ' ', $value) ?? '';
-        $title = trim($title);
-
-        return $title !== '' ? ucwords(strtolower($title)) : 'Styleguide image';
-    }
-
     /**
      * @param list<string> $words
      */

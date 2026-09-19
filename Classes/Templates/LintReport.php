@@ -30,48 +30,30 @@ final class LintReport
     }
 
     /**
+     * Every finding, or only those of one severity.
+     *
      * @return list<LintFinding>
      */
-    public function getFindings(): array
+    public function findings(?LintSeverity $severity = null): array
     {
-        return $this->findings;
+        if ($severity === null) {
+            return $this->findings;
+        }
+
+        return array_values(array_filter($this->findings, static fn(LintFinding $finding): bool => $finding->severity === $severity));
     }
 
     /**
      * @return list<LintFinding>
      */
-    public function getErrors(): array
+    public function findingsForRule(LintRule $rule): array
     {
-        return $this->filterBySeverity(LintFinding::SEVERITY_ERROR);
-    }
-
-    /**
-     * @return list<LintFinding>
-     */
-    public function getWarnings(): array
-    {
-        return $this->filterBySeverity(LintFinding::SEVERITY_WARNING);
-    }
-
-    /**
-     * @return list<LintFinding>
-     */
-    public function getSkipped(): array
-    {
-        return $this->filterBySeverity(LintFinding::SEVERITY_SKIPPED);
+        return array_values(array_filter($this->findings, static fn(LintFinding $finding): bool => $finding->rule === $rule));
     }
 
     public function hasErrors(): bool
     {
-        return $this->getErrors() !== [];
-    }
-
-    /**
-     * @return list<LintFinding>
-     */
-    public function getFindingsForRule(string $rule): array
-    {
-        return array_values(array_filter($this->findings, static fn(LintFinding $finding): bool => $finding->rule === $rule));
+        return array_any($this->findings, static fn(LintFinding $finding): bool => $finding->severity === LintSeverity::Error);
     }
 
     /**
@@ -81,18 +63,10 @@ final class LintReport
     {
         return [
             'filesScanned' => $this->filesScanned,
-            'errors' => count($this->getErrors()),
-            'warnings' => count($this->getWarnings()),
-            'skipped' => count($this->getSkipped()),
+            'errors' => count($this->findings(LintSeverity::Error)),
+            'warnings' => count($this->findings(LintSeverity::Warning)),
+            'skipped' => count($this->findings(LintSeverity::Skipped)),
             'findings' => array_map(static fn(LintFinding $finding): array => $finding->toArray(), $this->findings),
         ];
-    }
-
-    /**
-     * @return list<LintFinding>
-     */
-    private function filterBySeverity(string $severity): array
-    {
-        return array_values(array_filter($this->findings, static fn(LintFinding $finding): bool => $finding->severity === $severity));
     }
 }

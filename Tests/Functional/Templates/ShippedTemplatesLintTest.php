@@ -8,6 +8,7 @@ use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 use Webconsulting\Desiderio\Templates\LintFinding;
 use Webconsulting\Desiderio\Templates\LintOptions;
+use Webconsulting\Desiderio\Templates\LintSeverity;
 use Webconsulting\Desiderio\Templates\TemplateLinter;
 
 /**
@@ -41,8 +42,8 @@ final class ShippedTemplatesLintTest extends FunctionalTestCase
 
         self::assertGreaterThan(300, $report->getFilesScanned(), 'Content elements, components and template sets must all be scanned');
         self::assertSame([], array_map(
-            static fn(LintFinding $finding): string => sprintf('%s:%s [%s] %s', $finding->file, $finding->line ?? '-', $finding->rule, $finding->message),
-            $report->getErrors(),
+            static fn(LintFinding $finding): string => sprintf('%s:%s [%s] %s', $finding->file, $finding->line ?? '-', $finding->rule->value, $finding->message),
+            $report->findings(LintSeverity::Error),
         ));
     }
 
@@ -52,7 +53,7 @@ final class ShippedTemplatesLintTest extends FunctionalTestCase
         $report = $this->get(TemplateLinter::class)->lint(new LintOptions(['EXT:desiderio']));
 
         $unexpected = [];
-        foreach ($report->getSkipped() as $finding) {
+        foreach ($report->findings(LintSeverity::Skipped) as $finding) {
             if (preg_match('/GeorgRinger\\\\News|In2code\\\\Powermail|ApacheSolrForTypo3\\\\Solr|StudioMitte\\\\FriendlyCaptcha|EXT:(?:news|powermail|solr)\b/', $finding->message) !== 1) {
                 $unexpected[] = $finding->file . ': ' . $finding->message;
             }

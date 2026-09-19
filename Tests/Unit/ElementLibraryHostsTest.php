@@ -82,7 +82,7 @@ final class ElementLibraryHostsTest extends TestCase
 
         // Registering a provider adds elements without touching any existing
         // config.yaml mtime, so the host list has to key the cache itself.
-        self::assertStringContainsString("\$parts = ['hosts:' . implode(',', \$hostExtensions)];", $source);
+        self::assertStringContainsString("\$parts = ['hosts:' . implode(',', self::hostExtensions())];", $source);
         self::assertStringContainsString("METADATA_CACHE_VERSION = 'metadata-v3'", $source);
     }
 

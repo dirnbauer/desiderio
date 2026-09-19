@@ -25,6 +25,7 @@ use Webconsulting\Desiderio\Seeding\LiveWorkspaceQueryHelper;
 use Webconsulting\Desiderio\Seeding\SeedPageUpserter;
 use Webconsulting\Desiderio\Seeding\StyleguideCollectionAliasPolicy;
 use Webconsulting\Desiderio\Seeding\StyleguideFixtureResolver;
+use Webconsulting\Desiderio\Seeding\UpsertStatus;
 
 #[AsCommand(
     name: 'desiderio:library:seed',
@@ -182,8 +183,10 @@ final class SeedElementLibraryCommand extends Command
         $io->progressStart(count($elements));
         foreach ($elements as $index => $element) {
             try {
-                [$status] = $upserter->upsert($folderUid, $element, ($index + 1) * 16, $now);
-                $status === 'created' ? $created++ : $updated++;
+                match ($upserter->upsert($folderUid, $element, ($index + 1) * 16, $now)) {
+                    UpsertStatus::Created => $created++,
+                    UpsertStatus::Updated => $updated++,
+                };
             } catch (\Throwable $e) {
                 $errors[] = $element['cType'] . ': ' . $e->getMessage();
             }

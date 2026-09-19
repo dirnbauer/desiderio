@@ -10,9 +10,10 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Webconsulting\Desiderio\Templates\LintFinding;
 use Webconsulting\Desiderio\Templates\LintOptions;
 use Webconsulting\Desiderio\Templates\LintReport;
+use Webconsulting\Desiderio\Templates\LintRule;
+use Webconsulting\Desiderio\Templates\LintSeverity;
 use Webconsulting\Desiderio\Templates\TemplateLinter;
 
 /**
@@ -40,7 +41,7 @@ final class LintTemplatesCommand extends Command
             ->addOption('path', null, InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'EXT:key, EXT:key/sub/dir, directory or single template file (repeatable).', ['EXT:desiderio'])
             ->addOption('strict', null, InputOption::VALUE_NONE, 'Treat namespaces and partials of extensions that are not installed as errors instead of skipping them.')
             ->addOption('format', null, InputOption::VALUE_REQUIRED, 'Output format: text or json.', 'text')
-            ->addOption('rule', null, InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Only run these rules (repeatable): ' . implode(', ', TemplateLinter::RULES) . '.');
+            ->addOption('rule', null, InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Only run these rules (repeatable): ' . implode(', ', LintRule::names()) . '.');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -51,17 +52,26 @@ final class LintTemplatesCommand extends Command
             $io->error('Unknown format; use text or json.');
             return self::INVALID;
         }
-        $rules = $this->stringList($input->getOption('rule'));
-        $unknownRules = array_diff($rules, TemplateLinter::RULES);
+
+        $rules = [];
+        $unknownRules = [];
+        foreach ($this->stringList($input->getOption('rule')) as $name) {
+            $rule = LintRule::tryFrom($name);
+            if ($rule === null) {
+                $unknownRules[] = $name;
+                continue;
+            }
+            $rules[] = $rule;
+        }
         if ($unknownRules !== []) {
-            $io->error('Unknown rule(s): ' . implode(', ', $unknownRules) . '. Available: ' . implode(', ', TemplateLinter::RULES));
+            $io->error('Unknown rule(s): ' . implode(', ', $unknownRules) . '. Available: ' . implode(', ', LintRule::names()));
             return self::INVALID;
         }
 
         $options = new LintOptions(
             paths: $this->stringList($input->getOption('path')),
             strict: (bool)$input->getOption('strict'),
-            rules: $rules === [] ? null : $rules,
+            rules: $rules,
         );
         try {
             $report = $this->templateLinter->lint($options);
@@ -72,18 +82,18 @@ final class LintTemplatesCommand extends Command
 
         if ($format === 'json') {
             $output->writeln((string)json_encode($report->toArray(), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
-            return $report->hasErrors() ? self::FAILURE : self::SUCCESS;
+        } else {
+            $this->renderText($io, $report, $output->isVerbose());
         }
 
-        $this->renderText($io, $report, $output->isVerbose());
         return $report->hasErrors() ? self::FAILURE : self::SUCCESS;
     }
 
     private function renderText(SymfonyStyle $io, LintReport $report, bool $verbose): void
     {
         $byFile = [];
-        foreach ($report->getFindings() as $finding) {
-            if ($finding->severity === LintFinding::SEVERITY_SKIPPED && !$verbose) {
+        foreach ($report->findings() as $finding) {
+            if ($finding->severity === LintSeverity::Skipped && !$verbose) {
                 continue;
             }
             $byFile[$finding->file][] = $finding;
@@ -93,25 +103,22 @@ final class LintTemplatesCommand extends Command
             foreach ($findings as $finding) {
                 $io->writeln(sprintf(
                     '  <%s>%-7s</> %s%s [%s]',
-                    match ($finding->severity) {
-                        LintFinding::SEVERITY_ERROR => 'fg=red',
-                        LintFinding::SEVERITY_WARNING => 'fg=yellow',
-                        default => 'fg=gray',
-                    },
-                    $finding->severity,
+                    $finding->severity->consoleStyle(),
+                    $finding->severity->value,
                     $finding->line !== null ? 'line ' . $finding->line . ': ' : '',
                     $finding->message,
-                    $finding->rule,
+                    $finding->rule->value,
                 ));
             }
         }
+        $skipped = $report->findings(LintSeverity::Skipped);
         $summary = sprintf(
             '%d template(s), %d error(s), %d warning(s), %d skipped%s',
             $report->getFilesScanned(),
-            count($report->getErrors()),
-            count($report->getWarnings()),
-            count($report->getSkipped()),
-            $verbose || $report->getSkipped() === [] ? '' : ' (run with -v to list skipped checks)',
+            count($report->findings(LintSeverity::Error)),
+            count($report->findings(LintSeverity::Warning)),
+            count($skipped),
+            $verbose || $skipped === [] ? '' : ' (run with -v to list skipped checks)',
         );
         if ($report->hasErrors()) {
             $io->error($summary);

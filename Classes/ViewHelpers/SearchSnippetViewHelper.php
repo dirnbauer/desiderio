@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Webconsulting\Desiderio\ViewHelpers;
 
-use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
-
-final class SearchSnippetViewHelper extends AbstractViewHelper
+final class SearchSnippetViewHelper extends AbstractRequestAwareViewHelper
 {
     /**
      * Upper bound for highlighted terms, keeps the alternation pattern in
@@ -44,20 +42,6 @@ final class SearchSnippetViewHelper extends AbstractViewHelper
             $terms,
             $this->stringArgument('highlightClass', 'results-highlight')
         );
-    }
-
-    private function stringArgument(string $name, string $default = ''): string
-    {
-        $value = $this->arguments[$name] ?? null;
-
-        return is_scalar($value) || $value instanceof \Stringable ? (string)$value : $default;
-    }
-
-    private function intArgument(string $name, int $default): int
-    {
-        $value = $this->arguments[$name] ?? null;
-
-        return is_numeric($value) ? (int)$value : $default;
     }
 
     private function normalizeText(mixed $text): string

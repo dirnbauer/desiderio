@@ -13,7 +13,7 @@ use TYPO3\CMS\Core\Core\ApplicationContext;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use Webconsulting\Desiderio\Utility\FriendlyCaptchaBypass;
-use Webconsulting\Desiderio\Utility\SiteSettingsBoolean;
+use Webconsulting\Desiderio\Utility\SiteSettings;
 
 final readonly class FriendlyCaptchaTestModeMiddleware implements MiddlewareInterface
 {
@@ -35,7 +35,7 @@ final readonly class FriendlyCaptchaTestModeMiddleware implements MiddlewareInte
         // even if the site setting is enabled by mistake.
         $context = $this->applicationContext ?? Environment::getContext();
         if ($context->isProduction()) {
-            if (SiteSettingsBoolean::isEnabled($site, FriendlyCaptchaBypass::TEST_MODE_SETTING)) {
+            if (SiteSettings::isEnabled($site, FriendlyCaptchaBypass::TEST_MODE_SETTING)) {
                 // The setting is a standing misconfiguration, not a per-request
                 // event: warning on every hit buried the log without telling
                 // anyone anything the first line had not already said. Once per

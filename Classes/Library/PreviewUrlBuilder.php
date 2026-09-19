@@ -6,6 +6,7 @@ namespace Webconsulting\Desiderio\Library;
 
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Frontend\Page\CacheHashCalculator;
+use Webconsulting\Desiderio\Utility\SiteSettings;
 
 /**
  * Builds cache-hash-protected frontend URLs that render exactly one element
@@ -23,8 +24,7 @@ final readonly class PreviewUrlBuilder
 
     public function build(Site $site, int $contentUid): string
     {
-        $configuredTypeNum = $site->getSettings()->get('elementLibrary.previewTypeNum', self::DEFAULT_TYPE_NUM);
-        $typeNum = is_numeric($configuredTypeNum) ? (int)$configuredTypeNum : self::DEFAULT_TYPE_NUM;
+        $typeNum = SiteSettings::integer($site, 'elementLibrary.previewTypeNum', self::DEFAULT_TYPE_NUM);
         $parameters = [
             'type' => $typeNum,
             'elPreview' => $contentUid,

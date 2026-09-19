@@ -9,6 +9,8 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 use Webconsulting\Desiderio\Templates\LintFinding;
 use Webconsulting\Desiderio\Templates\LintOptions;
 use Webconsulting\Desiderio\Templates\LintReport;
+use Webconsulting\Desiderio\Templates\LintRule;
+use Webconsulting\Desiderio\Templates\LintSeverity;
 use Webconsulting\Desiderio\Templates\TemplateLinter;
 
 /**
@@ -43,9 +45,9 @@ final class TemplateLinterTest extends FunctionalTestCase
         $report = $this->lint('unknown-viewhelper.html');
 
         self::assertTrue($report->hasErrors());
-        $errors = $report->getFindingsForRule(TemplateLinter::RULE_PARSE);
+        $errors = $report->findingsForRule(LintRule::Parse);
         self::assertCount(1, $errors);
-        self::assertSame(LintFinding::SEVERITY_ERROR, $errors[0]->severity);
+        self::assertSame(LintSeverity::Error, $errors[0]->severity);
         self::assertStringContainsString('<f:format.doesNotExist>', $errors[0]->message);
     }
 
@@ -54,7 +56,7 @@ final class TemplateLinterTest extends FunctionalTestCase
     {
         $report = $this->lint('unknown-argument.html');
 
-        $errors = $report->getFindingsForRule(TemplateLinter::RULE_PARSE);
+        $errors = $report->findingsForRule(LintRule::Parse);
         self::assertNotSame([], $errors);
         self::assertStringContainsString('Undeclared ViewHelper argument', $errors[0]->message);
         self::assertStringContainsString('nope', $errors[0]->message);
@@ -67,14 +69,14 @@ final class TemplateLinterTest extends FunctionalTestCase
 
         $messages = array_map(
             static fn(LintFinding $finding): string => $finding->line . ': ' . $finding->message,
-            $report->getFindingsForRule(TemplateLinter::RULE_COMPONENT_ARGUMENTS),
+            $report->findingsForRule(LintRule::ComponentArguments),
         );
         self::assertCount(3, $messages, implode("\n", $messages));
         self::assertStringContainsString('<d:atom.button> does not declare the argument(s) colour', $messages[0]);
         self::assertStringStartsWith('5:', $messages[0]);
         self::assertStringContainsString('<d:atom.icon> is called without the required argument(s) name', $messages[1]);
         self::assertStringContainsString('Unknown component <d:atom.doesNotExist>', $messages[2]);
-        self::assertSame([], $report->getFindingsForRule(TemplateLinter::RULE_PARSE), 'The parser duplicates are folded into the component-arguments rule');
+        self::assertSame([], $report->findingsForRule(LintRule::Parse), 'The parser duplicates are folded into the component-arguments rule');
     }
 
     #[Test]
@@ -82,13 +84,13 @@ final class TemplateLinterTest extends FunctionalTestCase
     {
         $report = $this->lint('undeclared-namespace.html');
 
-        $findings = $report->getFindingsForRule(TemplateLinter::RULE_NAMESPACE_USAGE);
-        $errors = array_values(array_filter($findings, static fn(LintFinding $finding): bool => $finding->isError()));
+        $findings = $report->findingsForRule(LintRule::NamespaceUsage);
+        $errors = array_values(array_filter($findings, static fn(LintFinding $finding): bool => $finding->severity === LintSeverity::Error));
         self::assertCount(1, $errors, implode("\n", $this->messages($report)));
         self::assertSame(5, $errors[0]->line);
         self::assertStringContainsString('Prefix "x" is used but neither declared', $errors[0]->message);
 
-        $warnings = array_values(array_filter($findings, static fn(LintFinding $finding): bool => $finding->severity === LintFinding::SEVERITY_WARNING));
+        $warnings = array_values(array_filter($findings, static fn(LintFinding $finding): bool => $finding->severity === LintSeverity::Warning));
         self::assertCount(1, $warnings);
         self::assertStringContainsString('"cb" is declared but never used', $warnings[0]->message);
     }
@@ -98,7 +100,7 @@ final class TemplateLinterTest extends FunctionalTestCase
     {
         $report = $this->lint('orphan-partial.html');
 
-        $errors = $report->getFindingsForRule(TemplateLinter::RULE_PARTIAL_RESOLVES);
+        $errors = $report->findingsForRule(LintRule::PartialResolves);
         self::assertCount(2, $errors, implode("\n", $this->messages($report)));
         self::assertStringContainsString('Partial "Does/NotExist" does not resolve', $errors[0]->message);
         self::assertStringContainsString('Partial "Nor/DoesThis" does not resolve', $errors[1]->message);
@@ -111,7 +113,7 @@ final class TemplateLinterTest extends FunctionalTestCase
     {
         $report = $this->lint('deprecated-constructs.html');
 
-        $messages = array_map(static fn(LintFinding $finding): string => $finding->message, $report->getFindingsForRule(TemplateLinter::RULE_DEPRECATED_CONSTRUCTS));
+        $messages = array_map(static fn(LintFinding $finding): string => $finding->message, $report->findingsForRule(LintRule::DeprecatedConstructs));
         self::assertCount(2, $messages, implode("\n", $messages));
         self::assertStringContainsString('{namespace}', $messages[0]);
         self::assertStringContainsString('f:widget.*', $messages[1]);
@@ -123,22 +125,22 @@ final class TemplateLinterTest extends FunctionalTestCase
         $report = $this->lint('third-party-namespace.html');
 
         self::assertFalse($report->hasErrors(), implode("\n", $this->messages($report)));
-        $skipped = $report->getSkipped();
+        $skipped = $report->findings(LintSeverity::Skipped);
         self::assertCount(1, $skipped);
         self::assertStringContainsString('"notinstalled" (Vendor\NotInstalledExtension\ViewHelpers) is not installed', $skipped[0]->message);
 
         $strict = $this->lint('third-party-namespace.html', strict: true);
         self::assertTrue($strict->hasErrors());
-        self::assertSame([], $strict->getSkipped());
-        self::assertStringContainsString('is not installed', $strict->getErrors()[0]->message);
+        self::assertSame([], $strict->findings(LintSeverity::Skipped));
+        self::assertStringContainsString('is not installed', $strict->findings(LintSeverity::Error)[0]->message);
     }
 
     #[Test]
     public function rulesCanBeSelected(): void
     {
-        $report = $this->lint('orphan-partial.html', rules: [TemplateLinter::RULE_PARSE]);
+        $report = $this->lint('orphan-partial.html', rules: [LintRule::Parse]);
 
-        self::assertSame([], $report->getFindings(), 'Only the parse rule ran, so the missing partial is not reported');
+        self::assertSame([], $report->findings(), 'Only the parse rule ran, so the missing partial is not reported');
     }
 
     #[Test]
@@ -161,9 +163,9 @@ final class TemplateLinterTest extends FunctionalTestCase
     }
 
     /**
-     * @param list<string>|null $rules
+     * @param list<LintRule> $rules
      */
-    private function lint(string $fixture, bool $strict = false, ?array $rules = null): LintReport
+    private function lint(string $fixture, bool $strict = false, array $rules = []): LintReport
     {
         return $this->get(TemplateLinter::class)->lint(new LintOptions([self::FIXTURES . '/' . $fixture], $strict, $rules));
     }
@@ -174,8 +176,8 @@ final class TemplateLinterTest extends FunctionalTestCase
     private function messages(LintReport $report): array
     {
         return array_map(
-            static fn(LintFinding $finding): string => sprintf('%s:%s [%s/%s] %s', $finding->file, $finding->line ?? '-', $finding->rule, $finding->severity, $finding->message),
-            $report->getFindings(),
+            static fn(LintFinding $finding): string => sprintf('%s:%s [%s/%s] %s', $finding->file, $finding->line ?? '-', $finding->rule->value, $finding->severity->value, $finding->message),
+            $report->findings(),
         );
     }
 }

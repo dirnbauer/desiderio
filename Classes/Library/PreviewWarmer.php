@@ -10,6 +10,7 @@ use TYPO3\CMS\Core\Exception\SiteNotFoundException;
 use TYPO3\CMS\Core\Http\RequestFactory;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Site\SiteFinder;
+use Webconsulting\Desiderio\Utility\SiteSettings;
 
 /**
  * "Prerenders" the element library: requests every seeded record's preview
@@ -25,7 +26,7 @@ final readonly class PreviewWarmer
         private SiteFinder $siteFinder,
     ) {}
 
-    public function resolveSite(int $storagePid): Site
+    private function resolveSite(int $storagePid): Site
     {
         try {
             return $this->siteFinder->getSiteByPageId($storagePid);
@@ -84,8 +85,7 @@ final readonly class PreviewWarmer
 
     private function configuredStoragePid(Site $site): int
     {
-        $configured = $site->getSettings()->get('elementLibrary.storagePid', 0);
-        return is_numeric($configured) ? (int)$configured : 0;
+        return SiteSettings::integer($site, 'elementLibrary.storagePid');
     }
 
     /**

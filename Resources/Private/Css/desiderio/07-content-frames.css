@@ -200,3 +200,36 @@
 .frame-space-after-medium { margin-block-end: var(--d-spacing-xl); }
 .frame-space-after-large { margin-block-end: var(--d-spacing-2xl); }
 .frame-space-after-extra-large { margin-block-end: var(--d-spacing-3xl); }
+
+/*
+ * Painted bands own their ink.
+ *
+ * A band sets `color` on itself and expects its copy to inherit, but the
+ * `.desiderio-content-element :where(h1 … h6 / p, li, figcaption)` rules above
+ * repaint every descendant to --foreground / --muted-foreground — near-black
+ * on a --primary or --foreground band, i.e. invisible. `.desiderio-section
+ * .bg-primary` already handles the bands the Section component paints; these
+ * are the ones a content element paints itself. Doubled class so the rule wins
+ * on specificity, not on stylesheet order.
+ */
+.cta-banner.cta-banner--primary :where(h1, h2, h3, h4, h5, h6),
+.content-highlight.content-highlight--primary :where(h1, h2, h3, h4, h5, h6),
+.feature-highlight.feature-highlight--primary :where(h1, h2, h3, h4, h5, h6),
+.cta .cta__banner :where(h1, h2, h3, h4, h5, h6) {
+    color: var(--primary-foreground);
+}
+
+.cta-banner.cta-banner--primary :where(p, li, figcaption),
+.content-highlight.content-highlight--primary :where(p, li, figcaption),
+.feature-highlight.feature-highlight--primary :where(p, li, figcaption),
+.cta .cta__banner :where(p, li, figcaption) {
+    color: color-mix(in oklch, var(--primary-foreground) 88%, transparent);
+}
+
+.cta-banner.cta-banner--dark :where(h1, h2, h3, h4, h5, h6) {
+    color: var(--background);
+}
+
+.cta-banner.cta-banner--dark :where(p, li, figcaption) {
+    color: color-mix(in oklch, var(--background) 88%, transparent);
+}

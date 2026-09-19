@@ -35,7 +35,6 @@
     grid-template-columns: 1fr;
     gap: var(--d-spacing-8);
     align-items: center;
-    padding-block: var(--d-spacing-12);
 }
 .hero__image {
     display: block;

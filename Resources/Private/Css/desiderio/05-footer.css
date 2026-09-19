@@ -32,8 +32,12 @@
 }
 
 .desiderio-footer__wordmark {
+    /* WCAG 2.2 AA Target Size (Minimum): a standalone brand link, not a link
+       inside a sentence, so it has to clear 24px on its own. */
     display: inline-flex;
     width: fit-content;
+    min-height: 1.5rem;
+    align-items: center;
     color: var(--foreground);
     font-size: 1.125rem;
     font-weight: 700;

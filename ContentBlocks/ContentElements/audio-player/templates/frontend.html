@@ -10,7 +10,7 @@
         <d:molecule.card class="audio-player__card">
             <div class="audio-player__info">
                 <f:if condition="{data.header}">
-                    <h2 class="audio-player__title">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h4" class="audio-player__title">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.description}">
                     <div class="audio-player__description d-richtext">{data -> f:render.text(field: 'description')}</div>

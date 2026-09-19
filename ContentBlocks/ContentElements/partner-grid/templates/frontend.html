@@ -29,7 +29,7 @@
                             </f:else>
                         </f:if>
                     </div>
-                    <h3 class="partner-grid__name">{item -> f:render.text(field: 'name')}</h3>
+                    <d:atom.typography tag="h3" variant="h3" class="partner-grid__name">{item -> f:render.text(field: 'name')}</d:atom.typography>
                     <f:if condition="{item.kind}">
                         <d:atom.badge variant="secondary" class="partner-grid__kind">{item -> f:render.text(field: 'kind')}</d:atom.badge>
                     </f:if>

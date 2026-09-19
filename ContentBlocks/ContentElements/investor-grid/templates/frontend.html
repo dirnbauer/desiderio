@@ -29,7 +29,7 @@
                             </f:else>
                         </f:if>
                     </div>
-                    <h3 class="investor-grid__name">{inv -> f:render.text(field: 'name')}</h3>
+                    <d:atom.typography tag="h3" variant="h3" class="investor-grid__name">{inv -> f:render.text(field: 'name')}</d:atom.typography>
                     <f:if condition="{inv.type}"><p class="investor-grid__type">{inv -> f:render.text(field: 'type')}</p></f:if>
                     <f:if condition="{inv.link.url}">
                         <d:atom.link href="{f:uri.typolink(parameter: inv.link.url)}" target="{inv.link.target}" variant="muted" class="investor-grid__link focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none">

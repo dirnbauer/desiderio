@@ -28,7 +28,7 @@
                         </f:else>
                     </f:if>
                     <div class="advisor-grid__body">
-                        <h3 class="advisor-grid__name">{advisor -> f:render.text(field: 'name')}</h3>
+                        <d:atom.typography tag="h3" variant="h3" class="advisor-grid__name">{advisor -> f:render.text(field: 'name')}</d:atom.typography>
                         <f:if condition="{advisor.expertise}"><p class="advisor-grid__expertise">{advisor -> f:render.text(field: 'expertise')}</p></f:if>
                         <f:if condition="{advisor.company}"><p class="advisor-grid__company">{advisor -> f:render.text(field: 'company')}</p></f:if>
                         <f:for each="{advisor.image}" as="fileReference">

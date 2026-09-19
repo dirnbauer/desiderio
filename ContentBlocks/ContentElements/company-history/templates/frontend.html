@@ -19,7 +19,7 @@
                 <li class="company-history__event">
                     <span class="company-history__year">{event -> f:render.text(field: 'year')}</span>
                     <div class="company-history__body">
-                        <h3 class="company-history__title">{event -> f:render.text(field: 'title')}</h3>
+                        <d:atom.typography tag="h3" variant="large" class="company-history__title">{event -> f:render.text(field: 'title')}</d:atom.typography>
                         <f:if condition="{event.description}"><div class="company-history__description d-richtext">{event -> f:render.text(field: 'description')}</div></f:if>
                     </div>
                 </li>

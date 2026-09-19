@@ -13,7 +13,7 @@
                     <p class="pricing-usage__eyebrow">{data -> f:render.text(field: 'eyebrow')}</p>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <h2 class="pricing-usage__headline">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h2" class="pricing-usage__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.subheadline}">
                     <p class="pricing-usage__description">{data -> f:render.text(field: 'subheadline')}</p>
@@ -25,7 +25,7 @@
             <f:for each="{data.items}" as="item" iteration="iter">
                 <li class="pricing-usage__item">
                     <article class="pricing-usage__card" aria-labelledby="pricing-usage-{data.uid}-{iter.cycle}">
-                        <h3 class="pricing-usage__title" id="pricing-usage-{data.uid}-{iter.cycle}">{item -> f:render.text(field: 'title')}</h3>
+                        <d:atom.typography tag="h3" variant="h3" class="pricing-usage__title" attributes="{id: 'pricing-usage-{data.uid}-{iter.cycle}'}">{item -> f:render.text(field: 'title')}</d:atom.typography>
                         <p class="pricing-usage__rate-row">
                             <span class="pricing-usage__rate">{item -> f:render.text(field: 'rate')}</span>
                             <span class="pricing-usage__unit">/ {item -> f:render.text(field: 'unit')}</span>

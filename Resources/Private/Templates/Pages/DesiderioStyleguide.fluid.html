@@ -1,6 +1,7 @@
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/ViewHelpers"
+    xmlns:dc="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
     data-namespace-typo3-fluid="true"
 >
 
@@ -118,13 +119,13 @@
                     <div class="docs__preview-toolbar">
                         <div class="stack stack--horizontal stack--gap-sm">
                             <button type="button" class="btn btn--ghost btn--sm docs__viewport-btn docs__viewport-btn--active" data-viewport="desktop" title="Desktop">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                                <dc:atom.icon name="monitor" size="sm"/>
                             </button>
                             <button type="button" class="btn btn--ghost btn--sm docs__viewport-btn" data-viewport="tablet" title="Tablet">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+                                <dc:atom.icon name="tablet" size="sm"/>
                             </button>
                             <button type="button" class="btn btn--ghost btn--sm docs__viewport-btn" data-viewport="mobile" title="Mobile">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+                                <dc:atom.icon name="smartphone" size="sm"/>
                             </button>
                         </div>
                     </div>

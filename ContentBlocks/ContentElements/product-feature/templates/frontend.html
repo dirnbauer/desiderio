@@ -21,7 +21,7 @@
                     <span class="product-feature__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <h2 class="product-feature__headline">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h2" class="product-feature__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.description}">
                     <div class="product-feature__description d-richtext">{data -> f:render.text(field: 'description')}</div>

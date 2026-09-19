@@ -13,7 +13,7 @@
                     <span class="rating-display__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <h2 class="rating-display__headline">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h2" class="rating-display__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
             </header>
         </f:if>
@@ -35,7 +35,7 @@
                                 <d:atom.icon name="star" size="default" class="rating-display__star" />
                             </f:for>
                         </div>
-                        <h3 class="rating-display__platform">{rating -> f:render.text(field: 'platform')}</h3>
+                        <d:atom.typography tag="h3" variant="h3" class="rating-display__platform">{rating -> f:render.text(field: 'platform')}</d:atom.typography>
                         <f:if condition="{rating.review_count}">
                             <span class="rating-display__count">{rating -> f:render.text(field: 'review_count')}</span>
                         </f:if>

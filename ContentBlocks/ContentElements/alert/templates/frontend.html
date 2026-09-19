@@ -15,7 +15,7 @@
     </f:if>
     <div class="alert__content">
         <f:if condition="{data.header}">
-            <h2 class="alert__title">{data -> f:render.text(field: 'header')}</h2>
+            <d:atom.typography tag="h2" variant="h2" class="alert__title">{data -> f:render.text(field: 'header')}</d:atom.typography>
         </f:if>
         <div class="alert__description">
             {data -> f:render.text(field: 'description')}

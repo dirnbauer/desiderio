@@ -7,8 +7,12 @@
 <f:argument name="tag" type="string" optional="{true}" default="p" />
 <f:argument name="variant" type="string" optional="{true}" default="p" />
 <f:argument name="class" type="string" optional="{true}" default="" />
-<f:argument name="id" type="string" optional="{true}" />
-<f:argument name="itemprop" type="string" optional="{true}" />
+<f:comment>
+    `attributes` carries what a control needs beyond the shadcn contract:
+    aria-label, aria-expanded, aria-controls, download, data-* hooks read by
+    the shared runtime. Keys are template-authored, values are escaped.
+</f:comment>
+<f:argument name="attributes" type="array" optional="{true}" default="{}" />
 
 <f:variable name="variantClass">
     <f:switch expression="{variant}">
@@ -29,12 +33,12 @@
 <f:variable name="combinedClass" value="{variantClass -> f:format.trim()} {class}" />
 
 <f:switch expression="{tag}">
-    <f:case value="h1"><h1 data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" id="{id}" itemprop="{itemprop}"><f:slot /></h1></f:case>
-    <f:case value="h2"><h2 data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" id="{id}" itemprop="{itemprop}"><f:slot /></h2></f:case>
-    <f:case value="h3"><h3 data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" id="{id}" itemprop="{itemprop}"><f:slot /></h3></f:case>
-    <f:case value="h4"><h4 data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" id="{id}" itemprop="{itemprop}"><f:slot /></h4></f:case>
-    <f:case value="blockquote"><blockquote data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" id="{id}" itemprop="{itemprop}"><f:slot /></blockquote></f:case>
-    <f:case value="span"><span data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" id="{id}" itemprop="{itemprop}"><f:slot /></span></f:case>
-    <f:case value="div"><div data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" id="{id}" itemprop="{itemprop}"><f:slot /></div></f:case>
-    <f:defaultCase><p data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" id="{id}" itemprop="{itemprop}"><f:slot /></p></f:defaultCase>
+    <f:case value="h1"><h1 data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}"<f:for each="{attributes}" as="attributeValue" key="attributeName"> {attributeName}="{attributeValue}"</f:for>><f:slot /></h1></f:case>
+    <f:case value="h2"><h2 data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}"<f:for each="{attributes}" as="attributeValue" key="attributeName"> {attributeName}="{attributeValue}"</f:for>><f:slot /></h2></f:case>
+    <f:case value="h3"><h3 data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}"<f:for each="{attributes}" as="attributeValue" key="attributeName"> {attributeName}="{attributeValue}"</f:for>><f:slot /></h3></f:case>
+    <f:case value="h4"><h4 data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}"<f:for each="{attributes}" as="attributeValue" key="attributeName"> {attributeName}="{attributeValue}"</f:for>><f:slot /></h4></f:case>
+    <f:case value="blockquote"><blockquote data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}"<f:for each="{attributes}" as="attributeValue" key="attributeName"> {attributeName}="{attributeValue}"</f:for>><f:slot /></blockquote></f:case>
+    <f:case value="span"><span data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}"<f:for each="{attributes}" as="attributeValue" key="attributeName"> {attributeName}="{attributeValue}"</f:for>><f:slot /></span></f:case>
+    <f:case value="div"><div data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}"<f:for each="{attributes}" as="attributeValue" key="attributeName"> {attributeName}="{attributeValue}"</f:for>><f:slot /></div></f:case>
+    <f:defaultCase><p data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}"<f:for each="{attributes}" as="attributeValue" key="attributeName"> {attributeName}="{attributeValue}"</f:for>><f:slot /></p></f:defaultCase>
 </f:switch>

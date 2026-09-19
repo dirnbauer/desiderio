@@ -13,7 +13,7 @@
                     <span class="product-grid__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <h2 class="product-grid__headline">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h2" class="product-grid__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
             </header>
         </f:if>
@@ -29,7 +29,7 @@
                         </div>
                     </f:if>
                     <div class="product-grid__body">
-                        <h3 class="product-grid__name">{product -> f:render.text(field: 'name')}</h3>
+                        <d:atom.typography tag="h3" variant="large" class="product-grid__name">{product -> f:render.text(field: 'name')}</d:atom.typography>
                         <span class="product-grid__price">{product -> f:render.text(field: 'price')}</span>
                         <f:if condition="{product.description_text}">
                             <p class="product-grid__desc">{product -> f:render.text(field: 'description_text')}</p>

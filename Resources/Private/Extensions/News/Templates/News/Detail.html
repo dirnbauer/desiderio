@@ -33,22 +33,26 @@
                     <f:if condition="{paginated}">
                         <nav class="grid gap-3 sm:grid-cols-2" aria-label="{f:translate(extensionName: 'desiderio', key: 'news.prevNext.aria', default: 'Previous and next article')}">
                             <f:if condition="{paginated.prev}">
-                                <f:link.action action="detail" controller="News" extensionName="News" pluginName="Pi1" pageUid="{settings.detailPid}" arguments="{news: paginated.prev}" class="group/prev rounded-xl border border-border bg-card px-4 py-3 text-sm text-muted-foreground !no-underline transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40">
-                                    <span class="flex items-center gap-2 text-xs font-medium uppercase tracking-normal">
-                                        <d:atom.icon name="chevron-left" size="xs"/>
-                                        <f:translate key="paginate_previous" />
-                                    </span>
-                                    <span class="mt-1 block font-medium text-foreground group-hover/prev:text-link">{paginated.prev.title}</span>
-                                </f:link.action>
+                                <d:molecule.card size="sm" class="group/prev relative px-4 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground has-[a:focus-visible]:ring-3 has-[a:focus-visible]:ring-ring/40">
+                                    <f:link.action action="detail" controller="News" extensionName="News" pluginName="Pi1" pageUid="{settings.detailPid}" arguments="{news: paginated.prev}" class="block text-inherit !no-underline after:absolute after:inset-0 focus-visible:outline-none">
+                                        <span class="flex items-center gap-2 text-xs font-medium uppercase tracking-normal">
+                                            <d:atom.icon name="chevron-left" size="xs"/>
+                                            <f:translate key="paginate_previous" />
+                                        </span>
+                                        <span class="mt-1 block font-medium text-foreground group-hover/prev:text-link">{paginated.prev.title}</span>
+                                    </f:link.action>
+                                </d:molecule.card>
                             </f:if>
                             <f:if condition="{paginated.next}">
-                                <f:link.action action="detail" controller="News" extensionName="News" pluginName="Pi1" pageUid="{settings.detailPid}" arguments="{news: paginated.next}" class="group/next rounded-xl border border-border bg-card px-4 py-3 text-sm text-muted-foreground !no-underline transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40 sm:text-right">
-                                    <span class="flex items-center gap-2 text-xs font-medium uppercase tracking-normal sm:justify-end">
-                                        <f:translate key="paginate_next" />
-                                        <d:atom.icon name="chevron-right" size="xs"/>
-                                    </span>
-                                    <span class="mt-1 block font-medium text-foreground group-hover/next:text-link">{paginated.next.title}</span>
-                                </f:link.action>
+                                <d:molecule.card size="sm" class="group/next relative px-4 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground has-[a:focus-visible]:ring-3 has-[a:focus-visible]:ring-ring/40 sm:text-right">
+                                    <f:link.action action="detail" controller="News" extensionName="News" pluginName="Pi1" pageUid="{settings.detailPid}" arguments="{news: paginated.next}" class="block text-inherit !no-underline after:absolute after:inset-0 focus-visible:outline-none">
+                                        <span class="flex items-center gap-2 text-xs font-medium uppercase tracking-normal sm:justify-end">
+                                            <f:translate key="paginate_next" />
+                                            <d:atom.icon name="chevron-right" size="xs"/>
+                                        </span>
+                                        <span class="mt-1 block font-medium text-foreground group-hover/next:text-link">{paginated.next.title}</span>
+                                    </f:link.action>
+                                </d:molecule.card>
                             </f:if>
                         </nav>
                     </f:if>
@@ -79,9 +83,9 @@
                 </div>
 
                 <div class="flex flex-col gap-4">
-                    <d:atom.typography tag="h1" variant="h1" class="text-balance leading-tight" itemprop="headline">{newsItem.title}</d:atom.typography>
+                    <d:atom.typography tag="h1" variant="h1" class="text-balance leading-tight" attributes="{itemprop: 'headline'}">{newsItem.title}</d:atom.typography>
                     <f:if condition="{newsItem.teaser}">
-                        <d:atom.typography variant="lead" class="max-w-3xl text-pretty leading-8" itemprop="description">
+                        <d:atom.typography variant="lead" class="max-w-3xl text-pretty leading-8" attributes="{itemprop: 'description'}">
                             <f:format.html>{newsItem.teaser}</f:format.html>
                         </d:atom.typography>
                     </f:if>

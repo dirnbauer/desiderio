@@ -18,10 +18,10 @@
         <div class="cookie-banner__inner">
             <div class="cookie-banner__content">
                 <f:if condition="{data.header}">
-                    <h2 class="cookie-banner__title" id="{cookieId}-title">
+                    <d:atom.typography tag="h2" variant="h2" class="cookie-banner__title" attributes="{id: '{cookieId}-title'}">
                         <span class="cookie-banner__title-icon" aria-hidden="true"><d:atom.icon name="shield-check" size="sm"/></span>
                         <span>{data -> f:render.text(field: 'header')}</span>
-                    </h2>
+                    </d:atom.typography>
                 </f:if>
                 <div class="cookie-banner__message">
                     {data -> f:render.text(field: 'content')}

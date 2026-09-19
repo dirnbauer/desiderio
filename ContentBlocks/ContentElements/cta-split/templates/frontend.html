@@ -15,7 +15,7 @@
 
         <div class="cta-split__grid">
             <d:molecule.card class="cta-split__side">
-                <f:if condition="{data.left_title}"><h3 class="cta-split__title">{data -> f:render.text(field: 'left_title')}</h3></f:if>
+                <f:if condition="{data.left_title}"><d:atom.typography tag="h3" variant="h3" class="cta-split__title">{data -> f:render.text(field: 'left_title')}</d:atom.typography></f:if>
                 <f:if condition="{data.left_description}"><div class="cta-split__description d-richtext">{data -> f:render.text(field: 'left_description')}</div></f:if>
                 <f:if condition="{data.left_button_text} && {data.left_button_link.url}">
                     <d:molecule.actionGroup class="cta-split__actions">
@@ -25,7 +25,7 @@
             </d:molecule.card>
 
             <d:molecule.card class="cta-split__side">
-                <f:if condition="{data.right_title}"><h3 class="cta-split__title">{data -> f:render.text(field: 'right_title')}</h3></f:if>
+                <f:if condition="{data.right_title}"><d:atom.typography tag="h3" variant="h3" class="cta-split__title">{data -> f:render.text(field: 'right_title')}</d:atom.typography></f:if>
                 <f:if condition="{data.right_description}"><div class="cta-split__description d-richtext">{data -> f:render.text(field: 'right_description')}</div></f:if>
                 <f:if condition="{data.right_button_text} && {data.right_button_link.url}">
                     <d:molecule.actionGroup class="cta-split__actions">

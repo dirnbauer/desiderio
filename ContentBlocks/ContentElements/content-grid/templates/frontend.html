@@ -15,14 +15,14 @@
             <f:for each="{data.items}" as="item">
                 <d:molecule.card class="content-grid__item">
                     <f:if condition="{item.title}">
-                        <h3 class="content-grid__title">
+                        <d:atom.typography tag="h3" variant="h3" class="content-grid__title">
                             <f:if condition="{item.link.url}">
                                 <f:then>
                                     <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="content-grid__title-link">{item -> f:render.text(field: 'title')}</d:atom.link>
                                 </f:then>
                                 <f:else>{item -> f:render.text(field: 'title')}</f:else>
                             </f:if>
-                        </h3>
+                        </d:atom.typography>
                     </f:if>
                     <f:if condition="{item.content}">
                         <div class="content-grid__content">{item -> f:render.text(field: 'content')}</div>

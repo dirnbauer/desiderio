@@ -14,10 +14,10 @@
                 <span><f:translate extensionName="Blog" key="pagelayout.label.blogpost" default="Blog post"/></span>
             </d:atom.badge>
 
-            <d:atom.typography tag="h1" variant="h3" class="text-balance tracking-normal md:text-3xl" itemprop="headline">{post.title}</d:atom.typography>
+            <d:atom.typography tag="h1" variant="h3" class="text-balance tracking-normal md:text-3xl" attributes="{itemprop: 'headline'}">{post.title}</d:atom.typography>
 
             <f:if condition="{post.abstract} || {post.description}">
-                <d:atom.typography variant="muted" class="max-w-2xl text-pretty leading-relaxed" itemprop="description">
+                <d:atom.typography variant="muted" class="max-w-2xl text-pretty leading-relaxed" attributes="{itemprop: 'description'}">
                     <f:if condition="{post.abstract}">
                         <f:then>{post.abstract}</f:then>
                         <f:else>{post.description}</f:else>

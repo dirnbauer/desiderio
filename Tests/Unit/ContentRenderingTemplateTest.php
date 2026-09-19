@@ -523,9 +523,11 @@ final class ContentRenderingTemplateTest extends TestCase
         $composerSuggest = self::requireArray($composer['suggest'] ?? null);
         self::assertArrayHasKey('studiomitte/friendlycaptcha', $composerSuggest);
 
-        $baseSet = self::parseYamlArray(__DIR__ . '/../../Configuration/Sets/Desiderio/config.yaml');
-        $optionalDependencies = self::requireArray($baseSet['optionalDependencies'] ?? null);
-        self::assertContains('studiomitte/friendlycaptcha', $optionalDependencies);
+        // FriendlyCaptcha ships no Site Set (4.1.7): the Powermail set imports its
+        // TypoScript behind an extensionLoaded() condition instead of depending on one.
+        $powermailSetup = (string)file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioPowermail/setup.typoscript');
+        self::assertStringContainsString('[extensionLoaded("friendlycaptcha_official")]', $powermailSetup);
+        self::assertStringContainsString("@import 'EXT:friendlycaptcha_official/Configuration/TypoScript/Powermail/setup.typoscript'", $powermailSetup);
     }
 
     public function testDesiderioMailFormsUseBrandedEmailTemplates(): void

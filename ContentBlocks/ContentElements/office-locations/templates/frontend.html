@@ -18,7 +18,7 @@
             <f:for each="{data.location_items}" as="loc">
                 <li>
                     <d:molecule.card class="office-locations__item">
-                        <h3 class="office-locations__city">{loc -> f:render.text(field: 'city')}</h3>
+                        <d:atom.typography tag="h3" variant="h3" class="office-locations__city">{loc -> f:render.text(field: 'city')}</d:atom.typography>
                         <address class="office-locations__details">
                             <f:if condition="{loc.address}">
                                 <p class="office-locations__address">

@@ -19,7 +19,7 @@
                         <d:atom.icon name="{f:if(condition: settings.comments.disqus.enable, then: 'messages', else: 'send')}" size="sm"/>
                     </span>
                     <div class="space-y-1">
-                        <d:atom.typography tag="h2" variant="h3" id="postcommentform-{post.uid}-title">
+                        <d:atom.typography tag="h2" variant="h3" attributes="{id: 'postcommentform-{post.uid}-title'}">
                             <f:if condition="{settings.comments.disqus.enable}">
                                 <f:then><f:translate extensionName="Blog" key="headline.comments">Comments</f:translate></f:then>
                                 <f:else><f:translate extensionName="Blog" key="headline.commentform">Leave a comment</f:translate></f:else>

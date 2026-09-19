@@ -18,7 +18,7 @@
             </f:if>
             <div class="product-card__body">
                 <f:if condition="{data.header}">
-                    <h2 class="product-card__title">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h2" class="product-card__title">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <p class="product-card__price-row">
                     <span class="product-card__price">

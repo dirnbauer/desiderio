@@ -12,9 +12,9 @@
 <d:molecule.card class="h-full border-border bg-card transition-colors hover:border-primary/40">
     <d:molecule.cardContent class="flex h-full flex-col gap-4">
         <div class="flex items-center justify-between gap-3">
-            <h2 class="text-lg font-semibold text-foreground" itemprop="name">
+            <d:atom.typography tag="h2" variant="large" class="text-foreground" attributes="{itemprop: 'name'}">
                 <blogvh:link.category category="{category}" class="!no-underline outline-none transition-colors hover:text-link focus-visible:ring-3 focus-visible:ring-ring/40" />
-            </h2>
+            </d:atom.typography>
             <span class="inline-flex size-8 items-center justify-center rounded-md bg-muted text-muted-foreground" aria-hidden="true">
                 <d:atom.icon name="folder" size="sm"/>
             </span>

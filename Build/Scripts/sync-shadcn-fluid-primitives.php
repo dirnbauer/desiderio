@@ -504,12 +504,14 @@ function renderLocalGeneratedHeader(string $style, string $preset, string $scrip
 
 function renderTypography(string $header): string
 {
+    $attributes = 'data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}"' . extraAttributes();
+
     return $header
         . '<f:argument name="tag" type="string" optional="{true}" default="p" />' . "\n"
         . '<f:argument name="variant" type="string" optional="{true}" default="p" />' . "\n"
         . '<f:argument name="class" type="string" optional="{true}" default="" />' . "\n"
-        . '<f:argument name="id" type="string" optional="{true}" />' . "\n"
-        . '<f:argument name="itemprop" type="string" optional="{true}" />' . "\n\n"
+        . renderAttributesArgument()
+        . "\n"
         . '<f:variable name="variantClass">' . "\n"
         . '    <f:switch expression="{variant}">' . "\n"
         . '        <f:case value="h1">scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl</f:case>' . "\n"
@@ -527,28 +529,67 @@ function renderTypography(string $header): string
         . '</f:variable>' . "\n\n"
         . '<f:variable name="combinedClass" value="{variantClass -> f:format.trim()} {class}" />' . "\n\n"
         . '<f:switch expression="{tag}">' . "\n"
-        . '    <f:case value="h1"><h1 data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" id="{id}" itemprop="{itemprop}"><f:slot /></h1></f:case>' . "\n"
-        . '    <f:case value="h2"><h2 data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" id="{id}" itemprop="{itemprop}"><f:slot /></h2></f:case>' . "\n"
-        . '    <f:case value="h3"><h3 data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" id="{id}" itemprop="{itemprop}"><f:slot /></h3></f:case>' . "\n"
-        . '    <f:case value="h4"><h4 data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" id="{id}" itemprop="{itemprop}"><f:slot /></h4></f:case>' . "\n"
-        . '    <f:case value="blockquote"><blockquote data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" id="{id}" itemprop="{itemprop}"><f:slot /></blockquote></f:case>' . "\n"
-        . '    <f:case value="span"><span data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" id="{id}" itemprop="{itemprop}"><f:slot /></span></f:case>' . "\n"
-        . '    <f:case value="div"><div data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" id="{id}" itemprop="{itemprop}"><f:slot /></div></f:case>' . "\n"
-        . '    <f:defaultCase><p data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" id="{id}" itemprop="{itemprop}"><f:slot /></p></f:defaultCase>' . "\n"
+        . '    <f:case value="h1"><h1 ' . $attributes . '><f:slot /></h1></f:case>' . "\n"
+        . '    <f:case value="h2"><h2 ' . $attributes . '><f:slot /></h2></f:case>' . "\n"
+        . '    <f:case value="h3"><h3 ' . $attributes . '><f:slot /></h3></f:case>' . "\n"
+        . '    <f:case value="h4"><h4 ' . $attributes . '><f:slot /></h4></f:case>' . "\n"
+        . '    <f:case value="blockquote"><blockquote ' . $attributes . '><f:slot /></blockquote></f:case>' . "\n"
+        . '    <f:case value="span"><span ' . $attributes . '><f:slot /></span></f:case>' . "\n"
+        . '    <f:case value="div"><div ' . $attributes . '><f:slot /></div></f:case>' . "\n"
+        . '    <f:defaultCase><p ' . $attributes . '><f:slot /></p></f:defaultCase>' . "\n"
         . '</f:switch>' . "\n";
+}
+
+/**
+ * React spreads `...props`; Fluid needs an explicit array. `attributes` carries the
+ * hooks a control needs beyond the shadcn contract (aria-*, data-* for the runtime).
+ */
+function renderAttributesArgument(): string
+{
+    return "<f:comment>\n"
+        . "    `attributes` carries what a control needs beyond the shadcn contract:\n"
+        . "    aria-label, aria-expanded, aria-controls, download, data-* hooks read by\n"
+        . "    the shared runtime. Keys are template-authored, values are escaped.\n"
+        . "</f:comment>\n"
+        . '<f:argument name="attributes" type="array" optional="{true}" default="{}" />' . "\n";
+}
+
+function extraAttributes(): string
+{
+    return '<f:for each="{attributes}" as="attributeValue" key="attributeName"> {attributeName}="{attributeValue}"</f:for>';
 }
 
 function renderBadge(array $recipe, string $header): string
 {
+    $attributes = 'data-slot="badge" data-variant="{variant}" class="{base} {variantClass -> f:format.trim()} {class}"' . extraAttributes();
+
     return $header
         . '<f:argument name="variant" type="string" optional="{true}" default="default" />' . "\n"
-        . '<f:argument name="class" type="string" optional="{true}" default="" />' . "\n\n"
+        . '<f:argument name="class" type="string" optional="{true}" default="" />' . "\n"
+        . '<f:comment>' . "\n"
+        . '    `href` renders the badge as an anchor — shadcn\'s `asChild` case for' . "\n"
+        . '    removable filters and tag links.' . "\n"
+        . '</f:comment>' . "\n"
+        . '<f:argument name="href" type="string" optional="{true}" default="" />' . "\n"
+        . '<f:argument name="target" type="string" optional="{true}" default="" />' . "\n"
+        . renderAttributesArgument()
+        . "\n"
         . sprintf('<f:variable name="base" value="%s" />', attr($recipe['base'])) . "\n\n"
         . renderSwitch('variant', $recipe['variants'])
         . "\n"
-        . '<span data-slot="badge" data-variant="{variant}" class="{base} {variantClass -> f:format.trim()} {class}">' . "\n"
-        . '    <f:slot />' . "\n"
-        . '</span>' . "\n";
+        . '<f:if condition="{href}">' . "\n"
+        . '    <f:then>' . "\n"
+        . '        <f:variable name="rel" value="{f:if(condition: \'{target} == \\\'_blank\\\'\', then: \'noopener noreferrer\', else: \'\')}" />' . "\n"
+        . sprintf('        <a href="{href}" target="{target}" rel="{rel}" %s>', $attributes) . "\n"
+        . '            <f:slot />' . "\n"
+        . '        </a>' . "\n"
+        . '    </f:then>' . "\n"
+        . '    <f:else>' . "\n"
+        . sprintf('        <span %s>', $attributes) . "\n"
+        . '            <f:slot />' . "\n"
+        . '        </span>' . "\n"
+        . '    </f:else>' . "\n"
+        . '</f:if>' . "\n";
 }
 
 function renderButton(array $recipe, string $header): string
@@ -560,7 +601,9 @@ function renderButton(array $recipe, string $header): string
         . '<f:argument name="target" type="string" optional="{true}" default="" />' . "\n"
         . '<f:argument name="class" type="string" optional="{true}" default="" />' . "\n"
         . '<f:argument name="disabled" type="bool" optional="{true}" default="{false}" />' . "\n"
-        . '<f:argument name="type" type="string" optional="{true}" default="button" />' . "\n\n"
+        . '<f:argument name="type" type="string" optional="{true}" default="button" />' . "\n"
+        . renderAttributesArgument()
+        . "\n"
         . sprintf('<f:variable name="base" value="%s" />', attr($recipe['base'])) . "\n\n"
         . renderSwitch('variant', $recipe['variants'])
         . "\n"
@@ -570,19 +613,19 @@ function renderButton(array $recipe, string $header): string
         . '<f:if condition="{href}">' . "\n"
         . '    <f:then>' . "\n"
         . '        <f:variable name="rel" value="{f:if(condition: \'{target} == \\\'_blank\\\'\', then: \'noopener noreferrer\', else: \'\')}" />' . "\n"
-        . '        <a href="{href}" class="{btnClass -> f:format.trim()}" target="{target}" rel="{rel}" data-slot="button" data-variant="{variant}" data-size="{size}">' . "\n"
+        . sprintf('        <a href="{href}" class="{btnClass -> f:format.trim()}" target="{target}" rel="{rel}" data-slot="button" data-variant="{variant}" data-size="{size}"%s>', extraAttributes()) . "\n"
         . '            <f:slot />' . "\n"
         . '        </a>' . "\n"
         . '    </f:then>' . "\n"
         . '    <f:else>' . "\n"
         . '        <f:if condition="{disabled}">' . "\n"
         . '            <f:then>' . "\n"
-        . '                <button type="{type}" class="{btnClass -> f:format.trim()}" disabled="disabled" data-slot="button" data-variant="{variant}" data-size="{size}">' . "\n"
+        . sprintf('                <button type="{type}" class="{btnClass -> f:format.trim()}" disabled="disabled" data-slot="button" data-variant="{variant}" data-size="{size}"%s>', extraAttributes()) . "\n"
         . '                    <f:slot />' . "\n"
         . '                </button>' . "\n"
         . '            </f:then>' . "\n"
         . '            <f:else>' . "\n"
-        . '                <button type="{type}" class="{btnClass -> f:format.trim()}" data-slot="button" data-variant="{variant}" data-size="{size}">' . "\n"
+        . sprintf('                <button type="{type}" class="{btnClass -> f:format.trim()}" data-slot="button" data-variant="{variant}" data-size="{size}"%s>', extraAttributes()) . "\n"
         . '                    <f:slot />' . "\n"
         . '                </button>' . "\n"
         . '            </f:else>' . "\n"
@@ -969,13 +1012,34 @@ function renderCard(array $recipe, string $header): string
     $cardRootCompatibility = 'px-4 has-data-[slot=card-header]:px-0 has-data-[slot=card-content]:px-0 has-data-[slot=card-footer]:px-0 has-[>img:first-child]:px-0 data-[size=sm]:px-3 data-[size=sm]:has-data-[slot=card-header]:px-0 data-[size=sm]:has-data-[slot=card-content]:px-0 data-[size=sm]:has-data-[slot=card-footer]:px-0';
     $class = normalizeClass($recipe['root'] . ' ' . $cardRootCompatibility);
 
+    // React's <Card asChild> becomes an explicit tag list in Fluid: the surface stays
+    // identical, only the sectioning element changes (article for a teaser, li inside a
+    // list, section for a landmark, figure for a quote, aside for a sidebar).
+    $tags = ['article', 'section', 'aside', 'figure', 'li'];
+    $attributes = 'data-slot="card" data-size="{size}" class="{cardClass -> f:format.trim()}"' . extraAttributes();
+
+    $markup = '';
+    foreach ($tags as $tag) {
+        $markup .= sprintf(
+            "    <f:case value=\"%s\"><%s %s><f:slot /></%s></f:case>\n",
+            $tag,
+            $tag,
+            $attributes,
+            $tag
+        );
+    }
+
     return $header
         . '<f:argument name="class" type="string" optional="{true}" default="" />' . "\n"
-        . '<f:argument name="role" type="string" optional="{true}" />' . "\n"
-        . '<f:argument name="size" type="string" optional="{true}" default="default" />' . "\n\n"
-        . sprintf('<div data-slot="card" data-size="{size}" class="%s {class}" role="{role}">', attr($class)) . "\n"
-        . '    <f:slot />' . "\n"
-        . '</div>' . "\n";
+        . '<f:argument name="size" type="string" optional="{true}" default="default" />' . "\n"
+        . '<f:argument name="tag" type="string" optional="{true}" default="div" />' . "\n"
+        . renderAttributesArgument()
+        . "\n"
+        . sprintf('<f:variable name="cardClass" value="%s {class}" />', attr($class)) . "\n\n"
+        . '<f:switch expression="{tag}">' . "\n"
+        . $markup
+        . sprintf("    <f:defaultCase><div %s><f:slot /></div></f:defaultCase>\n", $attributes)
+        . '</f:switch>' . "\n";
 }
 
 function renderCardHeader(array $recipe, string $header): string
@@ -1218,7 +1282,58 @@ function tokenizeRecipes(array $recipes): array
     }
     $recipes['tabs']['trigger'] = applyShapeTokens($recipes['tabs']['trigger'], 'control', false, false);
 
+    $recipes['button'] = hoistBorderColorOutOfBase($recipes['button']);
+    $recipes['badge'] = hoistBorderColorOutOfBase($recipes['badge']);
+
     return $recipes;
+}
+
+/**
+ * React composes shadcn classes through `cn()`, whose tailwind-merge drops the
+ * base token when a variant sets the same property. Fluid has no such merge:
+ * base and variant land in one class attribute and the COMPILED STYLESHEET's
+ * order decides — and Tailwind emits `.border-transparent` after
+ * `.border-border`, so the outline variant's border silently rendered
+ * transparent. Move the base's border colour into every variant that does not
+ * set one, so exactly one border-colour rule ever applies.
+ *
+ * @param array{base: string, variants: array<string, string>} $recipe
+ * @return array{base: string, variants: array<string, string>}
+ */
+function hoistBorderColorOutOfBase(array $recipe): array
+{
+    $baseTokens = preg_split('/\s+/', trim($recipe['base'])) ?: [];
+    $baseColors = array_values(array_filter($baseTokens, isBorderColorToken(...)));
+
+    if ($baseColors === []) {
+        return $recipe;
+    }
+
+    $recipe['base'] = removeClassTokens($recipe['base'], $baseColors);
+
+    foreach ($recipe['variants'] as $name => $class) {
+        $tokens = preg_split('/\s+/', trim($class)) ?: [];
+        if (array_filter($tokens, isBorderColorToken(...)) !== []) {
+            continue;
+        }
+
+        $recipe['variants'][$name] = normalizeClass(implode(' ', $baseColors) . ' ' . $class);
+    }
+
+    return $recipe;
+}
+
+/** Unprefixed border-colour utilities of the shadcn token palette. */
+function isBorderColorToken(string $token): bool
+{
+    if (str_contains($token, ':')) {
+        return false;
+    }
+
+    return (bool) preg_match(
+        '/^border-(transparent|current|inherit|border|input|ring|foreground|background|card|popover|primary|secondary|muted|accent|destructive)(\/\d+)?$/',
+        $token
+    );
 }
 
 /**

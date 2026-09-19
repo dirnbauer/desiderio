@@ -22,7 +22,7 @@
                                 <d:atom.icon name="check" size="sm"/>
                             </span>
                             <div class="feature-checklist__text">
-                                <h3 class="feature-checklist__title">{item -> f:render.text(field: 'title')}</h3>
+                                <d:atom.typography tag="h3" variant="large" class="feature-checklist__title">{item -> f:render.text(field: 'title')}</d:atom.typography>
                                 <f:if condition="{item.description_text}">
                                     <p class="feature-checklist__description">{item -> f:render.text(field: 'description_text')}</p>
                                 </f:if>

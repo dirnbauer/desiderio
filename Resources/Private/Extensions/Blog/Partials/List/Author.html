@@ -23,9 +23,9 @@
                 alt="{author.name}"
             >
             <div class="min-w-0">
-                <h2 class="text-lg font-semibold text-foreground" itemprop="name">
+                <d:atom.typography tag="h2" variant="large" class="text-foreground" attributes="{itemprop: 'name'}">
                     <blogvh:link.author author="{author}" class="!no-underline outline-none transition-colors hover:text-link focus-visible:ring-3 focus-visible:ring-ring/40" />
-                </h2>
+                </d:atom.typography>
                 <f:if condition="{author.title}">
                     <p class="text-sm text-muted-foreground">{author.title}</p>
                 </f:if>

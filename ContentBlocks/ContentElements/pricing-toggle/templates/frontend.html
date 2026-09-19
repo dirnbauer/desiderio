@@ -13,7 +13,7 @@
                     <p class="pricing-toggle__eyebrow">{data -> f:render.text(field: 'eyebrow')}</p>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <h2 class="pricing-toggle__headline">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h2" class="pricing-toggle__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.subheadline}">
                     <p class="pricing-toggle__description">{data -> f:render.text(field: 'subheadline')}</p>
@@ -25,7 +25,7 @@
             <f:for each="{data.plans}" as="plan" iteration="iter">
                 <li class="pricing-toggle__item">
                     <article class="pricing-toggle__plan" aria-labelledby="pricing-toggle-{data.uid}-{iter.cycle}">
-                        <h3 class="pricing-toggle__title" id="pricing-toggle-{data.uid}-{iter.cycle}">{plan -> f:render.text(field: 'title')}</h3>
+                        <d:atom.typography tag="h3" variant="h3" class="pricing-toggle__title" attributes="{id: 'pricing-toggle-{data.uid}-{iter.cycle}'}">{plan -> f:render.text(field: 'title')}</d:atom.typography>
                         <div class="pricing-toggle__prices">
                             <p class="pricing-toggle__price">
                                 <span class="pricing-toggle__amount">{plan -> f:render.text(field: 'monthly_price')}</span>

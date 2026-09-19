@@ -18,7 +18,7 @@
             <f:for each="{data.items}" as="item">
                 <d:molecule.card class="contact-info__item">
                     <f:if condition="{item.icon}"><span class="contact-info__icon" aria-hidden="true"><d:atom.icon name="{item.icon}" size="lg"/></span></f:if>
-                    <h3 class="contact-info__label">{item -> f:render.text(field: 'label')}</h3>
+                    <d:atom.typography tag="h3" variant="h3" class="contact-info__label">{item -> f:render.text(field: 'label')}</d:atom.typography>
                     <f:if condition="{item.link.url}">
                         <f:then>
                             <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="contact-info__value contact-info__value--link">{item -> f:render.text(field: 'value')}</d:atom.link>

@@ -20,7 +20,7 @@
                 <d:molecule.card class="company-values__item">
                     <div class="company-values__heading">
                         <f:if condition="{value.icon}"><span class="company-values__icon" aria-hidden="true"><d:atom.icon name="{value.icon}" size="md"/></span></f:if>
-                        <h3 class="company-values__title">{value -> f:render.text(field: 'title')}</h3>
+                        <d:atom.typography tag="h3" variant="large" class="company-values__title">{value -> f:render.text(field: 'title')}</d:atom.typography>
                     </div>
                     <f:if condition="{value.description}"><div class="company-values__description d-richtext">{value -> f:render.text(field: 'description')}</div></f:if>
                 </d:molecule.card>

@@ -8,7 +8,7 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="product-reviews">
     <d:layout.container>
         <f:if condition="{data.header}">
-            <h2 class="product-reviews__heading">{data -> f:render.text(field: 'header')}</h2>
+            <d:atom.typography tag="h2" variant="h2" class="product-reviews__heading">{data -> f:render.text(field: 'header')}</d:atom.typography>
         </f:if>
 
         <f:if condition="{data.average_score}">
@@ -41,7 +41,7 @@
                         </f:if>
                     </div>
                     <f:if condition="{review.title}">
-                        <h3 class="product-reviews__review-title">{review -> f:render.text(field: 'title')}</h3>
+                        <d:atom.typography tag="h3" variant="large" class="product-reviews__review-title">{review -> f:render.text(field: 'title')}</d:atom.typography>
                     </f:if>
                     <p class="product-reviews__review-text">{review -> f:render.text(field: 'review_text')}</p>
                     <span class="product-reviews__review-author">{review -> f:render.text(field: 'author')}</span>

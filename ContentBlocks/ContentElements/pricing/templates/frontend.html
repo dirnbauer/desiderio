@@ -42,9 +42,8 @@
                             <d:atom.typography
                                 tag="h3"
                                 variant="h4"
-                                id="pricing-{data.uid}-name-{iter.cycle}"
-                                class="pricing__plan-name"
-                            >
+                               
+                                class="pricing__plan-name" attributes="{id: 'pricing-{data.uid}-name-{iter.cycle}'}">
                                 {tier -> f:render.text(field: 'name')}
                             </d:atom.typography>
                             <p class="pricing__price-row">

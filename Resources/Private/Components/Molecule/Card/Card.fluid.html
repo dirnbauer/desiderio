@@ -5,9 +5,22 @@
   Control shape is tokenized (radius via --radius, height/text/padding via --d-control-*, focus ring via --d-ring-width, card elevation via --d-surface-shadow), so shape switches per preset.
 </f:comment>
 <f:argument name="class" type="string" optional="{true}" default="" />
-<f:argument name="role" type="string" optional="{true}" />
 <f:argument name="size" type="string" optional="{true}" default="default" />
+<f:argument name="tag" type="string" optional="{true}" default="div" />
+<f:comment>
+    `attributes` carries what a control needs beyond the shadcn contract:
+    aria-label, aria-expanded, aria-controls, download, data-* hooks read by
+    the shared runtime. Keys are template-authored, values are escaped.
+</f:comment>
+<f:argument name="attributes" type="array" optional="{true}" default="{}" />
 
-<div data-slot="card" data-size="{size}" class="group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-xl bg-card py-(--card-spacing) text-xs/relaxed text-card-foreground ring-1 ring-foreground/10 [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] data-[size=sm]:has-data-[slot=card-footer]:pb-0 *:[img:first-child]:rounded-xl *:[img:last-child]:rounded-xl shadow-[var(--d-surface-shadow)] px-4 has-data-[slot=card-header]:px-0 has-data-[slot=card-content]:px-0 has-data-[slot=card-footer]:px-0 has-[>img:first-child]:px-0 data-[size=sm]:px-3 data-[size=sm]:has-data-[slot=card-header]:px-0 data-[size=sm]:has-data-[slot=card-content]:px-0 data-[size=sm]:has-data-[slot=card-footer]:px-0 {class}" role="{role}">
-    <f:slot />
-</div>
+<f:variable name="cardClass" value="group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-xl bg-card py-(--card-spacing) text-xs/relaxed text-card-foreground ring-1 ring-foreground/10 [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] data-[size=sm]:has-data-[slot=card-footer]:pb-0 *:[img:first-child]:rounded-xl *:[img:last-child]:rounded-xl shadow-[var(--d-surface-shadow)] px-4 has-data-[slot=card-header]:px-0 has-data-[slot=card-content]:px-0 has-data-[slot=card-footer]:px-0 has-[>img:first-child]:px-0 data-[size=sm]:px-3 data-[size=sm]:has-data-[slot=card-header]:px-0 data-[size=sm]:has-data-[slot=card-content]:px-0 data-[size=sm]:has-data-[slot=card-footer]:px-0 {class}" />
+
+<f:switch expression="{tag}">
+    <f:case value="article"><article data-slot="card" data-size="{size}" class="{cardClass -> f:format.trim()}"<f:for each="{attributes}" as="attributeValue" key="attributeName"> {attributeName}="{attributeValue}"</f:for>><f:slot /></article></f:case>
+    <f:case value="section"><section data-slot="card" data-size="{size}" class="{cardClass -> f:format.trim()}"<f:for each="{attributes}" as="attributeValue" key="attributeName"> {attributeName}="{attributeValue}"</f:for>><f:slot /></section></f:case>
+    <f:case value="aside"><aside data-slot="card" data-size="{size}" class="{cardClass -> f:format.trim()}"<f:for each="{attributes}" as="attributeValue" key="attributeName"> {attributeName}="{attributeValue}"</f:for>><f:slot /></aside></f:case>
+    <f:case value="figure"><figure data-slot="card" data-size="{size}" class="{cardClass -> f:format.trim()}"<f:for each="{attributes}" as="attributeValue" key="attributeName"> {attributeName}="{attributeValue}"</f:for>><f:slot /></figure></f:case>
+    <f:case value="li"><li data-slot="card" data-size="{size}" class="{cardClass -> f:format.trim()}"<f:for each="{attributes}" as="attributeValue" key="attributeName"> {attributeName}="{attributeValue}"</f:for>><f:slot /></li></f:case>
+    <f:defaultCase><div data-slot="card" data-size="{size}" class="{cardClass -> f:format.trim()}"<f:for each="{attributes}" as="attributeValue" key="attributeName"> {attributeName}="{attributeValue}"</f:for>><f:slot /></div></f:defaultCase>
+</f:switch>

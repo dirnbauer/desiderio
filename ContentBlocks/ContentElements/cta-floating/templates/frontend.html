@@ -19,7 +19,7 @@
                     <d:atom.typography tag="span" variant="small" class="cta-floating__eyebrow">{data -> f:render.text(field: 'eyebrow')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <d:atom.typography tag="h2" variant="large" class="cta-floating__headline" id="{headingId}">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                    <d:atom.typography tag="h2" variant="large" class="cta-floating__headline" attributes="{id: '{headingId}'}">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.description_text}">
                     <d:atom.typography variant="muted" class="cta-floating__description">{data -> f:render.text(field: 'description_text')}</d:atom.typography>

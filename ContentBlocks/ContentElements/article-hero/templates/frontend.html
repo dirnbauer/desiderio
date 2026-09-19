@@ -10,7 +10,7 @@
         <div class="article-hero__copy">
             <f:if condition="{data.eyebrow}"><span class="article-hero__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>
 
-            <h1 class="article-hero__headline">{data -> f:render.text(field: 'header')}</h1>
+            <d:atom.typography tag="h1" variant="h1" class="article-hero__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
 
             <f:if condition="{data.dek}">
                 <p class="article-hero__dek">{data -> f:render.text(field: 'dek')}</p>
@@ -31,12 +31,9 @@
 
         <f:if condition="{data.cover_image.0}">
             <div class="article-hero__media">
-                <button type="button" class="d-lightbox" data-d-lightbox
-                        data-d-lightbox-src="{f:uri.image(image: data.cover_image.0, maxWidth: 2400)}"
-                        data-d-lightbox-close="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:aria.dismiss', default: 'Dismiss this notice')}"
-                        aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:lightbox.open', default: 'Show image in full size')}">
+                <d:molecule.lightbox src="{f:uri.image(image: data.cover_image.0, maxWidth: 2400)}">
                     <f:image image="{data.cover_image.0}" alt="{data.header}" maxWidth="1200" class="article-hero__image" loading="lazy" decoding="async"/>
-                </button>
+                </d:molecule.lightbox>
             </div>
         </f:if>
     </d:layout.container>

@@ -16,13 +16,13 @@
 
         <f:for each="{data.department_items}" as="dept">
             <section class="team-department__group">
-                <h3 class="team-department__dept-name">{dept -> f:render.text(field: 'name')}</h3>
+                <d:atom.typography tag="h3" variant="h3" class="team-department__dept-name">{dept -> f:render.text(field: 'name')}</d:atom.typography>
                 <d:layout.grid cols="4" gap="sm" class="team-department__grid">
                     <f:for each="{dept.members}" as="member">
                         <f:if condition="{member.name}">
                             <d:molecule.card size="sm" class="team-department__member">
                                 <div class="team-department__content">
-                                    <h4 class="team-department__name">{member -> f:render.text(field: 'name')}</h4>
+                                    <d:atom.typography tag="h4" variant="h4" class="team-department__name">{member -> f:render.text(field: 'name')}</d:atom.typography>
                                     <f:if condition="{member.role}"><p class="team-department__role">{member -> f:render.text(field: 'role')}</p></f:if>
                                 </div>
                             </d:molecule.card>

@@ -9,7 +9,7 @@
     <d:layout.container>
         <div class="footer-social__inner">
             <f:if condition="{data.brand}">
-                <h2 class="footer-social__brand">{data -> f:render.text(field: 'brand')}</h2>
+                <d:atom.typography tag="h2" variant="h2" class="footer-social__brand">{data -> f:render.text(field: 'brand')}</d:atom.typography>
             </f:if>
             <f:if condition="{data.items}">
                 <nav class="footer-social__icons" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:social.aria', default: 'Social media')}">

@@ -39,9 +39,8 @@
                             <d:atom.typography
                                 tag="h3"
                                 variant="h4"
-                                id="pricing-annual-monthly-{data.uid}-name-{iter.cycle}"
-                                class="pricing-annual-monthly__name"
-                            >
+                               
+                                class="pricing-annual-monthly__name" attributes="{id: 'pricing-annual-monthly-{data.uid}-name-{iter.cycle}'}">
                                 {tier -> f:render.text(field: 'name')}
                             </d:atom.typography>
 

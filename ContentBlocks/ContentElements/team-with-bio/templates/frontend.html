@@ -32,7 +32,7 @@
                             </f:if>
                         </div>
                         <div class="team-with-bio__content">
-                            <h3 class="team-with-bio__name">{member -> f:render.text(field: 'name')}</h3>
+                            <d:atom.typography tag="h3" variant="h3" class="team-with-bio__name">{member -> f:render.text(field: 'name')}</d:atom.typography>
                             <f:if condition="{member.role}"><p class="team-with-bio__role">{member -> f:render.text(field: 'role')}</p></f:if>
                             <f:if condition="{member.bio}"><div class="team-with-bio__bio d-richtext">{member -> f:render.text(field: 'bio')}</div></f:if>
                             <f:if condition="{member.profile_link.url}">

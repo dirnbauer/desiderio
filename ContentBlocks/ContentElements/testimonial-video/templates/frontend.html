@@ -8,7 +8,7 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="testimonial-video">
     <d:layout.container>
         <f:if condition="{data.header}">
-            <h2 class="testimonial-video__heading">{data -> f:render.text(field: 'header')}</h2>
+            <d:atom.typography tag="h2" variant="h2" class="testimonial-video__heading">{data -> f:render.text(field: 'header')}</d:atom.typography>
         </f:if>
 
         <div class="testimonial-video__layout">

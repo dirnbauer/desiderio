@@ -18,7 +18,7 @@
             <f:for each="{data.items}" as="item">
                 <details class="faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
                     <summary class="faq__question">
-                        <h3 class="faq__question-text" itemprop="name">{item -> f:render.text(field: 'question')}</h3>
+                        <d:atom.typography tag="h3" variant="h3" class="faq__question-text" attributes="{itemprop: 'name'}">{item -> f:render.text(field: 'question')}</d:atom.typography>
                         <span class="faq__chevron" aria-hidden="true">
                             <d:atom.icon name="chevron-down" size="sm" />
                         </span>

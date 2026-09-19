@@ -8,7 +8,7 @@
         <div class="hero-testimonial__grid">
             <div class="hero-testimonial__content">
                 <f:if condition="{data.header}">
-                    <d:atom.typography tag="h2" variant="h1" class="hero-testimonial__headline" itemprop="">
+                    <d:atom.typography tag="h2" variant="h1" class="hero-testimonial__headline" attributes="{itemprop: ''}">
                         <span id="hero-testimonial-title-{data.uid}">{data -> f:render.text(field: 'header')}</span>
                     </d:atom.typography>
                 </f:if>

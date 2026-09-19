@@ -20,7 +20,8 @@ final class PowermailIntegrationTest extends TestCase
         $contentTemplate = (string)file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Templates/PowermailPi1.fluid.html');
 
         self::assertStringContainsString('name: webconsulting/desiderio-powermail', $config);
-        self::assertMatchesRegularExpression('/dependencies:\s+- webconsulting\/desiderio\s+- in2code\/powermail-main\s+- studiomitte\/friendlycaptcha/s', $config);
+        self::assertMatchesRegularExpression('/dependencies:\s+- webconsulting\/desiderio\s+- in2code\/powermail-main\s*$/s', $config);
+        self::assertStringNotContainsString('studiomitte/friendlycaptcha', $config, 'FriendlyCaptcha ships no Site Set; its TypoScript is imported conditionally instead');
         self::assertStringNotContainsString('optionalDependencies:', $config);
         self::assertStringNotContainsString('webconsulting/desiderio-powermail', $baseConfig);
         self::assertStringContainsString('plugin.tx_powermail', $setup);

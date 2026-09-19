@@ -1,0 +1,21 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+<f:comment>
+    Opt-in image enlargement: a plain button wrapping an image (the slot).
+    The shared runtime (desiderio.js, section 14) opens `src` — or the
+    wrapped image's current source when `src` is empty — in one native
+    &lt;dialog&gt; per page. `label` names the action for assistive
+    technology; `closeLabel` labels the dialog's close button.
+</f:comment>
+<f:argument name="src" type="string" optional="{true}" default="" />
+<f:argument name="label" type="string" optional="{true}" default="" />
+<f:argument name="closeLabel" type="string" optional="{true}" default="" />
+<f:argument name="class" type="string" optional="{true}" default="" />
+
+<f:variable name="openLabel">{f:if(condition: label, then: label, else: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:lightbox.open\', default: \'Show image in full size\')}')}</f:variable>
+<f:variable name="dismissLabel">{f:if(condition: closeLabel, then: closeLabel, else: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:lightbox.close\', default: \'Close image\')}')}</f:variable>
+
+<button type="button" class="d-lightbox {class -> f:format.trim()}" data-slot="lightbox" data-d-lightbox data-d-lightbox-src="{src}" data-d-lightbox-close="{dismissLabel -> f:format.trim()}" aria-label="{openLabel -> f:format.trim()}">
+    <f:slot />
+</button>
+</html>

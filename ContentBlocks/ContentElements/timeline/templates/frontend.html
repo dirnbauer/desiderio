@@ -22,7 +22,7 @@
                     </div>
                     <d:molecule.card class="timeline__content">
                         <div class="timeline__step">{item -> f:render.text(field: 'step')}</div>
-                        <h3 class="timeline__title">{item -> f:render.text(field: 'title')}</h3>
+                        <d:atom.typography tag="h3" variant="h3" class="timeline__title">{item -> f:render.text(field: 'title')}</d:atom.typography>
                         <f:if condition="{item.content}">
                             <div class="timeline__text">
                                 {item -> f:render.text(field: 'content')}

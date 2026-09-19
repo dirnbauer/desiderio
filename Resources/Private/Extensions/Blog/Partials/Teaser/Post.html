@@ -25,7 +25,7 @@
 
         <d:molecule.cardContent class="flex h-full flex-col gap-4 pt-0">
             <header class="min-w-0">
-                <d:atom.typography tag="h3" variant="h4" class="min-w-0 text-balance leading-tight tracking-normal" itemprop="headline">
+                <d:atom.typography tag="h3" variant="h4" class="min-w-0 text-balance leading-tight tracking-normal" attributes="{itemprop: 'headline'}">
                     <blogvh:link.post post="{post}" class="rounded-md text-foreground !no-underline outline-none transition-colors hover:text-link focus-visible:ring-3 focus-visible:ring-ring/40">
                         {post.title}
                     </blogvh:link.post>
@@ -33,7 +33,7 @@
             </header>
 
             <f:if condition="{post.abstract} || {post.description}">
-                <d:atom.typography variant="muted" class="line-clamp-4 text-pretty leading-6" itemprop="description">
+                <d:atom.typography variant="muted" class="line-clamp-4 text-pretty leading-6" attributes="{itemprop: 'description'}">
                     <f:if condition="{post.abstract}">
                         <f:then>{post.abstract}</f:then>
                         <f:else>{post.description}</f:else>

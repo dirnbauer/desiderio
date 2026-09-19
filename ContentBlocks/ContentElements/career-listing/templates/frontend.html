@@ -19,7 +19,7 @@
             <f:for each="{data.jobs}" as="job">
                 <li class="career-listing__job">
                     <div class="career-listing__info">
-                        <h3 class="career-listing__title">{job -> f:render.text(field: 'title')}</h3>
+                        <d:atom.typography tag="h3" variant="h3" class="career-listing__title">{job -> f:render.text(field: 'title')}</d:atom.typography>
                         <div class="career-listing__meta">
                             <f:if condition="{job.department}"><span class="career-listing__dept">{job -> f:render.text(field: 'department')}</span></f:if>
                             <f:if condition="{job.location}"><span class="career-listing__location">{job -> f:render.text(field: 'location')}</span></f:if>

@@ -13,9 +13,9 @@
 <d:molecule.card class="border-border bg-card">
     <d:molecule.cardHeader class="border-b border-border/70 pb-3">
         <div class="flex items-center justify-between gap-3">
-            <h2 class="text-lg font-semibold text-foreground" itemprop="name">
+            <d:atom.typography tag="h2" variant="large" class="text-foreground" attributes="{itemprop: 'name'}">
                 <blogvh:link.archive year="{year}" title="{year}" class="!no-underline outline-none transition-colors hover:text-link focus-visible:ring-3 focus-visible:ring-ring/40">{year}</blogvh:link.archive>
-            </h2>
+            </d:atom.typography>
             <span class="inline-flex size-8 items-center justify-center rounded-md bg-muted text-muted-foreground" aria-hidden="true">
                 <d:atom.icon name="calendar" size="sm"/>
             </span>

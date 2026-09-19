@@ -17,7 +17,7 @@
             <f:for each="{data.items}" as="item" iteration="iter">
                 <details class="accordion__item" name="{groupName}" {f:if(condition: item.open_by_default, then: 'open')}>
                     <summary class="accordion__trigger">
-                        <h3 class="accordion__title">{item -> f:render.text(field: 'title')}</h3>
+                        <d:atom.typography tag="h3" variant="h3" class="accordion__title">{item -> f:render.text(field: 'title')}</d:atom.typography>
                         <span class="accordion__icon" aria-hidden="true">
                             <d:atom.icon name="chevron-down" size="sm" />
                         </span>

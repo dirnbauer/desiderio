@@ -16,12 +16,9 @@
                     <f:for each="{data.images}" as="fileReference" iteration="iter">
                         <f:if condition="{iter.isFirst}">
                             <div class="product-gallery__stage">
-                                <button type="button" class="d-lightbox" data-d-lightbox
-                                        data-d-lightbox-src="{f:uri.image(image: fileReference, maxWidth: 1440)}"
-                                        data-d-lightbox-close="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:aria.dismiss', default: 'Dismiss this notice')}"
-                                        aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:lightbox.open', default: 'Show image in full size')}">
+                                <d:molecule.lightbox src="{f:uri.image(image: fileReference, maxWidth: 1440)}">
                                     <f:image image="{fileReference}" maxWidth="720" alt="{fileReference.alternative -> f:or(alternative: galleryTitle)}" itemprop="image" class="product-gallery__stage-image" data="{d-gallery-main: 'true'}" loading="lazy" decoding="async"/>
-                                </button>
+                                </d:molecule.lightbox>
                             </div>
                         </f:if>
                     </f:for>
@@ -47,7 +44,7 @@
                 </div>
             </f:if>
 
-            <d:molecule.card class="product-gallery__panel" role="group">
+            <d:molecule.card class="product-gallery__panel" attributes="{role: 'group'}">
                 <d:molecule.cardHeader class="product-gallery__panel-header">
                     <f:if condition="{data.compare_at_price}">
                         <d:atom.badge variant="destructive" class="product-gallery__save">
@@ -55,7 +52,7 @@
                         </d:atom.badge>
                     </f:if>
                     <f:if condition="{data.header}">
-                        <d:atom.typography tag="h2" variant="h3" class="product-gallery__title" itemprop="name">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                        <d:atom.typography tag="h2" variant="h3" class="product-gallery__title" attributes="{itemprop: 'name'}">{data -> f:render.text(field: 'header')}</d:atom.typography>
                     </f:if>
                 </d:molecule.cardHeader>
 

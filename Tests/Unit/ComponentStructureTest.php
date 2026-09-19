@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 final class ComponentStructureTest extends TestCase
 {
-    private const int EXPECTED_TOTAL = 61;
+    private const int EXPECTED_TOTAL = 62;
     private const string COMPONENTS_DIR = __DIR__ . '/../../Resources/Private/Components';
     private const array EXPECTED_ATOMS = [
         'AspectRatio', 'Avatar', 'Badge', 'Button', 'ControlClass', 'Icon', 'Image', 'Input',
@@ -18,7 +18,7 @@ final class ComponentStructureTest extends TestCase
     private const array EXPECTED_MOLECULES = [
         'Accordion', 'AccordionItem', 'Alert', 'AlertDescription', 'AlertTitle',
         'Card', 'CardContent', 'CardFooter', 'CardHeader', 'CheckboxControl', 'CheckedListItem', 'Field',
-        'FieldGroup', 'FieldLabel', 'FieldLegend', 'FieldSet', 'FormRenderer', 'OptionLabel',
+        'FieldGroup', 'FieldLabel', 'FieldLegend', 'FieldSet', 'FormRenderer', 'Lightbox', 'OptionLabel',
         'RadioControl', 'SelectNative', 'Table', 'TableCell', 'TableHeader', 'TableRow',
         'Tabs', 'TabsContent', 'TabsList', 'TabsTrigger',
         'ActionGroup', 'CaptchaPlaceholder', 'FacetCheckbox', 'FeatureItem', 'Figure', 'Pagination',
@@ -36,7 +36,7 @@ final class ComponentStructureTest extends TestCase
         $organisms = is_array($organismDirectories) ? $organismDirectories : [];
 
         self::assertCount(17, $atoms, 'Expected 17 atoms');
-        self::assertCount(36, $molecules, 'Expected 36 molecules');
+        self::assertCount(37, $molecules, 'Expected 37 molecules');
         self::assertCount(4, $layouts, 'Expected 4 layouts');
         self::assertCount(4, $organisms, 'Expected 4 organisms');
         self::assertSame(self::EXPECTED_TOTAL, count($atoms) + count($molecules) + count($layouts) + count($organisms));
@@ -157,12 +157,12 @@ final class ComponentStructureTest extends TestCase
         self::assertSame([], $invalid);
     }
 
-    public function testTypographySupportsStableElementIds(): void
+    public function testTypographyCarriesExtraAttributesThroughOneEscapeHatch(): void
     {
         $typography = (string)file_get_contents(self::COMPONENTS_DIR . '/Atom/Typography/Typography.fluid.html');
 
-        self::assertStringContainsString('<f:argument name="id" type="string" optional="{true}" />', $typography);
-        self::assertStringContainsString('id="{id}"', $typography);
+        self::assertStringContainsString('<f:argument name="attributes" type="array" optional="{true}" default="{}" />', $typography);
+        self::assertStringContainsString('<f:for each="{attributes}" as="attributeValue" key="attributeName">', $typography);
         self::assertStringContainsString('<f:case value="blockquote"><blockquote', $typography);
         self::assertStringContainsString('mt-6 border-l-2 pl-6 italic', $typography);
     }

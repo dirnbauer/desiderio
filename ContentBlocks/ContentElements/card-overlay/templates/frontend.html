@@ -4,7 +4,7 @@
 
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}">
     <d:layout.container>
-        <article data-slot="card" class="group relative flex min-h-[22rem] items-end overflow-hidden rounded-xl bg-card text-card-foreground shadow-[var(--d-surface-shadow)] ring-1 ring-foreground/10 md:min-h-[30rem]">
+        <article class="group relative flex min-h-[22rem] items-end overflow-hidden rounded-xl bg-muted shadow-[var(--d-surface-shadow)] ring-1 ring-foreground/10 md:min-h-[30rem]">
             <f:if condition="{data.image.0}">
                 <f:image image="{data.image.0}" alt="{data.image.0.alternative -> f:or(alternative: data.header)}" maxWidth="1600" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full border-0 object-cover shadow-none"/>
             </f:if>

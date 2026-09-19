@@ -13,7 +13,7 @@
                     <p class="case-study-grid__eyebrow">{data -> f:render.text(field: 'eyebrow')}</p>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <h2 class="case-study-grid__headline">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h2" class="case-study-grid__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
             </header>
         </f:if>
@@ -29,7 +29,7 @@
                         </div>
                     </f:if>
                     <div class="case-study-grid__body">
-                        <h3 class="case-study-grid__client">{item -> f:render.text(field: 'client_name')}</h3>
+                        <d:atom.typography tag="h3" variant="h3" class="case-study-grid__client">{item -> f:render.text(field: 'client_name')}</d:atom.typography>
                         <f:if condition="{item.summary}">
                             <div class="case-study-grid__summary d-richtext">{item -> f:render.text(field: 'summary')}</div>
                         </f:if>

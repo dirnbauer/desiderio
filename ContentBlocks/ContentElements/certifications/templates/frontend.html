@@ -13,7 +13,7 @@
                     <p class="certifications__eyebrow">{data -> f:render.text(field: 'eyebrow')}</p>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <h2 class="certifications__headline">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h2" class="certifications__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.subheadline}">
                     <p class="certifications__description">{data -> f:render.text(field: 'subheadline')}</p>
@@ -31,7 +31,7 @@
                             </f:for>
                         </div>
                     </f:if>
-                    <h3 class="certifications__name">{cert -> f:render.text(field: 'name')}</h3>
+                    <d:atom.typography tag="h3" variant="h3" class="certifications__name">{cert -> f:render.text(field: 'name')}</d:atom.typography>
                     <f:if condition="{cert.issuer}">
                         <p class="certifications__issuer">{cert -> f:render.text(field: 'issuer')}</p>
                     </f:if>

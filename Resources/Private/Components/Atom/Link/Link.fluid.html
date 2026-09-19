@@ -4,6 +4,12 @@
 <f:argument name="class" type="string" optional="{true}" default="" />
 <f:argument name="target" type="string" optional="{true}" default="" />
 <f:argument name="title" type="string" optional="{true}" />
+<f:comment>
+    `attributes` carries what a plain anchor needs beyond the recipe:
+    download, aria-current, data-d-* hooks. Keys are template-authored,
+    values are escaped.
+</f:comment>
+<f:argument name="attributes" type="array" optional="{true}" default="{}" />
 
 <f:variable name="variantClass" value="text-primary underline-offset-4 hover:underline" />
 <f:if condition="{variant} == 'muted'">
@@ -19,6 +25,6 @@
 <f:variable name="resolvedTarget" value="{f:if(condition: external, then: '_blank', else: target)}" />
 <f:variable name="rel" value="{f:if(condition: '{resolvedTarget} == \'_blank\'', then: 'noopener noreferrer', else: '')}" />
 
-<a href="{href}" class="{variantClass -> f:format.trim()} {class}" target="{resolvedTarget}" rel="{rel}" title="{title}" data-slot="link" data-variant="{variant}">
+<a href="{href}" class="{variantClass -> f:format.trim()} {class}" target="{resolvedTarget}" rel="{rel}" title="{title}" data-slot="link" data-variant="{variant}"<f:for each="{attributes}" as="attributeValue" key="attributeName"> {attributeName}="{attributeValue}"</f:for>>
     <f:slot />
 </a>

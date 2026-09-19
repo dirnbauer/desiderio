@@ -13,14 +13,14 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="progress-bar progress-bar--{data.variant -> f:or(alternative: 'default')}">
     <d:layout.container size="md">
         <f:if condition="{data.header} && {data.variant} != 'labeled'">
-            <d:atom.typography tag="h2" variant="h3" class="progress-bar__headline" id="{labelId}">{data -> f:render.text(field: 'header')}</d:atom.typography>
+            <d:atom.typography tag="h2" variant="h3" class="progress-bar__headline" attributes="{id: '{labelId}'}">{data -> f:render.text(field: 'header')}</d:atom.typography>
         </f:if>
 
         <div class="progress-bar__row">
             <f:if condition="{data.variant} == 'labeled'">
                 <div class="progress-bar__meta">
                     <f:if condition="{data.header}">
-                        <h2 class="progress-bar__label" id="{labelId}">{data -> f:render.text(field: 'header')}</h2>
+                        <d:atom.typography tag="h2" variant="h4" class="progress-bar__label" attributes="{id: '{labelId}'}">{data -> f:render.text(field: 'header')}</d:atom.typography>
                     </f:if>
                     <f:if condition="{data.show_percentage}">
                         <span class="progress-bar__value">{pct}<span aria-hidden="true">%</span></span>

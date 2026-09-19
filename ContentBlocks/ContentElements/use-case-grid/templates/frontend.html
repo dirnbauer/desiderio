@@ -16,13 +16,13 @@
         </f:if>
         <div class="use-case-grid__grid" role="list">
             <f:for each="{data.items}" as="item">
-                <d:molecule.card class="use-case-grid__item" role="listitem">
-                    <h3 class="use-case-grid__title">
+                <d:molecule.card class="use-case-grid__item" attributes="{role: 'listitem'}">
+                    <d:atom.typography tag="h3" variant="h3" class="use-case-grid__title">
                         <f:if condition="{item.link.url}">
                             <f:then><d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="use-case-grid__link">{item -> f:render.text(field: 'title')}</d:atom.link></f:then>
                             <f:else>{item -> f:render.text(field: 'title')}</f:else>
                         </f:if>
-                    </h3>
+                    </d:atom.typography>
                     <div class="use-case-grid__description d-richtext">{item -> f:render.text(field: 'description')}</div>
                 </d:molecule.card>
             </f:for>

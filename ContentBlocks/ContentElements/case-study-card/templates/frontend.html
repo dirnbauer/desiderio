@@ -8,7 +8,7 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="case-study-card">
     <d:layout.container>
         <f:if condition="{data.header}">
-            <h2 class="case-study-card__heading">{data -> f:render.text(field: 'header')}</h2>
+            <d:atom.typography tag="h2" variant="h2" class="case-study-card__heading">{data -> f:render.text(field: 'header')}</d:atom.typography>
         </f:if>
 
         <article class="case-study-card__wrapper">
@@ -29,7 +29,7 @@
                     </div>
                 </f:if>
                 <span class="case-study-card__eyebrow"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:case_study" default="Case study"/></span>
-                <h3 class="case-study-card__client">{data -> f:render.text(field: 'client_name')}</h3>
+                <d:atom.typography tag="h3" variant="h3" class="case-study-card__client">{data -> f:render.text(field: 'client_name')}</d:atom.typography>
                 <div class="case-study-card__summary d-richtext">{data -> f:render.text(field: 'summary')}</div>
 
                 <f:if condition="{data.result_value}">

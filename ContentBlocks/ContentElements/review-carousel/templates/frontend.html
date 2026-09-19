@@ -40,7 +40,7 @@
                     </div>
                     <span class="sr-only"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:rating.sr.rated" arguments="{0: '{review.rating -> f:or(alternative: \'5\')}'}">Rated {review.rating -> f:or(alternative: '5')} out of 5</f:translate></span>
                     <f:if condition="{review.title}">
-                        <h3 class="review-carousel__title">{review -> f:render.text(field: 'title')}</h3>
+                        <d:atom.typography tag="h3" variant="h3" class="review-carousel__title">{review -> f:render.text(field: 'title')}</d:atom.typography>
                     </f:if>
                     <blockquote class="review-carousel__text">{review -> f:render.text(field: 'review_text')}</blockquote>
                     <div class="review-carousel__reviewer">

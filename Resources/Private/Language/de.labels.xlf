@@ -2083,6 +2083,12 @@
         <target>Bild in voller Größe anzeigen</target>
       </segment>
     </unit>
+    <unit id="lightbox.close">
+      <segment state="final">
+        <source>Close image</source>
+        <target>Bild schließen</target>
+      </segment>
+    </unit>
     <unit id="carousel.aria.slides">
       <segment state="final">
         <source>Slides, scrollable</source>

@@ -4,9 +4,12 @@
 <f:argument name="spaceBefore" type="string" optional="{true}" default="" />
 <f:argument name="spaceAfter" type="string" optional="{true}" default="" />
 <f:argument name="spacing" type="string" optional="{true}" default="default" />
-<f:argument name="id" type="string" optional="{true}" />
-<f:argument name="style" type="string" optional="{true}" default="" />
-<f:argument name="role" type="string" optional="{true}" />
+<f:comment>
+    `attributes` carries what a section needs beyond the layout contract: an
+    anchor `id`, `role`, `aria-labelledby`, `data-*` hooks. Keys are
+    template-authored, values are escaped, and an empty array renders nothing.
+</f:comment>
+<f:argument name="attributes" type="array" optional="{true}" default="{}" />
 
 <f:comment>
     `frame` is the EDITOR'S surface choice (tt_content.frame_class, wired by
@@ -38,14 +41,14 @@
 <f:variable name="spacingClass">
     <f:switch expression="{spacing}">
         <f:case value="none"></f:case>
-        <f:case value="sm">py-8</f:case>
-        <f:case value="md">py-12</f:case>
-        <f:case value="lg">py-20 md:py-28</f:case>
-        <f:case value="xl">py-24 md:py-32</f:case>
-        <f:defaultCase>py-16 md:py-24</f:defaultCase>
+        <f:case value="sm">py-6 md:py-8</f:case>
+        <f:case value="md">py-8 md:py-12</f:case>
+        <f:case value="lg">py-12 md:py-28</f:case>
+        <f:case value="xl">py-16 md:py-32</f:case>
+        <f:defaultCase>py-10 md:py-24</f:defaultCase>
     </f:switch>
 </f:variable>
 
-<section class="desiderio-section {bgClass -> f:format.trim()} {spacingClass -> f:format.trim()} {spaceClasses -> f:format.trim()} {class}" data-d-section="true" id="{id}" style="{style}" role="{role}">
+<section class="desiderio-section {bgClass -> f:format.trim()} {spacingClass -> f:format.trim()} {spaceClasses -> f:format.trim()} {class}" data-d-section="true"<f:for each="{attributes}" as="attributeValue" key="attributeName"> {attributeName}="{attributeValue}"</f:for>>
     <f:slot />
 </section>

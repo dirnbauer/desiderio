@@ -23,7 +23,7 @@
                             <span class="company-milestones__year" aria-hidden="true">{i.cycle}</span>
                         </f:else>
                     </f:if>
-                    <h3 class="company-milestones__title">{ms -> f:render.text(field: 'title')}</h3>
+                    <d:atom.typography tag="h3" variant="large" class="company-milestones__title">{ms -> f:render.text(field: 'title')}</d:atom.typography>
                     <f:if condition="{ms.description}"><div class="company-milestones__description d-richtext">{ms -> f:render.text(field: 'description')}</div></f:if>
                 </li>
             </f:for>

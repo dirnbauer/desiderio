@@ -13,7 +13,7 @@
         <div class="gdpr-banner__inner">
             <div class="gdpr-banner__content">
                 <f:if condition="{data.header}">
-                    <h2 class="gdpr-banner__title">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h2" class="gdpr-banner__title">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <div class="gdpr-banner__message">
                     {data -> f:render.text(field: 'content')}

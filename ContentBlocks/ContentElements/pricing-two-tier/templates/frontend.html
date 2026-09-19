@@ -39,9 +39,8 @@
                             <d:atom.typography
                                 tag="h3"
                                 variant="h4"
-                                id="pricing-two-tier-{data.uid}-{iter.cycle}"
-                                class="pricing-two-tier__title"
-                            >
+                               
+                                class="pricing-two-tier__title" attributes="{id: 'pricing-two-tier-{data.uid}-{iter.cycle}'}">
                                 {tier -> f:render.text(field: 'title')}
                             </d:atom.typography>
                             <p class="pricing-two-tier__price">{tier -> f:render.text(field: 'price')}</p>

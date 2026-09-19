@@ -21,7 +21,7 @@
                         <span class="feature-timeline__dot">{item -> f:render.text(field: 'step')}</span>
                     </div>
                     <div class="feature-timeline__card">
-                        <h3 class="feature-timeline__title">{item -> f:render.text(field: 'title')}</h3>
+                        <d:atom.typography tag="h3" variant="h3" class="feature-timeline__title">{item -> f:render.text(field: 'title')}</d:atom.typography>
                         <f:if condition="{item.description}">
                             <div class="feature-timeline__description d-richtext">{item -> f:render.text(field: 'description')}</div>
                         </f:if>

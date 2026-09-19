@@ -29,7 +29,7 @@
                             </div>
                         </f:if>
                         <d:molecule.cardHeader class="team-carousel__content">
-                            <h3 class="team-carousel__name">{member -> f:render.text(field: 'name')}</h3>
+                            <d:atom.typography tag="h3" variant="large" class="team-carousel__name">{member -> f:render.text(field: 'name')}</d:atom.typography>
                             <f:if condition="{member.role}"><p class="team-carousel__role">{member -> f:render.text(field: 'role')}</p></f:if>
                         </d:molecule.cardHeader>
                         <f:if condition="{member.profile_link.url}">

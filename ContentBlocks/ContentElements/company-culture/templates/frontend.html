@@ -25,7 +25,7 @@
                             </f:for>
                         </div>
                     </f:if>
-                    <f:if condition="{item.title}"><h3 class="company-culture__title">{item -> f:render.text(field: 'title')}</h3></f:if>
+                    <f:if condition="{item.title}"><d:atom.typography tag="h3" variant="large" class="company-culture__title">{item -> f:render.text(field: 'title')}</d:atom.typography></f:if>
                     <f:if condition="{item.description}"><div class="company-culture__description d-richtext">{item -> f:render.text(field: 'description')}</div></f:if>
                 </article>
             </f:for>

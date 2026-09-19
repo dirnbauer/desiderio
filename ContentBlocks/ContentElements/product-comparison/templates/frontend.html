@@ -13,7 +13,7 @@
                     <p class="product-comparison__eyebrow">{data -> f:render.text(field: 'eyebrow')}</p>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <h2 class="product-comparison__headline">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h2" class="product-comparison__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
             </header>
         </f:if>
@@ -30,7 +30,7 @@
                                 <f:image image="{product.image.0}" maxWidth="320" loading="lazy" alt="{product.image.0.alternative -> f:or(alternative: product.name)}" class="product-comparison__image" decoding="async"/>
                             </div>
                         </f:if>
-                        <h3 class="product-comparison__name" id="product-comparison-{data.uid}-{iter.cycle}">{product -> f:render.text(field: 'name')}</h3>
+                        <d:atom.typography tag="h3" variant="h3" class="product-comparison__name" attributes="{id: 'product-comparison-{data.uid}-{iter.cycle}'}">{product -> f:render.text(field: 'name')}</d:atom.typography>
                         <f:if condition="{product.price}">
                             <p class="product-comparison__price">{product -> f:render.text(field: 'price')}</p>
                         </f:if>

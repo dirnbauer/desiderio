@@ -52,7 +52,7 @@
                 <div class="mega-menu__groups">
                     <f:for each="{data.menu_groups}" as="group" iteration="groupIter">
                         <section class="mega-menu__group">
-                            <d:atom.typography tag="h3" variant="small" class="mega-menu__group-title" id="mega-menu-{data.uid}-{groupIter.cycle}">{group -> f:render.text(field: 'title')}</d:atom.typography>
+                            <d:atom.typography tag="h3" variant="small" class="mega-menu__group-title" attributes="{id: 'mega-menu-{data.uid}-{groupIter.cycle}'}">{group -> f:render.text(field: 'title')}</d:atom.typography>
                             <f:if condition="{group.description}">
                                 <d:atom.typography tag="div" variant="muted" class="mega-menu__group-desc d-richtext">{group -> f:render.text(field: 'description')}</d:atom.typography>
                             </f:if>

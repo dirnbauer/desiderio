@@ -17,7 +17,7 @@
 
         <div class="contact__grid">
             <d:molecule.card class="contact__info">
-                <f:if condition="{data.info_title}"><h3 class="contact__info-title">{data -> f:render.text(field: 'info_title')}</h3></f:if>
+                <f:if condition="{data.info_title}"><d:atom.typography tag="h3" variant="large" class="contact__info-title">{data -> f:render.text(field: 'info_title')}</d:atom.typography></f:if>
                 <f:if condition="{data.info_text}"><p class="contact__info-text">{data -> f:render.text(field: 'info_text')}</p></f:if>
                 <f:if condition="{data.contact_items}">
                     <dl class="contact__list">
@@ -41,7 +41,7 @@
             </d:molecule.card>
 
             <d:molecule.card class="contact__form-card">
-                <f:if condition="{data.form_title}"><h3 class="contact__form-title">{data -> f:render.text(field: 'form_title')}</h3></f:if>
+                <f:if condition="{data.form_title}"><d:atom.typography tag="h3" variant="large" class="contact__form-title">{data -> f:render.text(field: 'form_title')}</d:atom.typography></f:if>
 
                 <d:molecule.formRenderer persistenceIdentifier="EXT:desiderio/Resources/Private/Forms/DesiderioContact.form.yaml" class="contact__form"/>
             </d:molecule.card>

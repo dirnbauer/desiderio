@@ -25,7 +25,7 @@
                             <f:if condition="{person.name}">
                                 <li class="org-chart__person">
                                     <d:molecule.card class="org-chart__card">
-                                        <h3 class="org-chart__name">{person -> f:render.text(field: 'name')}</h3>
+                                        <d:atom.typography tag="h3" variant="h3" class="org-chart__name">{person -> f:render.text(field: 'name')}</d:atom.typography>
                                         <f:if condition="{person.role}">
                                             <p class="org-chart__role">{person -> f:render.text(field: 'role')}</p>
                                         </f:if>

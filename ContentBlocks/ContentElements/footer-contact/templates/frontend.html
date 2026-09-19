@@ -9,7 +9,7 @@
     <d:layout.container>
         <div class="footer-contact__inner">
             <f:if condition="{data.header}">
-                <h2 class="footer-contact__title">{data -> f:render.text(field: 'header')}</h2>
+                <d:atom.typography tag="h2" variant="h2" class="footer-contact__title">{data -> f:render.text(field: 'header')}</d:atom.typography>
             </f:if>
             <div class="footer-contact__grid">
                 <f:if condition="{data.address}">

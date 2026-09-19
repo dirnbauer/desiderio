@@ -13,7 +13,7 @@
                     <span class="awards__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <h2 class="awards__headline">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h2" class="awards__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.subheadline}">
                     <p class="awards__description">{data -> f:render.text(field: 'subheadline')}</p>
@@ -32,14 +32,14 @@
                         </div>
                     </f:if>
                     <div class="awards__info">
-                        <h3 class="awards__title">
+                        <d:atom.typography tag="h3" variant="h3" class="awards__title">
                             <f:if condition="{award.link.url}">
                                 <f:then>
                                     <d:atom.link href="{f:uri.typolink(parameter: award.link.url)}" target="{award.link.target}" variant="muted" class="awards__title-link">{award -> f:render.text(field: 'title')}</d:atom.link>
                                 </f:then>
                                 <f:else>{award -> f:render.text(field: 'title')}</f:else>
                             </f:if>
-                        </h3>
+                        </d:atom.typography>
                         <f:if condition="{award.organization} || {award.year}">
                             <p class="awards__meta">
                                 {award -> f:render.text(field: 'organization')}<f:if condition="{award.organization} && {award.year}"> &middot; </f:if>{award -> f:render.text(field: 'year')}

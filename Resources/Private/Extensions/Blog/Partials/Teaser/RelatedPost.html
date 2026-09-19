@@ -41,7 +41,7 @@
                     </f:for>
                 </f:if>
 
-                <d:atom.typography tag="h3" variant="h4" class="text-balance leading-snug tracking-normal" itemprop="headline">
+                <d:atom.typography tag="h3" variant="h4" class="text-balance leading-snug tracking-normal" attributes="{itemprop: 'headline'}">
                     <blogvh:link.post post="{post}" class="rounded-md text-foreground !no-underline outline-none transition-colors hover:text-link focus-visible:ring-3 focus-visible:ring-ring/40">
                         {post.title}
                     </blogvh:link.post>
@@ -55,7 +55,7 @@
             </div>
 
             <f:if condition="{post.abstract} || {post.description}">
-                <d:atom.typography variant="muted" class="line-clamp-2 text-pretty leading-relaxed" itemprop="description">
+                <d:atom.typography variant="muted" class="line-clamp-2 text-pretty leading-relaxed" attributes="{itemprop: 'description'}">
                     <f:if condition="{post.abstract}">
                         <f:then>{post.abstract}</f:then>
                         <f:else>{post.description}</f:else>

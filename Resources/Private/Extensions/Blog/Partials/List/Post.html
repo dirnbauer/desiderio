@@ -27,7 +27,7 @@
             <d:layout.stack gap="md">
                 <header class="min-w-0">
                     <div class="flex min-w-0 flex-col gap-3">
-                        <d:atom.typography tag="h2" variant="h3" class="min-w-0 max-w-3xl text-balance leading-tight tracking-normal" itemprop="headline">
+                        <d:atom.typography tag="h2" variant="h3" class="min-w-0 max-w-3xl text-balance leading-tight tracking-normal" attributes="{itemprop: 'headline'}">
                             <blogvh:link.post post="{post}" class="rounded-md text-foreground !no-underline outline-none transition-colors hover:text-link focus-visible:ring-3 focus-visible:ring-ring/40">
                                 {post.title}
                             </blogvh:link.post>
@@ -36,7 +36,7 @@
                 </header>
 
                 <f:if condition="{post.abstract} || {post.description}">
-                    <d:atom.typography variant="muted" class="max-w-3xl text-pretty leading-7" itemprop="description">
+                    <d:atom.typography variant="muted" class="max-w-3xl text-pretty leading-7" attributes="{itemprop: 'description'}">
                         <f:if condition="{post.abstract}">
                             <f:then>{post.abstract}</f:then>
                             <f:else>{post.description}</f:else>

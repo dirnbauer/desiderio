@@ -13,7 +13,7 @@
                     <p class="category-cards__eyebrow">{data -> f:render.text(field: 'eyebrow')}</p>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <h2 class="category-cards__headline">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h2" class="category-cards__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.subheadline}">
                     <p class="category-cards__description">{data -> f:render.text(field: 'subheadline')}</p>
@@ -25,7 +25,7 @@
             <f:for each="{data.items}" as="item">
                 <article class="category-cards__card">
                     <div class="category-cards__header">
-                        <h3 class="category-cards__title">{item -> f:render.text(field: 'title')}</h3>
+                        <d:atom.typography tag="h3" variant="h3" class="category-cards__title">{item -> f:render.text(field: 'title')}</d:atom.typography>
                         <f:if condition="{item.count}">
                             <span class="category-cards__count">{item -> f:render.text(field: 'count')}</span>
                         </f:if>

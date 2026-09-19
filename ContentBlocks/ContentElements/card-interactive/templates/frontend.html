@@ -18,7 +18,7 @@
             </div>
             <div class="card-interactive__body">
                 <f:if condition="{data.header}">
-                    <h2 class="card-interactive__title">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h2" class="card-interactive__title">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.description}">
                     <div class="card-interactive__description d-richtext">{data -> f:render.text(field: 'description')}</div>

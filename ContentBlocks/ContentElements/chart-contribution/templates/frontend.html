@@ -31,7 +31,7 @@
                 <div class="chart-contribution__head">
                     <div class="chart-contribution__titles">
                         <f:if condition="{data.header}">
-                            <h2 class="chart-contribution__title">{data -> f:render.text(field: 'header')}</h2>
+                            <d:atom.typography tag="h2" variant="h2" class="chart-contribution__title">{data -> f:render.text(field: 'header')}</d:atom.typography>
                         </f:if>
                         <f:if condition="{data.subheadline}">
                             <p class="chart-contribution__sub">{data -> f:render.text(field: 'subheadline')}</p>

@@ -6,6 +6,82 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.2.0] — 2026-09-19
+
+### Fixed
+
+- **Every `outline` button and badge rendered a transparent border.** React
+  composes shadcn classes through `cn()`, whose tailwind-merge drops the base
+  token as soon as a variant sets the same property. Fluid has no such merge:
+  base and variant land in one class attribute and the compiled stylesheet's
+  order decides — and Tailwind emits `.border-transparent` after
+  `.border-border`, so the base always won. The generator now moves the base
+  border colour into the variants that do not set one, and
+  `GeneratedClassConflictTest` reads the built bundle and fails on any
+  base/variant token pair that would repeat the mistake.
+- The Solr sorting dropdown opened off-screen to the left below `sm`.
+- **Painted bands lost their ink.** A band that paints itself `--primary` or
+  `--foreground` (`cta-banner`, `content-highlight`, `feature-highlight`, the
+  CTA banner variant) sets `color` on the band and expects its copy to inherit,
+  but the content-frame rules repaint every descendant heading and paragraph to
+  `--foreground` / `--muted-foreground` — near-black on a near-black band. The
+  bands now own their ink. Only the section-painted variants (`bg-primary` and
+  friends) had ever been handled.
+
+### Changed
+
+- Components carry extra attributes through one escape hatch. `d:atom.button`,
+  `d:atom.badge`, `d:atom.link`, `d:atom.typography` and `d:molecule.card` take
+  `attributes="{id: 'x', 'aria-label': 'y'}"` instead of dedicated `id` /
+  `itemprop` arguments, which rendered `id=""` and `itemprop=""` on every
+  element — 241 empty attributes on the start page alone, now none.
+- `d:molecule.card` takes `tag` (`article`, `section`, `aside`, `figure`,
+  `li`), the Fluid equivalent of shadcn's `asChild`, so a card can be the
+  sectioning element it stands for.
+- `d:atom.badge` takes `href`/`target` and renders an anchor — shadcn's
+  `asChild` case for removable filters and tag links.
+- A mobile-first section rhythm: `d:layout.section` steps its vertical padding
+  down on small screens (default `py-10 md:py-24` instead of `py-16 md:py-24`),
+  and the split hero no longer pads on top of it. The hero, both CTAs and the
+  product shot now fit above the fold at 390px.
+- Image enlargement is a component. `d:molecule.lightbox` replaces the raw
+  trigger markup that seven content elements had copied, with its own
+  `lightbox.open` / `lightbox.close` labels instead of the generic dismiss one.
+- The atomic-design conformance allowlist is down to the eight chart elements
+  whose SVG really is the content. Store badges and the styleguide's viewport
+  switcher use registry icons (`brand-apple`, `brand-google-play`, `tablet`,
+  `smartphone`), the Solr active filters are badges, the Solr sorting panel
+  uses the popover tokens, last searches and the news prev/next teasers are
+  cards.
+- The footer wordmark and the news "more" link clear the 24px WCAG 2.2 AA
+  minimum target size.
+
+- Components stopped emitting empty attributes altogether: `d:layout.section`
+  and `d:atom.link` lost arguments (`id`, `style`, `role`) that no template
+  passed, and `d:molecule.card` moved `role` into `attributes`. A start page
+  that carried 300+ empty `id=""`, `itemprop=""`, `style=""` and `role=""`
+  attributes now carries none.
+- `BlogCommentFormFactory` read the FriendlyCaptcha test-mode setting through
+  its own copy of the constant, bypassing the production guard and
+  `friendlyCaptchaForceReal` that `FriendlyCaptchaBypass` enforces for every
+  other Desiderio form. It now goes through `FriendlyCaptchaBypass::isEnabled()`.
+
+### Removed
+
+- `StyleguideShowcasePages` (3402 lines) is a facade over seven focused classes
+  in `Classes/Data/Showcase/`; the seeded content is byte-identical.
+- The template linter grew a typed model — `LintRule` and `LintSeverity` enums
+  replace nine string constants and a hand-synchronised rule table, and
+  `LintOptions::$rules` is no longer nullable. `TemplateLinter` 818 → 485 lines
+  after `FluidCallParser` and `PartialRootResolver` moved out.
+- 13 pass-through wrappers, three copies of the collection-shape helpers, two
+  duplicated catalog entry builders and four ViewHelper copies of request /
+  CSP-nonce handling are gone; `StyleguideFixtureResolver` 1201 → 878 lines
+  with its public surface down from 40 methods to 8. Net across `Classes/` and
+  `Tests/`: about 6 200 lines deleted against 1 000 added.
+- `STYLEGUIDE_PAGE_PRESETS`, `CONTENT_TYPES_PAGE_NAV_TITLE` and
+  `StyleguideDemoValueGenerator::buildReadableFileTitle()` were unreachable.
+
 ## [4.1.7] — 2026-09-18
 
 ### Changed

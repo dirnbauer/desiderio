@@ -72,6 +72,21 @@ Component conventions
     a shared button, badge, card, or link.
 *   Keep FAL image rendering and editable text in the TYPO3 ViewHelpers
     documented in :ref:`developer-adding-content-elements`.
+*   Pass anything the shadcn contract does not model — ``id``, ``aria-*``,
+    ``itemprop``, ``data-*`` hooks — through the ``attributes`` array that
+    ``d:atom.button``, ``d:atom.badge``, ``d:atom.link``,
+    ``d:atom.typography`` and ``d:molecule.card`` accept. Keys are
+    template-authored, values are escaped, and an empty array renders nothing:
+
+    ..  code-block:: html
+
+        <d:atom.typography tag="h2" variant="h2" attributes="{id: 'plans', itemprop: 'name'}">
+            Plans
+        </d:atom.typography>
+
+*   ``d:molecule.card`` takes ``tag`` (``article``, ``section``, ``aside``,
+    ``figure``, ``li``) — the Fluid equivalent of shadcn's ``asChild`` — so a
+    card can also be the sectioning element it stands for.
 
 The source migration to atomic primitives is complete. Edit the maintained
 components and templates directly, then run the structural and audit checks.
@@ -101,6 +116,11 @@ Verification
     shipped template (:ref:`developer-template-lint`).
 *   ``Tests/Unit/ContentBlockStructureTest.php`` checks structural contracts.
 *   ``Tests/Unit/ContentElementAuditTest.php`` checks fields, tokens, and styles.
+*   ``Tests/Unit/GeneratedClassConflictTest.php`` reads the built Tailwind
+    bundle and fails when a generated component's base utility would out-rank
+    a variant utility for the same CSS property. Fluid has no tailwind-merge,
+    so such a pair resolves by stylesheet order, not by class order — which is
+    how every ``outline`` control lost its border before 4.2.0.
 *   ``Build/Scripts/report-atomic-usage.php`` prints a read-only component
     histogram and the class signatures that recur across elements — the input
     for deciding whether something deserves its own molecule.

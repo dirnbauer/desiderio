@@ -79,6 +79,29 @@ Semantic TYPO3 primitives stay local where shadcn/ui provides no registry
 contract: page templates, extension partials, Blog widgets, News metadata,
 Solr results, and Content Block composition.
 
+Never hand-edit a generated primitive: run ``npm run shadcn:sync-fluid`` and
+change :file:`Build/Scripts/sync-shadcn-fluid-primitives.php` instead.
+``ComponentStructureTest`` re-runs the generator with ``--check`` and fails on
+any drift.
+
+..  _developer-shadcn-sync-merge:
+
+There is no tailwind-merge
+==========================
+
+React composes shadcn classes through ``cn()``, whose tailwind-merge drops the
+base token as soon as a variant sets the same CSS property. Fluid has no
+equivalent: base and variant land in one ``class`` attribute, and then the
+compiled stylesheet's order decides which wins — not the order in the
+attribute. Tailwind emits ``.border-transparent`` after ``.border-border``, so
+the shadcn base silently beat every ``outline`` variant until 4.2.0.
+
+The generator therefore resolves such pairs itself
+(``hoistBorderColorOutOfBase()``): the base token moves into the variants that
+do not set the property. ``Tests/Unit/GeneratedClassConflictTest.php`` reads
+the built bundle and fails on any remaining pair, so a future registry change
+that introduces one cannot ship unnoticed.
+
 ..  _developer-shadcn-sync-media:
 
 Media rules

@@ -1,7 +1,7 @@
 # Desiderio
 
 A TYPO3 v14.3 theme extension: a shadcn/ui-inspired **Fluid 5 component
-library** (17 atoms, 35 molecules, 4 layouts, 4 organisms), 244 Desiderio Content Blocks,
+library** (17 atoms, 37 molecules, 4 layouts, 4 organisms), 244 Desiderio Content Blocks,
 page templates, optional Blog/News/Solr/Powermail overrides, and a runtime
 theme system driven by TYPO3 site settings.
 

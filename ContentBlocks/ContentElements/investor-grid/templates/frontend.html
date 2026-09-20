@@ -21,7 +21,7 @@
                         <f:if condition="{inv.logo}">
                             <f:then>
                                 <f:for each="{inv.logo}" as="fileReference">
-                                    <f:image image="{fileReference}" maxWidth="160" alt="" loading="lazy" decoding="async" class="investor-grid__logo"/>
+                                    <f:image image="{fileReference}" maxWidth="160" alt="{fileReference.alternative}" loading="lazy" decoding="async" class="investor-grid__logo"/>
                                 </f:for>
                             </f:then>
                             <f:else>

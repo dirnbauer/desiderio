@@ -7,7 +7,7 @@
     <f:if condition="{data.background_image}">
         <div class="hero-parallax__bg-wrap" aria-hidden="true">
             <f:for each="{data.background_image}" as="image">
-                <f:image image="{image}" class="hero-parallax__bg" alt="" loading="eager" fetchpriority="high" decoding="async"/>
+                <f:image image="{image}" class="hero-parallax__bg" alt="{image.alternative}" loading="eager" fetchpriority="high" decoding="async"/>
             </f:for>
         </div>
     </f:if>

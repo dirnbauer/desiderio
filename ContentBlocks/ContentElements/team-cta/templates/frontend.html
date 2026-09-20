@@ -10,7 +10,7 @@
         <div class="team-cta__card">
             <f:if condition="{data.image}">
                 <f:for each="{data.image}" as="fileReference">
-                    <f:image image="{fileReference}" maxWidth="1200" alt="" loading="lazy" decoding="async" class="team-cta__bg"/>
+                    <f:image image="{fileReference}" maxWidth="1200" alt="{fileReference.alternative}" loading="lazy" decoding="async" class="team-cta__bg"/>
                 </f:for>
             </f:if>
             <div class="team-cta__content">

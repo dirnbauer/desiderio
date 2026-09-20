@@ -6,6 +6,18 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.2.1] — 2026-09-20
+
+### Fixed
+
+- Thirty-one content elements threw away the alternative text an editor typed
+  on an image. They passed a literal `alt=""` to `f:image`, so the field was
+  offered in the backend, translated with the rest of the page, and then never
+  reached the markup. Each now passes the file reference's own `alternative`,
+  which leaves the decorative case untouched — an empty alternative still
+  renders `alt=""` — while an image that carries meaning says so. A unit test
+  fails on any template that reintroduces the literal.
+
 ## [4.2.0] — 2026-09-19
 
 ### Fixed

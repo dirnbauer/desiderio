@@ -12,7 +12,7 @@
                 <f:if condition="{data.image}">
                     <div class="team-member__image-wrapper">
                         <f:for each="{data.image}" as="fileReference">
-                            <f:image image="{fileReference}" maxWidth="480" alt="" loading="lazy" decoding="async" class="team-member__image"/>
+                            <f:image image="{fileReference}" maxWidth="480" alt="{fileReference.alternative}" loading="lazy" decoding="async" class="team-member__image"/>
                         </f:for>
                     </div>
                 </f:if>

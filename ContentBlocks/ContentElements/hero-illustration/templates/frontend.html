@@ -25,7 +25,7 @@
             <f:if condition="{data.illustration}">
                 <div class="hero-illustration__media">
                     <f:for each="{data.illustration}" as="image">
-                        <f:image image="{image}" class="hero-illustration__image" alt="" loading="eager" fetchpriority="high" decoding="async"/>
+                        <f:image image="{image}" class="hero-illustration__image" alt="{image.alternative}" loading="eager" fetchpriority="high" decoding="async"/>
                     </f:for>
                 </div>
             </f:if>

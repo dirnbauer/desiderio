@@ -24,7 +24,7 @@
                         <f:if condition="{member.image}">
                             <div class="team-carousel__media">
                                 <f:for each="{member.image}" as="fileReference">
-                                    <f:image image="{fileReference}" width="640" height="640" cropVariant="default" alt="" loading="lazy" decoding="async" class="team-carousel__image" additionalAttributes="{srcset: '{f:uri.image(image: fileReference, width: \'640\', height: \'640\')} 1x, {f:uri.image(image: fileReference, width: \'1280\', height: \'1280\')} 2x'}"/>
+                                    <f:image image="{fileReference}" width="640" height="640" cropVariant="default" alt="{fileReference.alternative}" loading="lazy" decoding="async" class="team-carousel__image" additionalAttributes="{srcset: '{f:uri.image(image: fileReference, width: \'640\', height: \'640\')} 1x, {f:uri.image(image: fileReference, width: \'1280\', height: \'1280\')} 2x'}"/>
                                 </f:for>
                             </div>
                         </f:if>

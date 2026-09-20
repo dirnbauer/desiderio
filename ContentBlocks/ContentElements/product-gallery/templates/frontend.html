@@ -35,7 +35,7 @@
                                             data-thumb-alt="{fileReference.alternative -> f:or(alternative: '{galleryTitle} {iter.cycle}')}"
                                             aria-current="{f:if(condition: iter.isFirst, then: 'true', else: 'false')}"
                                             aria-label="{galleryTitle} {iter.cycle}">
-                                        <f:image image="{fileReference}" width="160" height="100" cropVariant="default" alt="" class="product-gallery__thumb-img" loading="lazy" decoding="async" additionalAttributes="{srcset: '{f:uri.image(image: fileReference, width: \'160\', height: \'100\')} 1x, {f:uri.image(image: fileReference, width: \'320\', height: \'200\')} 2x'}"/>
+                                        <f:image image="{fileReference}" width="160" height="100" cropVariant="default" alt="{fileReference.alternative}" class="product-gallery__thumb-img" loading="lazy" decoding="async" additionalAttributes="{srcset: '{f:uri.image(image: fileReference, width: \'160\', height: \'100\')} 1x, {f:uri.image(image: fileReference, width: \'320\', height: \'200\')} 2x'}"/>
                                     </button>
                                 </li>
                             </f:for>

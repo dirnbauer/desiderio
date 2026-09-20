@@ -34,7 +34,7 @@
                     <f:if condition="{data.cta_image}">
                         <div class="cta__media">
                             <f:for each="{data.cta_image}" as="file">
-                                <f:image image="{file}" alt="" width="800" class="cta__image" additionalAttributes="{srcset: '{f:uri.image(image: file, width: \'800\')} 1x, {f:uri.image(image: file, width: \'1600\')} 2x'}" loading="lazy" decoding="async"/>
+                                <f:image image="{file}" alt="{file.alternative}" width="800" class="cta__image" additionalAttributes="{srcset: '{f:uri.image(image: file, width: \'800\')} 1x, {f:uri.image(image: file, width: \'1600\')} 2x'}" loading="lazy" decoding="async"/>
                             </f:for>
                         </div>
                     </f:if>

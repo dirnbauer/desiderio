@@ -179,3 +179,12 @@ tt_content.solr_pi_search =< lib.contentElement
 tt_content.solr_pi_search.templateName = SolrPiSearch
 tt_content.solr_pi_frequentlysearched =< lib.contentElement
 tt_content.solr_pi_frequentlysearched.templateName = SolrPiFrequentlySearched
+
+# Anchors for links to a content element (t3://page?uid=12#c345), the way
+# fluid_styled_content does it: an empty <a id="c…"> before the element, so no
+# element template or layout has to change. Every Content Block type is a
+# reference to lib.contentBlock (friendsoftypo3/content-blocks writes
+# `tt_content.<type> =< lib.contentBlock`), so this reaches all of them;
+# the core types render their id in the ClassicContent layout instead.
+lib.contentBlock.stdWrap.prepend = TEXT
+lib.contentBlock.stdWrap.prepend.dataWrap = <a id="c{field:uid}"></a>

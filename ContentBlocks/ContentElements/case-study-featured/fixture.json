@@ -4,9 +4,9 @@
     "header": "How Northwind runs five brands on one install",
     "client_name": "Northwind Group",
     "client_logo": {
-        "file": "Resources/Public/Styleguide/Logos/Brands/northwind.svg",
+        "file": "Resources/Public/Styleguide/Library/lib-logo-northwind-f54d77ef.webp",
         "title": "Northwind Group logo",
-        "alternative": "Northwind Group demo brand logo.",
+        "alternative": "Logo of Northwind Group.",
         "description": "Fictional demo brand from the Desiderio styleguide."
     },
     "description": "<p>Northwind's agency moved five brand sites into one <a href=\"https://typo3.org\">TYPO3 v14</a> install. Each page tree has its own theme preset: Marine for logistics, Gold for the holding company and Bloom for careers. One page property sets the preset, and subpages inherit it. The maintainers did the €890 installation and reviewed the presets under the <strong>Agency plan</strong>. The relaunch took six weeks.<br />When a brand changes its look, <strong>nothing needs rebuilding</strong>.</p>",

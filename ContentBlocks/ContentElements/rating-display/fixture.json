@@ -4,48 +4,48 @@
     "header": "Example review scores to show the layout",
     "rating_items": [
         {
-            "platform": "Stackrate",
+            "platform": "Northstar Labs",
             "score": "4.8/5",
             "review_count": "1,240 reviews",
             "logo": {
-                "file": "Resources/Public/Styleguide/Logos/Reviews/g2.svg",
-                "title": "G2 reviews logo",
-                "alternative": "G2 reviews logo."
+                "file": "Resources/Public/Styleguide/Library/lib-logo-northstar-labs-24b82f28.webp",
+                "title": "Northstar Labs logo",
+                "alternative": "Logo of Northstar Labs."
             },
-            "link": "https://www.g2.com/"
+            "link": "#"
         },
         {
-            "platform": "PeerPanel",
+            "platform": "Lumen Labs",
             "score": "4.7/5",
             "review_count": "860 reviews",
             "logo": {
-                "file": "Resources/Public/Styleguide/Logos/Reviews/capterra.svg",
-                "title": "Capterra reviews logo",
-                "alternative": "Capterra reviews logo."
+                "file": "Resources/Public/Styleguide/Library/lib-logo-lumen-labs-59e50c2b.webp",
+                "title": "Lumen Labs logo",
+                "alternative": "Logo of Lumen Labs."
             },
-            "link": "https://www.capterra.com/"
+            "link": "#"
         },
         {
-            "platform": "Reviewdesk",
+            "platform": "Signal Bureau",
             "score": "4.9/5",
             "review_count": "510 reviews",
             "logo": {
-                "file": "Resources/Public/Styleguide/Logos/Reviews/trustradius.svg",
-                "title": "TrustRadius reviews logo",
-                "alternative": "TrustRadius reviews logo."
+                "file": "Resources/Public/Styleguide/Library/lib-logo-signal-bureau-ab0de907.webp",
+                "title": "Signal Bureau logo",
+                "alternative": "Logo of Signal Bureau."
             },
-            "link": "https://www.trustradius.com/"
+            "link": "#"
         },
         {
-            "platform": "Mapview",
+            "platform": "Atlas Studio",
             "score": "4.8/5",
             "review_count": "3,100 reviews",
             "logo": {
-                "file": "Resources/Public/Styleguide/Logos/Reviews/google.svg",
-                "title": "Google reviews logo",
-                "alternative": "Google reviews logo."
+                "file": "Resources/Public/Styleguide/Library/lib-logo-atlas-studio-c4c90477.webp",
+                "title": "Atlas Studio logo",
+                "alternative": "Logo of Atlas Studio."
             },
-            "link": "https://www.google.com/search?q=Desiderio+reviews"
+            "link": "#"
         }
     ]
 }

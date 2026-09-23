@@ -69,15 +69,15 @@ final class StyleguideFixtureResolverTest extends AbstractStyleguideSeedingTestC
             ],
         ];
         $logo = [
-            'file' => 'Resources/Public/Styleguide/Logos/Press/techcrunch.svg',
-            'title' => 'TechCrunch press logo',
-            'alternative' => 'TechCrunch press logo.',
-            'description' => 'Press publication logo used as demo data.',
+            'file' => 'Resources/Public/Styleguide/Library/lib-logo-signal-bureau-ab0de907.webp',
+            'title' => 'Signal Bureau logo',
+            'alternative' => 'Logo of Signal Bureau.',
+            'description' => 'Fictional demo brand from the Desiderio styleguide.',
         ];
 
         $normalized = $this->invokeMethod($this->createFixtureResolver(), 'normalizeCollectionItems', [
             [
-                ['publication' => 'TechCrunch', 'logo' => $logo],
+                ['publication' => 'Signal Bureau', 'logo' => $logo],
             ],
             $collection,
         ]);
@@ -87,7 +87,7 @@ final class StyleguideFixtureResolverTest extends AbstractStyleguideSeedingTestC
         self::assertIsArray($normalized);
         $firstItem = $normalized[0] ?? null;
         self::assertIsArray($firstItem);
-        self::assertSame('TechCrunch', $firstItem['publication'] ?? null);
+        self::assertSame('Signal Bureau', $firstItem['publication'] ?? null);
         self::assertSame($logo, $firstItem['logo'] ?? null);
     }
 

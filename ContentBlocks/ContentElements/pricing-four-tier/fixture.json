@@ -1,13 +1,13 @@
 {
     "_type": "pricing",
-    "header": "From free core to the creators on retainer",
-    "eyebrow": "Pick your level",
-    "subheadline": "Three license tiers plus a standing retainer with the people who built all 244 elements. Yearly billing on Pro and Agency means 2 months free.",
+    "header": "From the free core to a monthly retainer",
+    "eyebrow": "Four plans",
+    "subheadline": "Three licence plans, plus a retainer with the maintainers. Paying yearly for Pro or Agency gives you 2 months free.",
     "plans": [
         {
             "title": "Community",
             "price": "€0",
-            "description": "<p>The complete open source kit, self-served and <strong>free forever</strong>.</p>",
+            "description": "<p>The complete open-source package, for self-service and <strong>always free</strong>.</p>",
             "features": [
                 {
                     "text": "244 elements in 10 groups"
@@ -16,7 +16,7 @@
                     "text": "Backend previews for every element"
                 },
                 {
-                    "text": "One-command demo seeding"
+                    "text": "Demo content with one command"
                 },
                 {
                     "text": "Community support on GitHub"
@@ -28,45 +28,45 @@
         },
         {
             "title": "Pro",
-            "price": "€49/mo",
-            "description": "<p>Per project — €490/year with 2 months free. The recommended tier.</p>",
+            "price": "€49/month",
+            "description": "<p>Per project, or €490/year with 2 months free. Our recommendation.</p>",
             "features": [
                 {
                     "text": "Everything in Community"
                 },
                 {
-                    "text": "Priority email support, 2-day response"
+                    "text": "Email support, answer within 2 days"
                 },
                 {
-                    "text": "Guaranteed LTS compatibility updates"
+                    "text": "LTS compatibility updates"
                 },
                 {
-                    "text": "Early access to drops and preset packs"
+                    "text": "Early access to new elements and presets"
                 },
                 {
-                    "text": "Minor-version upgrade assistance"
+                    "text": "Help with minor upgrades"
                 }
             ],
-            "button_text": "Go Pro",
+            "button_text": "Choose Pro",
             "button_link": "https://github.com/dirnbauer/desiderio",
             "featured": true
         },
         {
             "title": "Agency",
-            "price": "€149/mo",
-            "description": "<p>Unlimited projects — <strong>€1,490/year</strong> with 2 months free.</p>",
+            "price": "€149/month",
+            "description": "<p>Unlimited projects, or <strong>€1,490/year</strong> with 2 months free.</p>",
             "features": [
                 {
                     "text": "Everything in Pro, unlimited projects"
                 },
                 {
-                    "text": "4-hour priority response"
+                    "text": "Answer within 4 business hours"
                 },
                 {
-                    "text": "Quarterly editor onboarding session"
+                    "text": "Quarterly editor onboarding"
                 },
                 {
-                    "text": "Custom preset review by the creators"
+                    "text": "Preset review by the maintainers"
                 },
                 {
                     "text": "Direct line to the maintainers"
@@ -81,8 +81,8 @@
         },
         {
             "title": "Creator Care",
-            "price": "€490/mo",
-            "description": "<p>With the creators: a <strong>standing retainer</strong> from the team that built Desiderio.</p>",
+            "price": "€490/month",
+            "description": "<p>A <strong>monthly retainer</strong> with the team that built Desiderio.</p>",
             "features": [
                 {
                     "text": "4 development hours every month"
@@ -97,10 +97,10 @@
                     "text": "LTS upgrade planning"
                 },
                 {
-                    "text": "Built by the people behind all 244 elements"
+                    "text": "Work by the people who built Desiderio"
                 },
                 {
-                    "text": "Pairs with Community, Pro, or Agency"
+                    "text": "Works with Community, Pro or Agency"
                 }
             ],
             "button_text": "Book Creator Care",

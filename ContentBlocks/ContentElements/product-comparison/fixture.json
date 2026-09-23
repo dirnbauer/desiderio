@@ -1,23 +1,23 @@
 {
     "_type": "pricing",
-    "header": "Community, Pro, or Agency?",
-    "eyebrow": "Choose your tier",
+    "header": "Community, Pro and Agency compared",
+    "eyebrow": "Choose a plan",
     "products": [
         {
             "name": "Community",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-page-module-hero.png",
                 "title": "Desiderio page module preview",
-                "alternative": "TYPO3 page module showing Desiderio content elements with visual backend previews.",
-                "description": "Screenshot of the TYPO3 backend with Desiderio installed."
+                "alternative": "The TYPO3 page module with backend previews of Desiderio content elements.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio."
             },
             "price": "€0 forever",
             "specs": [
                 {
-                    "text": "All 244 elements, GPL-2.0-or-later, full source on GitHub"
+                    "text": "All 244 elements under GPL-2.0-or-later, source on GitHub"
                 },
                 {
-                    "text": "15 theme presets, dark mode, WCAG 2.2-checked"
+                    "text": "15 theme presets and dark mode, contrast checked"
                 },
                 {
                     "text": "Community support on GitHub"
@@ -31,22 +31,22 @@
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-visual-editor.png",
                 "title": "Editing in the Desiderio Visual Editor",
-                "alternative": "Desiderio Visual Editor with a content element being edited inline in the live page preview.",
-                "description": "Screenshot of the Desiderio Visual Editor in TYPO3."
+                "alternative": "The Visual Editor, with a content element edited directly on the page.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio."
             },
-            "price": "€49/mo · €490/yr",
+            "price": "€49/month · €490/year",
             "specs": [
                 {
                     "text": "Everything in Community, per project"
                 },
                 {
-                    "text": "Priority email support, 2-day response"
+                    "text": "Email support, answer within 2 days"
                 },
                 {
-                    "text": "Guaranteed LTS compatibility updates"
+                    "text": "LTS compatibility updates"
                 },
                 {
-                    "text": "Early access to drops and preset packs"
+                    "text": "Early access to new elements and presets"
                 }
             ],
             "is_recommended": true,
@@ -57,19 +57,19 @@
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-site-settings-theme.png",
                 "title": "Desiderio theme site settings",
-                "alternative": "TYPO3 site settings panel with the Desiderio theme preset category open.",
-                "description": "Screenshot of the TYPO3 backend with Desiderio installed."
+                "alternative": "TYPO3 site settings with the Desiderio theme preset options open.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio."
             },
-            "price": "€149/mo · €1,490/yr",
+            "price": "€149/month · €1,490/year",
             "specs": [
                 {
                     "text": "Everything in Pro, unlimited projects"
                 },
                 {
-                    "text": "4-hour priority response"
+                    "text": "Answer within 4 business hours"
                 },
                 {
-                    "text": "Quarterly editor onboarding session"
+                    "text": "Quarterly editor onboarding"
                 },
                 {
                     "text": "Direct line to the maintainers"

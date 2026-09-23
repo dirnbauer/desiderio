@@ -1,84 +1,84 @@
 {
     "_type": "grid",
-    "eyebrow": "Services from the creators",
-    "header": "The people who built it, working on your site",
+    "eyebrow": "Maintainer services",
+    "header": "The Desiderio team, working on your site",
     "columns": "3",
     "products": [
         {
-            "name": "Installation & setup",
+            "name": "Installation and setup",
             "price": "€890",
-            "description_text": "The creators install, configure, and theme Desiderio for you — ship in days, not weeks.",
+            "description_text": "We install, configure and theme Desiderio on your TYPO3 site.",
             "link": "https://github.com/dirnbauer/desiderio",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-page-module-hero.png",
                 "title": "Desiderio page module preview",
-                "alternative": "TYPO3 page module showing Desiderio content elements with visual backend previews.",
-                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "alternative": "The TYPO3 page module with backend previews of Desiderio content elements.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
             "name": "Brand adaptation",
             "price": "from €1,990",
-            "description_text": "A custom theme preset matched to your brand — WCAG 2.2-checked like the stock 15.",
+            "description_text": "A theme preset in your brand colours, with contrast checked like the other 15.",
             "link": "https://github.com/dirnbauer/desiderio",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-site-settings-theme.png",
                 "title": "Desiderio theme site settings",
-                "alternative": "TYPO3 site settings panel with the Desiderio theme preset category open.",
-                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "alternative": "TYPO3 site settings with the Desiderio theme preset options open.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
             "name": "Custom element development",
             "price": "from €390",
-            "description_text": "Per element: new Content Blocks built to the same audit rules as the stock 244.",
+            "description_text": "Priced per element and built to the same audit rules as the other 244.",
             "link": "https://github.com/dirnbauer/desiderio",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-content-wizard.png",
                 "title": "Desiderio new-content wizard",
-                "alternative": "TYPO3 new-content wizard listing all ten Desiderio element groups.",
-                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "alternative": "The TYPO3 content wizard listing the 10 Desiderio element groups.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
             "name": "Editor onboarding workshop",
             "price": "€690",
-            "description_text": "Half-day remote session: previews, the wizard, the Visual Editor, per-page themes.",
+            "description_text": "A half-day remote session on previews, the content wizard, the Visual Editor and per-page themes.",
             "link": "https://github.com/dirnbauer/desiderio",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-visual-editor.png",
                 "title": "Editing in the Desiderio Visual Editor",
-                "alternative": "Desiderio Visual Editor with a content element being edited inline in the live page preview.",
-                "description": "Screenshot of the Desiderio Visual Editor in TYPO3.",
+                "alternative": "The Visual Editor, with a content element edited directly on the page.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
             "name": "TYPO3 LTS upgrade",
             "price": "from €2,400",
-            "description_text": "Planned, executed, and regression-checked by the maintainers themselves.",
+            "description_text": "The maintainers plan the upgrade, carry it out and check for regressions.",
             "link": "https://github.com/dirnbauer/desiderio",
             "image": {
                 "file": "Resources/Public/Styleguide/Frontend/frontend-hero-lagoon.png",
                 "title": "Desiderio frontend, Lagoon preset",
-                "alternative": "Desiderio demo site running on the current TYPO3 LTS with the Lagoon theme preset.",
-                "description": "Frontend screenshot of a Desiderio demo site.",
+                "alternative": "A Desiderio demo page with the Lagoon theme preset on the current TYPO3 LTS.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
             "name": "Managed TYPO3 hosting",
-            "price": "€99/mo",
-            "description_text": "Updates, daily backups, monitoring, EU datacenter. Business at €179/mo adds staging, 99.9% SLA, CDN.",
+            "price": "€99/month",
+            "description_text": "Updates, daily backups and monitoring in an EU data centre. Business at €179/month adds staging, a 99.9% SLA and a CDN.",
             "link": "https://github.com/dirnbauer/desiderio",
             "image": {
                 "file": "Resources/Public/Styleguide/Frontend/frontend-dashboards-forest.png",
                 "title": "Desiderio dashboards page, Forest preset",
-                "alternative": "Desiderio demo site with monitoring-style dashboard charts in the Forest theme preset.",
-                "description": "Frontend screenshot of a Desiderio demo site.",
+                "alternative": "A Desiderio demo page with dashboard charts in the Forest theme preset.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             }
         }

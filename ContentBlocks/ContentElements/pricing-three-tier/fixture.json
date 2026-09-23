@@ -1,23 +1,23 @@
 {
     "_type": "pricing",
-    "header": "One free core. Three speeds to ship at.",
+    "header": "Three plans on one free core",
     "eyebrow": "Pricing",
-    "subheadline": "The software is identical in every tier — GPL-2.0-or-later, all 244 elements. Pro and Agency buy you the creators' guarantees. Yearly billing means 2 months free.",
+    "subheadline": "Every plan has the same software: all 244 elements under GPL-2.0-or-later. Pro and Agency add guaranteed support, and paying yearly gives you 2 months free.",
     "plans": [
         {
             "name": "Community",
             "price": "€0",
             "billing_period": "/forever",
-            "description": "<p>Self-serve the complete open source kit. No license keys, no feature gates.</p>",
+            "description": "<p>The complete open-source package for self-service. No licence keys, no locked features.</p>",
             "features": [
                 {
                     "text": "244 elements with backend previews"
                 },
                 {
-                    "text": "15 theme presets, runtime switching"
+                    "text": "15 theme presets, switchable at runtime"
                 },
                 {
-                    "text": "One-command styleguide seeding"
+                    "text": "Demo content with one command"
                 },
                 {
                     "text": "Community support on GitHub"
@@ -31,25 +31,25 @@
             "name": "Pro",
             "price": "€49",
             "billing_period": "/month · €490/year",
-            "description": "<p>Priority answers and guaranteed updates from the creators — the tier most teams pick.</p>",
+            "description": "<p>Priority answers and guaranteed updates from the maintainers. Our recommendation.</p>",
             "features": [
                 {
                     "text": "Everything in Community"
                 },
                 {
-                    "text": "Priority email support, 2-day response"
+                    "text": "Email support, answer within 2 days"
                 },
                 {
-                    "text": "Guaranteed LTS compatibility updates"
+                    "text": "LTS compatibility updates"
                 },
                 {
-                    "text": "Early access to element drops and preset packs"
+                    "text": "Early access to new elements and presets"
                 },
                 {
-                    "text": "Minor-version upgrade assistance"
+                    "text": "Help with minor upgrades"
                 }
             ],
-            "button_text": "Go Pro",
+            "button_text": "Choose Pro",
             "button_link": "https://github.com/dirnbauer/desiderio",
             "is_recommended": true
         },
@@ -57,19 +57,19 @@
             "name": "Agency",
             "price": "€149",
             "billing_period": "/month · €1,490/year",
-            "description": "<p><strong>Pro</strong> for unlimited projects — with the fastest line to the maintainers.</p>",
+            "description": "<p><strong>Pro</strong> for unlimited projects, with a direct line to the maintainers.</p>",
             "features": [
                 {
                     "text": "Everything in Pro, unlimited projects"
                 },
                 {
-                    "text": "4-hour priority response"
+                    "text": "Answer within 4 business hours"
                 },
                 {
-                    "text": "Quarterly editor onboarding session"
+                    "text": "Quarterly editor onboarding"
                 },
                 {
-                    "text": "Custom preset review by the creators"
+                    "text": "Preset review by the maintainers"
                 },
                 {
                     "text": "Direct line to the maintainers"

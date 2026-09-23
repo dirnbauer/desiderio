@@ -1,47 +1,47 @@
 {
     "_type": "pricing",
-    "header": "Pro for your project. Agency for all of them.",
-    "eyebrow": "Pro vs Agency",
-    "subheadline": "Both tiers run the same free, GPL-2.0-or-later core with all 244 elements. The question is how much of the creators' time you want on your side — and on how many projects.",
+    "header": "Pro per project, Agency for all projects",
+    "eyebrow": "Pro or Agency",
+    "subheadline": "Both plans use the same free core with all 244 elements. They differ in how much maintainer time you get, and for how many projects.",
     "plans": [
         {
             "title": "Pro",
             "price": "€49/month · €490/year",
-            "description": "<p>Per project. Priority answers, guaranteed updates, early access — the recommended tier.</p>",
+            "description": "<p>Per project. Priority answers, guaranteed updates and early access. Our recommendation.</p>",
             "features": [
                 {
-                    "text": "Priority email support, 2-day response"
+                    "text": "Email support, answer within 2 days"
                 },
                 {
-                    "text": "Guaranteed LTS compatibility updates"
+                    "text": "LTS compatibility updates"
                 },
                 {
-                    "text": "Early access to element drops and preset packs"
+                    "text": "Early access to new elements and presets"
                 },
                 {
-                    "text": "Minor-version upgrade assistance"
+                    "text": "Help with minor upgrades"
                 }
             ],
-            "button_text": "Go Pro",
+            "button_text": "Choose Pro",
             "button_link": "https://github.com/dirnbauer/desiderio",
             "featured": true
         },
         {
             "title": "Agency",
             "price": "€149/month · €1,490/year",
-            "description": "<p>Everything in Pro for <strong>unlimited projects</strong>, plus the fastest line to the maintainers.</p>",
+            "description": "<p>Everything in Pro for <strong>unlimited projects</strong>, plus a direct line to the maintainers.</p>",
             "features": [
                 {
                     "text": "Everything in Pro, unlimited projects"
                 },
                 {
-                    "text": "4-hour priority response"
+                    "text": "Answer within 4 business hours"
                 },
                 {
-                    "text": "Quarterly editor onboarding session"
+                    "text": "Quarterly editor onboarding"
                 },
                 {
-                    "text": "Custom preset review by the creators"
+                    "text": "Preset review by the maintainers"
                 },
                 {
                     "text": "Direct line to the maintainers"

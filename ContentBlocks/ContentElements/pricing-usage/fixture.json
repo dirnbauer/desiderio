@@ -1,35 +1,35 @@
 {
     "_type": "pricing",
-    "header": "The creators, on demand",
-    "eyebrow": "Pay as you grow",
-    "subheadline": "Need more than the catalog? Book the team that built all 244 elements. Fixed rates, no surprises — and Creator Care turns their help into a monthly habit.",
+    "header": "Services at fixed prices",
+    "eyebrow": "Pay per service",
+    "subheadline": "Book the team that built Desiderio for work beyond the catalogue. Rates are fixed, and Creator Care gives you their time every month.",
     "items": [
         {
             "title": "Custom elements",
             "rate": "from €390",
             "unit": "element",
-            "description": "<p>A new Content Blocks element, built by the creators to the <strong>same audit rules</strong> as the other 244.</p>",
+            "description": "<p>A new content element, built by the maintainers to the <strong>same audit rules</strong> as the other 244.</p>",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "title": "Creator Care",
             "rate": "€490",
             "unit": "month",
-            "description": "<p><strong>4 dev hours</strong>, priority fixes, security monitoring, and LTS upgrade planning — every month.</p>",
+            "description": "<p><strong>4 dev hours</strong>, priority fixes, security monitoring and LTS upgrade planning, every month.</p>",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "title": "Editor workshop",
             "rate": "€690",
             "unit": "half-day",
-            "description": "<p>Remote onboarding that turns your editors loose on previews, the wizard, and per-page themes.</p>",
+            "description": "<p>Remote training for your editors on previews, the content wizard and per-page themes.</p>",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "title": "LTS upgrade",
             "rate": "from €2,400",
             "unit": "upgrade",
-            "description": "<p>The creators move your site to the next <a href=\"https://typo3.org\">TYPO3 LTS</a> — planned, executed, regression-checked.</p>",
+            "description": "<p>The maintainers move your site to the next <a href=\"https://typo3.org\">TYPO3 LTS</a> and check it for regressions.</p>",
             "link": "https://github.com/dirnbauer/desiderio"
         }
     ]

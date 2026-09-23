@@ -1,7 +1,7 @@
 {
     "header": "From a first API key to committed volume",
     "eyebrow": "Four plans",
-    "subheadline": "Plans differ in throughput, in support and in where the data sits. All four reach the same endpoints with the same request and response shapes, so moving up a tier is a billing change rather than a rewrite of the integration you already shipped.",
+    "subheadline": "Plans differ in throughput, support and where your data is stored. All four use the same endpoints, so moving up a plan changes billing, not your integration.",
     "plans": [
         {
             "title": "Sandbox",
@@ -19,7 +19,7 @@
                 }
             ],
             "featured": false,
-            "button_text": "Get a sandbox key"
+            "button_text": "Try the sandbox"
         },
         {
             "title": "Build",
@@ -45,7 +45,7 @@
         {
             "title": "Scale",
             "price": "EUR 249",
-            "description": "<p>35,000 pages a month with an uptime commitment and a four-hour support clock.</p>",
+            "description": "<p>35,000 pages a month, an uptime commitment and support within four hours.</p>",
             "features": [
                 {
                     "text": "35,000 pages a month included"

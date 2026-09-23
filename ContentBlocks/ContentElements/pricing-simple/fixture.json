@@ -1,29 +1,29 @@
 {
     "_type": "pricing",
-    "header": "Pro: the tier most teams pick",
+    "header": "Pro: the plan we recommend",
     "price": "€49",
-    "billing_period": "/month — or €490/year (2 months free)",
-    "description": "<p>One plan that turns the free Desiderio core into a <strong>guaranteed, supported platform</strong>: priority answers from the creators, LTS updates that land before you need them, and early access to every new element drop.</p>",
+    "billing_period": "/month, or €490/year (2 months free)",
+    "description": "<p>Pro adds <strong>support and guaranteed updates</strong> to the free Desiderio core. You get priority answers from the maintainers, LTS updates and early access to new elements.</p>",
     "features": [
         {
             "text": "Everything in the free Community core"
         },
         {
-            "text": "Priority email support, 2-day response"
+            "text": "Email support, answer within 2 days"
         },
         {
-            "text": "Guaranteed TYPO3 LTS compatibility updates"
+            "text": "TYPO3 LTS compatibility updates"
         },
         {
-            "text": "Early access to element drops and preset packs"
+            "text": "Early access to new elements and presets"
         },
         {
-            "text": "Minor-version upgrade assistance"
+            "text": "Help with minor upgrades"
         },
         {
             "text": "20% off the first year with code DESIDERIO20"
         }
     ],
-    "button_text": "Go Pro",
+    "button_text": "Choose Pro",
     "button_link": "https://github.com/dirnbauer/desiderio"
 }

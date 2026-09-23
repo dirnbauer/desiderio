@@ -1,7 +1,7 @@
 {
     "_type": "pricing",
-    "eyebrow": "Compare tiers",
-    "header": "Every feature free. Every guarantee priced.",
+    "eyebrow": "Compare plans",
+    "header": "The same features in every plan",
     "plans": [
         {
             "name": "Community",
@@ -9,16 +9,16 @@
         },
         {
             "name": "Pro",
-            "price": "€49/mo · €490/yr"
+            "price": "€49/month · €490/year"
         },
         {
             "name": "Agency",
-            "price": "€149/mo · €1,490/yr"
+            "price": "€149/month · €1,490/year"
         }
     ],
     "pricing_feature_items": [
         {
-            "feature_name": "All 244 elements + 15 presets",
+            "feature_name": "All 244 elements and 15 presets",
             "tier_values": [
                 {
                     "value": "Included"
@@ -52,10 +52,10 @@
                     "value": "GitHub community"
                 },
                 {
-                    "value": "Priority email, 2-day"
+                    "value": "Email, within 2 days"
                 },
                 {
-                    "value": "Priority, 4-hour"
+                    "value": "Within 4 business hours"
                 }
             ]
         },
@@ -74,7 +74,7 @@
             ]
         },
         {
-            "feature_name": "Early access to drops & preset packs",
+            "feature_name": "Early access to new elements",
             "tier_values": [
                 {
                     "value": "—"
@@ -88,7 +88,7 @@
             ]
         },
         {
-            "feature_name": "Editor onboarding & preset review",
+            "feature_name": "Editor onboarding and preset review",
             "tier_values": [
                 {
                     "value": "—"
@@ -97,12 +97,12 @@
                     "value": "—"
                 },
                 {
-                    "value": "Quarterly session + preset review"
+                    "value": "Quarterly, with preset review"
                 }
             ]
         },
         {
-            "feature_name": "Creator services (install €890, elements from €390)",
+            "feature_name": "Services (installation €890, elements from €390)",
             "tier_values": [
                 {
                     "value": "Bookable"
@@ -111,7 +111,7 @@
                     "value": "Bookable"
                 },
                 {
-                    "value": "Bookable + direct maintainer line"
+                    "value": "Bookable, with a direct line"
                 }
             ]
         }

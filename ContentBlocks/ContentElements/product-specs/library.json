@@ -1,7 +1,7 @@
 {
     "header": "Limits and formats the extraction API accepts",
     "eyebrow": "Technical data",
-    "description": "<p>Figures describe the hosted service on the Scale plan. Edge appliances run the same models, with throughput bound by the hardware in your rack rather than by a request ceiling.</p>",
+    "description": "<p>These figures are for the hosted service on the Scale plan. Edge appliances run the same models; their throughput depends on your hardware, not on a request limit.</p>",
     "specs": [
         {
             "label": "Input formats",

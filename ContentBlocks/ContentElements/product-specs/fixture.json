@@ -1,12 +1,12 @@
 {
     "_type": "table",
     "eyebrow": "Tech specs",
-    "header": "Desiderio at a glance",
-    "description": "<p>The hard numbers behind the package — and what each tier costs. Everything below ships in the <strong>free Community core</strong>; Pro and Agency add the creators' guarantees on top.</p>",
+    "header": "Desiderio in numbers",
+    "description": "<p>The key figures and what each plan costs. Everything below is in the <strong>free Community core</strong>. Pro and Agency add support and guaranteed updates.</p>",
     "specs": [
         {
             "label": "Platform",
-            "value": "TYPO3 14.3+, PHP 8.4+"
+            "value": "TYPO3 v14.3+, PHP 8.4+"
         },
         {
             "label": "Content elements",
@@ -14,11 +14,11 @@
         },
         {
             "label": "Components",
-            "value": "53 Fluid 5: 17 atoms, 28 molecules, 4 layout primitives, and 4 organisms"
+            "value": "62 Fluid components: 17 atoms, 37 molecules, 4 layouts, 4 organisms"
         },
         {
             "label": "Theme presets",
-            "value": "15 shadcn presets + custom, switchable at runtime, per-page themes"
+            "value": "15 (5 shadcn, 10 house) plus custom, switchable per page"
         },
         {
             "label": "Icon libraries",
@@ -26,22 +26,22 @@
         },
         {
             "label": "Styling",
-            "value": "Tailwind v4, OKLCH tokens, dark mode, WCAG 2.2-checked contrast"
+            "value": "Tailwind v4, OKLCH tokens, dark mode, contrast checked for WCAG 2.2"
         },
         {
             "label": "Foundation",
             "value": "TYPO3 Content Blocks 2.2"
         },
         {
-            "label": "Tiers",
-            "value": "Community €0 forever (GPL-2.0-or-later) · Pro €49/mo or €490/yr · Agency €149/mo or €1,490/yr"
+            "label": "Plans",
+            "value": "Community €0 (GPL-2.0-or-later) · Pro €49/month or €490/year · Agency €149/month or €1,490/year"
         }
     ],
     "image": {
         "file": "Resources/Public/Styleguide/Backend/backend-site-settings-theme.png",
         "title": "Desiderio theme site settings",
-        "alternative": "TYPO3 site settings panel with the Desiderio theme preset category open.",
-        "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+        "alternative": "TYPO3 site settings with the Desiderio theme preset options open.",
+        "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
         "source": "https://github.com/dirnbauer/desiderio"
     }
 }

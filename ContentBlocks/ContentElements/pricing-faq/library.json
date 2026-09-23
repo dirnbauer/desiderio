@@ -1,7 +1,7 @@
 {
     "header": "Billing questions engineers ask before signing",
     "eyebrow": "Billing FAQ",
-    "subheadline": "Answers cover metering, overages and what happens when a batch dies halfway through. Anything not listed lives in the billing reference, and a written answer to a support ticket arrives the next business day.",
+    "subheadline": "Answers on metering, extra pages and batches that fail halfway. For anything else, see the billing reference or open a ticket; we answer the next business day.",
     "question_items": [
         {
             "question": "What counts as a page?",
@@ -9,11 +9,11 @@
         },
         {
             "question": "Are failed requests billed?",
-            "answer": "<p>No. Anything answered with a 4xx or 5xx status is excluded from metering, and pages from a batch that stops mid-run are credited back inside the same billing period without a support ticket.</p>"
+            "answer": "<p>No. Requests answered with a 4xx or 5xx status are not metered. If a batch stops mid-run, its pages are credited back in the same billing period, without a support ticket.</p>"
         },
         {
             "question": "What happens once the included pages run out?",
-            "answer": "<p>Extra pages bill at the plan rate: EUR 0.010 on Build, EUR 0.007 on Scale. The spend cap on the workspace stops processing at the ceiling you set instead of letting the invoice keep climbing.</p>"
+            "answer": "<p>Extra pages bill at the plan rate: EUR 0.010 on Build, EUR 0.007 on Scale. The workspace spend cap stops processing at the limit you set, so the invoice cannot keep growing.</p>"
         }
     ]
 }

@@ -1,27 +1,27 @@
 {
     "_type": "pricing",
     "eyebrow": "Launch bundle",
-    "header": "Ship in days, not weeks — one booking covers it",
-    "description": "<p>Pro license, installation by the creators, and a half-day editor workshop, bundled. Booked separately that is €2,070; the Launch bundle is €1,790 — you <strong>save €280</strong> and go live with the people who built all 244 elements setting it up for you.</p>",
+    "header": "Pro, setup and editor training in one booking",
+    "description": "<p>A Pro licence for one year, installation by the maintainers and a half-day editor workshop. Booked separately, they cost €2,070. The Launch bundle costs €1,790, so you <strong>save €280</strong>.</p>",
     "bundle_price": "€1,790",
     "savings_text": "Save €280",
     "items": [
         {
-            "name": "Pro license, first year",
+            "name": "Pro licence, first year",
             "individual_price": "€490",
-            "description_text": "Priority support, guaranteed LTS updates, and early access for 12 months"
+            "description_text": "Priority support, LTS updates and early access for 12 months"
         },
         {
-            "name": "Installation & setup",
+            "name": "Installation and setup",
             "individual_price": "€890",
-            "description_text": "The creators install, configure, and theme Desiderio on your TYPO3 site"
+            "description_text": "The maintainers install, configure and theme Desiderio on your TYPO3 site"
         },
         {
             "name": "Editor onboarding workshop",
             "individual_price": "€690",
-            "description_text": "Half-day remote session covering previews, the wizard, and per-page themes"
+            "description_text": "A half-day remote session on previews, the content wizard and per-page themes"
         }
     ],
-    "button_text": "Book the Launch bundle",
+    "button_text": "Book the bundle",
     "button_link": "https://github.com/dirnbauer/desiderio"
 }

@@ -1,31 +1,31 @@
 {
     "_type": "feature",
-    "header": "Your editors see every element before they place it",
-    "eyebrow": "A backend that sells itself",
-    "description": "<p>No more guessing what a block will look like: all 244 Desiderio elements appear in the <a href=\"https://typo3.org\">TYPO3</a> new-content wizard in 10 tidy groups, each with a live backend preview. Editors compose pages with confidence on day one — included in every tier, <strong>starting at €0</strong>.</p>",
+    "header": "Editors see each element before they add it",
+    "eyebrow": "Backend previews",
+    "description": "<p>All 244 Desiderio elements appear in the <a href=\"https://typo3.org\">TYPO3</a> content wizard in 10 groups, each with a backend preview. Every plan includes this, <strong>starting at €0</strong>.</p>",
     "image": {
         "file": "Resources/Public/Styleguide/Backend/backend-content-wizard.png",
         "title": "Desiderio new-content wizard",
-        "alternative": "TYPO3 new-content wizard listing all ten Desiderio element groups.",
-        "description": "Screenshot of the TYPO3 backend with Desiderio installed."
+        "alternative": "The TYPO3 content wizard listing the 10 Desiderio element groups.",
+        "description": "Screenshot of a TYPO3 v14 site with Desiderio."
     },
     "features": [
         {
             "text": "10 groups, from Hero to Leads & Conversion"
         },
         {
-            "text": "A real preview for every single element"
+            "text": "A preview for every element"
         },
         {
             "text": "Built on TYPO3 Content Blocks 2.2"
         },
         {
-            "text": "53 Fluid 5 components underneath"
+            "text": "Built from 62 Fluid components"
         },
         {
             "text": "5 switchable icon libraries with stable keys"
         }
     ],
-    "button_text": "See it on GitHub",
+    "button_text": "View on GitHub",
     "button_link": "https://github.com/dirnbauer/desiderio"
 }

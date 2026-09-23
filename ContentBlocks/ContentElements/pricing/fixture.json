@@ -1,8 +1,8 @@
 {
     "_type": "pricing",
-    "header": "Free forever. Faster with the creators behind it.",
-    "eyebrow": "Plans & pricing",
-    "subheadline": "Every tier ships the same complete package: all 244 elements, GPL-2.0-or-later, no feature gates. Pro and Agency add the creators' time — guaranteed updates, priority answers, early access. Pay yearly and get 2 months free.",
+    "header": "Free to use. Paid plans add support.",
+    "eyebrow": "Plans and pricing",
+    "subheadline": "Every plan includes all 244 elements under GPL-2.0-or-later. Pro and Agency add guaranteed updates, faster answers and early access, with 2 months free if you pay yearly.",
     "columns": "3",
     "plans": [
         {
@@ -10,22 +10,22 @@
             "name": "Community",
             "price": "€0",
             "billing_period": "forever",
-            "description": "<p>The complete kit: <strong>244 content elements</strong>, 53 Fluid components, and 15 theme presets — yours with one <a href=\"https://packagist.org\">Composer</a> command.</p>",
+            "description": "<p>The complete package: <strong>244 content elements</strong>, 62 components and 15 theme presets, installed with one <a href=\"https://packagist.org\">Composer</a> command.</p>",
             "features": [
                 {
-                    "text": "Every element with backend previews"
+                    "text": "Backend previews for every element"
                 },
                 {
-                    "text": "Runtime theme switching, no rebuild"
+                    "text": "Switch themes without a rebuild"
                 },
                 {
-                    "text": "Dark mode + WCAG 2.2-checked contrast"
+                    "text": "Dark mode, contrast checked for WCAG 2.2"
                 },
                 {
                     "text": "Community support on GitHub"
                 }
             ],
-            "button_text": "Install via Composer",
+            "button_text": "Install for free",
             "button_link": "https://github.com/dirnbauer/desiderio",
             "is_featured": false
         },
@@ -33,26 +33,26 @@
             "badge_text": "Recommended",
             "name": "Pro",
             "price": "€49",
-            "billing_period": "/month — or €490/year (2 months free)",
-            "description": "<p>For teams shipping client sites who want guarantees instead of guesswork. The creators keep your build current.</p>",
+            "billing_period": "/month, or €490/year (2 months free)",
+            "description": "<p>For teams that build client sites and need guaranteed updates. The maintainers keep your installation current.</p>",
             "features": [
                 {
                     "text": "Everything in Community"
                 },
                 {
-                    "text": "Priority email support, 2-day response"
+                    "text": "Email support, answer within 2 days"
                 },
                 {
-                    "text": "Guaranteed TYPO3 LTS compatibility updates"
+                    "text": "TYPO3 LTS compatibility updates"
                 },
                 {
-                    "text": "Early access to element drops and preset packs"
+                    "text": "Early access to new elements and presets"
                 },
                 {
-                    "text": "Minor-version upgrade assistance"
+                    "text": "Help with minor upgrades"
                 }
             ],
-            "button_text": "Go Pro",
+            "button_text": "Choose Pro",
             "button_link": "https://github.com/dirnbauer/desiderio",
             "is_featured": true
         },
@@ -60,20 +60,20 @@
             "badge_text": "Unlimited projects",
             "name": "Agency",
             "price": "€149",
-            "billing_period": "/month — or €1,490/year (2 months free)",
-            "description": "<p>Everything in Pro across unlimited projects, plus a <strong>direct line</strong> to the people who built all 244 elements.</p>",
+            "billing_period": "/month, or €1,490/year (2 months free)",
+            "description": "<p>Everything in Pro for unlimited projects, plus a <strong>direct line</strong> to the maintainers.</p>",
             "features": [
                 {
                     "text": "Everything in Pro, unlimited projects"
                 },
                 {
-                    "text": "4-hour priority response"
+                    "text": "Answer within 4 business hours"
                 },
                 {
-                    "text": "Quarterly editor onboarding session"
+                    "text": "Quarterly editor onboarding"
                 },
                 {
-                    "text": "Custom preset review by the creators"
+                    "text": "Preset review by the maintainers"
                 },
                 {
                     "text": "Direct line to the maintainers"

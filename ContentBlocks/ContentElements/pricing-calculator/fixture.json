@@ -1,9 +1,9 @@
 {
     "_type": "pricing",
     "eyebrow": "Creator Care",
-    "header": "The creators' hours, on retainer",
-    "description": "<p>Creator Care is <strong>€490 per month</strong> for 4 development hours — exactly €122.50 an hour with the people who built Desiderio, including priority fixes, security monitoring, and LTS upgrade planning.<br />Need more capacity? Stack retainers; the math stays flat.</p>",
-    "unit_label": "Creator dev hours / month",
+    "header": "Maintainer hours on a monthly retainer",
+    "description": "<p>Creator Care costs <strong>€490 per month</strong> for 4 development hours, or €122.50 an hour. It includes priority fixes, security monitoring and LTS upgrade planning.<br />For more hours, book several retainers at the same rate.</p>",
+    "unit_label": "Developer hours per month",
     "tiers": [
         {
             "label": "Creator Care",
@@ -21,9 +21,9 @@
             "price_per_unit": "€1,470 / month"
         },
         {
-            "label": "Beyond",
+            "label": "More hours",
             "up_to": "Unlimited",
-            "price_per_unit": "Talk to the team"
+            "price_per_unit": "Book a call"
         }
     ]
 }

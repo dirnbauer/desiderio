@@ -1,7 +1,7 @@
 {
     "header": "Run extraction inside your own network",
     "eyebrow": "Enterprise",
-    "description": "<p>Committed volume starts at 250,000 pages a month at EUR 0.004 per page. The container image that serves Frankfurt is the one that runs in your VPC, and model updates arrive as signed releases that you approve before any rollout.</p>",
+    "description": "<p>Committed volume starts at 250,000 pages a month, at EUR 0.004 per page. Your VPC runs the same container image as Frankfurt. You approve each signed model update before it rolls out.</p>",
     "features": [
         {
             "text": "Committed volume from 250,000 pages a month"

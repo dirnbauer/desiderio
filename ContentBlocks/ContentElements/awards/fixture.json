@@ -1,54 +1,54 @@
 {
     "_type": "grid",
-    "header": "Recognition from the TYPO3 community",
-    "eyebrow": "Awards",
-    "subheadline": "Demo awards from fictional juries — but every feature they cite ships today: runtime theming, audit-clean templates, WCAG 2.2-checked presets, and backend previews on all 244 elements.",
+    "header": "Awards with year, jury and screenshot",
+    "eyebrow": "Example awards",
+    "subheadline": "Example awards to show the layout. The juries are made up, but every feature they name is part of Desiderio today.",
     "awards": [
         {
             "title": "Extension of the Year",
             "year": "2025",
-            "organization": "TYPO3 Times",
+            "organization": "Page Builder Journal",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-page-module-hero.png",
                 "title": "Desiderio backend previews in the page module",
-                "alternative": "TYPO3 page module rendering rich backend previews of Desiderio content elements.",
-                "description": "Screenshot of the TYPO3 backend with Desiderio installed."
+                "alternative": "The TYPO3 page module showing previews of Desiderio hero elements.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio."
             },
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "title": "Best Developer Experience",
+            "title": "Developer Experience Award",
             "year": "2025",
             "organization": "Fluid Forge Awards",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-content-wizard.png",
-                "title": "Desiderio new-content wizard",
-                "alternative": "TYPO3 new content element wizard listing all 10 Desiderio element groups.",
-                "description": "Screenshot of the TYPO3 backend with Desiderio installed."
+                "title": "Desiderio content wizard",
+                "alternative": "The TYPO3 content wizard listing the 10 Desiderio element groups.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio."
             },
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "title": "Accessibility Excellence",
+            "title": "Accessibility Award",
             "year": "2024",
             "organization": "Open Web Collective",
             "image": {
                 "file": "Resources/Public/Styleguide/Frontend/frontend-hero-lagoon.png",
                 "title": "Desiderio hero page in the Lagoon preset",
-                "alternative": "Desiderio frontend hero page in the Lagoon preset with WCAG 2.2-checked contrast.",
-                "description": "Screenshot of a Desiderio frontend page from the seeded styleguide."
+                "alternative": "A Desiderio hero page in the Lagoon theme preset.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio."
             },
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "title": "Best Open Source Theme Kit",
+            "title": "Open Source Theme Award",
             "year": "2024",
             "organization": "CMS Insights Community",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-site-settings-theme.png",
                 "title": "Desiderio theme preset site settings",
-                "alternative": "TYPO3 site settings showing the Desiderio theme preset selector.",
-                "description": "Screenshot of the TYPO3 backend with Desiderio installed."
+                "alternative": "TYPO3 site settings with the Desiderio theme preset selector.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio."
             },
             "link": "https://github.com/dirnbauer/desiderio"
         }

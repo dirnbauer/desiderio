@@ -1,11 +1,11 @@
 {
     "_type": "grid",
-    "eyebrow": "Demo logo data",
-    "header": "A client list rendered with Desiderio tokens",
-    "subheadline": "Seeded demo logos — swap in your own clients and the OKLCH tokens, spacing, and dark mode handling are already done.",
+    "eyebrow": "Example clients",
+    "header": "A client list with logo, name and sector",
+    "subheadline": "These clients are examples. Add your own, and spacing, colours and dark mode are already handled.",
     "clients": [
         {
-            "name": "Walmart",
+            "name": "Harbourline Stores",
             "industry": "Retail",
             "logo": {
                 "file": "Resources/Public/Styleguide/Logos/Fortune500/walmart.svg",
@@ -16,8 +16,8 @@
             "link": "https://www.example.com/walmart"
         },
         {
-            "name": "Amazon",
-            "industry": "Retail & cloud",
+            "name": "Riverbend Trading",
+            "industry": "Retail and cloud",
             "logo": {
                 "file": "Resources/Public/Styleguide/Logos/Fortune500/amazon.svg",
                 "title": "Amazon logo",
@@ -27,7 +27,7 @@
             "link": "https://www.example.com/amazon"
         },
         {
-            "name": "Apple",
+            "name": "Pinewood Devices",
             "industry": "Technology",
             "logo": {
                 "file": "Resources/Public/Styleguide/Logos/Fortune500/apple.svg",
@@ -38,8 +38,8 @@
             "link": "https://www.example.com/apple"
         },
         {
-            "name": "Alphabet",
-            "industry": "Technology & cloud",
+            "name": "Ninefold Systems",
+            "industry": "Technology and cloud",
             "logo": {
                 "file": "Resources/Public/Styleguide/Logos/Fortune500/alphabet.svg",
                 "title": "Alphabet logo",

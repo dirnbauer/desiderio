@@ -1,7 +1,7 @@
 {
     "_type": "section",
-    "eyebrow": "Featured case study",
-    "header": "How Northwind Group runs five brands on one TYPO3 install",
+    "eyebrow": "Example case study",
+    "header": "How Northwind runs five brands on one install",
     "client_name": "Northwind Group",
     "client_logo": {
         "file": "Resources/Public/Styleguide/Logos/Brands/northwind.svg",
@@ -9,12 +9,12 @@
         "alternative": "Northwind Group demo brand logo.",
         "description": "Fictional demo brand from the Desiderio styleguide."
     },
-    "description": "<p>Northwind's agency consolidated five brand sites into a single <a href=\"https://typo3.org\">TYPO3 14</a> install. Each subtree carries its own Desiderio theme preset — Marine for logistics, Gold for the holding, Bloom for the careers portal — inherited down the rootline through one page property. The creators handled installation &amp; setup (€890) and reviewed the custom presets through the <strong>Agency plan</strong>; the whole relaunch shipped in six weeks.<br />One component library, five visual identities, <strong>zero rebuilds</strong> when a brand changes its look.</p>",
+    "description": "<p>Northwind's agency moved five brand sites into one <a href=\"https://typo3.org\">TYPO3 v14</a> install. Each page tree has its own theme preset: Marine for logistics, Gold for the holding company and Bloom for careers. One page property sets the preset, and subpages inherit it. The maintainers did the €890 installation and reviewed the presets under the <strong>Agency plan</strong>. The relaunch took six weeks.<br />When a brand changes its look, <strong>nothing needs rebuilding</strong>.</p>",
     "image": {
         "file": "Resources/Public/Styleguide/Backend/backend-page-properties-theme.png",
         "title": "Desiderio per-page theme preset field",
-        "alternative": "TYPO3 page properties showing the Desiderio theme preset selector for a page subtree.",
-        "description": "Screenshot of the TYPO3 backend with Desiderio installed."
+        "alternative": "TYPO3 page properties with the Desiderio theme preset field for a page and its subpages.",
+        "description": "Screenshot of a TYPO3 v14 site with Desiderio."
     },
     "metrics": [
         {
@@ -23,7 +23,7 @@
         },
         {
             "value": "15",
-            "label": "theme presets to pick from"
+            "label": "theme presets to choose from"
         },
         {
             "value": "0",

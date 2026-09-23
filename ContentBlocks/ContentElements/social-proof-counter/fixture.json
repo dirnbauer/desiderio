@@ -1,7 +1,7 @@
 {
     "_type": "stats",
-    "header": "Real numbers from the package",
-    "subheadline": "No vanity metrics — these ship in every Desiderio install, free Community tier included, and were seeded into this styleguide with one command.",
+    "header": "Numbers counted in the package",
+    "subheadline": "These numbers come from the code. Every install has them, including the free Community plan.",
     "shadcn_layout": "inline",
     "counters": [
         {
@@ -15,12 +15,12 @@
             "icon_name": "folder"
         },
         {
-            "value": "53",
+            "value": "62",
             "label": "Fluid 5 components",
             "icon_name": "zap"
         },
         {
-            "value": "11",
+            "value": "24",
             "label": "Audit categories",
             "icon_name": "shield-check"
         }

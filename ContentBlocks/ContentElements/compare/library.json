@@ -1,41 +1,41 @@
 {
-    "header": "Spot freight bookings against a fixed weekly slot",
+    "header": "Spot bookings or a fixed weekly slot",
     "eyebrow": "Choosing a service",
-    "subheadline": "Both options move the same pallet on the same network. The difference shows up in what you pay in week 46, and in whether a trailer position is already reserved when your production plan changes on a Tuesday afternoon.",
+    "subheadline": "Both options use the same network. They differ in what you pay in week 46 and in whether your trailer space is reserved when plans change.",
     "left_title": "Spot booking, load by load",
-    "left_description": "<p>You call the depot when a load is ready and take whatever capacity is free that day. Rates follow the market, so a Vienna to Rotterdam pallet ranges from EUR 96 in February to EUR 174 in peak weeks.</p>",
+    "left_description": "<p>You call the depot when a load is ready and take the space that is free that day. Rates follow the market: a Vienna to Rotterdam pallet costs EUR 96 in February and up to EUR 174 in peak weeks.</p>",
     "left_points": [
         {
             "text": "Rate quoted per load, valid 48 hours"
         },
         {
-            "text": "Capacity subject to availability in peak weeks"
+            "text": "Space not guaranteed in peak weeks"
         },
         {
             "text": "Booking cut-off at 14:00 the day before"
         },
         {
-            "text": "Tracking events forwarded by email"
+            "text": "Tracking updates by email"
         }
     ],
     "right_badge": "Most-used option",
     "right_title": "Fixed weekly linehaul slot",
-    "right_description": "<p>A reserved trailer position on a scheduled departure, priced for twelve months. Vienna to Rotterdam sits at EUR 118 per euro pallet, and the slot stays yours whether you fill it in week 7 or week 46.</p>",
+    "right_description": "<p>A reserved trailer space on a scheduled departure, with the price fixed for 12 months. Vienna to Rotterdam costs EUR 118 per euro pallet, and the slot is yours in week 7 and in week 46.</p>",
     "right_points": [
         {
             "text": "EUR 118 per euro pallet, fixed for 12 months"
         },
         {
-            "text": "Trailer position reserved on every departure"
+            "text": "Trailer space reserved on every departure"
         },
         {
             "text": "Booking cut-off at 18:00 on departure day"
         },
         {
-            "text": "Live tracking events in the shipper portal"
+            "text": "Live tracking in the shipper portal"
         },
         {
-            "text": "Named depot contact and a 24/7 escalation line"
+            "text": "A named depot contact and a 24/7 escalation line"
         }
     ]
 }

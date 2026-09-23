@@ -1,12 +1,12 @@
 {
     "_type": "grid",
-    "eyebrow": "Demo integrations",
-    "header": "A partner logo grid that adapts to every theme preset",
+    "eyebrow": "Example partners",
+    "header": "Partner logos that adapt to each theme preset",
     "columns": "4",
     "show_names": 1,
     "logo_items": [
         {
-            "name": "Salesforce",
+            "name": "Crestline CRM",
             "image": {
                 "file": "Resources/Public/Styleguide/Logos/Integrations/salesforce.svg",
                 "title": "Salesforce integration",
@@ -16,7 +16,7 @@
             "link": "https://www.salesforce.com/"
         },
         {
-            "name": "Slack",
+            "name": "Threadline Chat",
             "image": {
                 "file": "Resources/Public/Styleguide/Logos/Integrations/slack.svg",
                 "title": "Slack integration",
@@ -26,7 +26,7 @@
             "link": "https://slack.com/"
         },
         {
-            "name": "HubSpot",
+            "name": "Signalhouse Marketing",
             "image": {
                 "file": "Resources/Public/Styleguide/Logos/Integrations/hubspot.svg",
                 "title": "HubSpot integration",
@@ -36,7 +36,7 @@
             "link": "https://www.hubspot.com/"
         },
         {
-            "name": "Zendesk",
+            "name": "Helpdock Support",
             "image": {
                 "file": "Resources/Public/Styleguide/Logos/Integrations/zendesk.svg",
                 "title": "Zendesk integration",

@@ -1,41 +1,41 @@
 {
     "_type": "grid",
-    "eyebrow": "Demo press wall",
-    "header": "Press mentions, seeded as demo content",
+    "eyebrow": "Example press quotes",
+    "header": "Example press quotes to show the layout",
     "mentions": [
         {
-            "publication": "TechCrunch",
+            "publication": "Web Platform Weekly",
             "logo": {
                 "file": "Resources/Public/Styleguide/Logos/Press/techcrunch.svg",
                 "title": "TechCrunch press logo",
                 "alternative": "TechCrunch press logo.",
                 "description": "Press publication logo used as demo data."
             },
-            "quote": "An open-source kit that gives TYPO3 a real design system: 244 elements, 15 runtime themes, and backend previews editors actually trust.",
+            "quote": "An open-source kit that gives TYPO3 a full design system: 244 elements, 15 theme presets and backend previews for editors.",
             "date": "March 2025",
             "link": "https://techcrunch.com/"
         },
         {
-            "publication": "Forbes",
+            "publication": "Open Markets Journal",
             "logo": {
                 "file": "Resources/Public/Styleguide/Logos/Press/forbes.svg",
                 "title": "Forbes press logo",
                 "alternative": "Forbes press logo.",
                 "description": "Press publication logo used as demo data."
             },
-            "quote": "Per-page theme presets quietly solve multi-brand publishing — one install, any number of visual identities.",
+            "quote": "Per-page theme presets make multi-brand publishing simple: one install, many visual identities.",
             "date": "January 2025",
             "link": "https://www.forbes.com/"
         },
         {
-            "publication": "The Verge",
+            "publication": "Pixel and Code",
             "logo": {
                 "file": "Resources/Public/Styleguide/Logos/Press/the-verge.svg",
                 "title": "The Verge press logo",
                 "alternative": "The Verge press logo.",
                 "description": "Press publication logo used as demo data."
             },
-            "quote": "Runtime theme switching without a rebuild is the kind of trick site builders promise; this one just ships it.",
+            "quote": "Many site builders promise theme changes without a rebuild. This one delivers it.",
             "date": "November 2024",
             "link": "https://www.theverge.com/"
         }

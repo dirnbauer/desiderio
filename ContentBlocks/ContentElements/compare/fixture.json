@@ -1,43 +1,43 @@
 {
     "_type": "comparison",
-    "eyebrow": "Build vs buy",
-    "header": "Build it yourself vs. buy Desiderio Pro",
-    "subheadline": "Hand-building 244 elements is months of senior developer budget. Desiderio Pro is €49/month — do the math once and never do the templating again.",
+    "eyebrow": "Build or buy",
+    "header": "Build it yourself or buy Desiderio Pro",
+    "subheadline": "Building 244 elements by hand takes months of senior developer time. Desiderio Pro costs €49 per month.",
     "left_title": "Build it yourself",
-    "left_description": "<p>Every relaunch starts from zero: templates, backend previews, accessibility, dark mode — months of senior time, and the maintenance is yours forever.</p>",
+    "left_description": "<p>Every relaunch starts from zero: templates, backend previews, accessibility and dark mode. It takes months of senior time, and you maintain it all yourself.</p>",
     "left_points": [
         {
-            "text": "Weeks of templating before editors see a single page"
+            "text": "Weeks of templates before editors see a page"
         },
         {
-            "text": "Backend previews and dark mode rarely get built at all"
+            "text": "Backend previews and dark mode are often skipped"
         },
         {
-            "text": "Every accessibility and upgrade fix lands on your team"
+            "text": "Your team fixes every accessibility and upgrade issue"
         },
         {
-            "text": "Each new brand or theme means another build and deploy"
+            "text": "Each new brand or theme needs another build and deployment"
         }
     ],
-    "left_button_text": "Compare the math",
+    "left_button_text": "View on GitHub",
     "left_button_link": "https://github.com/dirnbauer/desiderio",
     "right_badge": "Recommended",
     "right_title": "Buy Desiderio Pro",
-    "right_description": "<p><strong>€49/month</strong>, or €490/year with 2 months free: all 244 audited elements plus priority support, guaranteed LTS updates, and early element drops from the creators.</p>",
+    "right_description": "<p><strong>€49 per month</strong>, or €490 per year with two months free. You get all 244 elements, priority support, LTS updates and early access to new elements.</p>",
     "right_points": [
         {
-            "text": "244 previewed elements on day one — start free, upgrade anytime"
+            "text": "244 elements with backend previews from day one"
         },
         {
-            "text": "15 runtime presets; ~3 weeks saved per relaunch (customer-reported)"
+            "text": "15 theme presets, about 3 weeks saved per relaunch (customer-reported)"
         },
         {
-            "text": "Priority email support with 2-day response"
+            "text": "Priority email support, answer within 2 days"
         },
         {
-            "text": "Guaranteed LTS compatibility updates from the maintainers"
+            "text": "LTS compatibility updates from the maintainers"
         }
     ],
-    "right_button_text": "Go Pro for €49/month",
+    "right_button_text": "Choose Pro",
     "right_button_link": "https://github.com/dirnbauer/desiderio"
 }

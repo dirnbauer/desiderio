@@ -1,42 +1,42 @@
 {
     "_type": "grid",
-    "eyebrow": "Case studies",
-    "header": "Relaunches carried by Desiderio",
+    "eyebrow": "Example case studies",
+    "header": "Three example relaunches with Desiderio",
     "columns": "3",
     "cases": [
         {
             "client_name": "Atlas Manufacturing",
-            "summary": "<p>Booked installation &amp; setup (€890) and went from kickoff to launch in three weeks — roughly <strong>three weeks faster</strong> than their last hand-coded relaunch, as the team reports it.<br />Zero custom content types written.</p>",
-            "result": "3x faster build",
+            "summary": "<p>Booked the €890 installation and launched three weeks after kickoff, <strong>three weeks faster</strong> than their last hand-coded relaunch.<br />They wrote no custom content types.</p>",
+            "result": "3 weeks to launch",
             "image": {
                 "file": "Resources/Public/Styleguide/Frontend/frontend-hero-lagoon.png",
                 "title": "Desiderio hero page in the Lagoon preset",
-                "alternative": "Desiderio frontend hero page rendered in the Lagoon theme preset.",
-                "description": "Screenshot of a Desiderio frontend page from the seeded styleguide."
+                "alternative": "A Desiderio hero page in the Lagoon theme preset.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio."
             },
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "client_name": "Lumen Health",
-            "summary": "<p>Shipped a WCAG-minded patient portal on audit-clean templates and built-in dark mode — Lighthouse accessibility hit <strong>96</strong> on launch day. A custom brand preset from the creators (from €1,990) carries the identity.</p>",
-            "result": "0 a11y blockers",
+            "summary": "<p>Launched a patient portal with accessible templates, dark mode and a Lighthouse accessibility score of <strong>96</strong>. A brand adaptation (from €1,990) gives it their own look.</p>",
+            "result": "0 accessibility blockers",
             "image": {
                 "file": "Resources/Public/Styleguide/Frontend/frontend-pricing-midnight-dark.png",
-                "title": "Desiderio dark-mode page in the Midnight preset",
-                "alternative": "Desiderio frontend page rendered in the dark Midnight theme preset.",
-                "description": "Screenshot of a Desiderio frontend page from the seeded styleguide."
+                "title": "Desiderio dark page in the Midnight preset",
+                "alternative": "A Desiderio pricing page in the dark Midnight theme preset.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio."
             },
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "client_name": "Vertex Financial",
-            "summary": "<p>Rolled out dark mode and a denser layout through site settings alone — OKLCH tokens kept every dashboard readable — then moved to managed hosting at <strong>€99/month</strong>: updates, daily backups, EU datacenter.</p>",
+            "summary": "<p>Switched on dark mode and a denser layout in the site settings. Then they moved to managed hosting at <strong>€99/month</strong>: updates, daily backups, EU data centre.</p>",
             "result": "1 sprint to launch",
             "image": {
                 "file": "Resources/Public/Styleguide/Frontend/frontend-dashboards-forest.png",
                 "title": "Desiderio dashboard page in the Forest preset",
-                "alternative": "Dashboard-style Desiderio frontend page rendered in the Forest theme preset.",
-                "description": "Screenshot of a Desiderio frontend page from the seeded styleguide."
+                "alternative": "A Desiderio dashboard page in the Forest theme preset.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio."
             },
             "link": "https://github.com/dirnbauer/desiderio"
         }

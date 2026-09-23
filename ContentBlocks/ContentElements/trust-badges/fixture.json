@@ -1,56 +1,56 @@
 {
     "_type": "grid",
-    "header": "Trust built into the codebase",
-    "subheadline": "No badges for sale here — every claim below is verifiable in the public GPL repository, guarded by PHPStan, PHPUnit, and automated template checks.",
+    "header": "Checks built into the codebase",
+    "subheadline": "Every badge below is a check you can run yourself in the public GPL repository.",
     "badge_items": [
         {
-            "label": "PHPStan level max",
-            "description_text": "Strictest static analysis on every commit",
+            "label": "PHPStan level 8",
+            "description_text": "Static analysis on every commit",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/compliance-soc2-dashboard.jpg",
                 "title": "Code analysis dashboard",
-                "alternative": "A monitoring dashboard representing static code analysis.",
-                "description": "Unsplash photo used as demo badge imagery."
+                "alternative": "A laptop showing an analytics dashboard with charts.",
+                "description": "Photo: Unsplash."
             }
         },
         {
             "label": "GPL-2.0-or-later licensed",
-            "description_text": "Free to use, modify, and redistribute",
+            "description_text": "Free to use, change and share",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/compliance-gdpr-laptop.jpg",
                 "title": "Open source workspace",
-                "alternative": "A laptop workspace representing open source development.",
-                "description": "Unsplash photo used as demo badge imagery."
+                "alternative": "Two people pointing at a laptop screen.",
+                "description": "Photo: Unsplash."
             }
         },
         {
             "label": "Automated template audit",
-            "description_text": "Zero inline styles, zero hardcoded colors",
+            "description_text": "No inline styles and no fixed colours",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/compliance-iso-security.jpg",
-                "title": "Template audit workspace",
-                "alternative": "A documentation workspace representing template audits.",
-                "description": "Unsplash photo used as demo badge imagery."
+                "title": "Laptop and smartphone",
+                "alternative": "A person using a laptop and a smartphone at a desk.",
+                "description": "Photo: Unsplash."
             }
         },
         {
-            "label": "WCAG-minded markup",
+            "label": "Accessible markup",
             "description_text": "Semantic HTML and focus states by default",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/client-vertex-financial.jpg",
-                "title": "Accessible interface work",
-                "alternative": "A digital workspace representing accessible interface work.",
-                "description": "Unsplash photo used as demo badge imagery."
+                "title": "Forms on a desk",
+                "alternative": "Printed forms, a pen and a calculator on a white desk.",
+                "description": "Photo: Unsplash."
             }
         },
         {
-            "label": "CI on supported PHP versions",
+            "label": "CI on PHP 8.4 and 8.5",
             "description_text": "Unit and functional tests on every release",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/customer-enterprise.jpg",
-                "title": "Continuous integration",
-                "alternative": "An enterprise operations setting representing continuous testing infrastructure.",
-                "description": "Unsplash photo used as demo badge imagery."
+                "title": "Office towers",
+                "alternative": "Glass office towers seen from street level.",
+                "description": "Photo: Unsplash."
             }
         }
     ]

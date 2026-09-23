@@ -1,15 +1,15 @@
 {
-    "header": "Wählen Sie, welche Cookies das Portal setzt",
-    "content": "<p>Das Kundenportal benötigt ein Cookie, um Sie angemeldet zu halten. Alles Weitere entscheiden Sie: Wir zählen, welche technischen Dokumente geöffnet werden, und die Videos der Werksführung laden einen Player, der eigene Cookies setzt. Wählen Sie unten je Kategorie – ändern können Sie das später jederzeit über den Footer.</p>",
+    "header": "Wählen Sie die Cookies für das Portal",
+    "content": "<p>Das Kundenportal braucht ein Cookie, damit Sie angemeldet bleiben. Alles andere entscheiden Sie. Wir zählen, welche technischen Dokumente geöffnet werden, und die Videos der Werksführung laden einen Player mit eigenen Cookies. Wählen Sie unten je Kategorie, und ändern Sie Ihre Wahl später in der Fußzeile.</p>",
     "cookie_categories": [
         {
             "name": "Anmeldung und Konfigurator",
-            "description_text": "Behält Ihre Sitzung und Ihre Auswahl im Teilekonfigurator zwölf Stunden lang.",
+            "description_text": "Speichert Ihre Sitzung und Ihre Auswahl im Teilekonfigurator zwölf Stunden lang.",
             "required": true
         },
         {
-            "name": "Dokument-Auswertung",
-            "description_text": "Zählt, welche Zeichnungen und Zeugnisse heruntergeladen werden. Betrieben auf unseren eigenen Servern in Graz, ohne Beteiligung Dritter.",
+            "name": "Auswertung der Dokumente",
+            "description_text": "Zählt, welche Zeichnungen und Zeugnisse heruntergeladen werden. Die Auswertung läuft auf unseren eigenen Servern in Graz, ohne Dritte.",
             "required": false
         },
         {
@@ -19,5 +19,5 @@
         }
     ],
     "accept_text": "Alle akzeptieren",
-    "save_text": "Auswahl speichern"
+    "save_text": "Meine Auswahl speichern"
 }

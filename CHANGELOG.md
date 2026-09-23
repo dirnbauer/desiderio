@@ -6,6 +6,28 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.4.2] — 2026-09-23
+
+### Fixed
+
+- Solr result links no longer answer 404. The EverythingOn example that
+  `webconsulting/solr-defaults` imports turns on site highlighting, which
+  appends `sword_list[]` and `no_cache` to every result URL; TYPO3 v14 rejects
+  such a query string without a cHash. The set now switches it off.
+- The sitemap demo (`sitemap-grid`) and the utility bar demo (`utility-bar`)
+  link the styleguide's own pages instead of placeholder paths such as
+  `/pricing`, `/docs` and `/legal/imprint`, and "Book a call" on the TYPO3 v14
+  strategy page opens the Powermail callback form instead of `/contact`.
+
+### Changed
+
+- `desiderio:styleguide:seed` resolves `{{page:<slug>}}` placeholders in
+  element fixtures too, and finds pages it does not create itself (the
+  Powermail demo pages) by slug below the seeded root. It seeds the Powermail
+  demo pages before any content, so such links resolve on the first run.
+- Tests fail for a fixture that links a plain path or a placeholder the
+  seeder cannot resolve.
+
 ## [4.4.1] — 2026-09-23
 
 ### Fixed

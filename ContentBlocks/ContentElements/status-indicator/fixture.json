@@ -1,6 +1,6 @@
 {
     "_type": "stats",
-    "header": "Desiderio project status — nothing to hide",
+    "header": "Desiderio project status",
     "overall_status": "degraded",
     "items": [
         {
@@ -11,12 +11,12 @@
         {
             "name": "CI pipeline (supported PHP versions)",
             "status": "operational",
-            "detail": "All 400+ unit and functional tests green"
+            "detail": "All 400+ unit and functional tests pass"
         },
         {
             "name": "Styleguide demo site",
             "status": "degraded",
-            "detail": "Reseed in progress, previews may lag briefly"
+            "detail": "Reseeding, so previews may be briefly out of date"
         },
         {
             "name": "Documentation build",

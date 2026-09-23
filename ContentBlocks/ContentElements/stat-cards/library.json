@@ -1,9 +1,9 @@
 {
-    "header": "How the second quarter closed against the first",
+    "header": "Q2 2026 results compared with Q1",
     "columns": "3",
     "items": [
         {
-            "label": "Events ingested",
+            "label": "Events received",
             "value": "11.8 bn",
             "change": "+24.1% vs Q1",
             "trend": "up"
@@ -15,7 +15,7 @@
             "trend": "up"
         },
         {
-            "label": "Median dashboard query",
+            "label": "Median query time",
             "value": "1.9 s",
             "change": "-1.2 s vs Q1 close",
             "trend": "down"

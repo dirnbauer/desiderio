@@ -1,8 +1,8 @@
 {
     "_type": "stats",
     "eyebrow": "Current release",
-    "header": "Everything you'd build by hand, already counted",
-    "subheadline": "The headline numbers of the kit, straight from the current release — and every one of them is included in the free GPL core.",
+    "header": "Desiderio's current release in four numbers",
+    "subheadline": "The elements, components and presets are all part of the free GPL version.",
     "columns": "4",
     "items": [
         {
@@ -12,21 +12,21 @@
             "trend": "positive"
         },
         {
-            "value": "53",
+            "value": "62",
             "label": "Fluid 5 components",
-            "detail_text": "17 atoms, 28 molecules, 4 layouts, and 4 organisms",
+            "detail_text": "17 atoms, 37 molecules, 4 layouts and 4 organisms",
             "trend": "positive"
         },
         {
             "value": "15",
             "label": "Theme presets",
-            "detail_text": "Runtime-switchable, dark mode included",
+            "detail_text": "Switch at runtime, dark mode included",
             "trend": "neutral"
         },
         {
             "value": "7",
             "label": "Open issues",
-            "detail_text": "Triaged weekly — nothing festers",
+            "detail_text": "Reviewed every week",
             "trend": "caution"
         }
     ]

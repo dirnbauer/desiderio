@@ -1,15 +1,15 @@
 {
     "_type": "card",
     "eyebrow": "Editor experience",
-    "header": "Ship page previews your editors can trust",
-    "description": "<p>Desiderio turns every content block into a polished frontend pattern and a clear backend preview, so teams can compose pages without guessing what will land on the site.</p>",
-    "link_text": "Explore the backend previews",
+    "header": "Backend previews that match the page",
+    "description": "<p>Each Desiderio content element has a frontend design and a backend preview. Editors see what the page will look like before they publish.</p>",
+    "link_text": "View on GitHub",
     "overlay_intensity": "medium",
     "image": {
         "file": "Resources/Public/Styleguide/Frontend/card-overlay-editor-preview.png",
         "title": "Desiderio editor preview workspace",
-        "alternative": "A calm product workspace with an abstract CMS editor interface on a large monitor.",
-        "description": "AI-generated product image used as a background behind real HTML overlay text.",
+        "alternative": "A desk with a large monitor showing an abstract editor interface.",
+        "description": "AI-generated image, used behind the text.",
         "source": "OpenAI image generation"
     },
     "link": "https://github.com/dirnbauer/desiderio"

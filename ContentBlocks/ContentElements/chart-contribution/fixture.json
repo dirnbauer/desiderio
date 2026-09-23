@@ -1,9 +1,9 @@
 {
-    "header": "A repository that never sleeps",
-    "subheadline": "Weekly commits across components, presets, and the template audit — proof that Desiderio is actively built, not passively maintained.",
+    "header": "Weekly commits to the Desiderio repository",
+    "subheadline": "Commits per week to components, presets and the template audit. Desiderio is in active development.",
     "metric_label": "Commits",
     "unit": "commits",
-    "badge_text": "+41.7% vs. previous four weeks",
+    "badge_text": "+41.7% month-on-month",
     "points": [
         { "point_label": "W31", "point_value": 42 },
         { "point_label": "W32", "point_value": 57 },
@@ -16,10 +16,10 @@
     ],
     "left_stat_label": "Commits this week",
     "left_stat_value": "84",
-    "left_stat_detail": "Busiest week of the v2.6 cycle — double the pace of eight weeks ago.",
+    "left_stat_detail": "The busiest week of the v2.6 cycle, twice the count of eight weeks ago.",
     "right_stat_label": "Avg. weekly growth",
     "right_stat_value": "+10.4%",
-    "right_stat_detail": "Compounded week over week across the last eight ISO weeks.",
-    "primary_button_text": "Watch it happen on GitHub",
+    "right_stat_detail": "Compounded week on week over the last eight ISO weeks.",
+    "primary_button_text": "View on GitHub",
     "primary_button_link": "https://github.com/dirnbauer/desiderio"
 }

@@ -1,6 +1,6 @@
 {
-    "header": "Median dashboard query time, six months running",
-    "description": "<p>Median time to first paint for a saved dashboard, January to June 2026. The drop in March is the columnar rewrite of the query layer; everything after that is index tuning.</p>",
+    "header": "Median dashboard query time since January",
+    "description": "<p>Median time until a saved dashboard shows its first data, January to June 2026. The March drop came from rewriting the query layer for columnar storage. Later gains come from index tuning.</p>",
     "series_label": "Median query time",
     "unit": "seconds",
     "data_points": "Jan | 4.8\nFeb | 4.5\nMar | 3.1\nApr | 2.6\nMay | 2.2\nJun | 1.9",

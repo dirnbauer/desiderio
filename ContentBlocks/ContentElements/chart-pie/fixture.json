@@ -1,9 +1,9 @@
 {
-    "header": "53 components, one consistent design language",
-    "description": "<p>Atoms, molecules, and layout primitives — the architecture that lets you restyle 244 content elements by touching exactly <strong>one token file</strong>.</p>",
-    "segments": "Atoms | 17\nMolecules | 28\nLayout primitives | 4",
+    "header": "The components behind every element",
+    "description": "<p>Atoms, molecules, layouts and organisms share one set of design tokens. Change <strong>one token file</strong> to restyle all 244 content elements.</p>",
+    "segments": "Atoms | 17\nMolecules | 37\nLayouts | 4\nOrganisms | 4",
     "unit": "components",
-    "chart_data": "[{\"label\":\"Atoms\",\"value\":17},{\"label\":\"Molecules\",\"value\":28},{\"label\":\"Layout primitives\",\"value\":4}]",
+    "chart_data": "[{\"label\":\"Atoms\",\"value\":17},{\"label\":\"Molecules\",\"value\":37},{\"label\":\"Layouts\",\"value\":4},{\"label\":\"Organisms\",\"value\":4}]",
     "show_legend": 1,
     "palette": "brand",
     "chart_size": "medium"

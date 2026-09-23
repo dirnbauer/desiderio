@@ -1,54 +1,54 @@
 {
     "_type": "stats",
-    "header": "From composer require to a themed site — in one sitting",
-    "description": "Four steps stand between you and a fully seeded, themed TYPO3 site. No configuration files, no license keys — and if you'd rather not lift a finger, the creators install and set it up for €890.",
+    "header": "Four steps to a themed TYPO3 site",
+    "description": "No configuration files and no licence keys. If you prefer, the maintainers install and set up Desiderio for €890.",
     "shadcn_layout": "horizontal",
     "items": [
         {
             "number": "1",
             "title": "Install",
-            "description": "composer require webconsulting/desiderio on any TYPO3 14.3+ site with PHP 8.4+. That single command brings all 244 elements, 53 components, and the theme layer.",
+            "description": "Run composer require webconsulting/desiderio on TYPO3 v14.3 or later with PHP 8.4 or later. It brings all 244 elements, 62 components and the theme layer.",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/laptop-glenn-carstens-peters.jpg",
                 "title": "Developer laptop with code",
-                "alternative": "Hands typing on a laptop keyboard during development work.",
-                "description": "Copyright/credit: Photo by Glenn Carstens-Peters on Unsplash. Used as seeded demo imagery.",
+                "alternative": "Hands typing on a laptop keyboard.",
+                "description": "Photo: Unsplash.",
                 "source": "https://unsplash.com/@glenncarstenspeters"
             }
         },
         {
             "number": "2",
             "title": "Seed",
-            "description": "Run desiderio:styleguide:seed once and a complete demo site appears — idempotent, workspaces-safe, with all 244 elements filled with realistic content.",
+            "description": "Run desiderio:styleguide:seed once to create a complete demo site with all 244 elements and realistic content. It is safe to repeat and works in workspaces.",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-page-module-hero.png",
                 "title": "Desiderio page module preview",
-                "alternative": "TYPO3 page module showing seeded Desiderio content elements with backend previews.",
-                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "alternative": "The TYPO3 page module with seeded Desiderio content elements and their backend previews.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
             "number": "3",
             "title": "Theme",
-            "description": "Pick one of 15 shadcn presets in site settings — or a different one per page subtree — and the whole site repaints at runtime. Dark mode comes along for free.",
+            "description": "Pick one of 15 shadcn presets in the site settings, or a different one per page subtree. The site changes at runtime, dark mode included.",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-site-settings-theme.png",
                 "title": "Desiderio theme site settings",
-                "alternative": "TYPO3 site settings module showing the Desiderio theme preset options.",
-                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "alternative": "The TYPO3 site settings with the Desiderio theme preset options.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
             "number": "4",
             "title": "Create",
-            "description": "Editors compose pages from 244 previewed elements — or edit content right on the page with the Visual Editor. No training course required.",
+            "description": "Editors build pages from 244 elements with backend previews, or edit on the page itself in the Visual Editor. No training course needed.",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-visual-editor.png",
                 "title": "Editing in the Desiderio Visual Editor",
-                "alternative": "TYPO3 Visual Editor with inline editing of a Desiderio content element on the page.",
-                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "alternative": "A Desiderio content element being edited on the page in the TYPO3 Visual Editor.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             }
         }

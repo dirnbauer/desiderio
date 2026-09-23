@@ -6,27 +6,27 @@
         {
             "label": "Lighthouse performance",
             "value": "98",
-            "change": "+3 pts since relaunch",
+            "change": "+3 points since relaunch",
             "trend": "up"
         },
         {
             "label": "Accessibility score",
             "value": "100",
-            "change": "+2 pts",
+            "change": "+2 points",
             "trend": "up"
         },
         {
             "label": "CSS payload",
             "value": "38.4 KB",
-            "change": "-4.2% and shrinking",
+            "change": "-4.2% since relaunch",
             "trend": "down"
         },
         {
             "label": "Cumulative layout shift",
             "value": "0.01",
-            "change": "Rock steady",
+            "change": "Stable",
             "trend": "neutral"
         }
     ],
-    "summary": "<p>Demo numbers from the seeded Desiderio styleguide — and the kind of scores the kit is built to deliver: <a href=\"https://tailwindcss.com\">Tailwind v4</a> token pruning keeps the CSS payload tiny while performance and accessibility climb instead of eroding.</p>"
+    "summary": "<p>Demo numbers from the seeded Desiderio styleguide. <a href=\"https://tailwindcss.com\">Tailwind v4</a> drops unused tokens, so the CSS stays small while performance and accessibility scores rise.</p>"
 }

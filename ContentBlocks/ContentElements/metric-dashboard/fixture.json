@@ -1,7 +1,7 @@
 {
     "_type": "stats",
-    "header": "Quality metrics most themes won't show you",
-    "description": "<p>Straight from CI and the template audit of the current release. This is what 'production-ready' looks like when it's measured instead of claimed.</p>",
+    "header": "Quality metrics from CI and the template audit",
+    "description": "<p>Measured on the current release. The chart shows how many content elements each release had.</p>",
     "items": [
         {
             "label": "Tests across supported PHP versions",
@@ -11,7 +11,7 @@
         },
         {
             "label": "Fluid 5 components",
-            "value": "53",
+            "value": "62",
             "change": "+4 this release",
             "trend": "up"
         },
@@ -24,11 +24,11 @@
         {
             "label": "CI pipeline duration",
             "value": "8m",
-            "change": "Holding steady",
+            "change": "Unchanged",
             "trend": "neutral"
         }
     ],
     "chart_series_label": "Content elements per release",
     "chart_unit": "elements",
-    "chart_data": "[{\"label\":\"v1.5\",\"value\":96},{\"label\":\"v1.6\",\"value\":110},{\"label\":\"v1.7\",\"value\":124},{\"label\":\"v1.8\",\"value\":138},{\"label\":\"v1.9\",\"value\":152},{\"label\":\"v2.0\",\"value\":170},{\"label\":\"v2.1\",\"value\":186},{\"label\":\"v2.2\",\"value\":200},{\"label\":\"v2.3\",\"value\":214},{\"label\":\"v2.4\",\"value\":228},{\"label\":\"v2.5\",\"value\":241},{\"label\":\"v2.6\",\"value\":244}]"
+    "chart_data": "[{\"label\":\"v1.5\",\"value\":84},{\"label\":\"v1.6\",\"value\":98},{\"label\":\"v1.7\",\"value\":112},{\"label\":\"v1.8\",\"value\":126},{\"label\":\"v1.9\",\"value\":140},{\"label\":\"v2.0\",\"value\":162},{\"label\":\"v2.1\",\"value\":178},{\"label\":\"v2.2\",\"value\":196},{\"label\":\"v2.3\",\"value\":214},{\"label\":\"v2.4\",\"value\":228},{\"label\":\"v2.5\",\"value\":241},{\"label\":\"v2.6\",\"value\":244}]"
 }

@@ -2,16 +2,16 @@
     "_type": "card",
     "variant": "default",
     "badge_text": "Per-page themes",
-    "header": "One site, fifteen looks — per page",
-    "description": "<p>Give any page subtree its own <a href=\"https://ui.shadcn.com\">shadcn</a> theme straight from the page properties. The preset inherits down the rootline and <strong>switches at runtime</strong> — your campaign goes Midnight while the rest of the site stays on brand.<br />No rebuild, ever.</p>",
+    "header": "Choose one of 15 theme presets per page",
+    "description": "<p>Set a <a href=\"https://ui.shadcn.com\">shadcn</a> theme preset for any page subtree in its page properties. Subpages inherit it, and it <strong>switches at runtime</strong>, so a campaign can run Midnight.<br />No rebuild needed.</p>",
     "link": "https://github.com/dirnbauer/desiderio",
-    "button_text": "See it in the backend",
+    "button_text": "View on GitHub",
     "button_link": "https://github.com/dirnbauer/desiderio",
     "card_image": {
         "file": "Resources/Public/Styleguide/Backend/backend-page-properties-theme.png",
         "title": "Desiderio per-page theme preset field",
-        "alternative": "TYPO3 page properties showing the Desiderio theme preset select field.",
-        "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+        "alternative": "The TYPO3 page properties with the Desiderio theme preset field.",
+        "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
         "source": "https://github.com/dirnbauer/desiderio"
     },
     "image_position": "left"

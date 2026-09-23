@@ -1,9 +1,9 @@
 {
     "header": "Events landing in Streams, week by week",
-    "subheadline": "Ingest volume for every ISO week of the second quarter, measured at the Frankfurt cluster. The step up in week 26 is Kite & Co moving their mobile app from nightly batch uploads to live events.",
+    "subheadline": "Weekly ingest volume from week 22 to week 29, all regions combined. The step up in week 26 is Kite & Co moving their mobile app from nightly uploads to live events.",
     "metric_label": "Events",
     "unit": "million events",
-    "badge_text": "+31.4% across the quarter",
+    "badge_text": "Up 31.4%",
     "points": [
         {
             "point_label": "W22",
@@ -40,9 +40,9 @@
     ],
     "left_stat_label": "Peak week",
     "left_stat_value": "1.04 bn",
-    "left_stat_detail": "Week 28, the first full week after the Kite & Co migration finished.",
+    "left_stat_detail": "Week 28, the first full week after the Kite & Co migration.",
     "right_stat_label": "Weekly average",
     "right_stat_value": "920 m",
-    "right_stat_detail": "Across the eight weeks of the quarter, all three regions combined.",
-    "primary_button_text": "Open the ingest report"
+    "right_stat_detail": "Across all eight weeks and all three regions.",
+    "primary_button_text": "Open ingest report"
 }

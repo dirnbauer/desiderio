@@ -147,16 +147,16 @@ final class StyleguideContentGroups
     public static function chapterIntro(string $groupId): ?array
     {
         $intros = [
-            'hero' => ['Hero & Landing Intros · 21 elements', 'Win the first screen', 'Split, video, countdown, stats — 21 heroes that make the first impression land, each themed by the active preset.'],
-            'navigation' => ['Navigation & Wayfinding · 23 elements', 'Get people where they are going', '23 navbars, mega-menus, breadcrumbs and pagination patterns — wayfinding that stays on-brand and accessible.'],
-            'content' => ['Content & Editorial · 24 elements', 'Publish like a newsroom, not a ticket queue', 'Text, media, quotes, tabs, timelines and callouts — 24 editorial elements your writers arrange themselves, each with a backend preview so nobody publishes blind.'],
-            'features' => ['Features & Benefits · 25 elements', 'Explain what you do, in whatever shape fits', '25 grids, bento layouts, comparisons, tabs and timelines. Whatever the argument, there is a block that makes it scannable — and it already matches your theme.'],
-            'pricing' => ['Plans & Pricing · 25 elements', 'The blocks that close the deal', '25 pricing tables, toggles, calculators and order summaries — monetisation patterns that usually cost a sprint.'],
-            'social-proof' => ['Trust & Social Proof · 25 elements', 'Show the proof before you ask for the sale', '25 testimonial walls, logo clouds, case studies, awards and rating displays. Assemble credibility at a glance — every one styled by the active theme preset.'],
-            'team' => ['People & Team · 24 elements', 'Put a face to the company', '24 team grids, org charts, founder stories and advisor boards. Introduce the people behind the work without wrestling a layout — 24 ways, all on one token contract.'],
-            'data' => ['Data & Dashboards · 29 elements', 'Numbers that render server-side and stay accessible', '29 KPI cards, charts, status boards and changelogs across nine chart types — drawn on the server with a slim vanilla layer. No React, no hydration, no drift.'],
-            'conversion' => ['Leads & Conversion · 25 elements', 'Turn a visit into a lead — without a developer', '25 CTAs, forms, lead magnets and pricing prompts. Every form is a real ext:form with validation, spam protection and CRM sync, so marketing ships the funnel itself.'],
-            'footer' => ['Footers & Utility Areas · 23 elements', 'The unglamorous 80%, already finished', '23 footers, cookie banners, legal blocks, breadcrumbs and utility bars — the parts every site needs and nobody enjoys building. Accessible and on-brand out of the box.'],
+            'hero' => ['21 hero elements', 'Heroes for the first screen of a page', 'Split, video, countdown and stats layouts. Each hero takes its colours from the active theme preset.'],
+            'navigation' => ['23 navigation elements', 'Menus, breadcrumbs and pagination', 'Navigation bars, mega menus, breadcrumbs and pagination patterns. All of them follow the active theme and are accessible.'],
+            'content' => ['24 content elements', 'Layouts for articles and text pages', 'Text, media, quotes, tabs, timelines and callouts. Editors arrange them on their own, and every element has a backend preview.'],
+            'features' => ['25 feature elements', 'Ways to explain what you offer', 'Grids, bento layouts, comparisons, tabs and timelines make a product easy to scan. They already match your theme preset.'],
+            'pricing' => ['25 pricing elements', 'Pricing tables, toggles and calculators', 'Plan tables, monthly and yearly toggles, calculators and order summaries. Building these by hand often takes a full sprint.'],
+            'social-proof' => ['25 trust elements', 'Testimonials, logos and case studies', 'Testimonial walls, logo clouds, case studies, awards and ratings. Each one follows the active theme preset.'],
+            'team' => ['24 team elements', 'Introduce the people behind the work', 'Team grids, organisation charts, founder stories and advisor boards. They share one set of design tokens, so no layout work is needed.'],
+            'data' => ['29 data elements', 'Charts that render on the server', 'KPI cards, charts, status boards and changelogs, with nine chart types. They render on the server, without React, and include accessible data tables.'],
+            'conversion' => ['25 conversion elements', 'Turn visits into leads without a developer', 'Calls to action, forms, lead magnets and pricing prompts. Every form is a real TYPO3 form with validation, spam protection and CRM sync.'],
+            'footer' => ['23 footer elements', 'The parts every site needs', 'Footers, cookie banners, legal sections, breadcrumbs and utility bars. They follow your theme and are accessible from the start.'],
         ];
         if (!isset($intros[$groupId])) {
             return null;
@@ -175,15 +175,15 @@ final class StyleguideContentGroups
     public static function chapterCta(string $groupId): ?array
     {
         $ctas = [
-            'hero' => ['All 21 hero elements ship in the free package', 'Split, video, countdown and stats heroes — GPL-2.0, no feature gates. Install and make the first screen land.'],
-            'navigation' => ['All 23 navigation elements ship free', 'Navbars, mega-menus and breadcrumbs that inherit your theme automatically. Free under GPL-2.0.'],
-            'content' => ['The whole editorial toolkit, already built', 'All 24 content & editorial elements — text, media, quotes, tabs, timelines — ship free under GPL-2.0.'],
-            'features' => ['All 25 feature blocks ship in the free package', 'Grids, bento layouts, comparisons and timelines to explain what you do. Install and start building.'],
-            'pricing' => ['All 25 pricing elements ship free', 'Tier tables, toggles, calculators and order summaries — the blocks that close, free under GPL-2.0.'],
-            'social-proof' => ['All 25 trust elements ship free', 'Testimonial walls, logo clouds, case studies and rating displays. Install and start building today.'],
-            'team' => ['All 24 people elements ship free', 'Team grids, org charts, founder stories and advisor boards — free under GPL-2.0.'],
-            'data' => ['29 data elements. Nine chart types. Zero JS framework.', 'KPI cards, charts and status boards, server-rendered and accessible. Free under GPL-2.0.'],
-            'footer' => ['The unglamorous 80%, already done', '23 footers, cookie banners, legal blocks and utility bars — the parts nobody enjoys building. Free under GPL-2.0.'],
+            'hero' => ['All 21 heroes are in the free package', 'Split, video, countdown and stats heroes, under GPL-2.0. Paid plans add support, not features.'],
+            'navigation' => ['All 23 navigation elements are free', 'Navigation bars, mega menus and breadcrumbs that follow your theme. Free under GPL-2.0.'],
+            'content' => ['All 24 content elements are free', 'Text, media, quotes, tabs and timelines for your articles. Free under GPL-2.0.'],
+            'features' => ['All 25 feature elements are free', 'Grids, bento layouts, comparisons and timelines to explain what you offer. Free under GPL-2.0.'],
+            'pricing' => ['All 25 pricing elements are free', 'Plan tables, toggles, calculators and order summaries. Free under GPL-2.0.'],
+            'social-proof' => ['All 25 trust elements are free', 'Testimonial walls, logo clouds, case studies and ratings. Free under GPL-2.0.'],
+            'team' => ['All 24 team elements are free', 'Team grids, organisation charts, founder stories and advisor boards. Free under GPL-2.0.'],
+            'data' => ['29 data elements, no JavaScript framework', 'KPI cards, charts and status boards, rendered on the server with accessible tables. Free under GPL-2.0.'],
+            'footer' => ['All 23 footer elements are free', 'Footers, cookie banners, legal sections and utility bars. Free under GPL-2.0.'],
         ];
         if (!isset($ctas[$groupId])) {
             return null;
@@ -193,7 +193,7 @@ final class StyleguideContentGroups
         return [
             'header' => $header,
             'description' => $description,
-            'cta_text' => 'Get Desiderio free',
+            'cta_text' => 'Get started free',
             'cta_link' => 'https://github.com/dirnbauer/desiderio',
             'bg_style' => 'primary',
         ];

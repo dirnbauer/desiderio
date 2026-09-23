@@ -1,48 +1,48 @@
 {
     "_type": "hero",
-    "header": "From first edit to finished site — in three slides",
-    "subheadline": "Edit inline in the Visual Editor, publish a polished light theme, flip to dark without touching a line of CSS. One package does all three.",
+    "header": "Three steps from first edit to live site",
+    "subheadline": "Edit inline in the Visual Editor, publish in a light theme, then switch to dark mode without writing CSS. One package does all three.",
     "slides": [
         {
-            "title": "Edit the page on the page",
-            "lead": "The Visual Editor turns the TYPO3 backend into the site itself — click, type, done.",
-            "description": "<p>Editors work directly on the rendered page with the live theme applied. No guessing from gray records, no preview round-trips — what they see is what ships.</p>",
+            "title": "Edit the page you see",
+            "lead": "In the Visual Editor, you edit the site itself: click, type, publish.",
+            "description": "<p>Editors work on the rendered page with the live theme. What they see is what visitors get.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-visual-editor.png",
-                "title": "Editing in the Desiderio Visual Editor",
-                "alternative": "TYPO3 Visual Editor with a Desiderio page being edited inline.",
-                "description": "Screenshot of the Visual Editor with Desiderio installed.",
+                "title": "Editing in the Visual Editor",
+                "alternative": "The TYPO3 Visual Editor with a Desiderio page open for inline editing.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             },
             "button_text": "See the editor",
             "button_link": "t3://page?uid=1"
         },
         {
-            "title": "Publish design-system polish",
-            "lead": "The rendered site looks like a design agency built it — because a design system did.",
-            "description": "<p>Every one of the 244 elements draws from the same <strong>OKLCH tokens</strong>, so headlines, cards, and buttons stay perfectly on palette. This is the Lagoon preset, untouched.</p>",
+            "title": "Publish a consistent design",
+            "lead": "The published site follows one design system.",
+            "description": "<p>All 244 elements use the same <strong>colour tokens</strong>, so headlines, cards and buttons match. This is the Lagoon preset, unchanged.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Frontend/frontend-hero-lagoon.png",
                 "title": "Desiderio frontend in the Lagoon preset",
-                "alternative": "Rendered Desiderio frontend hero page in the light Lagoon theme preset.",
-                "description": "Screenshot of a live Desiderio frontend page.",
+                "alternative": "A Desiderio hero page in the light Lagoon theme preset.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             },
-            "button_text": "Browse the styleguide",
+            "button_text": "See all elements",
             "button_link": "t3://page?uid=1"
         },
         {
-            "title": "Dark mode, already done",
-            "lead": "Light and dark live in the same token set — flip the switch and every element follows.",
-            "description": "<p>No second stylesheet, no forgotten corners: the <strong>Midnight preset</strong> renders this pricing page in WCAG 2.2-checked contrast, straight out of the box.</p>",
+            "title": "Dark mode included",
+            "lead": "Light and dark mode share one set of tokens. Switch, and every element follows.",
+            "description": "<p>There is no second stylesheet. The <strong>Midnight preset</strong> shows this pricing page with WCAG 2.2-checked contrast.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Frontend/frontend-pricing-midnight-dark.png",
-                "title": "Desiderio pricing page in the dark Midnight preset",
-                "alternative": "Rendered Desiderio pricing page in the dark Midnight theme preset.",
-                "description": "Screenshot of a live Desiderio frontend page in dark mode.",
+                "title": "Pricing page in the dark Midnight preset",
+                "alternative": "A Desiderio pricing page in the dark Midnight theme preset.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             },
-            "button_text": "Start free",
+            "button_text": "Get started free",
             "button_link": "t3://page?uid=1"
         }
     ]

@@ -1,9 +1,9 @@
 {
     "_type": "hero",
-    "header": "Retheme the whole site before the meeting ends",
-    "subheadline": "Theme preset, density, corner radius, container width, and fonts are plain TYPO3 site settings. Change one dropdown in the backend and every element on every page follows — no rebuild, no deployment window, no developer ticket.",
-    "badge_text": "No-rebuild theming",
-    "primary_button_text": "Start free",
+    "header": "One setting changes the look of every page",
+    "subheadline": "Preset, density, corner radius, container width and fonts are TYPO3 site settings. Change one, and every element follows without a rebuild or deployment.",
+    "badge_text": "Runtime theming",
+    "primary_button_text": "Get started free",
     "secondary_button_text": "Read the docs",
     "logo_items": [
         {
@@ -25,8 +25,8 @@
     "dashboard_image": {
         "file": "Resources/Public/Styleguide/Backend/backend-site-settings-theme.png",
         "title": "Desiderio theme site settings",
-        "alternative": "TYPO3 site settings module showing the Desiderio theme category with preset, density, and radius options.",
-        "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+        "alternative": "TYPO3 site settings with the Desiderio theme options for preset, density and radius.",
+        "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
         "source": "https://github.com/dirnbauer/desiderio"
     },
     "primary_button_link": "https://example.com/desiderio/primary_button_link_1",

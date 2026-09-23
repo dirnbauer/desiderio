@@ -6,16 +6,21 @@
 <f:layout name="Default"/>
 
 <f:section name="Main">
+    <f:comment>Core's imageorient values: 0-2 above, 8-10 below, 17 and 25 right, 18 and 26 left. 27 and 28 are not core values; older records keep their right placement.</f:comment>
     <f:switch expression="{record.imageorient}">
         <f:case value="0"><f:variable name="mediaPosition" value="above"/></f:case>
+        <f:case value="1"><f:variable name="mediaPosition" value="above"/></f:case>
+        <f:case value="2"><f:variable name="mediaPosition" value="above"/></f:case>
         <f:case value="8"><f:variable name="mediaPosition" value="below"/></f:case>
-        <f:case value="17"><f:variable name="mediaPosition" value="above"/></f:case>
-        <f:case value="18"><f:variable name="mediaPosition" value="below"/></f:case>
-        <f:case value="25"><f:variable name="mediaPosition" value="left"/></f:case>
+        <f:case value="9"><f:variable name="mediaPosition" value="below"/></f:case>
+        <f:case value="10"><f:variable name="mediaPosition" value="below"/></f:case>
+        <f:case value="17"><f:variable name="mediaPosition" value="right"/></f:case>
+        <f:case value="18"><f:variable name="mediaPosition" value="left"/></f:case>
+        <f:case value="25"><f:variable name="mediaPosition" value="right"/></f:case>
         <f:case value="26"><f:variable name="mediaPosition" value="left"/></f:case>
         <f:case value="27"><f:variable name="mediaPosition" value="right"/></f:case>
         <f:case value="28"><f:variable name="mediaPosition" value="right"/></f:case>
-        <f:defaultCase><f:variable name="mediaPosition" value="right"/></f:defaultCase>
+        <f:defaultCase><f:variable name="mediaPosition" value="above"/></f:defaultCase>
     </f:switch>
 
     <article class="ce-fsc-textmedia ce-fsc-textmedia--{mediaPosition}">

@@ -67,7 +67,8 @@ lib.desiderioContentWithTable {
         negate = 1
       }
     }
-    maximumColumns.field = imagecols
+    # cols is the table's column count (0 = all); imagecols belongs to images.
+    maximumColumns.field = cols
     as = table
   }
 }

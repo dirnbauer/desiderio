@@ -1,22 +1,22 @@
 {
-    "header": "Mehr Volumen, niedrigerer Seitenpreis",
+    "header": "Mehr Volumen, niedrigerer Preis pro Seite",
     "eyebrow": "Mengenstaffel",
-    "description": "<p>Die Stufen gelten innerhalb eines Kalendermonats und müssen nicht angefragt werden. Ein Workspace mit 120.000 Seiten zahlt die ersten 10.000 zum Standardsatz, die nächsten 90.000 zum Wachstumssatz und den Rest zum Mengensatz.</p>",
+    "description": "<p>Die Staffel gilt automatisch in jedem Kalendermonat. Bei 120.000 Seiten kosten die ersten 10.000 den Standardsatz und die nächsten 90.000 den Wachstumssatz. Der Rest kostet den Mengensatz.</p>",
     "unit_label": "Seiten",
     "tiers": [
         {
             "up_to": "10.000",
-            "price_per_unit": "EUR 0,010",
+            "price_per_unit": "0,010 €",
             "label": "Standard"
         },
         {
             "up_to": "100.000",
-            "price_per_unit": "EUR 0,007",
+            "price_per_unit": "0,007 €",
             "label": "Wachstum"
         },
         {
             "up_to": "1.000.000",
-            "price_per_unit": "EUR 0,005",
+            "price_per_unit": "0,005 €",
             "label": "Volumen"
         }
     ]

@@ -1,25 +1,25 @@
 {
-    "header": "Drei Bausteine für Ihre erste Dokumenten-Pipeline",
+    "header": "Drei Bausteine für die erste Dokumenten-Pipeline",
     "eyebrow": "Startpaket",
-    "bundle_price": "EUR 1.990",
-    "savings_text": "EUR 490 sparen",
-    "description": "<p>Der Build-Tarif für ein Jahr, die Tabellenerkennung und zwei Tage Migrationsarbeit in einer Bestellung. Einzeln gekauft kosten dieselben drei Positionen EUR 2.480.</p>",
+    "bundle_price": "1.990 €",
+    "savings_text": "490 € sparen",
+    "description": "<p>Ein Jahr Build-Tarif, Tabellenerkennung und zwei Tage Migrationsarbeit in einer Bestellung. Einzeln gekauft kosten die drei Positionen 2.480 €.</p>",
     "items": [
         {
             "name": "Build-Tarif, 12 Monate",
-            "individual_price": "EUR 490",
-            "description_text": "5.000 Seiten pro Monat inklusive, EUR 0,010 für jede weitere Seite, Support-Antwort am nächsten Werktag."
+            "individual_price": "490 €",
+            "description_text": "5.000 Seiten pro Monat, danach 0,010 € pro Seite. Der Support antwortet am nächsten Werktag."
         },
         {
             "name": "Add-on Tabellenerkennung, 12 Monate",
-            "individual_price": "EUR 790",
-            "description_text": "Spaltenköpfe, Positionen und Summen kommen aus gescannten Tabellen als JSON zurück statt als loser Text."
+            "individual_price": "790 €",
+            "description_text": "Liefert Spaltenköpfe, Positionen und Summen aus gescannten Tabellen als JSON statt als losen Text."
         },
         {
-            "name": "Migrationsreview, zwei Tage",
-            "individual_price": "EUR 1.200",
-            "description_text": "Ein Engineer ordnet Ihre bestehenden Vorlagen den Endpoints zu und liefert ein einsatzfertiges Extraktionsschema."
+            "name": "Migrationsprüfung, zwei Tage",
+            "individual_price": "1.200 €",
+            "description_text": "Ein Entwickler ordnet Ihre bestehenden Vorlagen den Endpoints zu und liefert ein funktionierendes Extraktionsschema."
         }
     ],
-    "button_text": "Startpaket bestellen"
+    "button_text": "Paket bestellen"
 }

@@ -1,15 +1,15 @@
 {
-    "header": "Spotbuchung oder fixer Wochenslot im Vergleich",
+    "header": "Spotbuchung oder fester Wochenslot",
     "eyebrow": "Leistung wählen",
-    "subheadline": "Beide Varianten bewegen dieselbe Palette im selben Netz. Der Unterschied zeigt sich am Preis in Woche 46 und daran, ob eine Trailerposition bereits reserviert ist, wenn sich Ihr Produktionsplan an einem Dienstagnachmittag ändert.",
+    "subheadline": "Beide Varianten nutzen dasselbe Netz. Unterschiedlich sind der Preis in Woche 46 und die Frage, ob Ihr Trailerplatz reserviert ist, wenn sich Pläne ändern.",
     "left_title": "Spotbuchung, Ladung für Ladung",
-    "left_description": "<p>Sie rufen im Depot an, sobald eine Ladung fertig ist, und nehmen die Kapazität, die an diesem Tag frei ist. Die Raten folgen dem Markt: Eine Palette von Wien nach Rotterdam kostet im Februar EUR 96 und in Spitzenwochen bis zu EUR 174.</p>",
+    "left_description": "<p>Sie rufen im Depot an, sobald eine Ladung bereit ist, und nehmen den Platz, der an diesem Tag frei ist. Die Raten folgen dem Markt: Eine Palette von Wien nach Rotterdam kostet im Februar 96 € und in Spitzenwochen bis zu 174 €.</p>",
     "left_points": [
         {
             "text": "Rate je Ladung, 48 Stunden gültig"
         },
         {
-            "text": "Kapazität in Spitzenwochen nach Verfügbarkeit"
+            "text": "Kein garantierter Platz in Spitzenwochen"
         },
         {
             "text": "Buchungsschluss am Vortag um 14:00 Uhr"
@@ -18,15 +18,15 @@
             "text": "Tracking-Meldungen per E-Mail"
         }
     ],
-    "right_badge": "Meistgewählte Variante",
-    "right_title": "Fixer Slot im Wochenlinienverkehr",
-    "right_description": "<p>Eine reservierte Trailerposition auf einer festen Abfahrt, kalkuliert für zwölf Monate. Wien nach Rotterdam liegt bei EUR 118 je Europalette, und der Slot bleibt Ihrer, ob Sie ihn in Woche 7 oder in Woche 46 füllen.</p>",
+    "right_badge": "Meistgenutzte Variante",
+    "right_title": "Fester Wochenslot im Linienverkehr",
+    "right_description": "<p>Ein reservierter Trailerplatz auf einer festen Abfahrt, mit einem Preis, der 12 Monate gilt. Wien nach Rotterdam kostet 118 € je Europalette, und der Slot gehört Ihnen in Woche 7 wie in Woche 46.</p>",
     "right_points": [
         {
-            "text": "EUR 118 je Europalette, 12 Monate fix"
+            "text": "118 € je Europalette, 12 Monate fest"
         },
         {
-            "text": "Trailerposition auf jeder Abfahrt reserviert"
+            "text": "Trailerplatz auf jeder Abfahrt reserviert"
         },
         {
             "text": "Buchungsschluss am Abfahrtstag um 18:00 Uhr"

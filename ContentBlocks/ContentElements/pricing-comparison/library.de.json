@@ -1,27 +1,27 @@
 {
-    "header": "Limits und Support im Tarifvergleich",
+    "header": "Anfragelimits und Support nach Tarif",
     "eyebrow": "Tarife vergleichen",
     "plans": [
         {
             "name": "Sandbox",
-            "price": "EUR 0"
+            "price": "0 €"
         },
         {
             "name": "Build",
-            "price": "EUR 49 pro Monat"
+            "price": "49 € pro Monat"
         },
         {
             "name": "Scale",
-            "price": "EUR 249 pro Monat"
+            "price": "249 € pro Monat"
         },
         {
             "name": "Enterprise",
-            "price": "Ab EUR 1.900 pro Monat"
+            "price": "Ab 1.900 € pro Monat"
         }
     ],
     "pricing_feature_items": [
         {
-            "feature_name": "Inkludierte Seiten pro Monat",
+            "feature_name": "Inklusive Seiten pro Monat",
             "tier_values": [
                 {
                     "value": "500"
@@ -38,7 +38,7 @@
             ]
         },
         {
-            "feature_name": "Requests pro Sekunde",
+            "feature_name": "Anfragen pro Sekunde",
             "tier_values": [
                 {
                     "value": "2"
@@ -55,7 +55,7 @@
             ]
         },
         {
-            "feature_name": "Support-Reaktionszeit",
+            "feature_name": "Antwortzeit des Supports",
             "tier_values": [
                 {
                     "value": "Community-Forum"

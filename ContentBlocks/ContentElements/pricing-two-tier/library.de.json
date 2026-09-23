@@ -1,18 +1,18 @@
 {
     "header": "Build oder Scale, je nach Monatsvolumen",
-    "eyebrow": "Self-Service-Tarife",
-    "subheadline": "Beide Tarife erreichen jeden Endpoint in beiden Regionen. Der Unterschied liegt im inkludierten Seitenkontingent, in der Request-Obergrenze und darin, wie schnell ein Ticket beantwortet wird, wenn ein Batch um drei Uhr früh stehen bleibt.",
+    "eyebrow": "Online buchbare Tarife",
+    "subheadline": "Beide Tarife erreichen jeden Endpoint in beiden Regionen. Unterschiedlich sind die inklusiven Seiten, die Anfragelimits und die Antwortzeit des Supports, wenn ein Batch um drei Uhr früh hängt.",
     "plans": [
         {
             "title": "Build",
-            "price": "EUR 49 pro Monat",
-            "description": "<p>5.000 Seiten pro Monat für eine einzelne Produktivanwendung, danach EUR 0,010 pro Seite.</p>",
+            "price": "49 € pro Monat",
+            "description": "<p>5.000 Seiten pro Monat für eine einzelne Produktivanwendung, danach 0,010 € pro Seite.</p>",
             "features": [
                 {
                     "text": "5.000 Seiten pro Monat inklusive"
                 },
                 {
-                    "text": "25 Requests pro Sekunde, Spitzen bis 60"
+                    "text": "25 Anfragen pro Sekunde, Spitzen bis 60"
                 },
                 {
                     "text": "Kostenlimit je Workspace"
@@ -26,17 +26,17 @@
         },
         {
             "title": "Scale",
-            "price": "EUR 249 pro Monat",
-            "description": "<p>35.000 Seiten pro Monat, eine zugesicherte Verfügbarkeit und Support-Reaktionszeiten in Stunden.</p>",
+            "price": "249 € pro Monat",
+            "description": "<p>35.000 Seiten pro Monat, zugesicherte Verfügbarkeit und ein Support, der binnen Stunden antwortet.</p>",
             "features": [
                 {
                     "text": "35.000 Seiten pro Monat inklusive"
                 },
                 {
-                    "text": "EUR 0,007 für jede weitere Seite"
+                    "text": "0,007 € für jede weitere Seite"
                 },
                 {
-                    "text": "100 Requests pro Sekunde, Spitzen bis 250"
+                    "text": "100 Anfragen pro Sekunde, Spitzen bis 250"
                 },
                 {
                     "text": "99,9 % Verfügbarkeit zugesichert"

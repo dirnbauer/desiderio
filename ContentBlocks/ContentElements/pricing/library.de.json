@@ -1,20 +1,20 @@
 {
-    "header": "Wir rechnen Seiten ab, keine Plätze",
+    "header": "Tarife nach Seiten, nicht nach Nutzerplätzen",
     "eyebrow": "Preise",
-    "subheadline": "In jedem Tarif stehen alle Endpoints beliebig vielen Teammitgliedern offen. Unterschiedlich sind das monatliche Seitenkontingent, die Request-Obergrenze und die Support-Zusage, die dahintersteht, wenn im Produktivbetrieb etwas ausfällt.",
+    "subheadline": "In jedem Tarif nutzen beliebig viele Teammitglieder alle Endpoints. Die Tarife unterscheiden sich in Seiten pro Monat, Anfragelimits und der Antwortzeit des Supports.",
     "columns": "3",
     "plans": [
         {
             "name": "Build",
-            "price": "EUR 49",
+            "price": "49 €",
             "billing_period": "pro Monat",
-            "description": "<p>Eine Produktivanwendung mit 5.000 Seiten pro Monat, danach EUR 0,010 pro Seite.</p>",
+            "description": "<p>Eine Produktivanwendung mit 5.000 Seiten pro Monat, danach 0,010 € pro Seite.</p>",
             "features": [
                 {
                     "text": "5.000 Seiten pro Monat inklusive"
                 },
                 {
-                    "text": "25 Requests pro Sekunde, Spitzen bis 60"
+                    "text": "25 Anfragen pro Sekunde, Spitzen bis 60"
                 },
                 {
                     "text": "Kostenlimit je Workspace"
@@ -27,20 +27,20 @@
             "button_text": "Mit Build starten"
         },
         {
-            "badge_text": "Am häufigsten gewählt",
+            "badge_text": "Meistgewählt",
             "name": "Scale",
-            "price": "EUR 249",
+            "price": "249 €",
             "billing_period": "pro Monat",
-            "description": "<p>35.000 Seiten pro Monat, danach EUR 0,007, mit schriftlich zugesicherter Verfügbarkeit.</p>",
+            "description": "<p>35.000 Seiten pro Monat, danach 0,007 €, mit schriftlich zugesicherter Verfügbarkeit.</p>",
             "features": [
                 {
                     "text": "35.000 Seiten pro Monat inklusive"
                 },
                 {
-                    "text": "EUR 0,007 für jede weitere Seite"
+                    "text": "0,007 € für jede weitere Seite"
                 },
                 {
-                    "text": "100 Requests pro Sekunde, Spitzen bis 250"
+                    "text": "100 Anfragen pro Sekunde, Spitzen bis 250"
                 },
                 {
                     "text": "99,9 % Verfügbarkeit zugesichert"
@@ -57,15 +57,15 @@
         },
         {
             "name": "Enterprise",
-            "price": "Ab EUR 1.900",
+            "price": "Ab 1.900 €",
             "billing_period": "pro Monat",
-            "description": "<p>Zugesichertes Volumen ab 250.000 Seiten pro Monat, betrieben dort, wo Ihre Auditoren es verlangen.</p>",
+            "description": "<p>Zugesichertes Volumen ab 250.000 Seiten pro Monat, gehostet dort, wo Ihre Prüfer es brauchen.</p>",
             "features": [
                 {
                     "text": "Zugesichertes Volumen ab 250.000 Seiten"
                 },
                 {
-                    "text": "EUR 0,004 pro Seite, quartalsweise abgerechnet"
+                    "text": "0,004 € pro Seite, quartalsweise abgerechnet"
                 },
                 {
                     "text": "Frankfurt, Dublin oder Ihre eigene VPC"

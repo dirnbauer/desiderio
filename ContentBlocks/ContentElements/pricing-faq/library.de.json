@@ -1,19 +1,19 @@
 {
-    "header": "Abrechnungsfragen vor der Vertragsunterschrift",
+    "header": "Fragen zur Abrechnung vor der Unterschrift",
     "eyebrow": "FAQ zur Abrechnung",
-    "subheadline": "Die Antworten decken Messung, Mehrverbrauch und den Fall ab, dass ein Batch mitten im Lauf abbricht. Alles Weitere steht in der Abrechnungsreferenz, und eine schriftliche Antwort auf ein Support-Ticket erreicht Sie am nächsten Werktag.",
+    "subheadline": "Antworten zu Messung, zusätzlichen Seiten und abgebrochenen Batches. Für alles Weitere gibt es die Abrechnungsreferenz oder ein Ticket, das wir am nächsten Werktag beantworten.",
     "question_items": [
         {
             "question": "Was zählt als Seite?",
-            "answer": "<p>Eine Seite eines Dokuments, das an einen Endpoint geht. Ein PDF mit 12 Seiten am Extraktions-Endpoint zählt als 12 Seiten, unabhängig davon, ob jede Seite Felder zurückgibt. Beim Splitten erkannte Leerseiten werden nicht berechnet.</p>"
+            "answer": "<p>Eine Seite eines Dokuments, das an einen Endpoint geht. Ein PDF mit 12 Seiten zählt am Extraktions-Endpoint als 12 Seiten, auch wenn nicht jede Seite Felder liefert. Leere Seiten, die beim Aufteilen erkannt werden, berechnen wir nicht.</p>"
         },
         {
-            "question": "Werden fehlgeschlagene Requests berechnet?",
-            "answer": "<p>Nein. Alles, was mit einem 4xx- oder 5xx-Status beantwortet wird, fließt nicht in die Messung ein. Seiten aus einem Batch, der mitten im Lauf stoppt, werden innerhalb derselben Abrechnungsperiode gutgeschrieben, ganz ohne Support-Ticket.</p>"
+            "question": "Werden fehlgeschlagene Anfragen berechnet?",
+            "answer": "<p>Nein. Anfragen mit einem 4xx- oder 5xx-Status werden nicht gezählt. Bricht ein Batch mitten im Lauf ab, schreiben wir seine Seiten in derselben Abrechnungsperiode gut, ohne Support-Ticket.</p>"
         },
         {
-            "question": "Was passiert, wenn die inkludierten Seiten aufgebraucht sind?",
-            "answer": "<p>Weitere Seiten werden zum Tarifsatz berechnet: EUR 0,010 bei Build, EUR 0,007 bei Scale. Das Kostenlimit des Workspace stoppt die Verarbeitung an der von Ihnen gesetzten Obergrenze, statt die Rechnung weiter wachsen zu lassen.</p>"
+            "question": "Was passiert, wenn die Inklusivseiten verbraucht sind?",
+            "answer": "<p>Weitere Seiten kosten den Satz Ihres Tarifs: 0,010 € bei Build, 0,007 € bei Scale. Das Kostenlimit des Workspace stoppt die Verarbeitung bei der Grenze, die Sie festlegen. So kann die Rechnung nicht weiter wachsen.</p>"
         }
     ]
 }

@@ -1,23 +1,23 @@
 {
-    "header": "Der passende Endpoint für jedes Dokument",
+    "header": "Wählen Sie den Endpoint passend zum Dokument",
     "eyebrow": "Preise je Endpoint",
-    "subheadline": "Jeder Endpoint rechnet pro Seite ab, und im Sandbox-Tarif gilt für keinen davon ein Monatsmindestumsatz. Sobald ein Workspace innerhalb eines Kalendermonats 100.000 Seiten überschreitet, greifen die niedrigeren Sätze von selbst, und das Nutzungsprotokoll weist die abgerechnete Stufe aus.",
+    "subheadline": "Jeder Endpoint rechnet pro Seite ab, im Sandbox-Tarif ohne monatlichen Mindestbetrag. Ab 100.000 Seiten im Kalendermonat sinken die Sätze automatisch.",
     "columns": "3",
     "items": [
         {
             "title": "Extraktion",
             "count": "6 Endpoints",
-            "description": "<p>Rechnungen, Lieferscheine, Verträge und Formulare kommen als typisiertes JSON zurück, mit einem Konfidenzwert je Feld. EUR 0,012 pro Seite.</p>"
+            "description": "<p>Rechnungen, Lieferscheine, Verträge und Formulare kommen als typisiertes JSON zurück, mit einem Konfidenzwert je Feld. 0,012 € pro Seite.</p>"
         },
         {
             "title": "Klassifizierung",
             "count": "3 Endpoints",
-            "description": "<p>Sortiert einen gemischten Posteingang vor der Extraktion in die richtige Warteschlange, über 40 mitgelieferte Typen oder eigene Labels. EUR 0,004 pro Seite.</p>"
+            "description": "<p>Sortiert einen gemischten Posteingang vor der Extraktion in die richtige Warteschlange, mit 40 mitgelieferten Typen oder eigenen Labels. 0,004 € pro Seite.</p>"
         },
         {
             "title": "Schwärzung",
             "count": "4 Endpoints",
-            "description": "<p>Namen, IBANs und Kartennummern werden in der gespeicherten Kopie maskiert, mit einem Protokolleintrag je Dokument. EUR 0,006 pro Seite.</p>"
+            "description": "<p>Maskiert Namen, IBANs und Kartennummern in der gespeicherten Kopie und schreibt je Dokument einen Protokolleintrag. 0,006 € pro Seite.</p>"
         }
     ]
 }

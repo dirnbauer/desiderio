@@ -1,19 +1,19 @@
 {
     "header": "Monatspreise mit dem Jahrespreis daneben",
     "eyebrow": "Abrechnungszeitraum",
-    "subheadline": "Jährliche Abrechnung bedeutet zehn im Voraus bezahlte Monate. Seitenkontingente, Request-Obergrenzen und Support-Zusagen sind in beiden Fällen identisch, und ein Workspace darf einmal pro Laufzeit wechseln, ohne bereits bezahlte Seiten zu verlieren.",
+    "subheadline": "Bei jährlicher Abrechnung zahlen Sie zehn Monate im Voraus. Seitenkontingent, Anfragelimits und Support sind in beiden Fällen gleich.",
     "plans": [
         {
             "title": "Build",
-            "monthly_price": "EUR 49",
-            "yearly_price": "EUR 490",
-            "description": "<p>5.000 Seiten pro Monat für eine Produktivanwendung, danach EUR 0,010 pro Seite.</p>",
+            "monthly_price": "49 €",
+            "yearly_price": "490 €",
+            "description": "<p>5.000 Seiten pro Monat für eine Produktivanwendung. Danach 0,010 € pro Seite.</p>",
             "features": [
                 {
                     "text": "5.000 Seiten pro Monat inklusive"
                 },
                 {
-                    "text": "25 Requests pro Sekunde, Spitzen bis 60"
+                    "text": "25 Anfragen pro Sekunde, Spitzen bis 60"
                 },
                 {
                     "text": "E-Mail-Support, Antwort am nächsten Werktag"
@@ -23,18 +23,18 @@
         },
         {
             "title": "Scale",
-            "monthly_price": "EUR 249",
-            "yearly_price": "EUR 2.490",
-            "description": "<p>35.000 Seiten pro Monat mit 99,9 % zugesicherter Verfügbarkeit und Failover nach Dublin.</p>",
+            "monthly_price": "249 €",
+            "yearly_price": "2.490 €",
+            "description": "<p>35.000 Seiten pro Monat, 99,9 % Verfügbarkeit und Failover nach Dublin.</p>",
             "features": [
                 {
                     "text": "35.000 Seiten pro Monat inklusive"
                 },
                 {
-                    "text": "EUR 0,007 für jede weitere Seite"
+                    "text": "0,007 € für jede weitere Seite"
                 },
                 {
-                    "text": "100 Requests pro Sekunde, Spitzen bis 250"
+                    "text": "100 Anfragen pro Sekunde, Spitzen bis 250"
                 },
                 {
                     "text": "99,9 % Verfügbarkeit zugesichert"
@@ -47,12 +47,12 @@
         },
         {
             "title": "Enterprise",
-            "monthly_price": "EUR 1.900",
-            "yearly_price": "EUR 19.000",
-            "description": "<p>Zugesichertes Volumen ab 250.000 Seiten pro Monat zu EUR 0,004 pro Seite.</p>",
+            "monthly_price": "1.900 €",
+            "yearly_price": "19.000 €",
+            "description": "<p>Ab 250.000 Seiten pro Monat zu 0,004 € pro Seite.</p>",
             "features": [
                 {
-                    "text": "Zugesichertes Volumen, quartalsweise Rechnung"
+                    "text": "Zugesichertes Volumen, Rechnung pro Quartal"
                 },
                 {
                     "text": "Frankfurt, Dublin oder Ihre eigene VPC"

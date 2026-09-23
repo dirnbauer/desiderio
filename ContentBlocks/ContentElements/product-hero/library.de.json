@@ -1,8 +1,8 @@
 {
-    "header": "Gescannte Rechnung, ein Aufruf, fertiges JSON",
+    "header": "Ein Aufruf macht aus einer gescannten Rechnung JSON",
     "eyebrow": "Extract API",
-    "description": "<p>Senden Sie ein PDF und erhalten Sie Lieferant, Datumsangaben, Steuersätze und Positionen zurück, jeweils mit eigenem Konfidenzwert. Die mittlere Antwortzeit liegt bei 1,4 Sekunden pro Seite, im 95. Perzentil bei 3,1 Sekunden, aus Frankfurt oder Dublin.</p>",
-    "price": "EUR 49",
-    "price_note": "pro Monat, zuzüglich EUR 0,010 pro Seite",
-    "button_text": "API-Key anfordern"
+    "description": "<p>Sie senden ein PDF und erhalten Lieferant, Datumsangaben, Steuersätze und Positionen zurück, jeweils mit Konfidenzwert. Die Antwort braucht im Median 1,4 Sekunden pro Seite (3,1 Sekunden im 95. Perzentil), aus Frankfurt oder Dublin.</p>",
+    "price": "49 €",
+    "price_note": "pro Monat, zuzüglich 0,010 € pro Seite",
+    "button_text": "API-Zugang anfordern"
 }

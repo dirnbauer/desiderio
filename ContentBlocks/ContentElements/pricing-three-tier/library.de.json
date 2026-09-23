@@ -1,11 +1,11 @@
 {
     "header": "Von Sandbox bis Scale, nach Seiten pro Monat",
     "eyebrow": "Tarife",
-    "subheadline": "Sandbox umfasst 500 Seiten pro Monat und verlangt keine Kreditkarte. Build und Scale bringen mehr Durchsatz, eine zugesicherte Verfügbarkeit und schnelleren Support, behalten aber dieselben Request- und Response-Formate wie der Sandbox-Key, mit dem Sie begonnen haben.",
+    "subheadline": "Sandbox bietet 500 Seiten pro Monat ohne Kreditkarte. Build und Scale bringen mehr Durchsatz, zugesicherte Verfügbarkeit und schnelleren Support, mit derselben API wie Sandbox.",
     "plans": [
         {
             "name": "Sandbox",
-            "price": "EUR 0",
+            "price": "0 €",
             "billing_period": "pro Monat",
             "description": "<p>500 Seiten pro Monat für Prototypen, mit derselben Antwort wie in der Produktion.</p>",
             "features": [
@@ -13,29 +13,29 @@
                     "text": "500 Seiten pro Monat, ohne Kreditkarte"
                 },
                 {
-                    "text": "2 Requests pro Sekunde"
+                    "text": "2 Anfragen pro Sekunde"
                 },
                 {
                     "text": "Support über das Community-Forum"
                 }
             ],
             "is_recommended": false,
-            "button_text": "Sandbox-Key holen"
+            "button_text": "Sandbox testen"
         },
         {
             "name": "Build",
-            "price": "EUR 49",
+            "price": "49 €",
             "billing_period": "pro Monat",
-            "description": "<p>5.000 Seiten pro Monat für eine Produktivanwendung, danach EUR 0,010 pro Seite.</p>",
+            "description": "<p>5.000 Seiten pro Monat für eine Produktivanwendung, danach 0,010 € pro Seite.</p>",
             "features": [
                 {
                     "text": "5.000 Seiten pro Monat inklusive"
                 },
                 {
-                    "text": "25 Requests pro Sekunde, Spitzen bis 60"
+                    "text": "25 Anfragen pro Sekunde, Spitzen bis 60"
                 },
                 {
-                    "text": "Alle Extraktions- und Klassifizierungs-Endpoints"
+                    "text": "Alle Endpoints für Extraktion und Klassifizierung"
                 },
                 {
                     "text": "Kostenlimit je Workspace"
@@ -49,18 +49,18 @@
         },
         {
             "name": "Scale",
-            "price": "EUR 249",
+            "price": "249 €",
             "billing_period": "pro Monat",
-            "description": "<p>35.000 Seiten pro Monat, danach EUR 0,007, mit Failover zwischen zwei Regionen.</p>",
+            "description": "<p>35.000 Seiten pro Monat, danach 0,007 €, mit Failover zwischen zwei Regionen.</p>",
             "features": [
                 {
                     "text": "35.000 Seiten pro Monat inklusive"
                 },
                 {
-                    "text": "EUR 0,007 für jede weitere Seite"
+                    "text": "0,007 € für jede weitere Seite"
                 },
                 {
-                    "text": "100 Requests pro Sekunde, Spitzen bis 250"
+                    "text": "100 Anfragen pro Sekunde, Spitzen bis 250"
                 },
                 {
                     "text": "99,9 % Verfügbarkeit zugesichert"

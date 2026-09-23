@@ -1,115 +1,115 @@
 {
     "_type": "grid",
     "variant": "cards",
-    "header": "See Desiderio in action",
+    "header": "Desiderio in nine screenshots",
     "autoplay_interval": 5000,
     "show_navigation": 1,
     "show_pagination": 1,
     "items": [
         {
-            "slide_title": "Edit your site right on the page",
-            "slide_description": "<p>The <strong>Visual Editor</strong> turns the frontend into the editing surface — click any Desiderio element and change it inline. Editors stop guessing what 'save' will look like.</p>",
+            "slide_title": "Edit content directly on the page",
+            "slide_description": "<p>With the <strong>Visual Editor</strong>, editors click any Desiderio element on the page and change it there. They see the result before they save.</p>",
             "slide_link": "t3://page?uid=1",
             "slide_image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-visual-editor.png",
                 "title": "Editing in the Desiderio Visual Editor",
-                "alternative": "TYPO3 Visual Editor with inline editing of a Desiderio content element on the page.",
-                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "alternative": "The TYPO3 Visual Editor with a Desiderio content element open for inline editing.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
-            "slide_title": "A launch-ready frontend out of the box",
-            "slide_description": "<p>This is the seeded demo site on the <strong>Lagoon preset</strong> — not a mockup, a real TYPO3 frontend you get minutes after <a href=\"https://packagist.org\">composer</a> require.</p>",
+            "slide_title": "A finished frontend after installation",
+            "slide_description": "<p>This is the seeded demo site on the <strong>Lagoon preset</strong>. It is a real TYPO3 frontend, ready minutes after <a href=\"https://packagist.org\">composer</a> require.</p>",
             "slide_link": "t3://page?uid=1",
             "slide_image": {
                 "file": "Resources/Public/Styleguide/Frontend/frontend-hero-lagoon.png",
                 "title": "Desiderio frontend on the Lagoon preset",
-                "alternative": "Desiderio demo site hero page rendered in the light Lagoon theme preset.",
-                "description": "Frontend screenshot of a TYPO3 site built with Desiderio.",
+                "alternative": "The Desiderio demo home page in the light Lagoon theme preset.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
             "slide_title": "Dark mode on every preset",
-            "slide_description": "<p><strong>OKLCH tokens</strong> give each of the 15 presets a matching dark scheme with WCAG 2.2-checked contrast — here's the pricing page on Midnight, no overrides involved.</p>",
+            "slide_description": "<p><strong>Colour tokens</strong> give each of the 15 presets a dark mode with checked contrast. This is the pricing page on Midnight, with no overrides.</p>",
             "slide_link": "t3://page?uid=1",
             "slide_image": {
                 "file": "Resources/Public/Styleguide/Frontend/frontend-pricing-midnight-dark.png",
                 "title": "Desiderio pricing page in dark Midnight preset",
-                "alternative": "Desiderio demo pricing page rendered in the dark Midnight theme preset.",
-                "description": "Frontend screenshot of a TYPO3 site built with Desiderio.",
+                "alternative": "The Desiderio demo pricing page in the dark Midnight theme preset.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
             "slide_title": "Previews for all 244 elements",
-            "slide_description": "<p>Every Desiderio Content Block renders a <strong>real preview</strong> in the page module, so editors recognise blocks at a glance — no gray placeholder boxes, ever.</p>",
+            "slide_description": "<p>Every Desiderio element shows a <strong>real preview</strong> in the page module. Editors recognise each element at a glance, without grey placeholder boxes.</p>",
             "slide_image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-page-module-hero.png",
                 "title": "Desiderio page module previews",
-                "alternative": "TYPO3 page module showing Desiderio content elements with rendered backend previews.",
-                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "alternative": "The TYPO3 page module showing Desiderio content elements with their previews.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             },
             "slide_link": "https://example.com/desiderio/slide_link_4"
         },
         {
             "slide_title": "Ten element groups in the wizard",
-            "slide_description": "<p>Hero, Features, Pricing, Data, Trust, Team, Navigation, Footers, Content, and Conversion — <strong>244 elements</strong>, all one click away in the new-content wizard.</p>",
+            "slide_description": "<p>The content wizard sorts all <strong>244 elements</strong> into ten groups, from Hero and Features to Footers and Conversion.</p>",
             "slide_image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-content-wizard.png",
                 "title": "Desiderio new content element wizard",
-                "alternative": "TYPO3 new content element wizard listing all ten Desiderio element groups.",
-                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "alternative": "The TYPO3 content wizard listing the ten Desiderio element groups.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             },
             "slide_link": "https://example.com/desiderio/slide_link_5"
         },
         {
-            "slide_title": "Reskin the whole site from site settings",
-            "slide_description": "<p>Pick one of <strong>15 shadcn presets</strong>, density, radius, and fonts in site settings — the entire frontend repaints at runtime. No theme rebuild is required.</p>",
+            "slide_title": "Restyle the whole site in site settings",
+            "slide_description": "<p>Choose one of <strong>15 theme presets</strong>, plus density, radius and fonts, in the site settings. The frontend changes straight away, without a rebuild.</p>",
             "slide_image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-site-settings-theme.png",
                 "title": "Desiderio site settings theme category",
-                "alternative": "TYPO3 site settings module showing the Desiderio theme category with preset and typography options.",
-                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "alternative": "The Desiderio theme settings in TYPO3, with preset and typography options.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             },
             "slide_link": "https://example.com/desiderio/slide_link_6"
         },
         {
             "slide_title": "Per-page theme presets",
-            "slide_description": "<p>Any page subtree can run its own preset, inherited down the rootline. Campaign in Midnight, corporate site on Aurora, one installation.</p>",
+            "slide_description": "<p>Any part of the page tree can use its own preset, and its subpages inherit it. A campaign can run on Midnight while the main site uses Aurora.</p>",
             "slide_image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-page-properties-theme.png",
                 "title": "Desiderio per-page theme preset field",
-                "alternative": "TYPO3 page properties form showing the Desiderio theme preset selector for a single page.",
-                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "alternative": "The TYPO3 page properties with the Desiderio theme preset field for one page.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             },
             "slide_link": "https://example.com/desiderio/slide_link_7"
         },
         {
             "slide_title": "Eight ready-made forms",
-            "slide_description": "<p>Contact, booking, callback, and more ship as <a href=\"https://typo3.org\">TYPO3</a> Form Framework definitions, with optional Friendly Captcha and Brevo double-opt-in finishers.</p>",
+            "slide_description": "<p>Contact, booking, callback and other forms come as <a href=\"https://typo3.org\">TYPO3</a> Form Framework definitions. Friendly Captcha and Brevo double opt-in are optional.</p>",
             "slide_image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-forms-module.png",
                 "title": "Desiderio forms module",
-                "alternative": "TYPO3 forms module listing the eight form definitions bundled with Desiderio.",
-                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "alternative": "The TYPO3 forms module listing the eight form definitions that come with Desiderio.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             },
             "slide_link": "https://example.com/desiderio/slide_link_8"
         },
         {
-            "slide_title": "Dashboards your data team will envy",
-            "slide_description": "<p>29 data and dashboard elements — charts, KPIs, tables — all token-themed, here on the <strong>Forest preset</strong>. Reports that match your brand without a single CSS line.</p>",
+            "slide_title": "Dashboards in your brand colours",
+            "slide_description": "<p>Charts, KPIs and tables from the data group, here on the <strong>Forest preset</strong>. They follow the theme without extra CSS.</p>",
             "slide_image": {
                 "file": "Resources/Public/Styleguide/Frontend/frontend-dashboards-forest.png",
                 "title": "Desiderio dashboards page on the Forest preset",
-                "alternative": "Desiderio demo dashboards page with charts rendered in the Forest theme preset.",
-                "description": "Frontend screenshot of a TYPO3 site built with Desiderio.",
+                "alternative": "The Desiderio demo dashboards page with charts in the Forest theme preset.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             },
             "slide_link": "https://example.com/desiderio/slide_link_9"

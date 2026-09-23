@@ -6,19 +6,19 @@
         {
             "category": "Theming",
             "title": "Why we stopped hand-building TYPO3 templates",
-            "description": "<p>Every project used to start with <strong>three weeks</strong> of template work. Now it starts with <a href=\"https://packagist.org\">composer require</a> — here's the math that convinced us, and what we do with the time instead.</p>",
+            "description": "<p>Every project used to start with <strong>three weeks</strong> of template work. Now it starts with <a href=\"https://packagist.org\">composer require</a>. Here are the numbers that convinced us, and what we do with the time instead.</p>",
             "link": "https://example.com/blog/per-page-theme-presets"
         },
         {
             "category": "Architecture",
-            "title": "53 components that make 244 elements feel like one design",
-            "description": "<p>17 atoms, 28 molecules, 4 layout primitives, and 4 organisms. The architecture decision that keeps a quarter-thousand content elements <strong>perfectly consistent</strong> — and your custom ones too.</p>",
+            "title": "How 62 components keep 244 elements consistent",
+            "description": "<p>Desiderio has 17 atoms, 37 molecules, 4 layouts and 4 organisms. Together they keep every element <strong>consistent</strong>, including the ones you build yourself.</p>",
             "link": "https://example.com/blog/fluid-component-architecture"
         },
         {
             "category": "Accessibility",
             "title": "Accessibility foundations, checked on every commit",
-            "description": "<p>Semantic patterns, visible focus styles, <strong>theme-token contrast tests</strong> across all 15 presets, and automated template checks give your accessibility review a stronger starting point. Final conformance still depends on real content, integrations, and human testing.</p>",
+            "description": "<p>Semantic markup, visible focus styles, <strong>contrast tests</strong> for all 15 presets and automated template checks give your accessibility review a better start. Conformance still depends on your content, integrations and tests with real users.</p>",
             "link": "https://example.com/blog/accessibility-by-default"
         }
     ]

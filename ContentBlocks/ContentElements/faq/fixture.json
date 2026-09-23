@@ -1,31 +1,31 @@
 {
     "_type": "list",
-    "header": "Frequently asked questions",
-    "subheadline": "Everything teams ask before adopting Desiderio — including the one about money.",
+    "header": "Questions teams ask before choosing Desiderio",
+    "subheadline": "Answers on pricing, hosting, custom elements, themes and accessibility.",
     "items": [
         {
-            "question": "Is Desiderio really free?",
-            "answer": "Yes — the Community tier is €0 forever. GPL-2.0-or-later, all 244 content elements, full source on GitHub, community support. No license key, no feature gate, no trial clock. The paid tiers buy you the creators' time and guarantees, never withheld features."
+            "question": "Is Desiderio free?",
+            "answer": "Yes. The Community plan costs €0 and is licensed under GPL-2.0-or-later. You get all 244 content elements, the full source on GitHub and community support. There is no licence key and no trial period. Paid plans add support and guarantees, not features."
         },
         {
             "question": "What does Pro add for €49/month?",
-            "answer": "Pro (€49/month or €490/year — two months free) adds priority email support with a 2-day response, guaranteed LTS compatibility updates, early access to new element drops and preset packs, and minor-version upgrade assistance. Agencies running many projects take the Agency tier: €149/month for unlimited projects, 4-hour priority response, and a direct line to the maintainers."
+            "answer": "Pro costs €49 per month or €490 per year. It adds email support with an answer within 2 days, LTS compatibility updates, early access to new elements and help with minor upgrades. Agency costs €149 per month and adds unlimited projects, answers within 4 business hours and a direct line to the maintainers."
         },
         {
-            "question": "Can the creators host and run our site?",
-            "answer": "Yes. Managed TYPO3 hosting starts at €99/month — updates, daily backups, monitoring, EU datacenter. Hosting Business (€179/month) adds staging, a 99.9% SLA, and CDN. The people who built the theme layer keep it running; hard to get closer to the source than that."
+            "question": "Can you host and run our site?",
+            "answer": "Yes. Managed TYPO3 hosting starts at €99 per month, with updates, daily backups, monitoring and an EU data centre. Hosting Business at €179 per month adds staging, a 99.9% SLA and a CDN. The team that built the theme layer runs it."
         },
         {
-            "question": "What if we need an element that doesn't exist yet?",
-            "answer": "The creators build custom content elements from €390 per element — schema, template, backend preview, and the same token-based theming as the other 244, so it passes the audit and survives every preset switch. Brand-adapted theme presets start at €1,990."
+            "question": "What if we need a new element?",
+            "answer": "We build custom content elements from €390 each. Each one gets a schema, template, backend preview and the same token-based theming as the other 244. It passes the audit and works with every preset. Theme presets adapted to your brand start at €1,990."
         },
         {
             "question": "Can I switch themes later without redoing content?",
-            "answer": "Yes. The 15 shadcn presets only change design tokens and CSS, never stored content. Switch the sitewide preset — or give a single page subtree its own — at any point, and every headline, image, and link stays exactly as entered. Redesigns stop being migrations."
+            "answer": "Yes. The 15 presets only change design tokens and CSS, never stored content. You can switch the preset for the whole site or one part of it at any time. Every headline, image and link stays as entered."
         },
         {
-            "question": "Is it accessible?",
-            "answer": "Desiderio provides accessibility-minded foundations: semantic structures, visible focus styles in shared interactions, alternative-text fields, and tested theme-token contrast. Final WCAG 2.2 conformance depends on your content, configuration, extensions, and human testing. Automated checks catch structural and colour regressions, but they do not replace a site audit."
+            "question": "Is Desiderio accessible?",
+            "answer": "Desiderio gives you a good base: semantic markup, visible focus styles, alternative-text fields and tested contrast for every preset. Full WCAG 2.2 conformance depends on your content, configuration, extensions and testing with people. Automated checks catch structure and colour regressions, but they do not replace an audit of your site."
         }
     ]
 }

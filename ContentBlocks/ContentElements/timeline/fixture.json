@@ -1,33 +1,33 @@
 {
     "_type": "list",
-    "header": "The Desiderio release journey",
-    "subheadline": "Every release made the next TYPO3 project faster to ship — from the Fluid 5 rewrite to per-page theme presets.",
+    "header": "Desiderio releases, from v2.0 to v2.6",
+    "subheadline": "Four releases, from the Fluid 5 rewrite to per-page theme presets.",
     "items": [
         {
             "step": "v2.0",
             "title": "Fluid 5 component library",
-            "content": "The big rewrite: 53 strict Fluid 5 components — 17 atoms, 28 molecules, 4 layout primitives, and 4 organisms — became the foundation under every content element. Consistency stopped being a code-review hope and became architecture.",
+            "content": "A rewrite made strict Fluid 5 components the base of every content element: atoms, molecules, layouts and organisms. Consistency became part of the architecture.",
             "link_text": "Release notes",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "step": "v2.3",
             "title": "Ten house theme presets",
-            "content": "Aurora, Marine, Forest, Ember, Bloom, Lagoon, Gold, Midnight, Blossom, and Citrus joined the five ui.shadcn.com presets — fifteen complete designs on OKLCH tokens with dark mode, ready to ship.",
+            "content": "Aurora, Marine, Forest, Ember, Bloom, Lagoon, Gold, Midnight, Blossom and Citrus joined the five presets from ui.shadcn.com. That made 15 presets, each with dark mode.",
             "link_text": "Browse presets",
             "link": "https://ui.shadcn.com"
         },
         {
             "step": "v2.5",
             "title": "Seeder services",
-            "content": "The styleguide and starter seeders became dedicated services — workspaces-safe, idempotent, and covered by functional tests. A full demo site became a one-command habit.",
+            "content": "The styleguide and starter seeders became separate services. They are safe in workspaces, create no duplicates and have functional tests.",
             "link_text": "Seeding guide",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "step": "v2.6",
             "title": "Per-page theme presets",
-            "content": "The release that changes theming in TYPO3: any page subtree can run its own preset, inherited down the rootline and switched at runtime. The seeded styleguide shows off a different theme on every chapter page.",
+            "content": "Any part of the page tree can now use its own preset, and its subpages inherit it. The seeded styleguide shows a different preset on each chapter page.",
             "link_text": "What's new",
             "link": "https://github.com/dirnbauer/desiderio"
         }

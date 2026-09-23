@@ -1,21 +1,21 @@
 {
     "_type": "grid",
-    "header": "Three layers. One package. Zero template projects.",
+    "header": "Three layers in one package",
     "columns": "3",
     "items": [
         {
             "title": "244 content elements",
-            "content": "Ten groups of production-ready Content Blocks — from heroes to footers — each with a backend preview and seeded demo content. The work you'd normally budget weeks for is already done.",
+            "content": "Ten groups, from heroes to footers. Each element has a backend preview and demo content, so you can start building pages at once.",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "title": "53 Fluid 5 components",
-            "content": "17 atoms, 28 molecules, 4 layout primitives, and 4 organisms like d:atom.button and d:layout.section keep markup consistent everywhere — including the custom elements you build on top.",
+            "title": "62 Fluid 5 components",
+            "content": "17 atoms, 37 molecules, 4 layouts and 4 organisms, such as d:atom.button and d:layout.section. They keep the markup consistent, including in elements you build yourself.",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "title": "15 theme presets",
-            "content": "Five shadcn/ui presets plus ten house designs, all with dark mode and WCAG 2.2-checked contrast. Switch sitewide or per page subtree — at runtime, no rebuild.",
+            "content": "Five shadcn/ui presets and ten house designs, each with dark mode and checked contrast. Switch the whole site or one part of it, without a rebuild.",
             "link": "https://ui.shadcn.com"
         }
     ]

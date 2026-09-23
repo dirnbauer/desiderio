@@ -1,13 +1,13 @@
 {
     "_type": "section",
-    "header": "Audio player example",
-    "description": "<p>A short generated audio sample used to demonstrate playback and download controls. Replace the file, title, description, and source before publishing.</p>",
+    "header": "Play audio in the page, or download it",
+    "description": "<p>A short generated sound shows the playback and download controls. Replace the file, title, description and source before you publish.</p>",
     "show_download": true,
     "audio_file": {
         "file": "Resources/Public/Styleguide/Audio/editorial-brief.wav",
         "title": "Generated audio sample",
-        "alternative": "Short generated audio tone used to demonstrate native playback and download controls.",
-        "description": "Generated demo audio for Desiderio styleguide seeding.",
+        "alternative": "A short generated tone for testing the audio controls.",
+        "description": "Generated demo audio for the Desiderio styleguide.",
         "source": "EXT:desiderio/Resources/Public/Styleguide/Audio/editorial-brief.wav"
     }
 }

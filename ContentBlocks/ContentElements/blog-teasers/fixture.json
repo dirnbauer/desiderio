@@ -1,48 +1,48 @@
 {
     "_type": "grid",
     "header": "From the Desiderio blog",
-    "subheadline": "Field notes from the people who build TYPO3 sites in days, not months — theming, seeding, and the workflows that make it possible.",
+    "subheadline": "Notes from the Desiderio team on theming, seeding and everyday editing.",
     "columns": "3",
     "posts": [
         {
             "category": "Theming",
             "meta": "8 min read",
-            "title": "We repainted 244 elements with one click. Here's how.",
-            "excerpt": "<p>OKLCH tokens and semantic CSS variables let a <strong>single site setting</strong> reskin every Desiderio element at runtime. Your next redesign could be a settings change, not a project.</p>",
+            "title": "How one setting restyles all 244 elements",
+            "excerpt": "<p>Colour tokens and semantic CSS variables let <strong>one site setting</strong> restyle every Desiderio element. A redesign can then be a settings change instead of a project.</p>",
             "link": "t3://page?uid=1",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-site-settings-theme.png",
                 "title": "Desiderio site settings theme category",
-                "alternative": "TYPO3 site settings module showing the Desiderio theme category with preset, density, and radius options.",
-                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "alternative": "The Desiderio theme settings in TYPO3, with options for preset, density and radius.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
             "category": "Editor experience",
             "meta": "5 min read",
-            "title": "Backend previews for every element — your editors will notice",
-            "excerpt": "<p>All 244 Desiderio Content Blocks render a <strong>real preview</strong> in the page module. The result: fewer support tickets, faster onboarding, happier editors.</p>",
+            "title": "A backend preview for every element",
+            "excerpt": "<p>All 244 Desiderio content elements show a <strong>real preview</strong> in the page module. Editors recognise each element at a glance and need less help to get started.</p>",
             "link": "t3://page?uid=1",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-page-module-hero.png",
                 "title": "Desiderio page module previews",
-                "alternative": "TYPO3 page module showing Desiderio content elements with rendered backend previews.",
-                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "alternative": "The TYPO3 page module showing Desiderio content elements with their previews.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
             "category": "Workflow",
             "meta": "6 min read",
-            "title": "A full demo site in one command — pitch tomorrow, not next month",
-            "excerpt": "<p>desiderio:styleguide:seed builds the entire styleguide, <strong>workspaces-safe</strong> and idempotent. Show a client a finished-looking site before the kickoff meeting ends.</p>",
+            "title": "A full demo site from one command",
+            "excerpt": "<p>The command desiderio:styleguide:seed builds the whole styleguide. It is <strong>safe in workspaces</strong> and can run again without creating duplicates.</p>",
             "link": "t3://page?uid=1",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-content-wizard.png",
                 "title": "Desiderio new content element wizard",
-                "alternative": "TYPO3 new content element wizard listing all ten Desiderio element groups.",
-                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "alternative": "The TYPO3 content wizard listing the ten Desiderio element groups.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             }
         }

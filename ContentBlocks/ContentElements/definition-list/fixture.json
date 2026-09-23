@@ -1,27 +1,27 @@
 {
     "_type": "list",
-    "header": "Speak Desiderio in five terms",
+    "header": "Five terms you will meet in Desiderio",
     "shadcn_layout": "inline",
     "items": [
         {
             "term": "Preset",
-            "definition": "A complete shadcn theme — OKLCH color tokens, radius, and typography. Desiderio ships 15, switchable sitewide or per page subtree at runtime. A redesign in a dropdown."
+            "definition": "A complete shadcn theme with colour tokens, radius and typography. Desiderio has 15. You can switch them for the whole site or for part of the page tree."
         },
         {
             "term": "Atom",
-            "definition": "The smallest Fluid 5 component, like d:atom.button or d:atom.badge. 17 atoms combine into 28 molecules and 4 layout primitives — consistency by construction."
+            "definition": "The smallest Fluid 5 component, such as d:atom.button or d:atom.badge. Desiderio has 17 atoms. Molecules, layouts and organisms are built from them."
         },
         {
-            "term": "Content Block",
-            "definition": "A TYPO3 Content Blocks 2.2 element with its own schema, template, and backend preview. Desiderio bundles 244 of them in 10 groups, ready before your kickoff meeting."
+            "term": "Content element",
+            "definition": "An element built with TYPO3 Content Blocks 2.2, with its own schema, template and backend preview. Desiderio has 244 of them in 10 groups."
         },
         {
             "term": "Density",
-            "definition": "A site setting that scales spacing across every element — compact for data-heavy sites, relaxed for editorial ones — without touching a single template."
+            "definition": "A site setting that scales the spacing of every element: compact for data-heavy sites, relaxed for editorial ones. No template changes are needed."
         },
         {
             "term": "Semantic token",
-            "definition": "A theme variable like background or muted-foreground. Elements only reference tokens, so switching the preset re-skins everything at once. The secret behind the one-click reskin."
+            "definition": "A theme variable such as background or muted-foreground. Elements only use tokens, so a new preset changes every element at once."
         }
     ]
 }

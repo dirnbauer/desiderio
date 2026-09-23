@@ -1,43 +1,43 @@
 {
     "_type": "section",
-    "header": "See it before you install it",
-    "subheadline": "The Visual Editor and the themed frontend, exactly as they ship — select any thumbnail to view it at full size.",
+    "header": "What Desiderio looks like after installation",
+    "subheadline": "The Visual Editor and the themed frontend, as they come. Select a thumbnail to see it at full size.",
     "columns": "3",
     "items": [
         {
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-visual-editor.png",
                 "title": "Editing in the Desiderio Visual Editor",
-                "alternative": "TYPO3 Visual Editor with inline editing of a Desiderio content element on the page.",
-                "description": "Screenshot: TYPO3 backend with Desiderio",
+                "alternative": "The TYPO3 Visual Editor with a Desiderio content element open for inline editing.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             },
             "title": "Edit on the page itself",
-            "description": "The Visual Editor turns the frontend into the editing surface — click a Desiderio element, change it inline, watch it update live.",
+            "description": "In the Visual Editor, you click a Desiderio element on the page, change it and see the result at once.",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "image": {
                 "file": "Resources/Public/Styleguide/Frontend/frontend-hero-lagoon.png",
                 "title": "Desiderio frontend on the Lagoon preset",
-                "alternative": "Desiderio demo site hero page rendered in the light Lagoon theme preset.",
-                "description": "Screenshot: Desiderio frontend demo",
+                "alternative": "The Desiderio demo home page in the light Lagoon theme preset.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             },
-            "title": "A frontend that ships finished",
-            "description": "The seeded demo site on the Lagoon preset — this is what your TYPO3 site looks like minutes after composer require.",
+            "title": "The finished demo frontend",
+            "description": "The seeded demo site on the Lagoon preset. Your TYPO3 site looks like this minutes after installation.",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "image": {
                 "file": "Resources/Public/Styleguide/Frontend/frontend-pricing-midnight-dark.png",
                 "title": "Desiderio pricing page in dark Midnight preset",
-                "alternative": "Desiderio demo pricing page rendered in the dark Midnight theme preset.",
-                "description": "Screenshot: Desiderio frontend demo",
+                "alternative": "The Desiderio demo pricing page in the dark Midnight theme preset.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             },
-            "title": "Dark mode, zero extra work",
-            "description": "The pricing page on the Midnight preset — every one of the 15 themes ships a dark scheme with WCAG 2.2-checked contrast.",
+            "title": "Dark mode without extra work",
+            "description": "The pricing page on the Midnight preset. Each of the 15 presets has a dark mode with checked contrast.",
             "link": "https://github.com/dirnbauer/desiderio"
         }
     ]

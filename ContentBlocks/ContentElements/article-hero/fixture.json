@@ -1,17 +1,17 @@
 {
     "_type": "hero",
-    "header": "One site, fifteen themes: the feature that ended our rebuild era",
+    "header": "One site, 15 theme presets, no rebuilds",
     "eyebrow": "Theming guide",
-    "dek": "Desiderio lets any page subtree run its own shadcn preset, inherited down the rootline and switched at runtime. Here is how we give every chapter of a site a distinct, launch-ready look — without a single rebuild or deploy.",
+    "dek": "In Desiderio, each part of the page tree can use its own theme preset. Here is how we give every section of a site its own look without a rebuild.",
     "topic": "Theming",
-    "publish_date": "May 8, 2026",
+    "publish_date": "8 May 2026",
     "reading_time": "7 min read",
     "author_name": "Mara Weiss",
     "cover_image": {
         "file": "Resources/Public/Styleguide/Frontend/frontend-hero-lagoon.png",
         "title": "Desiderio frontend on the Lagoon preset",
-        "alternative": "Desiderio demo site hero page rendered in the light Lagoon theme preset.",
-        "description": "Frontend screenshot of a TYPO3 site built with Desiderio.",
+        "alternative": "The Desiderio demo home page in the light Lagoon theme preset.",
+        "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
         "source": "https://github.com/dirnbauer/desiderio"
     }
 }

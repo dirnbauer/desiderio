@@ -6,17 +6,17 @@
     "items": [
         {
             "tab_label": "Theming",
-            "tab_content": "Fifteen shadcn presets repaint your whole site at runtime — per-page presets give any subtree its own look, and dark mode with WCAG 2.2-checked contrast is built into every preset. A redesign in a click.",
+            "tab_content": "15 theme presets change the look of the whole site at once. Any part of the page tree can have its own preset. Every preset includes dark mode with checked contrast.",
             "tab_icon": "sparkles"
         },
         {
             "tab_label": "Quality",
-            "tab_content": "PHPStan at level max, PHPUnit across every supported PHP version, and an automated template audit with zero tolerance for inline styles or hardcoded colors. Quality you can verify, not just believe.",
+            "tab_content": "PHPStan at level 8, PHPUnit tests on PHP 8.4 and 8.5, and an automated template audit. The audit rejects inline styles and fixed colours.",
             "tab_icon": "shield-check"
         },
         {
             "tab_label": "Editor experience",
-            "tab_content": "All 244 elements are TYPO3 Content Blocks with real backend previews, sorted into ten wizard groups. One seeder command fills the styleguide with realistic content — editors never face a blank page.",
+            "tab_content": "All 244 elements are built with TYPO3 Content Blocks and have backend previews, sorted into ten groups in the wizard. One seeder command fills the styleguide with realistic content.",
             "tab_icon": "book-open"
         }
     ]

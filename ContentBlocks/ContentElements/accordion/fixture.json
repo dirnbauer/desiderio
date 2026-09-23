@@ -1,31 +1,31 @@
 {
     "_type": "list",
-    "header": "The theme layer, question by question",
+    "header": "Questions about the theme presets",
     "allow_multiple": 0,
     "items": [
         {
             "title": "What do the 15 theme presets include?",
-            "content": "<p>Five presets come straight from ui.shadcn.com/create and ten are house designs — Aurora, Marine, Forest, Ember, Bloom, Lagoon, Gold, Midnight, Blossom, and Citrus. Each defines the full OKLCH token set, so one switch repaints all 244 content elements at once. Fifteen complete designs, zero design budget spent.</p>",
+            "content": "<p>Five presets come from ui.shadcn.com/create. Ten are house designs: Aurora, Marine, Forest, Ember, Bloom, Lagoon, Gold, Midnight, Blossom and Citrus. Each one changes all 244 content elements at once.</p>",
             "open_by_default": 1
         },
         {
             "title": "How do per-page theme presets work?",
-            "content": "<p>Any page can choose its own preset in the page properties, and the value inherits down the rootline. Your campaign subtree runs Midnight while the rest of the site stays on Aurora — no rebuild, no extra CSS deployment, no developer ticket. This is the per-page theming feature agencies have been waiting for.</p>",
+            "content": "<p>Any page can set its own preset in the page properties, and its subpages inherit it. A campaign can use Midnight while the rest of the site stays on Aurora, with no rebuild.</p>",
             "open_by_default": 1
         },
         {
             "title": "Is dark mode part of every preset?",
-            "content": "<p>Yes — and not as an afterthought. Every preset ships light and dark token sets built on OKLCH color values with WCAG 2.2-checked contrast. Elements reference semantic tokens like background and muted-foreground, so dark mode never needs a single per-element override.</p>",
+            "content": "<p>Yes. Every preset has light and dark colour tokens, with contrast checked against WCAG 2.2. Elements use semantic tokens, so dark mode needs no changes per element.</p>",
             "open_by_default": 1
         },
         {
             "title": "Can I build a custom preset?",
-            "content": "<p>Absolutely. Generate a palette on ui.shadcn.com/create or write your own token file and register it as the custom preset — all 53 Fluid components pick it up immediately. Want it done right the first time? The creators build brand-adapted presets from €1,990.</p>",
+            "content": "<p>Yes. Create a theme on ui.shadcn.com/create or write your own token file, then register it as the custom preset. All 62 components use it straight away. We also adapt presets to your brand, from €1,990.</p>",
             "open_by_default": 1
         },
         {
             "title": "Do theme switches affect my content?",
-            "content": "<p>Never. Presets only change design tokens and CSS. Every headline, image, and link your editors entered stays exactly as it was — so you can redesign the whole site on a Friday afternoon without touching a single record.</p>",
+            "content": "<p>No. Presets only change design tokens and CSS. Every headline, image and link your editors entered stays as it was. You can restyle the whole site without touching a single record.</p>",
             "open_by_default": 1
         }
     ]

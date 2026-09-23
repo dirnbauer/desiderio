@@ -1,6 +1,6 @@
 {
     "_type": "section",
-    "header": "Updating Desiderio takes minutes, not weekends",
-    "content": "<p>Desiderio requires TYPO3 14.3+ and PHP 8.4+. Update the package, flush all caches, re-run <em>desiderio:styleguide:seed</em> — the seeder is idempotent, so your demo content updates in place. Rather have the creators handle it? Pro includes minor-version upgrade assistance.</p>",
+    "header": "How to update Desiderio in three steps",
+    "content": "<p>Desiderio needs TYPO3 v14.3 or later and PHP 8.4 or later. Update the package, clear all caches and run <em>desiderio:styleguide:seed</em> again. The seeder updates the demo content in place, without duplicates. The Pro plan includes help with minor upgrades.</p>",
     "variant": "warning"
 }

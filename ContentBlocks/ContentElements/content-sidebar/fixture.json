@@ -1,7 +1,7 @@
 {
     "_type": "section",
-    "header": "Start your accessibility review from stronger foundations",
-    "content": "<p>Desiderio provides shared semantic structures, visible focus styles for its interaction patterns, and alternative-text fields for image content. Editors remain responsible for meaningful alternatives, a logical page-level heading hierarchy, and clear content.</p><p>Automated template checks reject inline styles and hardcoded colors, while contrast tests cover every theme preset in light and dark modes. Those checks help catch regressions; final WCAG 2.2 conformance still depends on your configuration, extensions, content, and testing with real users and assistive technology.</p>",
-    "sidebar_content": "<p><strong>On this page</strong></p><ul><li>Markup baseline</li><li>Editor prompts</li><li>Audit and CI guardrails</li></ul><p>Questions? Open an issue on <a href=\"https://github.com/dirnbauer/desiderio\">GitHub</a>.</p>",
+    "header": "A better starting point for accessibility reviews",
+    "content": "<p>Desiderio provides semantic markup, visible focus styles for interactive parts and alternative-text fields for images. Editors are still responsible for useful alternative texts, a logical heading order and clear content.</p><p>Automated template checks reject inline styles and fixed colours. Contrast tests cover every theme preset in light and dark mode. These checks catch regressions. Full WCAG 2.2 conformance still depends on your configuration, extensions, content and tests with real users and assistive technology.</p>",
+    "sidebar_content": "<p><strong>On this page</strong></p><ul><li>Markup baseline</li><li>What editors do</li><li>Automated checks</li></ul><p>For questions, open an issue on <a href=\"https://github.com/dirnbauer/desiderio\">GitHub</a>.</p>",
     "sidebar_position": "right"
 }

@@ -2,16 +2,16 @@
     "_type": "section",
     "header": "Edit your site where your visitors see it",
     "shadcn_layout": "media-right",
-    "subheadline": "With Visual Editor support, Desiderio turns the frontend itself into the editing surface.",
-    "content": "<p>Click any of the 244 elements right on the page and change it inline — no module-hopping, no preview-tab roulette. What your editors see is literally what ships.</p><ul><li>Inline editing across all 244 themed elements</li><li>Backend previews in the page module as the fallback</li><li>One seeder command for a full demo site to practice on</li></ul>",
+    "subheadline": "With the Visual Editor, editors change content directly on the frontend.",
+    "content": "<p>Click any of the 244 elements on the page and change it there. Editors see exactly what visitors will see.</p><ul><li>Inline editing for all 244 elements</li><li>Backend previews in the page module as a fallback</li><li>One seeder command for a demo site to practise on</li></ul>",
     "media_rounded": 1,
     "button_text": "View on GitHub",
     "button_link": "https://github.com/dirnbauer/desiderio",
     "media": {
         "file": "Resources/Public/Styleguide/Backend/backend-visual-editor.png",
         "title": "Editing in the Desiderio Visual Editor",
-        "alternative": "TYPO3 Visual Editor with inline editing of a Desiderio content element on the page.",
-        "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+        "alternative": "The TYPO3 Visual Editor with a Desiderio content element open for inline editing.",
+        "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
         "source": "https://github.com/dirnbauer/desiderio"
     }
 }

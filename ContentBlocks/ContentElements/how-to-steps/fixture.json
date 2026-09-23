@@ -1,49 +1,49 @@
 {
     "_type": "list",
-    "header": "From composer require to a themed site in 30 minutes",
-    "description": "<p>Four steps, no configuration files, no license keys. Or skip all four: the creators install and set up Desiderio on your <a href=\"https://typo3.org\">TYPO3</a> site for a <strong>flat €890</strong>.</p>",
+    "header": "Set up Desiderio in four steps",
+    "description": "<p>You need no configuration files and no licence key. If you prefer, we install and set up Desiderio on your <a href=\"https://typo3.org\">TYPO3</a> site for a <strong>fixed €890</strong>.</p>",
     "items": [
         {
             "title": "Install the package",
-            "content": "Run composer require webconsulting/desiderio in a TYPO3 14.3 project. The extension registers all 244 Content Blocks elements, the Fluid 5 component library, and the theme layer automatically — there is no step two of the template project, because there is no template project.",
+            "content": "Run composer require webconsulting/desiderio in a TYPO3 v14.3 project. The extension registers all 244 content elements, the Fluid 5 components and the theme layer. You do not need a template project.",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/laptop-glenn-carstens-peters.jpg",
                 "title": "Developer installing Desiderio",
-                "alternative": "Hands typing on a laptop keyboard during a command-line installation.",
-                "description": "Copyright/credit: Photo by Glenn Carstens-Peters on Unsplash. Used as seeded demo imagery.",
+                "alternative": "Hands typing on a laptop keyboard.",
+                "description": "Photo: Unsplash.",
                 "source": "https://unsplash.com/photos/person-using-macbook-pro-npxXWgQ33ZQ"
             }
         },
         {
             "title": "Seed the styleguide",
-            "content": "One command — vendor/bin/typo3 desiderio:styleguide:seed — builds a complete demo page tree with every element. Workspaces-safe and idempotent, so re-running never creates duplicates. You'll have something to show a client before the coffee is cold.",
+            "content": "The command vendor/bin/typo3 desiderio:styleguide:seed builds a complete demo page tree with every element. It is safe in workspaces, and running it again creates no duplicates.",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-page-module-hero.png",
                 "title": "Desiderio page module previews",
-                "alternative": "TYPO3 page module showing seeded Desiderio content elements with rendered backend previews.",
-                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "alternative": "The TYPO3 page module showing seeded Desiderio content elements with their previews.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
-            "title": "Pick a theme preset",
-            "content": "Choose one of 15 shadcn presets in site settings, or assign a different preset to any page subtree — the seeded styleguide flaunts a different theme on every chapter page. Dark mode and WCAG 2.2-checked contrast come included with every single one.",
+            "title": "Choose a theme preset",
+            "content": "Choose one of 15 theme presets in the site settings, or give part of the page tree its own preset. The seeded styleguide uses a different preset on each chapter page. Every preset includes dark mode and checked contrast.",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-site-settings-theme.png",
                 "title": "Desiderio site settings theme category",
-                "alternative": "TYPO3 site settings module showing the Desiderio theme preset selection.",
-                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "alternative": "The Desiderio theme settings in TYPO3, with the preset selection.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
             "title": "Build your pages",
-            "content": "Open the new content element wizard and compose pages from the ten element groups. Every block has a backend preview and seeded example content to start from — your editors are productive on day one, not after a training week.",
+            "content": "Open the content wizard and build pages from the ten element groups. Every element has a backend preview and example content, so editors can start on day one.",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-content-wizard.png",
                 "title": "Desiderio new content element wizard",
-                "alternative": "TYPO3 new content element wizard listing all ten Desiderio element groups.",
-                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "alternative": "The TYPO3 content wizard listing the ten Desiderio element groups.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             }
         }

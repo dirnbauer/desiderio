@@ -38,7 +38,13 @@ final class SeedBlogPagesCommand extends Command
                 'root',
                 null,
                 InputOption::VALUE_REQUIRED,
-                'Optional Blog root page uid. If omitted, all EXT:blog setups are updated.'
+                'Blog root page uid to seed. Required unless --all-blogs is given.'
+            )
+            ->addOption(
+                'all-blogs',
+                null,
+                InputOption::VALUE_NONE,
+                'Seed the English demo posts into every EXT:blog setup of the installation.'
             )
             ->addOption(
                 'layout',
@@ -71,6 +77,12 @@ final class SeedBlogPagesCommand extends Command
         }
 
         $rootFilter = $this->getRootFilter($input->getOption('root'));
+        // The demo posts are English. Seeding every blog by default put them
+        // into German blogs next to their own posts, so a blog is named.
+        if ($rootFilter === null && $input->getOption('all-blogs') !== true) {
+            $io->error('Name the blog with --root=<uid>, or pass --all-blogs to seed every EXT:blog setup.');
+            return self::FAILURE;
+        }
         $dryRun = (bool)$input->getOption('dry-run');
         $locator = $this->getBlogPageTreeLocator();
         $setups = $locator->findBlogSetups($rootFilter);

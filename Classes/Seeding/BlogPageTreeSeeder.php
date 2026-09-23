@@ -541,7 +541,7 @@ final readonly class BlogPageTreeSeeder
         $queryBuilder->getRestrictions()->removeAll();
 
         $rows = $queryBuilder
-            ->select('uid', 'title', 'subtitle', 'abstract', 'description', 'publish_date', 'categories', 'tags', 'authors')
+            ->select('uid', 'title', 'subtitle', 'abstract', 'description', 'seo_title', 'og_title', 'og_description', 'twitter_title', 'twitter_description', 'publish_date', 'categories', 'tags', 'authors')
             ->from('pages')
             ->where(
                 $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($folderUid, ParameterType::INTEGER)),
@@ -571,17 +571,19 @@ final readonly class BlogPageTreeSeeder
                 $publishDate = $now - (($index + 1) * 86400);
             }
 
+            // Only empty fields are filled: an editor's (or a content
+            // payload's) summary and SEO texts stay as they are.
             $this->connectionPool->getConnectionForTable('pages')->update('pages', [
                 'tstamp' => $now,
                 'SYS_LASTCHANGED' => $now,
-                'subtitle' => DbRowValues::nonEmptyString($row['subtitle'] ?? null, 'Blog template coverage entry'),
+                'subtitle' => DbRowValues::nonEmptyString($row['subtitle'] ?? null, ''),
                 'abstract' => DbRowValues::nonEmptyString($row['abstract'] ?? null, 'Complete sample metadata for the Desiderio Blog list template.'),
                 'description' => $description,
-                'seo_title' => $title,
-                'og_title' => $title,
-                'og_description' => $description,
-                'twitter_title' => $title,
-                'twitter_description' => $description,
+                'seo_title' => DbRowValues::nonEmptyString($row['seo_title'] ?? null, $title),
+                'og_title' => DbRowValues::nonEmptyString($row['og_title'] ?? null, $title),
+                'og_description' => DbRowValues::nonEmptyString($row['og_description'] ?? null, $description),
+                'twitter_title' => DbRowValues::nonEmptyString($row['twitter_title'] ?? null, $title),
+                'twitter_description' => DbRowValues::nonEmptyString($row['twitter_description'] ?? null, $description),
                 'publish_date' => $publishDate,
                 'crdate_month' => (int)date('n', $publishDate),
                 'crdate_year' => (int)date('Y', $publishDate),

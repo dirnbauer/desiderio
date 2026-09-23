@@ -249,7 +249,7 @@ final class StyleguideShowcasePages
                     ['title' => 'A new design without a rebuild', 'description_text' => '15 presets, or your own from the shadcn/ui create page. Switch them per site or per page tree.'],
                     ['title' => 'Fewer tickets from editors', 'description_text' => 'Backend previews for all 244 elements, inline editing and a content wizard in ten groups.'],
                     ['title' => 'Accessibility you can prove', 'description_text' => 'The build checks WCAG 2.2 contrast for every preset, in light and dark mode.'],
-                    ['title' => 'Measured quality', 'description_text' => 'PHPStan at its strictest level, unit and functional tests on PHP 8.4 and 8.5, and a template audit with zero findings.'],
+                    ['title' => 'Measured quality', 'description_text' => 'PHPStan at level 8, unit and functional tests on PHP 8.4 and 8.5, and a template audit with zero findings.'],
                     ['title' => 'Free and open source', 'description_text' => 'GPL-2.0, with the full source on GitHub. Paid plans buy support, not features.'],
                 ],
             ]),

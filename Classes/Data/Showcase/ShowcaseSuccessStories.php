@@ -94,7 +94,7 @@ final class ShowcaseSuccessStories
                     'media_rounded' => 1,
                     'button_text' => 'See the features',
                     'button_link' => '{{page:technical-features}}',
-                    'media' => ShowcaseBlocks::screenshot('backend-visual-editor.png', 'Inline editing in the Visual Editor', 'The TYPO3 Visual Editor with a Desiderio element open for inline editing.'),
+                    'media' => ShowcaseBlocks::screenshot('backend-visual-editor-460d5038.png', 'Inline editing in the Visual Editor', 'The TYPO3 Visual Editor with a Desiderio element open for inline editing.'),
                 ]),
                 ShowcaseBlocks::block('desiderio_featurestats', [
                     'header' => 'The example in figures',

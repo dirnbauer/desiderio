@@ -134,7 +134,7 @@ final class StyleguideShowcasePages
                     [
                         'title' => 'vendor/bin/typo3 desiderio:styleguide:seed',
                         'content' => 'Creates this demo site with all 244 elements, so you can test with real content.',
-                        'image' => ShowcaseBlocks::screenshot('backend-page-module-hero.png', 'Seeded page in the page module', 'The TYPO3 page module with a seeded Desiderio hero element and its preview.'),
+                        'image' => ShowcaseBlocks::screenshot('backend-page-module-hero-e23618aa.png', 'Seeded page in the page module', 'The TYPO3 page module with a seeded Desiderio hero element and its preview.'),
                     ],
                     [
                         'title' => 'Pick a theme preset',

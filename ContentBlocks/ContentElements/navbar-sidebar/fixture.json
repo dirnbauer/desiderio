@@ -6,7 +6,7 @@
     "sections": [
         {
             "title": "Getting started",
-            "link_1_label": "Install via Composer",
+            "link_1_label": "Install with Composer",
             "link_1": "https://example.com/desiderio/docs/install",
             "link_2_label": "Seed the styleguide",
             "link_2": "https://example.com/desiderio/docs/seeding",
@@ -19,11 +19,11 @@
         },
         {
             "title": "Build",
-            "link_1_label": "Component atoms",
+            "link_1_label": "Atoms",
             "link_1": "https://example.com/desiderio/docs/atoms",
             "link_2_label": "Molecules",
             "link_2": "https://example.com/desiderio/docs/molecules",
-            "link_3_label": "Layout primitives",
+            "link_3_label": "Layouts",
             "link_3": "https://example.com/desiderio/docs/layout",
             "link_4_label": "Content Blocks",
             "link_4": "https://example.com/desiderio/docs/content-blocks",
@@ -44,5 +44,5 @@
             "link_5": "https://github.com/dirnbauer/desiderio"
         }
     ],
-    "footer_text": "Desiderio · TYPO3 14.3+ · PHP 8.4+"
+    "footer_text": "Desiderio · TYPO3 v14.3+ · PHP 8.4+"
 }

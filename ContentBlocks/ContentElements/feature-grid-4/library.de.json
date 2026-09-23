@@ -1,22 +1,22 @@
 {
-    "header": "Schnittstellen, die Ihr Backoffice synchron halten",
-    "subheadline": "Neun Verbindungen sind standardmäßig dabei und brauchen keine Middleware. Nach diesen vier fragt die Finanzabteilung im ersten Gespräch, und jede läuft nach einem Zeitplan, den Sie festlegen, statt über einen manuellen Export.",
+    "header": "Schnittstellen, nach denen Ihre Buchhaltung fragt",
+    "subheadline": "Neun Schnittstellen sind ohne Middleware enthalten. Nach diesen vier fragt die Buchhaltung zuerst, und jede läuft nach einem Zeitplan, den Sie festlegen.",
     "items": [
         {
             "title": "DATEV",
-            "description_text": "Arbeitsscheine, Teile und Stunden als buchbare Sätze, mit Kostenstellen je Vertrag."
+            "description_text": "Arbeitsscheine, Teile und Stunden werden als buchbare Sätze übergeben, mit Kostenstellen je Vertrag."
         },
         {
             "title": "BMD NTCS",
-            "description_text": "Nächtliche Übergabe abgeschlossener Aufträge, Gutschriften und Technikerzeiten."
+            "description_text": "Abgeschlossene Aufträge, Gutschriften und Technikerstunden werden jede Nacht übertragen."
         },
         {
             "title": "Microsoft Entra ID",
-            "description_text": "Single Sign-on und automatische Deaktivierung, sobald ein Techniker aus der Lohnverrechnung fällt."
+            "description_text": "Single Sign-on. Wer aus der Lohnabrechnung ausscheidet, verliert automatisch den Zugang."
         },
         {
             "title": "Sage 50",
-            "description_text": "Rechnungsentwürfe aus unterschriebenen Arbeitsscheinen, unter Beibehaltung Ihrer Nummernkreise."
+            "description_text": "Rechnungsentwürfe entstehen aus unterschriebenen Arbeitsscheinen und behalten Ihre eigenen Nummernkreise."
         }
     ]
 }

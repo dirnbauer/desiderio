@@ -1,10 +1,10 @@
 {
-    "header": "Arbeitsscheine auf Papier gegen Live-Disposition",
+    "header": "Arbeitsscheine auf Papier oder Live-Einsatztafel",
     "left_title": "Arbeitsscheine auf Papier",
     "right_title": "Vertex Dispatch",
     "items": [
         {
-            "feature": "Kundschaft bestätigt den Abschluss",
+            "feature": "Kundschaft unterschreibt bei Abschluss",
             "left_supported": 1,
             "right_supported": 1
         },
@@ -14,7 +14,7 @@
             "right_supported": 1
         },
         {
-            "feature": "Vollständige Anlagenhistorie im Einsatz",
+            "feature": "Volle Anlagenhistorie schon beim Anruf",
             "left_supported": 0,
             "right_supported": 1
         },
@@ -24,7 +24,7 @@
             "right_supported": 1
         },
         {
-            "feature": "Verbrauchte Teile automatisch vom Fahrzeugbestand abgebucht",
+            "feature": "Verbrauchte Teile werden vom Fahrzeugbestand abgebucht",
             "left_supported": 0,
             "right_supported": 1
         }

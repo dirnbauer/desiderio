@@ -6,6 +6,46 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.3.0] — 2026-09-23
+
+### Changed
+
+- **All copy rewritten: shorter, plainer, British English.** The home and
+  showcase pages, the chapter intros, the corporate starter (every subpage
+  now has its own text), the success stories (marked as examples), the legal
+  pages, the news, blog, form and core-element demo content, and the
+  `fixture.json` and `library.json` of all 244 content elements. Facts follow
+  one canon: 244 elements, 62 components, 15 presets, PHPStan level 8, the
+  published prices. Testimonials that praise the product are labelled as
+  examples.
+- **German demo content** (`library.de.json`) is the German version of the
+  rewritten English for every element: same keys and items, formal "Sie",
+  German number and date formats.
+- **No real companies as customers, partners, investors or press.** The logo
+  walls use 22 fictional brands as transparent SVG logos that turn light in
+  dark mode; the 53 real-brand SVGs under `Resources/Public/Styleguide/Logos/`
+  are removed.
+- **Showcase screenshots are taken from the rewritten pages.**
+  `Build/Scripts/capture-showcase-screenshots.mjs` captures them with presets
+  and dark mode applied and gives each file a content hash, because the FAL
+  seeder never re-imports a known name. The home hero shows live theme preset
+  cards instead of a backend screenshot with retired copy.
+- Element names use British spelling: Centred …, Organisation Chart.
+- The seeded blog comment is an example that explains moderation, not a QA
+  note.
+
+### Fixed
+
+- **Core tables lost every column after the second.** The table processor
+  read `imagecols` (default 2) instead of the table's `cols`.
+- **Text & Media and Text & Images placed images against core's values:** 17
+  (in text, right) rendered above, 18 (in text, left) below and 25 (beside
+  text, right) on the left.
+- The sitemap grid's Imprint link pointed at the terms page.
+- `desiderio:blog:seed-pages` refuses to run without `--root` (it seeded
+  English demo posts into every blog) and never overwrites SEO fields an
+  editor already filled.
+
 ## [4.2.1] — 2026-09-20
 
 ### Fixed

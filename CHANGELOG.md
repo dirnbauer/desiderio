@@ -6,6 +6,20 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.3.1] — 2026-09-23
+
+### Fixed
+
+- **Collections kept generic filler instead of their items.** When an element
+  had one collection and an `image` list after it in its JSON, the resolver
+  read the image as the collection (both carry `title`), so 22 Astryx elements
+  showed generated filler. Declared fields are never taken for a collection
+  now, and a guessed match never replaces a collection's own items.
+- **Listed items keep their count.** A fixture that lists two items gets two;
+  only an empty collection is filled to three. Desiderio's own seed output is
+  unchanged.
+- Files without a title no longer show their hashed file name as hover text.
+
 ## [4.3.0] — 2026-09-23
 
 ### Changed

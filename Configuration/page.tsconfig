@@ -1,5 +1,6 @@
 # Desiderio RTE fields use the complete "desiderio" editorial preset, including
-# all heading levels, semantic inline styles, text-part language and
+# headings h2-h6 (the page template renders the h1), semantic inline styles,
+# text-part language and
 # abbreviations. It is registered in ext_localconf.php and assigned per field via
 # richtextConfiguration: desiderio in each Content Block config.yaml —
 # deliberately NOT set as RTE.default.preset, so other extensions and

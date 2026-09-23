@@ -13,11 +13,11 @@ final class RteCombinationFixturesTest extends TestCase
 {
     private const array PRIMARY_BLOCK_TYPES = [
         'p',
-        'h1',
         'h2',
         'h3',
         'h4',
         'h5',
+        'h6',
         'ul',
         'ol',
         'blockquote',
@@ -98,9 +98,12 @@ final class RteCombinationFixturesTest extends TestCase
         $heading = self::requireArray($editorConfig['heading'] ?? null);
         $headingOptions = self::requireArray($heading['options'] ?? null);
         $headingViews = array_column($headingOptions, 'view');
-        foreach (['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'pre'] as $view) {
+        foreach (['h2', 'h3', 'h4', 'h5', 'h6', 'pre'] as $view) {
             self::assertContains($view, $headingViews);
         }
+        // The page template renders the page's only h1; rich text never adds one.
+        self::assertNotContains('h1', $headingViews);
+        self::assertStringNotContainsString('<h1', RteCombinationFixtures::bodytext());
 
         $style = self::requireArray($editorConfig['style'] ?? null);
         $styleDefinitions = self::requireArray($style['definitions'] ?? null);

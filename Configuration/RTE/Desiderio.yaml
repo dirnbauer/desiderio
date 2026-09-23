@@ -40,10 +40,13 @@ editor:
         - { title: 'Italiano', languageCode: 'it' }
         - { title: 'Español', languageCode: 'es' }
 
+    # No "Heading 1": every Desiderio page template renders the page's single
+    # h1 (the page title, or the h1 of a detail view that owns the page), so
+    # rich text starts at h2. Stored <h1> markup still renders in the frontend;
+    # the editor turns it into a paragraph once the record is opened and saved.
     heading:
       options:
         - { model: 'paragraph', title: 'Paragraph' }
-        - { model: 'heading1', view: 'h1', title: 'Heading 1' }
         - { model: 'heading2', view: 'h2', title: 'Heading 2' }
         - { model: 'heading3', view: 'h3', title: 'Heading 3' }
         - { model: 'heading4', view: 'h4', title: 'Heading 4' }

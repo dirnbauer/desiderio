@@ -363,7 +363,7 @@ final class StyleguideShowcasePages
             'navTitle' => 'RTE combinations',
             'slug' => '/content-types/rte-combinations',
             'abstract' => 'A test page with 100 rich-text blocks in a fixed order. Every block type follows every other at least once, with inline styles from the editor.',
-            'description' => 'Visual regression test for Desiderio rich text. 100 fixed blocks combine p, h1–h5, ul, ol and blockquote in every order, with short, long, linked, bold and italic text.',
+            'description' => 'Visual regression test for Desiderio rich text. 100 fixed blocks combine p, h2–h6, ul, ol and blockquote in every order, with short, long, linked, bold and italic text.',
             'parentSlug' => 'content-types',
             'pageTsConfig' => 'RTE.config.tt_content.bodytext.types.text.preset = desiderio',
             'hideInNav' => true,

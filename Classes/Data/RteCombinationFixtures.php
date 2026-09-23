@@ -11,17 +11,20 @@ namespace Webconsulting\Desiderio\Data;
  * block types. That guarantees every ordered adjacency (including self-pairs)
  * appears at least once. A fixed pseudo-random tail brings the fixture to the
  * requested 100 blocks without making visual regressions flaky.
+ *
+ * The headings are h2-h6, the levels the Desiderio RTE preset offers: the page
+ * template already renders the page's only h1.
  */
 final class RteCombinationFixtures
 {
     /** @var list<string> */
     private const array PRIMARY_BLOCK_TYPES = [
         'p',
-        'h1',
         'h2',
         'h3',
         'h4',
         'h5',
+        'h6',
         'ul',
         'ol',
         'blockquote',

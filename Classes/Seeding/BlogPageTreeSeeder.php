@@ -466,10 +466,10 @@ final readonly class BlogPageTreeSeeder
         $now = time();
         $data = [
             'tstamp' => $now,
-            'name' => 'Webconsulting QA',
+            'name' => 'Webconsulting team',
             'url' => 'https://webconsulting.at/',
             'email' => 'team@webconsulting.at',
-            'comment' => 'Seeded comment for checking the Blog comment counter, comment list, and shadcn metadata links.',
+            'comment' => 'This is an example comment. Readers can comment on every post, and an editor approves each comment before it appears.',
             'parentid' => $postUid,
             'parenttable' => 'pages',
             'post_language_id' => 0,

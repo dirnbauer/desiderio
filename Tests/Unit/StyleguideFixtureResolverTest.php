@@ -375,6 +375,103 @@ final class StyleguideFixtureResolverTest extends AbstractStyleguideSeedingTestC
         self::assertStringContainsString('Unsplash', $collectionImageDescription);
     }
 
+    /**
+     * Shape of astryx_typo3's feature-callouts and 21 siblings: one collection
+     * and a root File field listed after it in the JSON. The file objects carry
+     * a `title` key the collection also has, so the old fuzzy collection match
+     * sent the image into the collection, overwrote the real items with one
+     * empty row, and completion padded that with generated filler.
+     */
+    public function testRootFileFieldFixtureDoesNotReplaceCollectionItems(): void
+    {
+        ContentBlockDefinitionRegistry::setDefinitionsForTesting([
+            'astryx_typo3_featurecallouts' => ContentBlockDefinitionRegistry::buildDefinitionFromConfig([
+                'name' => 'astryx-typo3/feature-callouts',
+                'prefixFields' => false,
+                'fields' => [
+                    ['identifier' => 'header', 'useExistingField' => true],
+                    ['identifier' => 'image', 'type' => 'File', 'maxitems' => 1, 'allowed' => 'common-image-types'],
+                    [
+                        'identifier' => 'callouts',
+                        'type' => 'Collection',
+                        'prefixField' => true,
+                        'minitems' => 2,
+                        'maxitems' => 8,
+                        'fields' => [
+                            ['identifier' => 'title', 'type' => 'Text'],
+                            ['identifier' => 'text', 'type' => 'Textarea'],
+                        ],
+                    ],
+                ],
+            ]),
+        ]);
+        $callouts = [
+            ['title' => 'Markers are part of the image', 'text' => 'One.'],
+            ['title' => 'The legend is an ordered list', 'text' => 'Two.'],
+            ['title' => 'Reverse swaps the columns', 'text' => 'Three.'],
+            ['title' => 'The image gets the wider column', 'text' => 'Four.'],
+        ];
+
+        [, $collections, $fileReferences] = $this->createFixtureResolver()->resolveFixtureFields(
+            'astryx_typo3_featurecallouts',
+            [
+                'header' => 'An image with a numbered legend',
+                'callouts' => $callouts,
+                'image' => [
+                    ['file' => 'EXT:astryx_typo3/Resources/Public/Images/scene/substation.jpg', 'alternative' => 'A substation.', 'title' => ''],
+                ],
+            ],
+            'feature-callouts',
+        );
+
+        $collection = $collections['callouts'] ?? null;
+        self::assertIsArray($collection);
+        self::assertSame('astryxtypo3_featurecallouts_callouts', $collection['column']);
+        self::assertSame(
+            array_column($callouts, 'title'),
+            array_column($collection['items'], 'title'),
+        );
+        self::assertSame(
+            array_column($callouts, 'text'),
+            array_column($collection['items'], 'text'),
+        );
+        self::assertSame(
+            'EXT:astryx_typo3/Resources/Public/Images/scene/substation.jpg',
+            $fileReferences['image'][0]['file'] ?? null,
+        );
+    }
+
+    public function testFuzzyCollectionMatchDoesNotOverwriteItemsFromTheCollectionsOwnKey(): void
+    {
+        ContentBlockDefinitionRegistry::setDefinitionsForTesting([
+            'desiderio_demo' => [
+                'fields' => [],
+                'collections' => [
+                    'items' => [
+                        'table' => 'demo_items',
+                        'minItems' => 1,
+                        'maxItems' => null,
+                        'fields' => [
+                            'title' => ['identifier' => 'title', 'type' => 'Text'],
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
+        [, $collections] = $this->createFixtureResolver()->resolveFixtureFields(
+            'desiderio_demo',
+            [
+                'items' => [['title' => 'One'], ['title' => 'Two'], ['title' => 'Three']],
+                // Unknown legacy key whose objects share the `title` column.
+                'entries' => [['title' => 'Legacy']],
+            ],
+            'Demo',
+        );
+
+        self::assertSame(['One', 'Two', 'Three'], array_column($collections['items']['items'] ?? [], 'title'));
+    }
+
     public function testHeaderFixtureIsIgnoredForHeaderlessContentBlocks(): void
     {
         $command = $this->createCommand();
@@ -837,5 +934,15 @@ final class StyleguideFixtureResolverTest extends AbstractStyleguideSeedingTestC
         self::assertStringStartsWith('https://www.openstreetmap.org/export/embed.html?', $embedUrl);
         self::assertStringNotContainsString('ui.shadcn.com/docs', $embedUrl);
         self::assertStringNotContainsString('Embed Url for', $embedUrl);
+    }
+
+    public function testListedItemsKeepTheirCountAndOnlyEmptyCollectionsArePadded(): void
+    {
+        $resolver = $this->createFixtureResolver();
+
+        self::assertSame(2, $resolver->getTargetCollectionItemCount(['maxItems' => 4], 2), 'two listed app badges stay two');
+        self::assertSame(3, $resolver->getTargetCollectionItemCount(['maxItems' => 4], 0), 'an empty collection is filled to three');
+        self::assertSame(2, $resolver->getTargetCollectionItemCount(['minItems' => 2, 'maxItems' => 6], 1), 'minItems still applies');
+        self::assertSame(4, $resolver->getTargetCollectionItemCount(['maxItems' => 4], 5), 'maxItems still caps');
     }
 }

@@ -140,7 +140,7 @@ final class StyleguideFixtureResolver
             }
 
             if (is_array($value)) {
-                $collectionField = $this->resolveCollectionField($field, $value, $definition);
+                $collectionField = $this->resolveCollectionField($field, $value, $definition, $fixture);
                 if ($collectionField !== null) {
                     $items = $this->normalizeCollectionItems($value, $definition['collections'][$collectionField]);
                     if ($items !== []) {
@@ -398,7 +398,12 @@ final class StyleguideFixtureResolver
     public function getTargetCollectionItemCount(array $collection, int $existingItemCount): int
     {
         $minimum = max(1, is_int($collection['minItems'] ?? null) ? $collection['minItems'] : 1);
-        $target = max(3, $minimum, $existingItemCount);
+        // Items the fixture lists are what its author wanted: two app-store
+        // badges stay two. Only a collection the fixture leaves empty is
+        // filled to three, so the element still shows as a list.
+        $target = $existingItemCount > 0
+            ? max($minimum, $existingItemCount)
+            : max(3, $minimum);
         $maximum = $collection['maxItems'] ?? null;
 
         if (is_int($maximum)) {
@@ -491,13 +496,29 @@ final class StyleguideFixtureResolver
     }
 
     /**
+     * The collection a fixture key feeds: its own identifier, the one legacy
+     * rename, or - for keys the definition does not know - the best fuzzy match.
+     *
+     * The fuzzy match is only a fallback for legacy keys, so it never applies
+     * to a key that names a declared field or to a collection whose own key is
+     * in the fixture. A root File field is the case that broke: its fixture
+     * value is a list of file objects ({file, alternative, title}), `title`
+     * matches the collection's `title` column, and with a single collection
+     * nothing competes - so the image entry replaced the real items and the
+     * seeder padded the lone empty row with generated filler.
+     *
      * @param array<int|string, mixed> $value
-     * @param array{collections: array<string, array<string, mixed>>} $definition
+     * @param array{fields?: array<string, array<string, mixed>>, collections: array<string, array<string, mixed>>} $definition
+     * @param array<int|string, mixed> $fixture
      */
-    private function resolveCollectionField(string $field, array $value, array $definition): ?string
+    private function resolveCollectionField(string $field, array $value, array $definition, array $fixture = []): ?string
     {
         if (isset($definition['collections'][$field])) {
             return $field;
+        }
+
+        if (isset($definition['fields'][$field])) {
+            return null;
         }
 
         if ($field === 'headers' && isset($definition['collections']['column_definitions'])) {
@@ -522,6 +543,11 @@ final class StyleguideFixtureResolver
         }
 
         if ($bestScore <= 0.0 || $bestScore === $runnerUp) {
+            return null;
+        }
+
+        $ownItems = $bestField !== null ? ($fixture[$bestField] ?? null) : null;
+        if (is_array($ownItems) && $ownItems !== []) {
             return null;
         }
 

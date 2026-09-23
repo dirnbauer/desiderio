@@ -161,8 +161,21 @@ final class FixtureFieldNormalizer
         return array_any($values, fn($value) => is_array($value));
     }
 
+    /**
+     * A title for a file whose fixture gives none, read from its name.
+     *
+     * Library assets are named `lib-<role>-<subject>-<8 hex content hash>`
+     * (`lib-scene-week-planner-083f6674`). Only the subject means anything to
+     * a visitor, and this string ends up as the image's hover text, so the
+     * role prefix and the hash are dropped: "Week Planner", not
+     * "Lib Scene Week Planner 083f6674".
+     */
     public function buildReadableFileTitle(string $value, string $emptyFallback = 'Asset'): string
     {
+        $subject = preg_replace(['/^lib-[a-z0-9]+-/i', '/-[0-9a-f]{8}$/i'], '', $value) ?? $value;
+        if (trim($subject, '-_ ') !== '') {
+            $value = $subject;
+        }
         $value = preg_replace('/[^a-zA-Z0-9]+/', ' ', $value) ?? $value;
         $value = trim($value);
 

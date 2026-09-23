@@ -10,7 +10,7 @@
         <div class="article-hero__copy">
             <f:if condition="{data.eyebrow}"><span class="article-hero__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>
 
-            <d:atom.typography tag="h1" variant="h1" class="article-hero__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
+            <d:atom.typography tag="h2" variant="h1" class="article-hero__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
 
             <f:if condition="{data.dek}">
                 <p class="article-hero__dek">{data -> f:render.text(field: 'dek')}</p>

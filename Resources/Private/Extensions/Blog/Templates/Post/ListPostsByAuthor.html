@@ -17,7 +17,7 @@
                             <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="user" size="xs"/></span>
                             <span><f:translate extensionName="Blog" key="headline.author.simple">Author</f:translate></span>
                         </d:atom.badge>
-                        <d:atom.typography tag="h1" variant="h1" class="text-balance">{author.name}</d:atom.typography>
+                        <d:atom.typography tag="h2" variant="h1" class="text-balance">{author.name}</d:atom.typography>
                         <f:if condition="{author.bio}">
                             <p class="max-w-3xl text-base leading-7 text-muted-foreground">{author.bio}</p>
                         </f:if>
@@ -58,7 +58,7 @@
                     <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="users" size="xs"/></span>
                     <span><f:translate extensionName="Blog" key="headline.authors">Authors</f:translate></span>
                 </d:atom.badge>
-                <d:atom.typography tag="h1" variant="h1"><f:translate extensionName="Blog" key="headline.authors">Authors</f:translate></d:atom.typography>
+                <d:atom.typography tag="h2" variant="h1"><f:translate extensionName="Blog" key="headline.authors">Authors</f:translate></d:atom.typography>
             </header>
             <d:layout.grid cols="3" gap="md">
                 <f:for each="{authors}" as="author">

@@ -76,7 +76,7 @@ final class ShowcaseAudiencePages
                     'media_rounded' => 1,
                     'button_text' => 'See freelancer details',
                     'button_link' => '{{page:target-groups/for-freelancers}}',
-                    'media' => ShowcaseBlocks::screenshot('frontend-hero-lagoon.png', 'Published Desiderio site', 'The Desiderio demo site in the Lagoon theme preset.'),
+                    'media' => ShowcaseBlocks::screenshot('frontend-hero-lagoon-e69362e6.png', 'Published Desiderio site', 'The Desiderio demo site in the Lagoon theme preset.'),
                 ]),
             ],
         ];
@@ -263,7 +263,7 @@ final class ShowcaseAudiencePages
                     'media_rounded' => 1,
                     'button_text' => 'See all elements',
                     'button_link' => '{{page:chapter-hero}}',
-                    'media' => ShowcaseBlocks::screenshot('frontend-hero-lagoon.png', 'Published Desiderio site', 'The Desiderio demo site in the Lagoon theme preset.'),
+                    'media' => ShowcaseBlocks::screenshot('frontend-hero-lagoon-e69362e6.png', 'Published Desiderio site', 'The Desiderio demo site in the Lagoon theme preset.'),
                 ]),
                 ShowcaseBlocks::block('desiderio_benefitcards', [
                     'header' => 'What changes for a one-person studio',

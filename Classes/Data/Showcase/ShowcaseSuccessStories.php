@@ -150,7 +150,7 @@ final class ShowcaseSuccessStories
                     'media_rounded' => 1,
                     'button_text' => 'See the features',
                     'button_link' => '{{page:technical-features}}',
-                    'media' => ShowcaseBlocks::screenshot('frontend-pricing-midnight-dark.png', 'Page in the Midnight preset', 'A Desiderio page in the dark Midnight theme preset.'),
+                    'media' => ShowcaseBlocks::screenshot('frontend-pricing-midnight-dark-87c4160e.png', 'Page in the Midnight preset', 'A Desiderio page in the dark Midnight theme preset.'),
                 ]),
                 ShowcaseBlocks::block('desiderio_featurestats', [
                     'header' => 'The example in figures',

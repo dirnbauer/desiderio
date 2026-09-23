@@ -117,7 +117,7 @@ final class StyleguideShowcasePages
                     [
                         'title' => '3 · Give each page tree its own look',
                         'description' => 'Any page can have its own preset, and its subpages inherit it. This site shows it: each chapter page uses a different theme.',
-                        'image' => ShowcaseBlocks::screenshot('frontend-pricing-midnight-dark.png', 'Pricing page in the Midnight preset', 'A Desiderio pricing page in the dark Midnight theme preset.'),
+                        'image' => ShowcaseBlocks::screenshot('frontend-pricing-midnight-dark-87c4160e.png', 'Pricing page in the Midnight preset', 'A Desiderio pricing page in the dark Midnight theme preset.'),
                         'link' => '{{page:themes}}',
                     ],
                 ],
@@ -144,7 +144,7 @@ final class StyleguideShowcasePages
                     [
                         'title' => 'Publish',
                         'content' => 'Editors build pages in the content wizard, check the backend preview and edit inline in the Visual Editor.',
-                        'image' => ShowcaseBlocks::screenshot('frontend-hero-lagoon.png', 'Published Desiderio site', 'The Desiderio demo site in the Lagoon theme preset.'),
+                        'image' => ShowcaseBlocks::screenshot('frontend-hero-lagoon-e69362e6.png', 'Published Desiderio site', 'The Desiderio demo site in the Lagoon theme preset.'),
                     ],
                 ],
             ]),
@@ -209,11 +209,11 @@ final class StyleguideShowcasePages
                 'subheadline' => 'Screenshots from this site. Select one to open its chapter.',
                 'columns' => '3',
                 'items' => [
-                    ['title' => 'Parallax hero', 'description' => 'A hero that moves as you scroll. One of 21 hero layouts.', 'link' => '{{page:chapter-hero}}', 'image' => ShowcaseBlocks::screenshot('frontend-gallery-parallax-hero.png', 'Parallax hero element', 'The Desiderio parallax hero element in the Forest theme preset.')],
-                    ['title' => 'Bento feature grid', 'description' => 'Feature cards in mixed sizes, from the features group.', 'link' => '{{page:chapter-features}}', 'image' => ShowcaseBlocks::screenshot('frontend-gallery-bento-features.png', 'Bento feature grid element', 'The Desiderio bento feature grid with feature tiles in mixed sizes.')],
-                    ['title' => 'Toggle pricing', 'description' => 'Monthly and yearly prices with a highlighted plan.', 'link' => '{{page:chapter-pricing}}', 'image' => ShowcaseBlocks::screenshot('frontend-gallery-toggle-pricing.png', 'Toggle pricing element', 'The Desiderio toggle pricing element with a monthly and yearly switch.')],
-                    ['title' => 'Testimonial wall', 'description' => 'Many short quotes in a masonry grid.', 'link' => '{{page:chapter-social-proof}}', 'image' => ShowcaseBlocks::screenshot('frontend-gallery-testimonial-wall.png', 'Testimonial wall element', 'The Desiderio testimonial wall with quotes in a masonry grid.')],
-                    ['title' => 'Demo request form', 'description' => 'A lead form that renders a real TYPO3 form.', 'link' => '{{page:chapter-conversion}}', 'image' => ShowcaseBlocks::screenshot('frontend-gallery-demo-request.png', 'Demo request element', 'The Desiderio demo request element with a TYPO3 Form Framework form.')],
+                    ['title' => 'Parallax hero', 'description' => 'A hero that moves as you scroll. One of 21 hero layouts.', 'link' => '{{page:chapter-hero}}', 'image' => ShowcaseBlocks::screenshot('frontend-gallery-parallax-hero-6e758c41.png', 'Parallax hero element', 'The Desiderio parallax hero element in the Forest theme preset.')],
+                    ['title' => 'Bento feature grid', 'description' => 'Feature cards in mixed sizes, from the features group.', 'link' => '{{page:chapter-features}}', 'image' => ShowcaseBlocks::screenshot('frontend-gallery-bento-features-56dcd554.png', 'Bento feature grid element', 'The Desiderio bento feature grid with feature tiles in mixed sizes.')],
+                    ['title' => 'Toggle pricing', 'description' => 'Monthly and yearly prices with a highlighted plan.', 'link' => '{{page:chapter-pricing}}', 'image' => ShowcaseBlocks::screenshot('frontend-gallery-toggle-pricing-8cab963a.png', 'Toggle pricing element', 'The Desiderio toggle pricing element with a monthly and yearly switch.')],
+                    ['title' => 'Testimonial wall', 'description' => 'Many short quotes in a masonry grid.', 'link' => '{{page:chapter-social-proof}}', 'image' => ShowcaseBlocks::screenshot('frontend-gallery-testimonial-wall-c7826ace.png', 'Testimonial wall element', 'The Desiderio testimonial wall with quotes in a masonry grid.')],
+                    ['title' => 'Demo request form', 'description' => 'A lead form that renders a real TYPO3 form.', 'link' => '{{page:chapter-conversion}}', 'image' => ShowcaseBlocks::screenshot('frontend-gallery-demo-request-f2614531.png', 'Demo request element', 'The Desiderio demo request element with a TYPO3 Form Framework form.')],
                 ],
             ]),
 

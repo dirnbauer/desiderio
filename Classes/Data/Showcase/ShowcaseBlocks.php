@@ -37,7 +37,7 @@ final class ShowcaseBlocks
     /**
      * @return ShowcaseMedia
      */
-    public static function screenshot(string $filename, string $title, string $alternative, string $description = 'Screenshot of a TYPO3 14 installation with Desiderio.'): array
+    public static function screenshot(string $filename, string $title, string $alternative, string $description = 'Screenshot of a TYPO3 v14 site with Desiderio.'): array
     {
         $folder = str_starts_with($filename, 'frontend-') ? 'Frontend' : 'Backend';
 

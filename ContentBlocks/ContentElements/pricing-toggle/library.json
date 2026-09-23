@@ -1,13 +1,13 @@
 {
-    "header": "Monthly rates with the yearly price beside them",
+    "header": "Monthly prices, with the yearly price beside them",
     "eyebrow": "Billing period",
-    "subheadline": "Yearly billing is ten months paid up front. Page allowances, request ceilings and support terms are identical either way, and a workspace may switch once per term without forfeiting pages it has already paid for.",
+    "subheadline": "Yearly billing means ten months paid in advance. Page allowances, request limits and support are the same on both.",
     "plans": [
         {
             "title": "Build",
             "monthly_price": "EUR 49",
             "yearly_price": "EUR 490",
-            "description": "<p>5,000 pages a month for one production workload, EUR 0.010 per page after that.</p>",
+            "description": "<p>5,000 pages a month for one production workload. After that, EUR 0.010 per page.</p>",
             "features": [
                 {
                     "text": "5,000 pages a month included"
@@ -25,7 +25,7 @@
             "title": "Scale",
             "monthly_price": "EUR 249",
             "yearly_price": "EUR 2,490",
-            "description": "<p>35,000 pages a month with a 99.9% uptime commitment and failover to Dublin.</p>",
+            "description": "<p>35,000 pages a month, 99.9% uptime and failover to Dublin.</p>",
             "features": [
                 {
                     "text": "35,000 pages a month included"
@@ -49,7 +49,7 @@
             "title": "Enterprise",
             "monthly_price": "EUR 1,900",
             "yearly_price": "EUR 19,000",
-            "description": "<p>Committed volume from 250,000 pages a month at EUR 0.004 per page.</p>",
+            "description": "<p>From 250,000 pages a month at EUR 0.004 per page.</p>",
             "features": [
                 {
                     "text": "Committed volume, quarterly invoice"

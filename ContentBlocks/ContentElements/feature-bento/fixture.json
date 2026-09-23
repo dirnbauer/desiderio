@@ -1,65 +1,65 @@
 {
     "_type": "grid",
-    "header": "One install. This is what you get.",
-    "subheadline": "Real screenshots, zero mockups — every tile shows Desiderio working in a seeded TYPO3 site, from inline editing to a phone-perfect frontend.",
+    "header": "What you get with one install",
+    "subheadline": "Each tile shows Desiderio at work in a seeded TYPO3 site, from inline editing to the mobile view.",
     "items": [
         {
-            "title": "Edit the page on the page",
-            "description": "<p>The Visual Editor lets editors work directly on the rendered page with the live theme applied — <strong>click, type, publish</strong>. No preview round-trips.</p>",
+            "title": "Edit on the page itself",
+            "description": "<p>In the Visual Editor, editors change the page they see, with the live theme. <strong>Click, type, publish.</strong></p>",
             "size": "wide",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/office-deliberate-directions.jpg",
                 "title": "Bright office",
                 "alternative": "A bright, plant-filled office space.",
-                "description": "Photo from the seeded Unsplash demo collection. Used as a calm background behind overlay text.",
+                "description": "Photo from the Unsplash demo collection, used behind the text.",
                 "source": "https://unsplash.com/collections/25880"
             }
         },
         {
-            "title": "Flawless on every phone",
-            "description": "<p>Container queries and responsive tokens keep all 244 elements <strong>sharp at 390px</strong> — this is the Ember preset on a real mobile viewport.</p>",
+            "title": "Works on every phone",
+            "description": "<p>Container queries keep all 244 elements <strong>readable at 390 pixels</strong>. This tile shows the Ember preset on a phone.</p>",
             "size": "tall",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/workspace-david-kristianto.jpg",
                 "title": "Quiet workspace",
                 "alternative": "A quiet desk setup in warm light.",
-                "description": "Photo from the seeded Unsplash demo collection. Used as a calm background behind overlay text.",
+                "description": "Photo from the Unsplash demo collection, used behind the text.",
                 "source": "https://unsplash.com/collections/25880"
             }
         },
         {
             "title": "One wizard, ten groups",
-            "description": "<p>The new-content wizard sorts all 244 elements into <strong>ten curated groups</strong> — the right block is seconds away.</p>",
+            "description": "<p>The content wizard sorts all 244 elements into <strong>ten groups</strong>, so the right one is quick to find.</p>",
             "size": "small",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/office-e-vos.jpg",
                 "title": "Open office",
                 "alternative": "An open office with daylight and greenery.",
-                "description": "Photo from the seeded Unsplash demo collection. Used as a calm background behind overlay text.",
+                "description": "Photo from the Unsplash demo collection, used behind the text.",
                 "source": "https://unsplash.com/collections/25880"
             }
         },
         {
-            "title": "8 ready-made forms",
-            "description": "<p>Contact, quote, and newsletter forms ship prebuilt, with a Friendly Captcha fallback included.</p>",
+            "title": "Eight ready forms",
+            "description": "<p>Contact, quote and newsletter forms come ready to use, with Friendly Captcha.</p>",
             "size": "small",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/planning-blue-sky.jpg",
                 "title": "Blue sky",
                 "alternative": "A wide blue sky with soft clouds.",
-                "description": "Photo from the seeded Unsplash demo collection. Used as a calm background behind overlay text.",
+                "description": "Photo from the Unsplash demo collection, used behind the text.",
                 "source": "https://unsplash.com/collections/25880"
             }
         },
         {
             "title": "Theme settings for editors",
-            "description": "<p>Preset, dark mode, density, radius, and fonts live in site settings — a full restyle without a deployment, by the person who asked for it.</p>",
+            "description": "<p>Preset, dark mode, density, radius and fonts are site settings. The person who asks for a change can make it.</p>",
             "size": "wide",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/office-turquo-cabbit.jpg",
                 "title": "Office atrium",
                 "alternative": "A modern office atrium with warm light.",
-                "description": "Photo from the seeded Unsplash demo collection. Used as a calm background behind overlay text.",
+                "description": "Photo from the Unsplash demo collection, used behind the text.",
                 "source": "https://unsplash.com/collections/25880"
             }
         }

@@ -71,68 +71,68 @@ final class StarterSiteDefinitions
             'rootTitle' => 'Northstar Advisory Group',
             'rootNavTitle' => 'Home',
             'purpose' => 'Help enterprise buyers understand the offer, trust the delivery model, and start a qualified procurement-safe conversation.',
-            'abstract' => 'A senior B2B service firm for companies that need operational change delivered with visible governance, procurement-ready proof, and accountable delivery.',
+            'abstract' => 'Northstar Advisory Group helps companies change how they operate, with clear governance, proof of results and support for procurement.',
             'home' => [
                 'layout' => 'DesiderioStartpage',
                 'content' => [
-                    self::heroStats('Digital operations work that survives procurement and rollout', 'Northstar Advisory Group', 'For executive teams replacing fragile internal workflows: advisory, implementation, and managed improvement with proof, governance, and procurement support in one clear path.', 'Book a working session', '#contact', [
-                        ['value' => '42%', 'label' => 'Less manual handoff', 'stat_description' => 'Measured after replacing regional spreadsheet flows.'],
-                        ['value' => '11', 'label' => 'Departments onboarded', 'stat_description' => 'Legal, finance, operations, support, and regional leads.'],
-                        ['value' => '24h', 'label' => 'Escalation response', 'stat_description' => 'Contracted production-facing response window.'],
-                        ['value' => '99.9%', 'label' => 'Critical uptime', 'stat_description' => 'Tracked across portals and reporting workflows.'],
+                    self::heroStats('Operational change, delivered with a clear plan', 'Northstar Advisory Group', 'We help executive teams replace fragile internal workflows. Advice, delivery and ongoing improvement, with clear governance and support for procurement.', 'Book a call', '#contact', [
+                        ['value' => '42%', 'label' => 'Less manual handover', 'stat_description' => 'After replacing regional spreadsheet workflows.'],
+                        ['value' => '11', 'label' => 'Departments onboarded', 'stat_description' => 'Legal, finance, operations, support and regional teams.'],
+                        ['value' => '24h', 'label' => 'Escalation response', 'stat_description' => 'Our contracted response time for production issues.'],
+                        ['value' => '99.9%', 'label' => 'Uptime of critical processes', 'stat_description' => 'Across client portals and reporting workflows.'],
                     ]),
-                    self::navTabs('Corporate buyer path', [
+                    self::navTabs('On this site', [
                         ['label' => 'Services', 'link' => '#advisory-services'],
-                        ['label' => 'Proof', 'link' => '#case-studies'],
+                        ['label' => 'Results', 'link' => '#case-studies'],
                         ['label' => 'Governance', 'link' => '#governance'],
                         ['label' => 'Procurement', 'link' => '#procurement'],
                         ['label' => 'Contact', 'link' => '#contact'],
                     ]),
-                    self::headerSection('A corporate site must make the buying case legible', 'Buyer pathway', 'The page stack is organized around evaluation: what you do, how delivery is governed, who leads it, what proof exists, and how procurement moves forward.'),
-                    self::kpiCards('Operating proof in one screen', 'Board-level signals', 'Use this row as the first proof check after the masthead.', [
-                        ['value' => '38%', 'label' => 'Lower manual handoffs', 'detail_text' => 'Measured after replacing six spreadsheet-led workflows.', 'trend' => 'positive'],
-                        ['value' => '11', 'label' => 'Departments onboarded', 'detail_text' => 'Legal, finance, operations, support, and regional teams.', 'trend' => 'positive'],
-                        ['value' => '24h', 'label' => 'Escalation response', 'detail_text' => 'Contracted response window for production-facing issues.', 'trend' => 'neutral'],
-                        ['value' => '99.9%', 'label' => 'Critical process uptime', 'detail_text' => 'Tracked across service portals and reporting workflows.', 'trend' => 'positive'],
+                    self::headerSection('Find what you need to decide', 'For buyers', 'This site follows the questions buyers ask: what we do, how we deliver, who leads the work, what results we have and how to buy.'),
+                    self::kpiCards('Results across our programmes', 'Client results', 'Averages across client programmes since 2019.', [
+                        ['value' => '27', 'label' => 'Programmes delivered', 'detail_text' => 'In finance, health, manufacturing and public services.', 'trend' => 'positive'],
+                        ['value' => '6 weeks', 'label' => 'To the first release', 'detail_text' => 'Average time from kickoff to the first live change.', 'trend' => 'positive'],
+                        ['value' => '94%', 'label' => 'Clients who renew', 'detail_text' => 'Share of clients who continue with managed improvement.', 'trend' => 'positive'],
+                        ['value' => '4.7/5', 'label' => 'Stakeholder rating', 'detail_text' => 'From surveys at the end of each programme.', 'trend' => 'neutral'],
                     ]),
-                    self::featureCards('What enterprise buyers need before they talk to sales', 'Evaluation content', 'Every section answers a procurement, leadership, or delivery question.', [
-                        ['title' => 'For executives', 'description' => 'Plain-language outcomes, commercial fit, and proof that reduces buying risk.'],
-                        ['title' => 'For delivery teams', 'description' => 'Service lines, governance cadence, and clear handoff expectations.'],
-                        ['title' => 'For procurement', 'description' => 'Legal, compliance, references, and contact paths ready for review.'],
+                    self::featureCards('Answers for every stakeholder', 'Who we help', 'Each group gets the information it needs to decide.', [
+                        ['title' => 'For executives', 'description' => 'Outcomes in plain language, commercial fit and results that lower the risk of buying.'],
+                        ['title' => 'For delivery teams', 'description' => 'Service lines, the governance rhythm and clear handover rules.'],
+                        ['title' => 'For procurement', 'description' => 'Legal, compliance, references and contacts, ready for review.'],
                     ]),
-                    self::pricingThreeTier('Engagement models buyers can compare', 'Commercial clarity', 'Corporate sites need enough packaging for buyers to understand fit before a call.', [
-                        ['name' => 'Advisory Sprint', 'price' => 'EUR 18k', 'billing_period' => 'fixed scope', 'description' => 'For teams that need diagnosis, prioritization, and an executive-ready plan.', 'features' => ['Current-state review', 'Risk and dependency map', 'Board-ready recommendation'], 'is_recommended' => false, 'button_text' => 'Discuss advisory', 'button_link' => '#contact'],
-                        ['name' => 'Implementation Office', 'price' => 'Custom', 'billing_period' => 'program', 'description' => 'For portal, workflow, and reporting programs that require senior delivery ownership.', 'features' => ['Delivery governance', 'Product and engineering team', 'Stakeholder reporting'], 'is_recommended' => true, 'button_text' => 'Scope delivery', 'button_link' => '#contact'],
-                        ['name' => 'Managed Improvement', 'price' => 'Retainer', 'billing_period' => 'monthly', 'description' => 'For organizations that want continuous improvement after launch.', 'features' => ['Monthly roadmap', 'Reliability reviews', 'Operational dashboards'], 'is_recommended' => false, 'button_text' => 'Plan retention', 'button_link' => '#contact'],
+                    self::pricingThreeTier('Three ways to work with us', 'Engagement models', 'Compare the options before we talk. Prices exclude VAT.', [
+                        ['name' => 'Advisory Sprint', 'price' => 'EUR 18k', 'billing_period' => 'fixed scope', 'description' => 'For teams that need a diagnosis, priorities and a plan for the board.', 'features' => ['Review of the current state', 'Map of risks and dependencies', 'Recommendation for the board'], 'is_recommended' => false, 'button_text' => 'Discuss advisory', 'button_link' => '#contact'],
+                        ['name' => 'Implementation Office', 'price' => 'Custom', 'billing_period' => 'programme', 'description' => 'For portal, workflow and reporting programmes that need a senior owner.', 'features' => ['Delivery governance', 'Product and engineering team', 'Stakeholder reporting'], 'is_recommended' => true, 'button_text' => 'Scope delivery', 'button_link' => '#contact'],
+                        ['name' => 'Managed Improvement', 'price' => 'Retainer', 'billing_period' => 'monthly', 'description' => 'For organisations that want steady improvement after launch.', 'features' => ['Monthly roadmap', 'Reliability reviews', 'Operations dashboards'], 'is_recommended' => false, 'button_text' => 'Plan a retainer', 'button_link' => '#contact'],
                     ]),
-                    self::caseStudyGrid('Representative proof points', 'Selected outcomes', [
-                        ['client_name' => 'Nordline Finance', 'summary' => 'Unified five regional onboarding flows into one governed portal.', 'result' => '42% faster activation', 'link' => '#case-studies'],
-                        ['client_name' => 'Helio Health', 'summary' => 'Modernized patient service operations without interrupting frontline teams.', 'result' => '18k requests/month', 'link' => '#case-studies'],
-                        ['client_name' => 'Mason Works', 'summary' => 'Built executive reporting that finally matched operational reality.', 'result' => '9 weekly reports retired', 'link' => '#case-studies'],
+                    self::caseStudyGrid('Selected results', 'Case studies', [
+                        ['client_name' => 'Nordline Finance', 'summary' => 'Combined five regional onboarding flows into one portal.', 'result' => '42% faster activation', 'link' => '#case-studies'],
+                        ['client_name' => 'Helio Health', 'summary' => 'Modernised patient services without disrupting frontline teams.', 'result' => '18k requests a month', 'link' => '#case-studies'],
+                        ['client_name' => 'Mason Works', 'summary' => 'Built executive reporting that matches daily operations.', 'result' => '9 weekly reports retired', 'link' => '#case-studies'],
                     ]),
-                    self::testimonialGrid('Why clients stay', 'Client confidence', [
-                        ['quote' => 'The team turned a fragile internal process into a service our leadership can actually trust.', 'author_name' => 'Amelia Grant', 'author_title' => 'COO, Nordline Finance'],
-                        ['quote' => 'We got a clear plan, a calmer rollout, and fewer surprises than any previous modernization effort.', 'author_name' => 'Markus Renner', 'author_title' => 'VP Operations, Helio Health'],
-                        ['quote' => 'Their governance rhythm made complex work feel legible to non-technical stakeholders.', 'author_name' => 'Priya Shah', 'author_title' => 'Transformation Lead, Mason Works'],
+                    self::testimonialGrid('Why clients stay', 'Client voices', [
+                        ['quote' => 'They turned a fragile internal process into a service our leadership trusts.', 'author_name' => 'Amelia Grant', 'author_title' => 'COO, Nordline Finance'],
+                        ['quote' => 'We got a clear plan, a calm rollout and fewer surprises than in any earlier project.', 'author_name' => 'Markus Renner', 'author_title' => 'VP Operations, Helio Health'],
+                        ['quote' => 'Their meeting rhythm made complex work easy to follow for non-technical colleagues.', 'author_name' => 'Priya Shah', 'author_title' => 'Transformation Lead, Mason Works'],
                     ]),
-                    self::companyValues('How Northstar works', 'Operating principles', 'Values are written as delivery promises so they are useful in sales, hiring, and procurement contexts.', [
-                        ['title' => 'Make work legible', 'description' => 'Every program has a visible decision log, owner map, and evidence trail.', 'icon' => 'list-checks'],
-                        ['title' => 'Reduce operational drag', 'description' => 'The team removes handoffs and reporting loops that slow frontline teams down.', 'icon' => 'workflow'],
-                        ['title' => 'Stay accountable after launch', 'description' => 'Improvements continue through managed reviews instead of vanishing at handoff.', 'icon' => 'shield-check'],
+                    self::companyValues('How we work', 'Our principles', 'Each principle is a promise we keep in every programme.', [
+                        ['title' => 'Make work visible', 'description' => 'Every programme has a decision log, a named owner for each task and a record of evidence.', 'icon' => 'list-checks'],
+                        ['title' => 'Remove friction', 'description' => 'We cut the handovers and reporting loops that slow frontline teams down.', 'icon' => 'workflow'],
+                        ['title' => 'Stay accountable after launch', 'description' => 'Improvement continues through regular reviews, not only until handover.', 'icon' => 'shield-check'],
                     ]),
-                    self::teamGridMinimal('Client-facing leadership', 'Senior owners are visible before a buyer asks who will actually guide the work.', [
+                    self::teamGridMinimal('Our leadership', 'Meet the senior people who lead your programme.', [
                         self::teamMember('Mara Stein', 'Managing Partner, Advisory', 0),
                         self::teamMember('Jonas Feld', 'Delivery Principal', 1),
                         self::teamMember('Priya Nair', 'Technical Director', 2),
                         self::teamMember('Elena Vogt', 'Client Operations Lead', 3),
                     ]),
-                    self::resourceLibrary('Procurement-ready resources', 'Useful downloads', [
-                        ['title' => 'Transformation readiness checklist', 'type_label' => 'Checklist', 'description' => 'Questions buyers should answer before scoping a service program.', 'link' => '#resources'],
-                        ['title' => 'Governance meeting template', 'type_label' => 'Template', 'description' => 'A compact structure for weekly evidence, risk, and decision review.', 'link' => '#governance'],
-                        ['title' => 'Service portal modernization brief', 'type_label' => 'Brief', 'description' => 'A one-page outline for replacing fragile internal workflows.', 'link' => '#advisory-services'],
+                    self::resourceLibrary('Guides and templates', 'Downloads', [
+                        ['title' => 'Readiness checklist', 'type_label' => 'Checklist', 'description' => 'Questions to answer before you scope a programme.', 'link' => '#resources'],
+                        ['title' => 'Governance meeting template', 'type_label' => 'Template', 'description' => 'A short agenda for weekly evidence, risk and decision reviews.', 'link' => '#governance'],
+                        ['title' => 'Service portal brief', 'type_label' => 'Brief', 'description' => 'A one-page outline for replacing fragile internal workflows.', 'link' => '#advisory-services'],
                     ]),
-                    self::ctaCard('Ready to map the first decision?', 'Book a 45-minute fit call and leave with a practical outline of the pages, proof, and workflows your site needs.', 'Plan the site', '#contact', 'Next step'),
-                    self::sitemapGrid('Explore Northstar Advisory', [
+                    self::ctaCard('Ready to plan the first step?', 'Book a 45-minute call. You leave with a first outline of the work and the decisions ahead.', 'Book a call', '#contact', 'Next step'),
+                    self::sitemapGrid('Explore Northstar', [
                         [
                             'title' => 'Services',
                             'pages' => [

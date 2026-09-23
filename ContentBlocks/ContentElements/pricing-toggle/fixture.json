@@ -1,20 +1,20 @@
 {
     "_type": "pricing",
-    "header": "Monthly flexibility, or two months free",
-    "eyebrow": "Monthly · Yearly",
-    "subheadline": "Pick a cadence, keep the same complete package. Pay yearly and Pro is €490 instead of €588, Agency €1,490 instead of €1,788 — 2 months free, every year.",
+    "header": "Pay monthly, or get two months free",
+    "eyebrow": "Monthly or yearly",
+    "subheadline": "The package is the same either way. Paying yearly, Pro costs €490 instead of €588 and Agency €1,490 instead of €1,788.",
     "plans": [
         {
             "title": "Community",
             "monthly_price": "€0",
             "yearly_price": "€0",
-            "description": "<p>The full kit, self-served: every element, preset, and icon library.</p>",
+            "description": "<p>The full package for self-service: every element, preset and icon library.</p>",
             "features": [
                 {
-                    "text": "244 elements, 53 components"
+                    "text": "244 elements, 62 components"
                 },
                 {
-                    "text": "Dark mode and OKLCH tokens"
+                    "text": "Dark mode and colour tokens"
                 },
                 {
                     "text": "Community support on GitHub"
@@ -27,41 +27,41 @@
             "title": "Pro",
             "monthly_price": "€49",
             "yearly_price": "€490",
-            "description": "<p><strong>Priority support</strong> and guaranteed updates from the creators — the recommended tier.</p>",
+            "description": "<p><strong>Priority support</strong> and guaranteed updates from the maintainers. Our recommendation.</p>",
             "features": [
                 {
-                    "text": "Priority email support, 2-day response"
+                    "text": "Email support, answer within 2 days"
                 },
                 {
-                    "text": "Guaranteed LTS compatibility updates"
+                    "text": "LTS compatibility updates"
                 },
                 {
-                    "text": "Early access to new element drops"
+                    "text": "Early access to new elements"
                 },
                 {
-                    "text": "Minor-version upgrade assistance"
+                    "text": "Help with minor upgrades"
                 }
             ],
-            "button_text": "Go Pro",
+            "button_text": "Choose Pro",
             "button_link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "title": "Agency",
             "monthly_price": "€149",
             "yearly_price": "€1,490",
-            "description": "<p>Everything in Pro for unlimited projects, with the maintainers on <strong>speed dial</strong>.</p>",
+            "description": "<p>Everything in Pro for unlimited projects, with <strong>direct contact</strong> to the maintainers.</p>",
             "features": [
                 {
                     "text": "Everything in Pro, unlimited projects"
                 },
                 {
-                    "text": "4-hour priority response"
+                    "text": "Answer within 4 business hours"
                 },
                 {
-                    "text": "Quarterly editor onboarding session"
+                    "text": "Quarterly editor onboarding"
                 },
                 {
-                    "text": "Custom preset review by the creators"
+                    "text": "Preset review by the maintainers"
                 },
                 {
                     "text": "Direct line to the maintainers"

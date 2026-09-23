@@ -1,78 +1,78 @@
 {
     "_type": "grid",
-    "eyebrow": "Community voices",
-    "header": "What TYPO3 teams say after switching to Desiderio",
-    "subheadline": "Developers, integrators, and editors on what they bought — free Community installs, Pro and Agency plans, workshops, and Creator Care — and what it paid back.",
+    "eyebrow": "Example quotes",
+    "header": "How a testimonial wall looks with real content",
+    "subheadline": "These quotes are examples. They show how the wall handles short and long quotes, names and portraits.",
     "testimonials": [
         {
-            "quote": "We started on the free Community tier — all 244 elements, no license keys — and switched the client's site from Forest to Midnight during the review call. The 'can we see it in blue?' deploy loop is gone for good.",
+            "quote": "We started on the free Community plan and switched the client's site from Forest to Midnight during the review call.",
             "author_name": "Mara Lindqvist",
-            "author_title": "TYPO3 Lead Developer, Halcyon Studios",
+            "author_title": "TYPO3 Lead Developer, Halcyon Studios (example)",
             "author_image": {
                 "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-01.jpg",
                 "title": "Portrait of Mara Lindqvist",
                 "alternative": "Portrait of Mara Lindqvist.",
-                "description": "Unsplash portrait used as demo customer imagery.",
+                "description": "Unsplash portrait used for example content.",
                 "source": "https://unsplash.com/"
             }
         },
         {
-            "quote": "One Agency plan at €149/month covers all eleven of our client installs. Per-page presets carried the multi-brand relaunch — we retired a whole second codebase — and the 4-hour priority line means I stopped padding every estimate with risk buffer.",
+            "quote": "One Agency plan covers all our client sites. Per-page presets carried a multi-brand relaunch, so we retired a second codebase.",
             "author_name": "Daniel Okoro",
-            "author_title": "Head of Web, Brightwell Agency",
+            "author_title": "Head of Web, Brightwell Agency (example)",
             "author_image": {
                 "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-02.jpg",
                 "title": "Portrait of Daniel Okoro",
                 "alternative": "Portrait of Daniel Okoro.",
-                "description": "Unsplash portrait used as demo customer imagery.",
+                "description": "Unsplash portrait used for example content.",
                 "source": "https://unsplash.com/"
             }
         },
         {
-            "quote": "Setup took an afternoon: composer require, seed the styleguide, done. €0 spent.",
+            "quote": "Setup took an afternoon: install, seed the styleguide, done.",
             "author_name": "Yuki Tanaka",
-            "author_title": "TYPO3 Integrator, Meridian Labs",
+            "author_title": "TYPO3 Integrator, Meridian Labs (example)",
             "author_image": {
                 "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-03.jpg",
                 "title": "Portrait of Yuki Tanaka",
                 "alternative": "Portrait of Yuki Tanaka.",
-                "description": "Unsplash portrait used as demo customer imagery.",
+                "description": "Unsplash portrait used for example content.",
                 "source": "https://unsplash.com/"
             }
         },
         {
-            "quote": "The automated template audit is ruthless — no inline styles, no hardcoded colors — and that discipline is exactly why our handovers stopped hurting. We added Creator Care at €490/month for the security monitoring; sleeping well turns out to be cheap at that price.",
+            "quote": "The template audit allows no inline styles and no fixed colours. That is why our handovers got easier.",
             "author_name": "Priya Raman",
-            "author_title": "Frontend Lead, Northpeak",
+            "author_title": "Frontend Lead, Northpeak (example)",
             "author_image": {
                 "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-04.jpg",
                 "title": "Portrait of Priya Raman",
                 "alternative": "Portrait of Priya Raman.",
-                "description": "Unsplash portrait used as demo customer imagery.",
+                "description": "Unsplash portrait used for example content.",
                 "source": "https://unsplash.com/"
             }
         },
         {
-            "quote": "We put our editors through the €690 onboarding workshop and hit 90% adoption in two weeks. Backend previews on all 244 elements just make sense — best training money we've spent.",
+            "quote": "After the editor workshop, most of our editors used the new elements within two weeks.",
             "author_name": "Tom Berger",
-            "author_title": "Engineering Manager, Cobalt Digital",
+            "author_title": "Engineering Manager, Cobalt Digital (example)",
             "author_image": {
                 "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-05.jpg",
                 "title": "Portrait of Tom Berger",
                 "alternative": "Portrait of Tom Berger.",
-                "description": "Unsplash portrait used as demo customer imagery.",
+                "description": "Unsplash portrait used for example content.",
                 "source": "https://unsplash.com/"
             }
         },
         {
-            "quote": "We onboarded 40 client editors last month without adding headcount. Pro at €49/month per project keeps every install current with upgrade assistance, and the content wizard's 10 element groups let every account follow the same playbook.",
+            "quote": "Pro keeps each install current, and the ten element groups give every editor the same starting point.",
             "author_name": "Sofia Marchetti",
-            "author_title": "Partner, Vantage Webconsulting",
+            "author_title": "Partner, Vantage Webconsulting (example)",
             "author_image": {
                 "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-06.jpg",
                 "title": "Portrait of Sofia Marchetti",
                 "alternative": "Portrait of Sofia Marchetti.",
-                "description": "Unsplash portrait used as demo customer imagery.",
+                "description": "Unsplash portrait used for example content.",
                 "source": "https://unsplash.com/"
             }
         }

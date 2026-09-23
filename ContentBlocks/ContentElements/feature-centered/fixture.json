@@ -1,23 +1,23 @@
 {
     "_type": "section",
     "eyebrow": "Quality gates",
-    "header": "Three gates between every release and your production site",
-    "subheadline": "No Desiderio version ships until static analysis, the template audit, and the full test suite all pass — your safety net, maintained by us.",
+    "header": "Three checks before every release",
+    "subheadline": "No Desiderio version ships until static analysis, the template audit and the full test suite pass. We maintain these checks for you.",
     "items": [
         {
             "icon": "shield-check",
-            "title": "PHPStan level max",
-            "description": "<p>The entire codebase is statically analyzed at the strictest level on every single change.</p>"
+            "title": "PHPStan level 8",
+            "description": "<p>Static analysis checks the whole codebase at level 8 on every change.</p>"
         },
         {
             "icon": "lock",
             "title": "Automated template audit",
-            "description": "<p><strong>Zero tolerance</strong> for inline styles or hardcoded colors across all 244 element templates.</p>"
+            "description": "<p>The audit allows <strong>no inline styles</strong> and no fixed colours in any of the 244 element templates.</p>"
         },
         {
             "icon": "clock",
-            "title": "PHPStan and PHPUnit across supported PHP versions",
-            "description": "<p>Unit and functional test suites run across every supported PHP version before every merge.</p>"
+            "title": "Tests on every supported PHP version",
+            "description": "<p>Unit and functional tests run on every supported PHP version before each merge.</p>"
         }
     ]
 }

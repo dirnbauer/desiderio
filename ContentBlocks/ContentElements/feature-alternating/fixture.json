@@ -1,40 +1,40 @@
 {
     "_type": "grid",
-    "header": "Three backend upgrades your editors will notice on day one",
-    "subheadline": "Real screenshots from an installed backend — this is what working with TYPO3 looks like once Desiderio is in.",
+    "header": "Three backend changes editors see on day one",
+    "subheadline": "These are real screenshots from a TYPO3 v14 backend with Desiderio installed.",
     "items": [
         {
-            "title": "See the page before it renders",
-            "description": "<p>Every one of the 244 elements ships a backend preview built on <strong>Content Blocks 2.2</strong>. The page module reads like the live page, so editors stop publishing blind — and stop pinging developers to ask which block is which.</p>",
+            "title": "See the page before you publish",
+            "description": "<p>All 244 elements have a backend preview built on <strong>Content Blocks 2.2</strong>, so the page module looks like the live page.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-page-module-hero.png",
                 "title": "Desiderio page module previews",
-                "alternative": "TYPO3 page module showing Desiderio content elements with rendered backend previews.",
-                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "alternative": "The TYPO3 page module showing Desiderio elements with their backend previews.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             },
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "title": "Restyle the site without a deployment",
-            "description": "<p>Preset, dark mode, density, radius, container width, and fonts live in the site settings module. A brand refresh becomes an editor task instead of a development ticket — done before the kickoff call ends.</p>",
+            "description": "<p>Preset, dark mode, density, radius, container width and fonts are in the site settings. A brand refresh becomes an editor's task, not a development ticket.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-site-settings-theme.png",
                 "title": "Desiderio theme site settings",
-                "alternative": "TYPO3 site settings showing the Desiderio theme category with preset and appearance options.",
-                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "alternative": "TYPO3 site settings showing the Desiderio theme options, including the preset.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             },
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "title": "Give every campaign its own look",
-            "description": "<p>A <strong>theme preset field</strong> in page properties overrides the site default and inherits down the rootline. One install runs a different look per campaign, brand, or section — multi-brand without multi-site overhead.</p>",
+            "description": "<p>A <strong>theme preset field</strong> in the page properties applies to that page and its subpages. Each campaign, brand or section gets its own look.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-page-properties-theme.png",
                 "title": "Per-page theme preset field",
-                "alternative": "TYPO3 page properties with the Desiderio theme preset selector.",
-                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "alternative": "TYPO3 page properties with the Desiderio theme preset field.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             },
             "link": "https://github.com/dirnbauer/desiderio"

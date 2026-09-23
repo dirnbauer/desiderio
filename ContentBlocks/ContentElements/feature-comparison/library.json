@@ -1,10 +1,10 @@
 {
-    "header": "Paper job sheets against a live dispatch board",
+    "header": "Paper job sheets or a live dispatch board",
     "left_title": "Paper job sheets",
     "right_title": "Vertex Dispatch",
     "items": [
         {
-            "feature": "Customer signs off on completion",
+            "feature": "Customer signs when the job is done",
             "left_supported": 1,
             "right_supported": 1
         },
@@ -24,7 +24,7 @@
             "right_supported": 1
         },
         {
-            "feature": "Parts used posted to van stock automatically",
+            "feature": "Parts used are deducted from van stock",
             "left_supported": 0,
             "right_supported": 1
         }

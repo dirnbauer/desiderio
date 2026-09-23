@@ -1,26 +1,26 @@
 {
     "_type": "section",
-    "header": "Editors write. The theme does the design.",
-    "description": "<p>Desiderio moves every styling decision into <strong>site settings</strong> — so editors restyle the site themselves, developers stop fielding color-change tickets, and the brand never drifts.</p>",
+    "header": "Editors write content, and the theme styles it",
+    "description": "<p>Desiderio moves every styling decision into the <strong>site settings</strong>. Editors restyle the site themselves, and developers get fewer colour-change tickets.</p>",
     "items": [
         {
-            "title": "Theme without deploys",
-            "description_text": "Preset, density, radius, container width, and fonts are editor-facing site settings."
+            "title": "Theme changes without deploys",
+            "description_text": "Preset, density, radius, container width and fonts are site settings that editors can change."
         },
         {
-            "title": "On brand, automatically",
-            "description_text": "OKLCH design tokens drive every component, so nothing drifts off palette."
+            "title": "Consistent brand colours",
+            "description_text": "OKLCH design tokens drive every component, so colours stay consistent."
         },
         {
             "title": "Dark mode included",
-            "description_text": "Light, dark, and auto flip from the same token set — no second stylesheet."
+            "description_text": "Light, dark and auto modes use the same tokens, with no second stylesheet."
         }
     ],
     "image": {
         "file": "Resources/Public/Styleguide/Backend/backend-site-settings-theme.png",
         "title": "Desiderio theme site settings",
-        "alternative": "TYPO3 site settings showing the Desiderio theme category with preset and appearance options.",
-        "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+        "alternative": "TYPO3 site settings showing the Desiderio theme options, including the preset.",
+        "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
         "source": "https://github.com/dirnbauer/desiderio"
     }
 }

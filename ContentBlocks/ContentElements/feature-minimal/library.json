@@ -1,26 +1,26 @@
 {
     "header": "How we run the platform, stated plainly",
-    "subheadline": "No badges, no seals, no marketing adjectives. If any of the following stops being true we will say so in the release notes before you read it somewhere else, and the status page keeps the full history.",
+    "subheadline": "These are facts, not marketing claims. If one changes, the release notes say so first, and the status page keeps the full history.",
     "items": [
         {
             "title": "Hosting",
-            "description_text": "Frankfurt and Vienna, replicated between both. Nothing is processed outside the EU."
+            "description_text": "Frankfurt and Vienna, replicated between both. No data is processed outside the EU."
         },
         {
             "title": "Uptime",
-            "description_text": "99.95% measured monthly across the dispatch board and the mobile sync endpoint."
+            "description_text": "99.95%, measured monthly on the dispatch board and the mobile sync endpoint."
         },
         {
-            "title": "Release cadence",
-            "description_text": "One feature release a month, security patches within 72 hours of disclosure."
+            "title": "Release schedule",
+            "description_text": "One feature release a month. Security patches within 72 hours of disclosure."
         },
         {
             "title": "Data export",
-            "description_text": "Full CSV and JSON export of jobs, assets and customers, available on every plan."
+            "description_text": "Full CSV and JSON export of jobs, assets and customers on every plan."
         },
         {
             "title": "Notice period",
-            "description_text": "Monthly plans end with 30 days' notice, and nothing is deleted for 90 days after."
+            "description_text": "Monthly plans end with 30 days' notice. Nothing is deleted for 90 days after that."
         }
     ]
 }

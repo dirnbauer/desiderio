@@ -1,44 +1,44 @@
 {
     "_type": "grid",
-    "header": "The design system TYPO3 has been waiting for",
-    "subheadline": "244 content elements, 53 Fluid components, and a full theme layer — semantic, token-driven, and polished by default. Built once, so you can focus on the page.",
+    "header": "A complete design system for TYPO3 v14",
+    "subheadline": "244 content elements, 62 components and a theme layer, built on semantic tokens. You focus on the page.",
     "columns": "3",
     "variant": "card",
     "feature_items": [
         {
             "icon_name": "book-open",
             "title": "244 ready-made elements",
-            "description": "<p>Assemble pages from ten curated groups — every layout consistent, no custom templates, no design drift.</p>",
+            "description": "<p>Build pages from ten groups. Every layout stays consistent, with no custom templates.</p>",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "icon_name": "settings",
-            "title": "Theming editors control",
-            "description": "<p>Preset, dark mode, density, radius, and fonts live in site settings — a restyle is <strong>a dropdown</strong>, not a deployment.</p>",
+            "title": "Theming that editors control",
+            "description": "<p>Preset, dark mode, density, radius and fonts are site settings. A restyle takes <strong>one dropdown</strong>, not a deployment.</p>",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "icon_name": "zap",
             "title": "Tailwind v4 pipeline",
-            "description": "<p>OKLCH tokens and container queries compile to <strong>lean static CSS</strong> — no runtime framework to ship or upgrade.</p>",
+            "description": "<p>OKLCH tokens and container queries compile to <strong>small static CSS</strong>. There is no runtime framework to ship or upgrade.</p>",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "icon_name": "shield-check",
-            "title": "Accessibility-minded foundations",
-            "description": "<p>Shared semantic structures, keyboard patterns, and <a href=\"https://www.w3.org/TR/WCAG22/\">WCAG 2.2 contrast checks</a> give each component a strong starting point. Verify final pages with real content and integrations.</p>",
+            "title": "A sound base for accessibility",
+            "description": "<p>Shared semantic structure, keyboard patterns and <a href=\"https://www.w3.org/TR/WCAG22/\">WCAG 2.2 contrast checks</a> give each component a good start. Check final pages with real content.</p>",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "icon_name": "users",
-            "title": "Editors who love their CMS",
-            "description": "<p>Backend previews, guided forms, and Visual Editor inline editing keep every edit safe, visible, and on-brand.</p>",
+            "title": "Editing that stays on brand",
+            "description": "<p>Backend previews, guided forms and inline editing in the Visual Editor keep every change visible and on brand.</p>",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "icon_name": "chart-no-axes-combined",
             "title": "Quality you can verify",
-            "description": "<p><strong>PHPStan at level max</strong>, PHPUnit, and an automated template audit guard every one of the 244 elements.</p>",
+            "description": "<p><strong>PHPStan at level 8</strong>, PHPUnit and an automated template audit check the code and all 244 elements.</p>",
             "link": "https://github.com/dirnbauer/desiderio"
         }
     ]

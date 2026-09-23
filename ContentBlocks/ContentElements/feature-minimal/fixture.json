@@ -1,23 +1,23 @@
 {
     "_type": "grid",
-    "header": "The boring details that save you money later",
-    "subheadline": "Unglamorous decisions, made once by us, that keep a Desiderio site fast to edit and cheap to maintain for years.",
+    "header": "Four decisions that keep maintenance costs low",
+    "subheadline": "We made these decisions once, so a Desiderio site stays quick to edit and cheap to maintain for years.",
     "items": [
         {
             "title": "Semantic markup",
-            "description_text": "Landmarks, heading order, and lean HTML in every element template."
+            "description_text": "Landmarks, correct heading order and lean HTML in every element template."
         },
         {
             "title": "BEM component CSS",
-            "description_text": "Predictable class names, zero inline styles — enforced by the audit."
+            "description_text": "Predictable class names and no inline styles, checked by the audit."
         },
         {
             "title": "Container queries",
-            "description_text": "Elements respond to their column, not just the viewport width."
+            "description_text": "Elements respond to their column, not only to the screen width."
         },
         {
             "title": "No frontend framework",
-            "description_text": "Vanilla JavaScript glue only — nothing extra to upgrade, ever."
+            "description_text": "Only plain JavaScript, so there is nothing extra to upgrade."
         }
     ]
 }

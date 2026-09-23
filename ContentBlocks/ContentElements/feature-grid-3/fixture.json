@@ -1,24 +1,24 @@
 {
     "_type": "grid",
-    "header": "Everything a relaunch needs, already built",
-    "subheadline": "Content elements, component library, and a full theme layer in one composer package — the parts agencies usually rebuild from scratch, every single project.",
+    "header": "What every relaunch needs, already built",
+    "subheadline": "Content elements, components and a theme layer in one Composer package. Agencies usually rebuild these parts for every project.",
     "items": [
         {
             "icon": "book-open",
             "title": "244 content elements",
-            "description": "<p>Heroes, features, pricing, dashboards, footers — <strong>ten curated groups</strong> so your next page is assembled, not developed. Every element with a backend preview.</p>",
+            "description": "<p>Heroes, features, pricing, dashboards and footers in <strong>ten groups</strong>. Each element has a backend preview.</p>",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "icon": "zap",
-            "title": "53 Fluid 5 components",
-            "description": "<p>17 atoms, 28 molecules, 4 layout primitives, and 4 organisms keep your custom templates as polished as the bundled ones — <strong>one design language</strong> everywhere.</p>",
+            "title": "62 Fluid components",
+            "description": "<p>17 atoms, 37 molecules, 4 layouts and 4 organisms. Your own templates use <strong>the same design language</strong> as the bundled ones.</p>",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "icon": "sparkles",
             "title": "15 theme presets",
-            "description": "<p>A redesign without a budget: switch from <strong>Aurora to Midnight</strong> at runtime and the whole site repaints — no rebuild, no deployment, no invoice.</p>",
+            "description": "<p>Switch from <strong>Aurora to Midnight</strong> while the site runs. The whole site changes, with no rebuild and no deployment.</p>",
             "link": "https://ui.shadcn.com"
         }
     ]

@@ -1,44 +1,44 @@
 {
     "_type": "grid",
-    "header": "What you stop paying for when Desiderio moves in",
+    "header": "What Desiderio takes off your estimate",
     "eyebrow": "Package overview",
-    "subheadline": "One GPL package replaces the template scaffold, the component library, and the demo content of a typical relaunch — weeks of dev time, gone from the estimate.",
+    "subheadline": "One GPL package replaces the template scaffold, the component library and the demo content of a typical relaunch. That saves weeks of development.",
     "columns": "3",
     "items": [
         {
             "icon": "zap",
             "title": "Demo site in one command",
-            "description": "<p><strong>desiderio:styleguide:seed</strong> builds a complete, browsable demo site — idempotent, workspaces-safe, and ready to show a client the same afternoon.</p>",
+            "description": "<p><strong>desiderio:styleguide:seed</strong> builds a complete demo site. It is safe to rerun and works in workspaces, so you can show a client the same day.</p>",
             "link": "t3://page?uid=1"
         },
         {
             "icon": "shield-check",
-            "title": "Quality enforced, not hoped for",
-            "description": "<p>An automated zero-tolerance template audit keeps all <strong>244 elements</strong> clean: no inline styles, no hardcoded colors, ever.</p>",
+            "title": "Quality checked on every change",
+            "description": "<p>An automated template audit checks all <strong>244 elements</strong>. It allows no inline styles and no fixed colours.</p>",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "icon": "chart",
-            "title": "PHPStan max + PHPUnit",
-            "description": "<p>PHPStan at level max and an automated PHPUnit suite run across every supported PHP version — the code review you didn't have to schedule.</p>",
+            "title": "PHPStan level 8 + PHPUnit",
+            "description": "<p>PHPStan at level 8 and a PHPUnit suite run against every supported PHP version.</p>",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "icon": "users",
-            "title": "Editors who stop filing tickets",
-            "description": "<p><strong>Backend previews</strong> for every element and guided Content Blocks forms mean non-developers ship landing pages on their own.</p>",
+            "title": "Fewer tickets for developers",
+            "description": "<p><strong>Backend previews</strong> for every element and guided forms let people who don't code publish landing pages on their own.</p>",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "icon": "clock",
-            "title": "Redesigns in minutes",
-            "description": "<p>Switch between 15 <a href=\"https://ui.shadcn.com\">shadcn</a> theme presets and the site <strong>repaints instantly</strong> — every campaign gets its own look without a deployment window.</p>",
+            "title": "Redesigns without a deployment",
+            "description": "<p>Switch between 15 <a href=\"https://ui.shadcn.com\">shadcn</a> theme presets and the site <strong>changes at once</strong>. Each campaign can have its own look.</p>",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "icon": "globe",
             "title": "5 icon libraries, one switch",
-            "description": "<p>Swap Lucide for Tabler, HugeIcons, Phosphor, or Remix Icon sitewide — stable semantic keys keep every element's content untouched.</p>",
+            "description": "<p>Swap Lucide for Tabler, HugeIcons, Phosphor or Remix Icon across the site. Stable icon names mean no element content changes.</p>",
             "link": "https://github.com/dirnbauer/desiderio"
         }
     ]

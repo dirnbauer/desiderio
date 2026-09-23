@@ -1,22 +1,22 @@
 {
     "_type": "stats",
-    "header": "Numbers a relaunch estimate can't compete with",
-    "description": "Everything below ships in the current package release — counted in the repository, not estimated — and it's all in the free tier too.",
+    "header": "What the package contains, in numbers",
+    "description": "We counted these in the repository for the current release. All of it is in the free Community plan.",
     "items": [
         {
             "value": "244",
             "label": "Content elements",
-            "description_text": "Across 10 curated groups, each with a backend preview"
+            "description_text": "Across 10 groups, each with a backend preview"
         },
         {
-            "value": "53",
-            "label": "Fluid 5 components",
-            "description_text": "17 atoms, 28 molecules, 4 layout primitives, and 4 organisms"
+            "value": "62",
+            "label": "Fluid components",
+            "description_text": "17 atoms, 37 molecules, 4 layouts and 4 organisms"
         },
         {
             "value": "15",
             "label": "Theme presets",
-            "description_text": "Runtime-switchable, plus a custom slot"
+            "description_text": "Switchable while the site runs, plus a custom slot"
         },
         {
             "value": "5",

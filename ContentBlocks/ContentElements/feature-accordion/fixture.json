@@ -1,30 +1,30 @@
 {
     "_type": "list",
-    "header": "Open the box. It's all in there.",
-    "subheadline": "Expand any capability to see what it does for your team. Everything below ships in the package — even in the free Community tier.",
+    "header": "Four things in every Desiderio package",
+    "subheadline": "Open a row to see what each one does for your team. All four are in the free Community plan too.",
     "items": [
         {
             "title": "Backend previews for all 244 elements",
-            "content": "Every content element renders a real preview in the TYPO3 page module. Editors recognize a hero, a pricing table, or a logo wall at a glance — no more guessing from gray record titles, no more publish-and-pray."
+            "content": "Every element shows a real preview in the TYPO3 page module. Editors can tell a hero from a pricing table without opening the record."
         },
         {
-            "title": "15 runtime-switchable theme presets",
-            "content": "Five presets from ui.shadcn.com/create plus ten house presets, from Aurora to Midnight. Pick one in site settings and the whole site repaints instantly — a redesign that costs a dropdown click, not a developer sprint."
+            "title": "15 theme presets you can switch live",
+            "content": "Five presets from ui.shadcn.com/create and ten house presets, from Aurora to Midnight. Choose one in the site settings and the whole site changes."
         },
         {
             "title": "Five switchable icon libraries",
-            "content": "Lucide, Tabler, HugeIcons, Phosphor, and Remix Icon behind stable semantic keys. Change the entire site's icon style with one setting — every element keeps its icons, no content edits required."
+            "content": "Lucide, Tabler, HugeIcons, Phosphor and Remix Icon, behind stable icon names. One setting changes the icon style of the whole site, with no content edits."
         },
         {
             "title": "Optional integrations",
-            "content": "Ready-made styling for News, Powermail, Apache Solr, and the TYPO3 blog, plus 8 Form Framework forms with a Friendly Captcha fallback and a Brevo double-opt-in newsletter finisher. Your whole stack, one design language."
+            "content": "Ready styling for News, Powermail, Apache Solr and the TYPO3 blog. Also included: 8 Form Framework forms with Friendly Captcha and a Brevo double opt-in newsletter finisher."
         }
     ],
     "image": {
         "file": "Resources/Public/Styleguide/Backend/backend-content-wizard.png",
         "title": "Desiderio content wizard",
-        "alternative": "TYPO3 new-content wizard listing all ten Desiderio element groups.",
-        "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+        "alternative": "The TYPO3 content wizard listing the ten Desiderio element groups.",
+        "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
         "source": "https://github.com/dirnbauer/desiderio"
     }
 }

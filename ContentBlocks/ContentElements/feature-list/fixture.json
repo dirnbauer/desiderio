@@ -1,22 +1,22 @@
 {
     "_type": "list",
     "eyebrow": "Theme layer",
-    "header": "15 presets = a redesign without a budget",
-    "subheadline": "Desiderio treats the look of your site as data editors can change, not code developers must redeploy. The next rebrand is a dropdown away.",
+    "header": "15 theme presets, switched without a rebuild",
+    "subheadline": "Desiderio treats the look of your site as data that editors can change, not code that developers must deploy. The next rebrand is one setting.",
     "items": [
         {
             "title": "15 shadcn presets",
-            "description": "<p>Five presets from <a href=\"https://ui.shadcn.com/create\">ui.shadcn.com/create</a> plus ten house presets, from Aurora to Citrus — each with <strong>WCAG 2.2-checked</strong> contrast.</p>",
+            "description": "<p>Five presets from <a href=\"https://ui.shadcn.com/create\">ui.shadcn.com/create</a> and ten house presets, from Aurora to Citrus. Each has <strong>WCAG 2.2-checked</strong> contrast.</p>",
             "icon": "globe"
         },
         {
             "title": "Per-page overrides",
-            "description": "<p>Every campaign gets its own look: set a preset once in page properties and the whole subtree inherits it down the rootline.</p>",
+            "description": "<p>Set a preset in the page properties, and the page and all its subpages use it. Each campaign can have its own look.</p>",
             "icon": "map-pin"
         },
         {
-            "title": "Runtime switching",
-            "description": "<p>Change the preset and the whole site repaints from OKLCH tokens — no <a href=\"https://tailwindcss.com\">Tailwind</a> rebuild, no deployment, no waiting.</p>",
+            "title": "Switch while the site runs",
+            "description": "<p>Change the preset and the site updates from its OKLCH tokens. There is no <a href=\"https://tailwindcss.com\">Tailwind</a> rebuild and no deployment.</p>",
             "icon": "sparkles"
         }
     ],

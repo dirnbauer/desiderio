@@ -1,27 +1,27 @@
 {
     "_type": "grid",
-    "header": "Four reasons developers say yes",
+    "header": "Four reasons developers choose Desiderio",
     "columns": "4",
     "items": [
         {
             "icon": "rocket",
             "title": "Demo site in minutes",
-            "description_text": "composer require, seed, done — show the client today."
+            "description_text": "Run composer require and the seeder, then show the client the same day."
         },
         {
             "icon": "lock",
-            "title": "GPL-2.0-or-later, free forever",
-            "description_text": "No license fees, no lock-in — full source on GitHub."
+            "title": "GPL-2.0-or-later, free to use",
+            "description_text": "No licence fees and no lock-in. The full source is on GitHub."
         },
         {
             "icon": "users",
-            "title": "Editors stop filing tickets",
+            "title": "Fewer tickets from editors",
             "description_text": "Previews and guided fields on all 244 elements."
         },
         {
             "icon": "heart",
-            "title": "Seriously maintained",
-            "description_text": "PHPStan at level max and PHPUnit run across every supported PHP version."
+            "title": "Actively maintained",
+            "description_text": "PHPStan at level 8 and PHPUnit run on every supported PHP version."
         }
     ]
 }

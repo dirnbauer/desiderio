@@ -1,27 +1,27 @@
 {
     "_type": "list",
-    "header": "From composer require to client demo in four steps",
-    "subheadline": "One command each — or skip the whole list and let the creators install it for you (€890, done right the first time).",
+    "header": "From install to client demo in four steps",
+    "subheadline": "Each step is one command. Or skip the list and let the maintainers install Desiderio for you, for €890.",
     "items": [
         {
             "step": "1",
             "title": "Install the package",
-            "description": "<p>Run composer require webconsulting/desiderio on <a href=\"https://typo3.org\">TYPO3 14.3+</a> with PHP 8.4+. GPL-2.0-or-later — nothing to license, nothing to negotiate.</p>"
+            "description": "<p>Run composer require webconsulting/desiderio on <a href=\"https://typo3.org\">TYPO3 v14.3</a> or later with PHP 8.4 or later. The GPL-2.0-or-later licence leaves nothing to negotiate.</p>"
         },
         {
             "step": "2",
             "title": "Add the site set",
-            "description": "<p>Include the Desiderio site set and the theme settings — preset, dark mode, density, radius, fonts — appear in your site configuration.</p>"
+            "description": "<p>Include the Desiderio site set. The theme settings for preset, dark mode, density, radius and fonts then appear in your site configuration.</p>"
         },
         {
             "step": "3",
             "title": "Seed the styleguide",
-            "description": "<p>desiderio:styleguide:seed creates a <strong>complete demo site</strong> with all 244 elements — idempotent and workspaces-safe, so re-running is always safe.</p>"
+            "description": "<p>desiderio:styleguide:seed creates a <strong>complete demo site</strong> with all 244 elements. It works in workspaces and is safe to run again.</p>"
         },
         {
             "step": "4",
-            "title": "Pick your look",
-            "description": "<p>Every styleguide chapter runs a different theme preset via the <strong>per-page override</strong> — browse all 15, pick yours, and you're demo-ready.</p>"
+            "title": "Choose your theme preset",
+            "description": "<p>Each styleguide chapter uses a different theme preset through the <strong>per-page override</strong>. Browse all 15 and choose yours.</p>"
         }
     ]
 }

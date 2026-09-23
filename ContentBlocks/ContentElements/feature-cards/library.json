@@ -1,23 +1,23 @@
 {
-    "header": "Everything the dispatch desk handles before 08:00",
+    "header": "What the dispatch desk settles before 08:00",
     "eyebrow": "Dispatch desk",
-    "subheadline": "Six o'clock in the morning: two sick calls, one broken-down van and a chiller failure at a food plant in Wels. These are the four things a dispatcher has to settle before the first crew leaves the yard.",
+    "subheadline": "At 06:00: two sick calls, a broken-down van and a chiller failure in Wels. These four things are settled before the first crew leaves.",
     "items": [
         {
             "title": "Reassign without phoning around",
-            "description": "<p>Drag a job to another technician and the mobile app updates in under two seconds. Nobody is called twice, and nobody drives to a call that was already covered.</p>"
+            "description": "<p>Drag a job to another technician and the app updates in under two seconds. Nobody is called twice or drives to a job already covered.</p>"
         },
         {
-            "title": "Protect the SLA clock",
-            "description": "<p>Contracted response windows sit on every job. The board warns 30 minutes before a breach, so the escalation happens while there is still time to move somebody.</p>"
+            "title": "Watch the SLA deadline",
+            "description": "<p>Each job shows its contracted response window. The board warns 30 minutes before a breach, while there is still time to send someone.</p>"
         },
         {
             "title": "See van stock before promising a part",
-            "description": "<p>Parts on each van are counted at close-out, so a dispatcher knows whether the compressor is 15 minutes away or three days out before committing to a time.</p>"
+            "description": "<p>Van stock is counted when each job closes. The dispatcher knows if the compressor is 15 minutes or three days away before agreeing a time.</p>"
         },
         {
             "title": "Hand over the shift in writing",
-            "description": "<p>The evening handover lists open calls, parts on order and anything the night crew inherits. It is generated from the board, not typed from memory.</p>"
+            "description": "<p>The evening handover lists open calls, parts on order and anything the night crew takes over. The board creates it, so nobody types it from memory.</p>"
         }
     ]
 }

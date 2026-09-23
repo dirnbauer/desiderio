@@ -1,27 +1,27 @@
 {
     "_type": "grid",
-    "header": "On by default. Off your to-do list.",
-    "subheadline": "Dark mode, icons, modern CSS, and accessibility foundations arrive with the system; project-level content and testing remain part of launch.",
+    "header": "Four things built in from the start",
+    "subheadline": "Dark mode, icons, modern CSS and accessibility basics come with the system. Your project's content and testing are still part of the launch.",
     "items": [
         {
             "icon": "moon",
             "title": "Dark mode built in",
-            "description_text": "Light, dark, and auto from one token set — no second stylesheet, ever."
+            "description_text": "Light, dark and auto modes use one set of tokens. You need no second stylesheet."
         },
         {
             "icon": "star",
             "title": "5 icon libraries",
-            "description_text": "Lucide, Tabler, HugeIcons, Phosphor, or Remix Icon — swap with one setting."
+            "description_text": "Lucide, Tabler, HugeIcons, Phosphor or Remix Icon. One setting switches between them."
         },
         {
             "icon": "zap",
             "title": "Tailwind v4 + OKLCH",
-            "description_text": "Modern color tokens and container queries, prewired and production-ready."
+            "description_text": "Modern colour tokens and container queries, set up and ready for production."
         },
         {
             "icon": "shield-check",
             "title": "WCAG 2.2 contrast checks",
-            "description_text": "Theme-token contrast is tested across every preset; final page conformance still depends on content and integrations."
+            "description_text": "Contrast is tested for every theme preset. Whether a finished page conforms still depends on its content and integrations."
         }
     ]
 }

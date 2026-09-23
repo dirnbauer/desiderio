@@ -1,53 +1,53 @@
 {
     "_type": "list",
     "header": "Run the whole site from the TYPO3 backend",
-    "subheadline": "Four backend views, one install — compose, edit inline, theme, and override without a single line of code.",
+    "subheadline": "Four backend views in one install: compose, edit inline, theme and override. None of them needs code.",
     "items": [
         {
             "tab_label": "Compose",
             "title": "Pick from ten element groups",
-            "description": "<p>The new-content wizard organizes all 244 Desiderio elements into <strong>ten curated groups</strong>. Editors find the right hero, pricing table, or footer in seconds instead of scrolling a flat list.</p>",
+            "description": "<p>The content wizard sorts all 244 Desiderio elements into <strong>ten groups</strong>. Editors find the right hero, pricing table or footer without scrolling a long list.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-content-wizard.png",
                 "title": "Desiderio content wizard",
-                "alternative": "TYPO3 new-content wizard listing all ten Desiderio element groups.",
-                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "alternative": "The TYPO3 content wizard listing the ten Desiderio element groups.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
             "tab_label": "Edit",
             "title": "Edit inline in the Visual Editor",
-            "description": "<p>The <strong>Visual Editor</strong> renders the real page with the live theme and lets editors type straight into it. What they see while editing is exactly what visitors get — no preview round-trips, no surprises.</p>",
+            "description": "<p>The <strong>Visual Editor</strong> shows the real page with the live theme, and editors type straight into it. What they see is what visitors get.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-visual-editor.png",
                 "title": "Editing in the Desiderio Visual Editor",
-                "alternative": "TYPO3 Visual Editor showing a Desiderio page being edited inline with live preview.",
-                "description": "Screenshot of inline editing in the Visual Editor with Desiderio installed.",
+                "alternative": "The TYPO3 Visual Editor with a Desiderio page open for inline editing.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
             "tab_label": "Theme",
             "title": "Restyle the site from settings",
-            "description": "<p>Theme preset, dark mode, density, radius, and fonts live in the site settings module. Switching presets repaints every element from OKLCH tokens — no rebuild, no deployment window.</p>",
+            "description": "<p>Theme preset, dark mode, density, radius and fonts are in the site settings. A new preset changes every element, with no rebuild and no deployment.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-site-settings-theme.png",
                 "title": "Desiderio theme site settings",
-                "alternative": "TYPO3 site settings showing the Desiderio theme category with preset and appearance options.",
-                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "alternative": "TYPO3 site settings showing the Desiderio theme options, including the preset.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
             "tab_label": "Override",
-            "title": "Theme a single subtree differently",
-            "description": "<p>A preset field in page properties overrides the site default and inherits down the rootline. Campaign pages, brand sections, or styleguide chapters each get their own look in one install.</p>",
+            "title": "Give one section its own theme",
+            "description": "<p>A preset field in the page properties applies to that page and its subpages. Campaign pages or brand sections get their own look.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-page-properties-theme.png",
                 "title": "Per-page theme preset field",
-                "alternative": "TYPO3 page properties with the Desiderio theme preset selector.",
-                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "alternative": "TYPO3 page properties with the Desiderio theme preset field.",
+                "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
                 "source": "https://github.com/dirnbauer/desiderio"
             }
         }

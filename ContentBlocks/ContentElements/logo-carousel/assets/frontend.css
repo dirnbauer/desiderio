@@ -74,3 +74,8 @@
     display: grid;
     gap: var(--d-spacing-sm);
 }
+
+/* Transparent monochrome SVG logos: drop the site's image frame (it shows as a box
+   around a transparent file) and use light ink on dark themes. */
+.logo-carousel__image[src*=".svg"] { background: none; border: 0; border-radius: 0; box-shadow: none; }
+.dark .logo-carousel__image[src*=".svg"] { filter: brightness(0) invert(0.92); }

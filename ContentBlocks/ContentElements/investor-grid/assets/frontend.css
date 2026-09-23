@@ -53,3 +53,8 @@
     border-radius: var(--d-radius-sm);
 }
 .investor-grid__link:hover { text-decoration: underline; }
+
+/* Transparent monochrome SVG logos: drop the site's image frame (it shows as a box
+   around a transparent file) and use light ink on dark themes. */
+.investor-grid__logo[src*=".svg"] { background: none; border: 0; border-radius: 0; box-shadow: none; }
+.dark .investor-grid__logo[src*=".svg"] { filter: brightness(0) invert(0.92); }

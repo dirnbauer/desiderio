@@ -44,3 +44,13 @@ a.client-list__name:focus-visible { outline: 2px solid var(--ring); outline-offs
     display: grid;
     gap: var(--d-spacing-sm);
 }
+
+/* Transparent monochrome SVG logos: drop the site's image frame (it shows as a box
+   around a transparent file) and use light ink on dark themes. */
+/* A wordmark needs a wider slot than the 5.5rem thumbnail to stay legible. */
+.client-list__media:has(> .client-list__image[src*=".svg"]) { width: 10rem; }
+.client-list__image[src*=".svg"] { padding: var(--d-spacing-xs) var(--d-spacing-sm); background: none; border: 0; border-radius: 0; box-shadow: none; }
+.dark .client-list__image[src*=".svg"] { filter: brightness(0) invert(0.92); }
+@media (max-width: 640px) {
+    .client-list__media:has(> .client-list__image[src*=".svg"]) { width: 7.5rem; }
+}

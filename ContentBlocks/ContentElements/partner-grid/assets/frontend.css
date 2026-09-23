@@ -100,3 +100,8 @@
     .partner-grid__link-arrow { transition: none; }
     .partner-grid__link:hover .partner-grid__link-arrow { transform: none; }
 }
+
+/* Transparent monochrome SVG logos: drop the site's image frame (it shows as a box
+   around a transparent file) and use light ink on dark themes. */
+.partner-grid__logo[src*=".svg"] { background: none; border: 0; border-radius: 0; box-shadow: none; }
+.dark .partner-grid__logo[src*=".svg"] { filter: brightness(0) invert(0.92); }

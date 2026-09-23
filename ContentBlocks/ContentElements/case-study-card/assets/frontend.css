@@ -40,3 +40,8 @@
 .d-richtext ol { list-style: decimal; }
 .d-richtext li { margin-block-end: var(--d-spacing-2xs); }
 .d-richtext a { color: var(--d-link, var(--primary)); text-decoration: underline; text-underline-offset: 2px; }
+
+/* Transparent monochrome SVG logos: drop the site's image frame (it shows as a box
+   around a transparent file) and use light ink on dark themes. */
+.case-study-card__logo-image[src*=".svg"] { background: none; border: 0; border-radius: 0; box-shadow: none; }
+.dark .case-study-card__logo-image[src*=".svg"] { filter: brightness(0) invert(0.92); }

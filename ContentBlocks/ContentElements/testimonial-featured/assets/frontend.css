@@ -27,3 +27,7 @@
 .testimonial-featured__avatar { width: 4rem; height: 4rem; border-radius: 9999px; object-fit: cover; }
 .testimonial-featured__name { font-weight: var(--d-weight-bold); font-style: normal; display: block; font-size: var(--d-text-lg); }
 .testimonial-featured__role { font-size: var(--d-text-sm); color: var(--muted-foreground); }
+
+/* Transparent monochrome SVG logos: drop the site's image frame (it shows as a box
+   around a transparent file). */
+.testimonial-featured__logo-img[src*=".svg"] { background: none; border: 0; border-radius: 0; box-shadow: none; }

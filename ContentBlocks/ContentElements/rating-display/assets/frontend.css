@@ -64,3 +64,8 @@
 
 /* Star icons come from d:atom.icon (stroke only); the rating state fills them. */
 .rating-display__star { fill: currentColor; }
+
+/* Transparent monochrome SVG logos: drop the site's image frame (it shows as a box
+   around a transparent file) and use light ink on dark themes. */
+.rating-display__logo-img[src*=".svg"] { background: none; border: 0; border-radius: 0; box-shadow: none; }
+.dark .rating-display__logo-img[src*=".svg"] { filter: brightness(0) invert(0.92); }

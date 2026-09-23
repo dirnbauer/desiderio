@@ -6,40 +6,97 @@
         {
             "title": "Chapters 1–5",
             "pages": [
-                { "label": "Hero & Landing Intros", "link": "/product/features" },
-                { "label": "Features & Benefits", "link": "/product/integrations" },
-                { "label": "Plans & Pricing", "link": "/pricing" },
-                { "label": "Data & Dashboards", "link": "/changelog" },
-                { "label": "Trust & Social Proof", "link": "/roadmap" }
+                {
+                    "label": "Hero & Landing Intros",
+                    "link": "/product/features"
+                },
+                {
+                    "label": "Features & Benefits",
+                    "link": "/product/integrations"
+                },
+                {
+                    "label": "Plans & Pricing",
+                    "link": "/pricing"
+                },
+                {
+                    "label": "Data & Dashboards",
+                    "link": "/changelog"
+                },
+                {
+                    "label": "Trust & Social Proof",
+                    "link": "/roadmap"
+                }
             ]
         },
         {
             "title": "Chapters 6–9",
             "pages": [
-                { "label": "People & Team", "link": "/solutions/startups" },
-                { "label": "Navigation & Wayfinding", "link": "/solutions/agencies" },
-                { "label": "Footers & Utility Areas", "link": "/solutions/enterprise" },
-                { "label": "Content & Editorial", "link": "/customers" }
+                {
+                    "label": "People & Team",
+                    "link": "/solutions/startups"
+                },
+                {
+                    "label": "Navigation & Wayfinding",
+                    "link": "/solutions/agencies"
+                },
+                {
+                    "label": "Footers & Utility Areas",
+                    "link": "/solutions/enterprise"
+                },
+                {
+                    "label": "Content & Editorial",
+                    "link": "/customers"
+                }
             ]
         },
         {
             "title": "Chapter 10 and theming",
             "pages": [
-                { "label": "Leads & Conversion", "link": "/docs" },
-                { "label": "15 theme presets", "link": "/help" },
-                { "label": "Per-page themes", "link": "/blog" },
-                { "label": "5 icon libraries", "link": "/docs/api" },
-                { "label": "Dark mode", "link": "https://status.example.com" }
+                {
+                    "label": "Leads & Conversion",
+                    "link": "/docs"
+                },
+                {
+                    "label": "15 theme presets",
+                    "link": "/help"
+                },
+                {
+                    "label": "Per-page themes",
+                    "link": "/blog"
+                },
+                {
+                    "label": "5 icon libraries",
+                    "link": "/docs/api"
+                },
+                {
+                    "label": "Dark mode",
+                    "link": "https://status.example.com"
+                }
             ]
         },
         {
             "title": "Project",
             "pages": [
-                { "label": "GitHub repository", "link": "https://github.com/dirnbauer/desiderio" },
-                { "label": "TYPO3.org", "link": "https://typo3.org" },
-                { "label": "shadcn/ui", "link": "https://ui.shadcn.com" },
-                { "label": "Privacy", "link": "/legal/privacy" },
-                { "label": "Imprint", "link": "/legal/terms" }
+                {
+                    "label": "GitHub repository",
+                    "link": "https://github.com/dirnbauer/desiderio"
+                },
+                {
+                    "label": "TYPO3.org",
+                    "link": "https://typo3.org"
+                },
+                {
+                    "label": "shadcn/ui",
+                    "link": "https://ui.shadcn.com"
+                },
+                {
+                    "label": "Privacy",
+                    "link": "/legal/privacy"
+                },
+                {
+                    "label": "Imprint",
+                    "link": "/legal/imprint"
+                }
             ]
         }
     ]

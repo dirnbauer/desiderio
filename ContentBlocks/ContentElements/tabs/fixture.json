@@ -6,12 +6,12 @@
     "items": [
         {
             "tab_label": "Theming",
-            "tab_content": "15 theme presets change the look of the whole site at once. Any part of the page tree can have its own preset. Every preset includes dark mode with checked contrast.",
+            "tab_content": "15 theme presets change the look of the whole site at once. Any part of the page tree can have its own preset. Every preset includes a dark mode with checked colour contrast.",
             "tab_icon": "sparkles"
         },
         {
             "tab_label": "Quality",
-            "tab_content": "PHPStan at level 8, PHPUnit tests on PHP 8.4 and 8.5, and an automated template audit. The audit rejects inline styles and fixed colours.",
+            "tab_content": "PHPStan at level 8, PHPUnit tests on PHP 8.4 and 8.5, and an automated template audit on every change. The audit rejects inline styles and fixed colours, so every element follows the theme.",
             "tab_icon": "shield-check"
         },
         {

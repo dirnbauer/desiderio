@@ -5,11 +5,11 @@
     "link_items": [
         {
             "label": "English",
-            "link": "/en"
+            "link": "{{page:home}}"
         },
         {
             "label": "Dark mode",
-            "link": "/theme/dark"
+            "link": "{{page:themes}}"
         },
         {
             "label": "typo3.org",

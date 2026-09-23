@@ -12,6 +12,7 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Resource\StorageRepository;
 use Webconsulting\Desiderio\Command\SeedStyleguidePagesCommand;
 use Webconsulting\Desiderio\Data\ContentBlockDefinitionRegistry;
+use Webconsulting\Desiderio\Data\StyleguideShowcasePages;
 use Webconsulting\Desiderio\Seeding\ContentBlockCollectionMap;
 use Webconsulting\Desiderio\Seeding\DatabaseSchemaHelper;
 
@@ -126,6 +127,57 @@ final class StyleguideSeedCommandTest extends AbstractStyleguideSeedingTestCase
         );
         self::assertSame('t3://page?uid=669', $fields['button_link'] ?? null);
         self::assertSame('https://github.com/dirnbauer/desiderio', $fields['fallback_link'] ?? null);
+    }
+
+    public function testEveryPagePlaceholderInAnElementFixtureNamesASeededPage(): void
+    {
+        $known = ['home' => true];
+        foreach (array_keys(new \ReflectionClassConstant(SeedStyleguidePagesCommand::class, 'CONTENT_TYPE_GROUP_SLUGS')->getValue()) as $groupId) {
+            $known['chapter-' . $groupId] = true;
+        }
+        foreach ([...StyleguideShowcasePages::subpages(), ...StyleguideShowcasePages::blogSupportPages()] as $page) {
+            $known[ltrim($page['slug'], '/')] = true;
+        }
+
+        $fixtures = self::elementFixtures();
+        self::assertNotSame([], $fixtures);
+        $unknown = [];
+        foreach ($fixtures as $fixture) {
+            preg_match_all('/\{\{page:([^}]+)\}\}/', (string)file_get_contents($fixture), $matches);
+            foreach ($matches[1] as $slug) {
+                if (!isset($known[$slug])) {
+                    $unknown[] = basename(dirname($fixture)) . ': ' . $slug;
+                }
+            }
+        }
+
+        self::assertSame([], $unknown, 'Placeholders the styleguide seeder cannot resolve');
+    }
+
+    public function testNoElementFixtureLinksAPathThatDoesNotExist(): void
+    {
+        // Internal links in fixtures are {{page:<slug>}} placeholders: a
+        // hard-coded path such as "/pricing" is a 404 on every installation.
+        $paths = [];
+        foreach (self::elementFixtures() as $fixture) {
+            if (preg_match_all('/"(?:[a-z_]*link[a-z_]*|url|href)"\s*:\s*"(\/[^"]*)"/', (string)file_get_contents($fixture), $matches) > 0) {
+                foreach ($matches[1] as $path) {
+                    $paths[] = basename(dirname($fixture)) . ': ' . $path;
+                }
+            }
+        }
+
+        self::assertSame([], $paths);
+    }
+
+    /**
+     * @return list<string>
+     */
+    private static function elementFixtures(): array
+    {
+        $fixtures = glob(__DIR__ . '/../../ContentBlocks/ContentElements/*/fixture.json');
+
+        return $fixtures === false ? [] : $fixtures;
     }
 
     public function testCollectionTableNamesAreDerivedUniquelyFromContentBlockDefinitions(): void

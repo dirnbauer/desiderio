@@ -358,7 +358,7 @@ final class ShowcaseStrategyPages
                 ShowcaseBlocks::block('desiderio_ctabanner', [
                     'header' => 'Plan your TYPO3 v14 platform with webconsulting',
                     'cta_text' => 'Book a call',
-                    'cta_link' => '/contact',
+                    'cta_link' => '{{page:desiderio-powermail/callback}}',
                     'bg_style' => 'primary',
                 ]),
             ],

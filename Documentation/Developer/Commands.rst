@@ -56,6 +56,35 @@ live-workspace fixture metadata in place. Every seeder refuses to run in the
 Production application context unless ``--allow-production`` is passed
 (``ProductionContextGuard``).
 
+Internal links in seed data
+===========================
+
+The styleguide showcase data and the elements' :file:`fixture.json` never
+hard-code a path such as ``/pricing``: a path is wrong on every site with
+another base, language or slug. They name the target page with a placeholder,
+which ``desiderio:styleguide:seed`` replaces with a ``t3://page?uid=…`` link
+once every seeded page exists:
+
+..  list-table::
+    :header-rows: 1
+    :widths: 40 60
+
+    *   - Placeholder
+        - Links to
+    *   - ``{{page:home}}``
+        - The page given as ``--parent`` (the styleguide root).
+    *   - ``{{page:chapter-<group>}}``
+        - A content-type chapter, for example ``{{page:chapter-pricing}}``.
+    *   - ``{{page:<slug>}}``
+        - The seeded page with that slug (without the leading slash), for
+          example ``{{page:technical-features}}``, or any other live page with
+          that slug below the root, such as the Powermail demo pages
+          (``{{page:desiderio-powermail/callback}}``).
+
+A placeholder that resolves to no page becomes the GitHub repository URL.
+``StyleguideSeedCommandTest`` fails for a fixture that links a plain path or a
+placeholder the seeder cannot resolve.
+
 ..  _developer-template-lint:
 
 The template lint gate

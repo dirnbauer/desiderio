@@ -137,6 +137,26 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
         );
     }
 
+    public function testPagePlaceholdersFindPagesTheSeederDoesNotTrackBelowTheRoot(): void
+    {
+        // The Powermail demo page below the root is linked, a page with the
+        // same slug outside the seeded tree is not, and an unknown slug stays
+        // unresolved (the seeder falls back to the repository URL).
+        $this->insertPage(0, 'Callback elsewhere', '/desiderio-powermail/callback');
+        $labUid = $this->insertPage(1, 'Powermail Lab', '/desiderio-powermail-lab');
+        $callbackUid = $this->insertPage($labUid, 'Powermail 03: Callback request', '/desiderio-powermail/callback');
+
+        $command = $this->get(SeedStyleguidePagesCommand::class);
+        $linkTargets = new \ReflectionMethod($command, 'addSeededPageLinkTargets')->invoke(
+            $command,
+            ['home' => 1],
+            1,
+            [[['fields' => ['cta_link' => '{{page:desiderio-powermail/callback}}', 'text' => '<a href="{{page:missing}}">x</a> {{page:home}}']]]]
+        );
+
+        self::assertSame(['home' => 1, 'desiderio-powermail/callback' => $callbackUid], $linkTargets);
+    }
+
     public function testSeedAssignsADistinctThemePresetPerPage(): void
     {
         $tester = $this->createCommandTester();
@@ -350,6 +370,16 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
         }
 
         return $slugs;
+    }
+
+    private function insertPage(int $pid, string $title, string $slug): int
+    {
+        $connection = $this->getConnectionPool()->getConnectionForTable('pages');
+        $connection->insert('pages', ['pid' => $pid, 'title' => $title, 'slug' => $slug, 'doktype' => 1]);
+        $uid = $connection->lastInsertId();
+        self::assertTrue(is_numeric($uid));
+
+        return (int)$uid;
     }
 
     private function insertLegacyRootPage(string $slug, int $index): int

@@ -23,8 +23,11 @@ use Webconsulting\Desiderio\Data\Showcase\ShowcaseSuccessStories;
  *
  * Internal links use the placeholder syntax {{page:<slug>}}; the seeder
  * replaces them with t3://page?uid=N once the target pages exist. The special
- * slug {{page:home}} resolves to the styleguide root page. Pages with a
- * parentSlug are created below that showcase page instead of the root.
+ * slug {{page:home}} resolves to the styleguide root page, chapter-<group>
+ * to a content-type chapter, and any other slug to the live page with that
+ * slug below the root (the Powermail demo pages, for instance). Element
+ * fixtures (fixture.json) use the same syntax. Pages with a parentSlug are
+ * created below that showcase page instead of the root.
  *
  * @phpstan-import-type ShowcaseBlock from ShowcaseBlocks
  * @phpstan-import-type ShowcasePage from ShowcaseBlocks

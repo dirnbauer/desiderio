@@ -8,23 +8,23 @@
             "pages": [
                 {
                     "label": "Hero & Landing Intros",
-                    "link": "/product/features"
+                    "link": "{{page:chapter-hero}}"
                 },
                 {
                     "label": "Features & Benefits",
-                    "link": "/product/integrations"
+                    "link": "{{page:chapter-features}}"
                 },
                 {
                     "label": "Plans & Pricing",
-                    "link": "/pricing"
+                    "link": "{{page:chapter-pricing}}"
                 },
                 {
                     "label": "Data & Dashboards",
-                    "link": "/changelog"
+                    "link": "{{page:chapter-data}}"
                 },
                 {
                     "label": "Trust & Social Proof",
-                    "link": "/roadmap"
+                    "link": "{{page:chapter-social-proof}}"
                 }
             ]
         },
@@ -33,19 +33,19 @@
             "pages": [
                 {
                     "label": "People & Team",
-                    "link": "/solutions/startups"
+                    "link": "{{page:chapter-team}}"
                 },
                 {
                     "label": "Navigation & Wayfinding",
-                    "link": "/solutions/agencies"
+                    "link": "{{page:chapter-navigation}}"
                 },
                 {
                     "label": "Footers & Utility Areas",
-                    "link": "/solutions/enterprise"
+                    "link": "{{page:chapter-footer}}"
                 },
                 {
                     "label": "Content & Editorial",
-                    "link": "/customers"
+                    "link": "{{page:chapter-content}}"
                 }
             ]
         },
@@ -54,23 +54,23 @@
             "pages": [
                 {
                     "label": "Leads & Conversion",
-                    "link": "/docs"
+                    "link": "{{page:chapter-conversion}}"
                 },
                 {
                     "label": "15 theme presets",
-                    "link": "/help"
+                    "link": "{{page:themes}}"
                 },
                 {
                     "label": "Per-page themes",
-                    "link": "/blog"
+                    "link": "{{page:technical-features}}"
                 },
                 {
                     "label": "5 icon libraries",
-                    "link": "/docs/api"
+                    "link": "{{page:technical-features}}"
                 },
                 {
                     "label": "Dark mode",
-                    "link": "https://status.example.com"
+                    "link": "{{page:themes}}"
                 }
             ]
         },
@@ -91,11 +91,11 @@
                 },
                 {
                     "label": "Privacy",
-                    "link": "/legal/privacy"
+                    "link": "{{page:privacy}}"
                 },
                 {
                     "label": "Imprint",
-                    "link": "/legal/imprint"
+                    "link": "{{page:imprint}}"
                 }
             ]
         }

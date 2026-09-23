@@ -326,6 +326,8 @@ final class SeedStyleguidePagesCommand extends Command
         $contentElementSeeder = $this->getContentElementSeeder();
 
         $linkTargets = [];
+        /** @var list<array{pageUid: int, ctype: string, name: string, fixture: array<string, mixed>, sorting: int}> $chapterContent */
+        $chapterContent = [];
 
         $contentTypesPageAttributes = [
             'nav_title' => self::CONTENT_TYPES_PAGE_TITLE,
@@ -393,50 +395,36 @@ final class SeedStyleguidePagesCommand extends Command
 
             $contentCleaner->softDeleteSeededContent($pageUid, $now, [], true);
 
+            // The chapter content is inserted once every seeded page exists,
+            // so {{page:<slug>}} placeholders in fixtures resolve to any of
+            // them (a sitemap demo links pages created further down).
             // Benefit-led chapter intro above the element demos (sorting 128
             // slots it before the first demo at 256).
             $chapterIntro = StyleguideContentGroups::chapterIntro($groupId);
             if ($chapterIntro !== null) {
-                $contentElementSeeder->insert($pageUid, $now, $this->getFixtureResolver()->buildContentInsert(
-                    $pageUid,
-                    'desiderio_headersection',
-                    'Chapter intro',
-                    $chapterIntro,
-                    128,
-                    $now,
-                    $contentColumns
-                ));
-                $createdContentElements++;
+                $chapterContent[] = ['pageUid' => $pageUid, 'ctype' => 'desiderio_headersection', 'name' => 'Chapter intro', 'fixture' => $chapterIntro, 'sorting' => 128];
             }
 
             foreach ($group['elements'] as $elementIndex => $element) {
-                $contentData = $this->getFixtureResolver()->buildContentInsert(
-                    $pageUid,
-                    (string)$element['ctype'],
-                    (string)$element['name'],
-                    $element['fixture'],
-                    ($elementIndex + 1) * 256,
-                    $now,
-                    $contentColumns
-                );
-
-                $contentElementSeeder->insert($pageUid, $now, $contentData);
-                $createdContentElements++;
+                $chapterContent[] = [
+                    'pageUid' => $pageUid,
+                    'ctype' => (string)$element['ctype'],
+                    'name' => (string)$element['name'],
+                    'fixture' => $element['fixture'],
+                    'sorting' => ($elementIndex + 1) * 256,
+                ];
             }
 
             // Closing conversion banner below the demos.
             $chapterCta = StyleguideContentGroups::chapterCta($groupId);
             if ($chapterCta !== null) {
-                $contentElementSeeder->insert($pageUid, $now, $this->getFixtureResolver()->buildContentInsert(
-                    $pageUid,
-                    'desiderio_ctabanner',
-                    'Chapter CTA',
-                    $chapterCta,
-                    (count($group['elements']) + 1) * 256 + 128,
-                    $now,
-                    $contentColumns
-                ));
-                $createdContentElements++;
+                $chapterContent[] = [
+                    'pageUid' => $pageUid,
+                    'ctype' => 'desiderio_ctabanner',
+                    'name' => 'Chapter CTA',
+                    'fixture' => $chapterCta,
+                    'sorting' => (count($group['elements']) + 1) * 256 + 128,
+                ];
             }
         }
 
@@ -540,7 +528,38 @@ final class SeedStyleguidePagesCommand extends Command
             );
         }
 
+        // The Powermail demo pages come before any content, so showcase links
+        // to them (the strategy page's "Book a call") resolve on the first run.
+        $powermailSummary = ['pages' => 0, 'forms' => 0, 'skipped' => true];
+        if (!$skipPowermail) {
+            $powermailSummary = $this->getPowermailDemoSeeder()->seed(
+                $parentPid,
+                $powermailStoragePid,
+                $powermailGermanLanguageUid,
+                $now,
+                $io
+            );
+        }
+
         $showcaseBlocks[$parentPid] = StyleguideShowcasePages::homeContent();
+        $linkTargets = $this->addSeededPageLinkTargets(
+            $linkTargets,
+            $parentPid,
+            [$chapterContent, $supportPageBlocks, $showcaseBlocks]
+        );
+
+        foreach ($chapterContent as $content) {
+            $contentElementSeeder->insert($content['pageUid'], $now, $this->getFixtureResolver()->buildContentInsert(
+                $content['pageUid'],
+                $content['ctype'],
+                $content['name'],
+                $this->substituteLinkPlaceholdersInFields($content['fixture'], $linkTargets),
+                $content['sorting'],
+                $now,
+                $contentColumns
+            ));
+            $createdContentElements++;
+        }
 
         foreach ($supportPageBlocks as $pageUid => $blocks) {
             $contentCleaner->softDeleteSeededContent($pageUid, $now, ['text'], true);
@@ -579,17 +598,6 @@ final class SeedStyleguidePagesCommand extends Command
                 $contentElementSeeder->insert($pageUid, $now, $contentData);
                 $createdContentElements++;
             }
-        }
-
-        $powermailSummary = ['pages' => 0, 'forms' => 0, 'skipped' => true];
-        if (!$skipPowermail) {
-            $powermailSummary = $this->getPowermailDemoSeeder()->seed(
-                $parentPid,
-                $powermailStoragePid,
-                $powermailGermanLanguageUid,
-                $now,
-                $io
-            );
         }
 
         $newsSummary = ['pages' => 0, 'records' => 0, 'contentElements' => 0, 'skipped' => true];
@@ -788,8 +796,8 @@ final class SeedStyleguidePagesCommand extends Command
     }
 
     /**
-     * Replaces {{page:<slug>}} placeholders in showcase block fields with
-     * t3://page links once the target pages exist.
+     * Replaces {{page:<slug>}} placeholders in showcase block fields and
+     * element fixtures with t3://page links once the target pages exist.
      *
      * @param array{ctype: string, colPos: int, fields: array<string, mixed>} $block
      * @param array<string, int> $linkTargets
@@ -797,15 +805,26 @@ final class SeedStyleguidePagesCommand extends Command
      */
     private function substituteLinkPlaceholders(array $block, array $linkTargets): array
     {
-        $fields = [];
-        foreach ($this->substituteLinkPlaceholdersInValue($block['fields'], $linkTargets) as $key => $value) {
-            if (is_string($key)) {
-                $fields[$key] = $value;
-            }
-        }
-        $block['fields'] = $fields;
+        $block['fields'] = $this->substituteLinkPlaceholdersInFields($block['fields'], $linkTargets);
 
         return $block;
+    }
+
+    /**
+     * @param array<string, mixed> $fields
+     * @param array<string, int> $linkTargets
+     * @return array<string, mixed>
+     */
+    private function substituteLinkPlaceholdersInFields(array $fields, array $linkTargets): array
+    {
+        $resolved = [];
+        foreach ($this->substituteLinkPlaceholdersInValue($fields, $linkTargets) as $key => $value) {
+            if (is_string($key)) {
+                $resolved[$key] = $value;
+            }
+        }
+
+        return $resolved;
     }
 
     /**
@@ -834,6 +853,95 @@ final class SeedStyleguidePagesCommand extends Command
         }
 
         return $values;
+    }
+
+    /**
+     * Adds the pages that placeholders name but this command does not track
+     * itself, such as the Powermail demo pages: found by slug (without the
+     * leading slash) among the live default-language pages below the root.
+     *
+     * @param array<string, int> $linkTargets
+     * @param list<array<array-key, mixed>> $valueSets
+     * @return array<string, int>
+     */
+    private function addSeededPageLinkTargets(array $linkTargets, int $rootPid, array $valueSets): array
+    {
+        $slugs = [];
+        array_walk_recursive($valueSets, static function (mixed $value) use (&$slugs): void {
+            if (is_string($value) && preg_match_all('/\{\{page:([^}]+)\}\}/', $value, $matches) > 0) {
+                foreach ($matches[1] as $slug) {
+                    $slugs[$slug] = true;
+                }
+            }
+        });
+
+        foreach (array_keys($slugs) as $slug) {
+            $slug = (string)$slug;
+            if (isset($linkTargets[$slug])) {
+                continue;
+            }
+            $pageUid = $this->findLivePageUidBelow($rootPid, '/' . $slug);
+            if ($pageUid !== null) {
+                $linkTargets[$slug] = $pageUid;
+            }
+        }
+
+        return $linkTargets;
+    }
+
+    private function findLivePageUidBelow(int $rootPid, string $slug): ?int
+    {
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('pages');
+        $queryBuilder->getRestrictions()->removeAll();
+        $constraints = [
+            $queryBuilder->expr()->eq('slug', $queryBuilder->createNamedParameter($slug)),
+            $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)),
+            ...new LiveWorkspaceQueryHelper($this->databaseSchema)->buildLiveWorkspaceConstraints($queryBuilder, 'pages'),
+        ];
+        if ($this->databaseSchema->tableHasColumn('pages', 'sys_language_uid')) {
+            $constraints[] = $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER));
+        }
+        $rows = $queryBuilder
+            ->select('uid', 'pid')
+            ->from('pages')
+            ->where(...$constraints)
+            ->orderBy('uid')
+            ->executeQuery()
+            ->fetchAllAssociative();
+
+        foreach ($rows as $row) {
+            $pageUid = is_numeric($row['uid'] ?? null) ? (int)$row['uid'] : 0;
+            $pid = is_numeric($row['pid'] ?? null) ? (int)$row['pid'] : 0;
+            if ($pageUid > 0 && $this->isPageBelow($pid, $rootPid)) {
+                return $pageUid;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Whether $pid is $rootPid or one of its descendants (walks up at most
+     * 20 levels, the depth of any seeded tree).
+     */
+    private function isPageBelow(int $pid, int $rootPid): bool
+    {
+        for ($level = 0; $pid > 0 && $level < 20; $level++) {
+            if ($pid === $rootPid) {
+                return true;
+            }
+            $queryBuilder = $this->connectionPool->getQueryBuilderForTable('pages');
+            $queryBuilder->getRestrictions()->removeAll();
+            $parent = $queryBuilder
+                ->select('pid')
+                ->from('pages')
+                ->where($queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($pid, ParameterType::INTEGER)))
+                ->executeQuery()
+                ->fetchOne();
+            $pid = is_numeric($parent) ? (int)$parent : 0;
+        }
+
+        return false;
     }
 
     private function getStarterContentBuilder(): StarterContentBuilder

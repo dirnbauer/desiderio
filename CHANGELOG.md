@@ -6,6 +6,39 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.4.0] — 2026-09-23
+
+### Added
+
+- `lib.pageHeadingOwnedByContent`, a TypoScript registry for content that
+  renders the page's `<h1>` itself. When any entry renders something, PAGEVIEW
+  sets `pageHeadingOwnedByContent` to `1` and `d:organism.pageHeader` (new
+  argument `headingOwnedByContent`) leaves the page-title `<h1>` out. Desiderio
+  registers the routed EXT:news detail view; extensions and site packages add
+  their own keys (100 and up) by page, plugin argument or content type, and
+  EXT:skillflow 1.8.1 registers its skill detail plugin. See
+  "Page templates → One h1 per page" in the manual.
+
+### Fixed
+
+- News detail pages in a blog tree (`DesiderioBlog` archetype) printed the
+  list heading and the article headline, two `<h1>`. The list heading now
+  stands down like the page header.
+- Corporate preset: a page without the page-title band (news or plugin detail
+  view) pulled its content up over the breadcrumb. It now starts below it.
+- The RTE combinations styleguide page had nine `<h1>` in its rich text next
+  to the page title. The fixture now uses h2–h6.
+
+### Changed
+
+- The `desiderio` RTE preset no longer offers "Heading 1": the page template
+  renders the page's only `<h1>`, so rich text starts at `<h2>`. Stored `<h1>`
+  markup still renders; the editor turns it into a paragraph when the record is
+  opened and saved.
+- All page templates pass `headingOwnedByContent="{pageHeadingOwnedByContent}"`
+  to the page header. Overridden page templates keep working (the argument is
+  optional) but only react to news detail views until they pass it too.
+
 ## [4.3.4] — 2026-09-23
 
 ### Changed

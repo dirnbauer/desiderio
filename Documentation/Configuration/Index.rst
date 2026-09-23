@@ -243,7 +243,7 @@ For TYPO3 14, install the maintained fork from
 
 ..  code-block:: bash
 
-    composer require "studiomitte/friendlycaptcha:^14.0@dev"
+    composer require "studiomitte/friendlycaptcha:~2.3.0.1"
 
 When the extension is installed and configured, the real Friendly Captcha
 widget renders and validates as usual — Desiderio never removes it, it only

@@ -687,13 +687,13 @@ vendor/bin/typo3 innesto:add magicui/marquee --ai',
                     'header' => 'Install',
                     'language' => 'bash',
                     'filename' => 'install-powermail.sh',
-                    'code' => '# Powermail and the Friendly Captcha fork are TYPO3 v14 dev builds,
-# so add their VCS repositories first:
+                    'code' => '# Powermail and Friendly Captcha come from their TYPO3 v14 forks,
+# so add the VCS repositories first:
 composer config repositories.powermail vcs https://github.com/dirnbauer/powermail
 composer config repositories.friendlycaptcha vcs https://github.com/dirnbauer/friendlycaptcha-typo3
 
-composer require in2code/powermail:dev-typo3-v14
-composer require studiomitte/friendlycaptcha:^14.0@dev
+composer require "in2code/powermail:~14.0.3.2"
+composer require "studiomitte/friendlycaptcha:~2.3.0.1"
 
 # Add the Desiderio Powermail site set to your TYPO3 site configuration,
 # then seed the six demo forms with:

@@ -63,9 +63,9 @@ final class CoreContentElements
                 'group' => 'content',
                 'gateExtension' => null,
                 'fixture' => [
-                    'header' => 'A standalone section heading',
+                    'header' => 'Coworking desks in the old tram depot',
                     'header_layout' => 2,
-                    'subheader' => 'Use a header-only element to introduce the block that follows.',
+                    'subheader' => 'Open Monday to Friday from 7:00 to 22:00. The reception desk is staffed until 18:00.',
                 ],
             ],
             [
@@ -75,10 +75,10 @@ final class CoreContentElements
                 'group' => 'content',
                 'gateExtension' => null,
                 'fixture' => [
-                    'header' => 'A regular text element',
-                    'bodytext' => '<p>A rich-text element with a heading and formatted body copy. '
-                        . 'Use it for paragraphs, lists, links and inline emphasis such as <strong>bold</strong> '
-                        . 'or <em>italic</em> text — the everyday building block of a page.</p>',
+                    'header' => 'How the day pass works',
+                    'bodytext' => '<p>A day pass gives you a desk in the open area from 8:00 to 20:00. '
+                        . 'Coffee, Wi-Fi and 20 printed pages are included. Book by <strong>18:00 the day before</strong>, '
+                        . 'or ask at reception on the day if a desk is <em>still free</em>.</p>',
                 ],
             ],
             [
@@ -88,15 +88,15 @@ final class CoreContentElements
                 'group' => 'content',
                 'gateExtension' => null,
                 'fixture' => [
-                    'header' => 'Text wrapped around images',
-                    'bodytext' => '<p>Body copy with one or more images arranged beside or around it. '
-                        . 'Image position, columns and link behaviour are controlled per element.</p>',
+                    'header' => 'A quiet floor for focused work',
+                    'bodytext' => '<p>The second floor is a quiet zone with 24 desks. '
+                        . 'Calls and meetings take place in the phone booths and rooms on the first floor.</p>',
                     'imageorient' => 25,
                     'image' => [
                         [
                             'file' => self::IMAGE_PRIMARY,
-                            'title' => 'Focused work session',
-                            'alternative' => 'A laptop open during a focused work session.',
+                            'title' => 'Working in the quiet zone',
+                            'alternative' => 'A person working on a laptop held on their lap.',
                         ],
                     ],
                 ],
@@ -108,15 +108,15 @@ final class CoreContentElements
                 'group' => 'content',
                 'gateExtension' => null,
                 'fixture' => [
-                    'header' => 'Text wrapped around media',
-                    'bodytext' => '<p>Like Text &amp; Images, but the media column also accepts video and '
-                        . 'audio alongside images, with the same layout and gallery options.</p>',
+                    'header' => 'Book a meeting room from your desk',
+                    'bodytext' => '<p>Members book the four meeting rooms online, by the half hour. '
+                        . 'A screen at each door shows who has the room next.</p>',
                     'imageorient' => 26,
                     'assets' => [
                         [
                             'file' => self::IMAGE_SECONDARY,
-                            'title' => 'Planning on a laptop',
-                            'alternative' => 'Hands using a laptop while planning work on a desk.',
+                            'title' => 'Booking a meeting room',
+                            'alternative' => 'Hands typing on a laptop on a wooden desk.',
                         ],
                     ],
                 ],
@@ -128,23 +128,23 @@ final class CoreContentElements
                 'group' => 'content',
                 'gateExtension' => null,
                 'fixture' => [
-                    'header' => 'An image gallery',
+                    'header' => 'A look around the depot',
                     'imagecols' => 3,
                     'image' => [
                         [
                             'file' => self::IMAGE_PRIMARY,
-                            'title' => 'Focused work session',
-                            'alternative' => 'A laptop open during a focused work session.',
+                            'title' => 'Working in the quiet zone',
+                            'alternative' => 'A person working on a laptop held on their lap.',
                         ],
                         [
                             'file' => self::IMAGE_SECONDARY,
-                            'title' => 'Planning on a laptop',
-                            'alternative' => 'Hands using a laptop while planning work on a desk.',
+                            'title' => 'Booking a meeting room',
+                            'alternative' => 'Hands typing on a laptop on a wooden desk.',
                         ],
                         [
                             'file' => self::IMAGE_TERTIARY,
-                            'title' => 'Collaborative workspace',
-                            'alternative' => 'People working together around laptops.',
+                            'title' => 'Shared tables on the ground floor',
+                            'alternative' => 'People working on laptops around a shared table.',
                         ],
                     ],
                 ],
@@ -158,11 +158,11 @@ final class CoreContentElements
                 'group' => 'content',
                 'gateExtension' => null,
                 'fixture' => [
-                    'header' => 'A bullet list',
-                    'bodytext' => "Each line becomes one bullet point\n"
-                        . "Great for short, scannable lists\n"
-                        . "Keep items parallel and concise\n"
-                        . 'No rich text — one idea per line',
+                    'header' => 'Included in every membership',
+                    'bodytext' => "Wi-Fi and a network cable at every desk\n"
+                        . "Coffee, tea and water all day\n"
+                        . "A locker on your floor\n"
+                        . 'Up to 50 printed pages a month',
                 ],
             ],
             [
@@ -172,12 +172,12 @@ final class CoreContentElements
                 'group' => 'content',
                 'gateExtension' => null,
                 'fixture' => [
-                    'header' => 'A simple table',
-                    'bodytext' => "Plan|Storage|Seats\nStarter|10 GB|3\nTeam|100 GB|10\nScale|1 TB|Unlimited",
+                    'header' => 'Membership plans compared',
+                    'bodytext' => "Plan|Desk|Meeting room hours\nDay pass|Open area|None\nFlex|Open area|4 a month\nFixed|Your own desk|10 a month",
                     'table_delimiter' => 124,
                     'table_enclosure' => 0,
                     'table_header_position' => 1,
-                    'table_caption' => 'Example comparison of plan tiers.',
+                    'table_caption' => 'What each membership plan includes.',
                 ],
             ],
             [
@@ -187,17 +187,17 @@ final class CoreContentElements
                 'group' => 'content',
                 'gateExtension' => null,
                 'fixture' => [
-                    'header' => 'Files for download',
+                    'header' => 'House rules and floor plans',
                     'media' => [
                         [
                             'file' => self::IMAGE_PRIMARY,
-                            'title' => 'Brand guidelines',
-                            'alternative' => 'Downloadable brand guidelines file.',
+                            'title' => 'House rules',
+                            'alternative' => 'The house rules for members, as a download.',
                         ],
                         [
                             'file' => self::IMAGE_SECONDARY,
-                            'title' => 'Product one-pager',
-                            'alternative' => 'Downloadable product one-pager file.',
+                            'title' => 'Floor plans',
+                            'alternative' => 'Floor plans of both floors, as a download.',
                         ],
                     ],
                 ],
@@ -221,7 +221,7 @@ final class CoreContentElements
                 'fixture' => [
                     'bodytext' => "<div class=\"ce-html-demo\">\n"
                         . "  <!-- Raw HTML is output verbatim, without processing. -->\n"
-                        . "  <p>Raw, unprocessed HTML for embeds and snippets.</p>\n"
+                        . "  <p>Today the reception desk closes early, at 16:00.</p>\n"
                         . '</div>',
                 ],
             ],
@@ -232,7 +232,7 @@ final class CoreContentElements
                 'group' => 'content',
                 'gateExtension' => null,
                 'fixture' => [
-                    'header' => 'Reused content',
+                    'header' => 'Opening hours and contact',
                 ],
             ],
 
@@ -243,7 +243,7 @@ final class CoreContentElements
                 'iconSlug' => 'menu-pages',
                 'group' => 'navigation',
                 'gateExtension' => null,
-                'fixture' => ['header' => 'Selected pages'],
+                'fixture' => ['header' => 'Popular pages'],
             ],
             [
                 'cType' => 'menu_subpages',
@@ -251,7 +251,7 @@ final class CoreContentElements
                 'iconSlug' => 'menu-subpages',
                 'group' => 'navigation',
                 'gateExtension' => null,
-                'fixture' => ['header' => 'Subpages'],
+                'fixture' => ['header' => 'In this section'],
             ],
             [
                 'cType' => 'menu_sitemap',
@@ -267,7 +267,7 @@ final class CoreContentElements
                 'iconSlug' => 'menu-sitemap-pages',
                 'group' => 'navigation',
                 'gateExtension' => null,
-                'fixture' => ['header' => 'Sitemaps of selected pages'],
+                'fixture' => ['header' => 'Membership and event pages'],
             ],
             [
                 'cType' => 'menu_section',
@@ -275,7 +275,7 @@ final class CoreContentElements
                 'iconSlug' => 'menu-section',
                 'group' => 'navigation',
                 'gateExtension' => null,
-                'fixture' => ['header' => 'Section index'],
+                'fixture' => ['header' => 'On this page'],
             ],
             [
                 'cType' => 'menu_section_pages',
@@ -283,7 +283,7 @@ final class CoreContentElements
                 'iconSlug' => 'menu-section-pages',
                 'group' => 'navigation',
                 'gateExtension' => null,
-                'fixture' => ['header' => 'Section index of selected pages'],
+                'fixture' => ['header' => 'Sections of the membership pages'],
             ],
             [
                 'cType' => 'menu_abstract',
@@ -291,7 +291,7 @@ final class CoreContentElements
                 'iconSlug' => 'menu-abstract',
                 'group' => 'navigation',
                 'gateExtension' => null,
-                'fixture' => ['header' => 'Abstracts'],
+                'fixture' => ['header' => 'Guides for new members'],
             ],
             [
                 'cType' => 'menu_recently_updated',
@@ -315,7 +315,7 @@ final class CoreContentElements
                 'iconSlug' => 'menu-categorized-pages',
                 'group' => 'navigation',
                 'gateExtension' => null,
-                'fixture' => ['header' => 'Categorized pages'],
+                'fixture' => ['header' => 'Pages in this category'],
             ],
             [
                 'cType' => 'menu_categorized_content',
@@ -323,7 +323,7 @@ final class CoreContentElements
                 'iconSlug' => 'menu-categorized-content',
                 'group' => 'navigation',
                 'gateExtension' => null,
-                'fixture' => ['header' => 'Categorized content'],
+                'fixture' => ['header' => 'More on this topic'],
             ],
 
             // --- Form plugins (gated on their extension) ------------------
@@ -333,7 +333,7 @@ final class CoreContentElements
                 'iconSlug' => 'form',
                 'group' => 'conversion',
                 'gateExtension' => 'form',
-                'fixture' => ['header' => 'A form'],
+                'fixture' => ['header' => 'Ask about a membership'],
             ],
             [
                 // felogin registers its plugin as CType "felogin_login" (v13+
@@ -343,7 +343,7 @@ final class CoreContentElements
                 'iconSlug' => 'login',
                 'group' => 'conversion',
                 'gateExtension' => 'felogin',
-                'fixture' => ['header' => 'Member login'],
+                'fixture' => ['header' => 'Log in to the member area'],
             ],
             [
                 'cType' => 'powermail_pi1',
@@ -351,7 +351,7 @@ final class CoreContentElements
                 'iconSlug' => 'powermail',
                 'group' => 'conversion',
                 'gateExtension' => 'powermail',
-                'fixture' => ['header' => 'A Powermail form'],
+                'fixture' => ['header' => 'Book a tour of the depot'],
             ],
         ];
     }

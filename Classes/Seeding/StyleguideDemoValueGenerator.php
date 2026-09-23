@@ -27,7 +27,7 @@ class StyleguideDemoValueGenerator
             'shadcn/ui',
             'TYPO3 Form Framework',
             'Fluid 5.3',
-            'A11y checked',
+            'Accessibility checked',
             'Responsive by default',
             'Editor-ready',
         ];
@@ -37,11 +37,11 @@ class StyleguideDemoValueGenerator
     protected function demoButtonLabels(): array
     {
         return [
-            'View pattern',
-            'Open preview',
-            'Compare states',
-            'Get checklist',
-            'Start conversation',
+            'See all elements',
+            'Open the preview',
+            'See pricing',
+            'Read the docs',
+            'Book a call',
         ];
     }
 
@@ -49,11 +49,11 @@ class StyleguideDemoValueGenerator
     protected function demoCopy(): array
     {
         return [
-            'Lead with the decision visitors need to make, then support it with compact proof and a clear next step.',
-            'Keep the surface calm, scannable, and token-driven so editors can reuse it across real TYPO3 pages.',
-            'Balance short copy, responsive spacing, and accessible controls so mobile stacks stay intentional.',
-            'Pair concrete product context with restrained shadcn surfaces, visible focus states, and useful media.',
-            'Use specific labels, realistic numbers, and TYPO3-native form handling so the preview feels publish-ready.',
+            'Start with the decision the visitor has to make. Then add short proof and one clear next step.',
+            'The layout uses design tokens only, so editors can reuse it on any TYPO3 page.',
+            'Short text, responsive spacing and accessible controls keep the element easy to read on a phone.',
+            'Every control has a visible focus state, and every image has alt text for screen readers.',
+            'Specific labels, real numbers and TYPO3 form handling show how the element looks when it goes live.',
         ];
     }
 
@@ -61,13 +61,13 @@ class StyleguideDemoValueGenerator
     protected function demoFeatures(): array
     {
         return [
-            'Theme-aware states',
+            'States follow the theme',
             'Keyboard focus built in',
-            'Reusable Content Blocks',
-            'Responsive editorial density',
-            'Token-based chart colors',
-            'Curated demo media',
-            'TYPO3 Form finishers',
+            'Built on Content Blocks',
+            'Responsive spacing',
+            'Chart colours from tokens',
+            'Demo images included',
+            'Form Framework finishers',
         ];
     }
 
@@ -93,14 +93,14 @@ class StyleguideDemoValueGenerator
     protected function demoSubjects(): array
     {
         return [
-            'Launch Readiness Review',
-            'Pattern Library Rollout',
-            'Content Operations Brief',
-            'Customer Evidence Hub',
-            'Product Adoption Report',
-            'Editor Workflow Upgrade',
-            'Service Performance Snapshot',
-            'Reusable Section Blueprint',
+            'Launch readiness review',
+            'Pattern library rollout',
+            'Content operations brief',
+            'Customer results overview',
+            'Product adoption report',
+            'Editor workflow upgrade',
+            'Service performance summary',
+            'Reusable section template',
         ];
     }
 
@@ -108,26 +108,26 @@ class StyleguideDemoValueGenerator
     protected function demoTabPanelCopy(): array
     {
         return [
-            'Organize related topics into focused panels so visitors compare options without leaving the page. The first tab stays selected by default, and spacing stays aligned with the rest of your editorial layout.',
-            'Preview how tab labels wrap, how icons align, and how panel copy scales on smaller breakpoints. Each seeded panel carries enough text to judge line length, hierarchy, and the gap between the tab list and body content.',
-            'Give editors realistic labels, icons, and body copy so previews feel publish-ready. The tabs element should read like a finished section, not a placeholder, which makes spacing and default-state checks faster during QA.',
+            'Tabs put related topics into separate panels, so visitors compare options without leaving the page. The first tab is open by default, and the spacing matches the rest of the layout.',
+            'This panel shows how tab labels wrap, how icons line up and how the text fits on small screens. It has enough text to judge line length and the gap between the tabs and the panel.',
+            'Realistic labels, icons and text make the preview look like a finished section. That makes it faster to check the spacing and the default tab before a new page goes live.',
         ];
     }
 
     /** @return list<string> */
     protected function demoTopics(): array
     {
-        return ['Artikel Hero', 'Content Strategy', 'Editorial Systems', 'Launch Notes', 'Customer Stories'];
+        return ['Theme presets', 'Content strategy', 'Editorial systems', 'Release notes', 'Customer stories'];
     }
 
     protected function demoRowData(int $index): string
     {
-        return ['Components|Ready|98%', 'Tokens|Synced|24', 'A11y|Passing|AA'][$index % 3];
+        return ['Components|Ready|98%', 'Tokens|Synced|24', 'Accessibility|Passing|AA'][$index % 3];
     }
 
     protected function demoTierValues(): string
     {
-        return 'Included,Token based,Priority review';
+        return 'Included,Token-based,Priority review';
     }
 
     /**
@@ -373,7 +373,7 @@ class StyleguideDemoValueGenerator
             str_contains($normalizedField, 'url') || str_contains($normalizedField, 'href') => $this->buildDefaultUrlTextValue($ctype, $field, $index),
             str_contains($normalizedField, 'alt') || str_contains($normalizedField, 'alternative') => 'Accessible demo image for ' . $subject . '.',
             str_contains($normalizedField, 'copyright') => 'Images are credited on their Unsplash file references.',
-            str_contains($normalizedField, 'credit') || str_contains($normalizedField, 'source') || str_contains($normalizedField, 'photographer') => 'Photo source: Unsplash demo image with photographer credit stored on the file reference.',
+            str_contains($normalizedField, 'credit') || str_contains($normalizedField, 'source') || str_contains($normalizedField, 'photographer') => 'Photo: Unsplash demo image. The photographer is credited on the file reference.',
             str_contains($normalizedField, 'quote') => $this->buildDefaultQuote($elementLabel),
             $normalizedField === 'tabcontent' => $this->buildDefaultTabPanelCopy($index),
             str_contains($normalizedField, 'description') || str_contains($normalizedField, 'content') || str_contains($normalizedField, 'body') || str_contains($normalizedField, 'copy') || str_contains($normalizedField, 'summary') || str_contains($normalizedField, 'bio') => $this->buildDefaultDemoCopy($elementLabel, $fieldLabel, $index),
@@ -381,8 +381,8 @@ class StyleguideDemoValueGenerator
             $normalizedField === 'suffix' => $this->buildDefaultMetricSuffix($ctype, $index),
             $normalizedField === 'step' => ['Plan', 'Build', 'Review', 'Publish'][$index % 4],
             $normalizedField === 'topic' || str_contains($normalizedField, 'topic') => $this->pickDemoString($this->demoTopics(), $name . '-' . $field, $index),
-            str_contains($normalizedField, 'readingtime') || (str_contains($normalizedField, 'reading') && str_contains($normalizedField, 'time')) => 'Dauer in min',
-            $normalizedField === 'meta' => '5min read',
+            str_contains($normalizedField, 'readingtime') || (str_contains($normalizedField, 'reading') && str_contains($normalizedField, 'time')) => '5 min read',
+            $normalizedField === 'meta' => '5 min read',
             $normalizedField === 'language' => 'PHP',
             $normalizedField === 'filename' => 'ArticleTeaserRenderer.php',
             $normalizedField === 'code' => $this->buildDefaultCodeBlockValue(),
@@ -407,7 +407,7 @@ class StyleguideDemoValueGenerator
             str_contains($normalizedField, 'email') => 'hello@example.com',
             str_contains($normalizedField, 'phone') || str_contains($normalizedField, 'tel') => '+43 1 555 010' . ($index + 1),
             str_contains($normalizedField, 'address') || str_contains($normalizedField, 'location') => 'Mariahilfer Strasse 42, 1070 Vienna',
-            str_contains($normalizedField, 'date') => 'May ' . min(28, $index + 8) . ', 2026',
+            str_contains($normalizedField, 'date') => min(28, $index + 8) . ' May 2026',
             str_contains($normalizedField, 'year') => '2026',
             str_contains($normalizedField, 'trend') => ['positive', 'stable', 'up'][$index % 3],
             $this->fieldIdentifierContainsAnyWord($field, ['count', 'counter', 'total', 'quantity', 'qty']) => ['128', '2.4K', '86', '12'][$index % 4],
@@ -547,7 +547,7 @@ PHP;
     public function buildDefaultQuote(string $elementLabel): string
     {
         return sprintf(
-            'The %s element gives editors a polished pattern they can publish without rewriting the layout around the content.',
+            'With the %s element, editors publish a finished section without rebuilding the layout around their content.',
             strtolower($elementLabel)
         );
     }

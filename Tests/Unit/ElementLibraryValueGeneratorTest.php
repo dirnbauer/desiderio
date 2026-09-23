@@ -93,7 +93,7 @@ final class ElementLibraryValueGeneratorTest extends TestCase
 
         self::assertContains(
             $eyebrow,
-            ['New', 'Popular', 'Featured', 'Now available', 'Customer favorite', 'Limited offer'],
+            ['New', 'Popular', 'Featured', 'Now available', 'Customer favourite', 'Limited offer'],
         );
     }
 
@@ -200,11 +200,11 @@ final class ElementLibraryValueGeneratorTest extends TestCase
 
         self::assertContains(
             $fields['eyebrow'] ?? null,
-            ['New', 'Popular', 'Featured', 'Now available', 'Customer favorite', 'Limited offer'],
+            ['New', 'Popular', 'Featured', 'Now available', 'Customer favourite', 'Limited offer'],
         );
         self::assertContains(
             $fields['primary_button_text'] ?? null,
-            ['Learn more', 'Get started', 'Book a demo', 'See pricing', 'Contact sales'],
+            ['See the features', 'Get started', 'Book a demo', 'See pricing', 'Contact sales'],
         );
 
         // The collection is filled to at least its minimum item count.

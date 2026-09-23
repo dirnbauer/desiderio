@@ -603,7 +603,7 @@ final class StyleguideFixtureResolverTest extends AbstractStyleguideSeedingTestC
         $command = $this->createCommand();
 
         self::assertSame(
-            'Dauer in min',
+            '5 min read',
             $this->invokeMethod($this->createDemoValueGenerator(), 'buildDefaultFieldValue', [
                 'desiderio_articlehero',
                 'Article Hero',
@@ -655,7 +655,7 @@ final class StyleguideFixtureResolverTest extends AbstractStyleguideSeedingTestC
         $command = $this->createCommand();
 
         self::assertSame(
-            '5min read',
+            '5 min read',
             $this->invokeMethod($this->createDemoValueGenerator(), 'buildDefaultFieldValue', [
                 'desiderio_blogteasers',
                 'Blog Teasers',

@@ -26,7 +26,7 @@ final class ElementLibraryValueGenerator extends StyleguideDemoValueGenerator
             'Popular',
             'Featured',
             'Now available',
-            'Customer favorite',
+            'Customer favourite',
             'Limited offer',
         ];
     }
@@ -34,7 +34,7 @@ final class ElementLibraryValueGenerator extends StyleguideDemoValueGenerator
     protected function demoButtonLabels(): array
     {
         return [
-            'Learn more',
+            'See the features',
             'Get started',
             'Book a demo',
             'See pricing',
@@ -45,11 +45,11 @@ final class ElementLibraryValueGenerator extends StyleguideDemoValueGenerator
     protected function demoCopy(): array
     {
         return [
-            'Bring your team, tools, and customers together in one place — and spend less time switching between tabs.',
-            'Everything you need to plan, launch, and grow, backed by support that actually responds.',
-            'Set up in minutes, invite your team, and see results in your first week.',
-            'Clear pricing, no long-term contracts, and the freedom to change plans whenever your needs do.',
-            'Built to scale with you, from your very first project to your busiest season.',
+            'Plan jobs, share files and answer customers from one screen. Your team spends less time switching between tools.',
+            'Our support team answers within four working hours, from Monday to Friday.',
+            'Most teams are set up in a day. You invite colleagues by email and import contacts from a spreadsheet.',
+            'Prices are per month, with no minimum term. You can change or cancel your plan at the end of any month.',
+            'The same plan works for a team of 3 and a team of 300. You only pay for active users.',
         ];
     }
 
@@ -58,7 +58,7 @@ final class ElementLibraryValueGenerator extends StyleguideDemoValueGenerator
         return [
             'Unlimited projects',
             'Real-time collaboration',
-            'Advanced analytics',
+            'Monthly usage reports',
             'Single sign-on (SSO)',
             'Priority support',
             'Mobile and desktop apps',
@@ -126,7 +126,7 @@ final class ElementLibraryValueGenerator extends StyleguideDemoValueGenerator
             'Where teams spend their first week',
             'Answers to the questions we get most',
             'What our customers measured afterwards',
-            'A closer look at how it fits together',
+            'How the parts fit together',
             'Which plan covers which use case',
         ];
     }
@@ -134,15 +134,15 @@ final class ElementLibraryValueGenerator extends StyleguideDemoValueGenerator
     protected function demoTabPanelCopy(): array
     {
         return [
-            'Give each topic its own space so visitors can focus on what matters to them. Switch between tabs to compare options, features, or plans without ever leaving the page.',
-            'Use tabs to organize detailed information into clear sections. Each panel can hold text, lists, or media, so you can present a lot of content without overwhelming the reader.',
-            'Group related content so people find answers faster. The first tab opens by default and the rest are one click away — ideal for FAQs, specifications, or step-by-step guides.',
+            'The Starter plan covers one location and up to 5 users. It includes scheduling, customer records and email support, and you can upgrade at any time without losing data.',
+            'The Team plan adds shared calendars, file storage and reports for up to 25 users. Most companies with two or three locations choose this plan in their first year.',
+            'The Business plan has no user limit and adds single sign-on, an audit log and a named contact. We move your existing data for you as part of the setup.',
         ];
     }
 
     protected function demoTopics(): array
     {
-        return ['Product Updates', 'How-To Guides', 'Company News', 'Best Practices', 'Customer Stories'];
+        return ['Product updates', 'How-to guides', 'Company news', 'Good practice', 'Customer stories'];
     }
 
     protected function demoRowData(int $index): string
@@ -171,7 +171,7 @@ final class ElementLibraryValueGenerator extends StyleguideDemoValueGenerator
      */
     public function buildDefaultQuote(string $elementLabel): string
     {
-        return 'Switching over was the best decision we made this year. Our team is faster, and our customers have noticed the difference.';
+        return 'Since we switched, our team answers customer requests in half the time. Our customers noticed within a month.';
     }
 
     /**

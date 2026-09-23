@@ -116,32 +116,32 @@ final class SeedStyleguidePagesCommand extends Command
             'slug' => '/content-types/navigation-wayfinding/wayfinding-patterns',
             'parentTarget' => 'chapter-navigation',
             'linkTarget' => 'content-types/navigation-wayfinding/wayfinding-patterns',
-            'header' => 'Breadcrumb demo - level 1 of 4',
-            'bodytext' => '<p>This subtree demonstrates the page-level breadcrumb. The trail above currently has <strong>three crumbs</strong> (home icon, parent chapter, this page) - short trails render in full.</p><p>Go one level deeper: <a href="{{page:content-types/navigation-wayfinding/wayfinding-patterns/breadcrumb-trails}}">Breadcrumb trails</a>.</p>',
+            'header' => 'Breadcrumb demo: level 1 of 4',
+            'bodytext' => '<p>These pages show the page breadcrumb. The trail above has <strong>three crumbs</strong>: the home icon, the parent chapter and this page. A short trail is shown in full.</p><p>Go one level deeper: <a href="{{page:content-types/navigation-wayfinding/wayfinding-patterns/breadcrumb-trails}}">Breadcrumb trails</a>.</p>',
         ],
         [
             'title' => 'Breadcrumb trails',
             'slug' => '/content-types/navigation-wayfinding/wayfinding-patterns/breadcrumb-trails',
             'parentTarget' => 'content-types/navigation-wayfinding/wayfinding-patterns',
             'linkTarget' => 'content-types/navigation-wayfinding/wayfinding-patterns/breadcrumb-trails',
-            'header' => 'Breadcrumb demo - level 2 of 4',
-            'bodytext' => '<p>The trail above now has <strong>four crumbs</strong> - the longest trail that still renders without truncation.</p><p>Go one level deeper: <a href="{{page:content-types/navigation-wayfinding/wayfinding-patterns/breadcrumb-trails/truncation-behaviour}}">Truncation behaviour</a>.</p>',
+            'header' => 'Breadcrumb demo: level 2 of 4',
+            'bodytext' => '<p>The trail above now has <strong>four crumbs</strong>. This is the longest trail that is still shown in full.</p><p>Go one level deeper: <a href="{{page:content-types/navigation-wayfinding/wayfinding-patterns/breadcrumb-trails/truncation-behaviour}}">Truncation behaviour</a>.</p>',
         ],
         [
             'title' => 'Truncation behaviour',
             'slug' => '/content-types/navigation-wayfinding/wayfinding-patterns/breadcrumb-trails/truncation-behaviour',
             'parentTarget' => 'content-types/navigation-wayfinding/wayfinding-patterns/breadcrumb-trails',
             'linkTarget' => 'content-types/navigation-wayfinding/wayfinding-patterns/breadcrumb-trails/truncation-behaviour',
-            'header' => 'Breadcrumb demo - level 3 of 4',
-            'bodytext' => '<p>Five crumbs exceed the limit, so the trail above collapses for the first time: <strong>home icon / &hellip; / parent / current page</strong>. The ellipsis carries a translated screen-reader label (&ldquo;More pages&rdquo; / &ldquo;Weitere Seiten&rdquo;), and the current page is plain text, never a link.</p><p>Go one level deeper: <a href="{{page:content-types/navigation-wayfinding/wayfinding-patterns/breadcrumb-trails/truncation-behaviour/deeply-nested-example}}">Deeply nested example</a>.</p>',
+            'header' => 'Breadcrumb demo: level 3 of 4',
+            'bodytext' => '<p>Five crumbs are over the limit, so the trail above is shortened for the first time: <strong>home icon / &hellip; / parent / current page</strong>. Screen readers announce the ellipsis with a translated label (&ldquo;More pages&rdquo; / &ldquo;Weitere Seiten&rdquo;). The current page is plain text, never a link.</p><p>Go one level deeper: <a href="{{page:content-types/navigation-wayfinding/wayfinding-patterns/breadcrumb-trails/truncation-behaviour/deeply-nested-example}}">Deeply nested example</a>.</p>',
         ],
         [
             'title' => 'Deeply nested example',
             'slug' => '/content-types/navigation-wayfinding/wayfinding-patterns/breadcrumb-trails/truncation-behaviour/deeply-nested-example',
             'parentTarget' => 'content-types/navigation-wayfinding/wayfinding-patterns/breadcrumb-trails/truncation-behaviour',
             'linkTarget' => 'content-types/navigation-wayfinding/wayfinding-patterns/breadcrumb-trails/truncation-behaviour/deeply-nested-example',
-            'header' => 'Breadcrumb demo - level 4 of 4',
-            'bodytext' => '<p>The deepest page of the demo: the rootline has <strong>six crumbs</strong>, and the ellipsis now hides three ancestors at once. However deep the tree grows, the trail stays at four rendered items: home icon, ellipsis, parent, current page.</p>',
+            'header' => 'Breadcrumb demo: level 4 of 4',
+            'bodytext' => '<p>This is the deepest page of the demo. The rootline has <strong>six crumbs</strong>, and the ellipsis now hides three pages at once. However deep the tree grows, the trail always shows four items: home icon, ellipsis, parent and current page.</p>',
         ],
     ];
 
@@ -331,7 +331,7 @@ final class SeedStyleguidePagesCommand extends Command
             'nav_title' => self::CONTENT_TYPES_PAGE_TITLE,
             ...$this->buildSeoPageAttributes(
                 self::CONTENT_TYPES_PAGE_TITLE,
-                'Browse Desiderio content types by chapter: heroes, navigation, editorial content, features, pricing, trust, people, data, conversion, and footer patterns.'
+                'Desiderio content elements in 10 chapters: heroes, navigation, editorial content, features, pricing, trust, team, data, conversion and footers.'
             ),
         ];
         $contentTypesPageUid = $pageUpserter->findExistingPageUid(
@@ -374,7 +374,7 @@ final class SeedStyleguidePagesCommand extends Command
             $pageAttributes = [
                 'tx_desiderio_shadcn_preset' => $preset,
                 ...$this->buildSeoPageAttributes($title, sprintf(
-                    '%s: %d Desiderio content elements for TYPO3 14 with live demo content — rendered in the "%s" theme preset of the shadcn/ui design system.',
+                    '%s: %d Desiderio content elements for TYPO3 v14, each with demo content. This chapter uses the %s theme preset.',
                     $title,
                     count($group['elements']),
                     ucfirst($preset)
@@ -690,7 +690,7 @@ final class SeedStyleguidePagesCommand extends Command
             $pageUid = $pageUpserter->findExistingPageUid($pagePid, $page['title'], $page['slug'], $pageColumns);
             $pageAttributes = $this->buildSeoPageAttributes(
                 $page['title'],
-                sprintf('Breadcrumb support page for the Desiderio %s chapter.', self::CONTENT_TYPES_PAGE_TITLE)
+                sprintf('A demo page for the Desiderio breadcrumb in the %s section. Together, these pages show how a long trail is shortened.', self::CONTENT_TYPES_PAGE_TITLE)
             );
             if ($pageUid === null) {
                 $pageUid = $pageUpserter->create($pagePid, $page['title'], $page['slug'], 256, $now, $pageColumns, $pageAttributes);

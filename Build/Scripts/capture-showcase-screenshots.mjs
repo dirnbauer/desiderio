@@ -33,7 +33,8 @@ const OUT = join(ROOT, 'Resources/Public/Styleguide/Frontend');
 
 /**
  * What each screenshot shows. `selector` crops to one element; without it
- * the shot is the first viewport of the page.
+ * the shot is a viewport of the page: the first one, or the one that starts
+ * just above the `scrollTo` element.
  */
 const SHOTS = [
     { name: 'frontend-gallery-parallax-hero', path: '/content-types/hero-landing-intros', selector: '.hero-parallax', preset: 'forest', width: 1440 },
@@ -45,6 +46,7 @@ const SHOTS = [
     { name: 'frontend-dashboards-forest', path: '/content-types/data-dashboards', preset: 'forest', width: 1600, height: 1000 },
     { name: 'frontend-features-ember-mobile', path: '/content-types/features-benefits', preset: 'ember', width: 390, height: 1000 },
     { name: 'frontend-pricing-midnight-dark', path: '/content-types/plans-pricing', preset: 'midnight', mode: 'dark', width: 1600, height: 1000 },
+    { name: 'frontend-themes-overview', path: '/themes', scrollTo: '.preset-grid', width: 1600, height: 1000 },
 ];
 
 /** Files that quote screenshot names. */
@@ -102,6 +104,9 @@ try {
             }
             window.scrollTo(0, 0);
         });
+        if (shot.scrollTo) {
+            await page.locator(shot.scrollTo).first().evaluate((el) => window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY - 140));
+        }
         await page.waitForTimeout(300);
 
         const png = shot.selector

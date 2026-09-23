@@ -77,7 +77,7 @@ final class StyleguideShowcasePages
                 'primary_button_variant' => 'default',
                 'secondary_button_text' => 'See the features',
                 'secondary_button_link' => '{{page:technical-features}}',
-                'hero_image' => ShowcaseBlocks::screenshot('backend-visual-editor.png', 'Editing a page in the Visual Editor', 'The TYPO3 Visual Editor with a Desiderio hero element selected for inline editing.'),
+                'hero_image' => ShowcaseBlocks::screenshot('frontend-themes-overview-296b3997.png', 'Six of the 15 theme presets', 'Preset cards on the Desiderio themes page, each rendered live in its own theme preset.'),
                 'image_position' => 'right',
                 'overlay_opacity' => '0.5',
             ]),
@@ -111,7 +111,7 @@ final class StyleguideShowcasePages
                     [
                         'title' => '2 · Paste the preset code',
                         'description' => 'Paste the code into the site settings and the whole site changes. No rebuild and no deployment. 15 presets are included.',
-                        'image' => ShowcaseBlocks::screenshot('backend-page-properties-theme.png', 'Theme preset in the page properties', 'TYPO3 page properties with the Desiderio theme preset field.'),
+                        'image' => ShowcaseBlocks::screenshot('backend-page-properties-theme-12e5b64a.png', 'Theme preset in the page properties', 'TYPO3 page properties with the Desiderio theme preset field.'),
                         'link' => '{{page:technical-features}}',
                     ],
                     [

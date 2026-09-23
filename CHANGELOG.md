@@ -6,6 +6,14 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.3.2] — 2026-09-23
+
+### Fixed
+
+- **One `h1` per page.** The blog's category, tag, author and archive lists
+  and the Article Hero element rendered a second `h1` under the page title.
+  They head their section with an `h2` now, at the same size.
+
 ## [4.3.1] — 2026-09-23
 
 ### Fixed

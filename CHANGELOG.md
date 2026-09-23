@@ -6,6 +6,20 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+- The Powermail Lab page shows its intro and form list in German on `/de/`.
+  The seeder put the German rows on the page's translation record, where
+  TYPO3 never shows content, so German visitors saw the English text. They
+  now sit on the lab page itself, each linked to its English row.
+- German Powermail demo texts use umlauts ("für", "Rückruf", "Priorität")
+  instead of "fuer", "Rueckruf" and "Prioritaet".
+
+### Changed
+
+- Shorter wording for the Powermail Lab intro and form list, with
+  "Powermail" capitalised.
+
 ## [4.4.0] — 2026-09-23
 
 ### Added

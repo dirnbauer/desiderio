@@ -89,22 +89,25 @@ final readonly class PowermailDemoSeeder
         }
         $this->softDeleteContentOnPages([$rootUid, $rootTranslationUid], $now);
 
-        $this->insertTextContent(
+        // Translated content sits on the default-language page ($rootUid), not on its translation
+        // record ($rootTranslationUid): TYPO3 never shows content attached to the latter.
+        $patternsUid = $this->insertTextContent(
             $rootUid,
             'Powermail form patterns',
-            'Six seeded powermail pages cover common website form patterns. Each form uses Friendly Captcha, office@webconsulting.at as sender and receiver, and a hidden child thank-you page.',
+            'Six Powermail pages cover common website form patterns. Each form uses Friendly Captcha, sends from and to office@webconsulting.at, and has a hidden thank-you page.',
             256,
             $now,
             $contentColumns
         );
         $this->insertTextContent(
-            $rootTranslationUid,
-            'Powermail Formularmuster',
-            'Sechs automatisch angelegte Powermail-Seiten decken typische Website-Formulare ab. Jedes Formular nutzt Friendly Captcha, office@webconsulting.at als Absender und Empfaenger sowie eine ausgeblendete Danke-Unterseite.',
+            $rootUid,
+            'Powermail-Formularmuster',
+            'Sechs Powermail-Seiten decken typische Website-Formulare ab. Jedes Formular nutzt Friendly Captcha, sendet von und an office@webconsulting.at und hat eine ausgeblendete Danke-Seite.',
             256,
             $now,
             $contentColumns,
-            $germanLanguageUid
+            $germanLanguageUid,
+            $patternsUid
         );
 
         $createdPages = 2;
@@ -214,15 +217,15 @@ final readonly class PowermailDemoSeeder
         // powermail template, so the lab page doubles as a template index.
         $overviewUid = $this->insertTextContent(
             $rootUid,
-            'The six powermail templates at a glance',
+            'The six Powermail templates at a glance',
             $this->buildOverviewBody($overviewEntries, false),
             384,
             $now,
             $contentColumns
         );
         $this->insertTextContent(
-            $rootTranslationUid,
-            'Die sechs Powermail-Vorlagen im Ueberblick',
+            $rootUid,
+            'Die sechs Powermail-Vorlagen im Überblick',
             $this->buildOverviewBody($overviewEntries, true),
             384,
             $now,
@@ -250,8 +253,8 @@ final readonly class PowermailDemoSeeder
         }
 
         $note = $german
-            ? '<p>Jede Vorlage rendert mit den shadcn-Feldpartials von Desiderio, nutzt Friendly Captcha und leitet nach dem Absenden auf eine eigene Danke-Unterseite weiter.</p>'
-            : '<p>Every template renders with the Desiderio shadcn field partials, uses Friendly Captcha, and redirects to its own thank-you subpage after submit.</p>';
+            ? '<p>Jede Vorlage nutzt die shadcn-Feldpartials von Desiderio und Friendly Captcha. Nach dem Absenden öffnet sie ihre eigene Danke-Seite.</p>'
+            : '<p>Every template uses Desiderio\'s shadcn field partials and Friendly Captcha. After sending, it opens its own thank-you page.</p>';
 
         return $note . '<ul>' . $items . '</ul>';
     }

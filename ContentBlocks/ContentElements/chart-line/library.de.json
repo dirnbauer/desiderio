@@ -1,6 +1,6 @@
 {
-    "header": "Median-Abfragezeit für Dashboards, sechs Monate",
-    "description": "<p>Median-Zeit bis zur ersten Darstellung eines gespeicherten Dashboards, Januar bis Juni 2026. Der Einbruch im März ist die spaltenorientierte Neufassung der Abfrageschicht; alles danach ist Feinschliff an den Indizes.</p>",
+    "header": "Median-Abfragezeit der Dashboards seit Januar",
+    "description": "<p>Mediane Zeit, bis ein gespeichertes Dashboard die ersten Daten zeigt, Januar bis Juni 2026. Der Rückgang im März kam von der Neufassung der Abfrageschicht für spaltenorientierten Speicher. Die weiteren Verbesserungen kommen aus dem Index-Tuning.</p>",
     "series_label": "Median-Abfragezeit",
     "unit": "Sekunden",
     "data_points": "Jan | 4.8\nFeb | 4.5\nMär | 3.1\nApr | 2.6\nMai | 2.2\nJun | 1.9",

@@ -1,6 +1,6 @@
 {
-    "header": "Was jeder Tarif enthält – ohne Vertriebsgespräch",
-    "description": "<p>Alle drei Tarife nutzen dieselbe Ingest-Pipeline und dieselbe Abfrage-Engine. Unterschiedlich sind das erlaubte Eventvolumen, wie lange Rohdaten abfragbar bleiben (6, 24 oder 36 Monate) und wie schnell jemand ans Telefon geht.</p>",
+    "header": "Was Starter, Growth und Scale enthalten",
+    "description": "<p>Alle drei Tarife nutzen dieselbe Ingest-Pipeline und dieselbe Abfrage-Engine. Sie unterscheiden sich im Eventvolumen, in der Reaktionszeit des Supports und darin, wie lange Rohdaten abfragbar bleiben: 6, 24 oder 36 Monate.</p>",
     "column_items": [
         {
             "name": "Starter",
@@ -17,21 +17,21 @@
     ],
     "comparison_feature_items": [
         {
-            "name": "Preis pro Monat, jährlich abgerechnet",
+            "name": "Preis pro Monat bei jährlicher Abrechnung",
             "tier_values": [
                 {
-                    "value": "EUR 49"
+                    "value": "49 €"
                 },
                 {
-                    "value": "EUR 249"
+                    "value": "249 €"
                 },
                 {
-                    "value": "EUR 890"
+                    "value": "890 €"
                 }
             ]
         },
         {
-            "name": "Inkludierte Events pro Monat",
+            "name": "Enthaltene Events pro Monat",
             "tier_values": [
                 {
                     "value": "1 Million"
@@ -45,7 +45,7 @@
             ]
         },
         {
-            "name": "Reaktionszeit im Support",
+            "name": "Reaktionszeit des Supports",
             "tier_values": [
                 {
                     "value": "2 Werktage"

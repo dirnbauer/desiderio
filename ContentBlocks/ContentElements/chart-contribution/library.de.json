@@ -1,9 +1,9 @@
 {
-    "header": "Events in Streams, Woche für Woche",
-    "subheadline": "Ingest-Volumen für jede ISO-Woche des zweiten Quartals, gemessen am Frankfurter Cluster. Der Sprung in Woche 26 ist Kite & Co: Die mobile App wechselte vom nächtlichen Batch-Upload auf Live-Events.",
+    "header": "Eingehende Events in Streams, Woche für Woche",
+    "subheadline": "Wöchentliches Ingest-Volumen von KW 22 bis KW 29, alle Regionen zusammen. Der Sprung in KW 26 kommt von Kite & Co: Die mobile App sendet seitdem Live-Events statt nächtlicher Uploads.",
     "metric_label": "Events",
     "unit": "Millionen Events",
-    "badge_text": "+31,4 % über das Quartal",
+    "badge_text": "Plus 31,4 %",
     "points": [
         {
             "point_label": "KW22",
@@ -40,9 +40,9 @@
     ],
     "left_stat_label": "Stärkste Woche",
     "left_stat_value": "1,04 Mrd.",
-    "left_stat_detail": "Woche 28, die erste volle Woche nach Abschluss der Migration von Kite & Co.",
+    "left_stat_detail": "KW 28, die erste volle Woche nach der Migration von Kite & Co.",
     "right_stat_label": "Wochendurchschnitt",
     "right_stat_value": "920 Mio.",
-    "right_stat_detail": "Über die acht Wochen des Quartals, alle drei Regionen zusammengenommen.",
+    "right_stat_detail": "Über alle acht Wochen und alle drei Regionen.",
     "primary_button_text": "Ingest-Bericht öffnen"
 }

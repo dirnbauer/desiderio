@@ -1,27 +1,27 @@
 {
     "_type": "list",
-    "header": "The Desiderio release story",
-    "subheadline": "From a handful of Fluid templates to 244 content elements with their own theme engine.",
+    "header": "The Desiderio release history",
+    "subheadline": "From a few Fluid templates to 244 content elements with their own theme system.",
     "events": [
         {
             "year": "2024",
             "title": "First public release",
-            "description": "<p><strong>Desiderio 1.0</strong> brought shadcn-inspired styling to <a href=\"https://typo3.org\">TYPO3</a> Content Blocks, with backend previews from day one.</p>"
+            "description": "<p><strong>Desiderio 1.0</strong> brought shadcn/ui styling to <a href=\"https://typo3.org\">TYPO3</a> Content Blocks, with backend previews from the start.</p>"
         },
         {
             "year": "2025",
-            "title": "53 Fluid 5 components",
-            "description": "<p>The component layer landed: <strong>17 atoms</strong>, 28 molecules, and 4 layout primitives shared across every element.</p>"
+            "title": "A shared component layer",
+            "description": "<p>The component layer arrived. Today it has <strong>17 atoms</strong>, 37 molecules, 4 layouts and 4 organisms, shared by every element.</p>"
         },
         {
             "year": "2025",
             "title": "15 theme presets",
-            "description": "<p><strong>Ten house presets</strong> from Aurora to Citrus joined the five <a href=\"https://ui.shadcn.com\">shadcn</a> styles — switching repaints the site at runtime.</p>"
+            "description": "<p><strong>Ten house presets</strong>, from Aurora to Citrus, joined the five <a href=\"https://ui.shadcn.com\">shadcn</a> presets. Switching one changes the site at runtime.</p>"
         },
         {
             "year": "2026",
             "title": "Per-page presets in 2.6",
-            "description": "<p>Any page subtree can now run its own theme, inherited down the rootline. The styleguide shows one per chapter.</p>"
+            "description": "<p>Each page and its subpages can now use their own theme preset. The styleguide uses a different one for each chapter.</p>"
         }
     ]
 }

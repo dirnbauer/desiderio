@@ -2,43 +2,43 @@
     "_type": "team",
     "eyebrow": "Our team",
     "header": "The people behind every Desiderio release",
-    "subheadline": "A small, senior team at webconsulting studio — design, engineering, and accessibility under one roof. The same people answer your Pro support tickets and run the managed hosting.",
+    "subheadline": "A small, senior team at webconsulting studio covers design, engineering and accessibility. The same people answer your Pro support tickets and run the managed hosting.",
     "variant": "grid",
     "columns": "3",
     "members": [
         {
             "name": "Lea Fischer",
             "role": "Design System Lead",
-            "bio": "<p>Owns the 53-component library and the <strong>token scale</strong> that keeps all 15 presets consistent — including the custom presets we design for client brands.</p>",
+            "bio": "<p>Owns the 62-component library and the <strong>token scale</strong> that keeps all 15 presets consistent, including custom presets for client brands.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/team-lea-fischer.jpg",
                 "title": "Lea Fischer",
-                "alternative": "Portrait photo of Lea Fischer.",
-                "description": "Photo: Unsplash"
+                "alternative": "Portrait of Lea Fischer.",
+                "description": "Photo: Unsplash."
             },
             "profile_link": "https://example.com/desiderio/profile_link_1"
         },
         {
             "name": "Mara Weiss",
             "role": "Fluid Components Engineer",
-            "bio": "<p>Built the atoms and molecules behind all 244 content elements, and runs the LTS upgrades for managed-hosting customers.</p>",
+            "bio": "<p>Built the atoms and molecules behind all 244 content elements. She also runs the LTS upgrades for managed-hosting customers.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/team-mara-weiss.jpg",
                 "title": "Mara Weiss",
-                "alternative": "Portrait photo of Mara Weiss.",
-                "description": "Photo: Unsplash"
+                "alternative": "Portrait of Mara Weiss.",
+                "description": "Photo: Unsplash."
             },
             "profile_link": "https://example.com/desiderio/profile_link_2"
         },
         {
             "name": "Noah Ritter",
             "role": "Accessibility Engineer",
-            "bio": "<p>Reviews every element for WCAG-minded markup — the contrast checks behind all <strong>15 presets</strong> are his, and they survive every theme switch.</p>",
+            "bio": "<p>Reviews every element for accessible markup. The contrast checks for all <strong>15 presets</strong> are his, and they pass after every theme switch.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/team-noah-ritter.jpg",
                 "title": "Noah Ritter",
-                "alternative": "Portrait photo of Noah Ritter.",
-                "description": "Photo: Unsplash"
+                "alternative": "Portrait of Noah Ritter.",
+                "description": "Photo: Unsplash."
             },
             "profile_link": "https://example.com/desiderio/profile_link_3"
         }

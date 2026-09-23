@@ -1,42 +1,42 @@
 {
     "_type": "team",
-    "header": "The people steering the roadmap",
-    "subheadline": "A small maintainer council at webconsulting studio decides what lands in each Desiderio release.",
+    "header": "The people who decide the roadmap",
+    "subheadline": "Three maintainers at webconsulting studio decide what goes into each Desiderio release.",
     "members": [
         {
             "name": "Sofia Berg",
             "title": "Project Lead",
             "affiliation": "webconsulting studio",
-            "bio": "<p>Owns the release train from 1.0 through the current release, including the jump to <strong>244 content elements</strong> and per-page theme presets.</p>",
+            "bio": "<p>Has led every release since 1.0, including the move to <strong>244 content elements</strong> and theme presets per page.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/board-sofia-berg.jpg",
                 "title": "Sofia Berg",
-                "alternative": "Portrait photo of Sofia Berg.",
-                "description": "Photo: Unsplash"
+                "alternative": "Portrait of Sofia Berg.",
+                "description": "Photo: Unsplash."
             }
         },
         {
             "name": "Noah Ritter",
-            "title": "Accessibility Steward",
+            "title": "Accessibility Lead",
             "affiliation": "webconsulting studio",
-            "bio": "<p>Keeps every component WCAG-minded: focus states, ARIA, and screen-reader copy are reviewed before any element ships.</p>",
+            "bio": "<p>Reviews focus states, ARIA attributes and screen-reader text before any element ships.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/board-noah-ritter.jpg",
                 "title": "Noah Ritter",
-                "alternative": "Portrait photo of Noah Ritter.",
-                "description": "Photo: Unsplash"
+                "alternative": "Portrait of Noah Ritter.",
+                "description": "Photo: Unsplash."
             }
         },
         {
             "name": "Lea Fischer",
-            "title": "Quality & Audit Lead",
+            "title": "Quality Lead",
             "affiliation": "webconsulting studio",
-            "bio": "<p>Runs the <strong>automated template audit</strong> and the PHPStan-level-max CI gate that every pull request has to pass.</p>",
+            "bio": "<p>Runs the <strong>automated template audit</strong> and the PHPStan level 8 check that every pull request must pass.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/board-lea-fischer.jpg",
                 "title": "Lea Fischer",
-                "alternative": "Portrait photo of Lea Fischer.",
-                "description": "Photo: Unsplash"
+                "alternative": "Portrait of Lea Fischer.",
+                "description": "Photo: Unsplash."
             }
         }
     ]

@@ -1,23 +1,23 @@
 {
     "_type": "grid",
-    "eyebrow": "What we stand for",
+    "eyebrow": "Our values",
     "header": "The values behind every Desiderio release",
-    "subheadline": "Three principles that decide what gets merged — and what gets sent back.",
+    "subheadline": "Three principles decide what gets merged and what gets sent back.",
     "value_items": [
         {
             "icon": "users",
             "title": "Editors first",
-            "description": "<p>If a <a href=\"https://typo3.org\">TYPO3</a> editor cannot understand an element from its <strong>backend preview</strong>, it is not done. All 244 elements preview before they ship.</p>"
+            "description": "<p>If a <a href=\"https://typo3.org\">TYPO3</a> editor can't understand an element from its <strong>backend preview</strong>, it isn't finished. All 244 elements have a preview.</p>"
         },
         {
             "icon": "shield-check",
-            "title": "Accessibility as a default",
-            "description": "<p>WCAG-minded structures are the baseline, not a feature flag. Shared focus and ARIA patterns plus tested theme-token contrast provide a strong starting point for project-level review.</p>"
+            "title": "Accessible by default",
+            "description": "<p>Accessible structure is the baseline, not an option. Shared focus and ARIA patterns and tested contrast are a starting point for each project's own review.</p>"
         },
         {
             "icon": "lightning",
             "title": "No rebuilds",
-            "description": "<p>Themes, density, radius, and dark mode are <strong>runtime decisions</strong>. Switching a preset repaints the whole site without touching a build pipeline.</p>"
+            "description": "<p>Theme, density, radius and dark mode are <strong>runtime settings</strong>. Switching a preset changes the whole site without a build step.</p>"
         }
     ]
 }

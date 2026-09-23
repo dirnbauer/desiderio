@@ -1,39 +1,39 @@
 {
     "_type": "grid",
-    "eyebrow": "Life at webconsulting studio",
+    "eyebrow": "How we work",
     "header": "How we build Desiderio",
-    "subheadline": "Three habits shape every release, from the first atom sketch to the seeded styleguide.",
+    "subheadline": "Three habits shape each release, from the first sketch to the finished styleguide.",
     "items": [
         {
             "title": "Open source by default",
-            "description": "<p>Everything ships <strong>GPL-2.0-or-later</strong> on <a href=\"https://github.com\">GitHub</a> — components, presets, and the seeder. Issues and pull requests drive the roadmap.</p>",
+            "description": "<p>Components, presets and the seeder are all <strong>GPL-2.0-or-later</strong> on <a href=\"https://github.com\">GitHub</a>. Issues and pull requests set the roadmap.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/customer-workshop.jpg",
                 "title": "Team workshop",
                 "alternative": "Colleagues discussing work around a shared table.",
-                "description": "Workshop photo from Unsplash.",
+                "description": "Photo: Unsplash.",
                 "source": "https://unsplash.com"
             }
         },
         {
             "title": "Audit before merge",
-            "description": "<p>An <strong>automated template audit</strong> with zero tolerance: no inline styles, no hardcoded colors, every element checked in CI.</p>",
+            "description": "<p>An <strong>automated template audit</strong> runs in CI on every element. It allows no inline styles and no fixed colours.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/office-e-vos.jpg",
                 "title": "Studio office",
                 "alternative": "A bright office space with desks and screens.",
-                "description": "Office photo from Unsplash by E. Vos.",
+                "description": "Photo: Unsplash.",
                 "source": "https://unsplash.com"
             }
         },
         {
-            "title": "Editors are users too",
-            "description": "<p>All 244 content elements get a <strong>real backend preview</strong>, so <a href=\"https://typo3.org\">TYPO3</a> editors see what they ship — not gray placeholder boxes.</p>",
+            "title": "Previews for editors",
+            "description": "<p>All 244 content elements have a <strong>real backend preview</strong>, so <a href=\"https://typo3.org\">TYPO3</a> editors see the actual content, not grey boxes.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/whiteboard-vitaly-gariev.jpg",
                 "title": "Whiteboard session",
                 "alternative": "Two people sketching interface ideas on a whiteboard.",
-                "description": "Collaboration photo from Unsplash by Vitaly Gariev.",
+                "description": "Photo: Unsplash.",
                 "source": "https://unsplash.com"
             }
         }

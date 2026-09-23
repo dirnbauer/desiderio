@@ -1,50 +1,50 @@
 {
     "_type": "team",
-    "header": "Advised by design-system practitioners",
-    "subheadline": "Practitioners who review Desiderio's components, tokens, and accessibility decisions before every release.",
+    "header": "The advisors who review each release",
+    "subheadline": "Four specialists check Desiderio's components, colour tokens and accessibility before each release.",
     "advisors": [
         {
             "name": "Noah Ritter",
-            "expertise": "Accessibility & inclusive markup",
-            "company": "WCAG auditor, public-sector web",
+            "expertise": "Accessibility and inclusive markup",
+            "company": "WCAG auditor for public-sector websites",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/advisor-noah-ritter.jpg",
                 "title": "Noah Ritter",
-                "alternative": "Portrait photo of Noah Ritter.",
-                "description": "Photo: Unsplash"
+                "alternative": "Portrait of Noah Ritter.",
+                "description": "Photo: Unsplash."
             }
         },
         {
             "name": "Lea Fischer",
-            "expertise": "Design tokens & theming",
+            "expertise": "Design tokens and theming",
             "company": "Independent design systems consultant",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/advisor-lea-fischer.jpg",
                 "title": "Lea Fischer",
-                "alternative": "Portrait photo of Lea Fischer.",
-                "description": "Photo: Unsplash"
+                "alternative": "Portrait of Lea Fischer.",
+                "description": "Photo: Unsplash."
             }
         },
         {
             "name": "Mara Weiss",
-            "expertise": "Frontend security & CSP",
-            "company": "Security reviewer, OSS projects",
+            "expertise": "Frontend security and CSP",
+            "company": "Security reviewer for open-source projects",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/advisor-mara-weiss.jpg",
                 "title": "Mara Weiss",
-                "alternative": "Portrait photo of Mara Weiss.",
-                "description": "Photo: Unsplash"
+                "alternative": "Portrait of Mara Weiss.",
+                "description": "Photo: Unsplash."
             }
         },
         {
             "name": "Jonas Klein",
-            "expertise": "TYPO3 ecosystem & extensions",
-            "company": "Longtime TYPO3 community contributor",
+            "expertise": "TYPO3 extensions",
+            "company": "Long-time TYPO3 community contributor",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/advisor-jonas-klein.jpg",
                 "title": "Jonas Klein",
-                "alternative": "Portrait photo of Jonas Klein.",
-                "description": "Photo: Unsplash"
+                "alternative": "Portrait of Jonas Klein.",
+                "description": "Photo: Unsplash."
             }
         }
     ]

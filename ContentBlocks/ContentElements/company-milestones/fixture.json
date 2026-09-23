@@ -1,27 +1,27 @@
 {
     "_type": "list",
     "header": "Milestones that shaped Desiderio",
-    "subheadline": "A few moments from the first prototype to a 244-element kit for TYPO3 14.",
+    "subheadline": "Four steps from the first prototype to 244 content elements for TYPO3 v14.",
     "milestones": [
         {
             "year": "2024",
             "title": "Ten content element groups",
-            "description": "<p>Hero, Features, Pricing and seven more groups gave editors a complete page-building vocabulary.</p>"
+            "description": "<p>Hero, Features, Pricing and seven more groups gave editors a full set of parts for building pages.</p>"
         },
         {
             "year": "2025",
-            "title": "Zero-tolerance template audit",
-            "description": "<p>An automated template audit went into CI: no inline styles, no hardcoded colors, <strong>no exceptions</strong>.</p>"
+            "title": "A strict template audit",
+            "description": "<p>An automated template audit joined CI: no inline styles, no fixed colours, <strong>no exceptions</strong>.</p>"
         },
         {
             "year": "2025",
             "title": "Five icon libraries",
-            "description": "<p>Lucide, Tabler, HugeIcons, Phosphor, and Remix Icon became switchable behind stable semantic icon keys.</p>"
+            "description": "<p>You can switch between Lucide, Tabler, HugeIcons, Phosphor and Remix. Elements use fixed icon names, so every library fits.</p>"
         },
         {
             "year": "2026",
             "title": "244 elements, one command",
-            "description": "<p>The seeder now builds the whole styleguide with desiderio:styleguide:seed — <strong>workspaces-safe</strong> and idempotent.</p>"
+            "description": "<p>One command, desiderio:styleguide:seed, now builds the whole styleguide. It is <strong>safe in workspaces</strong> and can run again without duplicates.</p>"
         }
     ]
 }

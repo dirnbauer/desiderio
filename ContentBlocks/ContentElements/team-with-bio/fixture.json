@@ -1,67 +1,67 @@
 {
     "_type": "team",
     "eyebrow": "Our team",
-    "header": "The team that ships Desiderio",
-    "subheadline": "Four people, four facets of the kit: components, themes, accessibility, and TYPO3 integrations.",
+    "header": "The team that builds Desiderio",
+    "subheadline": "Four people, each with one area: components, themes, accessibility and TYPO3 integrations.",
     "members": [
         {
             "name": "Lea Fischer",
             "role": "Theme Designer",
-            "bio": "<p>Designed the ten house presets, Aurora through Citrus, and the <strong>OKLCH token scale</strong> that keeps dark mode honest in every one of them.</p>",
+            "bio": "<p>Designed the ten house presets, from Aurora to Citrus, and the <strong>colour token scale</strong> that keeps dark mode consistent in each of them.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/team-lea-fischer.jpg",
                 "title": "Lea Fischer",
-                "alternative": "Portrait photo of Lea Fischer.",
-                "description": "Photo: Unsplash"
+                "alternative": "Portrait of Lea Fischer.",
+                "description": "Photo: Unsplash."
             },
             "profile_link": {
                 "url": "#lea-fischer",
-                "title": "View Lea Fischer profile"
+                "title": "View Lea Fischer's profile"
             }
         },
         {
             "name": "Mara Weiss",
             "role": "Fluid Components Engineer",
-            "bio": "<p>Built most of the 17 atoms and 28 molecules. Keeps the component API small so 244 elements can share one vocabulary.</p>",
+            "bio": "<p>Built most of the 17 atoms and 37 molecules. She keeps the component API small, so 244 elements can share the same parts.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/team-mara-weiss.jpg",
                 "title": "Mara Weiss",
-                "alternative": "Portrait photo of Mara Weiss.",
-                "description": "Photo: Unsplash"
+                "alternative": "Portrait of Mara Weiss.",
+                "description": "Photo: Unsplash."
             },
             "profile_link": {
                 "url": "#mara-weiss",
-                "title": "View Mara Weiss profile"
+                "title": "View Mara Weiss's profile"
             }
         },
         {
             "name": "Noah Ritter",
             "role": "Accessibility Engineer",
-            "bio": "<p>Runs the template audit and screen-reader checks. Pairs with engineers so fixes land before an element ships, not after.</p>",
+            "bio": "<p>Runs the template audit and screen-reader checks. He works with engineers so fixes land before an element ships, not after.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/team-noah-ritter.jpg",
                 "title": "Noah Ritter",
-                "alternative": "Portrait photo of Noah Ritter.",
-                "description": "Photo: Unsplash"
+                "alternative": "Portrait of Noah Ritter.",
+                "description": "Photo: Unsplash."
             },
             "profile_link": {
                 "url": "#noah-ritter",
-                "title": "View Noah Ritter profile"
+                "title": "View Noah Ritter's profile"
             }
         },
         {
             "name": "Jonas Klein",
             "role": "TYPO3 Integrator",
-            "bio": "<p>Maintains the News, Solr, Powermail, and blog integrations plus the <strong>one-command seeder</strong> that builds this styleguide.</p>",
+            "bio": "<p>Maintains the News, Solr, Powermail and blog integrations and the <strong>seed command</strong> that builds this styleguide.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/team-jonas-klein.jpg",
                 "title": "Jonas Klein",
-                "alternative": "Portrait photo of Jonas Klein.",
-                "description": "Photo: Unsplash"
+                "alternative": "Portrait of Jonas Klein.",
+                "description": "Photo: Unsplash."
             },
             "profile_link": {
                 "url": "#jonas-klein",
-                "title": "View Jonas Klein profile"
+                "title": "View Jonas Klein's profile"
             }
         }
     ]

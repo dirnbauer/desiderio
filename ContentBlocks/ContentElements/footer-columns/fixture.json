@@ -1,13 +1,13 @@
 {
     "_type": "footer",
     "brand": "Desiderio",
-    "description": "<p>shadcn-style content elements for TYPO3 — built on <strong>Content Blocks 2.2</strong> with backend previews for every element.</p>",
+    "description": "<p>shadcn/ui content elements for TYPO3 v14, built on <strong>Content Blocks 2.2</strong>. Every element has a backend preview.</p>",
     "column_items": [
         {
             "title": "Components",
             "link_1_label": "All 244 elements",
             "link_2_label": "17 Fluid atoms",
-            "link_3_label": "28 molecules",
+            "link_3_label": "37 molecules",
             "link_4_label": "Layout primitives",
             "link_5_label": "Backend previews",
             "link_1": "https://github.com/dirnbauer/desiderio",
@@ -18,11 +18,11 @@
         },
         {
             "title": "Themes",
-            "link_1_label": "15 shadcn presets",
+            "link_1_label": "15 theme presets",
             "link_2_label": "Per-page themes",
             "link_3_label": "Dark mode",
-            "link_4_label": "OKLCH tokens",
-            "link_5_label": "Density & radius",
+            "link_4_label": "Colour tokens",
+            "link_5_label": "Density and radius",
             "link_1": "https://ui.shadcn.com/create",
             "link_2": "https://github.com/dirnbauer/desiderio",
             "link_3": "https://github.com/dirnbauer/desiderio",
@@ -43,12 +43,12 @@
             "link_5": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "title": "Pricing & Services",
-            "link_1_label": "Community — €0 forever",
+            "title": "Pricing and services",
+            "link_1_label": "Community — €0",
             "link_2_label": "Pro — €49/month",
-            "link_3_label": "Installation & setup — €890",
-            "link_4_label": "Hosting — from €99/month",
-            "link_5_label": "Creator Care — €490/month",
+            "link_3_label": "Installation — €890",
+            "link_4_label": "Managed hosting",
+            "link_5_label": "Creator Care",
             "link_1": "https://github.com/dirnbauer/desiderio",
             "link_2": "https://github.com/dirnbauer/desiderio",
             "link_3": "https://github.com/dirnbauer/desiderio",
@@ -57,5 +57,5 @@
         }
     ],
     "copyright": "© 2026 webconsulting studio. Desiderio is GPL-2.0-or-later licensed.",
-    "header": "Footer Columns: Desiderio docs site"
+    "header": "Column footer for the Desiderio docs"
 }

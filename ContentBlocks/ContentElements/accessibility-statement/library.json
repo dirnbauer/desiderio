@@ -1,7 +1,7 @@
 {
-    "header": "Where the customer portal meets WCAG, and where not",
+    "header": "Customer portal checked against WCAG 2.2 AA",
     "conformance_level": "aa",
-    "content": "<p>The Meridian Group customer portal was tested against WCAG 2.2 Level AA in February 2026 by an external lab. 61 of the 64 applicable success criteria are met. Three are not: the drawing viewer offers no keyboard route between sheets, measurement reports issued before 2019 are scanned PDFs without a text layer, and the plant map does not announce its filter states.</p><p>Fixes for the drawing viewer and the report export are scheduled for the release of 30 September 2026. Any document you cannot read is supplied in an accessible format within five working days.</p>",
+    "content": "<p>In February 2026, an external lab tested the Meridian Group customer portal against WCAG 2.2 Level AA. The portal meets 61 of the 64 applicable success criteria. Three are not met. The drawing viewer has no keyboard route between sheets. Measurement reports issued before 2019 are scanned PDFs without a text layer. The plant map does not announce its filter states.</p><p>Fixes for the drawing viewer and the report export are planned for the release on 30 September 2026. If you cannot read a document, we send it to you in an accessible format within five working days.</p>",
     "contact_email": "accessibility@meridiangroup.at",
     "last_updated": "Reviewed 2 March 2026"
 }

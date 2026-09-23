@@ -1,6 +1,6 @@
 {
     "header": "Choose which cookies the portal may set",
-    "content": "<p>The customer portal needs one cookie to keep you signed in. Everything beyond that is your decision: we count which technical documents get opened, and the plant tour videos load a player that sets cookies of its own. Choose per category below and change it later from the footer.</p>",
+    "content": "<p>The customer portal needs one cookie to keep you signed in. Everything else is your decision. We count which technical documents are opened, and the plant tour videos load a player that sets its own cookies. Choose per category below, and change your choice later in the footer.</p>",
     "cookie_categories": [
         {
             "name": "Sign-in and configurator",
@@ -9,7 +9,7 @@
         },
         {
             "name": "Document analytics",
-            "description_text": "Counts which drawings and certificates are downloaded. Hosted on our own servers in Graz, no third party involved.",
+            "description_text": "Counts which drawings and certificates are downloaded. It runs on our own servers in Graz, with no third party involved.",
             "required": false
         },
         {

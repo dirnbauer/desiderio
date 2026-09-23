@@ -1,28 +1,28 @@
 {
     "_type": "footer",
     "header": "Privacy notice",
-    "intro": "<p>Demo privacy notice for the fictional webconsulting studio site, seeded by the Desiderio styleguide. It shows the structure of a <strong>GDPR-style notice</strong> — replace every section with your own reviewed text before go-live.</p>",
+    "intro": "<p>Demo privacy notice for the fictional webconsulting studio site, seeded by the Desiderio styleguide. It shows the structure of a <strong>GDPR-style notice</strong>. Replace every section with your own reviewed text before go-live.</p>",
     "last_updated": "12 May 2026",
     "sections": [
         {
             "title": "What we collect",
-            "content": "<p>We collect the information you give us directly, such as your name, email address, and account settings. We also collect basic technical data automatically, including your IP address, browser type, and the pages you visit.</p>"
+            "content": "<p>We collect the information you give us directly, such as your name, email address and account settings. We also collect basic technical data automatically, including your IP address, browser type and the pages you visit.</p>"
         },
         {
             "title": "How we use your data",
-            "content": "<p>Your data helps us provide, secure, and improve the service. Specifically, we use it to:</p><ul><li>Authenticate your account and keep it secure</li><li>Send service updates and respond to support requests</li><li>Measure performance and fix problems</li></ul>"
+            "content": "<p>We use your data to provide, secure and improve the service. In particular, we use it to:</p><ul><li>Verify your login and keep your account secure</li><li>Send service updates and answer support requests</li><li>Measure performance and fix problems</li></ul>"
         },
         {
             "title": "Cookies and tracking",
-            "content": "<p>We use strictly necessary cookies to keep you signed in. Analytics cookies are optional and load only after you accept them. You can change your choice at any time from the cookie settings link in the footer.</p>"
+            "content": "<p>We use strictly necessary cookies to keep you signed in. Analytics cookies are optional and load only after you accept them. You can change your choice at any time with the cookie settings link in the footer.</p>"
         },
         {
             "title": "Your rights",
-            "content": "<p>You can access, correct, export, or delete your personal data at any time. To exercise any of these rights, email our privacy team and we will respond within 30 days, as required by the GDPR.</p>"
+            "content": "<p>You can access, correct, export or delete your personal data at any time. To use any of these rights, email our privacy team. We respond within 30 days, as the GDPR requires.</p>"
         },
         {
             "title": "Contact us",
-            "content": "<p>Questions about this demo notice? Write to <strong>privacy@webconsulting.example</strong> or to the postal address listed in the imprint. This is placeholder contact data for the seeded styleguide.</p>"
+            "content": "<p>For questions about this demo notice, write to <strong>privacy@webconsulting.example</strong> or to the postal address in the imprint. This is placeholder contact data for the seeded styleguide.</p>"
         }
     ]
 }

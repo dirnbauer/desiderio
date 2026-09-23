@@ -1,26 +1,26 @@
 {
     "_type": "grid",
-    "header": "Built in the open, checked on every commit",
+    "header": "Open source, checked on every commit",
     "alignment": "center",
     "items": [
         {
-            "label": "GPL-2.0-or-later licensed",
+            "label": "GPL-2.0-or-later licence",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "label": "CI across supported PHP versions",
+            "label": "CI on PHP 8.4 and 8.5",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "label": "PHPStan level max",
+            "label": "PHPStan level 8",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "label": "WCAG-minded markup",
+            "label": "Markup designed for WCAG",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "label": "Zero-tolerance template audit",
+            "label": "Template audit in CI",
             "link": "https://github.com/dirnbauer/desiderio"
         }
     ]

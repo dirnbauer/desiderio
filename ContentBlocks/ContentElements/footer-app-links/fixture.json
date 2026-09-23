@@ -1,15 +1,15 @@
 {
     "_type": "footer",
-    "header": "Get the package",
-    "description": "<p>There is no native app — Desiderio lives in your <a href=\"https://typo3.org\">TYPO3</a> install. <strong>One Composer command</strong> installs all 244 elements free under GPL-2.0-or-later, one more seeds the full styleguide.<br />Store badges and QR code are demo placeholders.</p>",
+    "header": "Install Desiderio with Composer",
+    "description": "<p>There is no native app. Desiderio runs inside your <a href=\"https://typo3.org\">TYPO3</a> installation. <strong>One Composer command</strong> installs all 244 elements for free under GPL-2.0-or-later. A second command seeds the full styleguide.<br />The store badges and the QR code are demo placeholders.</p>",
     "copyright": "© 2026 webconsulting studio. Desiderio is GPL-2.0-or-later licensed.",
     "appstore_link": "https://github.com/dirnbauer/desiderio",
     "playstore_link": "https://typo3.org",
     "qr_image": {
         "file": "Resources/Public/Styleguide/Backend/backend-content-wizard.png",
         "title": "Desiderio content wizard",
-        "alternative": "TYPO3 new-content wizard listing all 10 Desiderio element groups. Demo placeholder shown in the QR code slot.",
-        "description": "Screenshot of the TYPO3 backend with Desiderio installed, used as a demo placeholder for the QR code slot.",
+        "alternative": "The TYPO3 content wizard with the 10 Desiderio element groups, shown in place of a QR code.",
+        "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
         "source": "https://github.com/dirnbauer/desiderio"
     }
 }

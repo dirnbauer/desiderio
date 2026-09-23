@@ -146,14 +146,14 @@ final class RteCombinationFixtures
             '<span lang="de">Guten Tag</span> switches the text-part language while the surrounding sentence stays English.',
             'Chemical H<sub>2</sub>O and the expression x<sup>2</sup> exercise subscript and superscript alignment.',
             'Nested <strong><em>bold italic emphasis</em></strong> must remain legible in every heading size.',
-            '<mark>Highlighted copy</mark> draws attention without relying on color alone.',
+            '<mark>Highlighted copy</mark> draws attention without relying on colour alone.',
             'Use <code>inlineCode()</code>, press <kbd>Command</kbd> + <kbd>K</kbd>, and inspect the <samp>saved</samp> result.',
             '<small>Small print stays readable.</small> A <span class="text-muted">muted phrase</span> remains deliberately secondary.',
             '<del>Outdated wording</del> is followed by <ins>clear replacement copy</ins>.',
             'A soft&shy;hyphen gives an exceptionally long interoperability term a safe wrapping opportunity.',
             'The first thought ends here.<br>The second line checks an intentional soft return inside the same block.',
-            'Special characters remain calm in the line: ©, €, →, ×, “quotes”, and an en dash – all belong to normal editorial copy.',
-            'This deliberately longer passage combines <strong>strong importance</strong>, <em>gentle emphasis</em>, and a <a href="https://example.com/rte-link">linked phrase</a> inside one continuous piece of editorial text. It is long enough to wrap across several lines on narrow screens and expose awkward spacing, overflow, underline, or line-height behavior that a short placeholder would never reveal.',
+            'Special characters sit in the line like normal text: ©, €, →, ×, “quotes” and an en dash – all belong in editorial copy.',
+            'This deliberately longer passage combines <strong>strong importance</strong>, <em>gentle emphasis</em> and a <a href="https://example.com/rte-link">linked phrase</a> in one continuous piece of editorial text. It is long enough to wrap across several lines on narrow screens. That is where awkward spacing, overflow, underlines and line-height behaviour show up. A short placeholder would never reveal them. Read the passage at several widths and compare it with the shorter blocks around it.',
         ];
 
         return $fixtures[$index % count($fixtures)];

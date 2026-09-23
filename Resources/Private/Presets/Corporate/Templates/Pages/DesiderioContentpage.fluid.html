@@ -9,10 +9,12 @@
 <f:section name="Main">
     <f:comment>
         Inner pages use the shared page header directly below the breadcrumb.
-        News detail views suppress it so the article's own h1 leads instead.
+        It stands down when the content renders the h1 itself (a news detail
+        view, or an entry of lib.pageHeadingOwnedByContent), so the article's
+        or plugin's own h1 leads instead.
     </f:comment>
 
-    <d:organism.pageHeader page="{page}" newsDetailUid="{newsDetailUid}"/>
+    <d:organism.pageHeader page="{page}" newsDetailUid="{newsDetailUid}" headingOwnedByContent="{pageHeadingOwnedByContent}"/>
 
     <div class="desiderio-corporate-template">
         <d:layout.container size="xl" class="desiderio-corporate-template__container">

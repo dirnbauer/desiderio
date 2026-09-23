@@ -50,6 +50,17 @@
     background: var(--background);
 }
 
+/* Pages whose content renders the h1 (a news or plugin detail view, see
+   lib.pageHeadingOwnedByContent) have no page-title band: keep the content
+   below the breadcrumb instead of pulling it up over it. */
+.desiderio-breadcrumb ~ .desiderio-corporate-template {
+    margin-top: 0;
+}
+
+.desiderio-breadcrumb ~ .desiderio-corporate-template > .desiderio-container {
+    padding-block-start: 2rem;
+}
+
 .desiderio-page-title-container + .desiderio-corporate-template {
     margin-top: 0;
 }

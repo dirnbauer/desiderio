@@ -43,6 +43,32 @@ lib.desiderioPageDataProcessing {
   }
 }
 
+# Registry: "the content of this page renders the page's h1". Every entry is a
+# cObject that outputs something when its content owns the heading; page
+# templates then leave out their page-title h1 (d:organism.pageHeader), so the
+# document keeps exactly one h1. Desiderio uses keys 10-99; extensions and site
+# packages add their own key (100 and up, unique to them), e.g.
+#
+#   lib.pageHeadingOwnedByContent.110 = TEXT
+#   lib.pageHeadingOwnedByContent.110 {
+#     value = 1
+#     if.value = 1066,1067
+#     if.isInList.data = page:uid
+#   }
+#
+# Only the type is assigned here, never cleared with ">": entries that
+# ext_localconf.php or earlier sets added (EXT:skillflow registers its skill
+# detail plugin) survive.
+lib.pageHeadingOwnedByContent = COA
+lib.pageHeadingOwnedByContent {
+  # A routed EXT:news detail view: the article headline is the h1.
+  10 = TEXT
+  10 {
+    value = 1
+    if.isTrue.data = GP:tx_news_pi1|news
+  }
+}
+
 lib.fluidPage >
 lib.fluidPage = PAGEVIEW
 lib.fluidPage {
@@ -58,5 +84,15 @@ lib.fluidPage {
   variables.newsDetailUid {
     data = GP:tx_news_pi1|news
     intval = 1
+  }
+
+  # "1" when an entry of lib.pageHeadingOwnedByContent renders something,
+  # "" otherwise. Page templates pass it to d:organism.pageHeader, which then
+  # stands down. The reference resolves at render time, so entries added after
+  # this set still count.
+  variables.pageHeadingOwnedByContent = TEXT
+  variables.pageHeadingOwnedByContent {
+    value = 1
+    if.isTrue.cObject =< lib.pageHeadingOwnedByContent
   }
 }

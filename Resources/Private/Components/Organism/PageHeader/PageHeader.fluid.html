@@ -6,13 +6,17 @@
 
 <f:argument name="page" type="object" />
 <f:argument name="newsDetailUid" type="string" optional="{true}" default="" />
+<f:argument name="headingOwnedByContent" type="string" optional="{true}" default="" />
 
 <f:comment>
     The single page-level h1. Pages whose first authored block already exposes
-    the title can select the screen-reader-only variant. News detail views own
-    their article h1 and therefore suppress this organism entirely.
+    the title can select the screen-reader-only variant. When the page content
+    renders the h1 itself - a news detail view (newsDetailUid), or any entry of
+    the TypoScript registry lib.pageHeadingOwnedByContent (page templates pass
+    the PAGEVIEW variable pageHeadingOwnedByContent) - this organism renders
+    nothing.
 </f:comment>
-<f:if condition="!{newsDetailUid}">
+<f:if condition="!{newsDetailUid} && !{headingOwnedByContent}">
     <f:if condition="{page.pageRecord.tx_desiderio_h1_sronly}">
         <f:then>
             <h1 class="sr-only">{page.pageRecord.title}</h1>

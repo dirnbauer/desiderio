@@ -1168,11 +1168,52 @@ final class ContentRenderingTemplateTest extends TestCase
         foreach (['DesiderioContentpage', 'DesiderioContentpageSidebar'] as $templateName) {
             $template = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Presets/Corporate/Templates/Pages/' . $templateName . '.fluid.html');
             self::assertStringContainsString(
-                '<d:organism.pageHeader page="{page}" newsDetailUid="{newsDetailUid}"/>',
+                '<d:organism.pageHeader page="{page}" newsDetailUid="{newsDetailUid}" headingOwnedByContent="{pageHeadingOwnedByContent}"/>',
                 $template,
                 $templateName . ' must let the shared page header suppress itself on news detail views',
             );
         }
+    }
+
+    public function testContentThatRendersTheH1TakesThePageHeadingOver(): void
+    {
+        $pageTypoScript = (string)file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/TypoScript/page.typoscript');
+
+        // The registry gets its type without being cleared, so entries added by
+        // ext_localconf.php (EXT:skillflow) or earlier sets survive.
+        self::assertStringContainsString("lib.pageHeadingOwnedByContent = COA\n", $pageTypoScript);
+        self::assertStringNotContainsString('lib.pageHeadingOwnedByContent >', $pageTypoScript);
+        self::assertMatchesRegularExpression('/lib\.pageHeadingOwnedByContent \{\s+# [^\n]+\n\s+10 = TEXT\n\s+10 \{\n\s+value = 1\n\s+if\.isTrue\.data = GP:tx_news_pi1\|news/', $pageTypoScript);
+        // PAGEVIEW resolves the registry at render time into "1" or "".
+        self::assertStringContainsString('variables.pageHeadingOwnedByContent = TEXT', $pageTypoScript);
+        self::assertStringContainsString('if.isTrue.cObject =< lib.pageHeadingOwnedByContent', $pageTypoScript);
+
+        $component = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Components/Organism/PageHeader/PageHeader.fluid.html');
+        self::assertStringContainsString('<f:argument name="headingOwnedByContent" type="string" optional="{true}" default="" />', $component);
+        self::assertStringContainsString('<f:if condition="!{newsDetailUid} && !{headingOwnedByContent}">', $component);
+
+        // Every page template that prints the page-title h1 hands the flag on.
+        $baseTemplates = glob(__DIR__ . '/../../Resources/Private/Templates/Pages/*.fluid.html');
+        $presetTemplates = glob(__DIR__ . '/../../Resources/Private/Presets/*/Templates/Pages/*.fluid.html');
+        self::assertIsArray($baseTemplates);
+        self::assertIsArray($presetTemplates);
+        $templates = [...$baseTemplates, ...$presetTemplates];
+        $callers = 0;
+        foreach ($templates as $file) {
+            $template = (string)file_get_contents($file);
+            if (preg_match_all('/<d:organism\.pageHeader\b[^>]*>/', $template, $matches) === 0) {
+                continue;
+            }
+            foreach ($matches[0] as $call) {
+                $callers++;
+                self::assertStringContainsString('headingOwnedByContent="{pageHeadingOwnedByContent}"', $call, basename($file));
+            }
+        }
+        self::assertGreaterThanOrEqual(8, $callers);
+
+        // The blog archetype prints its own list heading and must stand down too.
+        $blog = (string)file_get_contents(__DIR__ . '/../../Resources/Private/ShadcnUi/Templates/Pages/DesiderioBlog.fluid.html');
+        self::assertStringContainsString('<f:if condition="{page.pageRecord.doktype} != 137 && !{pageHeadingOwnedByContent}">', $blog);
     }
 
     public function testShadcnUiPageTemplateSiteSetRegistersBlogAndExtensionTemplates(): void

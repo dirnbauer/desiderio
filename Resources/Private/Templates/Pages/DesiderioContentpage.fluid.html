@@ -9,12 +9,13 @@
 <f:comment>
     Content pages get a single page-level h1 with the page title (d:organism.pageHeader
     partial: visible by default, screen-reader-only when the page flags
-    tx_desiderio_h1_sronly). It sits above the search markers so the heading is
-    not indexed as body content.
+    tx_desiderio_h1_sronly; left out when the content renders the h1 itself, see
+    lib.pageHeadingOwnedByContent). It sits above the search markers so the
+    heading is not indexed as body content.
 </f:comment>
 
 <f:section name="Main">
-    <d:organism.pageHeader page="{page}" newsDetailUid="{newsDetailUid}"/>
+    <d:organism.pageHeader page="{page}" newsDetailUid="{newsDetailUid}" headingOwnedByContent="{pageHeadingOwnedByContent}"/>
     <!--TYPO3SEARCH_begin-->
     <f:if condition="{content.main}">
         <f:render.contentArea contentArea="{content.main}"/>

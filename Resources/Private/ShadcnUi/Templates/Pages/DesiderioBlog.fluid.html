@@ -103,7 +103,13 @@
 </f:section>
 
 <f:section name="BlogListHeading">
-    <f:if condition="{page.pageRecord.doktype} != 137">
+    <f:comment>
+        Blog posts (doktype 137) get their h1 from the blog_header plugin. Other
+        pages of the blog tree print the page title, unless their content
+        renders the h1 itself (a news detail view on a news page in the blog
+        tree, or another entry of lib.pageHeadingOwnedByContent).
+    </f:comment>
+    <f:if condition="{page.pageRecord.doktype} != 137 && !{pageHeadingOwnedByContent}">
         <header class="max-w-3xl">
             <d:layout.stack gap="sm">
                 <d:atom.badge variant="secondary">Blog</d:atom.badge>

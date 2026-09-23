@@ -1,15 +1,15 @@
 {
     "_type": "hero",
-    "header": "Edit your pages right where they live",
-    "description": "<p>Desiderio's <strong>Visual Editor</strong> turns the frontend into the editing surface — click any of the 244 elements and write inline. Editors stop guessing, reviews stop dragging, and the backend round-trip disappears.</p>",
-    "cta_text": "See the Visual Editor",
+    "header": "Edit each element on the page itself",
+    "description": "<p>With the <strong>Visual Editor</strong>, editors work on the frontend. They click any of the 244 elements and type, without switching to the backend.</p>",
+    "cta_text": "Read the docs",
     "cta_link": "https://github.com/dirnbauer/desiderio",
     "image_position": "right",
     "image": {
         "file": "Resources/Public/Styleguide/Backend/backend-visual-editor.png",
         "title": "Editing inline in the Desiderio Visual Editor",
-        "alternative": "Desiderio Visual Editor with inline editing active on a content element in the frontend.",
-        "description": "Screenshot of the Desiderio Visual Editor in TYPO3.",
+        "alternative": "The Visual Editor in the TYPO3 backend, with a hero element open for inline editing.",
+        "description": "Screenshot of a TYPO3 v14 site with Desiderio.",
         "source": "https://github.com/dirnbauer/desiderio"
     }
 }

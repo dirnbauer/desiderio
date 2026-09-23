@@ -6,6 +6,8 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.4.1] — 2026-09-23
+
 ### Fixed
 
 - The Powermail Lab page shows its intro and form list in German on `/de/`.

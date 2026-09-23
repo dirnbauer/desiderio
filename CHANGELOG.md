@@ -6,6 +6,16 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.3.3] — 2026-09-23
+
+### Fixed
+
+- **Links to a content element land on it.** Content Block elements rendered
+  no `id="c<uid>"`, so `t3://page?uid=12#c345` links went nowhere.
+  `lib.contentBlock` now prepends an empty `<a id="c<uid>"></a>`, as
+  fluid_styled_content does; no template changes, and core types keep the id
+  of their ClassicContent layout.
+
 ## [4.3.2] — 2026-09-23
 
 ### Fixed

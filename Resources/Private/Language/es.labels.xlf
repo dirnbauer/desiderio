@@ -799,6 +799,12 @@
         <target>Restablecer filtros</target>
       </segment>
     </unit>
+    <unit id="solr.facet.type">
+      <segment state="final">
+        <source>Content type</source>
+        <target>Tipo de contenido</target>
+      </segment>
+    </unit>
     <unit id="solr.facet.category">
       <segment state="final">
         <source>Category</source>

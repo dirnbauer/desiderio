@@ -35,7 +35,9 @@ plugin.tx_solr.search.faceting {
 
   facets {
     type {
-      label = Content type
+      # A plain label is printed as it is; TEXT with data = LLL translates it.
+      label = TEXT
+      label.data = LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:solr.facet.type
       field = type
       partialName = Options
       minimumCount = 0
@@ -53,10 +55,10 @@ plugin.tx_solr.search.faceting {
         default.field = optionValue
 
         pages = TEXT
-        pages.value = Pages
+        pages.data = LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:solr.contentType.pages
 
         tx_news_domain_model_news = TEXT
-        tx_news_domain_model_news.value = News
+        tx_news_domain_model_news.data = LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:solr.contentType.news
 
         tx_skillflow_skill = TEXT
         tx_skillflow_skill.data = LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:solr.contentType.skills
@@ -68,7 +70,10 @@ plugin.tx_solr.search.faceting {
     # `categories` field), so the facet appears as soon as categorized records
     # are indexed and stays empty — not broken — when there are none.
     category {
-      label = LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:solr.facet.category
+      # EXT:solr prints a plain label as it is, so an LLL reference showed up
+      # raw; TEXT with data = LLL resolves it in the page's language.
+      label = TEXT
+      label.data = LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:solr.facet.category
       field = category_stringM
       partialName = Options
       minimumCount = 0

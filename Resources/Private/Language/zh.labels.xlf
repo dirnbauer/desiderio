@@ -1489,6 +1489,12 @@
         <target>重置筛选</target>
       </segment>
     </unit>
+    <unit id="solr.facet.type">
+      <segment state="final">
+        <source>Content type</source>
+        <target>内容类型</target>
+      </segment>
+    </unit>
     <unit id="solr.facet.category">
       <segment state="final">
         <source>Category</source>

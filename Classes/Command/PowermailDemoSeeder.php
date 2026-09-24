@@ -85,7 +85,10 @@ final readonly class PowermailDemoSeeder
         $ownedPageUids = $this->findOwnedChildPageUids();
         if ($ownedPageUids !== []) {
             $this->softDeleteContentOnPages($ownedPageUids, $now);
-            $this->hidePages($ownedPageUids, $now, $pageColumns);
+            // Only the English and German pages this seeder writes are hidden until it
+            // writes them again. Translations into other languages belong to whoever made
+            // them; hiding them here would leave them hidden after every reseed.
+            $this->hidePages($this->findOwnedChildPageUids([0, $germanLanguageUid]), $now, $pageColumns);
         }
         $this->softDeleteContentOnPages([$rootUid, $rootTranslationUid], $now);
 
@@ -584,13 +587,17 @@ final readonly class PowermailDemoSeeder
     }
 
     /**
+     * @param list<int>|null $languageUids only pages in these languages (null: every language)
      * @return list<int>
      */
-    private function findOwnedChildPageUids(): array
+    private function findOwnedChildPageUids(?array $languageUids = null): array
     {
         $where = ['deleted = 0', 'slug LIKE :slug'];
         $parameters = ['slug' => '/desiderio-powermail/%'];
         $types = ['slug' => ParameterType::STRING];
+        if ($languageUids !== null) {
+            $where[] = 'sys_language_uid IN (' . implode(',', $languageUids) . ')';
+        }
 
         $uids = $this->connectionPool
             ->getConnectionForTable('pages')

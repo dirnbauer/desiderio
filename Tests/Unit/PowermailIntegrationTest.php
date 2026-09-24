@@ -304,7 +304,8 @@ final class PowermailIntegrationTest extends TestCase
         self::assertStringContainsString("'header_layout' => 100", $source);
         self::assertStringContainsString("'mandatory_text' => \$field['mandatory'] ? (", $source);
         self::assertStringNotContainsString('$introUid = $this->insertTextContent', $source);
-        self::assertStringContainsString('$this->hidePages($ownedPageUids, $now, $pageColumns);', $source);
+        // Hidden until rewritten: only the English and German pages the seeder writes again.
+        self::assertStringContainsString('$this->hidePages($this->findOwnedChildPageUids([0, $germanLanguageUid]), $now, $pageColumns);', $source);
         // German content on the lab page belongs to the default-language page; content attached
         // to the page's translation record never renders, so /de/ showed the English overview.
         self::assertDoesNotMatchRegularExpression('/insertTextContent\(\s*\$rootTranslationUid/', $source);

@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="hu">
+  <file id="desiderio-presets">
+    <unit id="preset.b6G5977cw.character">
+      <segment state="final">
+        <source>Monospace from the headings down to the body copy, over olive-warm greys and a near-black primary. The tightest controls and the thinnest focus ring of the create presets.</source>
+        <target>Fix szélességű betűk a címsoroktól a törzsszövegig, meleg olívás szürkéken és közel fekete elsődleges színnel. A create oldal előbeállításai közül itt a legszorosabbak a vezérlők és a legvékonyabb a fókuszgyűrű.</target>
+      </segment>
+    </unit>
+    <unit id="preset.b6G5977cw.use">
+      <segment state="final">
+        <source>Documentation and technical writing that wants density without raising its voice.</source>
+        <target>Dokumentáció és műszaki szövegek, ahol sűrű, de visszafogott megjelenés kell.</target>
+      </segment>
+    </unit>
+    <unit id="density.compact">
+      <segment state="final">
+        <source>Compact</source>
+        <target>Tömör</target>
+      </segment>
+    </unit>
+    <unit id="elevation.flat">
+      <segment state="final">
+        <source>Flat</source>
+        <target>Lapos</target>
+      </segment>
+    </unit>
+    <unit id="preset.b0.character">
+      <segment state="final">
+        <source>shadcn/ui exactly as it ships: pure greyscale, an ink primary, no hue anywhere. This is the baseline every other preset is a departure from.</source>
+        <target>A shadcn/ui pontosan úgy, ahogy érkezik: tiszta szürkeskála, tintaszínű elsődleges szín, sehol semmi színárnyalat. Ez az alap, amelytől minden más előbeállítás eltér.</target>
+      </segment>
+    </unit>
+    <unit id="preset.b0.use">
+      <segment state="final">
+        <source>Admin tools and internal apps that should look like the framework rather than like a brand.</source>
+        <target>Admineszközök és belső alkalmazások, amelyek a keretrendszer megjelenését viszik, nem egy márkáét.</target>
+      </segment>
+    </unit>
+    <unit id="density.default">
+      <segment state="final">
+        <source>Default</source>
+        <target>Alapértelmezett</target>
+      </segment>
+    </unit>
+    <unit id="preset.b27GcrRo.character">
+      <segment state="final">
+        <source>Token for token identical to b0 in both colour schemes — it is the create-page id that produces the neutral default. Both are listed because both are selectable.</source>
+        <target>Mindkét színsémában tokenről tokenre azonos a b0-val – ez az a create oldali azonosító, amely a semleges alapértelmezést adja. Mindkettő szerepel a listában, mert mindkettő kiválasztható.</target>
+      </segment>
+    </unit>
+    <unit id="preset.b27GcrRo.use">
+      <segment state="final">
+        <source>The same as b0. Keep this id if you want the create page to be able to reopen your theme.</source>
+        <target>Ugyanaz, mint a b0. Tartsa meg ezt az azonosítót, ha azt szeretné, hogy a create oldal újra meg tudja nyitni a témáját.</target>
+      </segment>
+    </unit>
+    <unit id="preset.b4hb38Fyj.character">
+      <segment state="final">
+        <source>Olive-tinted greys under a muted teal primary, set in Nunito Sans. The accent reads as a material rather than a highlight.</source>
+        <target>Olívás árnyalatú szürkék tompa kékeszöld elsődleges színnel, Nunito Sans betűvel. A kiemelőszín inkább anyagnak hat, mint kiemelésnek.</target>
+      </segment>
+    </unit>
+    <unit id="preset.b4hb38Fyj.use">
+      <segment state="final">
+        <source>Product and SaaS sites that want to look established instead of loud.</source>
+        <target>Termék- és SaaS-webhelyek, amelyek kiforrottnak akarnak tűnni, nem harsánynak.</target>
+      </segment>
+    </unit>
+    <unit id="preset.b3IWPgRwnI.character">
+      <segment state="final">
+        <source>The only preset that sets its headings in monospace over a sans body, on cool mist greys with a true blue primary.</source>
+        <target>Az egyetlen előbeállítás, amely a címsorokat fix szélességű betűvel szedi groteszk törzsszöveg fölött, hűvös ködszürkéken, tiszta kék elsődleges színnel.</target>
+      </segment>
+    </unit>
+    <unit id="preset.b3IWPgRwnI.use">
+      <segment state="final">
+        <source>Dashboards and developer products, where the interface should read as instrumentation.</source>
+        <target>Dashboardok és fejlesztői termékek, ahol a felület mérőműszerként hat.</target>
+      </segment>
+    </unit>
+    <unit id="preset.aurora.character">
+      <segment state="final">
+        <source>A violet primary on the neutral base, with a soft elevation under every surface. The most saturated accent in the house set.</source>
+        <target>Ibolyaszínű elsődleges szín semleges alapon, minden felület alatt lágy árnyékkal. A saját készlet legtelítettebb kiemelőszíne.</target>
+      </segment>
+    </unit>
+    <unit id="preset.aurora.use">
+      <segment state="final">
+        <source>Software and creative-agency sites that want one confident colour.</source>
+        <target>Szoftver- és kreatívügynökségi webhelyek, amelyek egyetlen magabiztos színt keresnek.</target>
+      </segment>
+    </unit>
+    <unit id="elevation.subtle">
+      <segment state="final">
+        <source>Subtle</source>
+        <target>Finom</target>
+      </segment>
+    </unit>
+    <unit id="preset.marine.character">
+      <segment state="final">
+        <source>Geist over a plain blue, with the roomiest controls and the deepest card elevation. Everything sits a little further apart than elsewhere.</source>
+        <target>Geist betű egyszerű kéken, a legtágasabb vezérlőkkel és a legmélyebb kártyaárnyékkal. Minden elem kicsit távolabb áll egymástól, mint máshol.</target>
+      </segment>
+    </unit>
+    <unit id="preset.marine.use">
+      <segment state="final">
+        <source>Corporate sites and services where trust matters more than personality.</source>
+        <target>Vállalati webhelyek és szolgáltatások, ahol a bizalom fontosabb a személyiségnél.</target>
+      </segment>
+    </unit>
+    <unit id="density.comfortable">
+      <segment state="final">
+        <source>Comfortable</source>
+        <target>Tágas</target>
+      </segment>
+    </unit>
+    <unit id="elevation.raised">
+      <segment state="final">
+        <source>Raised</source>
+        <target>Emelt</target>
+      </segment>
+    </unit>
+    <unit id="preset.forest.character">
+      <segment state="final">
+        <source>Emerald on neutral greys with noticeably squarer corners. Sober rather than organic.</source>
+        <target>Smaragdzöld semleges szürkéken, észrevehetően szögletesebb sarkokkal. Inkább józan, mint organikus.</target>
+      </segment>
+    </unit>
+    <unit id="preset.forest.use">
+      <segment state="final">
+        <source>Sustainability, health and public-sector sites.</source>
+        <target>Fenntarthatósági, egészségügyi és közszférabeli webhelyek.</target>
+      </segment>
+    </unit>
+    <unit id="preset.ember.character">
+      <segment state="final">
+        <source>Warm orange in Nunito Sans, with generous corners and roomy controls. Its brand text colour is solved a shade darker than the button fill, because orange at button lightness cannot carry small text.</source>
+        <target>Meleg narancs Nunito Sans betűvel, bőven lekerekített sarkokkal és tágas vezérlőkkel. A márkaszínű szöveg egy árnyalattal sötétebb a gomb kitöltésénél, mert a gombéval azonos világosságú narancs kis szövegnél nem elég olvasható.</target>
+      </segment>
+    </unit>
+    <unit id="preset.ember.use">
+      <segment state="final">
+        <source>Food, events and consumer brands that want warmth.</source>
+        <target>Gasztronómia, rendezvények és fogyasztói márkák, amelyek melegséget keresnek.</target>
+      </segment>
+    </unit>
+    <unit id="preset.bloom.character">
+      <segment state="final">
+        <source>Rose on white with the softest corners in the entire set — the pill end of the radius scale.</source>
+        <target>Rózsaszín fehéren, a teljes készlet leglágyabb sarkaival – a lekerekítési skála pirulaformájú vége.</target>
+      </segment>
+    </unit>
+    <unit id="preset.bloom.use">
+      <segment state="final">
+        <source>Lifestyle, beauty and community products.</source>
+        <target>Életmód-, szépség- és közösségi termékek.</target>
+      </segment>
+    </unit>
+    <unit id="preset.lagoon.character">
+      <segment state="final">
+        <source>Teal, compact controls, a hairline focus ring and no elevation at all: the flattest house preset.</source>
+        <target>Kékeszöld, tömör vezérlők, hajszálvékony fókuszgyűrű és semmilyen árnyék: a leglaposabb saját előbeállítás.</target>
+      </segment>
+    </unit>
+    <unit id="preset.lagoon.use">
+      <segment state="final">
+        <source>Dense interfaces — portals, catalogues, anything with a lot of rows.</source>
+        <target>Sűrű felületek – portálok, katalógusok, bármi, amiben sok a sor.</target>
+      </segment>
+    </unit>
+    <unit id="preset.gold.character">
+      <segment state="final">
+        <source>Amber held back from its full chroma so it stays readable, over squared corners.</source>
+        <target>Borostyánsárga, a teljes telítettség alatt tartva, hogy olvasható maradjon, szögletes sarkokkal.</target>
+      </segment>
+    </unit>
+    <unit id="preset.gold.use">
+      <segment state="final">
+        <source>Premium, hospitality and membership sites.</source>
+        <target>Prémium-, vendéglátó- és tagsági webhelyek.</target>
+      </segment>
+    </unit>
+    <unit id="preset.midnight.character">
+      <segment state="final">
+        <source>Indigo with roomy controls and raised surfaces. Built to be looked at in dark mode, where the accent lifts and the surfaces separate.</source>
+        <target>Indigó tágas vezérlőkkel és kiemelkedő felületekkel. Sötét módhoz készült, ahol a kiemelőszín élénkebb lesz, és a felületek elválnak egymástól.</target>
+      </segment>
+    </unit>
+    <unit id="preset.midnight.use">
+      <segment state="final">
+        <source>Media, gaming and night-first products.</source>
+        <target>Média, gaming és elsősorban éjszakai használatra szánt termékek.</target>
+      </segment>
+    </unit>
+    <unit id="preset.blossom.character">
+      <segment state="final">
+        <source>Pink in Nunito Sans with generous corners — the friendliest thing in the set without becoming a toy.</source>
+        <target>Pink Nunito Sans betűvel, bőven lekerekített sarkokkal – a készlet legbarátságosabb darabja, anélkül hogy játékszerré válna.</target>
+      </segment>
+    </unit>
+    <unit id="preset.blossom.use">
+      <segment state="final">
+        <source>Education, non-profits and family-facing brands.</source>
+        <target>Oktatás, nonprofit szervezetek és családoknak szóló márkák.</target>
+      </segment>
+    </unit>
+    <unit id="preset.citrus.character">
+      <segment state="final">
+        <source>Lime in monospace, compact, hairline ring, flat surfaces and the sharpest corners of all fifteen.</source>
+        <target>Limezöld fix szélességű betűvel, tömör, hajszálvékony gyűrűvel, lapos felületekkel és mind a tizenöt közül a legélesebb sarkokkal.</target>
+      </segment>
+    </unit>
+    <unit id="preset.citrus.use">
+      <segment state="final">
+        <source>Developer tools and technical products with an opinion.</source>
+        <target>Fejlesztői eszközök és határozott karakterű műszaki termékek.</target>
+      </segment>
+    </unit>
+    <unit id="card.default">
+      <segment state="final">
+        <source>Shipped default</source>
+        <target>Gyári alapértelmezés</target>
+      </segment>
+    </unit>
+    <unit id="card.swatches">
+      <segment state="final">
+        <source>Primary, accent and muted colours of the %s preset</source>
+        <target>A(z) %s előbeállítás elsődleges, kiemelő és visszafogott színei</target>
+      </segment>
+    </unit>
+    <unit id="sample.primary">
+      <segment state="final">
+        <source>Primary</source>
+        <target>Elsődleges</target>
+      </segment>
+    </unit>
+    <unit id="sample.outline">
+      <segment state="final">
+        <source>Outline</source>
+        <target>Körvonal</target>
+      </segment>
+    </unit>
+    <unit id="sample.badge">
+      <segment state="final">
+        <source>Badge</source>
+        <target>Jelvény</target>
+      </segment>
+    </unit>
+    <unit id="sample.secondary">
+      <segment state="final">
+        <source>Secondary</source>
+        <target>Másodlagos</target>
+      </segment>
+    </unit>
+    <unit id="fact.headings">
+      <segment state="final">
+        <source>Headings</source>
+        <target>Címsorok</target>
+      </segment>
+    </unit>
+    <unit id="fact.body">
+      <segment state="final">
+        <source>Body</source>
+        <target>Szövegtörzs</target>
+      </segment>
+    </unit>
+    <unit id="fact.corners">
+      <segment state="final">
+        <source>Corners</source>
+        <target>Sarkok</target>
+      </segment>
+    </unit>
+    <unit id="fact.controls">
+      <segment state="final">
+        <source>Controls</source>
+        <target>Vezérlők</target>
+      </segment>
+    </unit>
+    <unit id="fact.icons">
+      <segment state="final">
+        <source>Icons</source>
+        <target>Ikonok</target>
+      </segment>
+    </unit>
+    <unit id="fact.bestFor">
+      <segment state="final">
+        <source>Best for</source>
+        <target>Ajánlott</target>
+      </segment>
+    </unit>
+    <unit id="overview.eyebrow">
+      <segment state="final">
+        <source>Theme presets</source>
+        <target>Téma-előbeállítások</target>
+      </segment>
+    </unit>
+    <unit id="overview.title">
+      <segment state="final">
+        <source>%d presets, one set of content</source>
+        <target>%d előbeállítás, ugyanaz a tartalom</target>
+      </segment>
+    </unit>
+    <unit id="overview.lead">
+      <segment state="final">
+        <source>Every card below is rendered live in the preset it names — same components, same markup, only different tokens. Switching a preset repaints the site and never touches a word of content. Switch this page to dark mode and all %d cards switch with it: each preset ships its own dark token set.</source>
+        <target>Az alábbi kártyák mindegyike élőben, a saját nevén szereplő előbeállításban jelenik meg – ugyanazok a komponensek, ugyanaz a markup, csak a tokenek mások. Az előbeállítás váltása átszínezi a webhelyet, de a tartalomból egyetlen szót sem módosít. Ha sötét módra váltja ezt az oldalt, mind a %d kártya vele vált: minden előbeállítás saját sötét tokenkészlettel érkezik.</target>
+      </segment>
+    </unit>
+    <unit id="matrix.title">
+      <segment state="final">
+        <source>What actually differs</source>
+        <target>Miben különböznek valójában</target>
+      </segment>
+    </unit>
+    <unit id="matrix.lead">
+      <segment state="final">
+        <source>Type, corner radius, control density, focus-ring width and elevation. Colour is only part of what a preset decides.</source>
+        <target>Betűtípus, sarokkerekítés, vezérlősűrűség, fókuszgyűrű-vastagság és kiemelés. A szín csak egy része annak, amiről egy előbeállítás dönt.</target>
+      </segment>
+    </unit>
+    <unit id="matrix.caption">
+      <segment state="final">
+        <source>Comparison of the %d Desiderio theme presets by heading font, body font, monospace font, corner radius, control density, focus-ring width, elevation and icon library.</source>
+        <target>A Desiderio %d téma-előbeállításának összehasonlítása címsorbetű, törzsszövegbetű, fix szélességű betű, sarokkerekítés, vezérlősűrűség, fókuszgyűrű-vastagság, kiemelés és ikonkönyvtár szerint.</target>
+      </segment>
+    </unit>
+    <unit id="matrix.column.preset">
+      <segment state="final">
+        <source>Preset</source>
+        <target>Előbeállítás</target>
+      </segment>
+    </unit>
+    <unit id="matrix.column.key">
+      <segment state="final">
+        <source>Key</source>
+        <target>Kulcs</target>
+      </segment>
+    </unit>
+    <unit id="matrix.column.code">
+      <segment state="final">
+        <source>Code</source>
+        <target>Kód</target>
+      </segment>
+    </unit>
+    <unit id="matrix.column.focusRing">
+      <segment state="final">
+        <source>Focus ring</source>
+        <target>Fókuszgyűrű</target>
+      </segment>
+    </unit>
+    <unit id="matrix.column.elevation">
+      <segment state="final">
+        <source>Elevation</source>
+        <target>Kiemelés</target>
+      </segment>
+    </unit>
+    <unit id="matrix.note">
+      <segment state="final">
+        <source>%d of the presets come from the &lt;a class="d-link" href="https://ui.shadcn.com/create" rel="noreferrer noopener"&gt;create page on ui.shadcn.com&lt;/a&gt; and %d are house presets generated against WCAG 2.2 contrast targets. Set one for a whole site with &lt;code&gt;desiderio.shadcn.preset&lt;/code&gt; in the site settings, or for one page and everything below it with the &lt;strong&gt;Theme preset&lt;/strong&gt; field in the page properties — it is inherited down the rootline, so a campaign subtree can run a different look inside the same install. Neither needs a rebuild: the tokens are runtime CSS custom properties. Anything you design on the create page yourself goes in as &lt;code&gt;custom&lt;/code&gt;.</source>
+        <target>Az előbeállítások közül %d a &lt;a class="d-link" href="https://ui.shadcn.com/create" rel="noreferrer noopener"&gt;ui.shadcn.com create oldaláról&lt;/a&gt; származik, %d pedig saját előbeállítás, amelyet a WCAG 2.2 kontrasztcéljaihoz generáltunk. Egy teljes webhelyre a webhely-beállításokban, a &lt;code&gt;desiderio.shadcn.preset&lt;/code&gt; értékkel állíthatja be, egy oldalra és az alatta lévő összes oldalra pedig az oldaltulajdonságok &lt;strong&gt;Téma-előbeállítás&lt;/strong&gt; mezőjével. A beállítás a rootline mentén lefelé öröklődik, így egy kampány-részfa ugyanazon a telepítésen belül eltérő megjelenést kaphat. Egyikhez sem kell újraépítés: a tokenek futásidejű CSS-változók. Az Ön által a create oldalon tervezett témák &lt;code&gt;custom&lt;/code&gt; értékként kerülnek be.</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

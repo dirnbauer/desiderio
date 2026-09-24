@@ -21,13 +21,10 @@
 <d:layout.section background="muted" spacing="lg" class="preset-overview">
     <d:layout.container>
         <header class="preset-overview__head">
-            <p class="preset-overview__eyebrow">Theme presets</p>
-            <h2 class="typography typography--h2">15 presets, one set of content</h2>
+            <p class="preset-overview__eyebrow"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:overview.eyebrow" /></p>
+            <h2 class="typography typography--h2"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:overview.title" arguments="{0: 15}" /></h2>
             <p class="typography typography--lead preset-overview__lead">
-                Every card below is rendered live in the preset it names — same components,
-                same markup, only different tokens. Switching a preset repaints the site and
-                never touches a word of content. Switch this page to dark mode and all
-                15 cards switch with it: each preset ships its own dark token set.
+                <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:overview.lead" arguments="{0: 15}" />
             </p>
         </header>
 
@@ -36,31 +33,31 @@
                         <header class="preset-card__head">
                             <h3 class="preset-card__name">Lyra mono olive</h3>
                             <code class="preset-card__id">b6G5977cw</code>
-                            <span class="badge badge--secondary preset-card__flag">Shipped default</span>
+                            <span class="badge badge--secondary preset-card__flag"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:card.default" /></span>
                         </header>
 
-                        <p class="preset-card__character">Monospace from the headings down to the body copy, over olive-warm greys and a near-black primary. The tightest controls and the thinnest focus ring of the create presets.</p>
+                        <p class="preset-card__character"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:preset.b6G5977cw.character" /></p>
 
-                        <div class="preset-card__swatches" role="img" aria-label="Primary, accent and muted colours of the Lyra mono olive preset">
+                        <div class="preset-card__swatches" role="img" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:card.swatches', arguments: {0: 'Lyra mono olive'})}">
                             <span class="preset-card__swatch preset-card__swatch--primary"></span>
                             <span class="preset-card__swatch preset-card__swatch--accent"></span>
                             <span class="preset-card__swatch preset-card__swatch--muted"></span>
                         </div>
 
                         <div class="preset-card__sample">
-                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true">Primary</button>
-                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true">Outline</button>
-                            <span class="badge badge--default">Badge</span>
-                            <span class="badge badge--secondary">Secondary</span>
+                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.primary" /></button>
+                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.outline" /></button>
+                            <span class="badge badge--default"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.badge" /></span>
+                            <span class="badge badge--secondary"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.secondary" /></span>
                         </div>
 
                         <dl class="preset-card__facts">
-                            <dt>Headings</dt><dd class="preset-card__font preset-card__font--heading">JetBrains Mono</dd>
-                            <dt>Body</dt><dd class="preset-card__font preset-card__font--body">JetBrains Mono</dd>
-                            <dt>Corners</dt><dd>0.625rem</dd>
-                            <dt>Controls</dt><dd>Compact</dd>
-                            <dt>Icons</dt><dd>Tabler</dd>
-                            <dt>Best for</dt><dd>Documentation and technical writing that wants density without raising its voice.</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.headings" /></dt><dd class="preset-card__font preset-card__font--heading">JetBrains Mono</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.body" /></dt><dd class="preset-card__font preset-card__font--body">JetBrains Mono</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.corners" /></dt><dd>0.625rem</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.controls" /></dt><dd><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.compact" /></dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.icons" /></dt><dd>Tabler</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.bestFor" /></dt><dd><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:preset.b6G5977cw.use" /></dd>
                         </dl>
                     </article>
                     <article class="preset-card" data-shadcn-preset-sample="b0">
@@ -69,28 +66,28 @@
                             <code class="preset-card__id">b0</code>
                         </header>
 
-                        <p class="preset-card__character">shadcn/ui exactly as it ships: pure greyscale, an ink primary, no hue anywhere. This is the baseline every other preset is a departure from.</p>
+                        <p class="preset-card__character"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:preset.b0.character" /></p>
 
-                        <div class="preset-card__swatches" role="img" aria-label="Primary, accent and muted colours of the Default neutral preset">
+                        <div class="preset-card__swatches" role="img" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:card.swatches', arguments: {0: 'Default neutral'})}">
                             <span class="preset-card__swatch preset-card__swatch--primary"></span>
                             <span class="preset-card__swatch preset-card__swatch--accent"></span>
                             <span class="preset-card__swatch preset-card__swatch--muted"></span>
                         </div>
 
                         <div class="preset-card__sample">
-                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true">Primary</button>
-                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true">Outline</button>
-                            <span class="badge badge--default">Badge</span>
-                            <span class="badge badge--secondary">Secondary</span>
+                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.primary" /></button>
+                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.outline" /></button>
+                            <span class="badge badge--default"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.badge" /></span>
+                            <span class="badge badge--secondary"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.secondary" /></span>
                         </div>
 
                         <dl class="preset-card__facts">
-                            <dt>Headings</dt><dd class="preset-card__font preset-card__font--heading">Inter</dd>
-                            <dt>Body</dt><dd class="preset-card__font preset-card__font--body">Inter</dd>
-                            <dt>Corners</dt><dd>0.625rem</dd>
-                            <dt>Controls</dt><dd>Default</dd>
-                            <dt>Icons</dt><dd>Lucide</dd>
-                            <dt>Best for</dt><dd>Admin tools and internal apps that should look like the framework rather than like a brand.</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.headings" /></dt><dd class="preset-card__font preset-card__font--heading">Inter</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.body" /></dt><dd class="preset-card__font preset-card__font--body">Inter</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.corners" /></dt><dd>0.625rem</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.controls" /></dt><dd><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.icons" /></dt><dd>Lucide</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.bestFor" /></dt><dd><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:preset.b0.use" /></dd>
                         </dl>
                     </article>
                     <article class="preset-card" data-shadcn-preset-sample="b27GcrRo">
@@ -99,28 +96,28 @@
                             <code class="preset-card__id">b27GcrRo</code>
                         </header>
 
-                        <p class="preset-card__character">Token for token identical to b0 in both colour schemes — it is the create-page id that produces the neutral default. Both are listed because both are selectable.</p>
+                        <p class="preset-card__character"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:preset.b27GcrRo.character" /></p>
 
-                        <div class="preset-card__swatches" role="img" aria-label="Primary, accent and muted colours of the Rhea modern neutral preset">
+                        <div class="preset-card__swatches" role="img" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:card.swatches', arguments: {0: 'Rhea modern neutral'})}">
                             <span class="preset-card__swatch preset-card__swatch--primary"></span>
                             <span class="preset-card__swatch preset-card__swatch--accent"></span>
                             <span class="preset-card__swatch preset-card__swatch--muted"></span>
                         </div>
 
                         <div class="preset-card__sample">
-                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true">Primary</button>
-                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true">Outline</button>
-                            <span class="badge badge--default">Badge</span>
-                            <span class="badge badge--secondary">Secondary</span>
+                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.primary" /></button>
+                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.outline" /></button>
+                            <span class="badge badge--default"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.badge" /></span>
+                            <span class="badge badge--secondary"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.secondary" /></span>
                         </div>
 
                         <dl class="preset-card__facts">
-                            <dt>Headings</dt><dd class="preset-card__font preset-card__font--heading">Inter</dd>
-                            <dt>Body</dt><dd class="preset-card__font preset-card__font--body">Inter</dd>
-                            <dt>Corners</dt><dd>0.625rem</dd>
-                            <dt>Controls</dt><dd>Default</dd>
-                            <dt>Icons</dt><dd>Lucide</dd>
-                            <dt>Best for</dt><dd>The same as b0. Keep this id if you want the create page to be able to reopen your theme.</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.headings" /></dt><dd class="preset-card__font preset-card__font--heading">Inter</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.body" /></dt><dd class="preset-card__font preset-card__font--body">Inter</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.corners" /></dt><dd>0.625rem</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.controls" /></dt><dd><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.icons" /></dt><dd>Lucide</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.bestFor" /></dt><dd><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:preset.b27GcrRo.use" /></dd>
                         </dl>
                     </article>
                     <article class="preset-card" data-shadcn-preset-sample="b4hb38Fyj">
@@ -129,28 +126,28 @@
                             <code class="preset-card__id">b4hb38Fyj</code>
                         </header>
 
-                        <p class="preset-card__character">Olive-tinted greys under a muted teal primary, set in Nunito Sans. The accent reads as a material rather than a highlight.</p>
+                        <p class="preset-card__character"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:preset.b4hb38Fyj.character" /></p>
 
-                        <div class="preset-card__swatches" role="img" aria-label="Primary, accent and muted colours of the Olive product system preset">
+                        <div class="preset-card__swatches" role="img" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:card.swatches', arguments: {0: 'Olive product system'})}">
                             <span class="preset-card__swatch preset-card__swatch--primary"></span>
                             <span class="preset-card__swatch preset-card__swatch--accent"></span>
                             <span class="preset-card__swatch preset-card__swatch--muted"></span>
                         </div>
 
                         <div class="preset-card__sample">
-                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true">Primary</button>
-                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true">Outline</button>
-                            <span class="badge badge--default">Badge</span>
-                            <span class="badge badge--secondary">Secondary</span>
+                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.primary" /></button>
+                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.outline" /></button>
+                            <span class="badge badge--default"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.badge" /></span>
+                            <span class="badge badge--secondary"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.secondary" /></span>
                         </div>
 
                         <dl class="preset-card__facts">
-                            <dt>Headings</dt><dd class="preset-card__font preset-card__font--heading">Nunito Sans</dd>
-                            <dt>Body</dt><dd class="preset-card__font preset-card__font--body">Nunito Sans</dd>
-                            <dt>Corners</dt><dd>0.625rem</dd>
-                            <dt>Controls</dt><dd>Default</dd>
-                            <dt>Icons</dt><dd>Phosphor</dd>
-                            <dt>Best for</dt><dd>Product and SaaS sites that want to look established instead of loud.</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.headings" /></dt><dd class="preset-card__font preset-card__font--heading">Nunito Sans</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.body" /></dt><dd class="preset-card__font preset-card__font--body">Nunito Sans</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.corners" /></dt><dd>0.625rem</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.controls" /></dt><dd><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.icons" /></dt><dd>Phosphor</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.bestFor" /></dt><dd><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:preset.b4hb38Fyj.use" /></dd>
                         </dl>
                     </article>
                     <article class="preset-card" data-shadcn-preset-sample="b3IWPgRwnI">
@@ -159,28 +156,28 @@
                             <code class="preset-card__id">b3IWPgRwnI</code>
                         </header>
 
-                        <p class="preset-card__character">The only preset that sets its headings in monospace over a sans body, on cool mist greys with a true blue primary.</p>
+                        <p class="preset-card__character"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:preset.b3IWPgRwnI.character" /></p>
 
-                        <div class="preset-card__swatches" role="img" aria-label="Primary, accent and muted colours of the Mist dashboard preset">
+                        <div class="preset-card__swatches" role="img" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:card.swatches', arguments: {0: 'Mist dashboard'})}">
                             <span class="preset-card__swatch preset-card__swatch--primary"></span>
                             <span class="preset-card__swatch preset-card__swatch--accent"></span>
                             <span class="preset-card__swatch preset-card__swatch--muted"></span>
                         </div>
 
                         <div class="preset-card__sample">
-                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true">Primary</button>
-                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true">Outline</button>
-                            <span class="badge badge--default">Badge</span>
-                            <span class="badge badge--secondary">Secondary</span>
+                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.primary" /></button>
+                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.outline" /></button>
+                            <span class="badge badge--default"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.badge" /></span>
+                            <span class="badge badge--secondary"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.secondary" /></span>
                         </div>
 
                         <dl class="preset-card__facts">
-                            <dt>Headings</dt><dd class="preset-card__font preset-card__font--heading">JetBrains Mono</dd>
-                            <dt>Body</dt><dd class="preset-card__font preset-card__font--body">Geist</dd>
-                            <dt>Corners</dt><dd>0.45rem</dd>
-                            <dt>Controls</dt><dd>Default</dd>
-                            <dt>Icons</dt><dd>Phosphor</dd>
-                            <dt>Best for</dt><dd>Dashboards and developer products, where the interface should read as instrumentation.</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.headings" /></dt><dd class="preset-card__font preset-card__font--heading">JetBrains Mono</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.body" /></dt><dd class="preset-card__font preset-card__font--body">Geist</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.corners" /></dt><dd>0.45rem</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.controls" /></dt><dd><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.icons" /></dt><dd>Phosphor</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.bestFor" /></dt><dd><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:preset.b3IWPgRwnI.use" /></dd>
                         </dl>
                     </article>
                     <article class="preset-card" data-shadcn-preset-sample="aurora">
@@ -189,28 +186,28 @@
                             <code class="preset-card__id">aurora</code>
                         </header>
 
-                        <p class="preset-card__character">A violet primary on the neutral base, with a soft elevation under every surface. The most saturated accent in the house set.</p>
+                        <p class="preset-card__character"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:preset.aurora.character" /></p>
 
-                        <div class="preset-card__swatches" role="img" aria-label="Primary, accent and muted colours of the Aurora preset">
+                        <div class="preset-card__swatches" role="img" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:card.swatches', arguments: {0: 'Aurora'})}">
                             <span class="preset-card__swatch preset-card__swatch--primary"></span>
                             <span class="preset-card__swatch preset-card__swatch--accent"></span>
                             <span class="preset-card__swatch preset-card__swatch--muted"></span>
                         </div>
 
                         <div class="preset-card__sample">
-                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true">Primary</button>
-                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true">Outline</button>
-                            <span class="badge badge--default">Badge</span>
-                            <span class="badge badge--secondary">Secondary</span>
+                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.primary" /></button>
+                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.outline" /></button>
+                            <span class="badge badge--default"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.badge" /></span>
+                            <span class="badge badge--secondary"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.secondary" /></span>
                         </div>
 
                         <dl class="preset-card__facts">
-                            <dt>Headings</dt><dd class="preset-card__font preset-card__font--heading">Inter</dd>
-                            <dt>Body</dt><dd class="preset-card__font preset-card__font--body">Inter</dd>
-                            <dt>Corners</dt><dd>0.625rem</dd>
-                            <dt>Controls</dt><dd>Default</dd>
-                            <dt>Icons</dt><dd>Lucide</dd>
-                            <dt>Best for</dt><dd>Software and creative-agency sites that want one confident colour.</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.headings" /></dt><dd class="preset-card__font preset-card__font--heading">Inter</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.body" /></dt><dd class="preset-card__font preset-card__font--body">Inter</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.corners" /></dt><dd>0.625rem</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.controls" /></dt><dd><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.icons" /></dt><dd>Lucide</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.bestFor" /></dt><dd><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:preset.aurora.use" /></dd>
                         </dl>
                     </article>
                     <article class="preset-card" data-shadcn-preset-sample="marine">
@@ -219,28 +216,28 @@
                             <code class="preset-card__id">marine</code>
                         </header>
 
-                        <p class="preset-card__character">Geist over a plain blue, with the roomiest controls and the deepest card elevation. Everything sits a little further apart than elsewhere.</p>
+                        <p class="preset-card__character"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:preset.marine.character" /></p>
 
-                        <div class="preset-card__swatches" role="img" aria-label="Primary, accent and muted colours of the Marine preset">
+                        <div class="preset-card__swatches" role="img" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:card.swatches', arguments: {0: 'Marine'})}">
                             <span class="preset-card__swatch preset-card__swatch--primary"></span>
                             <span class="preset-card__swatch preset-card__swatch--accent"></span>
                             <span class="preset-card__swatch preset-card__swatch--muted"></span>
                         </div>
 
                         <div class="preset-card__sample">
-                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true">Primary</button>
-                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true">Outline</button>
-                            <span class="badge badge--default">Badge</span>
-                            <span class="badge badge--secondary">Secondary</span>
+                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.primary" /></button>
+                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.outline" /></button>
+                            <span class="badge badge--default"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.badge" /></span>
+                            <span class="badge badge--secondary"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.secondary" /></span>
                         </div>
 
                         <dl class="preset-card__facts">
-                            <dt>Headings</dt><dd class="preset-card__font preset-card__font--heading">Geist</dd>
-                            <dt>Body</dt><dd class="preset-card__font preset-card__font--body">Geist</dd>
-                            <dt>Corners</dt><dd>0.5rem</dd>
-                            <dt>Controls</dt><dd>Comfortable</dd>
-                            <dt>Icons</dt><dd>Tabler</dd>
-                            <dt>Best for</dt><dd>Corporate sites and services where trust matters more than personality.</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.headings" /></dt><dd class="preset-card__font preset-card__font--heading">Geist</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.body" /></dt><dd class="preset-card__font preset-card__font--body">Geist</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.corners" /></dt><dd>0.5rem</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.controls" /></dt><dd><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.comfortable" /></dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.icons" /></dt><dd>Tabler</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.bestFor" /></dt><dd><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:preset.marine.use" /></dd>
                         </dl>
                     </article>
                     <article class="preset-card" data-shadcn-preset-sample="forest">
@@ -249,28 +246,28 @@
                             <code class="preset-card__id">forest</code>
                         </header>
 
-                        <p class="preset-card__character">Emerald on neutral greys with noticeably squarer corners. Sober rather than organic.</p>
+                        <p class="preset-card__character"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:preset.forest.character" /></p>
 
-                        <div class="preset-card__swatches" role="img" aria-label="Primary, accent and muted colours of the Forest preset">
+                        <div class="preset-card__swatches" role="img" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:card.swatches', arguments: {0: 'Forest'})}">
                             <span class="preset-card__swatch preset-card__swatch--primary"></span>
                             <span class="preset-card__swatch preset-card__swatch--accent"></span>
                             <span class="preset-card__swatch preset-card__swatch--muted"></span>
                         </div>
 
                         <div class="preset-card__sample">
-                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true">Primary</button>
-                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true">Outline</button>
-                            <span class="badge badge--default">Badge</span>
-                            <span class="badge badge--secondary">Secondary</span>
+                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.primary" /></button>
+                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.outline" /></button>
+                            <span class="badge badge--default"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.badge" /></span>
+                            <span class="badge badge--secondary"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.secondary" /></span>
                         </div>
 
                         <dl class="preset-card__facts">
-                            <dt>Headings</dt><dd class="preset-card__font preset-card__font--heading">Inter</dd>
-                            <dt>Body</dt><dd class="preset-card__font preset-card__font--body">Inter</dd>
-                            <dt>Corners</dt><dd>0.375rem</dd>
-                            <dt>Controls</dt><dd>Default</dd>
-                            <dt>Icons</dt><dd>Phosphor</dd>
-                            <dt>Best for</dt><dd>Sustainability, health and public-sector sites.</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.headings" /></dt><dd class="preset-card__font preset-card__font--heading">Inter</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.body" /></dt><dd class="preset-card__font preset-card__font--body">Inter</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.corners" /></dt><dd>0.375rem</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.controls" /></dt><dd><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.icons" /></dt><dd>Phosphor</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.bestFor" /></dt><dd><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:preset.forest.use" /></dd>
                         </dl>
                     </article>
                     <article class="preset-card" data-shadcn-preset-sample="ember">
@@ -279,28 +276,28 @@
                             <code class="preset-card__id">ember</code>
                         </header>
 
-                        <p class="preset-card__character">Warm orange in Nunito Sans, with generous corners and roomy controls. Its brand text colour is solved a shade darker than the button fill, because orange at button lightness cannot carry small text.</p>
+                        <p class="preset-card__character"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:preset.ember.character" /></p>
 
-                        <div class="preset-card__swatches" role="img" aria-label="Primary, accent and muted colours of the Ember preset">
+                        <div class="preset-card__swatches" role="img" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:card.swatches', arguments: {0: 'Ember'})}">
                             <span class="preset-card__swatch preset-card__swatch--primary"></span>
                             <span class="preset-card__swatch preset-card__swatch--accent"></span>
                             <span class="preset-card__swatch preset-card__swatch--muted"></span>
                         </div>
 
                         <div class="preset-card__sample">
-                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true">Primary</button>
-                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true">Outline</button>
-                            <span class="badge badge--default">Badge</span>
-                            <span class="badge badge--secondary">Secondary</span>
+                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.primary" /></button>
+                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.outline" /></button>
+                            <span class="badge badge--default"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.badge" /></span>
+                            <span class="badge badge--secondary"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.secondary" /></span>
                         </div>
 
                         <dl class="preset-card__facts">
-                            <dt>Headings</dt><dd class="preset-card__font preset-card__font--heading">Nunito Sans</dd>
-                            <dt>Body</dt><dd class="preset-card__font preset-card__font--body">Nunito Sans</dd>
-                            <dt>Corners</dt><dd>0.75rem</dd>
-                            <dt>Controls</dt><dd>Comfortable</dd>
-                            <dt>Icons</dt><dd>HugeIcons</dd>
-                            <dt>Best for</dt><dd>Food, events and consumer brands that want warmth.</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.headings" /></dt><dd class="preset-card__font preset-card__font--heading">Nunito Sans</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.body" /></dt><dd class="preset-card__font preset-card__font--body">Nunito Sans</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.corners" /></dt><dd>0.75rem</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.controls" /></dt><dd><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.comfortable" /></dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.icons" /></dt><dd>HugeIcons</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.bestFor" /></dt><dd><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:preset.ember.use" /></dd>
                         </dl>
                     </article>
                     <article class="preset-card" data-shadcn-preset-sample="bloom">
@@ -309,28 +306,28 @@
                             <code class="preset-card__id">bloom</code>
                         </header>
 
-                        <p class="preset-card__character">Rose on white with the softest corners in the entire set — the pill end of the radius scale.</p>
+                        <p class="preset-card__character"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:preset.bloom.character" /></p>
 
-                        <div class="preset-card__swatches" role="img" aria-label="Primary, accent and muted colours of the Bloom preset">
+                        <div class="preset-card__swatches" role="img" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:card.swatches', arguments: {0: 'Bloom'})}">
                             <span class="preset-card__swatch preset-card__swatch--primary"></span>
                             <span class="preset-card__swatch preset-card__swatch--accent"></span>
                             <span class="preset-card__swatch preset-card__swatch--muted"></span>
                         </div>
 
                         <div class="preset-card__sample">
-                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true">Primary</button>
-                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true">Outline</button>
-                            <span class="badge badge--default">Badge</span>
-                            <span class="badge badge--secondary">Secondary</span>
+                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.primary" /></button>
+                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.outline" /></button>
+                            <span class="badge badge--default"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.badge" /></span>
+                            <span class="badge badge--secondary"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.secondary" /></span>
                         </div>
 
                         <dl class="preset-card__facts">
-                            <dt>Headings</dt><dd class="preset-card__font preset-card__font--heading">Inter</dd>
-                            <dt>Body</dt><dd class="preset-card__font preset-card__font--body">Inter</dd>
-                            <dt>Corners</dt><dd>1rem</dd>
-                            <dt>Controls</dt><dd>Default</dd>
-                            <dt>Icons</dt><dd>Lucide</dd>
-                            <dt>Best for</dt><dd>Lifestyle, beauty and community products.</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.headings" /></dt><dd class="preset-card__font preset-card__font--heading">Inter</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.body" /></dt><dd class="preset-card__font preset-card__font--body">Inter</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.corners" /></dt><dd>1rem</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.controls" /></dt><dd><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.icons" /></dt><dd>Lucide</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.bestFor" /></dt><dd><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:preset.bloom.use" /></dd>
                         </dl>
                     </article>
                     <article class="preset-card" data-shadcn-preset-sample="lagoon">
@@ -339,28 +336,28 @@
                             <code class="preset-card__id">lagoon</code>
                         </header>
 
-                        <p class="preset-card__character">Teal, compact controls, a hairline focus ring and no elevation at all: the flattest house preset.</p>
+                        <p class="preset-card__character"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:preset.lagoon.character" /></p>
 
-                        <div class="preset-card__swatches" role="img" aria-label="Primary, accent and muted colours of the Lagoon preset">
+                        <div class="preset-card__swatches" role="img" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:card.swatches', arguments: {0: 'Lagoon'})}">
                             <span class="preset-card__swatch preset-card__swatch--primary"></span>
                             <span class="preset-card__swatch preset-card__swatch--accent"></span>
                             <span class="preset-card__swatch preset-card__swatch--muted"></span>
                         </div>
 
                         <div class="preset-card__sample">
-                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true">Primary</button>
-                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true">Outline</button>
-                            <span class="badge badge--default">Badge</span>
-                            <span class="badge badge--secondary">Secondary</span>
+                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.primary" /></button>
+                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.outline" /></button>
+                            <span class="badge badge--default"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.badge" /></span>
+                            <span class="badge badge--secondary"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.secondary" /></span>
                         </div>
 
                         <dl class="preset-card__facts">
-                            <dt>Headings</dt><dd class="preset-card__font preset-card__font--heading">Geist</dd>
-                            <dt>Body</dt><dd class="preset-card__font preset-card__font--body">Geist</dd>
-                            <dt>Corners</dt><dd>0.5rem</dd>
-                            <dt>Controls</dt><dd>Compact</dd>
-                            <dt>Icons</dt><dd>Phosphor</dd>
-                            <dt>Best for</dt><dd>Dense interfaces — portals, catalogues, anything with a lot of rows.</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.headings" /></dt><dd class="preset-card__font preset-card__font--heading">Geist</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.body" /></dt><dd class="preset-card__font preset-card__font--body">Geist</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.corners" /></dt><dd>0.5rem</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.controls" /></dt><dd><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.compact" /></dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.icons" /></dt><dd>Phosphor</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.bestFor" /></dt><dd><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:preset.lagoon.use" /></dd>
                         </dl>
                     </article>
                     <article class="preset-card" data-shadcn-preset-sample="gold">
@@ -369,28 +366,28 @@
                             <code class="preset-card__id">gold</code>
                         </header>
 
-                        <p class="preset-card__character">Amber held back from its full chroma so it stays readable, over squared corners.</p>
+                        <p class="preset-card__character"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:preset.gold.character" /></p>
 
-                        <div class="preset-card__swatches" role="img" aria-label="Primary, accent and muted colours of the Gold preset">
+                        <div class="preset-card__swatches" role="img" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:card.swatches', arguments: {0: 'Gold'})}">
                             <span class="preset-card__swatch preset-card__swatch--primary"></span>
                             <span class="preset-card__swatch preset-card__swatch--accent"></span>
                             <span class="preset-card__swatch preset-card__swatch--muted"></span>
                         </div>
 
                         <div class="preset-card__sample">
-                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true">Primary</button>
-                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true">Outline</button>
-                            <span class="badge badge--default">Badge</span>
-                            <span class="badge badge--secondary">Secondary</span>
+                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.primary" /></button>
+                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.outline" /></button>
+                            <span class="badge badge--default"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.badge" /></span>
+                            <span class="badge badge--secondary"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.secondary" /></span>
                         </div>
 
                         <dl class="preset-card__facts">
-                            <dt>Headings</dt><dd class="preset-card__font preset-card__font--heading">Inter</dd>
-                            <dt>Body</dt><dd class="preset-card__font preset-card__font--body">Inter</dd>
-                            <dt>Corners</dt><dd>0.375rem</dd>
-                            <dt>Controls</dt><dd>Default</dd>
-                            <dt>Icons</dt><dd>Tabler</dd>
-                            <dt>Best for</dt><dd>Premium, hospitality and membership sites.</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.headings" /></dt><dd class="preset-card__font preset-card__font--heading">Inter</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.body" /></dt><dd class="preset-card__font preset-card__font--body">Inter</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.corners" /></dt><dd>0.375rem</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.controls" /></dt><dd><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.icons" /></dt><dd>Tabler</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.bestFor" /></dt><dd><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:preset.gold.use" /></dd>
                         </dl>
                     </article>
                     <article class="preset-card" data-shadcn-preset-sample="midnight">
@@ -399,28 +396,28 @@
                             <code class="preset-card__id">midnight</code>
                         </header>
 
-                        <p class="preset-card__character">Indigo with roomy controls and raised surfaces. Built to be looked at in dark mode, where the accent lifts and the surfaces separate.</p>
+                        <p class="preset-card__character"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:preset.midnight.character" /></p>
 
-                        <div class="preset-card__swatches" role="img" aria-label="Primary, accent and muted colours of the Midnight preset">
+                        <div class="preset-card__swatches" role="img" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:card.swatches', arguments: {0: 'Midnight'})}">
                             <span class="preset-card__swatch preset-card__swatch--primary"></span>
                             <span class="preset-card__swatch preset-card__swatch--accent"></span>
                             <span class="preset-card__swatch preset-card__swatch--muted"></span>
                         </div>
 
                         <div class="preset-card__sample">
-                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true">Primary</button>
-                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true">Outline</button>
-                            <span class="badge badge--default">Badge</span>
-                            <span class="badge badge--secondary">Secondary</span>
+                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.primary" /></button>
+                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.outline" /></button>
+                            <span class="badge badge--default"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.badge" /></span>
+                            <span class="badge badge--secondary"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.secondary" /></span>
                         </div>
 
                         <dl class="preset-card__facts">
-                            <dt>Headings</dt><dd class="preset-card__font preset-card__font--heading">Inter</dd>
-                            <dt>Body</dt><dd class="preset-card__font preset-card__font--body">Inter</dd>
-                            <dt>Corners</dt><dd>0.625rem</dd>
-                            <dt>Controls</dt><dd>Comfortable</dd>
-                            <dt>Icons</dt><dd>Lucide</dd>
-                            <dt>Best for</dt><dd>Media, gaming and night-first products.</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.headings" /></dt><dd class="preset-card__font preset-card__font--heading">Inter</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.body" /></dt><dd class="preset-card__font preset-card__font--body">Inter</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.corners" /></dt><dd>0.625rem</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.controls" /></dt><dd><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.comfortable" /></dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.icons" /></dt><dd>Lucide</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.bestFor" /></dt><dd><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:preset.midnight.use" /></dd>
                         </dl>
                     </article>
                     <article class="preset-card" data-shadcn-preset-sample="blossom">
@@ -429,28 +426,28 @@
                             <code class="preset-card__id">blossom</code>
                         </header>
 
-                        <p class="preset-card__character">Pink in Nunito Sans with generous corners — the friendliest thing in the set without becoming a toy.</p>
+                        <p class="preset-card__character"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:preset.blossom.character" /></p>
 
-                        <div class="preset-card__swatches" role="img" aria-label="Primary, accent and muted colours of the Blossom preset">
+                        <div class="preset-card__swatches" role="img" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:card.swatches', arguments: {0: 'Blossom'})}">
                             <span class="preset-card__swatch preset-card__swatch--primary"></span>
                             <span class="preset-card__swatch preset-card__swatch--accent"></span>
                             <span class="preset-card__swatch preset-card__swatch--muted"></span>
                         </div>
 
                         <div class="preset-card__sample">
-                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true">Primary</button>
-                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true">Outline</button>
-                            <span class="badge badge--default">Badge</span>
-                            <span class="badge badge--secondary">Secondary</span>
+                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.primary" /></button>
+                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.outline" /></button>
+                            <span class="badge badge--default"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.badge" /></span>
+                            <span class="badge badge--secondary"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.secondary" /></span>
                         </div>
 
                         <dl class="preset-card__facts">
-                            <dt>Headings</dt><dd class="preset-card__font preset-card__font--heading">Nunito Sans</dd>
-                            <dt>Body</dt><dd class="preset-card__font preset-card__font--body">Nunito Sans</dd>
-                            <dt>Corners</dt><dd>0.75rem</dd>
-                            <dt>Controls</dt><dd>Default</dd>
-                            <dt>Icons</dt><dd>Remix Icon</dd>
-                            <dt>Best for</dt><dd>Education, non-profits and family-facing brands.</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.headings" /></dt><dd class="preset-card__font preset-card__font--heading">Nunito Sans</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.body" /></dt><dd class="preset-card__font preset-card__font--body">Nunito Sans</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.corners" /></dt><dd>0.75rem</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.controls" /></dt><dd><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.icons" /></dt><dd>Remix Icon</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.bestFor" /></dt><dd><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:preset.blossom.use" /></dd>
                         </dl>
                     </article>
                     <article class="preset-card" data-shadcn-preset-sample="citrus">
@@ -459,28 +456,28 @@
                             <code class="preset-card__id">citrus</code>
                         </header>
 
-                        <p class="preset-card__character">Lime in monospace, compact, hairline ring, flat surfaces and the sharpest corners of all fifteen.</p>
+                        <p class="preset-card__character"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:preset.citrus.character" /></p>
 
-                        <div class="preset-card__swatches" role="img" aria-label="Primary, accent and muted colours of the Citrus preset">
+                        <div class="preset-card__swatches" role="img" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:card.swatches', arguments: {0: 'Citrus'})}">
                             <span class="preset-card__swatch preset-card__swatch--primary"></span>
                             <span class="preset-card__swatch preset-card__swatch--accent"></span>
                             <span class="preset-card__swatch preset-card__swatch--muted"></span>
                         </div>
 
                         <div class="preset-card__sample">
-                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true">Primary</button>
-                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true">Outline</button>
-                            <span class="badge badge--default">Badge</span>
-                            <span class="badge badge--secondary">Secondary</span>
+                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.primary" /></button>
+                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.outline" /></button>
+                            <span class="badge badge--default"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.badge" /></span>
+                            <span class="badge badge--secondary"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:sample.secondary" /></span>
                         </div>
 
                         <dl class="preset-card__facts">
-                            <dt>Headings</dt><dd class="preset-card__font preset-card__font--heading">JetBrains Mono</dd>
-                            <dt>Body</dt><dd class="preset-card__font preset-card__font--body">JetBrains Mono</dd>
-                            <dt>Corners</dt><dd>0.3rem</dd>
-                            <dt>Controls</dt><dd>Compact</dd>
-                            <dt>Icons</dt><dd>Tabler</dd>
-                            <dt>Best for</dt><dd>Developer tools and technical products with an opinion.</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.headings" /></dt><dd class="preset-card__font preset-card__font--heading">JetBrains Mono</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.body" /></dt><dd class="preset-card__font preset-card__font--body">JetBrains Mono</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.corners" /></dt><dd>0.3rem</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.controls" /></dt><dd><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.compact" /></dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.icons" /></dt><dd>Tabler</dd>
+                            <dt><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.bestFor" /></dt><dd><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:preset.citrus.use" /></dd>
                         </dl>
                     </article>
         </div>
@@ -490,32 +487,29 @@
 <d:layout.section spacing="lg" class="preset-matrix-section">
     <d:layout.container>
         <header class="preset-matrix__head">
-            <h2 class="typography typography--h2">What actually differs</h2>
+            <h2 class="typography typography--h2"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:matrix.title" /></h2>
             <p class="typography typography--lead preset-overview__lead">
-                Type, corner radius, control density, focus-ring width and elevation.
-                Colour is only part of what a preset decides.
+                <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:matrix.lead" />
             </p>
         </header>
 
         <div class="table-wrapper">
             <table class="table preset-matrix">
                 <caption class="sr-only">
-                    Comparison of the 15 Desiderio theme presets by heading font, body font,
-                    monospace font, corner radius, control density, focus-ring width, elevation
-                    and icon library.
+                    <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:matrix.caption" arguments="{0: 15}" />
                 </caption>
                 <thead class="table__header">
                     <tr class="table__row">
-                        <th scope="col" class="table__head">Preset</th>
-                        <th scope="col" class="table__head">Key</th>
-                        <th scope="col" class="table__head">Headings</th>
-                        <th scope="col" class="table__head">Body</th>
-                        <th scope="col" class="table__head">Code</th>
-                        <th scope="col" class="table__head">Corners</th>
-                        <th scope="col" class="table__head">Controls</th>
-                        <th scope="col" class="table__head">Focus ring</th>
-                        <th scope="col" class="table__head">Elevation</th>
-                        <th scope="col" class="table__head">Icons</th>
+                        <th scope="col" class="table__head"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:matrix.column.preset" /></th>
+                        <th scope="col" class="table__head"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:matrix.column.key" /></th>
+                        <th scope="col" class="table__head"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.headings" /></th>
+                        <th scope="col" class="table__head"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.body" /></th>
+                        <th scope="col" class="table__head"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:matrix.column.code" /></th>
+                        <th scope="col" class="table__head"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.corners" /></th>
+                        <th scope="col" class="table__head"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.controls" /></th>
+                        <th scope="col" class="table__head"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:matrix.column.focusRing" /></th>
+                        <th scope="col" class="table__head"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:matrix.column.elevation" /></th>
+                        <th scope="col" class="table__head"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.icons" /></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -529,9 +523,9 @@
                                 <td class="table__cell">JetBrains Mono</td>
                                 <td class="table__cell">JetBrains Mono</td>
                                 <td class="table__cell">0.625rem</td>
-                                <td class="table__cell">Compact</td>
+                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.compact" /></td>
                                 <td class="table__cell">1px</td>
-                                <td class="table__cell">Flat</td>
+                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.flat" /></td>
                                 <td class="table__cell">Tabler</td>
                             </tr>
                             <tr class="table__row">
@@ -544,9 +538,9 @@
                                 <td class="table__cell">Inter</td>
                                 <td class="table__cell">JetBrains Mono</td>
                                 <td class="table__cell">0.625rem</td>
-                                <td class="table__cell">Default</td>
+                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></td>
                                 <td class="table__cell">3px</td>
-                                <td class="table__cell">Flat</td>
+                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.flat" /></td>
                                 <td class="table__cell">Lucide</td>
                             </tr>
                             <tr class="table__row">
@@ -559,9 +553,9 @@
                                 <td class="table__cell">Inter</td>
                                 <td class="table__cell">JetBrains Mono</td>
                                 <td class="table__cell">0.625rem</td>
-                                <td class="table__cell">Default</td>
+                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></td>
                                 <td class="table__cell">3px</td>
-                                <td class="table__cell">Flat</td>
+                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.flat" /></td>
                                 <td class="table__cell">Lucide</td>
                             </tr>
                             <tr class="table__row">
@@ -574,9 +568,9 @@
                                 <td class="table__cell">Nunito Sans</td>
                                 <td class="table__cell">JetBrains Mono</td>
                                 <td class="table__cell">0.625rem</td>
-                                <td class="table__cell">Default</td>
+                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></td>
                                 <td class="table__cell">3px</td>
-                                <td class="table__cell">Flat</td>
+                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.flat" /></td>
                                 <td class="table__cell">Phosphor</td>
                             </tr>
                             <tr class="table__row">
@@ -589,9 +583,9 @@
                                 <td class="table__cell">Geist</td>
                                 <td class="table__cell">JetBrains Mono</td>
                                 <td class="table__cell">0.45rem</td>
-                                <td class="table__cell">Default</td>
+                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></td>
                                 <td class="table__cell">3px</td>
-                                <td class="table__cell">Flat</td>
+                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.flat" /></td>
                                 <td class="table__cell">Phosphor</td>
                             </tr>
                             <tr class="table__row">
@@ -604,9 +598,9 @@
                                 <td class="table__cell">Inter</td>
                                 <td class="table__cell">JetBrains Mono</td>
                                 <td class="table__cell">0.625rem</td>
-                                <td class="table__cell">Default</td>
+                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></td>
                                 <td class="table__cell">3px</td>
-                                <td class="table__cell">Subtle</td>
+                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.subtle" /></td>
                                 <td class="table__cell">Lucide</td>
                             </tr>
                             <tr class="table__row">
@@ -619,9 +613,9 @@
                                 <td class="table__cell">Geist</td>
                                 <td class="table__cell">JetBrains Mono</td>
                                 <td class="table__cell">0.5rem</td>
-                                <td class="table__cell">Comfortable</td>
+                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.comfortable" /></td>
                                 <td class="table__cell">2px</td>
-                                <td class="table__cell">Raised</td>
+                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.raised" /></td>
                                 <td class="table__cell">Tabler</td>
                             </tr>
                             <tr class="table__row">
@@ -634,9 +628,9 @@
                                 <td class="table__cell">Inter</td>
                                 <td class="table__cell">JetBrains Mono</td>
                                 <td class="table__cell">0.375rem</td>
-                                <td class="table__cell">Default</td>
+                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></td>
                                 <td class="table__cell">2px</td>
-                                <td class="table__cell">Subtle</td>
+                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.subtle" /></td>
                                 <td class="table__cell">Phosphor</td>
                             </tr>
                             <tr class="table__row">
@@ -649,9 +643,9 @@
                                 <td class="table__cell">Nunito Sans</td>
                                 <td class="table__cell">JetBrains Mono</td>
                                 <td class="table__cell">0.75rem</td>
-                                <td class="table__cell">Comfortable</td>
+                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.comfortable" /></td>
                                 <td class="table__cell">3px</td>
-                                <td class="table__cell">Raised</td>
+                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.raised" /></td>
                                 <td class="table__cell">HugeIcons</td>
                             </tr>
                             <tr class="table__row">
@@ -664,9 +658,9 @@
                                 <td class="table__cell">Inter</td>
                                 <td class="table__cell">JetBrains Mono</td>
                                 <td class="table__cell">1rem</td>
-                                <td class="table__cell">Default</td>
+                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></td>
                                 <td class="table__cell">3px</td>
-                                <td class="table__cell">Subtle</td>
+                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.subtle" /></td>
                                 <td class="table__cell">Lucide</td>
                             </tr>
                             <tr class="table__row">
@@ -679,9 +673,9 @@
                                 <td class="table__cell">Geist</td>
                                 <td class="table__cell">JetBrains Mono</td>
                                 <td class="table__cell">0.5rem</td>
-                                <td class="table__cell">Compact</td>
+                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.compact" /></td>
                                 <td class="table__cell">1px</td>
-                                <td class="table__cell">Flat</td>
+                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.flat" /></td>
                                 <td class="table__cell">Phosphor</td>
                             </tr>
                             <tr class="table__row">
@@ -694,9 +688,9 @@
                                 <td class="table__cell">Inter</td>
                                 <td class="table__cell">JetBrains Mono</td>
                                 <td class="table__cell">0.375rem</td>
-                                <td class="table__cell">Default</td>
+                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></td>
                                 <td class="table__cell">2px</td>
-                                <td class="table__cell">Subtle</td>
+                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.subtle" /></td>
                                 <td class="table__cell">Tabler</td>
                             </tr>
                             <tr class="table__row">
@@ -709,9 +703,9 @@
                                 <td class="table__cell">Inter</td>
                                 <td class="table__cell">JetBrains Mono</td>
                                 <td class="table__cell">0.625rem</td>
-                                <td class="table__cell">Comfortable</td>
+                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.comfortable" /></td>
                                 <td class="table__cell">3px</td>
-                                <td class="table__cell">Raised</td>
+                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.raised" /></td>
                                 <td class="table__cell">Lucide</td>
                             </tr>
                             <tr class="table__row">
@@ -724,9 +718,9 @@
                                 <td class="table__cell">Nunito Sans</td>
                                 <td class="table__cell">JetBrains Mono</td>
                                 <td class="table__cell">0.75rem</td>
-                                <td class="table__cell">Default</td>
+                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></td>
                                 <td class="table__cell">2px</td>
-                                <td class="table__cell">Subtle</td>
+                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.subtle" /></td>
                                 <td class="table__cell">Remix Icon</td>
                             </tr>
                             <tr class="table__row">
@@ -739,9 +733,9 @@
                                 <td class="table__cell">JetBrains Mono</td>
                                 <td class="table__cell">JetBrains Mono</td>
                                 <td class="table__cell">0.3rem</td>
-                                <td class="table__cell">Compact</td>
+                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.compact" /></td>
                                 <td class="table__cell">1px</td>
-                                <td class="table__cell">Flat</td>
+                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.flat" /></td>
                                 <td class="table__cell">Tabler</td>
                             </tr>
                 </tbody>
@@ -749,15 +743,7 @@
         </div>
 
         <p class="typography typography--muted preset-note">
-            5 of the presets come from the
-            <a class="d-link" href="https://ui.shadcn.com/create" rel="noreferrer noopener">create page on ui.shadcn.com</a>
-            and 10 are house presets generated against WCAG 2.2 contrast targets.
-            Set one for a whole site with <code>desiderio.shadcn.preset</code> in the site settings,
-            or for one page and everything below it with the <strong>Theme preset</strong> field in
-            the page properties — it is inherited down the rootline, so a campaign subtree can run a
-            different look inside the same install. Neither needs a rebuild: the tokens are runtime
-            CSS custom properties. Anything you design on the create page yourself goes in as
-            <code>custom</code>.
+            <f:format.raw><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:matrix.note" arguments="{0: 5, 1: 10}" /></f:format.raw>
         </p>
     </d:layout.container>
 </d:layout.section>

@@ -70,6 +70,7 @@ final class AtomicDesignConformanceTest extends TestCase
         'Resources/Private/Components/Molecule/FeatureItem/FeatureItem.fluid.html' => 'slot content captured into a variable is already-escaped Fluid output',
         'Resources/Private/Components/Molecule/Figure/Figure.fluid.html' => 'slot content captured into a variable is already-escaped Fluid output',
         'Resources/Private/Components/Molecule/Stat/Stat.fluid.html' => 'slot content captured into a variable is already-escaped Fluid output',
+        'Resources/Private/Templates/Partials/Pages/PresetOverview.fluid.html' => 'the preset note comes from presets.xlf of this package and carries its link, code and strong markup',
     ];
 
     /** @var array<string, array<string, string>>|null */

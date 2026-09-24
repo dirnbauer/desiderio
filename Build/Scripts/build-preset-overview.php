@@ -29,6 +29,13 @@ declare(strict_types=1);
  *      the icon library comes from IconRegistry; only the prose sentences
  *      ("best for") are written by hand here.
  *
+ *   3. Resources/Private/Language/presets.xlf
+ *      Every sentence and label of the partial, which renders them through
+ *      f:translate, so the page reads in the site's language. The script
+ *      writes the English source only; the translations live next to it
+ *      (de.presets.xlf, zh.presets.xlf, hu.presets.xlf) and a unit test
+ *      fails when one of them lacks a unit this file has.
+ *
  * The script is a drift gate as much as a generator: it exits non-zero when
  * shadcn-theme.css, the settings enum and the descriptions below disagree
  * about which presets exist, so adding a preset cannot silently produce a page
@@ -43,6 +50,7 @@ $iconRegistryPath = $root . '/Classes/Icon/IconRegistry.php';
 $settingsPath = $root . '/Configuration/Sets/Desiderio/settings.definitions.yaml';
 $cssOutPath = $root . '/Resources/Public/Css/preset-samples.css';
 $partialOutPath = $root . '/Resources/Private/Templates/Partials/Pages/PresetOverview.fluid.html';
+$labelsOutPath = $root . '/Resources/Private/Language/presets.xlf';
 
 $quiet = in_array('--quiet', array_slice($argv, 1), true);
 
@@ -425,13 +433,60 @@ function fontFamily(string $token, array $scope): string
     return preg_replace('/ Variable$/', '', $first) ?? $first;
 }
 
+/**
+ * English source of every unit the partial renders, in the order they are
+ * first used; written out as presets.xlf at the end.
+ *
+ * @var array<string, string>
+ */
+$labelUnits = [];
+
+/**
+ * A translated label as a Fluid tag. Arguments fill %s / %d placeholders.
+ *
+ * @param list<int|string> $arguments
+ */
+function label(string $key, string $source, array $arguments = []): string
+{
+    $GLOBALS['labelUnits'][$key] = $source;
+
+    return '<f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:' . $key . '"'
+        . ($arguments === [] ? '' : ' arguments="' . fluidArguments($arguments) . '"') . ' />';
+}
+
+/**
+ * The same, in inline notation for attribute values.
+ *
+ * @param list<int|string> $arguments
+ */
+function inlineLabel(string $key, string $source, array $arguments = []): string
+{
+    $GLOBALS['labelUnits'][$key] = $source;
+
+    return "{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:" . $key . "'"
+        . ($arguments === [] ? '' : ', arguments: ' . fluidArguments($arguments)) . ')}';
+}
+
+/**
+ * @param list<int|string> $arguments
+ */
+function fluidArguments(array $arguments): string
+{
+    $pairs = [];
+    foreach ($arguments as $index => $value) {
+        $pairs[] = $index . ': ' . (is_int($value) ? (string)$value : "'" . str_replace("'", "\\'", $value) . "'");
+    }
+
+    return '{' . implode(', ', $pairs) . '}';
+}
+
 /** Control density, named by the height the profile sets. */
 function densityLabel(string $height): string
 {
     return match ($height) {
-        '2rem' => 'Compact',
-        '2.5rem' => 'Comfortable',
-        default => 'Default',
+        '2rem' => label('density.compact', 'Compact'),
+        '2.5rem' => label('density.comfortable', 'Comfortable'),
+        default => label('density.default', 'Default'),
     };
 }
 
@@ -449,9 +504,9 @@ function iconLabel(string $library): string
 function elevationLabel(string $shadow): string
 {
     return match (true) {
-        str_contains($shadow, 'shadow-md') => 'Raised',
-        str_contains($shadow, 'shadow-sm') => 'Subtle',
-        default => 'Flat',
+        str_contains($shadow, 'shadow-md') => label('elevation.raised', 'Raised'),
+        str_contains($shadow, 'shadow-sm') => label('elevation.subtle', 'Subtle'),
+        default => label('elevation.flat', 'Flat'),
     };
 }
 
@@ -467,8 +522,8 @@ foreach ($displayIds as $id) {
         'id' => $id,
         'name' => $descriptions[$id]['name'],
         'origin' => $descriptions[$id]['origin'],
-        'character' => $descriptions[$id]['character'],
-        'use' => $descriptions[$id]['use'],
+        'character' => label('preset.' . $id . '.character', $descriptions[$id]['character']),
+        'use' => label('preset.' . $id . '.use', $descriptions[$id]['use']),
         'heading' => fontFamily('d-font-heading', $scope),
         'body' => fontFamily('d-font-sans', $scope),
         'mono' => fontFamily('d-font-mono', $scope),
@@ -484,7 +539,7 @@ foreach ($displayIds as $id) {
 $cards = '';
 foreach ($rows as $row) {
     $badge = $row['isDefault']
-        ? "\n                            <span class=\"badge badge--secondary preset-card__flag\">Shipped default</span>"
+        ? "\n                            <span class=\"badge badge--secondary preset-card__flag\">" . label('card.default', 'Shipped default') . '</span>'
         : '';
 
     $cards .= sprintf(
@@ -498,39 +553,50 @@ foreach ($rows as $row) {
 
                         <p class="preset-card__character">%3$s</p>
 
-                        <div class="preset-card__swatches" role="img" aria-label="Primary, accent and muted colours of the %2$s preset">
+                        <div class="preset-card__swatches" role="img" aria-label="%11$s">
                             <span class="preset-card__swatch preset-card__swatch--primary"></span>
                             <span class="preset-card__swatch preset-card__swatch--accent"></span>
                             <span class="preset-card__swatch preset-card__swatch--muted"></span>
                         </div>
 
                         <div class="preset-card__sample">
-                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true">Primary</button>
-                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true">Outline</button>
-                            <span class="badge badge--default">Badge</span>
-                            <span class="badge badge--secondary">Secondary</span>
+                            <button type="button" class="btn btn--default btn--sm" tabindex="-1" aria-hidden="true">%12$s</button>
+                            <button type="button" class="btn btn--outline btn--sm" tabindex="-1" aria-hidden="true">%13$s</button>
+                            <span class="badge badge--default">%14$s</span>
+                            <span class="badge badge--secondary">%15$s</span>
                         </div>
 
                         <dl class="preset-card__facts">
-                            <dt>Headings</dt><dd class="preset-card__font preset-card__font--heading">%5$s</dd>
-                            <dt>Body</dt><dd class="preset-card__font preset-card__font--body">%6$s</dd>
-                            <dt>Corners</dt><dd>%7$s</dd>
-                            <dt>Controls</dt><dd>%8$s</dd>
-                            <dt>Icons</dt><dd>%9$s</dd>
-                            <dt>Best for</dt><dd>%10$s</dd>
+                            <dt>%16$s</dt><dd class="preset-card__font preset-card__font--heading">%5$s</dd>
+                            <dt>%17$s</dt><dd class="preset-card__font preset-card__font--body">%6$s</dd>
+                            <dt>%18$s</dt><dd>%7$s</dd>
+                            <dt>%19$s</dt><dd>%8$s</dd>
+                            <dt>%20$s</dt><dd>%9$s</dd>
+                            <dt>%21$s</dt><dd>%10$s</dd>
                         </dl>
                     </article>
 HTML,
         escape($row['id']),
         escape($row['name']),
-        escape($row['character']),
+        $row['character'],
         $badge,
         escape($row['heading']),
         escape($row['body']),
         escape($row['radius']),
-        escape($row['density']),
+        $row['density'],
         escape($row['icons']),
-        escape($row['use'])
+        $row['use'],
+        inlineLabel('card.swatches', 'Primary, accent and muted colours of the %s preset', [$row['name']]),
+        label('sample.primary', 'Primary'),
+        label('sample.outline', 'Outline'),
+        label('sample.badge', 'Badge'),
+        label('sample.secondary', 'Secondary'),
+        label('fact.headings', 'Headings'),
+        label('fact.body', 'Body'),
+        label('fact.corners', 'Corners'),
+        label('fact.controls', 'Controls'),
+        label('fact.icons', 'Icons'),
+        label('fact.bestFor', 'Best for')
     );
 }
 
@@ -561,9 +627,9 @@ HTML,
         escape($row['body']),
         escape($row['mono']),
         escape($row['radius']),
-        escape($row['density']),
+        $row['density'],
         escape($row['ring']),
-        escape($row['elevation']),
+        $row['elevation'],
         escape($row['icons'])
     );
 }
@@ -571,6 +637,30 @@ HTML,
 $createPresets = count(array_filter($rows, static fn (array $row): bool => $row['origin'] === 'create'));
 $housePresets = count($rows) - $createPresets;
 $total = count($rows);
+
+$text = [
+    'eyebrow' => label('overview.eyebrow', 'Theme presets'),
+    'title' => label('overview.title', '%d presets, one set of content', [$total]),
+    'lead' => label('overview.lead', 'Every card below is rendered live in the preset it names — same components, same markup, only different tokens. Switching a preset repaints the site and never touches a word of content. Switch this page to dark mode and all %d cards switch with it: each preset ships its own dark token set.', [$total]),
+    'matrixTitle' => label('matrix.title', 'What actually differs'),
+    'matrixLead' => label('matrix.lead', 'Type, corner radius, control density, focus-ring width and elevation. Colour is only part of what a preset decides.'),
+    'caption' => label('matrix.caption', 'Comparison of the %d Desiderio theme presets by heading font, body font, monospace font, corner radius, control density, focus-ring width, elevation and icon library.', [$total]),
+    'colPreset' => label('matrix.column.preset', 'Preset'),
+    'colKey' => label('matrix.column.key', 'Key'),
+    'colHeadings' => label('fact.headings', 'Headings'),
+    'colBody' => label('fact.body', 'Body'),
+    'colCode' => label('matrix.column.code', 'Code'),
+    'colCorners' => label('fact.corners', 'Corners'),
+    'colControls' => label('fact.controls', 'Controls'),
+    'colRing' => label('matrix.column.focusRing', 'Focus ring'),
+    'colElevation' => label('matrix.column.elevation', 'Elevation'),
+    'colIcons' => label('fact.icons', 'Icons'),
+    'note' => label(
+        'matrix.note',
+        '%d of the presets come from the <a class="d-link" href="https://ui.shadcn.com/create" rel="noreferrer noopener">create page on ui.shadcn.com</a> and %d are house presets generated against WCAG 2.2 contrast targets. Set one for a whole site with <code>desiderio.shadcn.preset</code> in the site settings, or for one page and everything below it with the <strong>Theme preset</strong> field in the page properties — it is inherited down the rootline, so a campaign subtree can run a different look inside the same install. Neither needs a rebuild: the tokens are runtime CSS custom properties. Anything you design on the create page yourself goes in as <code>custom</code>.',
+        [$createPresets, $housePresets]
+    ),
+];
 
 $partial = <<<HTML
 <html
@@ -596,13 +686,10 @@ $partial = <<<HTML
 <d:layout.section background="muted" spacing="lg" class="preset-overview">
     <d:layout.container>
         <header class="preset-overview__head">
-            <p class="preset-overview__eyebrow">Theme presets</p>
-            <h2 class="typography typography--h2">{$total} presets, one set of content</h2>
+            <p class="preset-overview__eyebrow">{$text['eyebrow']}</p>
+            <h2 class="typography typography--h2">{$text['title']}</h2>
             <p class="typography typography--lead preset-overview__lead">
-                Every card below is rendered live in the preset it names — same components,
-                same markup, only different tokens. Switching a preset repaints the site and
-                never touches a word of content. Switch this page to dark mode and all
-                {$total} cards switch with it: each preset ships its own dark token set.
+                {$text['lead']}
             </p>
         </header>
 
@@ -614,32 +701,29 @@ $partial = <<<HTML
 <d:layout.section spacing="lg" class="preset-matrix-section">
     <d:layout.container>
         <header class="preset-matrix__head">
-            <h2 class="typography typography--h2">What actually differs</h2>
+            <h2 class="typography typography--h2">{$text['matrixTitle']}</h2>
             <p class="typography typography--lead preset-overview__lead">
-                Type, corner radius, control density, focus-ring width and elevation.
-                Colour is only part of what a preset decides.
+                {$text['matrixLead']}
             </p>
         </header>
 
         <div class="table-wrapper">
             <table class="table preset-matrix">
                 <caption class="sr-only">
-                    Comparison of the {$total} Desiderio theme presets by heading font, body font,
-                    monospace font, corner radius, control density, focus-ring width, elevation
-                    and icon library.
+                    {$text['caption']}
                 </caption>
                 <thead class="table__header">
                     <tr class="table__row">
-                        <th scope="col" class="table__head">Preset</th>
-                        <th scope="col" class="table__head">Key</th>
-                        <th scope="col" class="table__head">Headings</th>
-                        <th scope="col" class="table__head">Body</th>
-                        <th scope="col" class="table__head">Code</th>
-                        <th scope="col" class="table__head">Corners</th>
-                        <th scope="col" class="table__head">Controls</th>
-                        <th scope="col" class="table__head">Focus ring</th>
-                        <th scope="col" class="table__head">Elevation</th>
-                        <th scope="col" class="table__head">Icons</th>
+                        <th scope="col" class="table__head">{$text['colPreset']}</th>
+                        <th scope="col" class="table__head">{$text['colKey']}</th>
+                        <th scope="col" class="table__head">{$text['colHeadings']}</th>
+                        <th scope="col" class="table__head">{$text['colBody']}</th>
+                        <th scope="col" class="table__head">{$text['colCode']}</th>
+                        <th scope="col" class="table__head">{$text['colCorners']}</th>
+                        <th scope="col" class="table__head">{$text['colControls']}</th>
+                        <th scope="col" class="table__head">{$text['colRing']}</th>
+                        <th scope="col" class="table__head">{$text['colElevation']}</th>
+                        <th scope="col" class="table__head">{$text['colIcons']}</th>
                     </tr>
                 </thead>
                 <tbody>{$matrixRows}
@@ -648,15 +732,7 @@ $partial = <<<HTML
         </div>
 
         <p class="typography typography--muted preset-note">
-            {$createPresets} of the presets come from the
-            <a class="d-link" href="https://ui.shadcn.com/create" rel="noreferrer noopener">create page on ui.shadcn.com</a>
-            and {$housePresets} are house presets generated against WCAG 2.2 contrast targets.
-            Set one for a whole site with <code>desiderio.shadcn.preset</code> in the site settings,
-            or for one page and everything below it with the <strong>Theme preset</strong> field in
-            the page properties — it is inherited down the rootline, so a campaign subtree can run a
-            different look inside the same install. Neither needs a rebuild: the tokens are runtime
-            CSS custom properties. Anything you design on the create page yourself goes in as
-            <code>custom</code>.
+            <f:format.raw>{$text['note']}</f:format.raw>
         </p>
     </d:layout.container>
 </d:layout.section>
@@ -666,6 +742,24 @@ $partial = <<<HTML
 HTML;
 
 file_put_contents($partialOutPath, $partial);
+
+$xliffUnits = '';
+foreach ($labelUnits as $key => $source) {
+    $xliffUnits .= sprintf(
+        "    <unit id=\"%s\">\n      <segment>\n        <source>%s</source>\n      </segment>\n    </unit>\n",
+        htmlspecialchars($key, ENT_QUOTES | ENT_XML1, 'UTF-8'),
+        htmlspecialchars($source, ENT_NOQUOTES | ENT_XML1, 'UTF-8')
+    );
+}
+file_put_contents($labelsOutPath, <<<XLIFF
+<?xml version="1.0" encoding="utf-8"?>
+<!-- GENERATED by Build/Scripts/build-preset-overview.php — do not edit. Translations: de.presets.xlf, zh.presets.xlf, hu.presets.xlf. -->
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en">
+  <file id="desiderio-presets">
+{$xliffUnits}  </file>
+</xliff>
+
+XLIFF);
 
 if (!$quiet) {
     printf(
@@ -679,4 +773,5 @@ if (!$quiet) {
         count($rows),
         strlen($partial) / 1024
     );
+    printf("presets.xlf — %d units\n", count($labelUnits));
 }

@@ -126,7 +126,7 @@ final readonly class PowermailDemoSeeder
                 $now,
                 $pageColumns
             );
-            $formPageTranslationUid = $this->upsertPage(
+            $this->upsertPage(
                 $rootUid,
                 $form['pageTitleDe'],
                 '/desiderio-powermail/' . $form['slug'] . '-de',
@@ -147,7 +147,7 @@ final readonly class PowermailDemoSeeder
                 $pageColumns,
                 navHide: true
             );
-            $thankTranslationUid = $this->upsertPage(
+            $this->upsertPage(
                 $formPageUid,
                 $form['thankTitleDe'],
                 '/desiderio-powermail/' . $form['slug'] . '/danke',
@@ -171,12 +171,15 @@ final readonly class PowermailDemoSeeder
                 $now,
                 $contentColumns
             );
+            // German elements are translations on the English pages, like the overview: content
+            // attached to a page's translation record never renders. The thank-you target is the
+            // English page too; TYPO3 links to its German translation.
             $this->insertPowermailPluginContent(
-                $formPageTranslationUid,
+                $formPageUid,
                 $form['pageTitleDe'],
                 $formUids['german'],
                 $storagePid,
-                $thankTranslationUid,
+                $thankUid,
                 (bool)$form['moresteps'],
                 512,
                 $now,
@@ -194,7 +197,7 @@ final readonly class PowermailDemoSeeder
                 $contentColumns
             );
             $this->insertTextContent(
-                $thankTranslationUid,
+                $thankUid,
                 $form['thankTitleDe'],
                 $form['thankBodyDe'],
                 256,

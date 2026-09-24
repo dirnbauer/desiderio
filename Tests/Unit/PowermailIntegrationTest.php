@@ -308,6 +308,8 @@ final class PowermailIntegrationTest extends TestCase
         // German content on the lab page belongs to the default-language page; content attached
         // to the page's translation record never renders, so /de/ showed the English overview.
         self::assertDoesNotMatchRegularExpression('/insertTextContent\(\s*\$rootTranslationUid/', $source);
+        // The same holds for the form and thank-you pages: /de/ showed their English text.
+        self::assertDoesNotMatchRegularExpression('/insert(TextContent|PowermailPluginContent)\(\s*\$\w*TranslationUid/', $source);
         self::assertStringContainsString('Die sechs Powermail-Vorlagen im Überblick', $source);
     }
 

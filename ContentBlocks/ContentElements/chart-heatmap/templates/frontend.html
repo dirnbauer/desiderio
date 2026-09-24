@@ -36,7 +36,7 @@
     </f:if>
 </f:for>
 
-<f:variable name="chartAriaLabel"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-heatmap/language/labels.xlf:aria.summary" arguments="{0: chartTitle, 1: rowCount, 2: colCount}">{chartTitle}: heatmap of {rowCount} rows by {colCount} columns.</f:translate></f:variable>
+<f:variable name="chartAriaLabel"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-heatmap/language/labels.xlf:aria.summary" arguments="{title: chartTitle, rows: rowCount, columns: colCount}">{chartTitle}: heatmap of {rowCount} rows by {colCount} columns.</f:translate></f:variable>
 
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="chart-heatmap-section">
     <d:layout.container>
@@ -66,7 +66,7 @@
                 <p id="chart-heatmap-desc-{data.uid}" class="sr-only">{chartAriaLabel -> f:format.trim()}</p>
 
                 <table class="chart-heatmap__table sr-only">
-                    <caption>{chartTitle}<f:if condition="{unit}"> &#8211; {f:translate(key: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-heatmap/language/labels.xlf:table.unit_caption', arguments: '{0: unit}')}</f:if></caption>
+                    <caption>{chartTitle}<f:if condition="{unit}"> &#8211; {f:translate(key: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-heatmap/language/labels.xlf:table.unit_caption', arguments: {unit: unit})}</f:if></caption>
                     <thead>
                         <tr>
                             <th scope="col"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-heatmap/language/labels.xlf:table.row_header"/></th>

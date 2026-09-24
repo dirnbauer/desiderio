@@ -60,8 +60,8 @@
 <f:if condition="{netChange} > 0"><f:variable name="trendKey">up</f:variable></f:if>
 <f:if condition="{netChange} < 0"><f:variable name="trendKey">down</f:variable></f:if>
 
-<f:variable name="measuringClause"><f:if condition="{seriesName}"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:aria.summary.measuring" arguments="{0: seriesName}"></f:translate></f:if></f:variable>
-<f:variable name="chartAriaLabel"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:aria.summary" arguments="{0: chartTitle, 1: pointCount, 2: firstLabel, 3: lastLabel, 4: measuringClause}">{chartTitle}: area chart trending across {pointCount} periods from {firstLabel} to {lastLabel}. The full series follows in the data table.</f:translate></f:variable>
+<f:variable name="measuringClause"><f:if condition="{seriesName}"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:aria.summary.measuring" arguments="{series: seriesName}"></f:translate></f:if></f:variable>
+<f:variable name="chartAriaLabel"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:aria.summary" arguments="{title: chartTitle, count: pointCount, first: firstLabel, last: lastLabel, measuring: measuringClause}">{chartTitle}: area chart trending across {pointCount} periods from {firstLabel} to {lastLabel}. The full series follows in the data table.</f:translate></f:variable>
 <f:variable name="valueColumnLabel"><f:if condition="{seriesName}"><f:then>{seriesName}</f:then><f:else><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:table.value"/></f:else></f:if><f:if condition="{unit}"> ({unit})</f:if></f:variable>
 
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="chart-area-section">

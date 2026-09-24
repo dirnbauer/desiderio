@@ -35,7 +35,7 @@
                     </f:if>
                 </figcaption>
 
-                <f:variable name="donutSummary"><f:spaceless><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-donut/language/labels.xlf:aria.summary" arguments="{0: donutTitle, 1: '{data.segments -> f:count()}'}">{donutTitle}: donut chart of {data.segments -> f:count()} segments. Full breakdown in the data table.</f:translate><f:if condition="{centreValue}"> <f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-donut/language/labels.xlf:aria.total" arguments="{0: centreValue, 1: centreLabel}">Centre figure: {centreValue} {centreLabel}.</f:translate></f:if></f:spaceless></f:variable>
+                <f:variable name="donutSummary"><f:spaceless><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-donut/language/labels.xlf:aria.summary" arguments="{title: donutTitle, count: '{data.segments -> f:count()}'}">{donutTitle}: donut chart of {data.segments -> f:count()} segments. Full breakdown in the data table.</f:translate><f:if condition="{centreValue}"> <f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-donut/language/labels.xlf:aria.total" arguments="{value: centreValue, label: centreLabel}">Centre figure: {centreValue} {centreLabel}.</f:translate></f:if></f:spaceless></f:variable>
 
                 <div class="chart-donut__content">
                     <div data-chart-donut-canvas class="chart-donut__canvas"

@@ -9,14 +9,14 @@
     </unit>
     <unit id="aria.summary">
       <segment state="final">
-        <source>{0}: {1} sparkline across {2, plural, one {# point} other {# points}} from {3} to {4}{5}. The full series follows in the data table.</source>
-        <target>{0}：{1} 迷你走势图，共 {2, plural, one {# 个数据点} other {# 个数据点}}，从 {3} 到 {4}{5}。完整数据系列见下方数据表。</target>
+        <source>{title}: {series} sparkline across {count, plural, one {# point} other {# points}} from {first} to {last}{latest}. The full series follows in the data table.</source>
+        <target>{title}：{series} 迷你走势图，共 {count, plural, one {# 个数据点} other {# 个数据点}}，从 {first} 到 {last}{latest}。完整数据系列见下方数据表。</target>
       </segment>
     </unit>
     <unit id="aria.summary.latest">
       <segment state="final">
-        <source>, latest {0} at {1}</source>
-        <target>，最新值为 {0}（{1}）</target>
+        <source>, latest {value} at {label}</source>
+        <target>，最新值为 {value}（{label}）</target>
       </segment>
     </unit>
     <unit id="table.period">

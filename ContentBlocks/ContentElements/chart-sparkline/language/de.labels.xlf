@@ -81,14 +81,14 @@
     </unit>
     <unit id="aria.summary">
       <segment state="final">
-        <source>{0}: {1} sparkline across {2, plural, one {# point} other {# points}} from {3} to {4}{5}. The full series follows in the data table.</source>
-        <target>{0}: {1}-Sparkline über {2, plural, one {# Punkt} other {# Punkte}} von {3} bis {4}{5}. Die vollständige Reihe folgt in der Datentabelle.</target>
+        <source>{title}: {series} sparkline across {count, plural, one {# point} other {# points}} from {first} to {last}{latest}. The full series follows in the data table.</source>
+        <target>{title}: {series}-Sparkline über {count, plural, one {# Punkt} other {# Punkte}} von {first} bis {last}{latest}. Die vollständige Reihe folgt in der Datentabelle.</target>
       </segment>
     </unit>
     <unit id="aria.summary.latest">
       <segment state="final">
-        <source>, latest {0} at {1}</source>
-        <target>, zuletzt {0} bei {1}</target>
+        <source>, latest {value} at {label}</source>
+        <target>, zuletzt {value} bei {label}</target>
       </segment>
     </unit>
     <unit id="table.period">

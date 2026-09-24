@@ -69,14 +69,14 @@
     </unit>
     <unit id="aria.summary">
       <segment state="final">
-        <source>{0}: area chart trending across {1, plural, one {# period} other {# periods}} from {2} to {3}{4}. The full series follows in the data table.</source>
-        <target>{0}: Flächendiagramm mit Verlauf über {1, plural, one {# Zeitraum} other {# Zeiträume}} von {2} bis {3}{4}. Die vollständige Datenreihe folgt in der Datentabelle.</target>
+        <source>{title}: area chart trending across {count, plural, one {# period} other {# periods}} from {first} to {last}{measuring}. The full series follows in the data table.</source>
+        <target>{title}: Flächendiagramm mit Verlauf über {count, plural, one {# Zeitraum} other {# Zeiträume}} von {first} bis {last}{measuring}. Die vollständige Datenreihe folgt in der Datentabelle.</target>
       </segment>
     </unit>
     <unit id="aria.summary.measuring">
       <segment state="final">
-        <source>, measuring {0}</source>
-        <target>, Messgröße: {0}</target>
+        <source>, measuring {series}</source>
+        <target>, Messgröße: {series}</target>
       </segment>
     </unit>
   </file>

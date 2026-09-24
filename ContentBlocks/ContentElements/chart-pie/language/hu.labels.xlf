@@ -33,8 +33,8 @@
     </unit>
     <unit id="aria.summary">
       <segment state="final">
-        <source>{0}: pie chart showing the share of the whole across {1, plural, one {# segment} other {# segments}}. The full breakdown follows in the data table.</source>
-        <target>{0}: kördiagram az egész megoszlásáról, {1, plural, one {# szegmens} other {# szegmens}}. A teljes bontást az adattáblázat tartalmazza.</target>
+        <source>{title}: pie chart showing the share of the whole across {count, plural, one {# segment} other {# segments}}. The full breakdown follows in the data table.</source>
+        <target>{title}: kördiagram az egész megoszlásáról, {count, plural, one {# szegmens} other {# szegmens}}. A teljes bontást az adattáblázat tartalmazza.</target>
       </segment>
     </unit>
   </file>

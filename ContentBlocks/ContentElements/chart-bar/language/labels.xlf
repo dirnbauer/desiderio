@@ -108,12 +108,12 @@
     </unit>
     <unit id="aria.summary">
       <segment>
-        <source>{0}: bar chart comparing {1, plural, one {# category} other {# categories}}{2}. The full breakdown follows in the data table.</source>
+        <source>{title}: bar chart comparing {count, plural, one {# category} other {# categories}}{measuring}. The full breakdown follows in the data table.</source>
       </segment>
     </unit>
     <unit id="aria.summary.measuring">
       <segment>
-        <source>, measuring {0}</source>
+        <source>, measuring {series}</source>
       </segment>
     </unit>
   </file>

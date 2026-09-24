@@ -129,8 +129,8 @@
     </unit>
     <unit id="aria.summary">
       <segment state="final">
-        <source>{0}: pie chart showing the share of the whole across {1, plural, one {# segment} other {# segments}}. The full breakdown follows in the data table.</source>
-        <target>{0}: Kreisdiagramm mit dem Anteil am Ganzen ueber {1, plural, one {# Segment} other {# Segmente}}. Die vollstaendige Aufschluesselung folgt in der Datentabelle.</target>
+        <source>{title}: pie chart showing the share of the whole across {count, plural, one {# segment} other {# segments}}. The full breakdown follows in the data table.</source>
+        <target>{title}: Kreisdiagramm mit dem Anteil am Ganzen ueber {count, plural, one {# Segment} other {# Segmente}}. Die vollstaendige Aufschluesselung folgt in der Datentabelle.</target>
       </segment>
     </unit>
   </file>

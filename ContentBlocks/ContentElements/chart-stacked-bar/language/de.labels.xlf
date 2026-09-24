@@ -105,20 +105,20 @@
     </unit>
     <unit id="table.unit.caption">
       <segment state="final">
-        <source>values in {0}</source>
-        <target>Werte in {0}</target>
+        <source>values in {unit}</source>
+        <target>Werte in {unit}</target>
       </segment>
     </unit>
     <unit id="aria.summary">
       <segment state="final">
-        <source>{0}: stacked bar chart comparing {1, plural, one {# category} other {# categories}} across {2}. The full breakdown follows in the data table.</source>
-        <target>{0}: gestapeltes Balkendiagramm, das {1, plural, one {# Kategorie} other {# Kategorien}} ueber {2} vergleicht. Die vollstaendige Aufschluesselung folgt in der Datentabelle.</target>
+        <source>{title}: stacked bar chart comparing {count, plural, one {# category} other {# categories}} across {series}. The full breakdown follows in the data table.</source>
+        <target>{title}: gestapeltes Balkendiagramm, das {count, plural, one {# Kategorie} other {# Kategorien}} ueber {series} vergleicht. Die vollstaendige Aufschluesselung folgt in der Datentabelle.</target>
       </segment>
     </unit>
     <unit id="aria.summary.no_series">
       <segment state="final">
-        <source>{0}: stacked bar chart with {1, plural, one {# category} other {# categories}}. The full breakdown follows in the data table.</source>
-        <target>{0}: gestapeltes Balkendiagramm mit {1, plural, one {# Kategorie} other {# Kategorien}}. Die vollstaendige Aufschluesselung folgt in der Datentabelle.</target>
+        <source>{title}: stacked bar chart with {count, plural, one {# category} other {# categories}}. The full breakdown follows in the data table.</source>
+        <target>{title}: gestapeltes Balkendiagramm mit {count, plural, one {# Kategorie} other {# Kategorien}}. Die vollstaendige Aufschluesselung folgt in der Datentabelle.</target>
       </segment>
     </unit>
     <unit id="aria.fallback">

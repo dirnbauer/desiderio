@@ -134,7 +134,7 @@
 
                 <f:if condition="{hasTable}">
                     <table class="chart__data-table sr-only" id="{chartId}-table">
-                        <caption>{figureLabel}<f:if condition="{data.value_unit}"> — <f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart/language/labels.xlf:chart.table.unit_caption" arguments="{0: data.value_unit}"/></f:if></caption>
+                        <caption>{figureLabel}<f:if condition="{data.value_unit}"> — <f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart/language/labels.xlf:chart.table.unit_caption" arguments="{unit: data.value_unit}"/></f:if></caption>
                         <thead>
                             <tr>
                                 <th scope="col"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart/language/labels.xlf:chart.table.category"/></th>

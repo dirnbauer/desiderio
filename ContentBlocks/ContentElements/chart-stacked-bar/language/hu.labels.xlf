@@ -21,20 +21,20 @@
     </unit>
     <unit id="table.unit.caption">
       <segment state="final">
-        <source>values in {0}</source>
-        <target>mértékegység: {0}</target>
+        <source>values in {unit}</source>
+        <target>mértékegység: {unit}</target>
       </segment>
     </unit>
     <unit id="aria.summary">
       <segment state="final">
-        <source>{0}: stacked bar chart comparing {1, plural, one {# category} other {# categories}} across {2}. The full breakdown follows in the data table.</source>
-        <target>{0}: halmozott oszlopdiagram, {1, plural, one {# kategória} other {# kategória}} összehasonlítása ezekben: {2}. A teljes bontást az adattáblázat tartalmazza.</target>
+        <source>{title}: stacked bar chart comparing {count, plural, one {# category} other {# categories}} across {series}. The full breakdown follows in the data table.</source>
+        <target>{title}: halmozott oszlopdiagram, {count, plural, one {# kategória} other {# kategória}} összehasonlítása ezekben: {series}. A teljes bontást az adattáblázat tartalmazza.</target>
       </segment>
     </unit>
     <unit id="aria.summary.no_series">
       <segment state="final">
-        <source>{0}: stacked bar chart with {1, plural, one {# category} other {# categories}}. The full breakdown follows in the data table.</source>
-        <target>{0}: halmozott oszlopdiagram, {1, plural, one {# kategória} other {# kategória}}. A teljes bontást az adattáblázat tartalmazza.</target>
+        <source>{title}: stacked bar chart with {count, plural, one {# category} other {# categories}}. The full breakdown follows in the data table.</source>
+        <target>{title}: halmozott oszlopdiagram, {count, plural, one {# kategória} other {# kategória}}. A teljes bontást az adattáblázat tartalmazza.</target>
       </segment>
     </unit>
     <unit id="aria.fallback">

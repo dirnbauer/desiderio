@@ -57,14 +57,14 @@
     </unit>
     <unit id="aria.summary">
       <segment state="final">
-        <source>{0}: area chart trending across {1, plural, one {# period} other {# periods}} from {2} to {3}{4}. The full series follows in the data table.</source>
-        <target>{0}：面积图，涵盖 {1, plural, one {# 个时段} other {# 个时段}}，从 {2} 到 {3}{4}。完整数据系列见下方数据表。</target>
+        <source>{title}: area chart trending across {count, plural, one {# period} other {# periods}} from {first} to {last}{measuring}. The full series follows in the data table.</source>
+        <target>{title}：面积图，涵盖 {count, plural, one {# 个时段} other {# 个时段}}，从 {first} 到 {last}{measuring}。完整数据系列见下方数据表。</target>
       </segment>
     </unit>
     <unit id="aria.summary.measuring">
       <segment state="final">
-        <source>, measuring {0}</source>
-        <target>，数据系列：{0}</target>
+        <source>, measuring {series}</source>
+        <target>，数据系列：{series}</target>
       </segment>
     </unit>
   </file>

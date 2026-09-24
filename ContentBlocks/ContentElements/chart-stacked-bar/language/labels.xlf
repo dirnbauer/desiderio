@@ -88,17 +88,17 @@
     </unit>
     <unit id="table.unit.caption">
       <segment>
-        <source>values in {0}</source>
+        <source>values in {unit}</source>
       </segment>
     </unit>
     <unit id="aria.summary">
       <segment>
-        <source>{0}: stacked bar chart comparing {1, plural, one {# category} other {# categories}} across {2}. The full breakdown follows in the data table.</source>
+        <source>{title}: stacked bar chart comparing {count, plural, one {# category} other {# categories}} across {series}. The full breakdown follows in the data table.</source>
       </segment>
     </unit>
     <unit id="aria.summary.no_series">
       <segment>
-        <source>{0}: stacked bar chart with {1, plural, one {# category} other {# categories}}. The full breakdown follows in the data table.</source>
+        <source>{title}: stacked bar chart with {count, plural, one {# category} other {# categories}}. The full breakdown follows in the data table.</source>
       </segment>
     </unit>
     <unit id="aria.fallback">

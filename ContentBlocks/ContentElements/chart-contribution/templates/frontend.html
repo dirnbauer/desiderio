@@ -43,7 +43,7 @@
                 </div>
 
                 <f:variable name="pointCount" value="{data.points -> f:count()}"/>
-                <f:variable name="chartSummary"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-contribution/language/labels.xlf:aria.summary" arguments="{0: chartTitle, 1: pointCount, 2: unitLabel}">{chartTitle} over {pointCount} time points.</f:translate></f:variable>
+                <f:variable name="chartSummary"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-contribution/language/labels.xlf:aria.summary" arguments="{title: chartTitle, count: pointCount, unit: unitLabel}">{chartTitle} over {pointCount} time points.</f:translate></f:variable>
 
                 <div class="chart-contribution__chart" role="img"
                      aria-label="{chartTitle -> f:format.htmlspecialchars()}"

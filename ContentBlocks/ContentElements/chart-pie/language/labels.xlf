@@ -108,7 +108,7 @@
     </unit>
     <unit id="aria.summary">
       <segment>
-        <source>{0}: pie chart showing the share of the whole across {1, plural, one {# segment} other {# segments}}. The full breakdown follows in the data table.</source>
+        <source>{title}: pie chart showing the share of the whole across {count, plural, one {# segment} other {# segments}}. The full breakdown follows in the data table.</source>
       </segment>
     </unit>
   </file>

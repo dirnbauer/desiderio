@@ -21,8 +21,8 @@
     </unit>
     <unit id="aria.summary">
       <segment state="final">
-        <source>{1, plural, =0 {{0}: no data points yet.} one {{0} across one time point, measured in {2}. Values follow in the table below.} other {{0} across # time points, measured in {2}. Values follow in the table below.}}</source>
-        <target>{1, plural, =0 {{0}: noch keine Datenpunkte.} one {{0} zu einem Zeitpunkt, gemessen in {2}. Die Werte folgen in der Tabelle unten.} other {{0} über # Zeitpunkte, gemessen in {2}. Die Werte folgen in der Tabelle unten.}}</target>
+        <source>{count, plural, =0 {{title}: no data points yet.} one {{title} across one time point, measured in {unit}. Values follow in the table below.} other {{title} across # time points, measured in {unit}. Values follow in the table below.}}</source>
+        <target>{count, plural, =0 {{title}: noch keine Datenpunkte.} one {{title} zu einem Zeitpunkt, gemessen in {unit}. Die Werte folgen in der Tabelle unten.} other {{title} über # Zeitpunkte, gemessen in {unit}. Die Werte folgen in der Tabelle unten.}}</target>
       </segment>
     </unit>
     <unit id="table.period">

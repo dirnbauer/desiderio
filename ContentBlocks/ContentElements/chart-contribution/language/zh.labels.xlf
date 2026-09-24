@@ -9,8 +9,8 @@
     </unit>
     <unit id="aria.summary">
       <segment state="final">
-        <source>{1, plural, =0 {{0}: no data points yet.} one {{0} across one time point, measured in {2}. Values follow in the table below.} other {{0} across # time points, measured in {2}. Values follow in the table below.}}</source>
-        <target>{1, plural, =0 {{0}：暂无数据点。} one {{0}：共 1 个时间点，单位为 {2}。数值见下方表格。} other {{0}：共 # 个时间点，单位为 {2}。数值见下方表格。}}</target>
+        <source>{count, plural, =0 {{title}: no data points yet.} one {{title} across one time point, measured in {unit}. Values follow in the table below.} other {{title} across # time points, measured in {unit}. Values follow in the table below.}}</source>
+        <target>{count, plural, =0 {{title}：暂无数据点。} one {{title}：共 1 个时间点，单位为 {unit}。数值见下方表格。} other {{title}：共 # 个时间点，单位为 {unit}。数值见下方表格。}}</target>
       </segment>
     </unit>
     <unit id="table.period">

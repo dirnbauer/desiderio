@@ -63,12 +63,12 @@
     </unit>
     <unit id="aria.summary">
       <segment>
-        <source>{0}: radar chart comparing {1, plural, one {# dimension} other {# dimensions}} on a 0–5 scale{2}. The full breakdown follows in the data table.</source>
+        <source>{title}: radar chart comparing {count, plural, one {# dimension} other {# dimensions}} on a 0–5 scale{measuring}. The full breakdown follows in the data table.</source>
       </segment>
     </unit>
     <unit id="aria.summary.measuring">
       <segment>
-        <source>, measuring {0}</source>
+        <source>, measuring {series}</source>
       </segment>
     </unit>
   </file>

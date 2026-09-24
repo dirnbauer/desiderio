@@ -9,8 +9,8 @@
     </unit>
     <unit id="aria.summary">
       <segment state="final">
-        <source>{0}: heatmap comparing {1} rows across {2} columns.</source>
-        <target>{0}: hőtérkép, {1} sor és {2} oszlop összevetése.</target>
+        <source>{title}: heatmap comparing {rows} rows across {columns} columns.</source>
+        <target>{title}: hőtérkép, {rows} sor és {columns} oszlop összevetése.</target>
       </segment>
     </unit>
     <unit id="table.row_header">
@@ -21,8 +21,8 @@
     </unit>
     <unit id="table.unit_caption">
       <segment state="final">
-        <source>values in {0}</source>
-        <target>mértékegység: {0}</target>
+        <source>values in {unit}</source>
+        <target>mértékegység: {unit}</target>
       </segment>
     </unit>
   </file>

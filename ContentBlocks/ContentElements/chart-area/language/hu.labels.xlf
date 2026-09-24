@@ -57,14 +57,14 @@
     </unit>
     <unit id="aria.summary">
       <segment state="final">
-        <source>{0}: area chart trending across {1, plural, one {# period} other {# periods}} from {2} to {3}{4}. The full series follows in the data table.</source>
-        <target>{0}: területdiagram, {1, plural, one {# időszak} other {# időszak}}, {2} és {3} között{4}. A teljes adatsort az adattáblázat tartalmazza.</target>
+        <source>{title}: area chart trending across {count, plural, one {# period} other {# periods}} from {first} to {last}{measuring}. The full series follows in the data table.</source>
+        <target>{title}: területdiagram, {count, plural, one {# időszak} other {# időszak}}, {first} és {last} között{measuring}. A teljes adatsort az adattáblázat tartalmazza.</target>
       </segment>
     </unit>
     <unit id="aria.summary.measuring">
       <segment state="final">
-        <source>, measuring {0}</source>
-        <target>, mérőszám: {0}</target>
+        <source>, measuring {series}</source>
+        <target>, mérőszám: {series}</target>
       </segment>
     </unit>
   </file>

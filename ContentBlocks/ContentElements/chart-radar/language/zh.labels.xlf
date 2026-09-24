@@ -33,14 +33,14 @@
     </unit>
     <unit id="aria.summary">
       <segment state="final">
-        <source>{0}: radar chart comparing {1, plural, one {# dimension} other {# dimensions}} on a 0–5 scale{2}. The full breakdown follows in the data table.</source>
-        <target>{0}：雷达图，以 0–5 分制比较 {1, plural, one {# 个维度} other {# 个维度}}{2}。完整明细见下方数据表。</target>
+        <source>{title}: radar chart comparing {count, plural, one {# dimension} other {# dimensions}} on a 0–5 scale{measuring}. The full breakdown follows in the data table.</source>
+        <target>{title}：雷达图，以 0–5 分制比较 {count, plural, one {# 个维度} other {# 个维度}}{measuring}。完整明细见下方数据表。</target>
       </segment>
     </unit>
     <unit id="aria.summary.measuring">
       <segment state="final">
-        <source>, measuring {0}</source>
-        <target>，数据系列：{0}</target>
+        <source>, measuring {series}</source>
+        <target>，数据系列：{series}</target>
       </segment>
     </unit>
   </file>

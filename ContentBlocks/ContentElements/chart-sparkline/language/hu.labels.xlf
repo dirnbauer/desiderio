@@ -9,14 +9,14 @@
     </unit>
     <unit id="aria.summary">
       <segment state="final">
-        <source>{0}: {1} sparkline across {2, plural, one {# point} other {# points}} from {3} to {4}{5}. The full series follows in the data table.</source>
-        <target>{0}: {1}, mini vonaldiagram, {2, plural, one {# adatpont} other {# adatpont}}, {3} és {4} között{5}. A teljes adatsort az adattáblázat tartalmazza.</target>
+        <source>{title}: {series} sparkline across {count, plural, one {# point} other {# points}} from {first} to {last}{latest}. The full series follows in the data table.</source>
+        <target>{title}: {series}, mini vonaldiagram, {count, plural, one {# adatpont} other {# adatpont}}, {first} és {last} között{latest}. A teljes adatsort az adattáblázat tartalmazza.</target>
       </segment>
     </unit>
     <unit id="aria.summary.latest">
       <segment state="final">
-        <source>, latest {0} at {1}</source>
-        <target>, legutóbbi érték: {0} ({1})</target>
+        <source>, latest {value} at {label}</source>
+        <target>, legutóbbi érték: {value} ({label})</target>
       </segment>
     </unit>
     <unit id="table.period">

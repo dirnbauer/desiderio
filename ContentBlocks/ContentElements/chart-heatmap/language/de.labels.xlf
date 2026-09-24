@@ -63,8 +63,8 @@
     </unit>
     <unit id="aria.summary">
       <segment state="final">
-        <source>{0}: heatmap comparing {1} rows across {2} columns.</source>
-        <target>{0}: Heatmap mit {1} Zeilen über {2} Spalten.</target>
+        <source>{title}: heatmap comparing {rows} rows across {columns} columns.</source>
+        <target>{title}: Heatmap mit {rows} Zeilen über {columns} Spalten.</target>
       </segment>
     </unit>
     <unit id="table.row_header">
@@ -75,8 +75,8 @@
     </unit>
     <unit id="table.unit_caption">
       <segment state="final">
-        <source>values in {0}</source>
-        <target>Werte in {0}</target>
+        <source>values in {unit}</source>
+        <target>Werte in {unit}</target>
       </segment>
     </unit>
   </file>

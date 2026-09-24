@@ -33,14 +33,14 @@
     </unit>
     <unit id="aria.summary">
       <segment state="final">
-        <source>{0}: radar chart comparing {1, plural, one {# dimension} other {# dimensions}} on a 0–5 scale{2}. The full breakdown follows in the data table.</source>
-        <target>{0}: pókhálódiagram, {1, plural, one {# dimenzió} other {# dimenzió}} összehasonlítása 0–5-ös skálán{2}. A teljes bontást az adattáblázat tartalmazza.</target>
+        <source>{title}: radar chart comparing {count, plural, one {# dimension} other {# dimensions}} on a 0–5 scale{measuring}. The full breakdown follows in the data table.</source>
+        <target>{title}: pókhálódiagram, {count, plural, one {# dimenzió} other {# dimenzió}} összehasonlítása 0–5-ös skálán{measuring}. A teljes bontást az adattáblázat tartalmazza.</target>
       </segment>
     </unit>
     <unit id="aria.summary.measuring">
       <segment state="final">
-        <source>, measuring {0}</source>
-        <target>, mérőszám: {0}</target>
+        <source>, measuring {series}</source>
+        <target>, mérőszám: {series}</target>
       </segment>
     </unit>
   </file>

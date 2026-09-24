@@ -51,14 +51,14 @@
     </unit>
     <unit id="aria.summary">
       <segment state="final">
-        <source>{0}: bar chart comparing {1, plural, one {# category} other {# categories}}{2}. The full breakdown follows in the data table.</source>
-        <target>{0}: oszlopdiagram, {1, plural, one {# kategória} other {# kategória}} összehasonlítása{2}. A teljes bontást az adattáblázat tartalmazza.</target>
+        <source>{title}: bar chart comparing {count, plural, one {# category} other {# categories}}{measuring}. The full breakdown follows in the data table.</source>
+        <target>{title}: oszlopdiagram, {count, plural, one {# kategória} other {# kategória}} összehasonlítása{measuring}. A teljes bontást az adattáblázat tartalmazza.</target>
       </segment>
     </unit>
     <unit id="aria.summary.measuring">
       <segment state="final">
-        <source>, measuring {0}</source>
-        <target>, mérőszám: {0}</target>
+        <source>, measuring {series}</source>
+        <target>, mérőszám: {series}</target>
       </segment>
     </unit>
   </file>

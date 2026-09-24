@@ -108,7 +108,7 @@
     </unit>
     <unit id="aria.summary">
       <segment>
-        <source>{1, plural, =0 {{0}: no data points yet.} one {{0} across one time point, measured in {2}. Values follow in the table below.} other {{0} across # time points, measured in {2}. Values follow in the table below.}}</source>
+        <source>{count, plural, =0 {{title}: no data points yet.} one {{title} across one time point, measured in {unit}. Values follow in the table below.} other {{title} across # time points, measured in {unit}. Values follow in the table below.}}</source>
       </segment>
     </unit>
     <unit id="table.period">

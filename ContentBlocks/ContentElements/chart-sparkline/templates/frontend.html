@@ -52,8 +52,8 @@
 <f:if condition="{netChange} < 0"><f:variable name="trendKey">down</f:variable></f:if>
 
 <f:variable name="latestValue">{lastValue}<f:if condition="{unit}"> {unit}</f:if></f:variable>
-<f:variable name="latestClause"><f:if condition="{pointCount} > 0"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-sparkline/language/labels.xlf:aria.summary.latest" arguments="{0: '{latestValue -> f:format.trim()}', 1: lastLabel}"></f:translate></f:if></f:variable>
-<f:variable name="chartAriaLabel"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-sparkline/language/labels.xlf:aria.summary" arguments="{0: chartTitle, 1: seriesLabel, 2: pointCount, 3: firstLabel, 4: lastLabel, 5: latestClause}">{chartTitle}: {seriesLabel} sparkline across {pointCount} points from {firstLabel} to {lastLabel}. The full series follows in the data table.</f:translate></f:variable>
+<f:variable name="latestClause"><f:if condition="{pointCount} > 0"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-sparkline/language/labels.xlf:aria.summary.latest" arguments="{value: '{latestValue -> f:format.trim()}', label: lastLabel}"></f:translate></f:if></f:variable>
+<f:variable name="chartAriaLabel"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-sparkline/language/labels.xlf:aria.summary" arguments="{title: chartTitle, series: seriesLabel, count: pointCount, first: firstLabel, last: lastLabel, latest: latestClause}">{chartTitle}: {seriesLabel} sparkline across {pointCount} points from {firstLabel} to {lastLabel}. The full series follows in the data table.</f:translate></f:variable>
 <f:variable name="valueColumnLabel">{seriesLabel}<f:if condition="{unit}"> ({unit})</f:if></f:variable>
 
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="chart-sparkline-section">

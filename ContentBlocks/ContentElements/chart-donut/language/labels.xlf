@@ -68,12 +68,12 @@
     </unit>
     <unit id="aria.summary">
       <segment>
-        <source>{1, plural, =0 {{0}: no segments yet.} one {{0}: a single segment. The value follows in the data table.} other {{0}: a donut chart split into # segments. The full breakdown follows in the data table.}}</source>
+        <source>{count, plural, =0 {{title}: no segments yet.} one {{title}: a single segment. The value follows in the data table.} other {{title}: a donut chart split into # segments. The full breakdown follows in the data table.}}</source>
       </segment>
     </unit>
     <unit id="aria.total">
       <segment>
-        <source>Centre figure: {0} {1}.</source>
+        <source>Centre figure: {value} {label}.</source>
       </segment>
     </unit>
     <unit id="table.segment">

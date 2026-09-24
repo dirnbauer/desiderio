@@ -45,14 +45,14 @@
     </unit>
     <unit id="aria.summary">
       <segment state="final">
-        <source>{0}: radar chart comparing {1, plural, one {# dimension} other {# dimensions}} on a 0–5 scale{2}. The full breakdown follows in the data table.</source>
-        <target>{0}: Netzdiagramm mit {1, plural, one {# Dimension} other {# Dimensionen}} im Vergleich auf einer Skala von 0–5{2}. Die vollständige Aufschlüsselung folgt in der Datentabelle.</target>
+        <source>{title}: radar chart comparing {count, plural, one {# dimension} other {# dimensions}} on a 0–5 scale{measuring}. The full breakdown follows in the data table.</source>
+        <target>{title}: Netzdiagramm mit {count, plural, one {# Dimension} other {# Dimensionen}} im Vergleich auf einer Skala von 0–5{measuring}. Die vollständige Aufschlüsselung folgt in der Datentabelle.</target>
       </segment>
     </unit>
     <unit id="aria.summary.measuring">
       <segment state="final">
-        <source>, measuring {0}</source>
-        <target>, Messgröße: {0}</target>
+        <source>, measuring {series}</source>
+        <target>, Messgröße: {series}</target>
       </segment>
     </unit>
   </file>

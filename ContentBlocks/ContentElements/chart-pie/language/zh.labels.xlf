@@ -33,8 +33,8 @@
     </unit>
     <unit id="aria.summary">
       <segment state="final">
-        <source>{0}: pie chart showing the share of the whole across {1, plural, one {# segment} other {# segments}}. The full breakdown follows in the data table.</source>
-        <target>{0}：饼图，显示 {1, plural, one {# 个分段} other {# 个分段}}各自占整体的比例。完整明细见下方数据表。</target>
+        <source>{title}: pie chart showing the share of the whole across {count, plural, one {# segment} other {# segments}}. The full breakdown follows in the data table.</source>
+        <target>{title}：饼图，显示 {count, plural, one {# 个分段} other {# 个分段}}各自占整体的比例。完整明细见下方数据表。</target>
       </segment>
     </unit>
   </file>

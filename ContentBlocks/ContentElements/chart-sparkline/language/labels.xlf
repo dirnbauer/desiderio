@@ -68,12 +68,12 @@
     </unit>
     <unit id="aria.summary">
       <segment>
-        <source>{0}: {1} sparkline across {2, plural, one {# point} other {# points}} from {3} to {4}{5}. The full series follows in the data table.</source>
+        <source>{title}: {series} sparkline across {count, plural, one {# point} other {# points}} from {first} to {last}{latest}. The full series follows in the data table.</source>
       </segment>
     </unit>
     <unit id="aria.summary.latest">
       <segment>
-        <source>, latest {0} at {1}</source>
+        <source>, latest {value} at {label}</source>
       </segment>
     </unit>
     <unit id="table.period">

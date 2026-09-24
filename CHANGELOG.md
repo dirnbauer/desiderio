@@ -6,6 +6,33 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.5.0] — 2026-09-24
+
+### Added
+
+- The frontend reads in German, Chinese and Hungarian. Chinese label files
+  (`zh.labels.xlf`, `zh.locallang.xlf`, `zh.forms.xlf`, `zh.powermail.xlf`)
+  and the missing Hungarian ones are new; the German and Hungarian files are
+  complete again (about 150 German and 270 Hungarian labels still showed the English
+  text). This covers pagination, navigation and skip links, search, the consent
+  banner, chart summaries, the Form Framework forms and the Powermail hints.
+  The frontend labels of 22 elements (charts, product gallery, mega menu, GDPR
+  banner and others) have German, Chinese and Hungarian files too.
+- The theme-preset overview (`/themes`) is translatable. The generator
+  (`Build/Scripts/build-preset-overview.php`) now writes every sentence and
+  label to `Resources/Private/Language/presets.xlf` and renders it through
+  `f:translate`; German, Chinese and Hungarian translations ship with it.
+- The feedback form's rating options have labels in `forms.xlf`, so they
+  follow the site language.
+- A unit test checks that every German, Chinese and Hungarian label keeps
+  the placeholders, ICU arguments and markup of its English source, and that
+  the preset overview is translated completely.
+
+### Fixed
+
+- The RSS link in the blog feed widget had an English `title` in every
+  language; it now uses the translated "Recent posts" label.
+
 ## [4.4.2] — 2026-09-23
 
 ### Fixed

@@ -6,6 +6,19 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.5.1] — 2026-09-24
+
+### Fixed
+
+- The German thank-you pages of the Powermail demo show German text. The
+  seeder stored the German thank-you text and form plugins on the pages'
+  translation records, where TYPO3 never looks for content; they are
+  translations on the English pages now, and the German plugins redirect to
+  the English thank-you page, which TYPO3 links in German.
+- A reseed no longer hides the Powermail demo pages' translations into other
+  languages (Chinese, Hungarian …). Only the English and German pages the
+  seeder writes again are hidden while it runs.
+
 ## [4.5.0] — 2026-09-24
 
 ### Added

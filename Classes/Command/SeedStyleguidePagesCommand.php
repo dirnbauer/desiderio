@@ -90,6 +90,30 @@ final class SeedStyleguidePagesCommand extends Command
         'footer' => 'bloom',
     ];
 
+    /**
+     * What visitors read for a chapter preset: the name its card has on the
+     * themes page, never the identifier (a create-page id such as b27GcrRo
+     * means nothing to a reader). ContentTypeChapterPresetTest checks that
+     * every chapter preset has a name and that the themes page uses it.
+     */
+    private const array PRESET_NAMES = [
+        'b6G5977cw' => 'Lyra mono olive',
+        'b0' => 'Default neutral',
+        'b27GcrRo' => 'Rhea modern neutral',
+        'b4hb38Fyj' => 'Olive product system',
+        'b3IWPgRwnI' => 'Mist dashboard',
+        'aurora' => 'Aurora',
+        'marine' => 'Marine',
+        'forest' => 'Forest',
+        'ember' => 'Ember',
+        'bloom' => 'Bloom',
+        'lagoon' => 'Lagoon',
+        'gold' => 'Gold',
+        'midnight' => 'Midnight',
+        'blossom' => 'Blossom',
+        'citrus' => 'Citrus',
+    ];
+
     private const array LEGACY_ROOT_PAGE_SLUGS = [
         '/desiderio-content',
         '/desiderio-conversion',
@@ -243,6 +267,14 @@ final class SeedStyleguidePagesCommand extends Command
             return self::FAILURE;
         }
         $groups = $this->contentTypeGroups(StyleguideContentGroups::getGroupsWithFixtures());
+        // A chapter's meta description states how many elements the group has,
+        // counted before the video filter below: the video elements belong to
+        // the group whether or not this run seeds a demo of them, and the
+        // chapter intro and the content-types hub state the same number.
+        $groupSizes = [];
+        foreach ($groups as $group) {
+            $groupSizes[(string)$group['groupId']] = count($group['elements']);
+        }
         // With EXT:blog installed the success stories seed as real blog posts
         // and get hidden category/tag listing pages for their metadata badges.
         $blogAvailable = $this->isBlogSchemaAvailable();
@@ -378,8 +410,8 @@ final class SeedStyleguidePagesCommand extends Command
                 ...$this->buildSeoPageAttributes($title, sprintf(
                     '%s: %d Desiderio content elements for TYPO3 v14, each with demo content. This chapter uses the %s theme preset.',
                     $title,
-                    count($group['elements']),
-                    ucfirst($preset)
+                    $groupSizes[$groupId] ?? count($group['elements']),
+                    $this->presetName($preset)
                 )),
             ];
 
@@ -676,6 +708,11 @@ final class SeedStyleguidePagesCommand extends Command
     private function presetForContentTypeGroup(string $groupId): string
     {
         return self::CONTENT_TYPE_GROUP_PRESETS[$groupId];
+    }
+
+    private function presetName(string $preset): string
+    {
+        return self::PRESET_NAMES[$preset] ?? ucfirst($preset);
     }
 
     /**

@@ -37,4 +37,37 @@ final class ContentTypeChapterPresetTest extends TestCase
             self::assertNotSame('', $preset);
         }
     }
+
+    /**
+     * The chapter meta description names the chapter's preset. Readers get the
+     * name the themes page gives that preset, never its identifier.
+     */
+    public function testEveryChapterPresetHasTheNameOfItsThemesPageCard(): void
+    {
+        $reflection = new \ReflectionClass(SeedStyleguidePagesCommand::class);
+        $presets = $reflection->getConstant('CONTENT_TYPE_GROUP_PRESETS');
+        $names = $reflection->getConstant('PRESET_NAMES');
+        self::assertIsArray($presets);
+        self::assertIsArray($names);
+
+        $overview = (string)file_get_contents(dirname(__DIR__, 2) . '/Resources/Private/Templates/Partials/Pages/PresetOverview.fluid.html');
+        preg_match_all(
+            '#data-shadcn-preset-sample="([^"]+)">\s*<header class="preset-card__head">\s*<h3 class="preset-card__name">([^<]+)</h3>#',
+            $overview,
+            $cards,
+            PREG_SET_ORDER
+        );
+        $cardNames = [];
+        foreach ($cards as $card) {
+            $cardNames[$card[1]] = $card[2];
+        }
+        self::assertNotSame([], $cardNames, 'The themes page partial has no preset cards to compare with.');
+
+        foreach ($presets as $groupId => $preset) {
+            self::assertIsString($preset);
+            self::assertArrayHasKey($preset, $names, sprintf('Chapter %s uses preset "%s", which has no name in PRESET_NAMES.', (string)$groupId, $preset));
+            self::assertArrayHasKey($preset, $cardNames, sprintf('The themes page has no card for preset "%s".', $preset));
+            self::assertSame($cardNames[$preset], $names[$preset], sprintf('Preset "%s" must be called what its themes page card calls it.', $preset));
+        }
+    }
 }

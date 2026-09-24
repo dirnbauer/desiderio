@@ -406,7 +406,7 @@ class StyleguideDemoValueGenerator
             str_contains($normalizedField, 'name') || str_contains($normalizedField, 'author') => $person[0],
             str_contains($normalizedField, 'email') => 'hello@example.com',
             str_contains($normalizedField, 'phone') || str_contains($normalizedField, 'tel') => '+43 1 555 010' . ($index + 1),
-            str_contains($normalizedField, 'address') || str_contains($normalizedField, 'location') => 'Mariahilfer Strasse 42, 1070 Vienna',
+            str_contains($normalizedField, 'address') || str_contains($normalizedField, 'location') => 'Lindengasse 12, 1070 Vienna',
             str_contains($normalizedField, 'date') => min(28, $index + 8) . ' May 2026',
             str_contains($normalizedField, 'year') => '2026',
             str_contains($normalizedField, 'trend') => ['positive', 'stable', 'up'][$index % 3],

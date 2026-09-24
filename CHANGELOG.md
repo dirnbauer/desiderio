@@ -6,6 +6,38 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.6.0] — 2026-09-24
+
+### Fixed
+
+- Chart summaries read as sentences in every language. The labels of the area,
+  bar, contribution, donut, heatmap, pie, radar, sparkline, stacked-bar and
+  data chart elements are ICU messages, but the templates passed a list
+  (`{0: …, 1: …}`), which TYPO3 v14 formats with `vsprintf()`; screen readers
+  heard "{0}: area chart trending across {1, plural, …}". The labels use named
+  placeholders (`{title}`, `{count}` …) and the templates pass named
+  arguments. A unit test checks every `f:translate` call on a Desiderio label
+  for the argument style its label needs.
+- The Solr facet headings are translated. The category facet printed its
+  `LLL:` reference as text, because EXT:solr prints a plain `label` as it is;
+  it is a `TEXT` object with `data = LLL:…` now. The content-type facet and
+  its "Pages" and "News" options use the labels too (`solr.facet.type` is
+  new, in all seven languages).
+- The meta descriptions of the element chapters state each group's size
+  (hero 21, content 24, features 25, social proof 25): the seeder counted the
+  elements after it had left out the video demos. The Data & Dashboards
+  chapter names its preset "Rhea modern neutral", as the themes page does,
+  instead of the identifier "B27GcrRo".
+- The Powermail copy no longer counts the forms. The Powermail Lab also lists
+  forms other extensions add (webcon_jev adds five), so "six Powermail pages"
+  was wrong there; the intro, the overview heading, the home page card and the
+  Powermail feature page describe the demo forms without a number.
+- Every element that names the Vienna studio gives the address of the imprint,
+  Lindengasse 12, 1070 Vienna: contact, contact info, map (with its marker),
+  office locations and the directions, whose routes describe the way to
+  Lindengasse. The generated demo address for empty address fields is the
+  same.
+
 ## [4.5.1] — 2026-09-24
 
 ### Fixed

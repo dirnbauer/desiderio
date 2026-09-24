@@ -264,7 +264,7 @@ final class StyleguideShowcasePages
                 'subheadline' => 'Each template set follows the active theme preset, in light and dark mode.',
                 'items' => [
                     ['title' => 'Solr search', 'description' => 'Results, facets, sorting, suggestions in the header and accessible pagination.'],
-                    ['title' => 'Powermail', 'description' => 'All field types restyled, six demo forms and Friendly Captcha.'],
+                    ['title' => 'Powermail', 'description' => 'All field types restyled, with demo forms and Friendly Captcha.'],
                     ['title' => 'News', 'description' => 'Teaser cards, detail views, lists and pagination for the News extension.'],
                     ['title' => 'Blog', 'description' => 'Post lists, sidebars and a comment form for the Blog extension.'],
                     ['title' => 'Form Framework', 'description' => 'Eight ready forms, with double opt-in through Brevo.'],

@@ -298,7 +298,10 @@ final class PowermailIntegrationTest extends TestCase
 
         $source = (string)file_get_contents(__DIR__ . '/../../Classes/Command/PowermailDemoSeeder.php');
         self::assertStringContainsString('office@webconsulting.at', $source);
-        self::assertStringContainsString('Six Powermail pages cover', $source);
+        self::assertStringContainsString('Each page below holds one Powermail form', $source);
+        // The lab page lists these forms and those of other extensions (webcon_jev
+        // adds five), so its copy names no count that another seeder can make wrong.
+        self::assertDoesNotMatchRegularExpression('/\b(six|sechs)\b/i', $source);
         self::assertStringContainsString("'/desiderio-powermail/' . \$form['slug'] . '/thank-you'", $source);
         self::assertStringContainsString("'nav_hide' => (int)\$navHide", $source);
         self::assertStringContainsString("'header_layout' => 100", $source);
@@ -311,7 +314,7 @@ final class PowermailIntegrationTest extends TestCase
         self::assertDoesNotMatchRegularExpression('/insertTextContent\(\s*\$rootTranslationUid/', $source);
         // The same holds for the form and thank-you pages: /de/ showed their English text.
         self::assertDoesNotMatchRegularExpression('/insert(TextContent|PowermailPluginContent)\(\s*\$\w*TranslationUid/', $source);
-        self::assertStringContainsString('Die sechs Powermail-Vorlagen im Überblick', $source);
+        self::assertStringContainsString('Powermail-Vorlagen von Desiderio', $source);
     }
 
     /**

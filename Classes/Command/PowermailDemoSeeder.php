@@ -97,7 +97,7 @@ final readonly class PowermailDemoSeeder
         $patternsUid = $this->insertTextContent(
             $rootUid,
             'Powermail form patterns',
-            'Six Powermail pages cover common website form patterns. Each form uses Friendly Captcha, sends from and to office@webconsulting.at, and has a hidden thank-you page.',
+            'Each page below holds one Powermail form for a common website task. Open a page to try the form and see what happens after sending.',
             256,
             $now,
             $contentColumns
@@ -105,7 +105,7 @@ final readonly class PowermailDemoSeeder
         $this->insertTextContent(
             $rootUid,
             'Powermail-Formularmuster',
-            'Sechs Powermail-Seiten decken typische Website-Formulare ab. Jedes Formular nutzt Friendly Captcha, sendet von und an office@webconsulting.at und hat eine ausgeblendete Danke-Seite.',
+            'Jede Seite unten enthält ein Powermail-Formular für eine typische Aufgabe auf Websites. Öffnen Sie eine Seite, um das Formular zu testen und zu sehen, was nach dem Absenden passiert.',
             256,
             $now,
             $contentColumns,
@@ -223,7 +223,7 @@ final readonly class PowermailDemoSeeder
         // powermail template, so the lab page doubles as a template index.
         $overviewUid = $this->insertTextContent(
             $rootUid,
-            'The six Powermail templates at a glance',
+            'Powermail templates from Desiderio',
             $this->buildOverviewBody($overviewEntries, false),
             384,
             $now,
@@ -231,7 +231,7 @@ final readonly class PowermailDemoSeeder
         );
         $this->insertTextContent(
             $rootUid,
-            'Die sechs Powermail-Vorlagen im Überblick',
+            'Powermail-Vorlagen von Desiderio',
             $this->buildOverviewBody($overviewEntries, true),
             384,
             $now,

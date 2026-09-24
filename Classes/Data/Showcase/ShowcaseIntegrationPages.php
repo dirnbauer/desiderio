@@ -658,7 +658,7 @@ vendor/bin/typo3 innesto:add magicui/marquee --ai',
                     'media_rounded' => 1,
                     'button_text' => 'View on GitHub',
                     'button_link' => 'https://github.com/dirnbauer/powermail',
-                    'media' => ShowcaseBlocks::screenshot('feature-powermail.png', 'Powermail form overview in TYPO3', 'The Powermail form overview in TYPO3, listing six forms with their language, usage count and actions.'),
+                    'media' => ShowcaseBlocks::screenshot('feature-powermail.png', 'Powermail form overview in TYPO3', 'The Powermail form overview in TYPO3, listing the demo forms with their language, usage count and actions.'),
                 ]),
                 ShowcaseBlocks::block('desiderio_benefitcards', [
                     'header' => 'What you get',
@@ -675,7 +675,7 @@ vendor/bin/typo3 innesto:add magicui/marquee --ai',
                     'header' => 'Features in detail',
                     'allow_multiple' => 1,
                     'items' => [
-                        ['title' => 'Multi-step forms with a step indicator', 'content' => '<p>Powermail splits long forms into pages, each with a step indicator.</p><ul><li><strong>Back and forth</strong> — visitors move between pages, and the browser checks the current page before the next one opens.</li><li><strong>Server check</strong> — every field is validated again on submit, before it is stored.</li><li><strong>Six demo forms</strong> — from one-page Contact, Newsletter and Callback forms to a four-step Project Request wizard.</li></ul>', 'open_by_default' => 1],
+                        ['title' => 'Multi-step forms with a step indicator', 'content' => '<p>Powermail splits long forms into pages, each with a step indicator.</p><ul><li><strong>Back and forth</strong> — visitors move between pages, and the browser checks the current page before the next one opens.</li><li><strong>Server check</strong> — every field is validated again on submit, before it is stored.</li><li><strong>Demo forms</strong> — from one-page Contact, Newsletter and Callback forms to a four-step Project Request wizard.</li></ul>', 'open_by_default' => 1],
                         ['title' => 'All field types in Desiderio styling', 'content' => '<p>Every Powermail field type has a matching shadcn partial.</p><ul><li><strong>All fields</strong> — inputs, textareas, selects, radios, checkboxes, dates, country and file fields.</li><li><strong>One shared component</strong> — each uses the same d:molecule.field as the rest of the design system.</li><li><strong>States</strong> — focus rings, disabled states, and an error-coloured border and ring on errors.</li><li><strong>Theme-driven</strong> — switch the preset and the form changes at once, in light and dark mode, without CSS.</li></ul>', 'open_by_default' => 0],
                         ['title' => 'Browser and server validation', 'content' => '<p>Validation runs in the browser and again on the server.</p><ul><li><strong>Inline errors</strong> — HTML5 rules (required, email, configured validators) show a message at the field.</li><li><strong>Checked again</strong> — the server repeats every check after submission.</li><li><strong>Rules without code</strong> — editors mark fields as required and add validators per field.</li><li><strong>Extensible</strong> — a CustomValidatorEvent adds your own rules through a PSR-14 listener.</li></ul>', 'open_by_default' => 0],
                         ['title' => 'Friendly Captcha with a development bypass', 'content' => '<p>Friendly Captcha is installed next to Powermail and configured per site.</p><ul><li><strong>On every demo</strong> — each seeded form already has a captcha field.</li><li><strong>Development bypass</strong> — set friendlycaptcha_skip_dev_validation, and Development or DDEV skips the token check.</li><li><strong>Required elsewhere</strong> — in every other context, or with the flag off, the captcha is required.</li><li><strong>GDPR-friendly</strong> — proof of work instead of tracking, and no user IP goes to Google.</li></ul>', 'open_by_default' => 0],
@@ -696,11 +696,11 @@ composer require "in2code/powermail:~14.0.3.2"
 composer require "studiomitte/friendlycaptcha:~2.3.0.1"
 
 # Add the Desiderio Powermail site set to your TYPO3 site configuration,
-# then seed the six demo forms with:
+# then seed the demo forms with:
 vendor/bin/typo3 desiderio:styleguide:seed',
                 ]),
                 ShowcaseBlocks::block('desiderio_ctabanner', [
-                    'header' => 'Six demo forms to start from',
+                    'header' => 'Demo forms to start from',
                     'description' => 'Contact, newsletter, callback, appointment, support and a four-step project request. Each has Friendly Captcha and thank-you pages in English and German, and you change them in the backend without template code. Thank you to in2code and Studio Mitte.',
                     'cta_text' => 'View on GitHub',
                     'cta_link' => 'https://github.com/dirnbauer/powermail',

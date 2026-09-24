@@ -13,5 +13,35 @@
         <target>Rendert einen per JavaScript gezeichneten Donut-Ring aus zwei bis fünf beschrifteten Wertsegmenten, mit optionaler Kennzahl samt Beschriftung in der Ringmitte, farbcodierter Legende und versteckter barrierefreier Datentabelle. Geeignet für: Teil-vom-Ganzen-Aufschlüsselungen — Budgetverteilung, Umsatz nach Segment, Marktanteile, Portfolio-Allokation, Antwortverteilung einer Umfrage — besonders wenn eine Gesamtzahl prominent in der Mitte stehen soll. 'Kreisdiagramm' wählen, wenn keine Zentrums-Kennzahl nötig ist; 'Gestapeltes Balkendiagramm' vergleicht Zusammensetzungen über mehrere Kategorien.</target>
       </segment>
     </unit>
+    <unit id="aria.fallback">
+      <segment state="final">
+        <source>Donut chart</source>
+        <target>Ringdiagramm</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment state="final">
+        <source>{1, plural, =0 {{0}: no segments yet.} one {{0}: a single segment. The value follows in the data table.} other {{0}: a donut chart split into # segments. The full breakdown follows in the data table.}}</source>
+        <target>{1, plural, =0 {{0}: noch keine Segmente.} one {{0}: ein einzelnes Segment. Der Wert folgt in der Datentabelle.} other {{0}: Ringdiagramm mit # Segmenten. Die vollständige Aufschlüsselung folgt in der Datentabelle.}}</target>
+      </segment>
+    </unit>
+    <unit id="aria.total">
+      <segment state="final">
+        <source>Centre figure: {0} {1}.</source>
+        <target>Wert in der Mitte: {0} {1}.</target>
+      </segment>
+    </unit>
+    <unit id="table.segment">
+      <segment state="final">
+        <source>Segment</source>
+        <target>Segment</target>
+      </segment>
+    </unit>
+    <unit id="table.value">
+      <segment state="final">
+        <source>Value</source>
+        <target>Wert</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

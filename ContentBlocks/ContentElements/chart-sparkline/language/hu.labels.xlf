@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="hu">
+  <file id="chart-sparkline">
+    <unit id="aria.fallback">
+      <segment state="final">
+        <source>Sparkline</source>
+        <target>Mini vonaldiagram</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment state="final">
+        <source>{0}: {1} sparkline across {2, plural, one {# point} other {# points}} from {3} to {4}{5}. The full series follows in the data table.</source>
+        <target>{0}: {1}, mini vonaldiagram, {2, plural, one {# adatpont} other {# adatpont}}, {3} és {4} között{5}. A teljes adatsort az adattáblázat tartalmazza.</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary.latest">
+      <segment state="final">
+        <source>, latest {0} at {1}</source>
+        <target>, legutóbbi érték: {0} ({1})</target>
+      </segment>
+    </unit>
+    <unit id="table.period">
+      <segment state="final">
+        <source>Period</source>
+        <target>Időszak</target>
+      </segment>
+    </unit>
+    <unit id="table.net_change">
+      <segment state="final">
+        <source>Net change (first to last)</source>
+        <target>Nettó változás (az elsőtől az utolsóig)</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

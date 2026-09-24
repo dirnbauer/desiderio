@@ -13,5 +13,29 @@
         <target>Rendert ein Aktivitätsdiagramm im GitHub-Stil: JavaScript zeichnet pro Zeitpunkt einen Balken aus einer Label-Wert-Sammlung (mindestens zwei Punkte), gerahmt von Überschrift, Subheadline, Badge, zwei Statistikblöcken und optionalem CTA-Button; eine versteckte Tabelle enthält die exakten Zahlen. Geeignet für: dichte Aktivitätsverläufe — Commits pro Woche, Beiträge pro Monat, Engagement über viele Zeiträume. 'Heatmap Chart' für eine zweidimensionale Intensitätsmatrix, 'Bar Chart' für wenige Kategorien.</target>
       </segment>
     </unit>
+    <unit id="aria.fallback">
+      <segment state="final">
+        <source>Contribution activity</source>
+        <target>Beitragsaktivität</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment state="final">
+        <source>{1, plural, =0 {{0}: no data points yet.} one {{0} across one time point, measured in {2}. Values follow in the table below.} other {{0} across # time points, measured in {2}. Values follow in the table below.}}</source>
+        <target>{1, plural, =0 {{0}: noch keine Datenpunkte.} one {{0} zu einem Zeitpunkt, gemessen in {2}. Die Werte folgen in der Tabelle unten.} other {{0} über # Zeitpunkte, gemessen in {2}. Die Werte folgen in der Tabelle unten.}}</target>
+      </segment>
+    </unit>
+    <unit id="table.period">
+      <segment state="final">
+        <source>Period</source>
+        <target>Zeitraum</target>
+      </segment>
+    </unit>
+    <unit id="table.value">
+      <segment state="final">
+        <source>Value</source>
+        <target>Wert</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

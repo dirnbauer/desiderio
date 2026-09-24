@@ -1,1654 +1,1654 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="hu">
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="zh">
   <file id="desiderio">
     <unit id="heading">
       <segment state="final">
         <source>Heading</source>
-        <target>Címsor</target>
+        <target>标题</target>
       </segment>
     </unit>
     <unit id="follow_on">
       <segment state="final">
         <source>Follow us on</source>
-        <target>Kövessen minket itt:</target>
+        <target>关注我们</target>
       </segment>
     </unit>
     <unit id="layout.inline">
       <segment state="final">
         <source>Inline row</source>
-        <target>Egy sorban</target>
+        <target>单行排列</target>
       </segment>
     </unit>
     <unit id="layout.stacked">
       <segment state="final">
         <source>Stacked, centered</source>
-        <target>Egymás alatt, középre igazítva</target>
+        <target>堆叠，居中</target>
       </segment>
     </unit>
     <unit id="description">
       <segment state="final">
         <source>Description</source>
-        <target>Leírás</target>
+        <target>描述</target>
       </segment>
     </unit>
     <unit id="subheadline">
       <segment state="final">
         <source>Subheadline</source>
-        <target>Alcím</target>
+        <target>副标题</target>
       </segment>
     </unit>
     <unit id="eyebrow">
       <segment state="final">
         <source>Eyebrow</source>
-        <target>Felvezető</target>
+        <target>眉题</target>
       </segment>
     </unit>
     <unit id="button_text">
       <segment state="final">
         <source>Button Text</source>
-        <target>Gomb szövege</target>
+        <target>按钮文本</target>
       </segment>
     </unit>
     <unit id="button_link">
       <segment state="final">
         <source>Button Link</source>
-        <target>Gomb linkje</target>
+        <target>按钮链接</target>
       </segment>
     </unit>
     <unit id="label">
       <segment state="final">
         <source>Label</source>
-        <target>Címke</target>
+        <target>标签</target>
       </segment>
     </unit>
     <unit id="label_field">
       <segment state="final">
         <source>Label</source>
-        <target>Címke</target>
+        <target>标签</target>
       </segment>
     </unit>
     <unit id="link">
       <segment state="final">
         <source>Link</source>
-        <target>Link</target>
+        <target>链接</target>
       </segment>
     </unit>
     <unit id="optional_link">
       <segment state="final">
         <source>Optional Link</source>
-        <target>Opcionális link</target>
+        <target>可选链接</target>
       </segment>
     </unit>
     <unit id="link_text">
       <segment state="final">
         <source>Link Text</source>
-        <target>Link szövege</target>
+        <target>链接文本</target>
       </segment>
     </unit>
     <unit id="read_article">
       <segment state="final">
         <source>Read article</source>
-        <target>Cikk elolvasása</target>
+        <target>阅读文章</target>
       </segment>
     </unit>
     <unit id="download_episode">
       <segment state="final">
         <source>Download episode</source>
-        <target>Epizód letöltése</target>
+        <target>下载本集</target>
       </segment>
     </unit>
     <unit id="audio_unsupported">
       <segment state="final">
         <source>Your browser does not support the audio element.</source>
-        <target>Az Ön böngészője nem támogatja az audio elemet.</target>
+        <target>您的浏览器不支持音频元素。</target>
       </segment>
     </unit>
     <unit id="feature">
       <segment state="final">
         <source>Feature</source>
-        <target>Funkció</target>
+        <target>功能</target>
       </segment>
     </unit>
     <unit id="included">
       <segment state="final">
         <source>Included</source>
-        <target>Tartalmazza</target>
+        <target>包含</target>
       </segment>
     </unit>
     <unit id="not_included">
       <segment state="final">
         <source>Not included</source>
-        <target>Nem tartalmazza</target>
+        <target>不包含</target>
       </segment>
     </unit>
     <unit id="title">
       <segment state="final">
         <source>Title</source>
-        <target>Cím</target>
+        <target>标题</target>
       </segment>
     </unit>
     <unit id="image">
       <segment state="final">
         <source>Image</source>
-        <target>Kép</target>
+        <target>图片</target>
       </segment>
     </unit>
     <unit id="name">
       <segment state="final">
         <source>Name</source>
-        <target>Név</target>
+        <target>名称</target>
       </segment>
     </unit>
     <unit id="content">
       <segment state="final">
         <source>Content</source>
-        <target>Tartalom</target>
+        <target>内容</target>
       </segment>
     </unit>
     <unit id="disclaimer_text">
       <segment state="final">
         <source>Disclaimer Text</source>
-        <target>Jogi nyilatkozat szövege</target>
+        <target>免责声明文本</target>
       </segment>
     </unit>
     <unit id="disclaimer.aria">
       <segment state="final">
         <source>Legal disclaimer</source>
-        <target>Jogi nyilatkozat</target>
+        <target>法律免责声明</target>
       </segment>
     </unit>
     <unit id="text">
       <segment state="final">
         <source>Text</source>
-        <target>Szöveg</target>
+        <target>文本</target>
       </segment>
     </unit>
     <unit id="style">
       <segment state="final">
         <source>Style</source>
-        <target>Stílus</target>
+        <target>样式</target>
       </segment>
     </unit>
     <unit id="layout">
       <segment state="final">
         <source>Layout</source>
-        <target>Elrendezés</target>
+        <target>布局</target>
       </segment>
     </unit>
     <unit id="columns">
       <segment state="final">
         <source>Columns</source>
-        <target>Oszlopok</target>
+        <target>列数</target>
       </segment>
     </unit>
     <unit id="alignment">
       <segment state="final">
         <source>Alignment</source>
-        <target>Igazítás</target>
+        <target>对齐方式</target>
       </segment>
     </unit>
     <unit id="text_alignment">
       <segment state="final">
         <source>Text Alignment</source>
-        <target>Szöveg igazítása</target>
+        <target>文本对齐</target>
       </segment>
     </unit>
     <unit id="primary_button_text">
       <segment state="final">
         <source>Primary Button Text</source>
-        <target>Elsődleges gomb szövege</target>
+        <target>主按钮文本</target>
       </segment>
     </unit>
     <unit id="primary_button_link">
       <segment state="final">
         <source>Primary Button Link</source>
-        <target>Elsődleges gomb linkje</target>
+        <target>主按钮链接</target>
       </segment>
     </unit>
     <unit id="secondary_button_text">
       <segment state="final">
         <source>Secondary Button Text</source>
-        <target>Másodlagos gomb szövege</target>
+        <target>次按钮文本</target>
       </segment>
     </unit>
     <unit id="secondary_button_link">
       <segment state="final">
         <source>Secondary Button Link</source>
-        <target>Másodlagos gomb linkje</target>
+        <target>次按钮链接</target>
       </segment>
     </unit>
     <unit id="badge_text">
       <segment state="final">
         <source>Badge Text</source>
-        <target>Jelvény szövege</target>
+        <target>徽章文本</target>
       </segment>
     </unit>
     <unit id="reassurance_text">
       <segment state="final">
         <source>Reassurance Text</source>
-        <target>Megnyugtató szöveg</target>
+        <target>安心提示文本</target>
       </segment>
     </unit>
     <unit id="background_image">
       <segment state="final">
         <source>Background Image</source>
-        <target>Háttérkép</target>
+        <target>背景图片</target>
       </segment>
     </unit>
     <unit id="author_name">
       <segment state="final">
         <source>Author Name</source>
-        <target>Szerző neve</target>
+        <target>作者姓名</target>
       </segment>
     </unit>
     <unit id="author_role">
       <segment state="final">
         <source>Author Role</source>
-        <target>Szerző szerepe</target>
+        <target>作者角色</target>
       </segment>
     </unit>
     <unit id="author_title">
       <segment state="final">
         <source>Author Title</source>
-        <target>Szerző titulusa</target>
+        <target>作者职位</target>
       </segment>
     </unit>
     <unit id="author_photo">
       <segment state="final">
         <source>Author Photo</source>
-        <target>Szerző fotója</target>
+        <target>作者照片</target>
       </segment>
     </unit>
     <unit id="copyright_text">
       <segment state="final">
         <source>Copyright Text</source>
-        <target>Szerzői jogi szöveg</target>
+        <target>版权文本</target>
       </segment>
     </unit>
     <unit id="price">
       <segment state="final">
         <source>Price</source>
-        <target>Ár</target>
+        <target>价格</target>
       </segment>
     </unit>
     <unit id="rating">
       <segment state="final">
         <source>Rating</source>
-        <target>Értékelés</target>
+        <target>评分</target>
       </segment>
     </unit>
     <unit id="brand">
       <segment state="final">
         <source>Brand</source>
-        <target>Márka</target>
+        <target>品牌</target>
       </segment>
     </unit>
     <unit id="brand_name">
       <segment state="final">
         <source>Brand Name</source>
-        <target>Márkanév</target>
+        <target>品牌名称</target>
       </segment>
     </unit>
     <unit id="brand_link">
       <segment state="final">
         <source>Brand Link</source>
-        <target>Márka linkje</target>
+        <target>品牌链接</target>
       </segment>
     </unit>
     <unit id="form_action">
       <segment state="final">
         <source>Form Action</source>
-        <target>Űrlap művelete</target>
+        <target>表单提交地址</target>
       </segment>
     </unit>
     <unit id="features">
       <segment state="final">
         <source>Features</source>
-        <target>Jellemzők</target>
+        <target>功能</target>
       </segment>
     </unit>
     <unit id="features_one_per_line">
       <segment state="final">
         <source>Feature Items</source>
-        <target>Jellemző elemek</target>
+        <target>功能条目</target>
       </segment>
     </unit>
     <unit id="feature.included">
       <segment state="final">
         <source>Included:</source>
-        <target>Tartalmazza:</target>
+        <target>包含：</target>
       </segment>
     </unit>
     <unit id="feature.notIncluded">
       <segment state="final">
         <source>Not included:</source>
-        <target>Nem tartalmazza:</target>
+        <target>不包含：</target>
       </segment>
     </unit>
     <unit id="plan.recommended">
       <segment state="final">
         <source>Recommended plan</source>
-        <target>Ajánlott csomag</target>
+        <target>推荐套餐</target>
       </segment>
     </unit>
     <unit id="per_month">
       <segment state="final">
         <source>/month</source>
-        <target>/hó</target>
+        <target>/月</target>
       </segment>
     </unit>
     <unit id="per_year">
       <segment state="final">
         <source>/year</source>
-        <target>/év</target>
+        <target>/年</target>
       </segment>
     </unit>
     <unit id="billed_annually">
       <segment state="final">
         <source>billed annually</source>
-        <target>éves számlázással</target>
+        <target>按年计费</target>
       </segment>
     </unit>
     <unit id="calc.tier">
       <segment state="final">
         <source>Tier</source>
-        <target>Sáv</target>
+        <target>档位</target>
       </segment>
     </unit>
     <unit id="calc.up_to">
       <segment state="final">
         <source>Up to</source>
-        <target>Legfeljebb</target>
+        <target>最多</target>
       </segment>
     </unit>
     <unit id="calc.price_per">
       <segment state="final">
         <source>Price per unit</source>
-        <target>Egységár</target>
+        <target>单价</target>
       </segment>
     </unit>
     <unit id="calc.units">
       <segment state="final">
         <source>units</source>
-        <target>egység</target>
+        <target>个单位</target>
       </segment>
     </unit>
     <unit id="calc.requests">
       <segment state="final">
         <source>requests</source>
-        <target>kérés</target>
+        <target>次请求</target>
       </segment>
     </unit>
     <unit id="order.subtotal">
       <segment state="final">
         <source>Subtotal</source>
-        <target>Részösszeg</target>
+        <target>小计</target>
       </segment>
     </unit>
     <unit id="order.total">
       <segment state="final">
         <source>Total</source>
-        <target>Összesen</target>
+        <target>总计</target>
       </segment>
     </unit>
     <unit id="view_details">
       <segment state="final">
         <source>View details</source>
-        <target>Részletek megtekintése</target>
+        <target>查看详情</target>
       </segment>
     </unit>
     <unit id="view_product">
       <segment state="final">
         <source>View product</source>
-        <target>Termék megtekintése</target>
+        <target>查看产品</target>
       </segment>
     </unit>
     <unit id="view_reviews">
       <segment state="final">
         <source>View reviews</source>
-        <target>Értékelések megtekintése</target>
+        <target>查看评价</target>
       </segment>
     </unit>
     <unit id="view_reviews.sr">
       <segment state="final">
         <source>View %s reviews</source>
-        <target>Értékelések megtekintése itt: %s</target>
+        <target>查看 %s 条评价</target>
       </segment>
     </unit>
     <unit id="aria.price">
       <segment state="final">
         <source>Price:</source>
-        <target>Ár:</target>
+        <target>价格：</target>
       </segment>
     </unit>
     <unit id="aria.price_original">
       <segment state="final">
         <source>Original price:</source>
-        <target>Eredeti ár:</target>
+        <target>原价：</target>
       </segment>
     </unit>
     <unit id="rating.sr.average">
       <segment state="final">
         <source>Average rating %s out of 5</source>
-        <target>Átlagos értékelés: 5-ből %s</target>
+        <target>平均评分 %s 分（满分 5 分）</target>
       </segment>
     </unit>
     <unit id="rating.sr.rated">
       <segment state="final">
         <source>Rated %s out of 5</source>
-        <target>Értékelés: 5-ből %s</target>
+        <target>评分 %s 分（满分 5 分）</target>
       </segment>
     </unit>
     <unit id="apply">
       <segment state="final">
         <source>Apply</source>
-        <target>Jelentkezés</target>
+        <target>申请</target>
       </segment>
     </unit>
     <unit id="apply_link">
       <segment state="final">
         <source>Apply Link</source>
-        <target>Jelentkezési link</target>
+        <target>申请链接</target>
       </segment>
     </unit>
     <unit id="job.title">
       <segment state="final">
         <source>Job Title</source>
-        <target>Pozíció megnevezése</target>
+        <target>职位名称</target>
       </segment>
     </unit>
     <unit id="job.department">
       <segment state="final">
         <source>Department</source>
-        <target>Részleg</target>
+        <target>部门</target>
       </segment>
     </unit>
     <unit id="job.location">
       <segment state="final">
         <source>Location</source>
-        <target>Helyszín</target>
+        <target>地点</target>
       </segment>
     </unit>
     <unit id="job.employment_type">
       <segment state="final">
         <source>Employment Type</source>
-        <target>Foglalkoztatás típusa</target>
+        <target>雇佣类型</target>
       </segment>
     </unit>
     <unit id="job.apply">
       <segment state="final">
         <source>Apply now</source>
-        <target>Jelentkezzen most</target>
+        <target>立即申请</target>
       </segment>
     </unit>
     <unit id="read_case_study">
       <segment state="final">
         <source>Read case study</source>
-        <target>Esettanulmány elolvasása</target>
+        <target>阅读案例研究</target>
       </segment>
     </unit>
     <unit id="read_full_case_study">
       <segment state="final">
         <source>Read full case study</source>
-        <target>Teljes esettanulmány</target>
+        <target>阅读完整案例研究</target>
       </segment>
     </unit>
     <unit id="case_study">
       <segment state="final">
         <source>Case study</source>
-        <target>Esettanulmány</target>
+        <target>案例研究</target>
       </segment>
     </unit>
     <unit id="cta.explore">
       <segment state="final">
         <source>Explore</source>
-        <target>Fedezze fel</target>
+        <target>探索</target>
       </segment>
     </unit>
     <unit id="clients.aria">
       <segment state="final">
         <source>Clients</source>
-        <target>Ügyfelek</target>
+        <target>客户</target>
       </segment>
     </unit>
     <unit id="logoGrid.aria">
       <segment state="final">
         <source>Our partners</source>
-        <target>Partnereink</target>
+        <target>我们的合作伙伴</target>
       </segment>
     </unit>
     <unit id="cta.verify">
       <segment state="final">
         <source>Verify</source>
-        <target>Ellenőrzés</target>
+        <target>验证</target>
       </segment>
     </unit>
     <unit id="read_full_terms">
       <segment state="final">
         <source>Read full terms</source>
-        <target>Teljes feltételek</target>
+        <target>阅读完整条款</target>
       </segment>
     </unit>
     <unit id="terms_summary.last_updated">
       <segment state="final">
         <source>Last updated</source>
-        <target>Utolsó frissítés</target>
+        <target>最后更新</target>
       </segment>
     </unit>
     <unit id="carousel.region">
       <segment state="final">
         <source>Highlights carousel</source>
-        <target>Kiemelt tartalmak karusszelje</target>
+        <target>亮点轮播</target>
       </segment>
     </unit>
     <unit id="carousel.slide">
       <segment state="final">
         <source>slide</source>
-        <target>dia</target>
+        <target>幻灯片</target>
       </segment>
     </unit>
     <unit id="carousel.previous">
       <segment state="final">
         <source>Previous slide</source>
-        <target>Előző dia</target>
+        <target>上一张幻灯片</target>
       </segment>
     </unit>
     <unit id="carousel.next">
       <segment state="final">
         <source>Next slide</source>
-        <target>Következő dia</target>
+        <target>下一张幻灯片</target>
       </segment>
     </unit>
     <unit id="carousel.goto">
       <segment state="final">
         <source>Go to slide</source>
-        <target>Ugrás a diára:</target>
+        <target>转到幻灯片</target>
       </segment>
     </unit>
     <unit id="countdown.days">
       <segment state="final">
         <source>Days</source>
-        <target>Nap</target>
+        <target>天</target>
       </segment>
     </unit>
     <unit id="countdown.hours">
       <segment state="final">
         <source>Hours</source>
-        <target>Óra</target>
+        <target>小时</target>
       </segment>
     </unit>
     <unit id="countdown.minutes">
       <segment state="final">
         <source>Minutes</source>
-        <target>Perc</target>
+        <target>分钟</target>
       </segment>
     </unit>
     <unit id="countdown.seconds">
       <segment state="final">
         <source>Seconds</source>
-        <target>Másodperc</target>
+        <target>秒</target>
       </segment>
     </unit>
     <unit id="countdown.deadline">
       <segment state="final">
         <source>Deadline</source>
-        <target>Határidő</target>
+        <target>截止时间</target>
       </segment>
     </unit>
     <unit id="portrait">
       <segment state="final">
         <source>Portrait</source>
-        <target>Portré</target>
+        <target>肖像</target>
       </segment>
     </unit>
     <unit id="value">
       <segment state="final">
         <source>Value</source>
-        <target>Érték</target>
+        <target>数值</target>
       </segment>
     </unit>
     <unit id="leaderboard.score">
       <segment state="final">
         <source>Score</source>
-        <target>Pontszám</target>
+        <target>分数</target>
       </segment>
     </unit>
     <unit id="leaderboard.subtitle">
       <segment state="final">
         <source>Subtitle</source>
-        <target>Alcím</target>
+        <target>副标题</target>
       </segment>
     </unit>
     <unit id="leaderboard.avatar">
       <segment state="final">
         <source>Avatar</source>
-        <target>Profilkép</target>
+        <target>头像</target>
       </segment>
     </unit>
     <unit id="leaderboard.show_rank">
       <segment state="final">
         <source>Show rank numbers</source>
-        <target>Helyezési számok megjelenítése</target>
+        <target>显示排名序号</target>
       </segment>
     </unit>
     <unit id="stat_description">
       <segment state="final">
         <source>Context (optional)</source>
-        <target>Kontextus (opcionális)</target>
+        <target>说明（可选）</target>
       </segment>
     </unit>
     <unit id="role">
       <segment state="final">
         <source>Role</source>
-        <target>Szerep</target>
+        <target>角色</target>
       </segment>
     </unit>
     <unit id="logo">
       <segment state="final">
         <source>Logo</source>
-        <target>Logó</target>
+        <target>标志</target>
       </segment>
     </unit>
     <unit id="investor_round">
       <segment state="final">
         <source>Round / Role</source>
-        <target>Kör / szerep</target>
+        <target>融资轮次 / 角色</target>
       </segment>
     </unit>
     <unit id="investor.visit">
       <segment state="final">
         <source>Visit</source>
-        <target>Megnyitás</target>
+        <target>访问</target>
       </segment>
     </unit>
     <unit id="partner.name">
       <segment state="final">
         <source>Partner Name</source>
-        <target>Partner neve</target>
+        <target>合作伙伴名称</target>
       </segment>
     </unit>
     <unit id="partner.kind">
       <segment state="final">
         <source>Partner Type</source>
-        <target>Partner típusa</target>
+        <target>合作伙伴类型</target>
       </segment>
     </unit>
     <unit id="partner.link">
       <segment state="final">
         <source>Website</source>
-        <target>Weboldal</target>
+        <target>网站</target>
       </segment>
     </unit>
     <unit id="partner.visit">
       <segment state="final">
         <source>Visit partner website</source>
-        <target>Partner weboldalának megnyitása</target>
+        <target>访问合作伙伴网站</target>
       </segment>
     </unit>
     <unit id="publication">
       <segment state="final">
         <source>Publication Name</source>
-        <target>Kiadvány neve</target>
+        <target>媒体名称</target>
       </segment>
     </unit>
     <unit id="publication_logo">
       <segment state="final">
         <source>Publication Logo</source>
-        <target>Kiadvány logója</target>
+        <target>媒体标志</target>
       </segment>
     </unit>
     <unit id="quote_excerpt">
       <segment state="final">
         <source>Quote / Excerpt</source>
-        <target>Idézet / részlet</target>
+        <target>引语 / 摘录</target>
       </segment>
     </unit>
     <unit id="date">
       <segment state="final">
         <source>Date</source>
-        <target>Dátum</target>
+        <target>日期</target>
       </segment>
     </unit>
     <unit id="article_link">
       <segment state="final">
         <source>Article Link</source>
-        <target>Cikk linkje</target>
+        <target>文章链接</target>
       </segment>
     </unit>
     <unit id="short_description">
       <segment state="final">
         <source>Short Description</source>
-        <target>Rövid leírás</target>
+        <target>简短描述</target>
       </segment>
     </unit>
     <unit id="company_name">
       <segment state="final">
         <source>Company Name</source>
-        <target>Cégnév</target>
+        <target>公司名称</target>
       </segment>
     </unit>
     <unit id="icon_emoji">
       <segment state="final">
         <source>Icon Name</source>
-        <target>Ikon neve</target>
+        <target>图标名称</target>
       </segment>
     </unit>
     <unit id="navigation_items">
       <segment state="final">
         <source>Navigation Items</source>
-        <target>Navigációs elemek</target>
+        <target>导航条目</target>
       </segment>
     </unit>
     <unit id="links">
       <segment state="final">
         <source>Links</source>
-        <target>Linkek</target>
+        <target>链接</target>
       </segment>
     </unit>
     <unit id="separator">
       <segment state="final">
         <source>Separator</source>
-        <target>Elválasztó</target>
+        <target>分隔符</target>
       </segment>
     </unit>
     <unit id="legal_links.aria">
       <segment state="final">
         <source>Legal links</source>
-        <target>Jogi linkek</target>
+        <target>法律链接</target>
       </segment>
     </unit>
     <unit id="links_one_per_line">
       <segment state="final">
         <source>Link Items</source>
-        <target>Link elemek</target>
+        <target>链接条目</target>
       </segment>
     </unit>
     <unit id="items">
       <segment state="final">
         <source>Items</source>
-        <target>Elemek</target>
+        <target>条目</target>
       </segment>
     </unit>
     <unit id="plans">
       <segment state="final">
         <source>Plans</source>
-        <target>Csomagok</target>
+        <target>套餐</target>
       </segment>
     </unit>
     <unit id="chart_data_json">
       <segment state="final">
         <source>Chart Data (JSON)</source>
-        <target>Diagramadatok (JSON)</target>
+        <target>图表数据（JSON）</target>
       </segment>
     </unit>
     <unit id="fill_opacity">
       <segment state="final">
         <source>Fill Opacity</source>
-        <target>Kitöltés átlátszatlansága</target>
+        <target>填充不透明度</target>
       </segment>
     </unit>
     <unit id="item.light">
       <segment state="final">
         <source>Light</source>
-        <target>Enyhe</target>
+        <target>浅</target>
       </segment>
     </unit>
     <unit id="item.medium">
       <segment state="final">
         <source>Medium</source>
-        <target>Közepes</target>
+        <target>中等</target>
       </segment>
     </unit>
     <unit id="item.strong">
       <segment state="final">
         <source>Strong</source>
-        <target>Erős</target>
+        <target>深</target>
       </segment>
     </unit>
     <unit id="show_more_link">
       <segment state="final">
         <source>Show More Link</source>
-        <target>Továbbiak linkje</target>
+        <target>“显示更多”链接</target>
       </segment>
     </unit>
     <unit id="placeholder_text">
       <segment state="final">
         <source>Placeholder Text</source>
-        <target>Helykitöltő szöveg</target>
+        <target>占位文本</target>
       </segment>
     </unit>
     <unit id="consent_text">
       <segment state="final">
         <source>Consent Text</source>
-        <target>Hozzájárulási szöveg</target>
+        <target>同意声明文本</target>
       </segment>
     </unit>
     <unit id="success_message">
       <segment state="final">
         <source>Success Message</source>
-        <target>Sikerüzenet</target>
+        <target>成功消息</target>
       </segment>
     </unit>
     <unit id="currency">
       <segment state="final">
         <source>Currency</source>
-        <target>Pénznem</target>
+        <target>货币</target>
       </segment>
     </unit>
     <unit id="period">
       <segment state="final">
         <source>Period</source>
-        <target>Időszak</target>
+        <target>周期</target>
       </segment>
     </unit>
     <unit id="highlighted">
       <segment state="final">
         <source>Highlighted</source>
-        <target>Kiemelt</target>
+        <target>突出显示</target>
       </segment>
     </unit>
     <unit id="product_image">
       <segment state="final">
         <source>Product Image</source>
-        <target>Termékkép</target>
+        <target>产品图片</target>
       </segment>
     </unit>
     <unit id="column_content">
       <segment state="final">
         <source>Column Content</source>
-        <target>Oszlop tartalma</target>
+        <target>列内容</target>
       </segment>
     </unit>
     <unit id="target_date">
       <segment state="final">
         <source>Target Date</source>
-        <target>Céldátum</target>
+        <target>目标日期</target>
       </segment>
     </unit>
     <unit id="show_labels">
       <segment state="final">
         <source>Show Labels</source>
-        <target>Címkék megjelenítése</target>
+        <target>显示标签</target>
       </segment>
     </unit>
     <unit id="show_grid">
       <segment state="final">
         <source>Show Grid</source>
-        <target>Rács megjelenítése</target>
+        <target>显示网格</target>
       </segment>
     </unit>
     <unit id="card_style">
       <segment state="final">
         <source>Card Style</source>
-        <target>Kártya stílusa</target>
+        <target>卡片样式</target>
       </segment>
     </unit>
     <unit id="layout_variant">
       <segment state="final">
         <source>Layout Variant</source>
-        <target>Elrendezésváltozat</target>
+        <target>布局变体</target>
       </segment>
     </unit>
     <unit id="color">
       <segment state="final">
         <source>Color</source>
-        <target>Szín</target>
+        <target>颜色</target>
       </segment>
     </unit>
     <unit id="trend">
       <segment state="final">
         <source>Trend</source>
-        <target>Trend</target>
+        <target>趋势</target>
       </segment>
     </unit>
     <unit id="trend.positive">
       <segment state="final">
         <source>Trending up:</source>
-        <target>Emelkedő tendencia:</target>
+        <target>呈上升趋势：</target>
       </segment>
     </unit>
     <unit id="trend.neutral">
       <segment state="final">
         <source>Holding steady:</source>
-        <target>Stabil:</target>
+        <target>保持稳定：</target>
       </segment>
     </unit>
     <unit id="trend.caution">
       <segment state="final">
         <source>Needs attention:</source>
-        <target>Figyelmet igényel:</target>
+        <target>需要关注：</target>
       </segment>
     </unit>
     <unit id="image_position">
       <segment state="final">
         <source>Image Position</source>
-        <target>Kép pozíciója</target>
+        <target>图片位置</target>
       </segment>
     </unit>
     <unit id="position">
       <segment state="final">
         <source>Position</source>
-        <target>Pozíció</target>
+        <target>位置</target>
       </segment>
     </unit>
     <unit id="item.left">
       <segment state="final">
         <source>Left</source>
-        <target>Bal</target>
+        <target>左</target>
       </segment>
     </unit>
     <unit id="item.center">
       <segment state="final">
         <source>Center</source>
-        <target>Közép</target>
+        <target>居中</target>
       </segment>
     </unit>
     <unit id="item.right">
       <segment state="final">
         <source>Right</source>
-        <target>Jobb</target>
+        <target>右</target>
       </segment>
     </unit>
     <unit id="item.default">
       <segment state="final">
         <source>Default</source>
-        <target>Alapértelmezett</target>
+        <target>默认</target>
       </segment>
     </unit>
     <unit id="item.2_columns">
       <segment state="final">
         <source>2 Columns</source>
-        <target>2 oszlop</target>
+        <target>2 列</target>
       </segment>
     </unit>
     <unit id="item.3_columns">
       <segment state="final">
         <source>3 Columns</source>
-        <target>3 oszlop</target>
+        <target>3 列</target>
       </segment>
     </unit>
     <unit id="item.4_columns">
       <segment state="final">
         <source>4 Columns</source>
-        <target>4 oszlop</target>
+        <target>4 列</target>
       </segment>
     </unit>
     <unit id="item.horizontal">
       <segment state="final">
         <source>Horizontal</source>
-        <target>Vízszintes</target>
+        <target>水平</target>
       </segment>
     </unit>
     <unit id="item.vertical">
       <segment state="final">
         <source>Vertical</source>
-        <target>Függőleges</target>
+        <target>垂直</target>
       </segment>
     </unit>
     <unit id="item.5_stars">
       <segment state="final">
         <source>5 Stars</source>
-        <target>5 csillag</target>
+        <target>5 星</target>
       </segment>
     </unit>
     <unit id="item.4_stars">
       <segment state="final">
         <source>4 Stars</source>
-        <target>4 csillag</target>
+        <target>4 星</target>
       </segment>
     </unit>
     <unit id="item.3_stars">
       <segment state="final">
         <source>3 Stars</source>
-        <target>3 csillag</target>
+        <target>3 星</target>
       </segment>
     </unit>
     <unit id="item.2_stars">
       <segment state="final">
         <source>2 Stars</source>
-        <target>2 csillag</target>
+        <target>2 星</target>
       </segment>
     </unit>
     <unit id="item.1_stars">
       <segment state="final">
         <source>1 Star</source>
-        <target>1 csillag</target>
+        <target>1 星</target>
       </segment>
     </unit>
     <unit id="item.basic">
       <segment state="final">
         <source>Basic</source>
-        <target>Alap</target>
+        <target>基础</target>
       </segment>
     </unit>
     <unit id="item.with_image">
       <segment state="final">
         <source>With Image</source>
-        <target>Képpel</target>
+        <target>带图片</target>
       </segment>
     </unit>
     <unit id="item.card">
       <segment state="final">
         <source>Card</source>
-        <target>Kártya</target>
+        <target>卡片</target>
       </segment>
     </unit>
     <unit id="item.large">
       <segment state="final">
         <source>Large</source>
-        <target>Nagy</target>
+        <target>大</target>
       </segment>
     </unit>
     <unit id="item.bordered">
       <segment state="final">
         <source>Bordered</source>
-        <target>Keretes</target>
+        <target>带边框</target>
       </segment>
     </unit>
     <unit id="item.boxed">
       <segment state="final">
         <source>Boxed</source>
-        <target>Keretben</target>
+        <target>盒式</target>
       </segment>
     </unit>
     <unit id="item.centered">
       <segment state="final">
         <source>Centered</source>
-        <target>Középre igazított</target>
+        <target>居中</target>
       </segment>
     </unit>
     <unit id="item.between">
       <segment state="final">
         <source>Space Between</source>
-        <target>Térköz között</target>
+        <target>两端对齐</target>
       </segment>
     </unit>
     <unit id="item.accent">
       <segment state="final">
         <source>Accent</source>
-        <target>Kiemelt</target>
+        <target>强调色</target>
       </segment>
     </unit>
     <unit id="item.outline">
       <segment state="final">
         <source>Outline</source>
-        <target>Körvonal</target>
+        <target>轮廓</target>
       </segment>
     </unit>
     <unit id="item.info">
       <segment state="final">
         <source>Info</source>
-        <target>Információ</target>
+        <target>信息</target>
       </segment>
     </unit>
     <unit id="item.success">
       <segment state="final">
         <source>Success</source>
-        <target>Siker</target>
+        <target>成功</target>
       </segment>
     </unit>
     <unit id="item.warning">
       <segment state="final">
         <source>Warning</source>
-        <target>Figyelmeztetés</target>
+        <target>警告</target>
       </segment>
     </unit>
     <unit id="item.destructive">
       <segment state="final">
         <source>Destructive</source>
-        <target>Veszélyes</target>
+        <target>危险</target>
       </segment>
     </unit>
     <unit id="item.simple">
       <segment state="final">
         <source>Simple</source>
-        <target>Egyszerű</target>
+        <target>简洁</target>
       </segment>
     </unit>
     <unit id="item.split">
       <segment state="final">
         <source>Split</source>
-        <target>Osztott</target>
+        <target>分栏</target>
       </segment>
     </unit>
     <unit id="item.background">
       <segment state="final">
         <source>Background</source>
-        <target>Háttér</target>
+        <target>背景</target>
       </segment>
     </unit>
     <unit id="item.banner">
       <segment state="final">
         <source>Banner</source>
-        <target>Banner</target>
+        <target>横幅</target>
       </segment>
     </unit>
     <unit id="item.stacked">
       <segment state="final">
         <source>Stacked</source>
-        <target>Egymás alatt</target>
+        <target>堆叠</target>
       </segment>
     </unit>
     <unit id="item.inline">
       <segment state="final">
         <source>Inline</source>
-        <target>Soron belül</target>
+        <target>行内</target>
       </segment>
     </unit>
     <unit id="item.grid">
       <segment state="final">
         <source>Grid</source>
-        <target>Rács</target>
+        <target>网格</target>
       </segment>
     </unit>
     <unit id="item.icon_top">
       <segment state="final">
         <source>Icon Top</source>
-        <target>Ikon felül</target>
+        <target>图标在上</target>
       </segment>
     </unit>
     <unit id="item.icon_left">
       <segment state="final">
         <source>Icon Left</source>
-        <target>Ikon balra</target>
+        <target>图标在左</target>
       </segment>
     </unit>
     <unit id="item.full_width">
       <segment state="final">
         <source>Full Width</source>
-        <target>Teljes szélesség</target>
+        <target>全宽</target>
       </segment>
     </unit>
     <unit id="item.two_columns">
       <segment state="final">
         <source>Two Columns</source>
-        <target>Két oszlop</target>
+        <target>两列</target>
       </segment>
     </unit>
     <unit id="item.secondary">
       <segment state="final">
         <source>Secondary</source>
-        <target>Másodlagos</target>
+        <target>次要</target>
       </segment>
     </unit>
     <unit id="item.ghost">
       <segment state="final">
         <source>Ghost</source>
-        <target>Átlátszó</target>
+        <target>幽灵</target>
       </segment>
     </unit>
     <unit id="item.primary">
       <segment state="final">
         <source>Primary</source>
-        <target>Elsődleges</target>
+        <target>主要</target>
       </segment>
     </unit>
     <unit id="item.blue">
       <segment state="final">
         <source>Blue</source>
-        <target>Kék</target>
+        <target>蓝色</target>
       </segment>
     </unit>
     <unit id="item.green">
       <segment state="final">
         <source>Green</source>
-        <target>Zöld</target>
+        <target>绿色</target>
       </segment>
     </unit>
     <unit id="item.orange">
       <segment state="final">
         <source>Orange</source>
-        <target>Narancs</target>
+        <target>橙色</target>
       </segment>
     </unit>
     <unit id="item.red">
       <segment state="final">
         <source>Red</source>
-        <target>Piros</target>
+        <target>红色</target>
       </segment>
     </unit>
     <unit id="item.up">
       <segment state="final">
         <source>Up</source>
-        <target>Fel</target>
+        <target>上升</target>
       </segment>
     </unit>
     <unit id="item.down">
       <segment state="final">
         <source>Down</source>
-        <target>Le</target>
+        <target>下降</target>
       </segment>
     </unit>
     <unit id="item.neutral">
       <segment state="final">
         <source>Neutral</source>
-        <target>Semleges</target>
+        <target>中性</target>
       </segment>
     </unit>
     <unit id="item.muted">
       <segment state="final">
         <source>Muted</source>
-        <target>Visszafogott</target>
+        <target>柔和</target>
       </segment>
     </unit>
     <unit id="item.none">
       <segment state="final">
         <source>None</source>
-        <target>Nincs</target>
+        <target>无</target>
       </segment>
     </unit>
     <unit id="item.dot">
       <segment state="final">
         <source>Dot</source>
-        <target>Pont</target>
+        <target>圆点</target>
       </segment>
     </unit>
     <unit id="item.pipe">
       <segment state="final">
         <source>Pipe</source>
-        <target>Függőleges vonal</target>
+        <target>竖线</target>
       </segment>
     </unit>
     <unit id="item.slash">
       <segment state="final">
         <source>Slash</source>
-        <target>Perjel</target>
+        <target>斜线</target>
       </segment>
     </unit>
     <unit id="page.column.main">
       <segment state="final">
         <source>Main Content</source>
-        <target>Fő tartalom</target>
+        <target>主要内容</target>
       </segment>
     </unit>
     <unit id="page.subnav.aria">
       <segment state="final">
         <source>Section navigation</source>
-        <target>Szekciónavigáció</target>
+        <target>栏目导航</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.content">
       <segment state="final">
         <source>Content &amp; Editorial</source>
-        <target>Tartalom és szerkesztett blokkok</target>
+        <target>内容与编辑</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.content.description">
       <segment state="final">
         <source>Text, media, stories, resources, and reusable editorial building blocks.</source>
-        <target>Szövegek, média, történetek, erőforrások és újrafelhasználható szerkesztői építőelemek.</target>
+        <target>文本、媒体、故事、资源，以及可复用的编辑构建模块。</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.conversion">
       <segment state="final">
         <source>Leads &amp; Conversion</source>
-        <target>Leadek és konverzió</target>
+        <target>潜在客户与转化</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.conversion.description">
       <segment state="final">
         <source>Forms, offers, calls to action, and focused steps toward visitor intent.</source>
-        <target>Űrlapok, ajánlatok, cselekvésre ösztönző elemek és célzott lépések a látogatói szándék felé.</target>
+        <target>表单、优惠、行动号召，以及引导访客达成目标的步骤。</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.data">
       <segment state="final">
         <source>Data &amp; Dashboards</source>
-        <target>Adatok és dashboardok</target>
+        <target>数据与仪表板</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.data.description">
       <segment state="final">
         <source>Charts, metrics, tables, KPIs, and structured data displays.</source>
-        <target>Diagramok, metrikák, táblázatok, KPI-ok és strukturált adatmegjelenítések.</target>
+        <target>图表、指标、表格、KPI 和结构化数据展示。</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.features">
       <segment state="final">
         <source>Features &amp; Benefits</source>
-        <target>Funkciók és előnyök</target>
+        <target>功能与优势</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.features.description">
       <segment state="final">
         <source>Feature sections, benefit grids, product explanations, and service highlights.</source>
-        <target>Funkciószekciók, előnyrácsok, termékmagyarázatok és szolgáltatáskiemelések.</target>
+        <target>功能区块、优势网格、产品说明和服务亮点。</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.footer">
       <segment state="final">
         <source>Footers &amp; Utility Areas</source>
-        <target>Láblécek és kiegészítő területek</target>
+        <target>页脚与辅助区域</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.footer.description">
       <segment state="final">
         <source>Footer layouts, legal links, contact routes, app links, and page-end utility content.</source>
-        <target>Lábléc-elrendezések, jogi linkek, kapcsolatfelvételi útvonalak, alkalmazáslinkek és oldalvégi kiegészítő tartalmak.</target>
+        <target>页脚布局、法律链接、联系方式、应用链接和页面底部的辅助内容。</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.hero">
       <segment state="final">
         <source>Hero &amp; Landing Intros</source>
-        <target>Hero és landing bevezetők</target>
+        <target>首屏与落地页开场</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.hero.description">
       <segment state="final">
         <source>Opening sections for landing pages, products, campaigns, search, video, and launch moments.</source>
-        <target>Nyitó szekciók landing oldalakhoz, termékekhez, kampányokhoz, kereséshez, videóhoz és launch pillanatokhoz.</target>
+        <target>用于落地页、产品、营销活动、搜索、视频和发布时刻的开场区块。</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.navigation">
       <segment state="final">
         <source>Navigation &amp; Wayfinding</source>
-        <target>Navigáció és tájékozódás</target>
+        <target>导航与路径指引</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.navigation.description">
       <segment state="final">
         <source>Menus, breadcrumbs, tabs, steps, pagination, headers, and other orientation patterns.</source>
-        <target>Menük, morzsamenük, fülek, lépések, lapozás, fejlécek és egyéb tájékozódási minták.</target>
+        <target>菜单、面包屑、标签页、步骤、分页、页眉和其他定位模式。</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.pricing">
       <segment state="final">
         <source>Plans &amp; Pricing</source>
-        <target>Csomagok és árak</target>
+        <target>套餐与价格</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.pricing.description">
       <segment state="final">
         <source>Pricing tables, plan cards, calculators, package comparisons, and buying decision aids.</source>
-        <target>Ártáblák, csomagkártyák, kalkulátorok, csomag-összehasonlítások és vásárlási döntést segítő elemek.</target>
+        <target>价格表、套餐卡片、计算器、套餐对比和购买决策辅助。</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.socialProof">
       <segment state="final">
         <source>Trust &amp; Social Proof</source>
-        <target>Bizalom és referenciák</target>
+        <target>信任与社会认同</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.socialProof.description">
       <segment state="final">
         <source>Testimonials, reviews, ratings, customer logos, partner proof, and credibility signals.</source>
-        <target>Ajánlások, értékelések, minősítések, ügyféllogók, partnerigazolások és hitelességi jelzések.</target>
+        <target>客户评价、评论、评分、客户标志、合作伙伴背书和可信度信号。</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.team">
       <segment state="final">
         <source>People &amp; Team</source>
-        <target>Emberek és csapat</target>
+        <target>人员与团队</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.team.description">
       <segment state="final">
         <source>Team profiles, departments, founders, advisors, company culture, and career content.</source>
-        <target>Csapatprofilok, részlegek, alapítók, tanácsadók, vállalati kultúra és karriertartalom.</target>
+        <target>团队简介、部门、创始人、顾问、公司文化和招聘内容。</target>
       </segment>
     </unit>
     <unit id="solr.suggest.header">
       <segment state="final">
         <source>Top Results</source>
-        <target>Legjobb találatok</target>
+        <target>最佳结果</target>
       </segment>
     </unit>
     <unit id="solr.search.label">
       <segment state="final">
         <source>Search</source>
-        <target>Keresés</target>
+        <target>搜索</target>
       </segment>
     </unit>
     <unit id="solr.search.submit">
       <segment state="final">
         <source>Search</source>
-        <target>Keresés</target>
+        <target>搜索</target>
       </segment>
     </unit>
     <unit id="solr.lastSearches">
       <segment state="final">
         <source>Last searches</source>
-        <target>Legutóbbi keresések</target>
+        <target>最近搜索</target>
       </segment>
     </unit>
     <unit id="solr.frequentSearches">
       <segment state="final">
         <source>Frequent searches</source>
-        <target>Gyakori keresések</target>
+        <target>热门搜索</target>
       </segment>
     </unit>
     <unit id="solr.filters">
       <segment state="final">
         <source>Search filters</source>
-        <target>Keresési szűrők</target>
+        <target>搜索筛选</target>
       </segment>
     </unit>
     <unit id="solr.debug.parsedQuery">
       <segment state="final">
         <source>Parsed Query:</source>
-        <target>Feldolgozott lekérdezés:</target>
+        <target>解析后的查询：</target>
       </segment>
     </unit>
     <unit id="solr.noResultsNothingFound">
       <segment state="final">
         <source>Nothing found for "{query}".</source>
-        <target>Nincs találat erre: „{query}”.</target>
+        <target>未找到与“{query}”相关的结果。</target>
       </segment>
     </unit>
     <unit id="solr.noResultsShowingSuggestion">
       <segment state="final">
         <source>Showing results for "{query}".</source>
-        <target>Találatok megjelenítése erre: „{query}”.</target>
+        <target>正在显示“{query}”的结果。</target>
       </segment>
     </unit>
     <unit id="solr.noResultsHint">
       <segment state="final">
         <source>Try a different or more general search term.</source>
-        <target>Próbálkozzon más vagy általánosabb keresőkifejezéssel.</target>
+        <target>请尝试其他或更宽泛的搜索词。</target>
       </segment>
     </unit>
     <unit id="solr.resultsSearchedFor">
       <segment state="final">
         <source>Searched for "{query}".</source>
-        <target>Keresés erre: „{query}”.</target>
+        <target>已搜索“{query}”。</target>
       </segment>
     </unit>
     <unit id="solr.didYouMean">
       <segment state="final">
         <source>Did you mean</source>
-        <target>Erre gondolt</target>
+        <target>您是不是要找</target>
       </segment>
     </unit>
     <unit id="solr.resultsFound">
       <segment state="final">
         <source>{count, plural, one {Found # result.} other {Found # results.}}</source>
-        <target>{count, plural, one {# találat.} other {# találat.}}</target>
+        <target>{count, plural, one {找到 # 条结果。} other {找到 # 条结果。}}</target>
       </segment>
     </unit>
     <unit id="solr.resultsRange">
       <segment state="final">
         <source>{total, plural, one {Showing result {from} of #.} other {Showing results {from} to {to} of #.}}</source>
-        <target>{total, plural, one {Találat: {from} / #.} other {Találatok: {from}-{to} / #.}}</target>
+        <target>{total, plural, one {正在显示第 {from} 条结果，共 # 条。} other {正在显示第 {from} 至 {to} 条结果，共 # 条。}}</target>
       </segment>
     </unit>
     <unit id="solr.resultsRangeLast">
       <segment state="final">
         <source>Showing the last result.</source>
-        <target>Az utolsó találat megjelenítése.</target>
+        <target>正在显示最后一条结果。</target>
       </segment>
     </unit>
     <unit id="solr.resultsRangeSingle">
       <segment state="final">
         <source>Showing result {from}.</source>
-        <target>Találat: {from}.</target>
+        <target>正在显示第 {from} 条结果。</target>
       </segment>
     </unit>
     <unit id="solr.facet.reset">
       <segment state="final">
         <source>Reset filters</source>
-        <target>Szűrők törlése</target>
+        <target>重置筛选</target>
       </segment>
     </unit>
     <unit id="solr.facet.category">
       <segment state="final">
         <source>Category</source>
-        <target>Kategória</target>
+        <target>类别</target>
       </segment>
     </unit>
     <unit id="solr.facet.group.aria">
       <segment state="final">
         <source>Filter by {group}</source>
-        <target>Szűrés: {group}</target>
+        <target>按 {group} 筛选</target>
       </segment>
     </unit>
     <unit id="solr.facet.showMore">
       <segment state="final">
         <source>Show more</source>
-        <target>Több megjelenítése</target>
+        <target>显示更多</target>
       </segment>
     </unit>
     <unit id="solr.facet.showFewer">
       <segment state="final">
         <source>Show fewer</source>
-        <target>Kevesebb megjelenítése</target>
+        <target>显示更少</target>
       </segment>
     </unit>
     <unit id="solr.sortBy">
       <segment state="final">
         <source>Sort by</source>
-        <target>Rendezés</target>
+        <target>排序方式</target>
       </segment>
     </unit>
     <unit id="solr.resultsPerPage">
       <segment state="final">
         <source>Results per page:</source>
-        <target>Találatok oldalanként:</target>
+        <target>每页结果数：</target>
       </segment>
     </unit>
     <unit id="solr.sponsored">
       <segment state="final">
         <source>Sponsored</source>
-        <target>Szponzorált</target>
+        <target>赞助</target>
       </segment>
     </unit>
     <unit id="solr.fileMimeType">
       <segment state="final">
         <source>MIME type</source>
-        <target>MIME-típus</target>
+        <target>MIME 类型</target>
       </segment>
     </unit>
     <unit id="solr.fileReferenced">
       <segment state="final">
         <source>Referenced on</source>
-        <target>Hivatkozás helye</target>
+        <target>引用位置</target>
       </segment>
     </unit>
     <unit id="solr.facets.narrowedBy">
       <segment state="final">
         <source>Narrowed by</source>
-        <target>Szűkítve</target>
+        <target>筛选条件</target>
       </segment>
     </unit>
     <unit id="solr.facets.removeAll">
       <segment state="final">
         <source>Remove all filters</source>
-        <target>Összes szűrő eltávolítása</target>
+        <target>清除所有筛选</target>
       </segment>
     </unit>
     <unit id="solr.pagination.aria">
       <segment state="final">
         <source>Search results pagination</source>
-        <target>Keresési találatok lapozása</target>
+        <target>搜索结果分页</target>
       </segment>
     </unit>
     <unit id="solr.pagination.previous">
       <segment state="final">
         <source>Go to previous page</source>
-        <target>Ugrás az előző oldalra</target>
+        <target>转到上一页</target>
       </segment>
     </unit>
     <unit id="solr.pagination.next">
       <segment state="final">
         <source>Go to next page</source>
-        <target>Ugrás a következő oldalra</target>
+        <target>转到下一页</target>
       </segment>
     </unit>
     <unit id="solr.pagination.page">
       <segment state="final">
         <source>Go to page {page}</source>
-        <target>{page}. oldal megnyitása</target>
+        <target>转到第 {page} 页</target>
       </segment>
     </unit>
     <unit id="solr.facets.remove">
       <segment state="final">
         <source>Remove filter</source>
-        <target>Szűrő eltávolítása</target>
+        <target>移除筛选</target>
       </segment>
     </unit>
     <unit id="solr.results.heading">
       <segment state="final">
         <source>Search results</source>
-        <target>Keresési találatok</target>
+        <target>搜索结果</target>
       </segment>
     </unit>
     <unit id="solr.resultCount.aria">
       <segment state="final">
         <source>{count, plural, one {# result} other {# results}}</source>
-        <target>{count, plural, one {# találat} other {# találat}}</target>
+        <target>{count, plural, one {# 条结果} other {# 条结果}}</target>
       </segment>
     </unit>
     <unit id="solr.contentType.pages">
       <segment state="final">
         <source>Pages</source>
-        <target>Oldalak</target>
+        <target>页面</target>
       </segment>
     </unit>
     <unit id="solr.contentType.news">
       <segment state="final">
         <source>News</source>
-        <target>Hírek</target>
+        <target>新闻</target>
       </segment>
     </unit>
     <unit id="solr.contentType.addresses">
       <segment state="final">
         <source>Addresses</source>
-        <target>Címek</target>
+        <target>地址</target>
       </segment>
     </unit>
     <unit id="solr.contentType.skills">
       <segment state="final">
         <source>Skills</source>
-        <target>Skills</target>
+        <target>技能</target>
       </segment>
     </unit>
     <unit id="download_file">
       <segment state="final">
         <source>Download</source>
-        <target>Letöltés</target>
+        <target>下载</target>
       </segment>
     </unit>
     <unit id="footer.nav.aria">
       <segment state="final">
         <source>Footer navigation</source>
-        <target>Lábléc-navigáció</target>
+        <target>页脚导航</target>
       </segment>
     </unit>
     <unit id="footer.utility.aria">
       <segment state="final">
         <source>Legal and utility links</source>
-        <target>Jogi és kiegészítő linkek</target>
+        <target>法律和辅助链接</target>
       </segment>
     </unit>
     <unit id="footer.links.aria">
       <segment state="final">
         <source>Footer links</source>
-        <target>Lábléc-linkek</target>
+        <target>页脚链接</target>
       </segment>
     </unit>
     <unit id="footer.qr.alt">
       <segment state="final">
         <source>Scan the QR code to download the app</source>
-        <target>Olvassa be a QR-kódot az alkalmazás letöltéséhez</target>
+        <target>扫描二维码下载应用</target>
       </segment>
     </unit>
     <unit id="preview.uid">
@@ -1660,181 +1660,181 @@
     <unit id="preview.page">
       <segment state="final">
         <source>Page</source>
-        <target>Oldal</target>
+        <target>页面</target>
       </segment>
     </unit>
     <unit id="stats">
       <segment state="final">
         <source>Stats</source>
-        <target>Statisztikák</target>
+        <target>统计数据</target>
       </segment>
     </unit>
     <unit id="supporting_text">
       <segment state="final">
         <source>Supporting text</source>
-        <target>Kiegészítő szöveg</target>
+        <target>辅助文本</target>
       </segment>
     </unit>
     <unit id="tabs">
       <segment state="final">
         <source>Tabs</source>
-        <target>Fülek</target>
+        <target>标签页</target>
       </segment>
     </unit>
     <unit id="tab_label">
       <segment state="final">
         <source>Tab label</source>
-        <target>Fül felirata</target>
+        <target>标签页名称</target>
       </segment>
     </unit>
     <unit id="content_title">
       <segment state="final">
         <source>Content title</source>
-        <target>Tartalom címe</target>
+        <target>内容标题</target>
       </segment>
     </unit>
     <unit id="content_description">
       <segment state="final">
         <source>Content description</source>
-        <target>Tartalom leírása</target>
+        <target>内容描述</target>
       </segment>
     </unit>
     <unit id="tab_image">
       <segment state="final">
         <source>Tab image</source>
-        <target>Fül képe</target>
+        <target>标签页图片</target>
       </segment>
     </unit>
     <unit id="timeline_steps">
       <segment state="final">
         <source>Timeline steps</source>
-        <target>Idővonal lépései</target>
+        <target>时间线步骤</target>
       </segment>
     </unit>
     <unit id="step_label">
       <segment state="final">
         <source>Step label</source>
-        <target>Lépés felirata</target>
+        <target>步骤名称</target>
       </segment>
     </unit>
     <unit id="feature_style">
       <segment state="final">
         <source>Feature style</source>
-        <target>Funkció stílusa</target>
+        <target>功能样式</target>
       </segment>
     </unit>
     <unit id="feature_title">
       <segment state="final">
         <source>Feature title</source>
-        <target>Funkció címe</target>
+        <target>功能标题</target>
       </segment>
     </unit>
     <unit id="feature_description">
       <segment state="final">
         <source>Feature description</source>
-        <target>Funkció leírása</target>
+        <target>功能描述</target>
       </segment>
     </unit>
     <unit id="feature_link">
       <segment state="final">
         <source>Feature link</source>
-        <target>Funkció linkje</target>
+        <target>功能链接</target>
       </segment>
     </unit>
     <unit id="icon">
       <segment state="final">
         <source>Icon</source>
-        <target>Ikon</target>
+        <target>图标</target>
       </segment>
     </unit>
     <unit id="video_url">
       <segment state="final">
         <source>Video URL</source>
-        <target>Videó URL-je</target>
+        <target>视频 URL</target>
       </segment>
     </unit>
     <unit id="video_url.description">
       <segment state="final">
         <source>YouTube or Vimeo embed URL</source>
-        <target>YouTube- vagy Vimeo-beágyazási URL</target>
+        <target>YouTube 或 Vimeo 嵌入 URL</target>
       </segment>
     </unit>
     <unit id="video_file">
       <segment state="final">
         <source>Video file</source>
-        <target>Videófájl</target>
+        <target>视频文件</target>
       </segment>
     </unit>
     <unit id="video_captions">
       <segment state="final">
         <source>Captions file (WebVTT)</source>
-        <target>Feliratfájl (WebVTT)</target>
+        <target>字幕文件（WebVTT）</target>
       </segment>
     </unit>
     <unit id="video_download">
       <segment state="final">
         <source>Download the video</source>
-        <target>Videó letöltése</target>
+        <target>下载视频</target>
       </segment>
     </unit>
     <unit id="poster_image">
       <segment state="final">
         <source>Poster image</source>
-        <target>Előnézeti kép</target>
+        <target>封面图片</target>
       </segment>
     </unit>
     <unit id="video_title">
       <segment state="final">
         <source>Video title</source>
-        <target>Videó címe</target>
+        <target>视频标题</target>
       </segment>
     </unit>
     <unit id="testimonial_video.player_title">
       <segment state="final">
         <source>Video testimonial from %s</source>
-        <target>Videós ajánlás: %s</target>
+        <target>%s 的视频评价</target>
       </segment>
     </unit>
     <unit id="page_groups">
       <segment state="final">
         <source>Page groups</source>
-        <target>Oldalcsoportok</target>
+        <target>页面分组</target>
       </segment>
     </unit>
     <unit id="group_title">
       <segment state="final">
         <source>Group title</source>
-        <target>Csoport címe</target>
+        <target>分组标题</target>
       </segment>
     </unit>
     <unit id="page_label">
       <segment state="final">
         <source>Page label</source>
-        <target>Oldal felirata</target>
+        <target>页面名称</target>
       </segment>
     </unit>
     <unit id="page_link">
       <segment state="final">
         <source>Page link</source>
-        <target>Oldal linkje</target>
+        <target>页面链接</target>
       </segment>
     </unit>
     <unit id="sitemap.aria">
       <segment state="final">
         <source>Sitemap</source>
-        <target>Oldaltérkép</target>
+        <target>网站地图</target>
       </segment>
     </unit>
     <unit id="social_links">
       <segment state="final">
         <source>Social links</source>
-        <target>Közösségi linkek</target>
+        <target>社交链接</target>
       </segment>
     </unit>
     <unit id="platform">
       <segment state="final">
         <source>Platform</source>
-        <target>Platform</target>
+        <target>平台</target>
       </segment>
     </unit>
     <unit id="url">
@@ -1846,121 +1846,121 @@
     <unit id="social_links.aria">
       <segment state="final">
         <source>Social media</source>
-        <target>Közösségi média</target>
+        <target>社交媒体</target>
       </segment>
     </unit>
     <unit id="counters">
       <segment state="final">
         <source>Counters</source>
-        <target>Számlálók</target>
+        <target>计数器</target>
       </segment>
     </unit>
     <unit id="counter.prefix">
       <segment state="final">
         <source>Prefix (optional)</source>
-        <target>Előtag (opcionális)</target>
+        <target>前缀（可选）</target>
       </segment>
     </unit>
     <unit id="counter.suffix">
       <segment state="final">
         <source>Suffix (optional)</source>
-        <target>Utótag (opcionális)</target>
+        <target>后缀（可选）</target>
       </segment>
     </unit>
     <unit id="offer_description">
       <segment state="final">
         <source>Offer description</source>
-        <target>Ajánlat leírása</target>
+        <target>优惠说明</target>
       </segment>
     </unit>
     <unit id="discount_text">
       <segment state="final">
         <source>Discount badge text</source>
-        <target>Kedvezményjelvény szövege</target>
+        <target>折扣徽章文本</target>
       </segment>
     </unit>
     <unit id="original_price">
       <segment state="final">
         <source>Original price</source>
-        <target>Eredeti ár</target>
+        <target>原价</target>
       </segment>
     </unit>
     <unit id="sale_price">
       <segment state="final">
         <source>Sale price</source>
-        <target>Akciós ár</target>
+        <target>促销价</target>
       </segment>
     </unit>
     <unit id="stat_columns">
       <segment state="final">
         <source>Columns</source>
-        <target>Oszlopok</target>
+        <target>列数</target>
       </segment>
     </unit>
     <unit id="change">
       <segment state="final">
         <source>Change (optional)</source>
-        <target>Változás (opcionális)</target>
+        <target>变化（可选）</target>
       </segment>
     </unit>
     <unit id="stats.aria">
       <segment state="final">
         <source>Key statistics</source>
-        <target>Fő statisztikák</target>
+        <target>关键统计数据</target>
       </segment>
     </unit>
     <unit id="team.view_profile">
       <segment state="final">
         <source>View profile</source>
-        <target>Profil megtekintése</target>
+        <target>查看简介</target>
       </segment>
     </unit>
     <unit id="team.email">
       <segment state="final">
         <source>Email</source>
-        <target>E-mail</target>
+        <target>电子邮件</target>
       </segment>
     </unit>
     <unit id="team.call">
       <segment state="final">
         <source>Call</source>
-        <target>Hívás</target>
+        <target>电话</target>
       </segment>
     </unit>
     <unit id="team.members_region">
       <segment state="final">
         <source>Team members</source>
-        <target>Csapattagok</target>
+        <target>团队成员</target>
       </segment>
     </unit>
     <unit id="team.open_positions">
       <segment state="final">
         <source>open positions</source>
-        <target>nyitott pozíció</target>
+        <target>个空缺职位</target>
       </segment>
     </unit>
     <unit id="price.regular">
       <segment state="final">
         <source>Regular price:</source>
-        <target>Normál ár:</target>
+        <target>原价：</target>
       </segment>
     </unit>
     <unit id="price.now">
       <segment state="final">
         <source>Now:</source>
-        <target>Most:</target>
+        <target>现价：</target>
       </segment>
     </unit>
     <unit id="email.form.intro">
       <segment state="final">
         <source>A new {title} form submission was sent from {sourceType, select, page {the page {sourcePageTitle}} other {the website}} ({sourcePageUrl}).</source>
-        <target>Új „{title}” űrlapbeküldés érkezett {sourceType, select, page {a(z) „{sourcePageTitle}” oldalról} other {a webhelyről}} ({sourcePageUrl}).</target>
+        <target>收到一份新的“{title}”表单提交，来自{sourceType, select, page {页面“{sourcePageTitle}”} other {网站}}（{sourcePageUrl}）。</target>
       </segment>
     </unit>
     <unit id="email.form.goodbye">
       <segment state="final">
         <source>Best regards,</source>
-        <target>Üdvözlettel:</target>
+        <target>此致敬礼，</target>
       </segment>
     </unit>
     <unit id="email.form.signature">
@@ -1972,7 +1972,7 @@
     <unit id="email.footer.notice">
       <segment state="final">
         <source>This email was sent by {siteName} from URL: {siteUrl} - Please contact your site administrator if you feel you received this email by accident.</source>
-        <target>Ezt az e-mailt a(z) {siteName} küldte a következő URL-ről: {siteUrl} – Ha úgy gondolja, hogy tévedésből kapta ezt az e-mailt, kérjük, forduljon a webhely adminisztrátorához.</target>
+        <target>此邮件由 {siteName} 发送，网址：{siteUrl}。如果您认为误收了此邮件，请联系网站管理员。</target>
       </segment>
     </unit>
     <unit id="email.footer.copyright.webconsulting">
@@ -1990,511 +1990,511 @@
     <unit id="email.footer.copyright.webconsultingText">
       <segment state="final">
         <source>Copyright (c) {year} webconsulting gmbh</source>
-        <target>Copyright (c) {year} webconsulting gmbh</target>
+        <target>版权所有 (c) {year} webconsulting gmbh</target>
       </segment>
     </unit>
     <unit id="email.footer.copyright.desiderioText">
       <segment state="final">
         <source>Copyright (c) {year} Desiderio</source>
-        <target>Copyright (c) {year} Desiderio</target>
+        <target>版权所有 (c) {year} Desiderio</target>
       </segment>
     </unit>
     <unit id="pagination.previous">
       <segment state="final">
         <source>Previous</source>
-        <target>Előző</target>
+        <target>上一页</target>
       </segment>
     </unit>
     <unit id="pagination.next">
       <segment state="final">
         <source>Next</source>
-        <target>Következő</target>
+        <target>下一页</target>
       </segment>
     </unit>
     <unit id="pagination.aria">
       <segment state="final">
         <source>Pagination</source>
-        <target>Lapozás</target>
+        <target>分页</target>
       </segment>
     </unit>
     <unit id="pagination.page">
       <segment state="final">
         <source>Page %s</source>
-        <target>%s. oldal</target>
+        <target>第 %s 页</target>
       </segment>
     </unit>
     <unit id="pagination.currentPage">
       <segment state="final">
         <source>Page %s, current page</source>
-        <target>%s. oldal, aktuális oldal</target>
+        <target>第 %s 页，当前页</target>
       </segment>
     </unit>
     <unit id="structuredData.defaultAuthor">
       <segment state="final">
         <source>Editorial team</source>
-        <target>Szerkesztőség</target>
+        <target>编辑团队</target>
       </segment>
     </unit>
     <unit id="pages.shadcnPreset">
       <segment state="final">
         <source>Theme preset (this page and subpages)</source>
-        <target>Téma-előbeállítás (ez az oldal és aloldalai)</target>
+        <target>主题预设（本页及子页面）</target>
       </segment>
     </unit>
     <unit id="pages.shadcnPreset.description">
       <segment state="final">
         <source>Overrides the site-wide shadcn theme preset for this page and everything below it. Leave empty to inherit from the parent page or the site setting.</source>
-        <target>Felülírja a webhely egészére érvényes shadcn téma-előbeállítást ennél az oldalnál és az alatta lévő összes oldalnál. Ha üresen hagyja, a szülőoldal vagy a webhely-beállítás értéke öröklődik.</target>
+        <target>为本页及其下所有页面覆盖全站的 shadcn 主题预设。留空则继承父页面或站点设置。</target>
       </segment>
     </unit>
     <unit id="pages.shadcnPreset.inherit">
       <segment state="final">
         <source>Inherit (parent page or site setting)</source>
-        <target>Öröklés (szülőoldal vagy webhely-beállítás)</target>
+        <target>继承（父页面或站点设置）</target>
       </segment>
     </unit>
     <unit id="pages.h1SrOnly">
       <segment state="final">
         <source>Page-title heading for screen readers only</source>
-        <target>Oldalcím-címsor csak képernyőolvasóknak</target>
+        <target>页面标题仅供屏幕阅读器读取</target>
       </segment>
     </unit>
     <unit id="pages.h1SrOnly.toggle">
       <segment state="final">
         <source>Hide the page-title heading visually</source>
-        <target>Oldalcím-címsor vizuális elrejtése</target>
+        <target>在视觉上隐藏页面标题</target>
       </segment>
     </unit>
     <unit id="pages.h1SrOnly.description">
       <segment state="final">
         <source>The page templates render one h1 with the page title. By default it is visible above the content. Enable this to render it for screen readers only (sr-only) — use it on pages whose first content element (a hero or header) already shows the title, so the heading is not duplicated.</source>
-        <target>Az oldalsablonok egy h1 címsort jelenítenek meg az oldal címével. Alapértelmezés szerint ez a tartalom fölött látható. Ha bekapcsolja, csak a képernyőolvasók számára jelenik meg (sr-only). Olyan oldalakon használja, amelyek első tartalmi eleme (hero vagy fejléc) már mutatja a címet, így a címsor nem ismétlődik.</target>
+        <target>页面模板会以页面标题输出一个 h1。默认情况下，它显示在内容上方。启用此项后，它只对屏幕阅读器可见（sr-only）。如果页面的第一个内容元素（首屏或页眉）已经显示标题，请启用此项，以免标题重复。</target>
       </segment>
     </unit>
     <unit id="captcha.placeholder.button">
       <segment state="final">
         <source>Protected against spam</source>
-        <target>Spam ellen védve</target>
+        <target>已启用垃圾信息防护</target>
       </segment>
     </unit>
     <unit id="captcha.placeholder.note">
       <segment state="final">
         <source>Friendly Captcha is disabled in this environment (Development context or test mode) — verification passes automatically.</source>
-        <target>A Friendly Captcha ebben a környezetben ki van kapcsolva (Development kontextus vagy tesztmód) – az ellenőrzés automatikusan sikeres.</target>
+        <target>Friendly Captcha 在此环境中已停用（Development 上下文或测试模式），验证会自动通过。</target>
       </segment>
     </unit>
     <unit id="aria.dismiss">
       <segment state="final">
         <source>Dismiss this notice</source>
-        <target>Értesítés bezárása</target>
+        <target>关闭此通知</target>
       </segment>
     </unit>
     <unit id="lightbox.open">
       <segment state="final">
         <source>Show image in full size</source>
-        <target>Kép megjelenítése teljes méretben</target>
+        <target>以完整尺寸显示图片</target>
       </segment>
     </unit>
     <unit id="lightbox.close">
       <segment state="final">
         <source>Close image</source>
-        <target>Kép bezárása</target>
+        <target>关闭图片</target>
       </segment>
     </unit>
     <unit id="carousel.aria.slides">
       <segment state="final">
         <source>Slides, scrollable</source>
-        <target>Diák, görgethető</target>
+        <target>幻灯片，可滚动</target>
       </segment>
     </unit>
     <unit id="carousel.aria.previous">
       <segment state="final">
         <source>Previous slide</source>
-        <target>Előző dia</target>
+        <target>上一张幻灯片</target>
       </segment>
     </unit>
     <unit id="carousel.aria.next">
       <segment state="final">
         <source>Next slide</source>
-        <target>Következő dia</target>
+        <target>下一张幻灯片</target>
       </segment>
     </unit>
     <unit id="carousel.aria.choose">
       <segment state="final">
         <source>Choose slide to display</source>
-        <target>Megjelenítendő dia kiválasztása</target>
+        <target>选择要显示的幻灯片</target>
       </segment>
     </unit>
     <unit id="carousel.aria.featureSlides">
       <segment state="final">
         <source>Feature slides, scrollable</source>
-        <target>Funkciódiák, görgethető</target>
+        <target>功能幻灯片，可滚动</target>
       </segment>
     </unit>
     <unit id="social.aria">
       <segment state="final">
         <source>Social media</source>
-        <target>Közösségi média</target>
+        <target>社交媒体</target>
       </segment>
     </unit>
     <unit id="logoCloud.aria">
       <segment state="final">
         <source>Trusted by leading teams</source>
-        <target>Vezető csapatok bíznak bennünk</target>
+        <target>受到领先团队的信赖</target>
       </segment>
     </unit>
     <unit id="search.categories.aria">
       <segment state="final">
         <source>Popular categories</source>
-        <target>Népszerű kategóriák</target>
+        <target>热门类别</target>
       </segment>
     </unit>
     <unit id="aria.pricingTier">
       <segment state="final">
         <source>Select pricing tier</source>
-        <target>Ársáv kiválasztása</target>
+        <target>选择价格档位</target>
       </segment>
     </unit>
     <unit id="navbar.dropdown.aria">
       <segment state="final">
         <source>Dropdown navigation</source>
-        <target>Legördülő navigáció</target>
+        <target>下拉导航</target>
       </segment>
     </unit>
     <unit id="a11y.reportBarrier">
       <segment state="final">
         <source>Report an accessibility barrier</source>
-        <target>Akadálymentességi probléma bejelentése</target>
+        <target>报告无障碍问题</target>
       </segment>
     </unit>
     <unit id="trend.down">
       <segment state="final">
         <source>Trending down:</source>
-        <target>Csökkenő tendencia:</target>
+        <target>呈下降趋势：</target>
       </segment>
     </unit>
     <unit id="metric.chart.aria">
       <segment state="final">
         <source>%s trend over time</source>
-        <target>%s alakulása az idő függvényében</target>
+        <target>%s 随时间的趋势</target>
       </segment>
     </unit>
     <unit id="metric.series.fallback">
       <segment state="final">
         <source>Monthly recurring revenue</source>
-        <target>Havi ismétlődő bevétel</target>
+        <target>月度经常性收入</target>
       </segment>
     </unit>
     <unit id="metric.unit.fallback">
       <segment state="final">
         <source>k USD</source>
-        <target>ezer USD</target>
+        <target>千美元</target>
       </segment>
     </unit>
     <unit id="table.aria.region">
       <segment state="final">
         <source>Data table</source>
-        <target>Adattáblázat</target>
+        <target>数据表</target>
       </segment>
     </unit>
     <unit id="progress.aria">
       <segment state="final">
         <source>Progress</source>
-        <target>Előrehaladás</target>
+        <target>进度</target>
       </segment>
     </unit>
     <unit id="status.aria">
       <segment state="final">
         <source>Service status</source>
-        <target>Szolgáltatás állapota</target>
+        <target>服务状态</target>
       </segment>
     </unit>
     <unit id="status.overall.operational">
       <segment state="final">
         <source>All systems operational</source>
-        <target>Minden rendszer működik</target>
+        <target>所有系统运行正常</target>
       </segment>
     </unit>
     <unit id="status.overall.degraded">
       <segment state="final">
         <source>Degraded performance</source>
-        <target>Csökkent teljesítmény</target>
+        <target>性能下降</target>
       </segment>
     </unit>
     <unit id="status.overall.outage">
       <segment state="final">
         <source>Major outage</source>
-        <target>Jelentős kiesés</target>
+        <target>重大故障</target>
       </segment>
     </unit>
     <unit id="status.overall.maintenance">
       <segment state="final">
         <source>Under maintenance</source>
-        <target>Karbantartás alatt</target>
+        <target>正在维护</target>
       </segment>
     </unit>
     <unit id="status.operational">
       <segment state="final">
         <source>Operational</source>
-        <target>Működik</target>
+        <target>正常运行</target>
       </segment>
     </unit>
     <unit id="status.degraded">
       <segment state="final">
         <source>Degraded</source>
-        <target>Korlátozott</target>
+        <target>性能下降</target>
       </segment>
     </unit>
     <unit id="status.outage">
       <segment state="final">
         <source>Outage</source>
-        <target>Kiesés</target>
+        <target>故障</target>
       </segment>
     </unit>
     <unit id="status.maintenance">
       <segment state="final">
         <source>Maintenance</source>
-        <target>Karbantartás</target>
+        <target>维护中</target>
       </segment>
     </unit>
     <unit id="table.aria.comparison">
       <segment state="final">
         <source>Comparison table</source>
-        <target>Összehasonlító táblázat</target>
+        <target>对比表</target>
       </segment>
     </unit>
     <unit id="trust.label">
       <segment state="final">
         <source>Trusted by teams at</source>
-        <target>Ezeknél a cégeknél bíznak bennünk</target>
+        <target>信赖我们的团队来自</target>
       </segment>
     </unit>
     <unit id="breadcrumb.aria">
       <segment state="final">
         <source>Breadcrumb</source>
-        <target>Morzsamenü</target>
+        <target>面包屑导航</target>
       </segment>
     </unit>
     <unit id="navbar.centered.aria">
       <segment state="final">
         <source>Centered navigation</source>
-        <target>Középre igazított navigáció</target>
+        <target>居中导航</target>
       </segment>
     </unit>
     <unit id="navbar.icon.aria">
       <segment state="final">
         <source>Icon navigation</source>
-        <target>Ikonos navigáció</target>
+        <target>图标导航</target>
       </segment>
     </unit>
     <unit id="navbar.main.aria">
       <segment state="final">
         <source>Main navigation</source>
-        <target>Fő navigáció</target>
+        <target>主导航</target>
       </segment>
     </unit>
     <unit id="navbar.minimal.aria">
       <segment state="final">
         <source>Minimal navigation</source>
-        <target>Minimális navigáció</target>
+        <target>简洁导航</target>
       </segment>
     </unit>
     <unit id="navbar.mobile.aria">
       <segment state="final">
         <source>Mobile navigation</source>
-        <target>Mobilnavigáció</target>
+        <target>移动端导航</target>
       </segment>
     </unit>
     <unit id="navbar.mobile.open">
       <segment state="final">
         <source>Open menu</source>
-        <target>Menü megnyitása</target>
+        <target>打开菜单</target>
       </segment>
     </unit>
     <unit id="navbar.sidebar.aria">
       <segment state="final">
         <source>Sidebar navigation</source>
-        <target>Oldalsávos navigáció</target>
+        <target>侧边栏导航</target>
       </segment>
     </unit>
     <unit id="navbar.split.aria">
       <segment state="final">
         <source>Split navigation</source>
-        <target>Osztott navigáció</target>
+        <target>分栏导航</target>
       </segment>
     </unit>
     <unit id="navbar.stacked.aria">
       <segment state="final">
         <source>Stacked navigation</source>
-        <target>Többsoros navigáció</target>
+        <target>堆叠导航</target>
       </segment>
     </unit>
     <unit id="navbar.sticky.aria">
       <segment state="final">
         <source>Sticky navigation</source>
-        <target>Rögzített navigáció</target>
+        <target>固定导航</target>
       </segment>
     </unit>
     <unit id="navbar.tabbed.aria">
       <segment state="final">
         <source>Tabbed navigation</source>
-        <target>Füles navigáció</target>
+        <target>标签页导航</target>
       </segment>
     </unit>
     <unit id="navbar.transparent.aria">
       <segment state="final">
         <source>Transparent navigation</source>
-        <target>Átlátszó navigáció</target>
+        <target>透明导航</target>
       </segment>
     </unit>
     <unit id="nav_steps.aria">
       <segment state="final">
         <source>Progress steps</source>
-        <target>Folyamat lépései</target>
+        <target>进度步骤</target>
       </segment>
     </unit>
     <unit id="nav_steps.completed">
       <segment state="final">
         <source>(completed)</source>
-        <target>(befejezve)</target>
+        <target>（已完成）</target>
       </segment>
     </unit>
     <unit id="nav_steps.current">
       <segment state="final">
         <source>(current step)</source>
-        <target>(aktuális lépés)</target>
+        <target>（当前步骤）</target>
       </segment>
     </unit>
     <unit id="nav_tabs.aria">
       <segment state="final">
         <source>Section navigation</source>
-        <target>Szekciónavigáció</target>
+        <target>栏目导航</target>
       </segment>
     </unit>
     <unit id="nav_toc.aria">
       <segment state="final">
         <source>Table of contents</source>
-        <target>Tartalomjegyzék</target>
+        <target>目录</target>
       </segment>
     </unit>
     <unit id="utility_bar.aria">
       <segment state="final">
         <source>Utility navigation</source>
-        <target>Kiegészítő navigáció</target>
+        <target>辅助导航</target>
       </segment>
     </unit>
     <unit id="footer.aria">
       <segment state="final">
         <source>Footer</source>
-        <target>Lábléc</target>
+        <target>页脚</target>
       </segment>
     </unit>
     <unit id="backToTop.label">
       <segment state="final">
         <source>Back to top</source>
-        <target>Vissza az oldal tetejére</target>
+        <target>返回顶部</target>
       </segment>
     </unit>
     <unit id="blog.backToOverview">
       <segment state="final">
         <source>Back to overview</source>
-        <target>Vissza az áttekintéshez</target>
+        <target>返回概览</target>
       </segment>
     </unit>
     <unit id="a11y.conformance">
       <segment state="final">
         <source>WCAG 2.2 Level</source>
-        <target>WCAG 2.2 megfelelési szint:</target>
+        <target>WCAG 2.2 级别</target>
       </segment>
     </unit>
     <unit id="a11y.contactIntro">
       <segment state="final">
         <source>Email</source>
-        <target>E-mail:</target>
+        <target>电子邮件</target>
       </segment>
     </unit>
     <unit id="a11y.contactResponse">
       <segment state="final">
         <source>We will respond within five working days.</source>
-        <target>Öt munkanapon belül válaszolunk.</target>
+        <target>我们会在 5 个工作日内回复。</target>
       </segment>
     </unit>
     <unit id="consent.acceptAll">
       <segment state="final">
         <source>Accept all</source>
-        <target>Összes elfogadása</target>
+        <target>全部接受</target>
       </segment>
     </unit>
     <unit id="consent.decline">
       <segment state="final">
         <source>Decline</source>
-        <target>Elutasítás</target>
+        <target>拒绝</target>
       </segment>
     </unit>
     <unit id="consent.managePreferences">
       <segment state="final">
         <source>Manage preferences</source>
-        <target>Beállítások kezelése</target>
+        <target>管理偏好设置</target>
       </segment>
     </unit>
     <unit id="consent.savePreferences">
       <segment state="final">
         <source>Save preferences</source>
-        <target>Beállítások mentése</target>
+        <target>保存偏好设置</target>
       </segment>
     </unit>
     <unit id="consent.categories">
       <segment state="final">
         <source>Cookie categories</source>
-        <target>Sütikategóriák</target>
+        <target>Cookie 类别</target>
       </segment>
     </unit>
     <unit id="imprint.company">
       <segment state="final">
         <source>Company</source>
-        <target>Cég</target>
+        <target>公司</target>
       </segment>
     </unit>
     <unit id="imprint.contact">
       <segment state="final">
         <source>Contact</source>
-        <target>Kapcsolat</target>
+        <target>联系方式</target>
       </segment>
     </unit>
     <unit id="imprint.legal">
       <segment state="final">
         <source>Legal</source>
-        <target>Jogi adatok</target>
+        <target>法律信息</target>
       </segment>
     </unit>
     <unit id="imprint.vat">
       <segment state="final">
         <source>VAT</source>
-        <target>Közösségi adószám</target>
+        <target>增值税号</target>
       </segment>
     </unit>
     <unit id="social.profile">
       <segment state="final">
         <source>Social profile</source>
-        <target>Közösségi profil</target>
+        <target>社交媒体主页</target>
       </segment>
     </unit>
     <unit id="social.newTab">
       <segment state="final">
         <source>(opens in a new tab)</source>
-        <target>(új lapon nyílik meg)</target>
+        <target>（在新标签页中打开）</target>
       </segment>
     </unit>
     <unit id="learn_more">
       <segment state="final">
         <source>Learn more</source>
-        <target>További információ</target>
+        <target>了解更多</target>
       </segment>
     </unit>
     <unit id="plan.free">
       <segment state="final">
         <source>Free</source>
-        <target>Ingyenes</target>
+        <target>免费</target>
       </segment>
     </unit>
     <unit id="plan.pro">
@@ -2506,187 +2506,187 @@
     <unit id="directions.to">
       <segment state="final">
         <source>Directions to %s</source>
-        <target>Útvonal ide: %s</target>
+        <target>前往 %s 的路线</target>
       </segment>
     </unit>
     <unit id="card.viewGuide">
       <segment state="final">
         <source>View automation guide</source>
-        <target>Automatizálási útmutató megtekintése</target>
+        <target>查看自动化指南</target>
       </segment>
     </unit>
     <unit id="plan.a">
       <segment state="final">
         <source>Plan A</source>
-        <target>A csomag</target>
+        <target>方案 A</target>
       </segment>
     </unit>
     <unit id="plan.b">
       <segment state="final">
         <source>Plan B</source>
-        <target>B csomag</target>
+        <target>方案 B</target>
       </segment>
     </unit>
     <unit id="code.aria">
       <segment state="final">
         <source>Code sample</source>
-        <target>Kódminta</target>
+        <target>代码示例</target>
       </segment>
     </unit>
     <unit id="carousel.aria.collection">
       <segment state="final">
         <source>Content collection</source>
-        <target>Tartalomgyűjtemény</target>
+        <target>内容合集</target>
       </segment>
     </unit>
     <unit id="carousel.goto.numbered">
       <segment state="final">
         <source>Go to slide %1$s of %2$s</source>
-        <target>%1$s. dia megjelenítése (összesen %2$s)</target>
+        <target>转到第 %1$s 张幻灯片，共 %2$s 张</target>
       </segment>
     </unit>
     <unit id="carousel.status">
       <segment state="final">
         <source>Slide %1$s of %2$s</source>
-        <target>%1$s. dia (összesen %2$s)</target>
+        <target>第 %1$s 张幻灯片，共 %2$s 张</target>
       </segment>
     </unit>
     <unit id="resource.open">
       <segment state="final">
         <source>Open resource</source>
-        <target>Forrás megnyitása</target>
+        <target>打开资源</target>
       </segment>
     </unit>
     <unit id="resource.open.named">
       <segment state="final">
         <source>Open %s</source>
-        <target>%s megnyitása</target>
+        <target>打开 %s</target>
       </segment>
     </unit>
     <unit id="video.fallback">
       <segment state="final">
         <source>Embedded video</source>
-        <target>Beágyazott videó</target>
+        <target>嵌入视频</target>
       </segment>
     </unit>
     <unit id="rte.abbreviation.button">
       <segment state="final">
         <source>Abbreviation</source>
-        <target>Rövidítés</target>
+        <target>缩写</target>
       </segment>
     </unit>
     <unit id="rte.abbreviation.field.abbreviation">
       <segment state="final">
         <source>Abbreviation</source>
-        <target>Rövidítés</target>
+        <target>缩写</target>
       </segment>
     </unit>
     <unit id="rte.abbreviation.field.title">
       <segment state="final">
         <source>Full term (title attribute)</source>
-        <target>Teljes kifejezés (title attribútum)</target>
+        <target>完整术语（title 属性）</target>
       </segment>
     </unit>
     <unit id="rte.abbreviation.header.insert">
       <segment state="final">
         <source>Insert abbreviation</source>
-        <target>Rövidítés beszúrása</target>
+        <target>插入缩写</target>
       </segment>
     </unit>
     <unit id="rte.abbreviation.header.edit">
       <segment state="final">
         <source>Edit abbreviation</source>
-        <target>Rövidítés szerkesztése</target>
+        <target>编辑缩写</target>
       </segment>
     </unit>
     <unit id="color_field">
       <segment state="final">
         <source>Color</source>
-        <target>Szín</target>
+        <target>颜色</target>
       </segment>
     </unit>
     <unit id="shadcn_layout">
       <segment state="final">
         <source>Layout</source>
-        <target>Elrendezés</target>
+        <target>布局</target>
       </segment>
     </unit>
     <unit id="tagline">
       <segment state="final">
         <source>Tagline</source>
-        <target>Szlogen</target>
+        <target>标语</target>
       </segment>
     </unit>
     <unit id="changelog.tag.new">
       <segment state="final">
         <source>New</source>
-        <target>Új</target>
+        <target>新增</target>
       </segment>
     </unit>
     <unit id="changelog.tag.fix">
       <segment state="final">
         <source>Fix</source>
-        <target>Javítás</target>
+        <target>修复</target>
       </segment>
     </unit>
     <unit id="changelog.tag.improvement">
       <segment state="final">
         <source>Improvement</source>
-        <target>Fejlesztés</target>
+        <target>改进</target>
       </segment>
     </unit>
     <unit id="changelog.tag.breaking">
       <segment state="final">
         <source>Breaking change</source>
-        <target>Nem kompatibilis változás</target>
+        <target>破坏性变更</target>
       </segment>
     </unit>
     <unit id="appearance.frame">
       <segment state="final">
         <source>Background</source>
-        <target>Háttér</target>
+        <target>背景</target>
       </segment>
     </unit>
     <unit id="appearance.frame.default">
       <segment state="final">
         <source>Page background</source>
-        <target>Oldalháttér</target>
+        <target>页面背景</target>
       </segment>
     </unit>
     <unit id="appearance.frame.muted">
       <segment state="final">
         <source>Muted surface</source>
-        <target>Visszafogott felület</target>
+        <target>柔和表面</target>
       </segment>
     </unit>
     <unit id="appearance.frame.card">
       <segment state="final">
         <source>Card surface</source>
-        <target>Kártyafelület</target>
+        <target>卡片表面</target>
       </segment>
     </unit>
     <unit id="appearance.frame.accent">
       <segment state="final">
         <source>Accent surface</source>
-        <target>Kiemelő felület</target>
+        <target>强调表面</target>
       </segment>
     </unit>
     <unit id="appearance.frame.primary">
       <segment state="final">
         <source>Brand (primary)</source>
-        <target>Márkaszín (elsődleges)</target>
+        <target>品牌色（主色）</target>
       </segment>
     </unit>
     <unit id="appearance.frame.secondary">
       <segment state="final">
         <source>Secondary surface</source>
-        <target>Másodlagos felület</target>
+        <target>次要表面</target>
       </segment>
     </unit>
     <unit id="appearance.layout.reserved">
       <segment state="final">
         <source>Reserved for a future version — currently has no visual effect.</source>
-        <target>Egy későbbi verzióhoz fenntartva – jelenleg nincs vizuális hatása.</target>
+        <target>为未来版本预留，目前没有视觉效果。</target>
       </segment>
     </unit>
   </file>

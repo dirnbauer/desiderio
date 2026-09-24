@@ -13,5 +13,59 @@
         <target>Rendert eine Datenreihe als Flächen-, Linien- oder Balkendiagramm (vertikal oder horizontal) aus JSON-Daten, mit Optionen für Farbe, Raster, Legende, Füllung und Höhe, berechneten Eckdaten (Startwert, letzter Wert, Spitze, Nettoveränderung) und einer Screenreader-Datentabelle aus den Datenpunkten. Geeignet für: jede Einzelserien-Statistik — Monatsumsätze, Besuchertrends, Umfrageergebnisse, Kategoriesummen. Für einfachere Pflege 'Area Chart', 'Line Chart' oder 'Bar Chart' bevorzugen; 'Pie Chart' für Anteile eines Ganzen.</target>
       </segment>
     </unit>
+    <unit id="chart.aria_fallback">
+      <segment state="final">
+        <source>Data chart</source>
+        <target>Datendiagramm</target>
+      </segment>
+    </unit>
+    <unit id="chart.table.category">
+      <segment state="final">
+        <source>Category</source>
+        <target>Kategorie</target>
+      </segment>
+    </unit>
+    <unit id="chart.table.value_default">
+      <segment state="final">
+        <source>Value</source>
+        <target>Wert</target>
+      </segment>
+    </unit>
+    <unit id="chart.table.unit_caption">
+      <segment state="final">
+        <source>values in {0}</source>
+        <target>Werte in {0}</target>
+      </segment>
+    </unit>
+    <unit id="chart.stat.peak">
+      <segment state="final">
+        <source>Peak</source>
+        <target>Höchstwert</target>
+      </segment>
+    </unit>
+    <unit id="chart.stat.net_change">
+      <segment state="final">
+        <source>Net change</source>
+        <target>Nettoveränderung</target>
+      </segment>
+    </unit>
+    <unit id="chart.trend.up">
+      <segment state="final">
+        <source>Trending up:</source>
+        <target>Aufwärtstrend:</target>
+      </segment>
+    </unit>
+    <unit id="chart.trend.down">
+      <segment state="final">
+        <source>Trending down:</source>
+        <target>Abwärtstrend:</target>
+      </segment>
+    </unit>
+    <unit id="chart.trend.flat">
+      <segment state="final">
+        <source>No net change:</source>
+        <target>Keine Nettoveränderung:</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

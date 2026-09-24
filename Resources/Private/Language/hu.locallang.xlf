@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="hu">
+  <file id="EXT:desiderio/Resources/Private/Language/locallang.xlf" original="EXT:desiderio/Resources/Private/Language/locallang.xlf">
+    <unit id="pagination.aria.label">
+      <segment state="final">
+        <source>Pagination, {totalPages, plural, one {one page} other {# pages}}</source>
+        <target>Lapozás, {totalPages, plural, one {egy oldal} other {# oldal}}</target>
+      </segment>
+    </unit>
+    <unit id="pagination.aria.previous">
+      <segment state="final">
+        <source>Go to previous page</source>
+        <target>Ugrás az előző oldalra</target>
+      </segment>
+    </unit>
+    <unit id="pagination.aria.next">
+      <segment state="final">
+        <source>Go to next page</source>
+        <target>Ugrás a következő oldalra</target>
+      </segment>
+    </unit>
+    <unit id="pagination.aria.goToPage">
+      <segment state="final">
+        <source>Go to page {page} of {totalPages, plural, one {one page} other {# pages}}</source>
+        <target>{page}. oldal megnyitása (összesen {totalPages, plural, one {egy oldal} other {# oldal}})</target>
+      </segment>
+    </unit>
+    <unit id="pagination.aria.currentPage">
+      <segment state="final">
+        <source>Page {page} of {totalPages, plural, one {one page} other {# pages}}</source>
+        <target>{page}. oldal (összesen {totalPages, plural, one {egy oldal} other {# oldal}})</target>
+      </segment>
+    </unit>
+    <unit id="pagination.previous">
+      <segment state="final">
+        <source>Previous</source>
+        <target>Előző</target>
+      </segment>
+    </unit>
+    <unit id="pagination.next">
+      <segment state="final">
+        <source>Next</source>
+        <target>Következő</target>
+      </segment>
+    </unit>
+    <unit id="news.loadMore">
+      <segment state="final">
+        <source>Load more articles</source>
+        <target>További cikkek betöltése</target>
+      </segment>
+    </unit>
+    <unit id="news.loadMore.status">
+      <segment state="final">
+        <source>Showing {visible, plural, one {one article} other {# articles}} of {total, plural, one {one article} other {# articles}}</source>
+        <target>{visible, plural, one {Egy cikk} other {# cikk}} látható (összesen {total, plural, one {egy cikk} other {# cikk}})</target>
+      </segment>
+    </unit>
+    <unit id="news.loadMore.status.client">
+      <segment state="final">
+        <source>Showing {visible} of {total} articles</source>
+        <target>{visible} cikk látható (összesen {total})</target>
+      </segment>
+    </unit>
+    <unit id="news.featured">
+      <segment state="final">
+        <source>Featured</source>
+        <target>Kiemelt</target>
+      </segment>
+    </unit>
+    <unit id="news.magazine.more">
+      <segment state="final">
+        <source>More articles</source>
+        <target>További cikkek</target>
+      </segment>
+    </unit>
+    <unit id="news.magazine.items">
+      <segment state="final">
+        <source>{count, plural, one {one article} other {# articles}}</source>
+        <target>{count, plural, one {egy cikk} other {# cikk}}</target>
+      </segment>
+    </unit>
+    <unit id="news.comments.count">
+      <segment state="final">
+        <source>{count, plural, =0 {0 comments} one {# comment} other {# comments}}</source>
+        <target>{count, plural, =0 {0 hozzászólás} one {# hozzászólás} other {# hozzászólás}}</target>
+      </segment>
+    </unit>
+    <unit id="news.tags.count">
+      <segment state="final">
+        <source>{count, plural, one {one tag} other {# tags}}</source>
+        <target>{count, plural, one {egy címke} other {# címke}}</target>
+      </segment>
+    </unit>
+    <unit id="news.categories.count">
+      <segment state="final">
+        <source>{count, plural, one {one category} other {# categories}}</source>
+        <target>{count, plural, one {egy kategória} other {# kategória}}</target>
+      </segment>
+    </unit>
+    <unit id="news.entries.count">
+      <segment state="final">
+        <source>{count, plural, one {one entry} other {# entries}}</source>
+        <target>{count, plural, one {egy bejegyzés} other {# bejegyzés}}</target>
+      </segment>
+    </unit>
+    <unit id="blog.posts.count">
+      <segment state="final">
+        <source>{count, plural, one {one post} other {# posts}}</source>
+        <target>{count, plural, one {egy bejegyzés} other {# bejegyzés}}</target>
+      </segment>
+    </unit>
+    <unit id="blog.list.aria">
+      <segment state="final">
+        <source>Blog posts</source>
+        <target>Blogbejegyzések</target>
+      </segment>
+    </unit>
+    <unit id="blog.sidebar.aria">
+      <segment state="final">
+        <source>Blog sidebar</source>
+        <target>A blog oldalsávja</target>
+      </segment>
+    </unit>
+    <unit id="news.prevNext.aria">
+      <segment state="final">
+        <source>Previous and next article</source>
+        <target>Előző és következő cikk</target>
+      </segment>
+    </unit>
+    <unit id="blog.comments.count">
+      <segment state="final">
+        <source>{count, plural, =0 {0 comments} one {# comment} other {# comments}}</source>
+        <target>{count, plural, =0 {0 hozzászólás} one {# hozzászólás} other {# hozzászólás}}</target>
+      </segment>
+    </unit>
+    <unit id="a11y.skipToContent">
+      <segment state="final">
+        <source>Skip to main content</source>
+        <target>Ugrás a fő tartalomra</target>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.main">
+      <segment state="final">
+        <source>Main navigation</source>
+        <target>Fő navigáció</target>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.footer">
+      <segment state="final">
+        <source>Footer navigation</source>
+        <target>Lábléc-navigáció</target>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.legal">
+      <segment state="final">
+        <source>Legal navigation</source>
+        <target>Jogi navigáció</target>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.home">
+      <segment state="final">
+        <source>Home</source>
+        <target>Kezdőlap</target>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.breadcrumb">
+      <segment state="final">
+        <source>Breadcrumb</source>
+        <target>Morzsamenü</target>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.breadcrumb.more">
+      <segment state="final">
+        <source>More pages</source>
+        <target>További oldalak</target>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.submenu">
+      <segment state="final">
+        <source>Submenu of {title}</source>
+        <target>Almenü: {title}</target>
+      </segment>
+    </unit>
+    <unit id="nav.more">
+      <segment state="final">
+        <source>More</source>
+        <target>Továbbiak</target>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.language">
+      <segment state="final">
+        <source>Language</source>
+        <target>Nyelv</target>
+      </segment>
+    </unit>
+    <unit id="a11y.menu.toggle">
+      <segment state="final">
+        <source>Toggle menu</source>
+        <target>Menü megnyitása/bezárása</target>
+      </segment>
+    </unit>
+    <unit id="a11y.theme.toggle">
+      <segment state="final">
+        <source>Toggle dark mode</source>
+        <target>Sötét mód be- vagy kikapcsolása</target>
+      </segment>
+    </unit>
+    <unit id="a11y.theme.switch">
+      <segment state="final">
+        <source>Colour scheme</source>
+        <target>Színséma</target>
+      </segment>
+    </unit>
+    <unit id="search.label">
+      <segment state="final">
+        <source>Search</source>
+        <target>Keresés</target>
+      </segment>
+    </unit>
+    <unit id="search.placeholder">
+      <segment state="final">
+        <source>Search</source>
+        <target>Keresés</target>
+      </segment>
+    </unit>
+    <unit id="search.submit">
+      <segment state="final">
+        <source>Search</source>
+        <target>Keresés</target>
+      </segment>
+    </unit>
+    <unit id="theme.light">
+      <segment state="final">
+        <source>Light</source>
+        <target>Világos</target>
+      </segment>
+    </unit>
+    <unit id="theme.dark">
+      <segment state="final">
+        <source>Dark</source>
+        <target>Sötét</target>
+      </segment>
+    </unit>
+    <unit id="theme.system">
+      <segment state="final">
+        <source>System</source>
+        <target>Rendszer</target>
+      </segment>
+    </unit>
+    <unit id="footer.legal.imprint">
+      <segment state="final">
+        <source>Imprint</source>
+        <target>Impresszum</target>
+      </segment>
+    </unit>
+    <unit id="footer.legal.privacy">
+      <segment state="final">
+        <source>Privacy</source>
+        <target>Adatvédelem</target>
+      </segment>
+    </unit>
+    <unit id="footer.legal.accessibility">
+      <segment state="final">
+        <source>Accessibility</source>
+        <target>Akadálymentesség</target>
+      </segment>
+    </unit>
+    <unit id="consent.label">
+      <segment state="final">
+        <source>Cookie consent</source>
+        <target>Sütihozzájárulás</target>
+      </segment>
+    </unit>
+    <unit id="consent.message">
+      <segment state="final">
+        <source>We use optional cookies to measure and improve this website.</source>
+        <target>Opcionális sütiket használunk a webhely méréséhez és fejlesztéséhez.</target>
+      </segment>
+    </unit>
+    <unit id="consent.privacy">
+      <segment state="final">
+        <source>Privacy</source>
+        <target>Adatvédelem</target>
+      </segment>
+    </unit>
+    <unit id="consent.accept">
+      <segment state="final">
+        <source>Accept</source>
+        <target>Elfogadás</target>
+      </segment>
+    </unit>
+    <unit id="consent.decline">
+      <segment state="final">
+        <source>Decline</source>
+        <target>Elutasítás</target>
+      </segment>
+    </unit>
+    <unit id="a11y.share.label">
+      <segment state="final">
+        <source>Share this article</source>
+        <target>Cikk megosztása</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.rail.label">
+      <segment state="final">
+        <source>Workspace navigation</source>
+        <target>Munkaterület-navigáció</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.rail.workspace">
+      <segment state="final">
+        <source>Workspace</source>
+        <target>Munkaterület</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.rail.sections">
+      <segment state="final">
+        <source>Sections</source>
+        <target>Szekciók</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.rail.account">
+      <segment state="final">
+        <source>Account</source>
+        <target>Fiók</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.rail.overview">
+      <segment state="final">
+        <source>Overview</source>
+        <target>Áttekintés</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.rail.home">
+      <segment state="final">
+        <source>Dashboard home</source>
+        <target>Irányítópult kezdőlapja</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.breadcrumb.label">
+      <segment state="final">
+        <source>Breadcrumb</source>
+        <target>Morzsamenü</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.eyebrow.overview">
+      <segment state="final">
+        <source>Overview</source>
+        <target>Áttekintés</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.eyebrow.workspace">
+      <segment state="final">
+        <source>Workspace</source>
+        <target>Munkaterület</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.eyebrow.search">
+      <segment state="final">
+        <source>Search</source>
+        <target>Keresés</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.eyebrow.status">
+      <segment state="final">
+        <source>Status</source>
+        <target>Állapot</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.status.live">
+      <segment state="final">
+        <source>Live data</source>
+        <target>Élő adatok</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.region.metrics">
+      <segment state="final">
+        <source>Key metrics and reports</source>
+        <target>Fő mutatók és jelentések</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.region.activity">
+      <segment state="final">
+        <source>Activity and alerts</source>
+        <target>Tevékenység és figyelmeztetések</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.search.hint">
+      <segment state="final">
+        <source>Search across pages, records, and reports.</source>
+        <target>Keressen oldalak, rekordok és jelentések között.</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.error.summary">
+      <segment state="final">
+        <source>This view could not be loaded. Check the address or return to your overview.</source>
+        <target>Ezt a nézetet nem sikerült betölteni. Ellenőrizze a címet, vagy térjen vissza az áttekintéshez.</target>
+      </segment>
+    </unit>
+    <unit id="page.search.eyebrow">
+      <segment state="final">
+        <source>Search</source>
+        <target>Keresés</target>
+      </segment>
+    </unit>
+    <unit id="page.search.intro">
+      <segment state="final">
+        <source>Find solutions, case studies, documentation and the right contact across our site.</source>
+        <target>Keressen megoldásokat, esettanulmányokat, dokumentációt és a megfelelő kapcsolattartót a webhelyünkön.</target>
+      </segment>
+    </unit>
+    <unit id="page.search.results.label">
+      <segment state="final">
+        <source>Search results</source>
+        <target>Keresési találatok</target>
+      </segment>
+    </unit>
+    <unit id="page.search.empty">
+      <segment state="final">
+        <source>Start typing to search the archive, or browse the latest stories from the homepage.</source>
+        <target>Kezdjen el gépelni az archívum kereséséhez, vagy böngéssze a legfrissebb cikkeket a kezdőlapon.</target>
+      </segment>
+    </unit>
+    <unit id="page.error.eyebrow">
+      <segment state="final">
+        <source>Page not found</source>
+        <target>Az oldal nem található</target>
+      </segment>
+    </unit>
+    <unit id="page.error.intro">
+      <segment state="final">
+        <source>This page has moved or no longer exists. Use the links below or head back to the homepage to find what you need.</source>
+        <target>Ez az oldal máshová került, vagy már nem létezik. Használja az alábbi linkeket, vagy térjen vissza a kezdőlapra, hogy megtalálja, amit keres.</target>
+      </segment>
+    </unit>
+    <unit id="page.error.empty">
+      <segment state="final">
+        <source>The page you were looking for has moved or no longer exists. Head back to the homepage to pick up the latest stories.</source>
+        <target>A keresett oldal máshová került, vagy már nem létezik. Térjen vissza a kezdőlapra, ahol a legfrissebb cikkeket találja.</target>
+      </segment>
+    </unit>
+    <unit id="page.error.home">
+      <segment state="final">
+        <source>Back to homepage</source>
+        <target>Vissza a kezdőlapra</target>
+      </segment>
+    </unit>
+    <unit id="corporate.start.eyebrow">
+      <segment state="final">
+        <source>Trusted by teams worldwide</source>
+        <target>Világszerte megbízható</target>
+      </segment>
+    </unit>
+    <unit id="corporate.start.headline">
+      <segment state="final">
+        <source>Build with a partner the whole organisation can rely on</source>
+        <target>Dolgozzon egy partnerrel, akire az egész szervezet számíthat</target>
+      </segment>
+    </unit>
+    <unit id="corporate.start.lede">
+      <segment state="final">
+        <source>From strategy to delivery, we help established teams ship dependable products, modernise their platforms and serve their customers with confidence.</source>
+        <target>A stratégiától a megvalósításig segítünk a tapasztalt csapatoknak megbízható termékeket szállítani, modernizálni a platformjaikat és magabiztosan kiszolgálni az ügyfeleiket.</target>
+      </segment>
+    </unit>
+    <unit id="corporate.start.actions.label">
+      <segment state="final">
+        <source>Primary actions</source>
+        <target>Fő műveletek</target>
+      </segment>
+    </unit>
+    <unit id="corporate.start.cta.primary">
+      <segment state="final">
+        <source>Talk to our team</source>
+        <target>Beszéljen csapatunkkal</target>
+      </segment>
+    </unit>
+    <unit id="corporate.start.cta.secondary">
+      <segment state="final">
+        <source>Explore our solutions</source>
+        <target>Megoldásaink felfedezése</target>
+      </segment>
+    </unit>
+    <unit id="corporate.start.trust">
+      <segment state="final">
+        <source>ISO-aligned delivery. Dedicated account team. Response within one business day.</source>
+        <target>ISO-szabványokhoz igazodó megvalósítás. Dedikált ügyfélcsapat. Válasz egy munkanapon belül.</target>
+      </segment>
+    </unit>
+    <unit id="corporate.start.region">
+      <segment state="final">
+        <source>Solutions, proof and contact</source>
+        <target>Megoldások, referenciák és kapcsolat</target>
+      </segment>
+    </unit>
+    <unit id="corporate.page.eyebrow">
+      <segment state="final">
+        <source>Overview</source>
+        <target>Áttekintés</target>
+      </segment>
+    </unit>
+    <unit id="corporate.page.lede">
+      <segment state="final">
+        <source>A clear, structured look at what we do here and how it helps your organisation move forward.</source>
+        <target>Világos, jól tagolt áttekintés arról, mivel foglalkozunk itt, és ez hogyan segíti szervezete fejlődését.</target>
+      </segment>
+    </unit>
+    <unit id="corporate.sidebar.aria">
+      <segment state="final">
+        <source>Related contacts and downloads</source>
+        <target>Kapcsolódó kapcsolattartók és letöltések</target>
+      </segment>
+    </unit>
+    <unit id="corporate.search.empty">
+      <segment state="final">
+        <source>Enter a term above to search across our solutions, case studies, documentation and contacts.</source>
+        <target>Adjon meg fent egy keresőkifejezést, és keressen megoldásaink, esettanulmányaink, dokumentációnk és kapcsolattartóink között.</target>
+      </segment>
+    </unit>
+    <unit id="editorial.breadcrumb.label">
+      <segment state="final">
+        <source>Breadcrumb</source>
+        <target>Morzsamenü</target>
+      </segment>
+    </unit>
+    <unit id="editorial.kicker.default">
+      <segment state="final">
+        <source>Feature</source>
+        <target>Kiemelt téma</target>
+      </segment>
+    </unit>
+    <unit id="editorial.byline.prefix">
+      <segment state="final">
+        <source>By</source>
+        <target>Szerző:</target>
+      </segment>
+    </unit>
+    <unit id="editorial.meta.published">
+      <segment state="final">
+        <source>Published on %s</source>
+        <target>Közzétéve: %s</target>
+      </segment>
+    </unit>
+    <unit id="editorial.aside.label">
+      <segment state="final">
+        <source>Article tools and related reading</source>
+        <target>Cikkeszközök és kapcsolódó olvasmányok</target>
+      </segment>
+    </unit>
+    <unit id="editorial.readingProgress.label">
+      <segment state="final">
+        <source>Reading progress</source>
+        <target>Olvasási előrehaladás</target>
+      </segment>
+    </unit>
+    <unit id="portfolio.aside.label">
+      <segment state="final">
+        <source>Project details and related work</source>
+        <target>Projektadatok és kapcsolódó munkák</target>
+      </segment>
+    </unit>
+    <unit id="saas.hero.eyebrow">
+      <segment state="final">
+        <source>Now in public beta</source>
+        <target>Most nyilvános bétában</target>
+      </segment>
+    </unit>
+    <unit id="saas.hero.cta.primary">
+      <segment state="final">
+        <source>Start free</source>
+        <target>Kezdje el ingyen</target>
+      </segment>
+    </unit>
+    <unit id="saas.hero.cta.secondary">
+      <segment state="final">
+        <source>Book a demo</source>
+        <target>Demó egyeztetése</target>
+      </segment>
+    </unit>
+    <unit id="saas.hero.trust">
+      <segment state="final">
+        <source>No credit card. 14-day Pro trial. Cancel anytime.</source>
+        <target>Nincs szükség bankkártyára. 14 napos Pro próbaidőszak. Bármikor lemondható.</target>
+      </segment>
+    </unit>
+    <unit id="saas.hero.actions.label">
+      <segment state="final">
+        <source>Primary actions</source>
+        <target>Fő műveletek</target>
+      </segment>
+    </unit>
+    <unit id="saas.region.offer">
+      <segment state="final">
+        <source>Product, pricing and sign-up</source>
+        <target>Termék, árak és regisztráció</target>
+      </segment>
+    </unit>
+    <unit id="saas.page.eyebrow">
+      <segment state="final">
+        <source>Product</source>
+        <target>Termék</target>
+      </segment>
+    </unit>
+    <unit id="saas.page.lede">
+      <segment state="final">
+        <source>Everything your team needs to evaluate, roll out and scale — laid out below.</source>
+        <target>Alább mindent megtalál, amire csapatának szüksége van az értékeléshez, a bevezetéshez és a bővítéshez.</target>
+      </segment>
+    </unit>
+    <unit id="saas.sidebar.label">
+      <segment state="final">
+        <source>Get started</source>
+        <target>Első lépések</target>
+      </segment>
+    </unit>
+    <unit id="email.form.intro">
+      <segment state="final">
+        <source>A new {title} form submission was sent from {sourceType, select, page {the page {sourcePageTitle}} other {the website}} ({sourcePageUrl}).</source>
+        <target>Új „{title}” űrlapbeküldés érkezett {sourceType, select, page {a(z) „{sourcePageTitle}” oldalról} other {a webhelyről}} ({sourcePageUrl}).</target>
+      </segment>
+    </unit>
+    <unit id="email.form.goodbye">
+      <segment state="final">
+        <source>Best regards,</source>
+        <target>Üdvözlettel:</target>
+      </segment>
+    </unit>
+    <unit id="email.form.signature">
+      <segment state="final">
+        <source>webconsulting &amp; Desiderio</source>
+        <target>webconsulting &amp; Desiderio</target>
+      </segment>
+    </unit>
+    <unit id="email.footer.notice">
+      <segment state="final">
+        <source>This email was sent by {siteName} from URL: {siteUrl} - Please contact your site administrator if you feel you received this email by accident.</source>
+        <target>Ezt az e-mailt a(z) {siteName} küldte a következő URL-ről: {siteUrl} – Ha úgy gondolja, hogy tévedésből kapta ezt az e-mailt, kérjük, forduljon a webhely adminisztrátorához.</target>
+      </segment>
+    </unit>
+    <unit id="email.footer.copyright.webconsulting">
+      <segment state="final">
+        <source>© {year} webconsulting gmbh</source>
+        <target>© {year} webconsulting gmbh</target>
+      </segment>
+    </unit>
+    <unit id="email.footer.copyright.desiderio">
+      <segment state="final">
+        <source>© {year} Desiderio</source>
+        <target>© {year} Desiderio</target>
+      </segment>
+    </unit>
+    <unit id="email.footer.copyright.webconsultingText">
+      <segment state="final">
+        <source>Copyright (c) {year} webconsulting gmbh</source>
+        <target>Copyright (c) {year} webconsulting gmbh</target>
+      </segment>
+    </unit>
+    <unit id="email.footer.copyright.desiderioText">
+      <segment state="final">
+        <source>Copyright (c) {year} Desiderio</source>
+        <target>Copyright (c) {year} Desiderio</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

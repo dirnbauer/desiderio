@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="hu">
+  <file id="chart-contribution">
+    <unit id="aria.fallback">
+      <segment state="final">
+        <source>Contribution activity</source>
+        <target>Hozzájárulási aktivitás</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment state="final">
+        <source>{1, plural, =0 {{0}: no data points yet.} one {{0} across one time point, measured in {2}. Values follow in the table below.} other {{0} across # time points, measured in {2}. Values follow in the table below.}}</source>
+        <target>{1, plural, =0 {{0}: még nincsenek adatpontok.} one {{0}: egy időpont, mértékegység: {2}. Az értékeket az alábbi táblázat tartalmazza.} other {{0}: # időpont, mértékegység: {2}. Az értékeket az alábbi táblázat tartalmazza.}}</target>
+      </segment>
+    </unit>
+    <unit id="table.period">
+      <segment state="final">
+        <source>Period</source>
+        <target>Időszak</target>
+      </segment>
+    </unit>
+    <unit id="table.value">
+      <segment state="final">
+        <source>Value</source>
+        <target>Érték</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

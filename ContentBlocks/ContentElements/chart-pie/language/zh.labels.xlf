@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="zh">
+  <file id="chart-pie">
+    <unit id="table.segment">
+      <segment state="final">
+        <source>Segment</source>
+        <target>分段</target>
+      </segment>
+    </unit>
+    <unit id="table.value">
+      <segment state="final">
+        <source>Value</source>
+        <target>数值</target>
+      </segment>
+    </unit>
+    <unit id="table.share">
+      <segment state="final">
+        <source>Share</source>
+        <target>占比</target>
+      </segment>
+    </unit>
+    <unit id="table.total">
+      <segment state="final">
+        <source>Total</source>
+        <target>总计</target>
+      </segment>
+    </unit>
+    <unit id="aria.fallback">
+      <segment state="final">
+        <source>Pie chart</source>
+        <target>饼图</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment state="final">
+        <source>{0}: pie chart showing the share of the whole across {1, plural, one {# segment} other {# segments}}. The full breakdown follows in the data table.</source>
+        <target>{0}：饼图，显示 {1, plural, one {# 个分段} other {# 个分段}}各自占整体的比例。完整明细见下方数据表。</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

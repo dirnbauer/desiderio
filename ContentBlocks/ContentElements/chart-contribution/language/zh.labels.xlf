@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="zh">
+  <file id="chart-contribution">
+    <unit id="aria.fallback">
+      <segment state="final">
+        <source>Contribution activity</source>
+        <target>贡献活动</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment state="final">
+        <source>{1, plural, =0 {{0}: no data points yet.} one {{0} across one time point, measured in {2}. Values follow in the table below.} other {{0} across # time points, measured in {2}. Values follow in the table below.}}</source>
+        <target>{1, plural, =0 {{0}：暂无数据点。} one {{0}：共 1 个时间点，单位为 {2}。数值见下方表格。} other {{0}：共 # 个时间点，单位为 {2}。数值见下方表格。}}</target>
+      </segment>
+    </unit>
+    <unit id="table.period">
+      <segment state="final">
+        <source>Period</source>
+        <target>时段</target>
+      </segment>
+    </unit>
+    <unit id="table.value">
+      <segment state="final">
+        <source>Value</source>
+        <target>数值</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

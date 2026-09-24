@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="zh">
+  <file id="chart-line">
+    <unit id="aria.fallback">
+      <segment state="final">
+        <source>Line chart</source>
+        <target>折线图</target>
+      </segment>
+    </unit>
+    <unit id="aria.label">
+      <segment state="final">
+        <source>{title}: line chart of {series}</source>
+        <target>{title}：{series} 折线图</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment state="final">
+        <source>{title}: {series} trend across {count, plural, one {# point} other {# points}}, from {first} to {last}.</source>
+        <target>{title}：{series} 的走势，共 {count, plural, one {# 个数据点} other {# 个数据点}}，从 {first} 到 {last}。</target>
+      </segment>
+    </unit>
+    <unit id="table.label_header">
+      <segment state="final">
+        <source>Period</source>
+        <target>时段</target>
+      </segment>
+    </unit>
+    <unit id="table.unit_caption">
+      <segment state="final">
+        <source>values in {unit}</source>
+        <target>数值单位：{unit}</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="hu">
+  <file id="desiderio-forms">
+    <unit id="desiderio-booking.element.desiderio-booking.renderingOptions.submitButtonLabel">
+      <segment state="final">
+        <source>Book appointment</source>
+        <target>Időpont foglalása</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-booking.finisher.EmailToReceiver.subject">
+      <segment state="final">
+        <source>Booking request: {preferredDate}</source>
+        <target>Foglalási kérés: {preferredDate}</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-booking.finisher.EmailToReceiver.title">
+      <segment state="final">
+        <source>Booking request</source>
+        <target>Foglalási kérés</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-booking.finisher.Confirmation.message">
+      <segment state="final">
+        <source>Thank you. Your booking request has been sent.</source>
+        <target>Köszönjük. Foglalási kérése elküldve.</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-booking.element.name.properties.label">
+      <segment state="final">
+        <source>Name</source>
+        <target>Név</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-booking.element.email.properties.label">
+      <segment state="final">
+        <source>Email</source>
+        <target>E-mail</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-booking.element.phone.properties.label">
+      <segment state="final">
+        <source>Phone</source>
+        <target>Telefon</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-booking.element.preferredDate.properties.label">
+      <segment state="final">
+        <source>Preferred date</source>
+        <target>Kívánt dátum</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-booking.element.message.properties.label">
+      <segment state="final">
+        <source>Message</source>
+        <target>Üzenet</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-callback.element.desiderio-callback.renderingOptions.submitButtonLabel">
+      <segment state="final">
+        <source>Request callback</source>
+        <target>Visszahívás kérése</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-callback.finisher.EmailToReceiver.subject">
+      <segment state="final">
+        <source>Callback request: {name}</source>
+        <target>Visszahívási kérés: {name}</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-callback.finisher.EmailToReceiver.title">
+      <segment state="final">
+        <source>Callback request</source>
+        <target>Visszahívási kérés</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-callback.finisher.Confirmation.message">
+      <segment state="final">
+        <source>Thank you. Your callback request has been sent.</source>
+        <target>Köszönjük. Visszahívási kérése elküldve.</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-callback.element.name.properties.label">
+      <segment state="final">
+        <source>Name</source>
+        <target>Név</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-callback.element.phone.properties.label">
+      <segment state="final">
+        <source>Phone</source>
+        <target>Telefon</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-contact.element.desiderio-contact.renderingOptions.submitButtonLabel">
+      <segment state="final">
+        <source>Send inquiry</source>
+        <target>Érdeklődés elküldése</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-contact.finisher.EmailToReceiver.subject">
+      <segment state="final">
+        <source>Website inquiry: {name}</source>
+        <target>Érdeklődés a webhelyről: {name}</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-contact.finisher.EmailToReceiver.title">
+      <segment state="final">
+        <source>Website inquiry</source>
+        <target>Érdeklődés a webhelyről</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-contact.finisher.Confirmation.message">
+      <segment state="final">
+        <source>Thank you. Your message has been sent.</source>
+        <target>Köszönjük. Üzenete elküldve.</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-contact.element.name.properties.label">
+      <segment state="final">
+        <source>Name</source>
+        <target>Név</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-contact.element.email.properties.label">
+      <segment state="final">
+        <source>Email</source>
+        <target>E-mail</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-contact.element.message.properties.label">
+      <segment state="final">
+        <source>Message</source>
+        <target>Üzenet</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-data-request.element.desiderio-data-request.renderingOptions.submitButtonLabel">
+      <segment state="final">
+        <source>Submit request</source>
+        <target>Kérelem elküldése</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-data-request.finisher.EmailToReceiver.subject">
+      <segment state="final">
+        <source>Data request: {requestType}</source>
+        <target>Adatkérelem: {requestType}</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-data-request.finisher.EmailToReceiver.title">
+      <segment state="final">
+        <source>Data request</source>
+        <target>Adatkérelem</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-data-request.finisher.Confirmation.message">
+      <segment state="final">
+        <source>Thank you. Your request has been sent.</source>
+        <target>Köszönjük. Kérelme elküldve.</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-data-request.element.name.properties.label">
+      <segment state="final">
+        <source>Full name</source>
+        <target>Teljes név</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-data-request.element.email.properties.label">
+      <segment state="final">
+        <source>Email</source>
+        <target>E-mail</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-data-request.element.requestType.properties.label">
+      <segment state="final">
+        <source>Request type</source>
+        <target>Kérelem típusa</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-data-request.element.requestType.properties.options.export">
+      <segment state="final">
+        <source>Data export</source>
+        <target>Adatok exportálása</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-data-request.element.requestType.properties.options.deletion">
+      <segment state="final">
+        <source>Data deletion</source>
+        <target>Adatok törlése</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-data-request.element.requestType.properties.options.correction">
+      <segment state="final">
+        <source>Data correction</source>
+        <target>Adatok helyesbítése</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-data-request.element.details.properties.label">
+      <segment state="final">
+        <source>Additional details</source>
+        <target>További részletek</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-download.element.desiderio-download.renderingOptions.submitButtonLabel">
+      <segment state="final">
+        <source>Download now</source>
+        <target>Letöltés most</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-download.finisher.EmailToReceiver.subject">
+      <segment state="final">
+        <source>Download request: {email}</source>
+        <target>Letöltési kérés: {email}</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-download.finisher.EmailToReceiver.title">
+      <segment state="final">
+        <source>Download request</source>
+        <target>Letöltési kérés</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-download.finisher.Confirmation.message">
+      <segment state="final">
+        <source>Thank you. Your download request has been received.</source>
+        <target>Köszönjük. Letöltési kérését megkaptuk.</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-download.element.email.properties.label">
+      <segment state="final">
+        <source>Email</source>
+        <target>E-mail</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-feedback.element.desiderio-feedback.renderingOptions.submitButtonLabel">
+      <segment state="final">
+        <source>Send feedback</source>
+        <target>Visszajelzés küldése</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-feedback.finisher.EmailToReceiver.subject">
+      <segment state="final">
+        <source>Website feedback</source>
+        <target>Visszajelzés a webhelyről</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-feedback.finisher.EmailToReceiver.title">
+      <segment state="final">
+        <source>Website feedback</source>
+        <target>Visszajelzés a webhelyről</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-feedback.finisher.Confirmation.message">
+      <segment state="final">
+        <source>Thank you. Your feedback has been sent.</source>
+        <target>Köszönjük. Visszajelzése elküldve.</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-feedback.element.rating.properties.label">
+      <segment state="final">
+        <source>How would you rate your experience?</source>
+        <target>Hogyan értékeli a tapasztalatait?</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-feedback.element.rating.properties.options.1">
+      <segment state="final">
+        <source>1 - I could not complete the task without help from someone on the team</source>
+        <target>1 - A feladatot csak a csapat egyik tagjának segítségével tudtam elvégezni</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-feedback.element.rating.properties.options.2">
+      <segment state="final">
+        <source>2 - Several steps were unclear and slowed me down while I tried to continue</source>
+        <target>2 - Több lépés nem volt egyértelmű, és ez lelassított, amikor tovább akartam lépni</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-feedback.element.rating.properties.options.3">
+      <segment state="final">
+        <source>3 - I finished the task, but the flow still needs clearer guidance</source>
+        <target>3 - Elvégeztem a feladatot, de a folyamatnak még világosabb útmutatás kell</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-feedback.element.rating.properties.options.4">
+      <segment state="final">
+        <source>4 - Most of the experience worked well, with only small moments of friction</source>
+        <target>4 - Többnyire minden jól működött, csak néhány apró akadállyal</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-feedback.element.rating.properties.options.5">
+      <segment state="final">
+        <source>5 - The flow was clear, efficient, and easy to complete with confidence</source>
+        <target>5 - A folyamat világos és hatékony volt, magabiztosan végig tudtam menni rajta</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-feedback.element.rating.properties.options.6">
+      <segment state="final">
+        <source>6 - Excellent experience; I would use this flow again without hesitation</source>
+        <target>6 - Kiváló élmény; habozás nélkül újra használnám ezt a folyamatot</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-feedback.element.feedback.properties.label">
+      <segment state="final">
+        <source>Your feedback</source>
+        <target>Az Ön visszajelzése</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-feedback.element.email.properties.label">
+      <segment state="final">
+        <source>Email (optional)</source>
+        <target>E-mail (opcionális)</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-lead.element.desiderio-lead.renderingOptions.submitButtonLabel">
+      <segment state="final">
+        <source>Request demo</source>
+        <target>Demó kérése</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-lead.finisher.EmailToReceiver.subject">
+      <segment state="final">
+        <source>Demo request: {company}</source>
+        <target>Demókérés: {company}</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-lead.finisher.EmailToReceiver.title">
+      <segment state="final">
+        <source>Demo request</source>
+        <target>Demókérés</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-lead.finisher.Confirmation.message">
+      <segment state="final">
+        <source>Thank you. We will get back to you shortly.</source>
+        <target>Köszönjük. Hamarosan jelentkezünk.</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-lead.element.name.properties.label">
+      <segment state="final">
+        <source>Name</source>
+        <target>Név</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-lead.element.email.properties.label">
+      <segment state="final">
+        <source>Work email</source>
+        <target>Munkahelyi e-mail</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-lead.element.company.properties.label">
+      <segment state="final">
+        <source>Company</source>
+        <target>Cég</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-lead.element.message.properties.label">
+      <segment state="final">
+        <source>Message</source>
+        <target>Üzenet</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-newsletter.element.desiderio-newsletter.renderingOptions.submitButtonLabel">
+      <segment state="final">
+        <source>Subscribe</source>
+        <target>Feliratkozás</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-newsletter.finisher.EmailToReceiver.subject">
+      <segment state="final">
+        <source>Newsletter signup: {email}</source>
+        <target>Hírlevél-feliratkozás: {email}</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-newsletter.finisher.EmailToReceiver.title">
+      <segment state="final">
+        <source>Newsletter signup</source>
+        <target>Hírlevél-feliratkozás</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-newsletter.finisher.Confirmation.message">
+      <segment state="final">
+        <source>Thank you. Your signup has been received.</source>
+        <target>Köszönjük. Feliratkozását megkaptuk.</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-newsletter.element.email.properties.label">
+      <segment state="final">
+        <source>Email</source>
+        <target>E-mail</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

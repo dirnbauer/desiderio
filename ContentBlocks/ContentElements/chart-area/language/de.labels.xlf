@@ -13,5 +13,71 @@
         <target>Rendert eine Zeitreihe als per JavaScript gezeichnetes Flächendiagramm (Linie mit schattierter Füllung, einstellbarer Deckkraft und Farbe), samt berechneten Eckdaten (Startwert, letzter Wert, Spitze, Nettoveränderung) und einer versteckten barrierefreien Datentabelle aus 'Zeitraum | Wert'-Zeilen. Geeignet für: Kennzahlen im Zeitverlauf — Umsatzentwicklung, Nutzerzahlen, Traffic pro Monat. 'Line Chart' für eine ungefüllte Linie, 'Bar Chart' für Kategorievergleiche, 'Data Chart' wenn der Diagrammtyp umschaltbar bleiben soll.</target>
       </segment>
     </unit>
+    <unit id="stat.peak">
+      <segment state="final">
+        <source>Peak</source>
+        <target>Höchstwert</target>
+      </segment>
+    </unit>
+    <unit id="stat.net_change">
+      <segment state="final">
+        <source>Net change</source>
+        <target>Nettoveränderung</target>
+      </segment>
+    </unit>
+    <unit id="table.period">
+      <segment state="final">
+        <source>Period</source>
+        <target>Zeitraum</target>
+      </segment>
+    </unit>
+    <unit id="table.value">
+      <segment state="final">
+        <source>Value</source>
+        <target>Wert</target>
+      </segment>
+    </unit>
+    <unit id="table.net_change">
+      <segment state="final">
+        <source>Net change (first to last)</source>
+        <target>Nettoveränderung (erster bis letzter Wert)</target>
+      </segment>
+    </unit>
+    <unit id="trend.up">
+      <segment state="final">
+        <source>Trending up:</source>
+        <target>Aufwärtstrend:</target>
+      </segment>
+    </unit>
+    <unit id="trend.down">
+      <segment state="final">
+        <source>Trending down:</source>
+        <target>Abwärtstrend:</target>
+      </segment>
+    </unit>
+    <unit id="trend.flat">
+      <segment state="final">
+        <source>No net change:</source>
+        <target>Keine Nettoveränderung:</target>
+      </segment>
+    </unit>
+    <unit id="aria.fallback">
+      <segment state="final">
+        <source>Area chart</source>
+        <target>Flächendiagramm</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment state="final">
+        <source>{0}: area chart trending across {1, plural, one {# period} other {# periods}} from {2} to {3}{4}. The full series follows in the data table.</source>
+        <target>{0}: Flächendiagramm mit Verlauf über {1, plural, one {# Zeitraum} other {# Zeiträume}} von {2} bis {3}{4}. Die vollständige Datenreihe folgt in der Datentabelle.</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary.measuring">
+      <segment state="final">
+        <source>, measuring {0}</source>
+        <target>, Messgröße: {0}</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

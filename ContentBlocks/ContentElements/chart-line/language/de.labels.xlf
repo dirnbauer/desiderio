@@ -13,5 +13,35 @@
         <target>Rendert ein einreihiges Liniendiagramm, das JavaScript aus 'Label | Wert'-Datenpunkten zeichnet, mit benannter Legende, Einheit, optionalen Punkten und Glättung, drei Farbvarianten und einer Screenreader-Datentabelle. Geeignet für: eine Kennzahl im Zeitverlauf — Umsatz pro Quartal, Besucherwachstum, Temperaturkurven, Leistungstrends aus einem Bericht. 'Flächendiagramm' für einen gefüllten Trend, 'Balkendiagramm' für Kategorievergleiche und 'Sparkline-KPI-Karte' für einen kompakten KPI-Akzent wählen.</target>
       </segment>
     </unit>
+    <unit id="aria.fallback">
+      <segment state="final">
+        <source>Line chart</source>
+        <target>Liniendiagramm</target>
+      </segment>
+    </unit>
+    <unit id="aria.label">
+      <segment state="final">
+        <source>{title}: line chart of {series}</source>
+        <target>{title}: Liniendiagramm für {series}</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment state="final">
+        <source>{title}: {series} trend across {count, plural, one {# point} other {# points}}, from {first} to {last}.</source>
+        <target>{title}: Verlauf von {series} über {count, plural, one {# Datenpunkt} other {# Datenpunkte}}, von {first} bis {last}.</target>
+      </segment>
+    </unit>
+    <unit id="table.label_header">
+      <segment state="final">
+        <source>Period</source>
+        <target>Zeitraum</target>
+      </segment>
+    </unit>
+    <unit id="table.unit_caption">
+      <segment state="final">
+        <source>values in {unit}</source>
+        <target>Werte in {unit}</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

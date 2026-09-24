@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="zh">
+  <file id="desiderio-powermail">
+    <unit id="powermail.form.requiredHint">
+      <segment state="final">
+        <source>{requiredCount, plural, one {Fields marked with an asterisk (*) are required.} other {Fields marked with an asterisk (*) are required.}}</source>
+        <target>{requiredCount, plural, one {标有星号（*）的字段为必填项。} other {标有星号（*）的字段为必填项。}}</target>
+      </segment>
+    </unit>
+    <unit id="powermail.form.requiredHint.before">
+      <segment state="final">
+        <source>Fields marked with an asterisk (</source>
+        <target>标有星号（</target>
+      </segment>
+    </unit>
+    <unit id="powermail.form.requiredHint.after">
+      <segment state="final">
+        <source>) are required.</source>
+        <target>）的字段为必填项。</target>
+      </segment>
+    </unit>
+    <unit id="powermail.multistep.label">
+      <segment state="final">
+        <source>Form steps</source>
+        <target>表单步骤</target>
+      </segment>
+    </unit>
+    <unit id="powermail.multistep.stepLabel">
+      <segment state="final">
+        <source>Step %1$s of %2$s: %3$s</source>
+        <target>第 %1$s 步，共 %2$s 步：%3$s</target>
+      </segment>
+    </unit>
+    <unit id="powermail.multistep.currentSuffix">
+      <segment state="final">
+        <source>, current</source>
+        <target>，当前步骤</target>
+      </segment>
+    </unit>
+    <unit id="powermail.multistep.previous">
+      <segment state="final">
+        <source>Previous</source>
+        <target>上一步</target>
+      </segment>
+    </unit>
+    <unit id="powermail.multistep.next">
+      <segment state="final">
+        <source>Next</source>
+        <target>下一步</target>
+      </segment>
+    </unit>
+    <unit id="powermail.confirmation.title">
+      <segment state="final">
+        <source>Review your submission</source>
+        <target>检查您的提交内容</target>
+      </segment>
+    </unit>
+    <unit id="powermail.confirmation.description">
+      <segment state="final">
+        <source>Please check the entered values before submitting the form.</source>
+        <target>提交表单前，请检查您输入的内容。</target>
+      </segment>
+    </unit>
+    <unit id="powermail.confirmation.submit">
+      <segment state="final">
+        <source>Submit</source>
+        <target>提交</target>
+      </segment>
+    </unit>
+    <unit id="powermail.confirmation.back">
+      <segment state="final">
+        <source>Back</source>
+        <target>返回</target>
+      </segment>
+    </unit>
+    <unit id="powermail.validation.summary.title">
+      <segment state="final">
+        <source>Please check the highlighted fields</source>
+        <target>请检查突出显示的字段</target>
+      </segment>
+    </unit>
+    <unit id="powermail.validation.summary.description">
+      <segment state="final">
+        <source>The form contains fields that need attention.</source>
+        <target>表单中有需要处理的字段。</target>
+      </segment>
+    </unit>
+    <unit id="powermail.validation.fieldFallback">
+      <segment state="final">
+        <source>Please check this field.</source>
+        <target>请检查此字段。</target>
+      </segment>
+    </unit>
+    <unit id="powermail.validation.required">
+      <segment state="final">
+        <source>Please complete this field.</source>
+        <target>请填写此字段。</target>
+      </segment>
+    </unit>
+    <unit id="powermail.validation.number">
+      <segment state="final">
+        <source>Enter a number.</source>
+        <target>请输入数字。</target>
+      </segment>
+    </unit>
+    <unit id="powermail.validation.integer">
+      <segment state="final">
+        <source>Enter a whole number.</source>
+        <target>请输入整数。</target>
+      </segment>
+    </unit>
+    <unit id="powermail.validation.min">
+      <segment state="final">
+        <source>Enter a value of at least %s.</source>
+        <target>请输入不小于 %s 的值。</target>
+      </segment>
+    </unit>
+    <unit id="powermail.validation.max">
+      <segment state="final">
+        <source>Enter a value of at most %s.</source>
+        <target>请输入不大于 %s 的值。</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="zh">
+  <file id="chart-sparkline">
+    <unit id="aria.fallback">
+      <segment state="final">
+        <source>Sparkline</source>
+        <target>迷你走势图</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment state="final">
+        <source>{0}: {1} sparkline across {2, plural, one {# point} other {# points}} from {3} to {4}{5}. The full series follows in the data table.</source>
+        <target>{0}：{1} 迷你走势图，共 {2, plural, one {# 个数据点} other {# 个数据点}}，从 {3} 到 {4}{5}。完整数据系列见下方数据表。</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary.latest">
+      <segment state="final">
+        <source>, latest {0} at {1}</source>
+        <target>，最新值为 {0}（{1}）</target>
+      </segment>
+    </unit>
+    <unit id="table.period">
+      <segment state="final">
+        <source>Period</source>
+        <target>时段</target>
+      </segment>
+    </unit>
+    <unit id="table.net_change">
+      <segment state="final">
+        <source>Net change (first to last)</source>
+        <target>净变化（首值到末值）</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

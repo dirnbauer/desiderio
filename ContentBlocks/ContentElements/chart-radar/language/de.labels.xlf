@@ -13,5 +13,47 @@
         <target>Rendert ein per JavaScript gezeichnetes Radar- bzw. Spinnennetz-Diagramm aus 'Dimension | Punktzahl'-Zeilen auf einer Skala von 0 bis 5, mit optionalem Seriennamen, einstellbarer Fülldeckkraft, sichtbarer Punktelegende und Screenreader-Datentabelle. Geeignet für: Bewertungen über mehrere Kriterien — Kompetenzprofile, Reifegradmodelle, Produktbewertungen, Selbsteinschätzungen über Dimensionen hinweg. 'Balkendiagramm' für schlichte Kategorievergleiche; 'Stat Cards' wählen, wenn jede Punktzahl für sich als Kennzahl stehen soll.</target>
       </segment>
     </unit>
+    <unit id="table.dimension">
+      <segment state="final">
+        <source>Dimension</source>
+        <target>Dimension</target>
+      </segment>
+    </unit>
+    <unit id="table.score">
+      <segment state="final">
+        <source>Score</source>
+        <target>Bewertung</target>
+      </segment>
+    </unit>
+    <unit id="table.scale">
+      <segment state="final">
+        <source>(0–5 scale)</source>
+        <target>(Skala 0–5)</target>
+      </segment>
+    </unit>
+    <unit id="table.out_of">
+      <segment state="final">
+        <source>out of 5</source>
+        <target>von 5</target>
+      </segment>
+    </unit>
+    <unit id="aria.fallback">
+      <segment state="final">
+        <source>Radar chart</source>
+        <target>Netzdiagramm</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment state="final">
+        <source>{0}: radar chart comparing {1, plural, one {# dimension} other {# dimensions}} on a 0–5 scale{2}. The full breakdown follows in the data table.</source>
+        <target>{0}: Netzdiagramm mit {1, plural, one {# Dimension} other {# Dimensionen}} im Vergleich auf einer Skala von 0–5{2}. Die vollständige Aufschlüsselung folgt in der Datentabelle.</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary.measuring">
+      <segment state="final">
+        <source>, measuring {0}</source>
+        <target>, Messgröße: {0}</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

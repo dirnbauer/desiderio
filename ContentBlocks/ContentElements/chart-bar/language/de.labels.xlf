@@ -13,5 +13,65 @@
         <target>Rendert Kategorien als vertikale oder horizontale Balken aus 'Label | Wert'-Zeilen, mit Farbvariante, optionalen Rasterlinien, einer Kennzahlenzeile (Topkategorie, Summe, niedrigster Wert, Top-Anteil) und einer versteckten barrierefreien Datentabelle. Geeignet für: Kategorievergleiche und Rankings — Umsatz nach Region, Ergebnisse je Abteilung, Antworthäufigkeiten aus Umfragen, Top-10-Listen. 'Stacked Bar Chart' zum Aufteilen der Summen in Serien-Segmente, 'Pie Chart' für Anteile eines Ganzen, 'Area Chart' für Zeitverläufe.</target>
       </segment>
     </unit>
+    <unit id="table.category">
+      <segment state="final">
+        <source>Category</source>
+        <target>Kategorie</target>
+      </segment>
+    </unit>
+    <unit id="table.value">
+      <segment state="final">
+        <source>Value</source>
+        <target>Wert</target>
+      </segment>
+    </unit>
+    <unit id="table.total">
+      <segment state="final">
+        <source>Total</source>
+        <target>Summe</target>
+      </segment>
+    </unit>
+    <unit id="stat.top">
+      <segment state="final">
+        <source>Top</source>
+        <target>Höchstwert</target>
+      </segment>
+    </unit>
+    <unit id="stat.total">
+      <segment state="final">
+        <source>Total</source>
+        <target>Summe</target>
+      </segment>
+    </unit>
+    <unit id="stat.lowest">
+      <segment state="final">
+        <source>Lowest</source>
+        <target>Tiefstwert</target>
+      </segment>
+    </unit>
+    <unit id="stat.top_share">
+      <segment state="final">
+        <source>Top share</source>
+        <target>Anteil Höchstwert</target>
+      </segment>
+    </unit>
+    <unit id="aria.fallback">
+      <segment state="final">
+        <source>Bar chart</source>
+        <target>Balkendiagramm</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment state="final">
+        <source>{0}: bar chart comparing {1, plural, one {# category} other {# categories}}{2}. The full breakdown follows in the data table.</source>
+        <target>{0}: Balkendiagramm mit {1, plural, one {# Kategorie} other {# Kategorien}} im Vergleich{2}. Die vollständige Aufschlüsselung folgt in der Datentabelle.</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary.measuring">
+      <segment state="final">
+        <source>, measuring {0}</source>
+        <target>, Messgröße: {0}</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

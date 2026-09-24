@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="hu">
+  <file id="chart-stacked-bar">
+    <unit id="legend.heading">
+      <segment state="final">
+        <source>Legend</source>
+        <target>Jelmagyarázat</target>
+      </segment>
+    </unit>
+    <unit id="table.category">
+      <segment state="final">
+        <source>Category</source>
+        <target>Kategória</target>
+      </segment>
+    </unit>
+    <unit id="table.total">
+      <segment state="final">
+        <source>Total</source>
+        <target>Összesen</target>
+      </segment>
+    </unit>
+    <unit id="table.unit.caption">
+      <segment state="final">
+        <source>values in {0}</source>
+        <target>mértékegység: {0}</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment state="final">
+        <source>{0}: stacked bar chart comparing {1, plural, one {# category} other {# categories}} across {2}. The full breakdown follows in the data table.</source>
+        <target>{0}: halmozott oszlopdiagram, {1, plural, one {# kategória} other {# kategória}} összehasonlítása ezekben: {2}. A teljes bontást az adattáblázat tartalmazza.</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary.no_series">
+      <segment state="final">
+        <source>{0}: stacked bar chart with {1, plural, one {# category} other {# categories}}. The full breakdown follows in the data table.</source>
+        <target>{0}: halmozott oszlopdiagram, {1, plural, one {# kategória} other {# kategória}}. A teljes bontást az adattáblázat tartalmazza.</target>
+      </segment>
+    </unit>
+    <unit id="aria.fallback">
+      <segment state="final">
+        <source>Stacked bar chart</source>
+        <target>Halmozott oszlopdiagram</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="hu">
+  <file id="chart-area">
+    <unit id="stat.peak">
+      <segment state="final">
+        <source>Peak</source>
+        <target>Csúcsérték</target>
+      </segment>
+    </unit>
+    <unit id="stat.net_change">
+      <segment state="final">
+        <source>Net change</source>
+        <target>Nettó változás</target>
+      </segment>
+    </unit>
+    <unit id="table.period">
+      <segment state="final">
+        <source>Period</source>
+        <target>Időszak</target>
+      </segment>
+    </unit>
+    <unit id="table.value">
+      <segment state="final">
+        <source>Value</source>
+        <target>Érték</target>
+      </segment>
+    </unit>
+    <unit id="table.net_change">
+      <segment state="final">
+        <source>Net change (first to last)</source>
+        <target>Nettó változás (az elsőtől az utolsóig)</target>
+      </segment>
+    </unit>
+    <unit id="trend.up">
+      <segment state="final">
+        <source>Trending up:</source>
+        <target>Emelkedő tendencia:</target>
+      </segment>
+    </unit>
+    <unit id="trend.down">
+      <segment state="final">
+        <source>Trending down:</source>
+        <target>Csökkenő tendencia:</target>
+      </segment>
+    </unit>
+    <unit id="trend.flat">
+      <segment state="final">
+        <source>No net change:</source>
+        <target>Nincs nettó változás:</target>
+      </segment>
+    </unit>
+    <unit id="aria.fallback">
+      <segment state="final">
+        <source>Area chart</source>
+        <target>Területdiagram</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment state="final">
+        <source>{0}: area chart trending across {1, plural, one {# period} other {# periods}} from {2} to {3}{4}. The full series follows in the data table.</source>
+        <target>{0}: területdiagram, {1, plural, one {# időszak} other {# időszak}}, {2} és {3} között{4}. A teljes adatsort az adattáblázat tartalmazza.</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary.measuring">
+      <segment state="final">
+        <source>, measuring {0}</source>
+        <target>, mérőszám: {0}</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

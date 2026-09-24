@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="hu">
+  <file id="chart-heatmap">
+    <unit id="aria.fallback">
+      <segment state="final">
+        <source>Heatmap chart</source>
+        <target>Hőtérkép</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment state="final">
+        <source>{0}: heatmap comparing {1} rows across {2} columns.</source>
+        <target>{0}: hőtérkép, {1} sor és {2} oszlop összevetése.</target>
+      </segment>
+    </unit>
+    <unit id="table.row_header">
+      <segment state="final">
+        <source>Row</source>
+        <target>Sor</target>
+      </segment>
+    </unit>
+    <unit id="table.unit_caption">
+      <segment state="final">
+        <source>values in {0}</source>
+        <target>mértékegység: {0}</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

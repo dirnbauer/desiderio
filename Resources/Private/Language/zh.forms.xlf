@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="zh">
+  <file id="desiderio-forms">
+    <unit id="desiderio-booking.element.desiderio-booking.renderingOptions.submitButtonLabel">
+      <segment state="final">
+        <source>Book appointment</source>
+        <target>预约</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-booking.finisher.EmailToReceiver.subject">
+      <segment state="final">
+        <source>Booking request: {preferredDate}</source>
+        <target>预约请求：{preferredDate}</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-booking.finisher.EmailToReceiver.title">
+      <segment state="final">
+        <source>Booking request</source>
+        <target>预约请求</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-booking.finisher.Confirmation.message">
+      <segment state="final">
+        <source>Thank you. Your booking request has been sent.</source>
+        <target>谢谢。您的预约请求已发送。</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-booking.element.name.properties.label">
+      <segment state="final">
+        <source>Name</source>
+        <target>姓名</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-booking.element.email.properties.label">
+      <segment state="final">
+        <source>Email</source>
+        <target>电子邮件</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-booking.element.phone.properties.label">
+      <segment state="final">
+        <source>Phone</source>
+        <target>电话</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-booking.element.preferredDate.properties.label">
+      <segment state="final">
+        <source>Preferred date</source>
+        <target>首选日期</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-booking.element.message.properties.label">
+      <segment state="final">
+        <source>Message</source>
+        <target>留言</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-callback.element.desiderio-callback.renderingOptions.submitButtonLabel">
+      <segment state="final">
+        <source>Request callback</source>
+        <target>请求回电</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-callback.finisher.EmailToReceiver.subject">
+      <segment state="final">
+        <source>Callback request: {name}</source>
+        <target>回电请求：{name}</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-callback.finisher.EmailToReceiver.title">
+      <segment state="final">
+        <source>Callback request</source>
+        <target>回电请求</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-callback.finisher.Confirmation.message">
+      <segment state="final">
+        <source>Thank you. Your callback request has been sent.</source>
+        <target>谢谢。您的回电请求已发送。</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-callback.element.name.properties.label">
+      <segment state="final">
+        <source>Name</source>
+        <target>姓名</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-callback.element.phone.properties.label">
+      <segment state="final">
+        <source>Phone</source>
+        <target>电话</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-contact.element.desiderio-contact.renderingOptions.submitButtonLabel">
+      <segment state="final">
+        <source>Send inquiry</source>
+        <target>发送咨询</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-contact.finisher.EmailToReceiver.subject">
+      <segment state="final">
+        <source>Website inquiry: {name}</source>
+        <target>网站咨询：{name}</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-contact.finisher.EmailToReceiver.title">
+      <segment state="final">
+        <source>Website inquiry</source>
+        <target>网站咨询</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-contact.finisher.Confirmation.message">
+      <segment state="final">
+        <source>Thank you. Your message has been sent.</source>
+        <target>谢谢。您的留言已发送。</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-contact.element.name.properties.label">
+      <segment state="final">
+        <source>Name</source>
+        <target>姓名</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-contact.element.email.properties.label">
+      <segment state="final">
+        <source>Email</source>
+        <target>电子邮件</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-contact.element.message.properties.label">
+      <segment state="final">
+        <source>Message</source>
+        <target>留言</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-data-request.element.desiderio-data-request.renderingOptions.submitButtonLabel">
+      <segment state="final">
+        <source>Submit request</source>
+        <target>提交请求</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-data-request.finisher.EmailToReceiver.subject">
+      <segment state="final">
+        <source>Data request: {requestType}</source>
+        <target>数据请求：{requestType}</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-data-request.finisher.EmailToReceiver.title">
+      <segment state="final">
+        <source>Data request</source>
+        <target>数据请求</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-data-request.finisher.Confirmation.message">
+      <segment state="final">
+        <source>Thank you. Your request has been sent.</source>
+        <target>谢谢。您的请求已发送。</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-data-request.element.name.properties.label">
+      <segment state="final">
+        <source>Full name</source>
+        <target>全名</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-data-request.element.email.properties.label">
+      <segment state="final">
+        <source>Email</source>
+        <target>电子邮件</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-data-request.element.requestType.properties.label">
+      <segment state="final">
+        <source>Request type</source>
+        <target>请求类型</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-data-request.element.requestType.properties.options.export">
+      <segment state="final">
+        <source>Data export</source>
+        <target>数据导出</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-data-request.element.requestType.properties.options.deletion">
+      <segment state="final">
+        <source>Data deletion</source>
+        <target>数据删除</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-data-request.element.requestType.properties.options.correction">
+      <segment state="final">
+        <source>Data correction</source>
+        <target>数据更正</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-data-request.element.details.properties.label">
+      <segment state="final">
+        <source>Additional details</source>
+        <target>补充说明</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-download.element.desiderio-download.renderingOptions.submitButtonLabel">
+      <segment state="final">
+        <source>Download now</source>
+        <target>立即下载</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-download.finisher.EmailToReceiver.subject">
+      <segment state="final">
+        <source>Download request: {email}</source>
+        <target>下载请求：{email}</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-download.finisher.EmailToReceiver.title">
+      <segment state="final">
+        <source>Download request</source>
+        <target>下载请求</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-download.finisher.Confirmation.message">
+      <segment state="final">
+        <source>Thank you. Your download request has been received.</source>
+        <target>谢谢。我们已收到您的下载请求。</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-download.element.email.properties.label">
+      <segment state="final">
+        <source>Email</source>
+        <target>电子邮件</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-feedback.element.desiderio-feedback.renderingOptions.submitButtonLabel">
+      <segment state="final">
+        <source>Send feedback</source>
+        <target>发送反馈</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-feedback.finisher.EmailToReceiver.subject">
+      <segment state="final">
+        <source>Website feedback</source>
+        <target>网站反馈</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-feedback.finisher.EmailToReceiver.title">
+      <segment state="final">
+        <source>Website feedback</source>
+        <target>网站反馈</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-feedback.finisher.Confirmation.message">
+      <segment state="final">
+        <source>Thank you. Your feedback has been sent.</source>
+        <target>谢谢。您的反馈已发送。</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-feedback.element.rating.properties.label">
+      <segment state="final">
+        <source>How would you rate your experience?</source>
+        <target>您如何评价本次体验？</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-feedback.element.rating.properties.options.1">
+      <segment state="final">
+        <source>1 - I could not complete the task without help from someone on the team</source>
+        <target>1 - 没有团队成员的帮助，我无法完成任务</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-feedback.element.rating.properties.options.2">
+      <segment state="final">
+        <source>2 - Several steps were unclear and slowed me down while I tried to continue</source>
+        <target>2 - 有几个步骤不够清楚，拖慢了我继续操作的进度</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-feedback.element.rating.properties.options.3">
+      <segment state="final">
+        <source>3 - I finished the task, but the flow still needs clearer guidance</source>
+        <target>3 - 我完成了任务，但流程仍需要更清晰的指引</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-feedback.element.rating.properties.options.4">
+      <segment state="final">
+        <source>4 - Most of the experience worked well, with only small moments of friction</source>
+        <target>4 - 大部分体验良好，只有少许不顺畅之处</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-feedback.element.rating.properties.options.5">
+      <segment state="final">
+        <source>5 - The flow was clear, efficient, and easy to complete with confidence</source>
+        <target>5 - 流程清晰、高效，我能轻松而放心地完成</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-feedback.element.rating.properties.options.6">
+      <segment state="final">
+        <source>6 - Excellent experience; I would use this flow again without hesitation</source>
+        <target>6 - 体验非常好；我会毫不犹豫地再次使用此流程</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-feedback.element.feedback.properties.label">
+      <segment state="final">
+        <source>Your feedback</source>
+        <target>您的反馈</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-feedback.element.email.properties.label">
+      <segment state="final">
+        <source>Email (optional)</source>
+        <target>电子邮件（可选）</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-lead.element.desiderio-lead.renderingOptions.submitButtonLabel">
+      <segment state="final">
+        <source>Request demo</source>
+        <target>申请演示</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-lead.finisher.EmailToReceiver.subject">
+      <segment state="final">
+        <source>Demo request: {company}</source>
+        <target>演示申请：{company}</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-lead.finisher.EmailToReceiver.title">
+      <segment state="final">
+        <source>Demo request</source>
+        <target>演示申请</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-lead.finisher.Confirmation.message">
+      <segment state="final">
+        <source>Thank you. We will get back to you shortly.</source>
+        <target>谢谢。我们会尽快与您联系。</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-lead.element.name.properties.label">
+      <segment state="final">
+        <source>Name</source>
+        <target>姓名</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-lead.element.email.properties.label">
+      <segment state="final">
+        <source>Work email</source>
+        <target>工作邮箱</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-lead.element.company.properties.label">
+      <segment state="final">
+        <source>Company</source>
+        <target>公司</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-lead.element.message.properties.label">
+      <segment state="final">
+        <source>Message</source>
+        <target>留言</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-newsletter.element.desiderio-newsletter.renderingOptions.submitButtonLabel">
+      <segment state="final">
+        <source>Subscribe</source>
+        <target>订阅</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-newsletter.finisher.EmailToReceiver.subject">
+      <segment state="final">
+        <source>Newsletter signup: {email}</source>
+        <target>新闻通讯订阅：{email}</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-newsletter.finisher.EmailToReceiver.title">
+      <segment state="final">
+        <source>Newsletter signup</source>
+        <target>新闻通讯订阅</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-newsletter.finisher.Confirmation.message">
+      <segment state="final">
+        <source>Thank you. Your signup has been received.</source>
+        <target>谢谢。我们已收到您的订阅。</target>
+      </segment>
+    </unit>
+    <unit id="desiderio-newsletter.element.email.properties.label">
+      <segment state="final">
+        <source>Email</source>
+        <target>电子邮件</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

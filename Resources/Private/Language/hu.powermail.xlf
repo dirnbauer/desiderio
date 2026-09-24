@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="hu">
+  <file id="desiderio-powermail">
+    <unit id="powermail.form.requiredHint">
+      <segment state="final">
+        <source>{requiredCount, plural, one {Fields marked with an asterisk (*) are required.} other {Fields marked with an asterisk (*) are required.}}</source>
+        <target>{requiredCount, plural, one {A csillaggal (*) jelölt mező kitöltése kötelező.} other {A csillaggal (*) jelölt mezők kitöltése kötelező.}}</target>
+      </segment>
+    </unit>
+    <unit id="powermail.form.requiredHint.before">
+      <segment state="final">
+        <source>Fields marked with an asterisk (</source>
+        <target>A csillaggal (</target>
+      </segment>
+    </unit>
+    <unit id="powermail.form.requiredHint.after">
+      <segment state="final">
+        <source>) are required.</source>
+        <target>) jelölt mezők kitöltése kötelező.</target>
+      </segment>
+    </unit>
+    <unit id="powermail.multistep.label">
+      <segment state="final">
+        <source>Form steps</source>
+        <target>Űrlap lépései</target>
+      </segment>
+    </unit>
+    <unit id="powermail.multistep.stepLabel">
+      <segment state="final">
+        <source>Step %1$s of %2$s: %3$s</source>
+        <target>%1$s. lépés (összesen %2$s): %3$s</target>
+      </segment>
+    </unit>
+    <unit id="powermail.multistep.currentSuffix">
+      <segment state="final">
+        <source>, current</source>
+        <target>, aktuális</target>
+      </segment>
+    </unit>
+    <unit id="powermail.multistep.previous">
+      <segment state="final">
+        <source>Previous</source>
+        <target>Előző</target>
+      </segment>
+    </unit>
+    <unit id="powermail.multistep.next">
+      <segment state="final">
+        <source>Next</source>
+        <target>Következő</target>
+      </segment>
+    </unit>
+    <unit id="powermail.confirmation.title">
+      <segment state="final">
+        <source>Review your submission</source>
+        <target>Ellenőrizze a beküldendő adatokat</target>
+      </segment>
+    </unit>
+    <unit id="powermail.confirmation.description">
+      <segment state="final">
+        <source>Please check the entered values before submitting the form.</source>
+        <target>Kérjük, ellenőrizze a megadott adatokat az űrlap elküldése előtt.</target>
+      </segment>
+    </unit>
+    <unit id="powermail.confirmation.submit">
+      <segment state="final">
+        <source>Submit</source>
+        <target>Küldés</target>
+      </segment>
+    </unit>
+    <unit id="powermail.confirmation.back">
+      <segment state="final">
+        <source>Back</source>
+        <target>Vissza</target>
+      </segment>
+    </unit>
+    <unit id="powermail.validation.summary.title">
+      <segment state="final">
+        <source>Please check the highlighted fields</source>
+        <target>Kérjük, ellenőrizze a kiemelt mezőket</target>
+      </segment>
+    </unit>
+    <unit id="powermail.validation.summary.description">
+      <segment state="final">
+        <source>The form contains fields that need attention.</source>
+        <target>Az űrlap figyelmet igénylő mezőket tartalmaz.</target>
+      </segment>
+    </unit>
+    <unit id="powermail.validation.fieldFallback">
+      <segment state="final">
+        <source>Please check this field.</source>
+        <target>Kérjük, ellenőrizze ezt a mezőt.</target>
+      </segment>
+    </unit>
+    <unit id="powermail.validation.required">
+      <segment state="final">
+        <source>Please complete this field.</source>
+        <target>Kérjük, töltse ki ezt a mezőt.</target>
+      </segment>
+    </unit>
+    <unit id="powermail.validation.number">
+      <segment state="final">
+        <source>Enter a number.</source>
+        <target>Adjon meg egy számot.</target>
+      </segment>
+    </unit>
+    <unit id="powermail.validation.integer">
+      <segment state="final">
+        <source>Enter a whole number.</source>
+        <target>Adjon meg egy egész számot.</target>
+      </segment>
+    </unit>
+    <unit id="powermail.validation.min">
+      <segment state="final">
+        <source>Enter a value of at least %s.</source>
+        <target>Adjon meg legalább %s értéket.</target>
+      </segment>
+    </unit>
+    <unit id="powermail.validation.max">
+      <segment state="final">
+        <source>Enter a value of at most %s.</source>
+        <target>Adjon meg legfeljebb %s értéket.</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

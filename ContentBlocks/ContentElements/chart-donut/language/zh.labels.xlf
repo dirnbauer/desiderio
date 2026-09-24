@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="zh">
+  <file id="chart-donut">
+    <unit id="aria.fallback">
+      <segment state="final">
+        <source>Donut chart</source>
+        <target>环形图</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment state="final">
+        <source>{1, plural, =0 {{0}: no segments yet.} one {{0}: a single segment. The value follows in the data table.} other {{0}: a donut chart split into # segments. The full breakdown follows in the data table.}}</source>
+        <target>{1, plural, =0 {{0}：暂无分段。} one {{0}：只有一个分段。数值见下方数据表。} other {{0}：环形图，分为 # 个分段。完整明细见下方数据表。}}</target>
+      </segment>
+    </unit>
+    <unit id="aria.total">
+      <segment state="final">
+        <source>Centre figure: {0} {1}.</source>
+        <target>中心数值：{0} {1}。</target>
+      </segment>
+    </unit>
+    <unit id="table.segment">
+      <segment state="final">
+        <source>Segment</source>
+        <target>分段</target>
+      </segment>
+    </unit>
+    <unit id="table.value">
+      <segment state="final">
+        <source>Value</source>
+        <target>数值</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

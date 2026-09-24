@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="hu">
+  <file id="product-gallery">
+    <unit id="availability.in_stock">
+      <segment state="final">
+        <source>In stock, ready to ship</source>
+        <target>Raktáron, azonnal szállítható</target>
+      </segment>
+    </unit>
+    <unit id="availability.limited">
+      <segment state="final">
+        <source>Only a few left</source>
+        <target>Már csak néhány darab</target>
+      </segment>
+    </unit>
+    <unit id="availability.preorder">
+      <segment state="final">
+        <source>Available to pre-order</source>
+        <target>Előrendelhető</target>
+      </segment>
+    </unit>
+    <unit id="availability.sold_out">
+      <segment state="final">
+        <source>Currently sold out</source>
+        <target>Jelenleg elfogyott</target>
+      </segment>
+    </unit>
+    <unit id="save">
+      <segment state="final">
+        <source>Sale</source>
+        <target>Akció</target>
+      </segment>
+    </unit>
+    <unit id="sr.price">
+      <segment state="final">
+        <source>Price:</source>
+        <target>Ár:</target>
+      </segment>
+    </unit>
+    <unit id="sr.compare">
+      <segment state="final">
+        <source>Regular price:</source>
+        <target>Normál ár:</target>
+      </segment>
+    </unit>
+    <unit id="thumbnails.label">
+      <segment state="final">
+        <source>More views</source>
+        <target>További nézetek</target>
+      </segment>
+    </unit>
+    <unit id="fallback.title">
+      <segment state="final">
+        <source>Product</source>
+        <target>Termék</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

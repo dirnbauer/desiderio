@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="hu">
+  <file id="chart-donut">
+    <unit id="aria.fallback">
+      <segment state="final">
+        <source>Donut chart</source>
+        <target>Fánkdiagram</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment state="final">
+        <source>{1, plural, =0 {{0}: no segments yet.} one {{0}: a single segment. The value follows in the data table.} other {{0}: a donut chart split into # segments. The full breakdown follows in the data table.}}</source>
+        <target>{1, plural, =0 {{0}: még nincsenek szegmensek.} one {{0}: egyetlen szegmens. Az értéket az adattáblázat tartalmazza.} other {{0}: fánkdiagram # szegmenssel. A teljes bontást az adattáblázat tartalmazza.}}</target>
+      </segment>
+    </unit>
+    <unit id="aria.total">
+      <segment state="final">
+        <source>Centre figure: {0} {1}.</source>
+        <target>Középső érték: {0} {1}.</target>
+      </segment>
+    </unit>
+    <unit id="table.segment">
+      <segment state="final">
+        <source>Segment</source>
+        <target>Szegmens</target>
+      </segment>
+    </unit>
+    <unit id="table.value">
+      <segment state="final">
+        <source>Value</source>
+        <target>Érték</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

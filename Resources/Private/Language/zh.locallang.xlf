@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="zh">
+  <file id="EXT:desiderio/Resources/Private/Language/locallang.xlf" original="EXT:desiderio/Resources/Private/Language/locallang.xlf">
+    <unit id="pagination.aria.label">
+      <segment state="final">
+        <source>Pagination, {totalPages, plural, one {one page} other {# pages}}</source>
+        <target>分页，{totalPages, plural, one {共 1 页} other {共 # 页}}</target>
+      </segment>
+    </unit>
+    <unit id="pagination.aria.previous">
+      <segment state="final">
+        <source>Go to previous page</source>
+        <target>转到上一页</target>
+      </segment>
+    </unit>
+    <unit id="pagination.aria.next">
+      <segment state="final">
+        <source>Go to next page</source>
+        <target>转到下一页</target>
+      </segment>
+    </unit>
+    <unit id="pagination.aria.goToPage">
+      <segment state="final">
+        <source>Go to page {page} of {totalPages, plural, one {one page} other {# pages}}</source>
+        <target>转到第 {page} 页，{totalPages, plural, one {共 1 页} other {共 # 页}}</target>
+      </segment>
+    </unit>
+    <unit id="pagination.aria.currentPage">
+      <segment state="final">
+        <source>Page {page} of {totalPages, plural, one {one page} other {# pages}}</source>
+        <target>第 {page} 页，{totalPages, plural, one {共 1 页} other {共 # 页}}</target>
+      </segment>
+    </unit>
+    <unit id="pagination.previous">
+      <segment state="final">
+        <source>Previous</source>
+        <target>上一页</target>
+      </segment>
+    </unit>
+    <unit id="pagination.next">
+      <segment state="final">
+        <source>Next</source>
+        <target>下一页</target>
+      </segment>
+    </unit>
+    <unit id="news.loadMore">
+      <segment state="final">
+        <source>Load more articles</source>
+        <target>加载更多文章</target>
+      </segment>
+    </unit>
+    <unit id="news.loadMore.status">
+      <segment state="final">
+        <source>Showing {visible, plural, one {one article} other {# articles}} of {total, plural, one {one article} other {# articles}}</source>
+        <target>正在显示 {visible, plural, one {1 篇文章} other {# 篇文章}}，共 {total, plural, one {1 篇} other {# 篇}}</target>
+      </segment>
+    </unit>
+    <unit id="news.loadMore.status.client">
+      <segment state="final">
+        <source>Showing {visible} of {total} articles</source>
+        <target>正在显示 {visible} 篇文章，共 {total} 篇</target>
+      </segment>
+    </unit>
+    <unit id="news.featured">
+      <segment state="final">
+        <source>Featured</source>
+        <target>精选</target>
+      </segment>
+    </unit>
+    <unit id="news.magazine.more">
+      <segment state="final">
+        <source>More articles</source>
+        <target>更多文章</target>
+      </segment>
+    </unit>
+    <unit id="news.magazine.items">
+      <segment state="final">
+        <source>{count, plural, one {one article} other {# articles}}</source>
+        <target>{count, plural, one {1 篇文章} other {# 篇文章}}</target>
+      </segment>
+    </unit>
+    <unit id="news.comments.count">
+      <segment state="final">
+        <source>{count, plural, =0 {0 comments} one {# comment} other {# comments}}</source>
+        <target>{count, plural, =0 {0 条评论} one {# 条评论} other {# 条评论}}</target>
+      </segment>
+    </unit>
+    <unit id="news.tags.count">
+      <segment state="final">
+        <source>{count, plural, one {one tag} other {# tags}}</source>
+        <target>{count, plural, one {1 个标签} other {# 个标签}}</target>
+      </segment>
+    </unit>
+    <unit id="news.categories.count">
+      <segment state="final">
+        <source>{count, plural, one {one category} other {# categories}}</source>
+        <target>{count, plural, one {1 个类别} other {# 个类别}}</target>
+      </segment>
+    </unit>
+    <unit id="news.entries.count">
+      <segment state="final">
+        <source>{count, plural, one {one entry} other {# entries}}</source>
+        <target>{count, plural, one {1 个条目} other {# 个条目}}</target>
+      </segment>
+    </unit>
+    <unit id="blog.posts.count">
+      <segment state="final">
+        <source>{count, plural, one {one post} other {# posts}}</source>
+        <target>{count, plural, one {1 篇文章} other {# 篇文章}}</target>
+      </segment>
+    </unit>
+    <unit id="blog.list.aria">
+      <segment state="final">
+        <source>Blog posts</source>
+        <target>博客文章</target>
+      </segment>
+    </unit>
+    <unit id="blog.sidebar.aria">
+      <segment state="final">
+        <source>Blog sidebar</source>
+        <target>博客侧边栏</target>
+      </segment>
+    </unit>
+    <unit id="news.prevNext.aria">
+      <segment state="final">
+        <source>Previous and next article</source>
+        <target>上一篇和下一篇文章</target>
+      </segment>
+    </unit>
+    <unit id="blog.comments.count">
+      <segment state="final">
+        <source>{count, plural, =0 {0 comments} one {# comment} other {# comments}}</source>
+        <target>{count, plural, =0 {0 条评论} one {# 条评论} other {# 条评论}}</target>
+      </segment>
+    </unit>
+    <unit id="a11y.skipToContent">
+      <segment state="final">
+        <source>Skip to main content</source>
+        <target>跳转到主要内容</target>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.main">
+      <segment state="final">
+        <source>Main navigation</source>
+        <target>主导航</target>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.footer">
+      <segment state="final">
+        <source>Footer navigation</source>
+        <target>页脚导航</target>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.legal">
+      <segment state="final">
+        <source>Legal navigation</source>
+        <target>法律信息导航</target>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.home">
+      <segment state="final">
+        <source>Home</source>
+        <target>首页</target>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.breadcrumb">
+      <segment state="final">
+        <source>Breadcrumb</source>
+        <target>面包屑导航</target>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.breadcrumb.more">
+      <segment state="final">
+        <source>More pages</source>
+        <target>更多页面</target>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.submenu">
+      <segment state="final">
+        <source>Submenu of {title}</source>
+        <target>{title} 的子菜单</target>
+      </segment>
+    </unit>
+    <unit id="nav.more">
+      <segment state="final">
+        <source>More</source>
+        <target>更多</target>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.language">
+      <segment state="final">
+        <source>Language</source>
+        <target>语言</target>
+      </segment>
+    </unit>
+    <unit id="a11y.menu.toggle">
+      <segment state="final">
+        <source>Toggle menu</source>
+        <target>切换菜单</target>
+      </segment>
+    </unit>
+    <unit id="a11y.theme.toggle">
+      <segment state="final">
+        <source>Toggle dark mode</source>
+        <target>切换深色模式</target>
+      </segment>
+    </unit>
+    <unit id="a11y.theme.switch">
+      <segment state="final">
+        <source>Colour scheme</source>
+        <target>配色方案</target>
+      </segment>
+    </unit>
+    <unit id="search.label">
+      <segment state="final">
+        <source>Search</source>
+        <target>搜索</target>
+      </segment>
+    </unit>
+    <unit id="search.placeholder">
+      <segment state="final">
+        <source>Search</source>
+        <target>搜索</target>
+      </segment>
+    </unit>
+    <unit id="search.submit">
+      <segment state="final">
+        <source>Search</source>
+        <target>搜索</target>
+      </segment>
+    </unit>
+    <unit id="theme.light">
+      <segment state="final">
+        <source>Light</source>
+        <target>浅色</target>
+      </segment>
+    </unit>
+    <unit id="theme.dark">
+      <segment state="final">
+        <source>Dark</source>
+        <target>深色</target>
+      </segment>
+    </unit>
+    <unit id="theme.system">
+      <segment state="final">
+        <source>System</source>
+        <target>跟随系统</target>
+      </segment>
+    </unit>
+    <unit id="footer.legal.imprint">
+      <segment state="final">
+        <source>Imprint</source>
+        <target>法律声明</target>
+      </segment>
+    </unit>
+    <unit id="footer.legal.privacy">
+      <segment state="final">
+        <source>Privacy</source>
+        <target>隐私声明</target>
+      </segment>
+    </unit>
+    <unit id="footer.legal.accessibility">
+      <segment state="final">
+        <source>Accessibility</source>
+        <target>无障碍</target>
+      </segment>
+    </unit>
+    <unit id="consent.label">
+      <segment state="final">
+        <source>Cookie consent</source>
+        <target>Cookie 同意</target>
+      </segment>
+    </unit>
+    <unit id="consent.message">
+      <segment state="final">
+        <source>We use optional cookies to measure and improve this website.</source>
+        <target>我们使用可选 Cookie 来衡量和改进本网站。</target>
+      </segment>
+    </unit>
+    <unit id="consent.privacy">
+      <segment state="final">
+        <source>Privacy</source>
+        <target>隐私声明</target>
+      </segment>
+    </unit>
+    <unit id="consent.accept">
+      <segment state="final">
+        <source>Accept</source>
+        <target>接受</target>
+      </segment>
+    </unit>
+    <unit id="consent.decline">
+      <segment state="final">
+        <source>Decline</source>
+        <target>拒绝</target>
+      </segment>
+    </unit>
+    <unit id="a11y.share.label">
+      <segment state="final">
+        <source>Share this article</source>
+        <target>分享本文</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.rail.label">
+      <segment state="final">
+        <source>Workspace navigation</source>
+        <target>工作区导航</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.rail.workspace">
+      <segment state="final">
+        <source>Workspace</source>
+        <target>工作区</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.rail.sections">
+      <segment state="final">
+        <source>Sections</source>
+        <target>栏目</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.rail.account">
+      <segment state="final">
+        <source>Account</source>
+        <target>账户</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.rail.overview">
+      <segment state="final">
+        <source>Overview</source>
+        <target>概览</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.rail.home">
+      <segment state="final">
+        <source>Dashboard home</source>
+        <target>仪表板首页</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.breadcrumb.label">
+      <segment state="final">
+        <source>Breadcrumb</source>
+        <target>面包屑导航</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.eyebrow.overview">
+      <segment state="final">
+        <source>Overview</source>
+        <target>概览</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.eyebrow.workspace">
+      <segment state="final">
+        <source>Workspace</source>
+        <target>工作区</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.eyebrow.search">
+      <segment state="final">
+        <source>Search</source>
+        <target>搜索</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.eyebrow.status">
+      <segment state="final">
+        <source>Status</source>
+        <target>状态</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.status.live">
+      <segment state="final">
+        <source>Live data</source>
+        <target>实时数据</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.region.metrics">
+      <segment state="final">
+        <source>Key metrics and reports</source>
+        <target>关键指标和报告</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.region.activity">
+      <segment state="final">
+        <source>Activity and alerts</source>
+        <target>动态和提醒</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.search.hint">
+      <segment state="final">
+        <source>Search across pages, records, and reports.</source>
+        <target>在页面、记录和报告中搜索。</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.error.summary">
+      <segment state="final">
+        <source>This view could not be loaded. Check the address or return to your overview.</source>
+        <target>无法加载此视图。请检查地址，或返回您的概览页。</target>
+      </segment>
+    </unit>
+    <unit id="page.search.eyebrow">
+      <segment state="final">
+        <source>Search</source>
+        <target>搜索</target>
+      </segment>
+    </unit>
+    <unit id="page.search.intro">
+      <segment state="final">
+        <source>Find solutions, case studies, documentation and the right contact across our site.</source>
+        <target>在我们的网站上查找解决方案、案例研究、文档和合适的联系人。</target>
+      </segment>
+    </unit>
+    <unit id="page.search.results.label">
+      <segment state="final">
+        <source>Search results</source>
+        <target>搜索结果</target>
+      </segment>
+    </unit>
+    <unit id="page.search.empty">
+      <segment state="final">
+        <source>Start typing to search the archive, or browse the latest stories from the homepage.</source>
+        <target>开始输入即可搜索归档内容，也可以在首页浏览最新文章。</target>
+      </segment>
+    </unit>
+    <unit id="page.error.eyebrow">
+      <segment state="final">
+        <source>Page not found</source>
+        <target>未找到页面</target>
+      </segment>
+    </unit>
+    <unit id="page.error.intro">
+      <segment state="final">
+        <source>This page has moved or no longer exists. Use the links below or head back to the homepage to find what you need.</source>
+        <target>此页面已移动或不再存在。请使用下方链接，或返回首页查找您需要的内容。</target>
+      </segment>
+    </unit>
+    <unit id="page.error.empty">
+      <segment state="final">
+        <source>The page you were looking for has moved or no longer exists. Head back to the homepage to pick up the latest stories.</source>
+        <target>您要查找的页面已移动或不再存在。请返回首页查看最新文章。</target>
+      </segment>
+    </unit>
+    <unit id="page.error.home">
+      <segment state="final">
+        <source>Back to homepage</source>
+        <target>返回首页</target>
+      </segment>
+    </unit>
+    <unit id="corporate.start.eyebrow">
+      <segment state="final">
+        <source>Trusted by teams worldwide</source>
+        <target>深受全球团队信赖</target>
+      </segment>
+    </unit>
+    <unit id="corporate.start.headline">
+      <segment state="final">
+        <source>Build with a partner the whole organisation can rely on</source>
+        <target>选择整个组织都能信赖的合作伙伴</target>
+      </segment>
+    </unit>
+    <unit id="corporate.start.lede">
+      <segment state="final">
+        <source>From strategy to delivery, we help established teams ship dependable products, modernise their platforms and serve their customers with confidence.</source>
+        <target>从战略到交付，我们帮助成熟团队推出可靠的产品、实现平台现代化，并放心地服务客户。</target>
+      </segment>
+    </unit>
+    <unit id="corporate.start.actions.label">
+      <segment state="final">
+        <source>Primary actions</source>
+        <target>主要操作</target>
+      </segment>
+    </unit>
+    <unit id="corporate.start.cta.primary">
+      <segment state="final">
+        <source>Talk to our team</source>
+        <target>联系我们的团队</target>
+      </segment>
+    </unit>
+    <unit id="corporate.start.cta.secondary">
+      <segment state="final">
+        <source>Explore our solutions</source>
+        <target>了解我们的解决方案</target>
+      </segment>
+    </unit>
+    <unit id="corporate.start.trust">
+      <segment state="final">
+        <source>ISO-aligned delivery. Dedicated account team. Response within one business day.</source>
+        <target>遵循 ISO 标准的交付。专属客户团队。一个工作日内回复。</target>
+      </segment>
+    </unit>
+    <unit id="corporate.start.region">
+      <segment state="final">
+        <source>Solutions, proof and contact</source>
+        <target>解决方案、客户案例和联系方式</target>
+      </segment>
+    </unit>
+    <unit id="corporate.page.eyebrow">
+      <segment state="final">
+        <source>Overview</source>
+        <target>概览</target>
+      </segment>
+    </unit>
+    <unit id="corporate.page.lede">
+      <segment state="final">
+        <source>A clear, structured look at what we do here and how it helps your organisation move forward.</source>
+        <target>清晰、有条理地介绍我们在这方面的工作，以及它如何帮助您的组织向前发展。</target>
+      </segment>
+    </unit>
+    <unit id="corporate.sidebar.aria">
+      <segment state="final">
+        <source>Related contacts and downloads</source>
+        <target>相关联系人和下载</target>
+      </segment>
+    </unit>
+    <unit id="corporate.search.empty">
+      <segment state="final">
+        <source>Enter a term above to search across our solutions, case studies, documentation and contacts.</source>
+        <target>请在上方输入搜索词，搜索我们的解决方案、案例研究、文档和联系人。</target>
+      </segment>
+    </unit>
+    <unit id="editorial.breadcrumb.label">
+      <segment state="final">
+        <source>Breadcrumb</source>
+        <target>面包屑导航</target>
+      </segment>
+    </unit>
+    <unit id="editorial.kicker.default">
+      <segment state="final">
+        <source>Feature</source>
+        <target>专题</target>
+      </segment>
+    </unit>
+    <unit id="editorial.byline.prefix">
+      <segment state="final">
+        <source>By</source>
+        <target>作者</target>
+      </segment>
+    </unit>
+    <unit id="editorial.meta.published">
+      <segment state="final">
+        <source>Published on %s</source>
+        <target>发布于 %s</target>
+      </segment>
+    </unit>
+    <unit id="editorial.aside.label">
+      <segment state="final">
+        <source>Article tools and related reading</source>
+        <target>文章工具和相关阅读</target>
+      </segment>
+    </unit>
+    <unit id="editorial.readingProgress.label">
+      <segment state="final">
+        <source>Reading progress</source>
+        <target>阅读进度</target>
+      </segment>
+    </unit>
+    <unit id="portfolio.aside.label">
+      <segment state="final">
+        <source>Project details and related work</source>
+        <target>项目详情和相关作品</target>
+      </segment>
+    </unit>
+    <unit id="saas.hero.eyebrow">
+      <segment state="final">
+        <source>Now in public beta</source>
+        <target>现已开放公测</target>
+      </segment>
+    </unit>
+    <unit id="saas.hero.cta.primary">
+      <segment state="final">
+        <source>Start free</source>
+        <target>免费开始</target>
+      </segment>
+    </unit>
+    <unit id="saas.hero.cta.secondary">
+      <segment state="final">
+        <source>Book a demo</source>
+        <target>预约演示</target>
+      </segment>
+    </unit>
+    <unit id="saas.hero.trust">
+      <segment state="final">
+        <source>No credit card. 14-day Pro trial. Cancel anytime.</source>
+        <target>无需信用卡。14 天 Pro 试用。可随时取消。</target>
+      </segment>
+    </unit>
+    <unit id="saas.hero.actions.label">
+      <segment state="final">
+        <source>Primary actions</source>
+        <target>主要操作</target>
+      </segment>
+    </unit>
+    <unit id="saas.region.offer">
+      <segment state="final">
+        <source>Product, pricing and sign-up</source>
+        <target>产品、价格和注册</target>
+      </segment>
+    </unit>
+    <unit id="saas.page.eyebrow">
+      <segment state="final">
+        <source>Product</source>
+        <target>产品</target>
+      </segment>
+    </unit>
+    <unit id="saas.page.lede">
+      <segment state="final">
+        <source>Everything your team needs to evaluate, roll out and scale — laid out below.</source>
+        <target>您的团队在评估、部署和扩展时所需的一切，详见下方。</target>
+      </segment>
+    </unit>
+    <unit id="saas.sidebar.label">
+      <segment state="final">
+        <source>Get started</source>
+        <target>开始使用</target>
+      </segment>
+    </unit>
+    <unit id="email.form.intro">
+      <segment state="final">
+        <source>A new {title} form submission was sent from {sourceType, select, page {the page {sourcePageTitle}} other {the website}} ({sourcePageUrl}).</source>
+        <target>收到一份新的“{title}”表单提交，来自{sourceType, select, page {页面“{sourcePageTitle}”} other {网站}}（{sourcePageUrl}）。</target>
+      </segment>
+    </unit>
+    <unit id="email.form.goodbye">
+      <segment state="final">
+        <source>Best regards,</source>
+        <target>此致敬礼，</target>
+      </segment>
+    </unit>
+    <unit id="email.form.signature">
+      <segment state="final">
+        <source>webconsulting &amp; Desiderio</source>
+        <target>webconsulting &amp; Desiderio</target>
+      </segment>
+    </unit>
+    <unit id="email.footer.notice">
+      <segment state="final">
+        <source>This email was sent by {siteName} from URL: {siteUrl} - Please contact your site administrator if you feel you received this email by accident.</source>
+        <target>此邮件由 {siteName} 发送，网址：{siteUrl}。如果您认为误收了此邮件，请联系网站管理员。</target>
+      </segment>
+    </unit>
+    <unit id="email.footer.copyright.webconsulting">
+      <segment state="final">
+        <source>© {year} webconsulting gmbh</source>
+        <target>© {year} webconsulting gmbh</target>
+      </segment>
+    </unit>
+    <unit id="email.footer.copyright.desiderio">
+      <segment state="final">
+        <source>© {year} Desiderio</source>
+        <target>© {year} Desiderio</target>
+      </segment>
+    </unit>
+    <unit id="email.footer.copyright.webconsultingText">
+      <segment state="final">
+        <source>Copyright (c) {year} webconsulting gmbh</source>
+        <target>版权所有 (c) {year} webconsulting gmbh</target>
+      </segment>
+    </unit>
+    <unit id="email.footer.copyright.desiderioText">
+      <segment state="final">
+        <source>Copyright (c) {year} Desiderio</source>
+        <target>版权所有 (c) {year} Desiderio</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

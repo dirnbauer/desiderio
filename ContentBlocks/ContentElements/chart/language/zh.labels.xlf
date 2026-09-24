@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="zh">
+  <file id="chart">
+    <unit id="chart.aria_fallback">
+      <segment state="final">
+        <source>Data chart</source>
+        <target>数据图表</target>
+      </segment>
+    </unit>
+    <unit id="chart.table.category">
+      <segment state="final">
+        <source>Category</source>
+        <target>类别</target>
+      </segment>
+    </unit>
+    <unit id="chart.table.value_default">
+      <segment state="final">
+        <source>Value</source>
+        <target>数值</target>
+      </segment>
+    </unit>
+    <unit id="chart.table.unit_caption">
+      <segment state="final">
+        <source>values in {0}</source>
+        <target>数值单位：{0}</target>
+      </segment>
+    </unit>
+    <unit id="chart.stat.peak">
+      <segment state="final">
+        <source>Peak</source>
+        <target>峰值</target>
+      </segment>
+    </unit>
+    <unit id="chart.stat.net_change">
+      <segment state="final">
+        <source>Net change</source>
+        <target>净变化</target>
+      </segment>
+    </unit>
+    <unit id="chart.trend.up">
+      <segment state="final">
+        <source>Trending up:</source>
+        <target>呈上升趋势：</target>
+      </segment>
+    </unit>
+    <unit id="chart.trend.down">
+      <segment state="final">
+        <source>Trending down:</source>
+        <target>呈下降趋势：</target>
+      </segment>
+    </unit>
+    <unit id="chart.trend.flat">
+      <segment state="final">
+        <source>No net change:</source>
+        <target>无净变化：</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

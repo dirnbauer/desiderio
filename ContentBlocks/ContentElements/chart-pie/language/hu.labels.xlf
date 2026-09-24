@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="hu">
+  <file id="chart-pie">
+    <unit id="table.segment">
+      <segment state="final">
+        <source>Segment</source>
+        <target>Szegmens</target>
+      </segment>
+    </unit>
+    <unit id="table.value">
+      <segment state="final">
+        <source>Value</source>
+        <target>Érték</target>
+      </segment>
+    </unit>
+    <unit id="table.share">
+      <segment state="final">
+        <source>Share</source>
+        <target>Arány</target>
+      </segment>
+    </unit>
+    <unit id="table.total">
+      <segment state="final">
+        <source>Total</source>
+        <target>Összesen</target>
+      </segment>
+    </unit>
+    <unit id="aria.fallback">
+      <segment state="final">
+        <source>Pie chart</source>
+        <target>Kördiagram</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment state="final">
+        <source>{0}: pie chart showing the share of the whole across {1, plural, one {# segment} other {# segments}}. The full breakdown follows in the data table.</source>
+        <target>{0}: kördiagram az egész megoszlásáról, {1, plural, one {# szegmens} other {# szegmens}}. A teljes bontást az adattáblázat tartalmazza.</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

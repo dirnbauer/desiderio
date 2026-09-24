@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="hu">
+  <file id="chart-bar">
+    <unit id="table.category">
+      <segment state="final">
+        <source>Category</source>
+        <target>Kategória</target>
+      </segment>
+    </unit>
+    <unit id="table.value">
+      <segment state="final">
+        <source>Value</source>
+        <target>Érték</target>
+      </segment>
+    </unit>
+    <unit id="table.total">
+      <segment state="final">
+        <source>Total</source>
+        <target>Összesen</target>
+      </segment>
+    </unit>
+    <unit id="stat.top">
+      <segment state="final">
+        <source>Top</source>
+        <target>Legmagasabb</target>
+      </segment>
+    </unit>
+    <unit id="stat.total">
+      <segment state="final">
+        <source>Total</source>
+        <target>Összesen</target>
+      </segment>
+    </unit>
+    <unit id="stat.lowest">
+      <segment state="final">
+        <source>Lowest</source>
+        <target>Legalacsonyabb</target>
+      </segment>
+    </unit>
+    <unit id="stat.top_share">
+      <segment state="final">
+        <source>Top share</source>
+        <target>Legnagyobb arány</target>
+      </segment>
+    </unit>
+    <unit id="aria.fallback">
+      <segment state="final">
+        <source>Bar chart</source>
+        <target>Oszlopdiagram</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment state="final">
+        <source>{0}: bar chart comparing {1, plural, one {# category} other {# categories}}{2}. The full breakdown follows in the data table.</source>
+        <target>{0}: oszlopdiagram, {1, plural, one {# kategória} other {# kategória}} összehasonlítása{2}. A teljes bontást az adattáblázat tartalmazza.</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary.measuring">
+      <segment state="final">
+        <source>, measuring {0}</source>
+        <target>, mérőszám: {0}</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

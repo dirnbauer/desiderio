@@ -6,6 +6,19 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+- The 3-column feature grid renders its cards again. Since the feature item
+  became a shared molecule (4.0), each card's icon, title and text sat inside
+  an extra wrapper, and the card's `grid-template-areas` placed that wrapper
+  as a whole into the 3rem icon column: three hair-thin text columns wrapping
+  one word per line. The molecule now carries the grid (`feature-grid-3__feature`),
+  the card keeps only its padding.
+- The eyebrow badge of the feature matrix, the team grid and the team carousel
+  sits on the midline with the centered heading instead of hugging the start
+  edge (their intros are grid containers, which ignore `text-align` for the
+  badge box).
+
 ## [4.6.0] — 2026-09-24
 
 ### Fixed

@@ -86,4 +86,7 @@
 .team-carousel__intro {
     display: grid;
     gap: var(--d-spacing-sm);
+    /* The intro is centered; as a grid item the eyebrow badge must ride the
+       midline too, not hug the start edge. */
+    justify-items: center;
 }

@@ -45,4 +45,7 @@
 .feature-matrix__intro {
     display: grid;
     gap: var(--d-spacing-sm);
+    /* The intro is centered; as grid items the eyebrow badge and the capped
+       heading must ride the midline too, not hug the start edge. */
+    justify-items: center;
 }

@@ -11,6 +11,12 @@
     .feature-grid-3__grid { grid-template-columns: 1fr; }
 }
 .feature-grid-3__item {
+    padding: var(--d-spacing-lg);
+}
+/* The feature molecule sits inside the card, so it (not the card) carries the
+   icon/title/description grid. Styling the card instead auto-placed the whole
+   molecule into the 3rem icon column. */
+.feature-grid-3__item .feature-grid-3__feature {
     display: grid;
     grid-template-columns: 3rem minmax(0, 1fr);
     grid-template-areas:
@@ -19,7 +25,6 @@
     align-items: start;
     column-gap: var(--d-spacing-md);
     row-gap: var(--d-spacing-xs);
-    padding: var(--d-spacing-lg);
 }
 .feature-grid-3__icon {
     grid-area: icon;
@@ -57,9 +62,11 @@
 }
 @media (max-width: 480px) {
     .feature-grid-3__item {
+        padding: var(--d-spacing-md);
+    }
+    .feature-grid-3__item .feature-grid-3__feature {
         grid-template-columns: 2.75rem minmax(0, 1fr);
         column-gap: var(--d-spacing-sm);
-        padding: var(--d-spacing-md);
     }
     .feature-grid-3__icon {
         width: 2.75rem;

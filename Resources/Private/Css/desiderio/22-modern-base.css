@@ -1,0 +1,353 @@
+/* Modern base — the look every preset inherits (4.7).
+
+   Desiderio's whole point is that the theme is data: fifteen presets from
+   ui.shadcn.com/create repaint the site at runtime. So this layer never
+   names a colour, a face or a corner; everything below derives from the
+   preset's own tokens (--chart-1..5, --primary, --border, --radius,
+   --font-mono, --shadow-*), so any create-page export inherits the whole
+   look, light and dark.
+
+   The one memorable thing: the site wears its own palette. A two-pixel
+   band of the preset's five chart colours runs along the top of the header
+   and a soft horizon of the same hues sits behind the first section, so
+   switching the preset repaints the atmosphere, not only the buttons. Both
+   take their strength from the hue's chroma (relative colour syntax): a
+   neutral preset with grey charts gets a plain primary-ink rule and no
+   horizon at all, instead of a dirty grey wash.
+   Everything else is quiet craft — a fluid display scale with tight
+   tracking, eyebrows set in the theme's mono face, hairlines that fade at
+   the edges instead of ruling the page like a spreadsheet, surfaces that
+   lift only when they are links, one entrance and a scroll-linked rise.
+
+   Unlayered on purpose (see Documentation/Developer/Build.rst) and last in
+   the manifest, so an equal-specificity rule here beats the atoms; the
+   element stylesheets that load after it keep their own hooks. Colours are
+   mixed at the point of use, never cached in a custom property on :root:
+   presets set their tokens on <body>, and a var() resolved on :root would
+   read the default preset's values. */
+
+/* ------------------------------------------------------------------ */
+/*  1. Scale                                                           */
+/* ------------------------------------------------------------------ */
+
+:root {
+    /* Display sizes are fluid; the hero elements read these tokens. */
+    --d-text-4xl: clamp(2rem, 1.45rem + 1.8vw, 2.75rem);
+    --d-text-5xl: clamp(2.5rem, 1.6rem + 3vw, 4rem);
+    --d-text-6xl: clamp(3rem, 1.8rem + 4vw, 5rem);
+    --d-leading-tight: 1.1;
+    --d-tracking-display: -0.03em;
+    --d-motion: 220ms;
+    --d-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.typography--h1 {
+    font-family: var(--font-heading);
+    font-size: var(--d-text-5xl);
+    font-weight: 700;
+    line-height: 1.04;
+    letter-spacing: var(--d-tracking-display);
+}
+
+.typography--h2 {
+    font-family: var(--font-heading);
+    font-size: var(--d-text-4xl);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.022em;
+}
+
+.typography--h3 {
+    font-size: 1.375rem;
+    letter-spacing: -0.012em;
+}
+
+.typography--lead {
+    font-size: 1.25rem;
+    line-height: 1.55;
+    text-wrap-style: pretty;
+}
+
+.desiderio-section :where(h1, h2) {
+    letter-spacing: var(--d-tracking-display);
+}
+
+.desiderio-section :where(h3) {
+    letter-spacing: -0.012em;
+}
+
+/* The longhand, not the `text-wrap` shorthand: the shorthand resets
+   text-wrap-mode to wrap and would undo every white-space: nowrap in the
+   elements (a screen-reader-only table caption wrapped one letter per line). */
+.desiderio-section :where(p, li, dd) {
+    text-wrap-style: pretty;
+}
+
+/* Eyebrows speak in the theme's mono face — the voice of a token label on
+   the create page — with a primary dot in front. Badge eyebrows keep their
+   pill. display: block, not inline-flex: inside the grid intros a flex box
+   would be blockified and stretch, and the text would leave the midline. */
+.desiderio-section [class$="__eyebrow"]:not([data-slot="badge"]),
+.desiderio-section .d-section-intro__eyebrow {
+    display: block;
+    font-family: var(--font-mono, var(--d-font-mono));
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--d-link, var(--primary));
+}
+
+.desiderio-section [class$="__eyebrow"]:not([data-slot="badge"])::before,
+.desiderio-section .d-section-intro__eyebrow::before {
+    content: "";
+    display: inline-block;
+    width: 0.375rem;
+    height: 0.375rem;
+    margin-inline-end: 0.5rem;
+    vertical-align: 0.1em;
+    border-radius: 999px;
+    background: var(--primary);
+}
+
+/* ------------------------------------------------------------------ */
+/*  2. The palette band and the horizon                               */
+/* ------------------------------------------------------------------ */
+
+.desiderio-header {
+    position: sticky;
+    top: 0;
+    border-bottom: 1px solid color-mix(in oklch, var(--border) 60%, transparent);
+    background-color: color-mix(in oklch, var(--background) 80%, transparent);
+    -webkit-backdrop-filter: blur(16px) saturate(1.6);
+    backdrop-filter: blur(16px) saturate(1.6);
+}
+
+.desiderio-header::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 2px;
+    background:
+        linear-gradient(90deg,
+            oklch(from var(--chart-1, var(--primary)) l c h / clamp(0, c * 12, 1)),
+            oklch(from var(--chart-2, var(--primary)) l c h / clamp(0, c * 12, 1)),
+            oklch(from var(--chart-3, var(--primary)) l c h / clamp(0, c * 12, 1)),
+            oklch(from var(--chart-4, var(--primary)) l c h / clamp(0, c * 12, 1)),
+            oklch(from var(--chart-5, var(--primary)) l c h / clamp(0, c * 12, 1))),
+        var(--primary);
+    pointer-events: none;
+}
+
+/* desiderio.header.style: glass is the base; the other values keep their
+   meaning. */
+body[data-header-style="solid"] .desiderio-header,
+body[data-header-style="sticky"] .desiderio-header {
+    background-color: var(--background);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+}
+
+body[data-header-style="solid"] .desiderio-header {
+    position: relative;
+}
+
+body[data-header-style="transparent"] .desiderio-header {
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    border-bottom-color: transparent;
+    background-color: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+}
+
+/* "Pin header on scroll" wins over every header style, transparent included. */
+body[data-header-style] .desiderio-header--fixed,
+.desiderio-header--fixed {
+    position: fixed;
+}
+
+.desiderio-header__nav-link {
+    font-size: 0.875rem;
+}
+
+/* The horizon: the preset's first three chart hues, soft, behind whatever
+   opens the page. The first section drops its opaque background so the
+   light shows through; every later section paints over it. */
+.desiderio-main {
+    position: relative;
+    isolation: isolate;
+}
+
+.desiderio-main::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: min(72vh, 46rem);
+    z-index: -1;
+    pointer-events: none;
+    /* Alpha = chroma x factor: a saturated hue (c ~ 0.2) glows at ~0.24,
+       a muted one faintly, an achromatic one not at all. */
+    background:
+        radial-gradient(60% 55% at 50% -8%, oklch(from var(--chart-1, var(--primary)) l c h / clamp(0, c * 1.2, 0.3)), transparent 70%),
+        radial-gradient(38% 40% at 88% 4%, oklch(from var(--chart-2, var(--primary)) l c h / clamp(0, c * 0.8, 0.2)), transparent 70%),
+        radial-gradient(34% 36% at 10% 8%, oklch(from var(--chart-3, var(--primary)) l c h / clamp(0, c * 0.6, 0.16)), transparent 70%);
+    -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent);
+    mask-image: linear-gradient(to bottom, #000 45%, transparent);
+}
+
+/* The page templates wrap the content area (the corporate preset in
+   .desiderio-corporate-template, the start page in a sr-only h1 plus a
+   wrapper), so the opening section is matched one level down as well. */
+.desiderio-main > .desiderio-corporate-template,
+.desiderio-main > .desiderio-corporate-start {
+    background: transparent;
+}
+
+.desiderio-main > .desiderio-section.bg-background:first-of-type,
+.desiderio-main > * > .desiderio-section.bg-background:first-of-type,
+.desiderio-main > .desiderio-breadcrumb + .bg-background,
+.desiderio-main > .desiderio-page-title-container + .bg-background {
+    background-color: transparent;
+}
+
+/* ------------------------------------------------------------------ */
+/*  3. Rules that fade instead of ruling                              */
+/* ------------------------------------------------------------------ */
+
+.desiderio-section {
+    border-block-start: 0;
+}
+
+/* Two sections on the same surface still need a seam; it fades at the
+   edges so the page reads as sections, not as rows of a table. */
+.desiderio-section.bg-background + .desiderio-section.bg-background,
+.desiderio-section.bg-card + .desiderio-section.bg-card,
+.desiderio-section.bg-muted + .desiderio-section.bg-muted {
+    background-image: linear-gradient(90deg, transparent 2%, color-mix(in oklch, var(--border) 90%, transparent) 20%, color-mix(in oklch, var(--border) 90%, transparent) 80%, transparent 98%);
+    background-size: 100% 1px;
+    background-repeat: no-repeat;
+    background-position: top center;
+}
+
+.desiderio-page-title-container .separator--horizontal {
+    background: linear-gradient(90deg, var(--border), transparent);
+}
+
+.desiderio-footer {
+    border-top: 0;
+    background-image: linear-gradient(90deg, transparent 2%, var(--border) 20%, var(--border) 80%, transparent 98%);
+    background-size: 100% 1px;
+    background-repeat: no-repeat;
+    background-position: top center;
+}
+
+/* ------------------------------------------------------------------ */
+/*  4. Surfaces                                                        */
+/* ------------------------------------------------------------------ */
+
+/* Cards: a hairline ring, the preset's surface shadow, a one-pixel top
+   highlight. Only a card that leads somewhere lifts on hover. The ring is
+   part of box-shadow because Tailwind's ring-1 lives there too; the radius
+   multiplies --radius so square presets stay square. */
+.desiderio-section [data-slot="card"] {
+    border-radius: calc(var(--radius, 0.625rem) * 1.5);
+    box-shadow:
+        0 0 0 1px color-mix(in oklch, var(--foreground) 9%, transparent),
+        var(--d-surface-shadow, 0 0 #0000),
+        inset 0 1px 0 color-mix(in oklch, var(--card-foreground) 5%, transparent);
+    transition: transform var(--d-motion) var(--d-ease), box-shadow var(--d-motion) var(--d-ease);
+}
+
+.desiderio-section [data-slot="card"]:has(a[href]):hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 0 0 1px color-mix(in oklch, var(--primary) 32%, transparent),
+        var(--shadow-md, 0 8px 24px -12px rgb(0 0 0 / 0.25)),
+        inset 0 1px 0 color-mix(in oklch, var(--card-foreground) 5%, transparent);
+}
+
+/* Buttons: a pressed-metal highlight on the primary fill, a one-pixel lift
+   on hover. Painted bands (07-content-frames.css) keep their own shadows. */
+[data-slot="button"][data-variant="default"],
+.btn--default {
+    box-shadow:
+        var(--shadow-xs, 0 1px 2px rgb(0 0 0 / 0.05)),
+        inset 0 1px 0 color-mix(in oklch, var(--primary-foreground) 18%, transparent);
+    transition: transform var(--d-motion) var(--d-ease), box-shadow var(--d-motion) var(--d-ease), background-color 150ms ease, color 150ms ease;
+}
+
+[data-slot="button"][data-variant="default"]:not(:disabled):hover,
+.btn--default:not(:disabled):hover {
+    transform: translateY(-1px);
+    box-shadow:
+        var(--shadow-sm, 0 2px 6px rgb(0 0 0 / 0.08)),
+        inset 0 1px 0 color-mix(in oklch, var(--primary-foreground) 18%, transparent);
+}
+
+[data-slot="button"][data-variant="default"]:not(:disabled):active,
+.btn--default:not(:disabled):active {
+    transform: none;
+    box-shadow: var(--shadow-2xs, 0 1px 1px rgb(0 0 0 / 0.05));
+}
+
+/* Links in running text: a quiet underline that fills on hover. */
+.desiderio-section :where(a:not([data-slot="button"], .not-prose, .not-prose *)) {
+    text-decoration-thickness: 1px;
+    text-decoration-color: color-mix(in oklch, currentColor 45%, transparent);
+    text-underline-offset: 0.22em;
+    transition: text-decoration-color 150ms ease;
+}
+
+.desiderio-section :where(a:hover:not([data-slot="button"], .not-prose, .not-prose *)) {
+    text-decoration-color: currentColor;
+}
+
+::selection {
+    background: color-mix(in oklch, var(--primary) 24%, transparent);
+}
+
+/* ------------------------------------------------------------------ */
+/*  5. Motion: one entrance, then a rise on scroll                    */
+/* ------------------------------------------------------------------ */
+
+@keyframes d-enter {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: none; }
+}
+
+@keyframes d-rise {
+    from { opacity: 0.001; transform: translateY(22px); }
+    to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    /* The opening section's parts arrive one after the other: the badge,
+       the headline, the lead, the actions, the media. Inner pages open with
+       the page title. */
+    :is(.desiderio-main > .desiderio-section, .desiderio-main > * > .desiderio-section):first-of-type > .desiderio-container > * > *,
+    .desiderio-main > .desiderio-page-title-container > * > * {
+        animation: d-enter 640ms var(--d-ease) both;
+        animation-delay: calc(var(--d-i, 0) * 80ms);
+    }
+
+    :is(.desiderio-main > .desiderio-section, .desiderio-main > * > .desiderio-section):first-of-type > .desiderio-container > * > :nth-child(2),
+    .desiderio-main > .desiderio-page-title-container > * > :nth-child(2) { --d-i: 1; }
+    :is(.desiderio-main > .desiderio-section, .desiderio-main > * > .desiderio-section):first-of-type > .desiderio-container > * > :nth-child(3) { --d-i: 2; }
+    :is(.desiderio-main > .desiderio-section, .desiderio-main > * > .desiderio-section):first-of-type > .desiderio-container > * > :nth-child(4) { --d-i: 3; }
+    :is(.desiderio-main > .desiderio-section, .desiderio-main > * > .desiderio-section):first-of-type > .desiderio-container > * > :nth-child(5) { --d-i: 4; }
+    :is(.desiderio-main > .desiderio-section, .desiderio-main > * > .desiderio-section):first-of-type > .desiderio-container > * > :nth-child(6) { --d-i: 5; }
+    :is(.desiderio-main > .desiderio-section, .desiderio-main > * > .desiderio-section):first-of-type > .desiderio-container > * > :nth-child(n + 7) { --d-i: 6; }
+
+    /* Later sections rise as they enter the viewport. Pure CSS, so the
+       element library previews (one section, always first) never animate. */
+    @supports (animation-timeline: view()) {
+        :is(.desiderio-main > .desiderio-section, .desiderio-main > * > .desiderio-section):not(:first-of-type) > .desiderio-container {
+            animation: d-rise linear both;
+            animation-timeline: view();
+            animation-range: entry 0% entry 28%;
+        }
+    }
+}

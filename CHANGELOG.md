@@ -6,6 +6,27 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- The base look every preset inherits is redrawn, still from the preset's
+  own tokens only, so every ui.shadcn.com/create export keeps working in
+  light and dark (`Resources/Private/Css/desiderio/22-modern-base.css`).
+  The site wears its own palette: a two-pixel band of the preset's five
+  chart colours along the top of the header and a soft horizon of the same
+  hues behind the opening section, both as strong as the hue's chroma
+  (a neutral preset gets a plain primary-ink rule and no horizon). The
+  header is sticky glass by default (`desiderio.header.style: glass`; the
+  other values keep their meaning and are now implemented). Display
+  headings are fluid and tightly tracked (`--d-text-4xl` to `--d-text-6xl`
+  are `clamp()` values), eyebrows are set in the preset's mono face with a
+  primary dot, seams between sections and the footer fade at the edges
+  instead of ruling the page, cards carry a hairline ring and a one-pixel
+  highlight and lift only when they link somewhere, primary buttons get a
+  pressed highlight, running-text links a quiet underline. Motion: the
+  opening section's parts arrive one after the other, later sections rise
+  as they enter the viewport (scroll-driven CSS animation, off under
+  `prefers-reduced-motion`, never in the element library previews).
+
 ### Fixed
 
 - The 3-column feature grid renders its cards again. Since the feature item

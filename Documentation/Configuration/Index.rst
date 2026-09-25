@@ -58,8 +58,10 @@ Core site settings
         - ``true``
         - Renders the header colour-scheme toggle.
     *   - ``desiderio.header.style``
-        - ``solid``
-        - ``solid``, ``transparent``, ``glass``, or ``sticky``.
+        - ``glass``
+        - ``glass`` (sticky, blurred), ``sticky`` (sticky, opaque),
+          ``solid`` (static, opaque) or ``transparent`` (overlays the
+          opening section).
     *   - ``desiderio.header.fixedPosition``
         - ``false``
         - Keeps the header pinned while scrolling.

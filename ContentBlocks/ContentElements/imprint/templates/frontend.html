@@ -30,7 +30,7 @@
                             <p class="imprint__value"><a class="imprint__link" href="mailto:{data.contact_email}">{data -> f:render.text(field: 'contact_email')}</a></p>
                         </f:if>
                         <f:if condition="{data.contact_phone}">
-                            <p class="imprint__value"><a class="imprint__link" href="tel:{data.contact_phone}">{data -> f:render.text(field: 'contact_phone')}</a></p>
+                            <p class="imprint__value"><a class="imprint__link" href="tel:{data.contact_phone -> f:replace(search: ' ', replace: '')}">{data -> f:render.text(field: 'contact_phone')}</a></p>
                         </f:if>
                     </div>
                 </f:if>

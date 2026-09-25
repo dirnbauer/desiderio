@@ -29,7 +29,7 @@
                             <f:if condition="{loc.phone}">
                                 <p class="office-locations__line">
                                     <span class="office-locations__icon" aria-hidden="true"><d:atom.icon name="phone" size="sm"/></span>
-                                    <a class="office-locations__link" href="tel:{loc.phone}">{loc -> f:render.text(field: 'phone')}</a>
+                                    <a class="office-locations__link" href="tel:{loc.phone -> f:replace(search: ' ', replace: '')}">{loc -> f:render.text(field: 'phone')}</a>
                                 </p>
                             </f:if>
                             <f:if condition="{loc.email}">

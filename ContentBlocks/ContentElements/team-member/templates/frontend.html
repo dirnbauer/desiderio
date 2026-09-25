@@ -31,7 +31,7 @@
                             <f:if condition="{data.phone}">
                                 <div class="team-member__contact-item">
                                     <dt class="team-member__contact-label"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:team.call">Call</f:translate></dt>
-                                    <dd class="team-member__contact-value"><a href="tel:{data.phone}" class="team-member__contact-link">{data -> f:render.text(field: 'phone')}</a></dd>
+                                    <dd class="team-member__contact-value"><a href="tel:{data.phone -> f:replace(search: ' ', replace: '')}" class="team-member__contact-link">{data -> f:render.text(field: 'phone')}</a></dd>
                                 </div>
                             </f:if>
                         </dl>

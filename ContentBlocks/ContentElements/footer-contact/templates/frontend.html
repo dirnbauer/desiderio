@@ -27,7 +27,7 @@
                 <f:if condition="{data.phone}">
                     <div class="footer-contact__item">
                         <d:atom.icon name="phone" size="default" />
-                        <a href="tel:{data.phone}" class="footer-contact__link">{data -> f:render.text(field: 'phone')}</a>
+                        <a href="tel:{data.phone -> f:replace(search: ' ', replace: '')}" class="footer-contact__link">{data -> f:render.text(field: 'phone')}</a>
                     </div>
                 </f:if>
                 <f:if condition="{data.hours}">

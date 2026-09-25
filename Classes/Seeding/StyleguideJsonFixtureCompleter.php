@@ -195,7 +195,12 @@ final readonly class StyleguideJsonFixtureCompleter
     private function getTargetCollectionItemCount(array $collection, int $existingItemCount): int
     {
         $minimum = max(1, is_int($collection['minItems'] ?? null) ? $collection['minItems'] : 1);
-        $target = max(3, $minimum, $existingItemCount);
+        // Same rule as StyleguideFixtureResolver: the items a fixture lists
+        // stay as many as its author wrote (two offices stay two); only an
+        // empty collection is filled to three.
+        $target = $existingItemCount > 0
+            ? max($minimum, $existingItemCount)
+            : max(3, $minimum);
         $maximum = $collection['maxItems'] ?? null;
 
         if (is_int($maximum)) {

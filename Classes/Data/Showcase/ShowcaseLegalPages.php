@@ -35,23 +35,25 @@ final class ShowcaseLegalPages
             'title' => 'Imprint',
             'navTitle' => 'Imprint',
             'slug' => '/imprint',
-            'abstract' => 'A demo imprint from the Desiderio demo site. The desiderio_imprint element holds placeholder data, and a note says what to replace before launch.',
-            'description' => 'Demo imprint built with the Desiderio imprint content element. Placeholder company data shows the structure of a legal page on a TYPO3 site.',
+            'abstract' => 'The imprint of webconsulting business services gmbh, the company behind Desiderio. The page is built with the desiderio_imprint element.',
+            'description' => 'Imprint of webconsulting business services gmbh, the company behind Desiderio, shown with the Desiderio imprint content element for TYPO3.',
             'parentSlug' => null,
             'content' => [
                 ShowcaseBlocks::block('desiderio_imprint', [
-                    'header' => 'Imprint (demo data)',
-                    'company_name' => 'webconsulting studio GmbH (demo company)',
-                    'address' => "Lindengasse 12\n1070 Vienna\nAustria",
-                    'contact_email' => 'legal@webconsulting.example',
-                    'contact_phone' => '+43 1 555 0182',
-                    'registry_info' => "Commercial register: FN 000000x (demo data)\nCommercial Court of Vienna",
-                    'vat_id' => 'ATU00000000',
-                    'additional_info' => '<p>Responsible for content under §25 MedienG: Mara Lindqvist, Managing Director (example). Every detail on this page is placeholder data from the Desiderio demo site.</p>',
+                    'header' => 'Imprint',
+                    'company_name' => 'webconsulting business services gmbh',
+                    'address' => "Johann Nepomuk Berger-Straße 7/2/14\n7210 Mattersburg\nAustria",
+                    'contact_email' => 'office@webconsulting.at',
+                    'contact_phone' => '+43 2626 20156',
+                    'registry_info' => "Company register number: FN 401904 k\nCompany register court: Landesgericht Eisenstadt\nManaging director: DI(FH) Kurt Dirnbauer",
+                    'vat_id' => 'ATU68140807',
+                    'additional_info' => '<p>Company purpose: management consulting including business organisation, IT services (software development, web design, web consulting, trade in hardware and software), advertising agency. Trade licence: services in automatic data processing and information technology.</p>'
+                        . '<p>Member of the Wirtschaftskammer Burgenland, Fachgruppe UBIT. Supervisory authority: Bezirkshauptmannschaft Mattersburg. Applicable law: Gewerbeordnung 1994 (GewO), E-Commerce-Gesetz (ECG), Mediengesetz (MedienG) and Telekommunikationsgesetz (TKG).</p>'
+                        . '<p>Media owner under § 25 MedienG: webconsulting business services gmbh, based in Mattersburg, share capital EUR 35,000. Managing director and sole shareholder: DI(FH) Kurt Dirnbauer.</p>',
                 ]),
                 ShowcaseBlocks::block('desiderio_contenthighlight', [
-                    'header' => 'This imprint is a demo placeholder',
-                    'content' => '<p>The desiderio_imprint element gives your legal page a finished, themed structure. The law is about the content, though. Replace the example company, register and contact details above with your own, and have them reviewed before launch.</p>',
+                    'header' => 'Your site needs its own imprint',
+                    'content' => '<p>This page is the imprint of webconsulting business services gmbh, which builds Desiderio. On your site, the desiderio_imprint element shows your company. Enter your own company, register and contact details, and have them reviewed before launch.</p>',
                     'variant' => 'muted',
                     'alignment' => 'center',
                     'link' => '',
@@ -76,7 +78,7 @@ final class ShowcaseLegalPages
             'content' => [
                 ShowcaseBlocks::block('desiderio_privacynotice', [
                     'header' => 'Privacy notice (demo)',
-                    'intro' => 'This demo notice for the example webconsulting studio site shows the structure of a GDPR-style privacy page, built with desiderio_privacynotice. Replace every section with reviewed text before launch.',
+                    'intro' => 'This demo notice shows the structure of a GDPR-style privacy page, built with desiderio_privacynotice. Replace every section with reviewed text before launch.',
                     'last_updated' => '12 May 2026',
                     'sections' => [
                         ['title' => 'What we collect', 'content' => '<p>This demo site collects nothing. On a real site, list here the personal data you process: contact details from forms, technical data such as IP addresses, and any analytics identifiers.</p>'],
@@ -118,7 +120,7 @@ final class ShowcaseLegalPages
                     'header' => 'Accessibility statement (demo)',
                     'conformance_level' => 'aa',
                     'content' => '<p>This demo statement comes with the Desiderio demo site as a template. Replace it with your own audited statement before launch. Desiderio content elements are designed for WCAG 2.2 Level AA.</p><h3>What the markup gives you</h3><ul><li>Every interactive component works with the keyboard, with a visible focus state on buttons, links and form fields.</li><li>All 244 elements use semantic landmarks, native elements and a logical heading order.</li><li>Image fields have an input for alternative text. Decorative SVG icons are hidden from screen readers.</li><li>A template audit keeps inline styles and hard-coded colours out of every release.</li></ul><h3>What you still need to do</h3><p>Editor content, embedded media and uploaded documents still need a human review. This demo template does not replace a real conformance audit of your site.</p>',
-                    'contact_email' => 'accessibility@desiderio.example',
+                    'contact_email' => 'office@webconsulting.at',
                     'last_updated' => '12 May 2026',
                 ]),
                 ShowcaseBlocks::block('desiderio_contenthighlight', [

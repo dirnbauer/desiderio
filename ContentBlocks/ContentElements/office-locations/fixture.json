@@ -1,28 +1,21 @@
 {
     "_type": "grid",
     "header": "Visit the team behind Desiderio",
-    "subheadline": "The team behind the 244 elements works from three offices in Europe. Visit, call or send an email, and the people who built it will answer.",
+    "subheadline": "The team behind the 244 elements works from our headquarters in Mattersburg and our office in Vienna. Visit, call or send an email, and the people who built it will answer.",
     "location_items": [
         {
+            "city": "Mattersburg",
+            "address": "Johann Nepomuk Berger-Straße 7/2/14\n7210 Mattersburg, Austria",
+            "phone": "+43 2626 20156",
+            "email": "office@webconsulting.at",
+            "map_link": "https://maps.google.com/?q=Johann+Nepomuk+Berger-Stra%C3%9Fe+7,+7210+Mattersburg"
+        },
+        {
             "city": "Vienna",
-            "address": "Lindengasse 12\n1070 Vienna, Austria",
-            "phone": "+43 1 234 56 78",
-            "email": "vienna@example.com",
-            "map_link": "https://maps.google.com/?q=Lindengasse+12+Vienna"
-        },
-        {
-            "city": "Berlin",
-            "address": "Torstraße 140\n10119 Berlin, Germany",
-            "phone": "+49 30 1234 5678",
-            "email": "berlin@example.com",
-            "map_link": "https://maps.google.com/?q=Torstra%C3%9Fe+140+Berlin"
-        },
-        {
-            "city": "Zurich",
-            "address": "Bahnhofstrasse 21\n8001 Zurich, Switzerland",
-            "phone": "+41 44 123 45 67",
-            "email": "zurich@example.com",
-            "map_link": "https://maps.google.com/?q=Bahnhofstrasse+21+Zurich"
+            "address": "Ungargasse 64-66/3/404\n1030 Vienna, Austria",
+            "phone": "+43 2626 20156",
+            "email": "office@webconsulting.at",
+            "map_link": "https://maps.google.com/?q=Ungargasse+64-66,+1030+Wien"
         }
     ]
 }

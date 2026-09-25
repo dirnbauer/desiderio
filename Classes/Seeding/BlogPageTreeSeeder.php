@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Webconsulting\Desiderio\Seeding;
 
+use Doctrine\DBAL\ArrayParameterType;
 use Doctrine\DBAL\ParameterType;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use Webconsulting\Desiderio\Data\BlogDemoPostDefinitions;
@@ -226,7 +227,7 @@ final readonly class BlogPageTreeSeeder
             'slug' => $slug,
             'title' => 'TYPO3 integrators',
             'website' => 'https://webconsulting.at/',
-            'email' => 'team@webconsulting.at',
+            'email' => 'office@webconsulting.at',
             'location' => 'Austria',
             'twitter' => '',
             'linkedin' => '',
@@ -296,7 +297,7 @@ final readonly class BlogPageTreeSeeder
             'no_index' => 0,
             'no_follow' => 0,
             'author' => 'Webconsulting TYPO3 Team',
-            'author_email' => 'team@webconsulting.at',
+            'author_email' => 'office@webconsulting.at',
         ];
 
         $connection = $this->connectionPool->getConnectionForTable('pages');
@@ -456,7 +457,9 @@ final readonly class BlogPageTreeSeeder
             ->where(
                 $queryBuilder->expr()->eq('parentid', $queryBuilder->createNamedParameter($postUid, ParameterType::INTEGER)),
                 $queryBuilder->expr()->eq('parenttable', $queryBuilder->createNamedParameter('pages')),
-                $queryBuilder->expr()->eq('email', $queryBuilder->createNamedParameter('team@webconsulting.at')),
+                // Earlier seeds signed the demo comment with team@webconsulting.at;
+                // finding it by either address updates it instead of adding a second one.
+                $queryBuilder->expr()->in('email', $queryBuilder->createNamedParameter(['office@webconsulting.at', 'team@webconsulting.at'], ArrayParameterType::STRING)),
                 $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER))
             )
             ->setMaxResults(1)
@@ -468,7 +471,7 @@ final readonly class BlogPageTreeSeeder
             'tstamp' => $now,
             'name' => 'Webconsulting team',
             'url' => 'https://webconsulting.at/',
-            'email' => 'team@webconsulting.at',
+            'email' => 'office@webconsulting.at',
             'comment' => 'This is an example comment. Readers can comment on every post, and an editor approves each comment before it appears.',
             'parentid' => $postUid,
             'parenttable' => 'pages',

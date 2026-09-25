@@ -404,9 +404,9 @@ class StyleguideDemoValueGenerator
             str_contains($normalizedField, 'company') || str_contains($normalizedField, 'brand') => $person[2],
             str_contains($normalizedField, 'name') && str_contains($this->normalizeIdentifier($name), 'pricing') => ['Community', 'Pro', 'Agency'][$index % 3],
             str_contains($normalizedField, 'name') || str_contains($normalizedField, 'author') => $person[0],
-            str_contains($normalizedField, 'email') => 'hello@example.com',
-            str_contains($normalizedField, 'phone') || str_contains($normalizedField, 'tel') => '+43 1 555 010' . ($index + 1),
-            str_contains($normalizedField, 'address') || str_contains($normalizedField, 'location') => 'Lindengasse 12, 1070 Vienna',
+            str_contains($normalizedField, 'email') => 'office@webconsulting.at',
+            str_contains($normalizedField, 'phone') || str_contains($normalizedField, 'tel') => '+43 2626 20156',
+            str_contains($normalizedField, 'address') || str_contains($normalizedField, 'location') => 'Johann Nepomuk Berger-Straße 7/2/14, 7210 Mattersburg',
             str_contains($normalizedField, 'date') => min(28, $index + 8) . ' May 2026',
             str_contains($normalizedField, 'year') => '2026',
             str_contains($normalizedField, 'trend') => ['positive', 'stable', 'up'][$index % 3],
@@ -477,7 +477,7 @@ PHP;
 
     public function buildDefaultMapEmbedUrl(): string
     {
-        return 'https://www.openstreetmap.org/export/embed.html?bbox=16.3430%2C48.1940%2C16.3530%2C48.2040&layer=mapnik&marker=48.1990%2C16.3480';
+        return 'https://www.openstreetmap.org/export/embed.html?bbox=16.3995%2C47.7296%2C16.4095%2C47.7396&layer=mapnik&marker=47.7346%2C16.4045';
     }
 
     public function normalizeResolvedFixtureFieldValue(string $ctype, string $field, mixed $value): mixed

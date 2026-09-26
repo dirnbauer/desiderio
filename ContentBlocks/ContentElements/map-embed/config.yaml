@@ -1,14 +1,32 @@
 name: desiderio/map-embed
 typeName: desiderio_mapembed
 title: 'Map Embed'
-description: 'Embeds an interactive map from a Google Maps or OpenStreetMap embed URL in a responsive iframe with configurable pixel height, optionally introduced by a heading and a postal address block. Use it for: ''how to find us'' sections, office, store, or venue locations, event directions — any address in a source document that should appear as a map. Prefer ''Directions Routes'' for written travel instructions, ''Office Locations'' for several branches as cards.'
-group: conversion
+description: 'Embeds an interactive map from a Google Maps or OpenStreetMap embed URL, optionally introduced by an eyebrow, a heading and a postal address. Two layouts: Stacked puts the heading and address above a full-width map; Split puts them on a panel in the theme''s primary colour beside the map, with the coordinates read from the URL and a button that opens a larger map. Use it for: ''how to find us'' sections, office, store, or venue locations, event directions — any address in a source document that should appear as a map. Prefer ''Directions Routes'' for written travel instructions, ''Office Locations'' for several branches as cards.'
+group: navigation
 prefixFields: false
 basics:
   - Desiderio/Appearance
   - TYPO3/Links
   - TYPO3/Categories
 fields:
+  -
+    identifier: shadcn_layout
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:shadcn_layout'
+    items:
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.stacked'
+        value: stacked
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.split'
+        value: split
+    default: stacked
+  -
+    identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
   -
     identifier: header
     useExistingField: true
@@ -27,3 +45,12 @@ fields:
     type: Number
     label: 'Map Height (px)'
     default: 400
+  -
+    identifier: primary_button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_text'
+  -
+    identifier: primary_button_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_link'

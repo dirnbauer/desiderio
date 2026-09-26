@@ -16,6 +16,22 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
   there. Panels and coloured frames get no seam, their surface already
   separates them. The new site setting `desiderio.layout.sectionSeam`
   chooses `notch` (default), `line` (the hairline alone) or `none`.
+- Map Embed has a Split layout: the location on a panel in the theme's
+  primary colour beside the map, with an eyebrow, the company name, the
+  address, the coordinates and an "Open larger map" button. The
+  coordinates and the button's link come from the embed URL (OpenStreetMap
+  with or without a marker, or Google Maps), so the element needs no extra
+  input; an editor's own button link wins. The map takes the preset's hue
+  through a colour blend that keeps streets and labels readable. The new
+  `dv:mapLocation` view helper reads the location from a map URL.
+- Map Embed has an eyebrow in both layouts, and the Stacked layout keeps
+  the previous look.
+
+### Changed
+
+- Map Embed moved from the Conversion group to Navigation & Wayfinding,
+  next to the other elements that help visitors find their way. The
+  showcase copy counts 24 navigation and 24 conversion elements.
 
 ## [4.8.2] — 2026-09-26
 

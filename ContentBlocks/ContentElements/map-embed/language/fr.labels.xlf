@@ -9,14 +9,26 @@
     </unit>
     <unit id="description">
       <segment state="final">
-        <source>Embed an interactive map of your location with context.</source>
-        <target>Embed an interactive map of your location with context.</target>
+        <source>Embeds an interactive map from a Google Maps or OpenStreetMap embed URL, optionally introduced by an eyebrow, a heading and a postal address. Two layouts: Stacked puts the heading and address above a full-width map; Split puts them on a panel in the theme's primary colour beside the map, with the coordinates read from the URL and a button that opens a larger map. Use it for: 'how to find us' sections, office, store, or venue locations, event directions — any address in a source document that should appear as a map. Prefer 'Directions Routes' for written travel instructions, 'Office Locations' for several branches as cards.</source>
+        <target>Intègre une carte interactive à partir d'une URL d'intégration Google Maps ou OpenStreetMap, avec surtitre, titre et adresse postale facultatifs. Deux mises en page : Empilé place le titre et l'adresse au-dessus d'une carte pleine largeur ; Scindé les place sur un panneau de la couleur principale du thème à côté de la carte, avec les coordonnées lues dans l'URL et un bouton qui ouvre une carte plus grande. À utiliser pour les sections « Nous trouver », les adresses de bureaux, de magasins ou de lieux et les accès à un événement.</target>
       </segment>
     </unit>
     <unit id="iframe.title">
       <segment state="final">
         <source>Location map</source>
         <target>Carte de localisation</target>
+      </segment>
+    </unit>
+    <unit id="button.openMap">
+      <segment>
+        <source>Open larger map</source>
+        <target>Ouvrir une carte plus grande</target>
+      </segment>
+    </unit>
+    <unit id="coordinates">
+      <segment>
+        <source>Coordinates</source>
+        <target>Coordonnées</target>
       </segment>
     </unit>
   </file>

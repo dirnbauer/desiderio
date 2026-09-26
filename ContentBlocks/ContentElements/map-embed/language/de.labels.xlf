@@ -9,14 +9,26 @@
     </unit>
     <unit id="description">
       <segment state="final">
-        <source>Embeds an interactive map from a Google Maps or OpenStreetMap embed URL in a responsive iframe with configurable pixel height, optionally introduced by a heading and a postal address block. Use it for: 'how to find us' sections, office, store, or venue locations, event directions — any address in a source document that should appear as a map. Prefer 'Directions Routes' for written travel instructions, 'Office Locations' for several branches as cards.</source>
-        <target>Bettet eine interaktive Karte über eine Google-Maps- oder OpenStreetMap-Embed-URL in einem responsiven iframe mit einstellbarer Pixelhöhe ein, optional mit Überschrift und Adressblock darüber. Geeignet für: Abschnitte wie 'So finden Sie uns', Büro-, Filial- oder Veranstaltungsorte, Anfahrtsangaben — jede Adresse aus einem Quelldokument, die als Karte erscheinen soll. 'Directions Routes' eignet sich für textliche Wegbeschreibungen, 'Office Locations' für mehrere Niederlassungen als Karten.</target>
+        <source>Embeds an interactive map from a Google Maps or OpenStreetMap embed URL, optionally introduced by an eyebrow, a heading and a postal address. Two layouts: Stacked puts the heading and address above a full-width map; Split puts them on a panel in the theme's primary colour beside the map, with the coordinates read from the URL and a button that opens a larger map. Use it for: 'how to find us' sections, office, store, or venue locations, event directions — any address in a source document that should appear as a map. Prefer 'Directions Routes' for written travel instructions, 'Office Locations' for several branches as cards.</source>
+        <target>Bettet eine interaktive Karte aus einer Google-Maps- oder OpenStreetMap-Einbettungs-URL ein, optional mit Dachzeile, Überschrift und Postadresse. Zwei Layouts: Gestapelt setzt Überschrift und Adresse über eine Karte in voller Breite; Geteilt stellt sie auf einer Fläche in der Primärfarbe des Themes neben die Karte, mit den aus der URL gelesenen Koordinaten und einem Button, der eine größere Karte öffnet. Geeignet für: Anfahrtsbereiche, Standorte von Büros, Geschäften oder Veranstaltungsorten, Wegbeschreibungen zu Events. Für schriftliche Anfahrtswege eignet sich „Anfahrtswege“, für mehrere Standorte als Karten „Bürostandorte“.</target>
       </segment>
     </unit>
     <unit id="iframe.title">
       <segment state="final">
         <source>Location map</source>
         <target>Standortkarte</target>
+      </segment>
+    </unit>
+    <unit id="button.openMap">
+      <segment>
+        <source>Open larger map</source>
+        <target>Größere Karte öffnen</target>
+      </segment>
+    </unit>
+    <unit id="coordinates">
+      <segment>
+        <source>Coordinates</source>
+        <target>Koordinaten</target>
       </segment>
     </unit>
   </file>

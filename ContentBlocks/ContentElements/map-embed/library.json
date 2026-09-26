@@ -1,6 +1,10 @@
 {
-    "header": "Our studio in Berlin",
-    "embed_url": "https://www.openstreetmap.org/export/embed.html?bbox=13.3750%2C52.5225%2C13.4050%2C52.5375&layer=mapnik",
-    "address": "Example Studio GmbH\nMusterstraße 12\n10115 Berlin, Germany",
-    "height": 420
+    "shadcn_layout": "split",
+    "eyebrow": "Our location",
+    "header": "Example Studio",
+    "embed_url": "https://www.openstreetmap.org/export/embed.html?bbox=13.3750%2C52.5225%2C13.4050%2C52.5375&layer=mapnik&marker=52.53000%2C13.39000",
+    "address": "Musterstraße 12\n10115 Berlin, Germany",
+    "height": 440,
+    "primary_button_text": "Open larger map",
+    "primary_button_link": "https://www.openstreetmap.org/?mlat=52.53000&mlon=13.39000#map=16/52.53000/13.39000 _blank"
 }

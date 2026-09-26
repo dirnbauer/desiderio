@@ -7,5 +7,17 @@
         <target>位置地图</target>
       </segment>
     </unit>
+    <unit id="button.openMap">
+      <segment>
+        <source>Open larger map</source>
+        <target>打开大地图</target>
+      </segment>
+    </unit>
+    <unit id="coordinates">
+      <segment>
+        <source>Coordinates</source>
+        <target>坐标</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

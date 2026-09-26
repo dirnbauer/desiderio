@@ -148,14 +148,14 @@ final class StyleguideContentGroups
     {
         $intros = [
             'hero' => ['21 hero elements', 'Heroes for the first screen of a page', 'Split, video, countdown and stats layouts. Each hero takes its colours from the active theme preset.'],
-            'navigation' => ['23 navigation elements', 'Menus, breadcrumbs and pagination', 'Navigation bars, mega menus, breadcrumbs and pagination patterns. All of them follow the active theme and are accessible.'],
+            'navigation' => ['24 navigation elements', 'Menus, breadcrumbs and pagination', 'Navigation bars, mega menus, breadcrumbs and pagination patterns. All of them follow the active theme and are accessible.'],
             'content' => ['24 content elements', 'Layouts for articles and text pages', 'Text, media, quotes, tabs, timelines and callouts. Editors arrange them on their own, and every element has a backend preview.'],
             'features' => ['25 feature elements', 'Ways to explain what you offer', 'Grids, bento layouts, comparisons, tabs and timelines make a product easy to scan. They already match your theme preset.'],
             'pricing' => ['25 pricing elements', 'Pricing tables, toggles and calculators', 'Plan tables, monthly and yearly toggles, calculators and order summaries. Building these by hand often takes a full sprint.'],
             'social-proof' => ['25 trust elements', 'Testimonials, logos and case studies', 'Testimonial walls, logo clouds, case studies, awards and ratings. Each one follows the active theme preset.'],
             'team' => ['24 team elements', 'Introduce the people behind the work', 'Team grids, organisation charts, founder stories and advisor boards. They share one set of design tokens, so no layout work is needed.'],
             'data' => ['29 data elements', 'Charts that render on the server', 'KPI cards, charts, status boards and changelogs, with nine chart types. They render on the server, without React, and include accessible data tables.'],
-            'conversion' => ['25 conversion elements', 'Turn visits into leads without a developer', 'Calls to action, forms, lead magnets and pricing prompts. Every form is a real TYPO3 form with validation, spam protection and CRM sync.'],
+            'conversion' => ['24 conversion elements', 'Turn visits into leads without a developer', 'Calls to action, forms, lead magnets and pricing prompts. Every form is a real TYPO3 form with validation, spam protection and CRM sync.'],
             'footer' => ['23 footer elements', 'The parts every site needs', 'Footers, cookie banners, legal sections, breadcrumbs and utility bars. They follow your theme and are accessible from the start.'],
         ];
         if (!isset($intros[$groupId])) {
@@ -176,7 +176,7 @@ final class StyleguideContentGroups
     {
         $ctas = [
             'hero' => ['All 21 heroes are in the free package', 'Split, video, countdown and stats heroes, under GPL-2.0. Paid plans add support, not features.'],
-            'navigation' => ['All 23 navigation elements are free', 'Navigation bars, mega menus and breadcrumbs that follow your theme. Free under GPL-2.0.'],
+            'navigation' => ['All 24 navigation elements are free', 'Navigation bars, mega menus and breadcrumbs that follow your theme. Free under GPL-2.0.'],
             'content' => ['All 24 content elements are free', 'Text, media, quotes, tabs and timelines for your articles. Free under GPL-2.0.'],
             'features' => ['All 25 feature elements are free', 'Grids, bento layouts, comparisons and timelines to explain what you offer. Free under GPL-2.0.'],
             'pricing' => ['All 25 pricing elements are free', 'Plan tables, toggles, calculators and order summaries. Free under GPL-2.0.'],

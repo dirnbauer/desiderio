@@ -15,6 +15,12 @@
             <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.page"/>: {data.pid}</span>
             <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
         </div>
+        <f:if condition="{data.eyebrow}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow"/></span>
+                <span class="d-ce-preview__value">{data.eyebrow -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
+            </div>
+        </f:if>
         <f:if condition="{data.header}">
             <h3 class="d-ce-preview__title">{data.header -> f:format.stripTags() -> f:format.htmlspecialchars()}</h3>
         </f:if>
@@ -28,6 +34,16 @@
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Address</span>
                 <span class="d-ce-preview__value">{data.address -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
+            </div>
+        </f:if>
+        <div class="d-ce-preview__field">
+            <span class="d-ce-preview__label"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:shadcn_layout"/></span>
+            <span class="d-ce-preview__value"><f:if condition="{data.shadcn_layout} == 'split'"><f:then><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.split"/></f:then><f:else><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.stacked"/></f:else></f:if></span>
+        </div>
+        <f:if condition="{data.primary_button_text}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_text"/></span>
+                <span class="d-ce-preview__value">{data.primary_button_text -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.height}">

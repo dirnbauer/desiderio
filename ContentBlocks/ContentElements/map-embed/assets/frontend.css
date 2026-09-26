@@ -8,7 +8,6 @@
     color: var(--muted-foreground);
     font-style: normal;
     line-height: var(--d-leading-normal);
-    white-space: pre-line;
 }
 .map-embed__frame {
     overflow: hidden;
@@ -25,4 +24,149 @@
     height: 100%;
     border: 0;
     border-radius: inherit;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Split: the location on a panel in the primary colour, beside      */
+/*  the map                                                            */
+/* ------------------------------------------------------------------ */
+
+/* Only theme tokens: the panel is --primary with --primary-foreground text,
+   a pair every preset solves for contrast, so no text on it is lightened or
+   mixed. The button is the secondary variant, its own solved pair. */
+.map-embed__card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    overflow: hidden;
+    border-radius: calc(var(--radius, 0.625rem) * 1.5);
+    background: var(--card);
+    box-shadow:
+        0 0 0 1px color-mix(in oklch, var(--foreground) 9%, transparent),
+        var(--d-shadow-lg);
+}
+
+@media (min-width: 768px) {
+    .map-embed__card {
+        grid-template-columns: minmax(17rem, 1fr) minmax(0, 2.2fr);
+    }
+}
+
+.map-embed__panel {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--d-spacing-2xl, 3rem);
+    padding: var(--d-spacing-xl, 2rem);
+    background: var(--primary);
+    color: var(--primary-foreground);
+}
+
+@media (min-width: 768px) {
+    .map-embed__panel {
+        padding: var(--d-spacing-2xl, 3rem) var(--d-spacing-xl, 2rem);
+    }
+}
+
+/* Contour lines: rings around the lower corner, the way a topographic map
+   draws terrain, in the panel's own ink and fading out towards the text. */
+.map-embed__panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: repeating-radial-gradient(circle at 112% 108%, transparent 0 21px, color-mix(in oklch, var(--primary-foreground) 14%, transparent) 21px 22px);
+    -webkit-mask-image: radial-gradient(110% 85% at 100% 100%, black 5%, transparent 72%);
+    mask-image: radial-gradient(110% 85% at 100% 100%, black 5%, transparent 72%);
+    pointer-events: none;
+}
+
+.map-embed__place {
+    display: grid;
+    gap: var(--d-spacing-md, 1rem);
+}
+
+.map-embed .map-embed__panel p.map-embed__eyebrow {
+    margin: 0;
+    color: var(--primary-foreground);
+}
+
+.map-embed .map-embed__panel p.map-embed__eyebrow::before {
+    background: var(--primary-foreground);
+}
+
+.map-embed .map-embed__panel .map-embed__title {
+    margin: 0;
+    color: var(--primary-foreground);
+    font-size: var(--d-text-4xl, 2.25rem);
+    line-height: var(--d-leading-tight, 1.1);
+    letter-spacing: var(--d-tracking-display, -0.03em);
+    text-wrap: balance;
+}
+
+.map-embed .map-embed__panel .map-embed__address {
+    color: var(--primary-foreground);
+    font-size: var(--d-text-lg, 1.125rem);
+    line-height: var(--d-leading-relaxed, 1.65);
+}
+
+.map-embed__foot {
+    display: grid;
+    justify-items: start;
+    gap: var(--d-spacing-md, 1rem);
+}
+
+.map-embed .map-embed__panel .map-embed__coordinates {
+    margin: 0;
+    color: var(--primary-foreground);
+    font-family: var(--font-mono, var(--d-font-mono));
+    font-size: var(--d-text-sm, 0.875rem);
+    letter-spacing: var(--d-tracking-wide, 0.05em);
+    font-variant-numeric: tabular-nums;
+}
+
+.map-embed__open svg {
+    transition: translate 150ms ease;
+}
+
+.map-embed__open:hover svg,
+.map-embed__open:focus-visible svg {
+    translate: 3px 0;
+}
+
+.map-embed__map {
+    position: relative;
+    min-height: 20rem;
+}
+
+@media (min-width: 768px) {
+    .map-embed__map {
+        min-height: min(var(--map-embed-height, 26rem), 70vh);
+    }
+}
+
+.map-embed__map .map-embed__iframe {
+    position: absolute;
+    inset: 0;
+    border-radius: 0;
+}
+
+/* The map takes the preset's hue: a colour blend keeps the tiles' light and
+   dark (so streets and labels stay readable) and lays the primary's hue over
+   them. A neutral preset simply greys the map. Clicks pass through. */
+.map-embed__tint {
+    position: absolute;
+    inset: 0;
+    background: var(--primary);
+    mix-blend-mode: color;
+    opacity: 0.32;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .map-embed__open svg {
+        transition: none;
+    }
 }

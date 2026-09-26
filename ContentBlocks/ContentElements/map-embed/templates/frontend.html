@@ -1,32 +1,96 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
       xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
       xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      xmlns:dv="http://typo3.org/ns/Webconsulting/Desiderio/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
 <f:asset.css identifier="d-map-embed" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="map-embed">
-    <d:layout.container>
-        <f:if condition="{data.header} || {data.address}">
-            <header class="map-embed__intro">
-                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-                <f:if condition="{data.address}"><address class="map-embed__address">{data -> f:render.text(field: 'address')}</address></f:if>
-            </header>
-        </f:if>
-        <f:if condition="{data.embed_url}">
-            <f:variable name="mapEmbedHeight"><f:format.number decimals="0" thousandsSeparator="">{data.height -> f:or(alternative: 400)}</f:format.number></f:variable>
-            <f:variable name="mapEmbedFallbackTitle"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/map-embed/language/labels.xlf:iframe.title" default="Location map"/></f:variable>
-            <f:variable name="mapEmbedTitle">
-                <f:if condition="{data.header}">
-                    <f:then>{data -> f:render.text(field: 'header')}</f:then>
-                    <f:else>{data.address -> f:or(alternative: mapEmbedFallbackTitle)}</f:else>
+<f:variable name="mapEmbedHeight"><f:format.number decimals="0" thousandsSeparator="">{data.height -> f:or(alternative: 400)}</f:format.number></f:variable>
+<f:variable name="mapEmbedFallbackTitle"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/map-embed/language/labels.xlf:iframe.title" default="Location map"/></f:variable>
+<f:variable name="mapEmbedTitle">
+    <f:if condition="{data.header}">
+        <f:then>{data -> f:render.text(field: 'header')}</f:then>
+        <f:else>{data.address -> f:or(alternative: mapEmbedFallbackTitle)}</f:else>
+    </f:if>
+</f:variable>
+
+<f:if condition="{data.shadcn_layout} == 'split'">
+    <f:then>
+        <f:comment>
+            Split: the location on a panel in the theme's primary colour beside
+            the map. The coordinates and the "open larger map" link come from
+            the embed URL (dv:mapLocation), so the element needs no extra
+            fields; an editor's own button link wins over the derived one.
+        </f:comment>
+        <f:variable name="location" value="{dv:mapLocation(url: data.embed_url)}"/>
+        <f:variable name="mapLink">{f:if(condition: data.primary_button_link.url, then: '{f:uri.typolink(parameter: data.primary_button_link.url)}', else: location.openUrl)}</f:variable>
+        <f:variable name="mapLinkTarget">{f:if(condition: data.primary_button_link.url, then: data.primary_button_link.target, else: '_blank')}</f:variable>
+        <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="map-embed map-embed--split">
+            <d:layout.container>
+                <div class="map-embed__card" style="--map-embed-height: {mapEmbedHeight}px">
+                    <div class="map-embed__panel">
+                        <div class="map-embed__place">
+                            <f:if condition="{data.eyebrow}">
+                                <d:atom.typography tag="p" variant="small" class="map-embed__eyebrow">{data -> f:render.text(field: 'eyebrow')}</d:atom.typography>
+                            </f:if>
+                            <f:if condition="{data.header}">
+                                <d:atom.typography tag="h2" variant="h2" class="map-embed__title">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                            </f:if>
+                            <f:if condition="{data.address}">
+                                <address class="map-embed__address">{data -> f:render.text(field: 'address')}</address>
+                            </f:if>
+                        </div>
+                        <f:if condition="{location.label} || {mapLink}">
+                            <div class="map-embed__foot">
+                                <f:if condition="{location.label}">
+                                    <p class="map-embed__coordinates">
+                                        <span class="sr-only"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/map-embed/language/labels.xlf:coordinates" default="Coordinates"/>: </span>{location.label}
+                                    </p>
+                                </f:if>
+                                <f:if condition="{mapLink}">
+                                    <d:atom.button href="{mapLink}" target="{mapLinkTarget}" variant="secondary" size="lg" class="map-embed__open">
+                                        <f:if condition="{data.primary_button_text}">
+                                            <f:then>{data -> f:render.text(field: 'primary_button_text')}</f:then>
+                                            <f:else><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/map-embed/language/labels.xlf:button.openMap" default="Open larger map"/></f:else>
+                                        </f:if>
+                                        <d:atom.icon name="arrow-right" size="sm"/>
+                                        <f:if condition="{mapLinkTarget} == '_blank'">
+                                            <span class="sr-only"> <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:social.newTab" default="(opens in a new tab)"/></span>
+                                        </f:if>
+                                    </d:atom.button>
+                                </f:if>
+                            </div>
+                        </f:if>
+                    </div>
+                    <f:if condition="{data.embed_url}">
+                        <div class="map-embed__map">
+                            <iframe src="{data.embed_url}" class="map-embed__iframe" title="{mapEmbedTitle -> f:format.trim()}" allowfullscreen="allowfullscreen" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            <span class="map-embed__tint" aria-hidden="true"></span>
+                        </div>
+                    </f:if>
+                </div>
+            </d:layout.container>
+        </d:layout.section>
+    </f:then>
+    <f:else>
+        <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="map-embed">
+            <d:layout.container>
+                <f:if condition="{data.eyebrow} || {data.header} || {data.address}">
+                    <header class="map-embed__intro">
+                        <f:if condition="{data.eyebrow}"><d:atom.typography tag="p" variant="small" class="map-embed__eyebrow">{data -> f:render.text(field: 'eyebrow')}</d:atom.typography></f:if>
+                        <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+                        <f:if condition="{data.address}"><address class="map-embed__address">{data -> f:render.text(field: 'address')}</address></f:if>
+                    </header>
                 </f:if>
-            </f:variable>
-            <div class="map-embed__frame" style="height: {mapEmbedHeight}px">
-                <iframe src="{data.embed_url}" class="map-embed__iframe" title="{mapEmbedTitle -> f:format.trim()}" allowfullscreen="allowfullscreen" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-        </f:if>
-    </d:layout.container>
-</d:layout.section>
+                <f:if condition="{data.embed_url}">
+                    <div class="map-embed__frame" style="height: {mapEmbedHeight}px">
+                        <iframe src="{data.embed_url}" class="map-embed__iframe" title="{mapEmbedTitle -> f:format.trim()}" allowfullscreen="allowfullscreen" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </f:if>
+            </d:layout.container>
+        </d:layout.section>
+    </f:else>
+</f:if>
 
 </html>

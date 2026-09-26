@@ -27,7 +27,7 @@
             <f:if condition="{data.contact_email}">
                 <div class="a11y-statement__contact">
                     <d:atom.typography variant="small" class="a11y-statement__contact-label"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:a11y.reportBarrier" default="Report an accessibility barrier"/></d:atom.typography>
-                    <p><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:a11y.contactIntro" default="Email"/> <a href="mailto:{data.contact_email}">{data -> f:render.text(field: 'contact_email')}</a>. <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:a11y.contactResponse" default="We will respond within five working days."/></p>
+                    <p><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:a11y.contactIntro" default="Email"/> <a href="mailto:{data.contact_email}">{data -> f:render.text(field: 'contact_email')}</a>.</p>
                 </div>
             </f:if>
         </div>

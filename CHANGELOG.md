@@ -6,6 +6,68 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.10.0] — 2026-09-27
+
+### Added
+
+- Pricing Slider (the estimator) got a request form: the slider now steps
+  through the tiers with their volumes as tick labels, one result panel
+  shows the chosen tier, and "Request this estimate" opens a dialog with a
+  real TYPO3 form (new `DesiderioEstimate.form.yaml`, spam protection,
+  email to the site team). The form's read-only first field carries the
+  selection. After a submit the dialog opens again to show errors or the
+  confirmation. Form and dialog are translated into English, German,
+  Chinese and Hungarian, and the dialog wraps long labels.
+- Section seams have a `dots` variant: no line, three small dots in the
+  chart colours. `notch` stays the default.
+- Trust Badges can show an icon in a round seal instead of an image (new
+  `icon_name` per badge). The icon wins when both are set.
+- Nine icons in the shared registry: layout-grid, layers, component,
+  list-checks, scale, accessibility, code, badge-check and git-branch.
+
+### Changed
+
+- The TYPO3 v14 strategy showcase page is rewritten: twelve elements
+  instead of 37, each answering one question (summary, the plan's three
+  layers, status, roadmap, readiness check, first steps, FAQ), with six
+  new editorial images instead of the 3D robot renders.
+- People demos (team, advisors, testimonials, leaderboard) use one cast of
+  40 fictional people with generated studio portraits in one style, faces
+  centred for round crops; names match the faces, and the advisor grid has
+  six people.
+- Client List shows each client as a card (logo, name, sector) in a row
+  of equal columns instead of full-width rows with an empty right side.
+  Logos rest in greyscale and show their colours on hover and focus.
+- Press Mentions: the logo is smaller and rests in greyscale, the quote is
+  body text in full ink, and the name and date are small and muted.
+- Team Member: three text sizes instead of six; the bio is body size; email
+  and phone are outlined actions with icons, their labels kept for screen
+  readers.
+- Team With Bio: the profile link is a quiet outline button.
+- Team Carousel fits whole cards per view (most of one on a phone with a
+  peek, two on a tablet, four on a desktop), so a snapped track never ends
+  on a card cut through its name. Tab strips and step lists snap too.
+- Table cells have more vertical room (`[data-slot=table-cell]` and
+  `table-head`), in every table built on the shared cell.
+- The recommended plan's ring is drawn half inside the card, so every plan
+  card has the same outer width.
+- Logo Carousel logos are lighter than the heading above them.
+- Social Proof Counter demo uses fitting icons for elements, groups,
+  components and audits.
+
+### Fixed
+
+- Eyebrows sit on the heading's axis again. A `<p>` eyebrow inherited the
+  70ch reading measure of intro paragraphs, so in a centred intro it was a
+  short box at the start edge; pill eyebrows (the case study card) lost
+  their centring because the base layer forced `display: block`.
+- No seam on the edge of a section that paints its own surface: a primary
+  or dark call to action, a muted highlight, announcement and header
+  banners, the utility bar, a hero on a photo.
+- Media that opens a card flush with its top edge also when it is wrapped
+  in a `<figure>` or `<picture>` (the team card photo had an empty strip
+  above it), and the photo credit lines up with the card text.
+
 ## [4.9.0] — 2026-09-26
 
 ### Added

@@ -146,7 +146,7 @@ final class ShowcaseAudiencePages
                     'author_company' => 'TYPO3 agency',
                     'rating' => 5,
                     'header' => '',
-                    'author_image' => ShowcaseBlocks::portrait('portrait-hannah-vogel.jpg', 'Hannah Vogel'),
+                    'author_image' => ShowcaseBlocks::person('hannah-vogel-57005ef4.jpg', 'Hannah Vogel', 'A woman in her fifties with short silver-grey hair, a black blazer and a grey T-shirt.'),
                 ]),
                 ShowcaseBlocks::block('desiderio_ctabanner', [
                     'header' => 'Use Desiderio in your next pitch',
@@ -223,7 +223,7 @@ final class ShowcaseAudiencePages
                     'author_company' => 'in-house brand team',
                     'rating' => 5,
                     'header' => '',
-                    'author_image' => ShowcaseBlocks::portrait('advisor-jonas-klein.jpg', 'Jonas Klein'),
+                    'author_image' => ShowcaseBlocks::person('jonas-klein-59ee66a4.jpg', 'Jonas Klein', 'A young man with short dark-brown hair and a dark shirt, looking slightly to one side.', 'Photo: Unsplash.'),
                 ]),
                 ShowcaseBlocks::block('desiderio_ctabanner', [
                     'header' => 'Start with Pro and managed hosting',

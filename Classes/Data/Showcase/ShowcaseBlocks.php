@@ -65,6 +65,24 @@ final class ShowcaseBlocks
     }
 
     /**
+     * A portrait from the shared cast of fictional Desiderio people in
+     * Resources/Public/Styleguide/People/, so a name keeps the same face on
+     * every page.
+     *
+     * @return ShowcaseMedia
+     */
+    public static function person(string $filename, string $name, string $alternative, string $description = 'Illustrative portrait, generated.'): array
+    {
+        return [
+            'file' => 'Resources/Public/Styleguide/People/' . $filename,
+            'title' => $name . ' portrait',
+            'alternative' => $alternative,
+            'description' => $description,
+            'source' => '',
+        ];
+    }
+
+    /**
      * @return ShowcaseMedia
      */
     public static function portrait(string $filename, string $name): array

@@ -225,8 +225,8 @@ final class PowermailDemoFormDefinitions
                         ],
                     ],
                     [
-                        'titleEn' => 'Budget and timing',
-                        'titleDe' => 'Budget & Zeitplan',
+                        'titleEn' => 'Budget',
+                        'titleDe' => 'Budget',
                         'fields' => [
                             self::field('radio', 'budget', 'Budget range', 'Budgetrahmen', ['mandatory' => true, 'options' => [['Under €10,000', 'Unter 10.000 Euro', 'small'], ['€10,000 to €25,000', '10.000 bis 25.000 Euro', 'medium'], ['€25,000 to €50,000', '25.000 bis 50.000 Euro', 'large'], ['Over €50,000', 'Über 50.000 Euro', 'enterprise']]]),
                             self::field('select', 'start', 'Preferred start', 'Gewünschter Start', ['mandatory' => true, 'options' => [['As soon as possible', 'So bald wie möglich', 'asap'], ['This quarter', 'Dieses Quartal', 'quarter'], ['This year', 'Dieses Jahr', 'year'], ['Flexible', 'Flexibel', 'flexible']]]),

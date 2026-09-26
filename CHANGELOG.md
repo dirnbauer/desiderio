@@ -6,6 +6,8 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.10.1] — 2026-09-27
+
 ### Fixed
 
 - The strategy page's four starting steps are a numbered timeline: as

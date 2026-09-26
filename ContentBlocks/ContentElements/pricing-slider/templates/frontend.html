@@ -21,22 +21,59 @@
             </header>
         </f:if>
 
+        <f:variable name="unitLabel"><f:if condition="{data.unit_label}"><f:then>{data -> f:render.text(field: 'unit_label')}</f:then><f:else><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:calc.requests" default="requests"/></f:else></f:if></f:variable>
+        <f:variable name="tierCount" value="{data.tiers -> f:count()}"/>
+        <f:comment>
+            One stepped slider over the tiers, their volumes as tick labels, one
+            result panel for the chosen tier and a real form in a dialog that
+            carries the selection. Without JavaScript every tier stays visible
+            as a card and the dialog button is hidden.
+        </f:comment>
         <div class="pricing-slider__body" data-d-pricing-slider>
             <div class="pricing-slider__control">
-                <input type="range" class="pricing-slider__range" min="0" max="100" step="1" value="0" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:aria.pricingTier', default: 'Select pricing tier')}" data-d-pricing-slider-range/>
+                <label class="pricing-slider__label" for="pricing-slider-range-{data.uid}">{unitLabel -> f:format.trim()}</label>
+                <input id="pricing-slider-range-{data.uid}" type="range" class="pricing-slider__range" min="0" max="{tierCount - 1}" step="1" value="0" data-d-pricing-slider-range/>
+                <div class="pricing-slider__ticks" aria-hidden="true">
+                    <f:for each="{data.tiers}" as="tier" iteration="iter">
+                        <button type="button" tabindex="-1" class="pricing-slider__tick {f:if(condition: iter.isFirst, then: 'pricing-slider__tick--active')}" data-d-pricing-slider-tick="{iter.index}">{tier -> f:render.text(field: 'volume')}</button>
+                    </f:for>
+                </div>
             </div>
 
-            <div class="pricing-slider__tiers">
-                <f:for each="{data.tiers}" as="tier" iteration="iter">
-                    <div class="pricing-slider__tier {f:if(condition: iter.isFirst, then: 'pricing-slider__tier--active')}" data-d-pricing-slider-tier aria-current="{f:if(condition: iter.isFirst, then: 'true', else: 'false')}">
-                        <span class="pricing-slider__volume">{tier -> f:render.text(field: 'volume')} <f:if condition="{data.unit_label}"><f:then>{data -> f:render.text(field: 'unit_label')}</f:then><f:else><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:calc.requests" default="requests"/></f:else></f:if></span>
-                        <span class="pricing-slider__price">{tier -> f:render.text(field: 'price')}</span>
-                        <f:if condition="{tier.included_features}">
-                            <span class="pricing-slider__features">{tier -> f:render.text(field: 'included_features')}</span>
-                        </f:if>
-                    </div>
-                </f:for>
+            <div class="pricing-slider__result">
+                <div class="pricing-slider__tiers" aria-live="polite">
+                    <f:for each="{data.tiers}" as="tier" iteration="iter">
+                        <div class="pricing-slider__tier {f:if(condition: iter.isFirst, then: 'pricing-slider__tier--active')}" data-d-pricing-slider-tier aria-current="{f:if(condition: iter.isFirst, then: 'true', else: 'false')}">
+                            <p class="pricing-slider__amount">
+                                <span class="pricing-slider__volume">{tier -> f:render.text(field: 'volume')}</span>
+                                <span class="pricing-slider__unit">{unitLabel -> f:format.trim()}</span>
+                            </p>
+                            <p class="pricing-slider__price">{tier -> f:render.text(field: 'price')}</p>
+                            <f:if condition="{tier.included_features}">
+                                <p class="pricing-slider__features">{tier -> f:render.text(field: 'included_features')}</p>
+                            </f:if>
+                        </div>
+                    </f:for>
+                </div>
+                <d:atom.button type="button" class="pricing-slider__request" attributes="{data-d-pricing-slider-open: '', aria-haspopup: 'dialog'}">
+                    <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:pricingSlider.request" default="Request this estimate"/>
+                    <d:atom.icon name="arrow-right" size="sm"/>
+                </d:atom.button>
             </div>
+
+            <dialog class="pricing-slider__dialog" aria-labelledby="pricing-slider-dialog-{data.uid}" data-d-pricing-slider-dialog>
+                <div class="pricing-slider__dialog-head">
+                    <div class="pricing-slider__dialog-heading">
+                        <d:atom.typography tag="h3" variant="h4" class="pricing-slider__dialog-title" attributes="{id: 'pricing-slider-dialog-{data.uid}'}"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:pricingSlider.dialogTitle" default="Request your estimate"/></d:atom.typography>
+                        <p class="pricing-slider__dialog-intro"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:pricingSlider.dialogIntro" default="We check your selection and reply by email."/></p>
+                    </div>
+                    <button type="button" class="pricing-slider__dialog-close" data-d-pricing-slider-close>
+                        <d:atom.icon name="x" size="sm"/>
+                        <span class="sr-only"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:pricingSlider.close" default="Close"/></span>
+                    </button>
+                </div>
+                <d:molecule.formRenderer persistenceIdentifier="EXT:desiderio/Resources/Private/Forms/DesiderioEstimate.form.yaml" class="pricing-slider__form"/>
+            </dialog>
         </div>
     </d:layout.container>
 </d:layout.section>

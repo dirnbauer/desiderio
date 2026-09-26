@@ -72,5 +72,15 @@
     <unit id="desiderio-newsletter.finisher.EmailToReceiver.title"><segment><source>Newsletter signup</source></segment></unit>
     <unit id="desiderio-newsletter.finisher.Confirmation.message"><segment><source>Thank you. Your signup has been received.</source></segment></unit>
     <unit id="desiderio-newsletter.element.email.properties.label"><segment><source>Email</source></segment></unit>
+    <unit id="desiderio-estimate.element.desiderio-estimate.renderingOptions.submitButtonLabel"><segment><source>Send request</source></segment></unit>
+    <unit id="desiderio-estimate.finisher.EmailToReceiver.subject"><segment><source>Estimate request: {estimate}</source></segment></unit>
+    <unit id="desiderio-estimate.finisher.EmailToReceiver.title"><segment><source>Estimate request</source></segment></unit>
+    <unit id="desiderio-estimate.finisher.Confirmation.message"><segment><source>Thank you. Your estimate request has been sent.</source></segment></unit>
+    <unit id="desiderio-estimate.element.estimate.properties.label"><segment><source>Your estimate</source></segment></unit>
+    <unit id="desiderio-estimate.element.name.properties.label"><segment><source>Name</source></segment></unit>
+    <unit id="desiderio-estimate.element.email.properties.label"><segment><source>Email</source></segment></unit>
+    <unit id="desiderio-estimate.element.company.properties.label"><segment><source>Company (optional)</source></segment></unit>
+    <unit id="desiderio-estimate.element.message.properties.label"><segment><source>What should the elements do? (optional)</source></segment></unit>
+    <unit id="desiderio-estimate.element.friendlycaptcha.properties.label"><segment><source>Spam protection</source></segment></unit>
   </file>
 </xliff>

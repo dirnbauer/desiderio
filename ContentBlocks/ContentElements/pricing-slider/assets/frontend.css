@@ -2,19 +2,207 @@
 .pricing-slider__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: var(--d-tracking-wide); color: var(--d-link, var(--primary)); font-weight: var(--d-weight-semibold); }
 .pricing-slider__headline { margin-block-start: var(--d-spacing-xs); }
 .pricing-slider__description { color: var(--muted-foreground); max-width: 40rem; margin-inline: auto; }
-.pricing-slider__body { max-width: 40rem; margin-inline: auto; }
-.pricing-slider__control { padding: var(--d-spacing-lg) 0; }
-.pricing-slider__range { width: 100%; accent-color: var(--primary); border-radius: 9999px; }
-.pricing-slider__range:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring); }
-.pricing-slider__tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: var(--d-spacing-md); }
-.pricing-slider__tier { text-align: center; padding: var(--d-spacing-md); border: 1px solid var(--border); border-radius: var(--radius); display: flex; flex-direction: column; gap: var(--d-spacing-1); }
-.pricing-slider__tier--active { border-color: var(--primary); background: color-mix(in oklch, var(--primary) 3%, transparent); }
-.pricing-slider__volume { font-size: var(--d-text-sm); font-weight: var(--d-weight-semibold); }
-.pricing-slider__price { font-size: var(--d-text-2xl); font-weight: var(--d-weight-display); color: var(--primary); }
-.pricing-slider__features { font-size: var(--d-text-xs); color: var(--muted-foreground); }
-/* The active tier's tint costs grey 12px text its margin on a tinted frame
-   (4.33:1); the chosen tier's features take the full ink. */
-.pricing-slider__tier--active .pricing-slider__features { color: var(--foreground); }
+.pricing-slider__body {
+    max-width: 48rem;
+    margin-inline: auto;
+    padding: var(--d-spacing-xl);
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) * 1.5);
+    background: var(--card);
+}
+
+/* Slider: one step per tier, the tier volumes as tick labels under it. */
+.pricing-slider__control {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}
+.pricing-slider__label {
+    font-size: var(--d-text-sm);
+    font-weight: var(--d-weight-medium);
+    color: var(--muted-foreground);
+}
+.pricing-slider__range {
+    width: 100%;
+    accent-color: var(--primary);
+    cursor: pointer;
+}
+.pricing-slider__range:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 4px;
+    border-radius: 999px;
+}
+.pricing-slider__ticks {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--d-spacing-xs);
+}
+.pricing-slider__tick {
+    min-width: 2.5rem;
+    padding: var(--d-spacing-2xs) var(--d-spacing-xs);
+    border: 0;
+    border-radius: var(--d-radius-sm, var(--radius));
+    background: none;
+    color: var(--muted-foreground);
+    font: inherit;
+    font-size: var(--d-text-sm);
+    font-variant-numeric: tabular-nums;
+    cursor: pointer;
+}
+.pricing-slider__tick:hover {
+    color: var(--foreground);
+}
+.pricing-slider__tick--active {
+    color: var(--foreground);
+    font-weight: var(--d-weight-semibold);
+}
+
+/* Result: the chosen tier and the request action. */
+.pricing-slider__result {
+    display: grid;
+    gap: var(--d-spacing-lg);
+    margin-block-start: var(--d-spacing-lg);
+    padding-block-start: var(--d-spacing-lg);
+    border-block-start: 1px solid var(--border);
+}
+.pricing-slider__tiers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+    gap: var(--d-spacing-md);
+}
+.pricing-slider__tier {
+    display: grid;
+    gap: var(--d-spacing-2xs);
+    align-content: start;
+}
+.pricing-slider__tier p {
+    margin: 0;
+}
+.pricing-slider__amount {
+    display: grid;
+}
+.pricing-slider__volume {
+    font-size: var(--d-text-3xl, 1.875rem);
+    font-weight: var(--d-weight-display, var(--d-weight-bold));
+    line-height: var(--d-leading-tight, 1.1);
+    font-variant-numeric: tabular-nums;
+}
+.pricing-slider__unit {
+    font-size: var(--d-text-sm);
+    color: var(--muted-foreground);
+}
+.pricing-slider__price {
+    font-size: var(--d-text-2xl, 1.5rem);
+    font-weight: var(--d-weight-semibold);
+    color: var(--d-link, var(--primary));
+    font-variant-numeric: tabular-nums;
+}
+.pricing-slider__features {
+    font-size: var(--d-text-base, 1rem);
+    color: var(--muted-foreground);
+    line-height: var(--d-leading-relaxed);
+}
+.pricing-slider__request {
+    justify-self: start;
+    max-width: 100%;
+    white-space: normal;
+    text-align: start;
+}
+
+/* With JavaScript: only the chosen tier, as one result beside the action. */
+.pricing-slider__body[data-enhanced] .pricing-slider__tiers {
+    grid-template-columns: minmax(0, 1fr);
+}
+.pricing-slider__body[data-enhanced] .pricing-slider__tier:not(.pricing-slider__tier--active) {
+    display: none;
+}
+.pricing-slider__body[data-enhanced] .pricing-slider__tier {
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: var(--d-spacing-xl);
+    align-items: baseline;
+}
+.pricing-slider__body[data-enhanced] .pricing-slider__amount {
+    grid-row: span 2;
+}
+@media (max-width: 639px) {
+    .pricing-slider__body {
+        padding: var(--d-spacing-lg);
+    }
+    .pricing-slider__body[data-enhanced] .pricing-slider__tier {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+.pricing-slider__body:not([data-enhanced]) .pricing-slider__request,
+.pricing-slider__body:not([data-enhanced]) .pricing-slider__ticks {
+    display: none;
+}
+
+/* Dialog: sized for the longest translation (German, Hungarian), labels
+   wrap instead of overflowing, and it never exceeds the viewport. */
+.pricing-slider__dialog {
+    width: min(34rem, 100% - 2rem);
+    max-height: calc(100dvh - 2rem);
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) * 1.5);
+    background: var(--background);
+    color: var(--foreground);
+    box-shadow: var(--d-shadow-lg);
+    overflow: auto;
+}
+.pricing-slider__dialog::backdrop {
+    background: color-mix(in oklch, var(--foreground) 45%, transparent);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+}
+.pricing-slider__dialog-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--d-spacing-md);
+    padding: var(--d-spacing-lg) var(--d-spacing-lg) 0;
+}
+.pricing-slider__dialog-heading {
+    display: grid;
+    gap: var(--d-spacing-xs);
+    min-width: 0;
+}
+.pricing-slider__dialog-title {
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+.pricing-slider__dialog-intro {
+    margin: 0;
+    font-size: var(--d-text-sm);
+    color: var(--muted-foreground);
+}
+.pricing-slider__dialog-close {
+    display: inline-grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 0;
+    border-radius: var(--radius);
+    background: none;
+    color: var(--muted-foreground);
+    cursor: pointer;
+}
+.pricing-slider__dialog-close:hover {
+    background: var(--muted);
+    color: var(--foreground);
+}
+.pricing-slider__dialog-close:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+.pricing-slider__form {
+    padding: var(--d-spacing-md) var(--d-spacing-lg) var(--d-spacing-lg);
+}
+.pricing-slider__form input[readonly] {
+    background: var(--muted);
+    color: var(--foreground);
+    font-weight: var(--d-weight-medium);
+}
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */
 .pricing-slider__intro {

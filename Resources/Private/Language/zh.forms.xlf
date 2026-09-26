@@ -385,5 +385,15 @@
         <target>电子邮件</target>
       </segment>
     </unit>
+    <unit id="desiderio-estimate.element.desiderio-estimate.renderingOptions.submitButtonLabel"><segment state="final"><source>Send request</source><target>发送请求</target></segment></unit>
+    <unit id="desiderio-estimate.finisher.EmailToReceiver.subject"><segment state="final"><source>Estimate request: {estimate}</source><target>报价请求：{estimate}</target></segment></unit>
+    <unit id="desiderio-estimate.finisher.EmailToReceiver.title"><segment state="final"><source>Estimate request</source><target>报价请求</target></segment></unit>
+    <unit id="desiderio-estimate.finisher.Confirmation.message"><segment state="final"><source>Thank you. Your estimate request has been sent.</source><target>谢谢。您的报价请求已发送。</target></segment></unit>
+    <unit id="desiderio-estimate.element.estimate.properties.label"><segment state="final"><source>Your estimate</source><target>您的估算</target></segment></unit>
+    <unit id="desiderio-estimate.element.name.properties.label"><segment state="final"><source>Name</source><target>姓名</target></segment></unit>
+    <unit id="desiderio-estimate.element.email.properties.label"><segment state="final"><source>Email</source><target>电子邮箱</target></segment></unit>
+    <unit id="desiderio-estimate.element.company.properties.label"><segment state="final"><source>Company (optional)</source><target>公司（可选）</target></segment></unit>
+    <unit id="desiderio-estimate.element.message.properties.label"><segment state="final"><source>What should the elements do? (optional)</source><target>这些元素需要实现什么？（可选）</target></segment></unit>
+    <unit id="desiderio-estimate.element.friendlycaptcha.properties.label"><segment state="final"><source>Spam protection</source><target>垃圾信息防护</target></segment></unit>
   </file>
 </xliff>

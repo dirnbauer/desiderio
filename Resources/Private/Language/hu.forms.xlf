@@ -385,5 +385,15 @@
         <target>E-mail</target>
       </segment>
     </unit>
+    <unit id="desiderio-estimate.element.desiderio-estimate.renderingOptions.submitButtonLabel"><segment state="final"><source>Send request</source><target>Kérés elküldése</target></segment></unit>
+    <unit id="desiderio-estimate.finisher.EmailToReceiver.subject"><segment state="final"><source>Estimate request: {estimate}</source><target>Árajánlatkérés: {estimate}</target></segment></unit>
+    <unit id="desiderio-estimate.finisher.EmailToReceiver.title"><segment state="final"><source>Estimate request</source><target>Árajánlatkérés</target></segment></unit>
+    <unit id="desiderio-estimate.finisher.Confirmation.message"><segment state="final"><source>Thank you. Your estimate request has been sent.</source><target>Köszönjük. Az árajánlatkérését elküldtük.</target></segment></unit>
+    <unit id="desiderio-estimate.element.estimate.properties.label"><segment state="final"><source>Your estimate</source><target>Az Ön becslése</target></segment></unit>
+    <unit id="desiderio-estimate.element.name.properties.label"><segment state="final"><source>Name</source><target>Név</target></segment></unit>
+    <unit id="desiderio-estimate.element.email.properties.label"><segment state="final"><source>Email</source><target>E-mail</target></segment></unit>
+    <unit id="desiderio-estimate.element.company.properties.label"><segment state="final"><source>Company (optional)</source><target>Cég (nem kötelező)</target></segment></unit>
+    <unit id="desiderio-estimate.element.message.properties.label"><segment state="final"><source>What should the elements do? (optional)</source><target>Mit kell tudniuk az elemeknek? (nem kötelező)</target></segment></unit>
+    <unit id="desiderio-estimate.element.friendlycaptcha.properties.label"><segment state="final"><source>Spam protection</source><target>Spamvédelem</target></segment></unit>
   </file>
 </xliff>

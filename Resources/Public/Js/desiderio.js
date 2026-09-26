@@ -602,37 +602,94 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('[data-d-pricing-slider]').forEach(root => {
     const range = root.querySelector('[data-d-pricing-slider-range]');
     const tiers = Array.from(root.querySelectorAll('[data-d-pricing-slider-tier]'));
+    const ticks = Array.from(root.querySelectorAll('[data-d-pricing-slider-tick]'));
+    const dialog = root.querySelector('[data-d-pricing-slider-dialog]');
+    const openButton = root.querySelector('[data-d-pricing-slider-open]');
 
     if (!range || tiers.length === 0) return;
 
-    const min = Number(range.min || 0);
-    const max = Number(range.max || tiers.length - 1);
-    const scale = max - min || 1;
+    // One slider step per tier: the stored template may still say 0-100.
+    range.min = '0';
+    range.max = String(tiers.length - 1);
+    range.step = '1';
+    root.setAttribute('data-enhanced', '');
 
-    const getTierText = tier => {
-      const volume = tier.querySelector('.pricing-slider__volume')?.textContent?.trim();
-      const price = tier.querySelector('.pricing-slider__price')?.textContent?.trim();
-      return [volume, price].filter(Boolean).join(', ');
+    const text = (tier, selector) => tier.querySelector(selector)?.textContent?.replace(/\s+/g, ' ').trim() || '';
+    const summary = tier => [
+      [text(tier, '.pricing-slider__volume'), text(tier, '.pricing-slider__unit')].filter(Boolean).join(' '),
+      text(tier, '.pricing-slider__price'),
+    ].filter(Boolean).join(', ');
+
+    const activeIndex = () => {
+      const value = Math.round(Number(range.value));
+      return Number.isFinite(value) ? Math.min(Math.max(value, 0), tiers.length - 1) : 0;
     };
 
     const activate = () => {
-      const rawValue = Number(range.value);
-      const value = Number.isFinite(rawValue) ? rawValue : min;
-      const position = Math.min(Math.max((value - min) / scale, 0), 1);
-      const activeIndex = Math.round(position * (tiers.length - 1));
-
-      tiers.forEach((tier, index) => {
-        const active = index === activeIndex;
-        tier.classList.toggle('pricing-slider__tier--active', active);
-        tier.setAttribute('aria-current', String(active));
+      const index = activeIndex();
+      tiers.forEach((tier, i) => {
+        tier.classList.toggle('pricing-slider__tier--active', i === index);
+        tier.setAttribute('aria-current', String(i === index));
       });
-
-      range.setAttribute('aria-valuetext', getTierText(tiers[activeIndex]));
+      ticks.forEach((tick, i) => tick.classList.toggle('pricing-slider__tick--active', i === index));
+      range.setAttribute('aria-valuetext', summary(tiers[index]));
     };
 
-    activate();
+    ticks.forEach(tick => tick.addEventListener('click', () => {
+      range.value = tick.dataset.dPricingSliderTick || '0';
+      activate();
+      range.focus();
+    }));
     range.addEventListener('input', activate);
     range.addEventListener('change', activate);
+    activate();
+
+    if (!dialog || !openButton || typeof dialog.showModal !== 'function') {
+      openButton?.setAttribute('hidden', '');
+      return;
+    }
+
+    // The form's read-only "Your estimate" field carries the selection.
+    const estimateField = () => dialog.querySelector('[data-d-pricing-slider-estimate]');
+    const open = () => {
+      const field = estimateField();
+      if (field) field.value = summary(tiers[activeIndex()]);
+      dialog.showModal();
+      dialog.querySelector('input:not([readonly]):not([type="hidden"]), textarea, select')?.focus();
+    };
+
+    openButton.addEventListener('click', open);
+    root.querySelector('[data-d-pricing-slider-close]')?.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', event => {
+      if (event.target === dialog) dialog.close();
+    });
+    dialog.addEventListener('close', () => openButton.focus());
+
+    // After a submit the page comes back with the form's errors or its
+    // confirmation inside the closed dialog: open it again so they are seen,
+    // and restore the slider to the submitted selection.
+    const submitted = estimateField()?.value;
+    if (submitted) {
+      const match = tiers.findIndex(tier => summary(tier) === submitted);
+      if (match >= 0) {
+        range.value = String(match);
+        activate();
+      }
+    }
+    // A submit is remembered for this estimator (by its range id) for the
+    // one page load that follows; storage may be unavailable, then only
+    // validation errors reopen the dialog.
+    const flag = `d-pricing-slider:${range.id}`;
+    let returning = false;
+    try {
+      returning = sessionStorage.getItem(flag) === '1';
+      sessionStorage.removeItem(flag);
+    } catch (error) { /* private mode or blocked storage */ }
+    dialog.querySelector('form')?.addEventListener('submit', () => {
+      try { sessionStorage.setItem(flag, '1'); } catch (error) { /* ignore */ }
+    });
+    const hasErrors = dialog.querySelector('.error, .has-error, [aria-invalid="true"]');
+    if (returning || hasErrors) dialog.showModal();
   });
 
   /* ------------------------------------------------------------------ */

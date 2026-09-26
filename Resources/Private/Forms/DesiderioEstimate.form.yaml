@@ -1,0 +1,89 @@
+identifier: desiderio-estimate
+label: 'Desiderio estimate request'
+type: Form
+renderingOptions:
+  translation:
+    translationFiles:
+      20: 'EXT:desiderio/Resources/Private/Language/forms.xlf'
+  submitButtonLabel: 'Send request'
+finishers:
+  -
+    identifier: EmailToReceiver
+    options:
+      subject: 'Estimate request: {estimate}'
+      recipients:
+        hello@example.com: 'Website team'
+      senderAddress: no-reply@example.com
+      senderName: 'Website forms'
+      replyToRecipients:
+        '{email}': '{name}'
+      addHtmlPart: true
+      attachUploads: false
+      title: 'Estimate request'
+  -
+    identifier: BrevoContact
+    options:
+      emailField: email
+      contactAttributes:
+        FIRSTNAME: name
+  -
+    identifier: Confirmation
+    options:
+      message: 'Thank you. Your estimate request has been sent.'
+renderables:
+  -
+    identifier: page-1
+    label: ''
+    type: Page
+    renderables:
+      -
+        identifier: estimate
+        label: 'Your estimate'
+        type: Text
+        properties:
+          fluidAdditionalAttributes:
+            readonly: readonly
+            data-d-pricing-slider-estimate: ''
+        validators:
+          - identifier: NotEmpty
+      -
+        identifier: name
+        label: 'Name'
+        type: Text
+        properties:
+          fluidAdditionalAttributes:
+            autocomplete: name
+            required: required
+        validators:
+          - identifier: NotEmpty
+      -
+        identifier: email
+        label: 'Email'
+        type: Email
+        properties:
+          fluidAdditionalAttributes:
+            autocomplete: email
+            required: required
+        validators:
+          - identifier: NotEmpty
+          - identifier: EmailAddress
+      -
+        identifier: company
+        label: 'Company (optional)'
+        type: Text
+        properties:
+          fluidAdditionalAttributes:
+            autocomplete: organization
+      -
+        identifier: message
+        label: 'What should the elements do? (optional)'
+        type: Textarea
+        properties:
+          fluidAdditionalAttributes:
+            rows: 4
+      -
+        identifier: friendlycaptcha
+        label: 'Spam protection'
+        type: Friendlycaptcha
+        validators:
+          - identifier: Friendlycaptcha

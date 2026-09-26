@@ -2689,5 +2689,35 @@
         <target>Für eine spätere Version reserviert — hat derzeit keine visuelle Auswirkung.</target>
       </segment>
     </unit>
+    <unit id="pricingSlider.request">
+      <segment state="final">
+        <source>Request this estimate</source>
+        <target>Diese Schätzung anfragen</target>
+      </segment>
+    </unit>
+    <unit id="pricingSlider.dialogTitle">
+      <segment state="final">
+        <source>Request your estimate</source>
+        <target>Kostenschätzung anfragen</target>
+      </segment>
+    </unit>
+    <unit id="pricingSlider.dialogIntro">
+      <segment state="final">
+        <source>We check your selection and reply by email.</source>
+        <target>Wir prüfen Ihre Auswahl und antworten per E-Mail.</target>
+      </segment>
+    </unit>
+    <unit id="pricingSlider.close">
+      <segment state="final">
+        <source>Close</source>
+        <target>Schließen</target>
+      </segment>
+    </unit>
+    <unit id="pricingSlider.selection">
+      <segment state="final">
+        <source>Your selection</source>
+        <target>Ihre Auswahl</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

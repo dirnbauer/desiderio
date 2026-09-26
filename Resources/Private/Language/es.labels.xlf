@@ -1099,5 +1099,35 @@
         <target>Editar abreviatura</target>
       </segment>
     </unit>
+    <unit id="pricingSlider.request">
+      <segment state="final">
+        <source>Request this estimate</source>
+        <target>Solicitar este presupuesto</target>
+      </segment>
+    </unit>
+    <unit id="pricingSlider.dialogTitle">
+      <segment state="final">
+        <source>Request your estimate</source>
+        <target>Solicite su presupuesto</target>
+      </segment>
+    </unit>
+    <unit id="pricingSlider.dialogIntro">
+      <segment state="final">
+        <source>We check your selection and reply by email.</source>
+        <target>Revisamos su selección y le respondemos por correo electrónico.</target>
+      </segment>
+    </unit>
+    <unit id="pricingSlider.close">
+      <segment state="final">
+        <source>Close</source>
+        <target>Cerrar</target>
+      </segment>
+    </unit>
+    <unit id="pricingSlider.selection">
+      <segment state="final">
+        <source>Your selection</source>
+        <target>Su selección</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

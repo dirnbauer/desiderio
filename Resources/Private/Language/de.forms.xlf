@@ -72,5 +72,15 @@
     <unit id="desiderio-newsletter.finisher.EmailToReceiver.title"><segment state="final"><source>Newsletter signup</source><target>Newsletter-Anmeldung</target></segment></unit>
     <unit id="desiderio-newsletter.finisher.Confirmation.message"><segment state="final"><source>Thank you. Your signup has been received.</source><target>Danke. Ihre Anmeldung wurde empfangen.</target></segment></unit>
     <unit id="desiderio-newsletter.element.email.properties.label"><segment state="final"><source>Email</source><target>E-Mail</target></segment></unit>
+    <unit id="desiderio-estimate.element.desiderio-estimate.renderingOptions.submitButtonLabel"><segment state="final"><source>Send request</source><target>Anfrage senden</target></segment></unit>
+    <unit id="desiderio-estimate.finisher.EmailToReceiver.subject"><segment state="final"><source>Estimate request: {estimate}</source><target>Kostenschätzung angefragt: {estimate}</target></segment></unit>
+    <unit id="desiderio-estimate.finisher.EmailToReceiver.title"><segment state="final"><source>Estimate request</source><target>Anfrage zur Kostenschätzung</target></segment></unit>
+    <unit id="desiderio-estimate.finisher.Confirmation.message"><segment state="final"><source>Thank you. Your estimate request has been sent.</source><target>Danke. Ihre Anfrage zur Kostenschätzung wurde gesendet.</target></segment></unit>
+    <unit id="desiderio-estimate.element.estimate.properties.label"><segment state="final"><source>Your estimate</source><target>Ihre Schätzung</target></segment></unit>
+    <unit id="desiderio-estimate.element.name.properties.label"><segment state="final"><source>Name</source><target>Name</target></segment></unit>
+    <unit id="desiderio-estimate.element.email.properties.label"><segment state="final"><source>Email</source><target>E-Mail</target></segment></unit>
+    <unit id="desiderio-estimate.element.company.properties.label"><segment state="final"><source>Company (optional)</source><target>Unternehmen (optional)</target></segment></unit>
+    <unit id="desiderio-estimate.element.message.properties.label"><segment state="final"><source>What should the elements do? (optional)</source><target>Was sollen die Elemente können? (optional)</target></segment></unit>
+    <unit id="desiderio-estimate.element.friendlycaptcha.properties.label"><segment state="final"><source>Spam protection</source><target>Spamschutz</target></segment></unit>
   </file>
 </xliff>

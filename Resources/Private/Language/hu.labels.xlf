@@ -2689,5 +2689,35 @@
         <target>Egy későbbi verzióhoz fenntartva – jelenleg nincs vizuális hatása.</target>
       </segment>
     </unit>
+    <unit id="pricingSlider.request">
+      <segment state="final">
+        <source>Request this estimate</source>
+        <target>Ajánlatot kérek erre</target>
+      </segment>
+    </unit>
+    <unit id="pricingSlider.dialogTitle">
+      <segment state="final">
+        <source>Request your estimate</source>
+        <target>Árajánlat kérése</target>
+      </segment>
+    </unit>
+    <unit id="pricingSlider.dialogIntro">
+      <segment state="final">
+        <source>We check your selection and reply by email.</source>
+        <target>Átnézzük a választását, és e-mailben válaszolunk.</target>
+      </segment>
+    </unit>
+    <unit id="pricingSlider.close">
+      <segment state="final">
+        <source>Close</source>
+        <target>Bezárás</target>
+      </segment>
+    </unit>
+    <unit id="pricingSlider.selection">
+      <segment state="final">
+        <source>Your selection</source>
+        <target>Az Ön választása</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

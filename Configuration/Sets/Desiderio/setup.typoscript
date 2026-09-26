@@ -44,6 +44,9 @@ lib.desiderioFormRenderer.download.settings.persistenceIdentifier = EXT:desideri
 lib.desiderioFormRenderer.feedback =< lib.desiderioFormRenderer
 lib.desiderioFormRenderer.feedback.settings.persistenceIdentifier = EXT:desiderio/Resources/Private/Forms/DesiderioFeedback.form.yaml
 
+lib.desiderioFormRenderer.estimate =< lib.desiderioFormRenderer
+lib.desiderioFormRenderer.estimate.settings.persistenceIdentifier = EXT:desiderio/Resources/Private/Forms/DesiderioEstimate.form.yaml
+
 lib.desiderioFormRenderer.lead =< lib.desiderioFormRenderer
 lib.desiderioFormRenderer.lead.settings.persistenceIdentifier = EXT:desiderio/Resources/Private/Forms/DesiderioLead.form.yaml
 

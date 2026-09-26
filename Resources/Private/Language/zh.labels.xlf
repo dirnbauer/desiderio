@@ -2689,5 +2689,35 @@
         <target>为未来版本预留，目前没有视觉效果。</target>
       </segment>
     </unit>
+    <unit id="pricingSlider.request">
+      <segment state="final">
+        <source>Request this estimate</source>
+        <target>申请此报价</target>
+      </segment>
+    </unit>
+    <unit id="pricingSlider.dialogTitle">
+      <segment state="final">
+        <source>Request your estimate</source>
+        <target>申请您的报价</target>
+      </segment>
+    </unit>
+    <unit id="pricingSlider.dialogIntro">
+      <segment state="final">
+        <source>We check your selection and reply by email.</source>
+        <target>我们会核对您的选择，并通过电子邮件回复。</target>
+      </segment>
+    </unit>
+    <unit id="pricingSlider.close">
+      <segment state="final">
+        <source>Close</source>
+        <target>关闭</target>
+      </segment>
+    </unit>
+    <unit id="pricingSlider.selection">
+      <segment state="final">
+        <source>Your selection</source>
+        <target>您的选择</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

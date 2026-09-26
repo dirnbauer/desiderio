@@ -6,7 +6,8 @@
 .stats-counter__grid--cols-4 { grid-template-columns: repeat(4, 1fr); }
 @media (max-width: 768px) { .stats-counter__grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 480px) { .stats-counter__grid { grid-template-columns: 1fr; } }
-.stats-counter__item { display: flex; flex-direction: column; text-align: center; padding: var(--d-spacing-lg); margin: 0; }
+/* No bottom padding: the item paints nothing (see counter). */
+.stats-counter__item { display: flex; flex-direction: column; text-align: center; padding: var(--d-spacing-lg) var(--d-spacing-lg) 0; margin: 0; }
 .stats-counter__value { order: 1; font-size: var(--d-text-4xl); font-weight: var(--d-weight-display); color: var(--primary); display: block; line-height: var(--d-leading-tight); margin: 0; font-variant-numeric: tabular-nums; }
 .stats-counter__suffix { font-size: 0.7em; }
 .stats-counter__label { order: 2; font-size: var(--d-text-lg); font-weight: var(--d-weight-semibold); margin-block-start: var(--d-spacing-sm); }

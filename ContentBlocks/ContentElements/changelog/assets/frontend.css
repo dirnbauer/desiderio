@@ -5,7 +5,7 @@
     border-bottom: 1px solid var(--border);
 }
 .changelog__entry:first-child { padding-block-start: 0; }
-.changelog__entry:last-child { border-bottom: none; }
+.changelog__entry:last-child { padding-block-end: 0; border-bottom: none; }
 .changelog__meta { display: flex; align-items: center; gap: var(--d-spacing-sm); flex-wrap: wrap; margin-block-end: var(--d-spacing-xs); }
 .changelog__version { font-weight: var(--d-weight-bold); font-size: var(--d-text-sm); font-family: var(--d-font-mono); }
 .changelog__date { font-size: var(--d-text-sm); color: var(--muted-foreground); font-variant-numeric: tabular-nums; }

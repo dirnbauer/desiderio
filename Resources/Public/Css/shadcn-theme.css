@@ -804,17 +804,38 @@ body[data-radius="md"] { --radius: 0.625rem; }
 body[data-radius="lg"] { --radius: 0.75rem; }
 body[data-radius="full"] { --radius: 1rem; }
 
+/* Vertical rhythm: the padding every content section carries above and
+   below its content — Content Blocks, classic elements, plugins and the
+   elements of other packages alike, because all of them render through the
+   Section component. Two sections meet with twice this between their
+   content. Small screens step down, as they did with py-10 md:py-24.
+   The density setting scales the whole page, not one kind of element.
+   The small-screen value sits in the main `body` token block below: tools
+   that read that block (build-preset-overview.php, audit-theme-contrast.php)
+   expect exactly one top-level `body` block. */
 body[data-density="compact"] {
   --d-section-y: 2rem;
   --d-content-gap: 1rem;
 }
 
 body[data-density="spacious"] {
-  --d-section-y: 5rem;
+  --d-section-y: 3rem;
   --d-content-gap: 2rem;
 }
 
+@media (min-width: 48rem) {
+  body[data-density="compact"] {
+    --d-section-y: 4rem;
+  }
+
+  body[data-density="spacious"] {
+    --d-section-y: 8rem;
+  }
+}
+
 body {
+  /* Section rhythm on small screens; 6rem from 48rem up (see above). */
+  --d-section-y: 2.5rem;
   --d-background: var(--background);
   --d-foreground: var(--foreground);
   --d-card: var(--card);
@@ -849,13 +870,15 @@ body {
      with 763px of dead space. */
   --d-chart-plot-height: 23.5rem;
 
-  /* Vertical padding of a hero's inner stage. Matches the Section component's
-     desktop default (py-16 md:py-24 -> 6rem), because the survey found all
-     eight heroes padding at 4-5rem — the biggest moment on the page was
-     breathing LESS than an ordinary section. One token so hero presence is a
-     decision, not eight guesses; clamped so small screens do not pay 6rem for
-     a viewport that cannot afford it. */
-  --d-hero-y: clamp(4rem, 6vw + 2rem, 6rem);
+  /* Vertical padding of every hero and page header (the element that opens a
+     page). One token so hero presence is a decision, not a per-hero guess;
+     clamped so small screens do not pay 6rem for a viewport that cannot
+     afford it, and never below the section rhythm, so the biggest moment on
+     the page never breathes less than an ordinary section (it did between
+     768px and 1066px, and under the spacious density). At 390px the start
+     page's hero still shows both buttons and the top of its image above an
+     844px fold. */
+  --d-hero-y: max(var(--d-section-y), clamp(4rem, 6vw + 2rem, 6rem));
   /* Text-on-muted variants: status colors pulled towards the foreground so small
      (12px) text on the *-muted tints (and plain background/card) clears the
      WCAG 4.5:1 contrast threshold in light and dark presets alike. The pull
@@ -961,6 +984,14 @@ body {
   --d-text-4xl: 2.25rem;
   --d-text-5xl: 3rem;
   --d-text-6xl: 3.75rem;
+}
+
+/* After the main block, so the wide-screen rhythm wins over its small-screen
+   value (same selector, later rule). */
+@media (min-width: 48rem) {
+  body {
+    --d-section-y: 6rem;
+  }
 }
 
 /* Dark scheme pulls brand text towards white instead of black. Declared on

@@ -5,7 +5,9 @@
 .counter__grid--cols-4 { grid-template-columns: repeat(4, 1fr); }
 @media (max-width: 768px) { .counter__grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 480px) { .counter__grid { grid-template-columns: 1fr; } }
-.counter__item { text-align: center; padding: var(--d-spacing-lg); }
+/* No bottom padding: the item paints nothing, so it would only add space
+   below the last row. Rows are separated by the grid gap. */
+.counter__item { text-align: center; padding: var(--d-spacing-lg) var(--d-spacing-lg) 0; }
 .counter__value { font-size: var(--d-text-3xl); font-weight: var(--d-weight-bold); line-height: var(--d-leading-tight); color: var(--primary); }
 .counter__prefix,
 .counter__suffix { font-size: var(--d-text-2xl); }

@@ -6,9 +6,16 @@
 
 <f:argument name="data" type="array" description="Content element record data"/>
 
+<f:comment>
+    Same section as every Content Block: the shared vertical rhythm, and the
+    Appearance tab's frame and space before/after, which classic elements
+    show in the backend as well.
+</f:comment>
 <dc:layout.section
     attributes="{id: 'c{data.uid}'}"
-    spacing="md"
+    frame="{data.frame_class}"
+    spaceBefore="{data.space_before_class}"
+    spaceAfter="{data.space_after_class}"
     class="ce-fsc ce-fsc--{data.CType} ce-frame ce-frame--{data.frame_class}"
 >
     <dc:layout.container>

@@ -131,8 +131,11 @@
     color: var(--foreground);
   }
 
-  .frame:not(:first-child),
-  .ce-frame:not(:first-child) {
+  /* Frames of other templates only. A .desiderio-section carries the rhythm
+     in its own padding (Section component); a margin on top of that doubled
+     the gap between two classic elements. */
+  .frame:not(:first-child):not(.desiderio-section),
+  .ce-frame:not(:first-child):not(.desiderio-section) {
     margin-block-start: var(--d-section-y, 3rem);
   }
 

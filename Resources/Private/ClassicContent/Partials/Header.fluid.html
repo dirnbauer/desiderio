@@ -15,7 +15,24 @@
     </f:if>
 </dv:recordHasField>
 
-<f:if condition="{renderHeader}">
+<f:comment>
+    An element without a heading and subheading renders no intro at all: an
+    empty <header> still takes the intro's gap and pushed the content away
+    from the section's edge, off the shared vertical rhythm.
+</f:comment>
+<f:variable name="hasIntro" value="0"/>
+<dv:recordHasField record="{record}" field="header">
+    <f:if condition="{record.header}">
+        <f:variable name="hasIntro" value="1"/>
+    </f:if>
+</dv:recordHasField>
+<dv:recordHasField record="{record}" field="subheader">
+    <f:if condition="{record.subheader}">
+        <f:variable name="hasIntro" value="1"/>
+    </f:if>
+</dv:recordHasField>
+
+<f:if condition="{renderHeader} && {hasIntro}">
     <dv:recordHasField record="{record}" field="header">
         <header class="ce-fsc__intro">
             <f:if condition="{record.header}">

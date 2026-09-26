@@ -8,6 +8,39 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 
+- One vertical rhythm for every element. The Section component pads each
+  section with the new `--d-section-y` token (2.5rem, 6rem from 48rem up)
+  instead of `py-10 md:py-24`, and the site's density setting now scales it
+  (compact 2rem/4rem, spacious 3rem/8rem) — before, density only reached
+  classic elements. Classic elements, Powermail and the other packages'
+  elements (innesto) render with the same rhythm as the Content Blocks: they
+  had half of it on desktop (48px instead of 96px), plus a 48px frame margin
+  between two classic elements on a page.
+- Classic elements honour the Appearance tab: space before/after and the
+  frame surface reach the section, as they do for the Content Blocks.
+- Heroes and page headers share `--d-hero-y`, which never drops below the
+  section rhythm. Six heroes padded their grid on top of the section
+  (144px on desktop), header-page and header-profile their inner wrapper,
+  and seven heroes, the CTA banner, the alert, the header section and the
+  legal disclaimer had a rhythm of their own.
+- Article bodies (blog posts, news detail) keep a reading rhythm
+  (1.5rem/2rem) for every element inside them; a blog post's text blocks sat
+  144px apart.
+- The last row of counter, stats-counter, product-reviews, changelog,
+  client-list, feature-grid-4 and feature-icons no longer keeps its bottom
+  padding, and the testimonial wall no longer leaves a card margin below its
+  columns, so their content ends where the section's rhythm begins.
+
+### Fixed
+
+- A classic element without heading and subheading rendered an empty intro
+  that pushed its content away from the top of the section.
+
+### Added
+
+- `Build/VisualQa/rhythm.mjs`: measures the space above and below every
+  element's content at each width and fails on outliers; runs in Browser QA.
+
 - Demo contact data reaches no one. The styleguide, the element library
   and the demo value generator gave real addresses and a real phone number:
   since 4.7.0 webconsulting's headquarters, office and register entries,

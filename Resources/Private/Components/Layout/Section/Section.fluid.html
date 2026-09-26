@@ -33,6 +33,12 @@
     Editor spacing (space_before_class / space_after_class, core value set)
     adds OUTER margin — deliberately distinct from `spacing`, which is the
     template's inner padding rhythm. Classes defined in 07-content-frames.css.
+
+    The default rhythm is the --d-section-y token (shadcn-theme.css): every
+    element that renders through this component shares it, it steps down on
+    small screens and follows the site's density setting. The named steps
+    are for the few elements that are deliberately tighter (a breadcrumb)
+    or flush (navigation bars).
 </f:comment>
 <f:variable name="spaceClasses">
     <f:if condition="{spaceBefore}">frame-space-before-{spaceBefore}</f:if>
@@ -45,7 +51,7 @@
         <f:case value="md">py-8 md:py-12</f:case>
         <f:case value="lg">py-12 md:py-28</f:case>
         <f:case value="xl">py-16 md:py-32</f:case>
-        <f:defaultCase>py-10 md:py-24</f:defaultCase>
+        <f:defaultCase>py-(--d-section-y)</f:defaultCase>
     </f:switch>
 </f:variable>
 

@@ -18,7 +18,9 @@
     flex-direction: column;
     align-items: center;
     min-width: 0;
-    padding: var(--d-spacing-md);
+    /* No bottom padding: the item paints nothing, so it would only add space
+       below the last row. Rows are separated by the grid gap. */
+    padding: var(--d-spacing-md) var(--d-spacing-md) 0;
     text-align: center;
 }
 .feature-grid-4__icon {

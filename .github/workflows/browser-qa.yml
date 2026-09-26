@@ -1,8 +1,9 @@
 name: Browser QA
 
 # Renders every seeded element in a real browser against a disposable TYPO3
-# (SQLite, php -S — see Build/CiApp/). Two harnesses run:
+# (SQLite, php -S — see Build/CiApp/). Three harnesses run:
 #   anatomy.mjs — layout-convention survey, target 0 findings
+#   rhythm.mjs  — space before/after every element's content, target 0 outliers
 #   run.mjs     — overflow/clipping/axe/theme sweep, target 0 findings
 # Push/PR runs tier t1 (base preset, light+dark, 390/768/1440). A manual
 # dispatch can run the full tier set including the preset sweep.
@@ -98,6 +99,9 @@ jobs:
 
       - name: Anatomy survey (target 0 findings)
         run: node Build/VisualQa/anatomy.mjs --urls /tmp/ci-urls.json
+
+      - name: Vertical rhythm (target 0 outliers)
+        run: node Build/VisualQa/rhythm.mjs --urls /tmp/ci-urls.json --widths 390,768,1440
 
       - name: Render sweep
         run: |

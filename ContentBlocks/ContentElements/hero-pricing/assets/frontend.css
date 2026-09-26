@@ -1,9 +1,13 @@
+/* The section owns the hero's vertical rhythm (--d-hero-y, like every
+   other hero); the grid inside adds none of its own. */
+.hero-pricing {
+    padding-block: var(--d-hero-y);
+}
 .hero-pricing__grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--d-spacing-8);
     align-items: center;
-    padding-block: var(--d-spacing-12);
 }
 @media (min-width: 64rem) {
     .hero-pricing__grid {

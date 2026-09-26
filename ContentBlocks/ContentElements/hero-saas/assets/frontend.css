@@ -62,10 +62,6 @@
     overflow-wrap: anywhere;
 }
 @media (max-width: 640px) {
-    .hero-saas {
-        padding-block: var(--d-spacing-10);
-    }
-
     .hero-saas__headline {
         font-size: clamp(2.125rem, 9vw, 2.75rem);
         line-height: var(--d-leading-tight);

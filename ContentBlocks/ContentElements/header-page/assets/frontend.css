@@ -1,8 +1,8 @@
+/* A page header opens the page like a hero and breathes like one: the
+   section carries --d-hero-y, the inner wrapper adds nothing on top. */
 .header-page {
+    padding-block: var(--d-hero-y);
     border-bottom: 1px solid var(--d-border);
-}
-.header-page__inner {
-    padding-block: var(--d-spacing-6);
 }
 .header-page--center .header-page__inner {
     text-align: center;

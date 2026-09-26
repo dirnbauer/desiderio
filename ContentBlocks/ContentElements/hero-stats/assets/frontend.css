@@ -1,9 +1,13 @@
+/* The section owns the hero's vertical rhythm (--d-hero-y, like every
+   other hero); the grid inside adds none of its own. */
+.hero-stats {
+    padding-block: var(--d-hero-y);
+}
 .hero-stats__grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: var(--d-spacing-2xl);
     align-items: center;
-    padding-block: var(--d-spacing-12);
 }
 @media (max-width: 768px) {
     .hero-stats__grid {
@@ -76,10 +80,6 @@
     overflow-wrap: anywhere;
 }
 @media (max-width: 640px) {
-    .hero-stats__grid {
-        padding-block: var(--d-spacing-8);
-    }
-
     .hero-stats__headline {
         font-size: clamp(2.125rem, 9vw, 2.75rem);
         line-height: var(--d-leading-tight);

@@ -16,3 +16,18 @@
     }
 }
 
+
+/* An article body (blog post, news detail) reads as one text: the elements
+   inside it keep a reading rhythm instead of the page's section rhythm, so
+   a text, an image and the next text sit together — the same for classic
+   elements and Content Blocks, because both take their padding from
+   --d-section-y. */
+[itemprop="articleBody"] {
+    --d-section-y: var(--d-spacing-lg);
+}
+
+@media (min-width: 48rem) {
+    [itemprop="articleBody"] {
+        --d-section-y: var(--d-spacing-xl);
+    }
+}

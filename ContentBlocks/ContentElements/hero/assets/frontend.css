@@ -2,7 +2,8 @@
     position: relative;
     overflow: hidden;
 }
-.hero--centered {
+/* Every variant opens the page with the hero rhythm (--d-hero-y). */
+.hero {
     padding-block: var(--d-hero-y);
 }
 .hero__content--centered {

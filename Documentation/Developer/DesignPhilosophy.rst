@@ -99,10 +99,26 @@ leading, weight, and tracking tokens from
     *   - ``--d-tracking-wide`` / ``--d-tracking-tight``
         - Eyebrows / large display text.
 
-Spacing follows the ``--d-spacing-*`` ramp. Heroes share ``--d-hero-y``;
-section composition uses the shared Section component. The audit permits
-layout-specific exceptions such as zero values, percentages, and optical
-``em`` offsets while rejecting unapproved raw typography and spacing values.
+Spacing follows the ``--d-spacing-*`` ramp. Every element breathes with one
+vertical rhythm: the Section component pads each section with
+``--d-section-y`` (2.5rem, 6rem from 48rem up; the site's density setting
+scales it), and it does so for Content Blocks, classic elements, Powermail,
+plugins and the elements of other packages alike, because all of them render
+through that component. Heroes and page headers share ``--d-hero-y``, which
+never drops below the section rhythm. Inside an article body the rhythm
+tightens to a reading rhythm, so a text, an image and the next text sit
+together. An element adds no vertical padding of its own on top: a wrapper
+that pads, or an unpainted last item that keeps its bottom padding, moves the
+content away from the shared rhythm. The Appearance tab's space before/after
+adds margin outside the section, for every element type.
+
+``Build/VisualQa/rhythm.mjs`` measures what a visitor sees — the distance from
+each section's edge to its first and last painted pixel — and fails when an
+element leaves the rhythm; the few deliberate exceptions (page chrome, a
+timeline's connector line) are listed in ``Build/VisualQa/lib/rhythm.mjs``.
+The static audit permits layout-specific exceptions such as zero values,
+percentages, and optical ``em`` offsets while rejecting unapproved raw
+typography and spacing values.
 
 ..  _developer-design-layout:
 

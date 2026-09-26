@@ -2,10 +2,6 @@
 /*  Fluid Styled Content — shadcn/Fluid 5 classic elements              */
 /* ------------------------------------------------------------------ */
 
-.ce-fsc.ce-frame {
-    padding-block: var(--d-section-y, 3rem);
-}
-
 .ce-fsc > .mx-auto {
     display: grid;
     gap: var(--d-content-gap, 1.5rem);

@@ -21,7 +21,8 @@
     flex-direction: column;
     align-items: center;
     min-width: 0;
-    padding: var(--d-spacing-sm);
+    /* No bottom padding: see feature-grid-4. */
+    padding: var(--d-spacing-sm) var(--d-spacing-sm) 0;
 }
 .feature-icons__icon {
     display: inline-flex;

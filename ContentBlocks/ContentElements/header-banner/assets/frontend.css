@@ -1,7 +1,8 @@
+/* A page header over a photo: hero rhythm, like the other page headers. */
 .header-banner {
     position: relative;
     overflow: hidden;
-    padding-block: var(--d-spacing-12);
+    padding-block: var(--d-hero-y);
 }
 .header-banner--dark {
     background: var(--d-foreground);

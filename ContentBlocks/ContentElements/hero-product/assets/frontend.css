@@ -1,9 +1,13 @@
+/* The section owns the hero's vertical rhythm (--d-hero-y, like every
+   other hero); the grid inside adds none of its own. */
+.hero-product {
+    padding-block: var(--d-hero-y);
+}
 .hero-product__grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: var(--d-spacing-8);
     align-items: center;
-    padding-block: var(--d-spacing-12);
 }
 @media (min-width: 64rem) {
     .hero-product__grid {
@@ -64,10 +68,6 @@
     border-radius: var(--d-radius-lg);
 }
 @media (max-width: 640px) {
-    .hero-product__grid {
-        padding-block: var(--d-spacing-8);
-    }
-
     .hero-product__title {
         font-size: clamp(2.125rem, 9vw, 2.75rem);
         line-height: var(--d-leading-tight);

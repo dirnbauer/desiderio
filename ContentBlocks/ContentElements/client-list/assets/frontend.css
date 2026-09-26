@@ -4,7 +4,7 @@
 .client-list__description { color: var(--muted-foreground); max-width: 40rem; }
 .client-list__items { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; }
 .client-list__item { display: flex; align-items: center; gap: var(--d-spacing-md); padding: var(--d-spacing-md) 0; border-block-end: 1px solid var(--border); }
-.client-list__item:last-child { border-block-end: none; }
+.client-list__item:last-child { padding-block-end: 0; border-block-end: none; }
 .client-list__media,
 .client-list__logo {
     flex: 0 0 auto;

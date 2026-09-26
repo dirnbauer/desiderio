@@ -2,7 +2,9 @@
 /*  Content Element Frames                                             */
 /* ------------------------------------------------------------------ */
 
-.ce-frame { padding: 1.5rem 0; }
+/* Frames of other templates. A classic element renders as a .desiderio-section,
+   which carries the shared rhythm (--d-section-y) in its own padding. */
+.ce-frame:not(.desiderio-section) { padding: 1.5rem 0; }
 
 .frame,
 .ce-frame,

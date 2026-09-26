@@ -1,4 +1,7 @@
+/* A page header opens the page like a hero and breathes like one: the
+   section carries --d-hero-y, the inner wrapper adds nothing on top. */
 .header-profile {
+    padding-block: var(--d-hero-y);
     border-bottom: 1px solid var(--d-border);
 }
 .header-profile__inner {
@@ -6,7 +9,6 @@
     flex-wrap: wrap;
     align-items: flex-start;
     gap: var(--d-spacing-6);
-    padding-block: var(--d-spacing-8);
 }
 .header-profile__avatar-img {
     width: 6rem;

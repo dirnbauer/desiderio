@@ -1,3 +1,7 @@
+/* The hero rhythm (--d-hero-y), like every other hero. */
+.hero-asymmetric {
+    padding-block: var(--d-hero-y);
+}
 .hero-asymmetric__grid {
     display: grid;
     grid-template-columns: 1fr;

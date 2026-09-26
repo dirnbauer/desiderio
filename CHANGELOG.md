@@ -6,6 +6,16 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.8.1] — 2026-09-26
+
+### Fixed
+
+- The accessibility statement no longer promises "We will respond within
+  five working days." under the contact address. A response time is a
+  promise the site owner makes, not the template; a statement that has one
+  says so in its own text. The `a11y.contactResponse` label is gone from the
+  en/de/zh/hu label files.
+
 ## [4.8.0] — 2026-09-26
 
 ### Changed

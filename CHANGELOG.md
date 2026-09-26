@@ -6,6 +6,8 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.7.0] — 2026-09-26
+
 ### Changed
 
 - The base look every preset inherits is redrawn, still from the preset's
@@ -39,6 +41,17 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
   sits on the midline with the centered heading instead of hugging the start
   edge (their intros are grid containers, which ignore `text-align` for the
   badge box).
+- Every contact element names webconsulting's real details instead of a demo
+  studio: contact, contact info, emergency contact, office hours, office
+  locations, footer contact, imprint, map, directions, team member, privacy
+  notice and accessibility statement, in the fixtures and the element
+  library. The demo value generator fills empty contact fields with the same
+  details, and the blog seeder signs with office@webconsulting.at.
+- `tel:` links carry no spaces. Footer contact, imprint, office locations and
+  team member built the href from the displayed number (`tel:+43 2626 20156`);
+  the visible number keeps its spaces.
+- The fixture filler script pads only an empty collection, as the fixture
+  resolver does since 09665fe1, instead of inventing a third office.
 
 ## [4.6.0] — 2026-09-24
 

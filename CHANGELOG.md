@@ -6,6 +6,8 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.8.2] — 2026-09-26
+
 ### Fixed
 
 - The core Form element and the core login form render their forms. TYPO3

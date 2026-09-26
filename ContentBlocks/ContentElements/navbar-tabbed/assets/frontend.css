@@ -19,6 +19,7 @@
     padding: 0;
     min-width: 0;
     overflow-x: auto;
+    scroll-snap-type: x proximity;
 }
 .navbar-tabbed__tab {
     display: inline-block;
@@ -60,4 +61,10 @@
     .navbar-tabbed__tab {
         transition: none;
     }
+}
+
+/* The tab strip scrolls sideways on narrow screens; each tab snaps to the
+   start edge instead of stopping halfway through a label. */
+.navbar-tabbed__tab {
+    scroll-snap-align: start;
 }

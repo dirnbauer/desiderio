@@ -37,10 +37,24 @@
     outline-offset: 4px;
     border-radius: var(--radius);
 }
+/* A whole number of cards per view, so a snapped track never ends on a
+   card cut through its name: most of one card on a phone (the peek shows
+   there is more), two on a tablet, four on a desktop. */
 .team-carousel__slide {
-    flex: 0 0 16rem;
-    max-width: 80vw;
+    flex: 0 0 85%;
     scroll-snap-align: start;
+}
+
+@media (min-width: 640px) {
+    .team-carousel__slide {
+        flex-basis: calc((100% - var(--d-spacing-lg)) / 2);
+    }
+}
+
+@media (min-width: 1024px) {
+    .team-carousel__slide {
+        flex-basis: calc((100% - 3 * var(--d-spacing-lg)) / 4);
+    }
 }
 .team-carousel__card {
     height: 100%;

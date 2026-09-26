@@ -56,7 +56,7 @@
 }
 
 .pricing__plan--featured {
-    box-shadow: 0 0 0 2px var(--primary), var(--d-surface-shadow);
+    box-shadow: 0 0 0 1px var(--primary), inset 0 0 0 1px var(--primary), var(--d-surface-shadow);
 }
 
 .pricing__ribbon {

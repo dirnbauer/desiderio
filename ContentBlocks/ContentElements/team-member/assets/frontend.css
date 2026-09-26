@@ -16,50 +16,59 @@
     object-fit: cover;
     border-radius: var(--radius);
 }
+/* Three text sizes: the name (h2), body text for role and bio, and small
+   text for the contact actions and profiles. The role is the one accent. */
 .team-member__role {
-    font-size: var(--d-text-lg);
-    color: var(--muted-foreground);
-    margin-block: var(--d-spacing-xs) var(--d-spacing-sm);
+    font-size: var(--d-text-base, 1rem);
+    font-weight: var(--d-weight-medium);
+    color: var(--d-link, var(--primary));
+    margin-block: var(--d-spacing-xs) var(--d-spacing-md);
 }
 .team-member__bio {
+    font-size: var(--d-text-base, 1rem);
     color: var(--muted-foreground);
     line-height: var(--d-leading-relaxed);
 }
+.team-member__bio p {
+    font-size: inherit;
+}
 
-/* Contact (definition list) */
-.team-member__contact {
+/* Email and phone as outlined actions with an icon; the label ("Email",
+   "Call") stays for screen readers, the icon says it for everyone else. */
+.team-member__actions {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--d-spacing-md) var(--d-spacing-lg);
-    margin: var(--d-spacing-md) 0 0;
+    gap: var(--d-spacing-sm);
+    margin: var(--d-spacing-lg) 0 0;
+    padding: 0;
+    list-style: none;
 }
-.team-member__contact-item {
-    display: flex;
-    flex-direction: column;
-    gap: var(--d-spacing-0-5);
-}
-.team-member__contact-label {
-    font-size: var(--d-text-xs);
-    font-weight: var(--d-weight-semibold);
-    text-transform: uppercase;
-    letter-spacing: var(--d-tracking-wide);
-    color: var(--muted-foreground);
-}
-.team-member__contact-value {
-    margin: 0;
-    font-size: var(--d-text-sm);
-}
-.team-member__contact-link {
+.team-member__action {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--d-spacing-xs);
+    min-height: 2.5rem;
+    padding-inline: var(--d-spacing-md);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--background);
     color: var(--foreground);
+    font-size: var(--d-text-sm);
+    font-weight: var(--d-weight-medium);
     text-decoration: none;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
 }
-.team-member__contact-link:hover {
-    text-decoration: underline;
+.team-member__action svg {
+    flex-shrink: 0;
+    color: var(--d-link, var(--primary));
 }
-.team-member__contact-link:focus-visible {
+.team-member__action:hover {
+    background: var(--muted);
+    border-color: color-mix(in oklch, var(--foreground) 20%, var(--border));
+}
+.team-member__action:focus-visible {
     outline: 2px solid var(--ring);
     outline-offset: 2px;
-    border-radius: var(--d-radius-sm);
 }
 
 /* Social links */
@@ -73,9 +82,14 @@
 }
 .team-member__social-link {
     font-size: var(--d-text-sm);
-    color: var(--d-link, var(--primary));
+    color: var(--muted-foreground);
     text-decoration: underline;
-    text-underline-offset: 2px;
+    text-decoration-color: color-mix(in oklch, var(--muted-foreground) 40%, transparent);
+    text-underline-offset: 3px;
+}
+.team-member__social-link:hover {
+    color: var(--d-link, var(--primary));
+    text-decoration-color: currentColor;
 }
 .team-member__social-link:focus-visible {
     outline: 2px solid var(--ring);
@@ -92,3 +106,7 @@
 .d-richtext ol { list-style: decimal; }
 .d-richtext li { margin-block-end: var(--d-spacing-2xs); }
 .d-richtext a { color: var(--d-link, var(--primary)); text-decoration: underline; text-underline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+    .team-member__action { transition: none; }
+}

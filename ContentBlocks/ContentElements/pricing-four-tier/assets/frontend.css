@@ -56,7 +56,7 @@
    surface shadow (replaces the tw ring-2/ring-primary utilities). */
 [data-slot="card"].pricing-four-tier__plan--featured,
 [data-slot="card"].pricing-four-tier__plan--recommended {
-    box-shadow: 0 0 0 2px var(--primary), var(--d-surface-shadow);
+    box-shadow: 0 0 0 1px var(--primary), inset 0 0 0 1px var(--primary), var(--d-surface-shadow);
 }
 
 .pricing-four-tier__ribbon {

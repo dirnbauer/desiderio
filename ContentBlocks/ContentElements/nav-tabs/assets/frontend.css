@@ -4,6 +4,7 @@
     min-width: 0;
     max-width: 100%;
     overflow-x: auto;
+    scroll-snap-type: x proximity;
     overscroll-behavior-inline: contain;
     scrollbar-width: none;
 }
@@ -65,4 +66,10 @@
     .nav-tabs__tab {
         transition: none;
     }
+}
+
+/* The strip scrolls sideways on narrow screens; each item snaps to the
+   start edge instead of stopping halfway through a label. */
+.nav-tabs__tab {
+    scroll-snap-align: start;
 }

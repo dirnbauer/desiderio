@@ -73,28 +73,30 @@
     align-items: flex-start;
     gap: 0;
 }
+/* A quiet outline action: one per person, so a filled primary button in
+   every row outweighed the names and bios. */
 .team-with-bio__link[data-slot="button"] {
     display: inline-flex;
     align-items: center;
     gap: var(--d-spacing-xs);
     margin-block-start: var(--d-spacing-md);
-    min-height: 2.25rem;
+    min-height: 2rem;
     padding-inline: var(--d-spacing-sm);
-    border: 1px solid transparent;
+    border: 1px solid var(--border);
     border-radius: var(--d-radius-md);
-    background: var(--primary);
-    color: var(--primary-foreground);
+    background: var(--background);
+    color: var(--foreground);
     font-size: var(--d-text-sm);
-    font-weight: var(--d-weight-semibold);
+    font-weight: var(--d-weight-medium);
     line-height: 1;
     text-decoration: none;
-    box-shadow: var(--shadow-xs);
-    transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+    box-shadow: none;
+    transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
 }
 .team-with-bio__link[data-slot="button"]:hover {
-    background: color-mix(in oklch, var(--primary) 88%, var(--foreground));
-    color: var(--primary-foreground);
-    box-shadow: var(--shadow-sm);
+    background: var(--muted);
+    border-color: color-mix(in oklch, var(--foreground) 20%, var(--border));
+    color: var(--foreground);
 }
 .team-with-bio__link[data-slot="button"]:active {
     transform: translateY(1px);

@@ -244,14 +244,17 @@ final class ShowcaseStrategyPages
                 ]),
 
                 // ------------------------------------------------------ how to start
-                ShowcaseBlocks::block('desiderio_howtosteps', [
+                // A numbered timeline, not how-to-steps: how-to-steps has an image
+                // per step, and the seeder fills an empty image field with a demo
+                // photo, which put random portraits next to these steps.
+                ShowcaseBlocks::block('desiderio_featuretimeline', [
                     'header' => 'Start with one workflow in four steps',
-                    'description' => '<p>You don\'t need the whole platform at once. Start small and grow from measured results.</p>',
+                    'subheadline' => 'You don\'t need the whole platform at once. Start small and grow from measured results.',
                     'items' => [
-                        ['title' => 'Run the readiness check', 'content' => '<p>Answer the 11 questions with your team. The gaps show where to start.</p>'],
-                        ['title' => 'Pick one repeated task', 'content' => '<p>Good first tasks are translations, content checks or accessibility reviews. They repeat often and are easy to measure.</p>'],
-                        ['title' => 'Run it in a workspace', 'content' => '<p>The agent works through scoped tools, and every change waits for review in a TYPO3 workspace.</p>'],
-                        ['title' => 'Measure, then widen the scope', 'content' => '<p>Compare time and cost with the manual process. Then add the next task or move to production.</p>'],
+                        ['step' => '1', 'title' => 'Run the readiness check', 'description' => '<p>Answer the 11 questions with your team. The gaps show where to start.</p>'],
+                        ['step' => '2', 'title' => 'Pick one repeated task', 'description' => '<p>Good first tasks are translations, content checks or accessibility reviews. They repeat often and are easy to measure.</p>'],
+                        ['step' => '3', 'title' => 'Run it in a workspace', 'description' => '<p>The agent works through scoped tools, and every change waits for review in a TYPO3 workspace.</p>'],
+                        ['step' => '4', 'title' => 'Measure, then widen the scope', 'description' => '<p>Compare time and cost with the manual process. Then add the next task or move to production.</p>'],
                     ],
                 ]),
 

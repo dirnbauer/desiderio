@@ -21,12 +21,19 @@
         <ul class="trust-badges__row">
             <f:for each="{data.badge_items}" as="badge">
                 <li class="trust-badges__item">
-                    <f:if condition="{badge.image}">
-                        <span class="trust-badges__icon">
-                            <f:for each="{badge.image}" as="fileReference">
-                                <f:image image="{fileReference}" width="240" height="160" alt="{fileReference.alternative}" class="trust-badges__icon-img" additionalAttributes="{srcset: '{f:uri.image(image: fileReference, width: \'240\', height: \'160\')} 1x, {f:uri.image(image: fileReference, width: \'480\', height: \'320\')} 2x'}" loading="lazy" decoding="async"/>
-                            </f:for>
-                        </span>
+                    <f:if condition="{badge.icon_name} && {badge.icon_name} != 'none'">
+                        <f:then>
+                            <span class="trust-badges__seal" aria-hidden="true"><d:atom.icon name="{badge.icon_name}" size="lg"/></span>
+                        </f:then>
+                        <f:else>
+                            <f:if condition="{badge.image}">
+                                <span class="trust-badges__icon">
+                                    <f:for each="{badge.image}" as="fileReference">
+                                        <f:image image="{fileReference}" width="240" height="160" alt="{fileReference.alternative}" class="trust-badges__icon-img" additionalAttributes="{srcset: '{f:uri.image(image: fileReference, width: \'240\', height: \'160\')} 1x, {f:uri.image(image: fileReference, width: \'480\', height: \'320\')} 2x'}" loading="lazy" decoding="async"/>
+                                    </f:for>
+                                </span>
+                            </f:if>
+                        </f:else>
                     </f:if>
                     <span class="trust-badges__label">{badge -> f:render.text(field: 'label')}</span>
                     <f:if condition="{badge.description_text}">

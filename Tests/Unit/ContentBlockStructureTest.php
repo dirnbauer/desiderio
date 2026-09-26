@@ -430,11 +430,12 @@ final class ContentBlockStructureTest extends AbstractContentBlockTestCase
             }
         }
 
-        // 14, not the historical 17: five icon-field definitions across
+        // 15: the historical 17 minus five icon-field definitions across
         // benefit-cards, feature-carousel, feature-grid-3, feature-grid-4 and
-        // feature-icons collapsed into two shared record types
-        // (desiderio_icon_card_link, desiderio_icon_lead). 17 - 5 + 2 = 14.
-        self::assertSame(14, $iconFieldCount);
+        // feature-icons that collapsed into two shared record types
+        // (desiderio_icon_card_link, desiderio_icon_lead), plus the trust
+        // badges' seal icon (4.10.0). 17 - 5 + 2 + 1 = 15.
+        self::assertSame(15, $iconFieldCount);
     }
 
     public function testFixtureIconValuesUseIconNames(): void

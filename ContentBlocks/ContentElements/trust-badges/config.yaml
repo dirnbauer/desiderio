@@ -39,6 +39,16 @@ fields:
         allowed: common-image-types
         maxitems: 1
       -
+        identifier: icon_name
+        type: Select
+        renderType: selectSingle
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:icon'
+        description: 'Optional icon for a check or standard. It is shown in a round seal instead of the image.'
+        itemsProcessors:
+          10:
+            class: Webconsulting\Desiderio\DataHandling\IconItemsProcessor
+        default: none
+      -
         identifier: description_text
         type: Textarea
         rows: 1

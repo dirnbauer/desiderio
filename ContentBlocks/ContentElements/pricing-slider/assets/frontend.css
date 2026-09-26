@@ -139,6 +139,9 @@
 /* Dialog: sized for the longest translation (German, Hungarian), labels
    wrap instead of overflowing, and it never exceeds the viewport. */
 .pricing-slider__dialog {
+    /* The CSS reset zeroes the dialog's margin, which is what centres a
+       modal dialog in the viewport; restore it. */
+    margin: auto;
     width: min(34rem, 100% - 2rem);
     max-height: calc(100dvh - 2rem);
     padding: 0;

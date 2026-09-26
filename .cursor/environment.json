@@ -1,0 +1,16 @@
+{
+  "name": "Desiderio (TYPO3 14)",
+  "user": "ubuntu",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "install": "composer install --no-interaction --no-progress\nnpm ci\nBuild/CiApp/bootstrap.sh\n(cd Build/CiApp && npm ci && npm run build)",
+  "terminals": [
+    {
+      "name": "typo3",
+      "command": "cd Build/CiApp && TYPO3_CONTEXT=Production php -d memory_limit=768M -d opcache.enable=0 -d opcache.enable_cli=0 -S 127.0.0.1:8080 -t public",
+      "description": "Serves the disposable Desiderio QA TYPO3 site (seeded SQLite app, 263 elements) at http://127.0.0.1:8080/. Backend login at /typo3/ (admin / Qa!Harness2026). Element preview URLs: vendor/bin/typo3 desiderio:library:urls --site=main --json"
+    }
+  ],
+  "ports": [8080]
+}

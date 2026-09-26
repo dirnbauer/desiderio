@@ -6,7 +6,7 @@
 .imprint__address { font-style: normal; display: flex; flex-direction: column; gap: var(--d-spacing-2xs); }
 .imprint__value { font-size: var(--d-text-sm); line-height: var(--d-leading-relaxed); margin: 0; }
 .imprint__company { font-weight: var(--d-weight-semibold); }
-.imprint__lines { white-space: pre-line; }
+
 .imprint__link {
     color: var(--d-link, var(--primary));
     text-decoration: none;

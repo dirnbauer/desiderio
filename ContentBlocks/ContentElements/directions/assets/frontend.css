@@ -31,7 +31,6 @@
     font-size: var(--d-text-sm);
     color: var(--muted-foreground);
     line-height: var(--d-leading-relaxed);
-    white-space: pre-line;
     margin: 0;
 }
 @media (max-width: 768px) {

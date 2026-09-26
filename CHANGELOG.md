@@ -33,6 +33,14 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
   next to the other elements that help visitors find their way. The
   showcase copy counts 24 navigation and 24 conversion elements.
 
+### Fixed
+
+- Addresses and other multi-line text show single line breaks again in Map
+  Embed, Imprint, Footer Contact and Directions. The text helper already
+  turns each line break into a `<br>`, and the element CSS kept the source
+  line break as well, so every break was doubled: a three-line address took
+  five lines.
+
 ## [4.8.2] — 2026-09-26
 
 ### Fixed

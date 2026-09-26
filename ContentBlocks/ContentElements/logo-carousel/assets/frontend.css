@@ -44,17 +44,22 @@
     outline: 2px solid var(--ring);
     outline-offset: 4px;
 }
+/* The logos are full-colour files shown as a quiet greyscale row: lighter
+   than the heading, which keeps the full ink. Hover or keyboard focus brings
+   one logo back to its own colours. */
 .logo-carousel__image {
     display: block;
     max-height: 3.75rem;
     width: auto;
     object-fit: contain;
-    filter: none;
-    opacity: 0.92;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    filter: grayscale(1);
+    opacity: 0.6;
+    transition: filter 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
 }
 .logo-carousel__item:hover .logo-carousel__image,
+.logo-carousel__item:focus-within .logo-carousel__image,
 .logo-carousel__link:focus-visible .logo-carousel__image {
+    filter: none;
     opacity: 1;
     transform: translateY(-0.125rem);
 }
@@ -62,11 +67,17 @@
 @media (prefers-reduced-motion: reduce) {
     .logo-carousel__track {
         overflow-x: auto;
+        scroll-snap-type: x proximity;
         mask-image: none;
         -webkit-mask-image: none;
     }
+    .logo-carousel__item { scroll-snap-align: start; }
     .logo-carousel__slide-group { animation: none; }
     .logo-carousel__slide-group[aria-hidden="true"] { display: none; }
+    .logo-carousel__image { transition: none; }
+    .logo-carousel__item:hover .logo-carousel__image,
+    .logo-carousel__item:focus-within .logo-carousel__image,
+    .logo-carousel__link:focus-visible .logo-carousel__image { transform: none; }
 }
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */
@@ -75,7 +86,12 @@
     gap: var(--d-spacing-sm);
 }
 
-/* Transparent monochrome SVG logos: drop the site's image frame (it shows as a box
-   around a transparent file) and use light ink on dark themes. */
+/* Transparent SVG logos: drop the site's image frame (it shows as a box around a
+   transparent file). On dark themes the greyscale logo is inverted so its dark
+   wordmark reads light; the colour state inverts and turns the hues back, so the
+   marks keep their colours and the wordmark stays light. */
 .logo-carousel__image[src*=".svg"] { background: none; border: 0; border-radius: 0; box-shadow: none; }
-.dark .logo-carousel__image[src*=".svg"] { filter: brightness(0) invert(0.92); }
+.dark .logo-carousel__image[src*=".svg"] { filter: grayscale(1) invert(1); opacity: 0.7; }
+.dark .logo-carousel__item:hover .logo-carousel__image[src*=".svg"],
+.dark .logo-carousel__item:focus-within .logo-carousel__image[src*=".svg"],
+.dark .logo-carousel__link:focus-visible .logo-carousel__image[src*=".svg"] { filter: invert(1) hue-rotate(180deg); opacity: 1; }

@@ -25,11 +25,21 @@
     justify-content: center;
     margin-block-end: var(--d-spacing-md);
 }
+/* Logos are full-colour files shown greyscale and muted at rest; hovering the
+   card or focusing its link brings the logo back to its own colours. */
 .investor-grid__logo {
     max-height: 58px;
     max-width: 190px;
     width: auto;
     object-fit: contain;
+    filter: grayscale(1);
+    opacity: 0.6;
+    transition: filter 0.2s ease, opacity 0.2s ease;
+}
+.investor-grid__item:hover .investor-grid__logo,
+.investor-grid__item:focus-within .investor-grid__logo {
+    filter: none;
+    opacity: 1;
 }
 .investor-grid__logo-fallback {
     display: inline-flex;
@@ -54,7 +64,15 @@
 }
 .investor-grid__link:hover { text-decoration: underline; }
 
-/* Transparent monochrome SVG logos: drop the site's image frame (it shows as a box
-   around a transparent file) and use light ink on dark themes. */
+/* Transparent SVG logos: drop the site's image frame (it shows as a box around a
+   transparent file). On dark themes the greyscale logo is inverted so its dark
+   wordmark reads light; the colour state inverts and turns the hues back, so the
+   marks keep their colours and the wordmark stays light. */
 .investor-grid__logo[src*=".svg"] { background: none; border: 0; border-radius: 0; box-shadow: none; }
-.dark .investor-grid__logo[src*=".svg"] { filter: brightness(0) invert(0.92); }
+.dark .investor-grid__logo[src*=".svg"] { filter: grayscale(1) invert(1); opacity: 0.7; }
+.dark .investor-grid__item:hover .investor-grid__logo[src*=".svg"],
+.dark .investor-grid__item:focus-within .investor-grid__logo[src*=".svg"] { filter: invert(1) hue-rotate(180deg); opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+    .investor-grid__logo { transition: none; }
+}

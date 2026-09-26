@@ -31,6 +31,8 @@
     transform: translateY(-0.125rem);
 }
 .logo-grid__link:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+/* The logos are full-colour files shown as a quiet greyscale set. Hover or
+   keyboard focus brings one logo back to its own colours. */
 .logo-grid__image {
     width: 5rem;
     height: 5rem;
@@ -40,8 +42,19 @@
     border-radius: var(--radius, 0.625rem);
     background: var(--muted);
     object-fit: contain;
+    filter: grayscale(1);
+    opacity: 0.6;
+    transition: filter 0.2s ease, opacity 0.2s ease;
 }
-.logo-grid__name { font-size: var(--d-text-base, 1rem); color: var(--foreground); font-weight: var(--d-weight-semibold); text-align: center; }
+.logo-grid__link:hover .logo-grid__image,
+.logo-grid__link:focus-visible .logo-grid__image,
+.logo-grid__item:focus-within .logo-grid__image {
+    filter: none;
+    opacity: 1;
+}
+/* The caption is quieter than the logo: muted ink (contrast-audited on page and
+   card backgrounds, so it is not faded further), small, regular weight. */
+.logo-grid__name { font-size: var(--d-text-sm, 0.875rem); color: var(--muted-foreground); font-weight: var(--d-weight-normal); text-align: center; }
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */
 .logo-grid__intro {
@@ -49,8 +62,19 @@
     gap: var(--d-spacing-sm);
 }
 
-/* Transparent monochrome SVG logos: drop the site's image frame (it shows as a box
-   around a transparent file) and use light ink on dark themes. */
+/* Transparent SVG logos: drop the site's image frame (it shows as a box around a
+   transparent file). On dark themes the greyscale logo is inverted so its dark
+   wordmark reads light; the colour state inverts and turns the hues back, so the
+   marks keep their colours and the wordmark stays light. */
 /* The 5rem tile is sized for square icons; a wordmark needs its width. */
 .logo-grid__image[src*=".svg"] { width: auto; max-width: 100%; height: 2.5rem; padding: 0; background: none; border: 0; border-radius: 0; box-shadow: none; }
-.dark .logo-grid__image[src*=".svg"] { filter: brightness(0) invert(0.92); }
+.dark .logo-grid__image[src*=".svg"] { filter: grayscale(1) invert(1); opacity: 0.7; }
+.dark .logo-grid__link:hover .logo-grid__image[src*=".svg"],
+.dark .logo-grid__link:focus-visible .logo-grid__image[src*=".svg"],
+.dark .logo-grid__item:focus-within .logo-grid__image[src*=".svg"] { filter: invert(1) hue-rotate(180deg); opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+    .logo-grid__link,
+    .logo-grid__image { transition: none; }
+    .logo-grid__link:hover { transform: none; }
+}

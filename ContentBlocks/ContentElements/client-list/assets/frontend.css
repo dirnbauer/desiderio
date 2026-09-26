@@ -2,40 +2,92 @@
 .client-list__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: var(--d-tracking-wide); color: var(--d-link, var(--primary)); font-weight: var(--d-weight-semibold); }
 .client-list__headline { margin-block-start: var(--d-spacing-xs); }
 .client-list__description { color: var(--muted-foreground); max-width: 40rem; }
-.client-list__items { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; }
-.client-list__item { display: flex; align-items: center; gap: var(--d-spacing-md); padding: var(--d-spacing-md) 0; border-block-end: 1px solid var(--border); }
-.client-list__item:last-child { padding-block-end: 0; border-block-end: none; }
-.client-list__media,
-.client-list__logo {
-    flex: 0 0 auto;
-    width: 5.5rem;
-    height: 4rem;
+/* Client cards: the logo on a quiet stage, then the name and the sector.
+   Cards share the row, so four clients fill the width instead of leaving
+   a long empty band to the right of each entry. */
+.client-list__items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+    gap: var(--d-spacing-md);
+}
+.client-list__item {
+    position: relative;
+    display: grid;
+    grid-template-rows: auto 1fr;
     overflow: hidden;
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    background: var(--muted);
-    box-shadow: var(--d-shadow-2xs);
+    background: var(--card);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.client-list__item:hover,
+.client-list__item:focus-within {
+    border-color: color-mix(in oklch, var(--foreground) 20%, var(--border));
+    box-shadow: var(--d-shadow-sm);
+}
+.client-list__media,
+.client-list__logo {
+    display: grid;
+    place-items: center;
+    height: 6rem;
+    padding: var(--d-spacing-md);
+    border-block-end: 1px solid var(--border);
+    background: color-mix(in oklch, var(--muted) 55%, var(--card));
 }
 .client-list__image,
 .client-list__logo-img {
     display: block;
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    max-height: 3rem;
+    width: auto;
+    height: auto;
     object-fit: contain;
-    object-position: center;
-    padding: var(--d-spacing-2xs);
+    /* Greyscale at rest, the brand colours while the card is hovered or
+       has focus. */
+    filter: grayscale(1);
+    opacity: 0.7;
+    transition: filter 0.2s ease, opacity 0.2s ease;
 }
-.client-list__info { display: flex; flex-direction: column; gap: var(--d-spacing-0-5); }
-.client-list__name { font-weight: var(--d-weight-semibold); text-decoration: none; color: var(--foreground); transition: color 0.15s ease; }
+.client-list__item:hover .client-list__image,
+.client-list__item:focus-within .client-list__image {
+    filter: none;
+    opacity: 1;
+}
+.client-list__info {
+    display: grid;
+    gap: var(--d-spacing-2xs);
+    align-content: start;
+    padding: var(--d-spacing-md);
+}
+.client-list__name {
+    font-weight: var(--d-weight-semibold);
+    text-decoration: none;
+    color: var(--foreground);
+}
+/* A linked client makes the whole card the link target. */
+a.client-list__name::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+}
 a.client-list__name:hover { color: var(--d-link, var(--primary)); }
-a.client-list__name:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: var(--d-radius-sm); }
-.client-list__industry { font-size: var(--d-text-sm); color: var(--muted-foreground); }
+a.client-list__name:focus-visible { outline: none; }
+.client-list__item:has(a.client-list__name:focus-visible) {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+.client-list__industry {
+    font-size: var(--d-text-sm);
+    color: var(--muted-foreground);
+}
 
-@media (max-width: 640px) {
-    .client-list__media,
-    .client-list__logo {
-        width: 4.5rem;
-        height: 3.5rem;
+@media (prefers-reduced-motion: reduce) {
+    .client-list__item,
+    .client-list__image {
+        transition: none;
     }
 }
 
@@ -45,12 +97,9 @@ a.client-list__name:focus-visible { outline: 2px solid var(--ring); outline-offs
     gap: var(--d-spacing-sm);
 }
 
-/* Transparent monochrome SVG logos: drop the site's image frame (it shows as a box
-   around a transparent file) and use light ink on dark themes. */
-/* A wordmark needs a wider slot than the 5.5rem thumbnail to stay legible. */
-.client-list__media:has(> .client-list__image[src*=".svg"]) { width: 10rem; }
-.client-list__image[src*=".svg"] { padding: var(--d-spacing-xs) var(--d-spacing-sm); background: none; border: 0; border-radius: 0; box-shadow: none; }
-.dark .client-list__image[src*=".svg"] { filter: brightness(0) invert(0.92); }
-@media (max-width: 640px) {
-    .client-list__media:has(> .client-list__image[src*=".svg"]) { width: 7.5rem; }
-}
+/* Transparent SVG logos: no image frame; in dark mode greyscale and
+   inverted at rest, colours restored (hue-rotated back) on hover. */
+.client-list__image[src*=".svg"] { background: none; border: 0; border-radius: 0; box-shadow: none; }
+.dark .client-list__image[src*=".svg"] { filter: grayscale(1) invert(1); }
+.dark .client-list__item:hover .client-list__image[src*=".svg"],
+.dark .client-list__item:focus-within .client-list__image[src*=".svg"] { filter: invert(1) hue-rotate(180deg); }

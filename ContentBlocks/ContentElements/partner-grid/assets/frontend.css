@@ -48,12 +48,22 @@
     margin-block-end: var(--d-spacing-md);
     padding-inline: 0;
 }
+/* Logos are full-colour files shown greyscale and muted at rest; hovering the
+   card or focusing its link brings the logo back to its own colours. */
 .partner-grid__logo {
     display: block;
     max-height: 64px;
     width: auto;
     max-width: 100%;
     object-fit: contain;
+    filter: grayscale(1);
+    opacity: 0.6;
+    transition: filter 0.2s ease, opacity 0.2s ease;
+}
+.partner-grid__item:hover .partner-grid__logo,
+.partner-grid__item:focus-within .partner-grid__logo {
+    filter: none;
+    opacity: 1;
 }
 .partner-grid__logo-fallback {
     display: inline-flex;
@@ -97,11 +107,16 @@
 .partner-grid__link:hover .partner-grid__link-arrow { transform: translateX(0.125rem); }
 @media (prefers-reduced-motion: reduce) {
     .partner-grid__item,
+    .partner-grid__logo,
     .partner-grid__link-arrow { transition: none; }
     .partner-grid__link:hover .partner-grid__link-arrow { transform: none; }
 }
 
-/* Transparent monochrome SVG logos: drop the site's image frame (it shows as a box
-   around a transparent file) and use light ink on dark themes. */
+/* Transparent SVG logos: drop the site's image frame (it shows as a box around a
+   transparent file). On dark themes the greyscale logo is inverted so its dark
+   wordmark reads light; the colour state inverts and turns the hues back, so the
+   marks keep their colours and the wordmark stays light. */
 .partner-grid__logo[src*=".svg"] { background: none; border: 0; border-radius: 0; box-shadow: none; }
-.dark .partner-grid__logo[src*=".svg"] { filter: brightness(0) invert(0.92); }
+.dark .partner-grid__logo[src*=".svg"] { filter: grayscale(1) invert(1); opacity: 0.7; }
+.dark .partner-grid__item:hover .partner-grid__logo[src*=".svg"],
+.dark .partner-grid__item:focus-within .partner-grid__logo[src*=".svg"] { filter: invert(1) hue-rotate(180deg); opacity: 1; }

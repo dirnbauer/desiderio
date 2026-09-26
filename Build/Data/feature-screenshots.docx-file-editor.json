@@ -1,0 +1,42 @@
+{
+    "_note": "Needs fileadmin/desiderio-styleguide/desiderio-target-groups.docx (a Word export of the Target groups page).",
+    "shots": [
+        {
+            "name": "feature-docx-editor-file-editor",
+            "kind": "backend",
+            "url": "/typo3/module/file/list?id=1:/desiderio-styleguide/&searchTerm=target-groups",
+            "viewport": "1920x1100",
+            "steps": [
+                {
+                    "waitFor": "[data-filelist-identifier=\"1:/desiderio-styleguide/desiderio-target-groups.docx\"]",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "evaluate": "(() => { const row = document.querySelector('[data-filelist-identifier=\"1:/desiderio-styleguide/desiderio-target-groups.docx\"]'); const target = row.querySelector('button[data-filelist-action=\"primary\"], a, .resource-tile, td') || row; target.scrollIntoView({ block: 'center' }); const box = target.getBoundingClientRect(); target.dispatchEvent(new MouseEvent('contextmenu', { bubbles: true, cancelable: true, composed: true, view: window, button: 2, buttons: 2, clientX: box.left + 20, clientY: box.top + 10 })); })()",
+                    "frame": true,
+                    "wait": 1200
+                },
+                {
+                    "click": "#contextmenu-root .context-menu-item[aria-label=\"Edit DOCX\"]"
+                },
+                {
+                    "waitFor": ".docx-page",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "evaluate": "document.fonts.ready",
+                    "frame": true,
+                    "wait": 2500
+                },
+                {
+                    "evaluate": "const mark = (x, y, w, h) => { let m = document.getElementById('shot-clip'); if (!m) { m = document.createElement('div'); m.id = 'shot-clip'; document.body.append(m); } Object.assign(m.style, { position: 'fixed', left: Math.round(x) + 'px', top: Math.round(y) + 'px', width: Math.round(w) + 'px', height: Math.round(h) + 'px', pointerEvents: 'none', zIndex: '-1' }); }; const mark16 = (x, y, maxWidth) => { const w = Math.floor(maxWidth / 16) * 16; mark(x, y, w, w / 1.6); }; const frameBox = () => document.querySelector('iframe#typo3-contentIframe').getBoundingClientRect(); const frameDoc = () => document.querySelector('iframe#typo3-contentIframe').contentDocument; (() => { const f = frameBox(); mark16(f.left, f.top, f.width); })()"
+                }
+            ],
+            "settle": 1200,
+            "clip": "#shot-clip",
+            "padding": 0
+        }
+    ]
+}

@@ -14,7 +14,7 @@ namespace Webconsulting\Desiderio\Data\Showcase;
  * @phpstan-type ShowcaseBlock array{ctype: string, colPos: int, fields: array<string, mixed>}
  * @phpstan-type ShowcaseMedia array{file: string, title: string, alternative: string, description: string, source: string}
  * @phpstan-type ShowcaseBlogMeta array{publishDate: string, categories: list<string>, tags: list<string>}
- * @phpstan-type ShowcasePage array{title: string, navTitle: string, slug: string, abstract: string, description: string, parentSlug: string|null, subtitle?: string, pageTsConfig?: string, backendLayout?: string, blogList?: bool, blog?: ShowcaseBlogMeta, hideInNav?: bool, content: array<int, ShowcaseBlock>}
+ * @phpstan-type ShowcasePage array{title: string, navTitle: string, slug: string, abstract: string, description: string, parentSlug: string|null, seoTitle?: string, subtitle?: string, pageTsConfig?: string, backendLayout?: string, blogList?: bool, blog?: ShowcaseBlogMeta, hideInNav?: bool, content: array<int, ShowcaseBlock>}
  */
 final class ShowcaseBlocks
 {

@@ -1,0 +1,269 @@
+{
+    "_note": "The Visual Editor and visual_editor_enhancements, in the module iframe and the page iframe inside it.",
+    "shots": [
+        {
+            "name": "feature-visual-editor-field-chooser",
+            "kind": "backend",
+            "url": "/typo3/module/web/edit?id=505",
+            "viewport": "1600x1100",
+            "css": ".scaffold-content::before{display:none!important}",
+            "steps": [
+                {
+                    "waitFor": "ve-content-element[ctype=desiderio_hero]",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "timeout": 120000
+                },
+                {
+                    "waitFor": "ve-element-library-button .fab",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "timeout": 120000
+                },
+                {
+                    "evaluate": "(() => { const s = document.createElement('style'); s.textContent = '#TSFE_ADMIN_PANEL_FORM{display:none!important}*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}[class*=reveal],[class*=fade],section{opacity:1!important;transform:none!important}'; document.head.append(s); })()",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "wait": 1500
+                },
+                {
+                    "hover": "ve-content-element[ctype=desiderio_hero]",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "wait": 600
+                },
+                {
+                    "click": "ve-content-element[ctype=desiderio_hero] [data-ve-enhancement=field-chooser]",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe"
+                },
+                {
+                    "waitFor": "ve-field-chooser .field",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "timeout": 60000
+                },
+                {
+                    "evaluate": "(() => { const tabs = [...document.querySelector('ve-field-chooser').shadowRoot.querySelectorAll('.tab')]; (tabs.find((tab) => tab.textContent.trim().startsWith('Appearance')) || tabs[1]).click(); })()",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "wait": 1000
+                },
+                {
+                    "evaluate": "(() => { for (const id of ['shot-crop-a', 'shot-crop-b']) { document.getElementById(id)?.remove(); } const r = document.querySelector('iframe#typo3-contentIframe').getBoundingClientRect(); const w = Math.floor(r.width / 8) * 8; const h = w * 5 / 8; const x = Math.round(r.right) - w; const y = Math.ceil(r.top); [['shot-crop-a', x, y], ['shot-crop-b', x + w - 1, y + h - 1]].forEach(([id, left, top]) => { const marker = document.createElement('div'); marker.id = id; marker.style.cssText = 'position:fixed;width:1px;height:1px;pointer-events:none;left:' + left + 'px;top:' + top + 'px'; document.body.append(marker); }); })()",
+                    "wait": 300
+                }
+            ],
+            "clip": [
+                "#shot-crop-a",
+                "#shot-crop-b"
+            ],
+            "padding": 0
+        },
+        {
+            "name": "feature-visual-editor-rte-toolbar",
+            "kind": "backend",
+            "url": "/typo3/module/web/edit?id=505",
+            "viewport": "1600x1000",
+            "css": ".scaffold-content::before{display:none!important}",
+            "steps": [
+                {
+                    "waitFor": "ve-content-element[ctype=desiderio_featurecards] ve-editable-rich-text .ck-editor__editable",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "timeout": 120000
+                },
+                {
+                    "waitFor": "ve-element-library-button .fab",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "timeout": 120000
+                },
+                {
+                    "evaluate": "(() => { const s = document.createElement('style'); s.textContent = '#TSFE_ADMIN_PANEL_FORM{display:none!important}*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}[class*=reveal],[class*=fade],section{opacity:1!important;transform:none!important}'; document.head.append(s); })()",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "wait": 1000
+                },
+                {
+                    "evaluate": "(() => { const cards = document.querySelectorAll('ve-content-element[ctype=desiderio_featurecards]')[2]; cards.setAttribute('data-shot', 'rte'); window.scrollTo(0, cards.getBoundingClientRect().top + window.scrollY - 40); })()",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "wait": 1200
+                },
+                {
+                    "click": "[data-shot=rte] .feature-cards__grid > :nth-child(2) ve-editable-rich-text .ck-editor__editable",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "wait": 1500
+                },
+                {
+                    "click": ".ck-balloon-panel_visible.ck-toolbar-container .ck-toolbar__nested-toolbar-dropdown > button",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe"
+                },
+                {
+                    "waitFor": ".ck-balloon-panel_visible.ck-toolbar-container .ck-toolbar__nested-toolbar-dropdown .ck-dropdown__panel-visible",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "timeout": 10000,
+                    "wait": 800
+                },
+                {
+                    "evaluate": "(() => { for (const id of ['shot-crop-a', 'shot-crop-b']) { document.getElementById(id)?.remove(); } const r = document.querySelector('iframe#typo3-contentIframe').getBoundingClientRect(); const w = Math.floor(r.width / 8) * 8; const h = w * 5 / 8; const x = Math.round(r.right) - w; const y = Math.ceil(r.top); [['shot-crop-a', x, y], ['shot-crop-b', x + w - 1, y + h - 1]].forEach(([id, left, top]) => { const marker = document.createElement('div'); marker.id = id; marker.style.cssText = 'position:fixed;width:1px;height:1px;pointer-events:none;left:' + left + 'px;top:' + top + 'px'; document.body.append(marker); }); })()",
+                    "wait": 300
+                }
+            ],
+            "clip": [
+                "#shot-crop-a",
+                "#shot-crop-b"
+            ],
+            "padding": 0
+        },
+        {
+            "name": "feature-visual-editor-link-helper",
+            "kind": "backend",
+            "url": "/typo3/module/web/edit?id=669",
+            "viewport": "1600x1000",
+            "css": ".scaffold-content::before{display:none!important}",
+            "steps": [
+                {
+                    "waitFor": "ve-content-element[ctype=desiderio_heroproduct]",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "timeout": 120000
+                },
+                {
+                    "waitFor": "ve-element-library-button .fab",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "timeout": 120000
+                },
+                {
+                    "evaluate": "(() => { const s = document.createElement('style'); s.textContent = '#TSFE_ADMIN_PANEL_FORM{display:none!important}*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}[class*=reveal],[class*=fade],section{opacity:1!important;transform:none!important}'; document.head.append(s); })()",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "wait": 1000
+                },
+                {
+                    "evaluate": "(() => { const hero = document.querySelector('ve-content-element[ctype=desiderio_heroproduct]'); window.scrollTo(0, hero.getBoundingClientRect().top + window.scrollY - 110); })()",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "wait": 1500
+                },
+                {
+                    "click": "ve-content-element[ctype=desiderio_heroproduct] :is(a, button):has(+ ve-editable-link[field=primary_button_link]) ve-editable-text",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "wait": 1200
+                },
+                {
+                    "evaluate": "(() => { for (const id of ['shot-crop-a', 'shot-crop-b']) { document.getElementById(id)?.remove(); } const frame = document.querySelector('iframe#typo3-contentIframe'); const r = frame.getBoundingClientRect(); const docheader = frame.contentDocument.querySelector('.module-docheader').getBoundingClientRect(); const w = Math.floor(r.width / 8) * 8; const h = w * 5 / 8; const x = Math.round(r.right) - w; const y = Math.ceil(r.top + docheader.bottom); [['shot-crop-a', x, y], ['shot-crop-b', x + w - 1, y + h - 1]].forEach(([id, left, top]) => { const marker = document.createElement('div'); marker.id = id; marker.style.cssText = 'position:fixed;width:1px;height:1px;pointer-events:none;left:' + left + 'px;top:' + top + 'px'; document.body.append(marker); }); })()",
+                    "wait": 300
+                }
+            ],
+            "clip": [
+                "#shot-crop-a",
+                "#shot-crop-b"
+            ],
+            "padding": 0
+        },
+        {
+            "name": "feature-visual-editor-element-library",
+            "kind": "backend",
+            "url": "/typo3/module/web/edit?id=505",
+            "viewport": "1920x1140",
+            "css": ".scaffold-content::before{display:none!important}",
+            "steps": [
+                {
+                    "waitFor": "ve-element-library-button .fab",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "timeout": 120000
+                },
+                {
+                    "hover": ".scaffold-header",
+                    "optional": true
+                },
+                {
+                    "evaluate": "(() => { const s = document.createElement('style'); s.textContent = '#TSFE_ADMIN_PANEL_FORM{display:none!important}*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}[class*=reveal],[class*=fade],section{opacity:1!important;transform:none!important}'; document.head.append(s); })()",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "wait": 1000
+                },
+                {
+                    "evaluate": "(() => { window.visualEditorEnhancements.elementLibraryColumns = 3; const panel = document.querySelector('ve-element-library'); if (panel) { panel.columns = 3; panel.searchTerm = ''; panel.searchResult = null; panel.selectedGroups = new Set(); panel.requestUpdate(); } if (!panel || !panel.open) { document.querySelector('ve-element-library-button').shadowRoot.querySelector('button').click(); } })()",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "wait": 500
+                },
+                {
+                    "waitFor": "ve-element-library .card",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "timeout": 90000
+                },
+                {
+                    "evaluate": "new Promise((resolve) => { const started = Date.now(); const tick = () => { const root = document.querySelector('ve-element-library')?.shadowRoot; const grid = root?.querySelector('.grid'); let ready = false; if (grid) { const box = grid.getBoundingClientRect(); const cards = [...root.querySelectorAll('.card')].filter((card) => { const r = card.getBoundingClientRect(); return r.top < box.bottom - 60 && r.bottom > box.top; }); ready = cards.length > 0 && cards.every((card) => (card.querySelector('iframe')?.style.transform || '').includes('scale')); } if (ready || Date.now() - started > 90000) { setTimeout(resolve, 1500); } else { setTimeout(tick, 250); } }; tick(); })",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe"
+                },
+                {
+                    "evaluate": "(() => { for (const frame of document.querySelector('ve-element-library').shadowRoot.querySelectorAll('iframe')) { try { const doc = frame.contentDocument; if (doc && !doc.getElementById('shot-hide-agentation')) { const style = doc.createElement('style'); style.id = 'shot-hide-agentation'; style.textContent = '#typo3-agentation-root,[data-agentation-toolbar]{display:none!important}'; (doc.head || doc.documentElement).append(style); } } catch (e) {} } })()",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "wait": 500
+                },
+                {
+                    "evaluate": "(() => { for (const id of ['shot-crop-a', 'shot-crop-b']) { document.getElementById(id)?.remove(); } const r = document.querySelector('iframe#typo3-contentIframe').getBoundingClientRect(); const w = Math.floor(r.width / 8) * 8; const h = w * 5 / 8; const x = Math.round(r.right) - w; const y = Math.ceil(r.top); [['shot-crop-a', x, y], ['shot-crop-b', x + w - 1, y + h - 1]].forEach(([id, left, top]) => { const marker = document.createElement('div'); marker.id = id; marker.style.cssText = 'position:fixed;width:1px;height:1px;pointer-events:none;left:' + left + 'px;top:' + top + 'px'; document.body.append(marker); }); })()",
+                    "wait": 300
+                }
+            ],
+            "settle": 1500,
+            "clip": [
+                "#shot-crop-a",
+                "#shot-crop-b"
+            ],
+            "padding": 0
+        },
+        {
+            "name": "feature-visual-editor-search",
+            "kind": "backend",
+            "url": "/typo3/module/web/edit?id=505",
+            "viewport": "1920x1140",
+            "css": ".scaffold-content::before{display:none!important}",
+            "steps": [
+                {
+                    "waitFor": "ve-element-library-button .fab",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "timeout": 120000
+                },
+                {
+                    "hover": ".scaffold-header",
+                    "optional": true
+                },
+                {
+                    "evaluate": "(() => { const s = document.createElement('style'); s.textContent = '#TSFE_ADMIN_PANEL_FORM{display:none!important}*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}[class*=reveal],[class*=fade],section{opacity:1!important;transform:none!important}'; document.head.append(s); })()",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "wait": 1000
+                },
+                {
+                    "evaluate": "(() => { window.visualEditorEnhancements.elementLibraryColumns = 3; const panel = document.querySelector('ve-element-library'); if (panel) { panel.columns = 3; panel.searchTerm = ''; panel.searchResult = null; panel.selectedGroups = new Set(); panel.requestUpdate(); } if (!panel || !panel.open) { document.querySelector('ve-element-library-button').shadowRoot.querySelector('button').click(); } })()",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "wait": 500
+                },
+                {
+                    "waitFor": "ve-element-library .card",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "timeout": 90000
+                },
+                {
+                    "fill": [
+                        "ve-element-library input.search",
+                        "testimonal"
+                    ],
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe"
+                },
+                {
+                    "waitFor": "ve-element-library .suggestRow .didYouMean",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "timeout": 30000
+                },
+                {
+                    "evaluate": "new Promise((resolve) => { const started = Date.now(); const tick = () => { const root = document.querySelector('ve-element-library')?.shadowRoot; const grid = root?.querySelector('.grid'); let ready = false; if (grid) { const box = grid.getBoundingClientRect(); const cards = [...root.querySelectorAll('.card')].filter((card) => { const r = card.getBoundingClientRect(); return r.top < box.bottom - 60 && r.bottom > box.top; }); ready = cards.length > 0 && cards.every((card) => (card.querySelector('iframe')?.style.transform || '').includes('scale')); } if (ready || Date.now() - started > 90000) { setTimeout(resolve, 1500); } else { setTimeout(tick, 250); } }; tick(); })",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe"
+                },
+                {
+                    "evaluate": "(() => { for (const frame of document.querySelector('ve-element-library').shadowRoot.querySelectorAll('iframe')) { try { const doc = frame.contentDocument; if (doc && !doc.getElementById('shot-hide-agentation')) { const style = doc.createElement('style'); style.id = 'shot-hide-agentation'; style.textContent = '#typo3-agentation-root,[data-agentation-toolbar]{display:none!important}'; (doc.head || doc.documentElement).append(style); } } catch (e) {} } })()",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "wait": 500
+                },
+                {
+                    "evaluate": "(() => { for (const id of ['shot-crop-a', 'shot-crop-b']) { document.getElementById(id)?.remove(); } const r = document.querySelector('iframe#typo3-contentIframe').getBoundingClientRect(); const w = Math.floor(r.width / 8) * 8; const h = w * 5 / 8; const x = Math.round(r.right) - w; const y = Math.ceil(r.top); [['shot-crop-a', x, y], ['shot-crop-b', x + w - 1, y + h - 1]].forEach(([id, left, top]) => { const marker = document.createElement('div'); marker.id = id; marker.style.cssText = 'position:fixed;width:1px;height:1px;pointer-events:none;left:' + left + 'px;top:' + top + 'px'; document.body.append(marker); }); })()",
+                    "wait": 300
+                }
+            ],
+            "settle": 1500,
+            "clip": [
+                "#shot-crop-a",
+                "#shot-crop-b"
+            ],
+            "padding": 0
+        }
+    ]
+}

@@ -1,0 +1,616 @@
+{
+    "_note": "Frontend and backend shots that need nothing but the signed-in session (any workspace).",
+    "shots": [
+        {
+            "name": "frontend-feature-skillflow-catalogue",
+            "kind": "frontend",
+            "url": "/desiderio-corporate-starter/skills-shadcn?tx_solr%5Bq%5D=security",
+            "viewport": "1440x900",
+            "steps": [
+                {
+                    "evaluate": "(() => { const e = document.querySelector('.tx_solr'); if (e) { e.scrollIntoView({block: 'start'}); window.scrollBy(0, -24); } })()",
+                    "wait": 600
+                }
+            ],
+            "clip": "viewport"
+        },
+        {
+            "name": "frontend-feature-skillflow-skill-detail",
+            "kind": "frontend",
+            "url": "/desiderio-corporate-starter/skill/security-audit",
+            "viewport": "1440x900",
+            "clip": "viewport"
+        },
+        {
+            "name": "frontend-feature-agent-nexus-hub",
+            "kind": "frontend",
+            "url": "/agent-nexus/",
+            "viewport": "1440x900",
+            "steps": [
+                {
+                    "evaluate": "(() => { const e = document.querySelector('#c73242'); if (e) { e.scrollIntoView({block: 'start'}); window.scrollBy(0, -24); } })()",
+                    "wait": 600
+                }
+            ],
+            "clip": "viewport"
+        },
+        {
+            "name": "frontend-feature-agent-nexus-a2ui-form",
+            "kind": "frontend",
+            "url": "/agent-nexus/a2ui",
+            "viewport": "1440x900",
+            "steps": [
+                {
+                    "evaluate": "(() => { const e = document.querySelector('#c73224'); if (e) { e.scrollIntoView({block: 'start'}); window.scrollBy(0, -24); } })()",
+                    "wait": 600
+                },
+                {
+                    "click": "text=Request a quote for a project"
+                },
+                {
+                    "waitFor": "[data-a2ui-provenance]",
+                    "timeout": 120000
+                }
+            ],
+            "settle": 1500,
+            "clip": "#c73224 .a2ui-inquiry__panel"
+        },
+        {
+            "name": "frontend-feature-agent-nexus-agui-approval",
+            "kind": "frontend",
+            "url": "/agent-nexus/ag-ui",
+            "viewport": "1440x1500",
+            "steps": [
+                {
+                    "evaluate": "(() => { const e = document.querySelector('#c73227'); if (e) { e.scrollIntoView({block: 'start'}); window.scrollBy(0, -24); } })()",
+                    "wait": 600
+                },
+                {
+                    "click": "text=Recommend a plan for my team"
+                },
+                {
+                    "waitFor": ".agui-asst__confirm",
+                    "timeout": 120000
+                },
+                {
+                    "evaluate": "document.activeElement && document.activeElement.blur()",
+                    "wait": 400
+                }
+            ],
+            "settle": 1500,
+            "clip": "#c73227 .agui-asst__panel"
+        },
+        {
+            "name": "frontend-feature-agent-nexus-ucp-checkout",
+            "kind": "frontend",
+            "url": "/agent-nexus/ucp",
+            "viewport": "1440x1500",
+            "steps": [
+                {
+                    "evaluate": "(() => { const e = document.querySelector('#c73233'); if (e) { e.scrollIntoView({block: 'start'}); window.scrollBy(0, -24); } })()",
+                    "wait": 600
+                },
+                {
+                    "click": "[data-ucp-run]"
+                },
+                {
+                    "waitFor": "[data-ucp-auth]",
+                    "timeout": 120000
+                },
+                {
+                    "evaluate": "document.activeElement && document.activeElement.blur()",
+                    "wait": 400
+                }
+            ],
+            "settle": 1500,
+            "clip": "#c73233 .ucp-cc__panel"
+        },
+        {
+            "name": "frontend-feature-llms-txt-llms",
+            "kind": "frontend",
+            "url": "/llms.txt",
+            "viewport": "1280x800",
+            "css": "body{margin:0!important;background:#fff!important;color:#0a0a0a!important} pre{margin:0!important;padding:40px 56px!important;font:15px/1.7 ui-monospace,SFMono-Regular,Menlo,monospace!important;white-space:pre-wrap!important}",
+            "clip": "viewport"
+        },
+        {
+            "name": "frontend-feature-llms-txt-agents-md",
+            "kind": "frontend",
+            "url": "/agents.md",
+            "viewport": "1280x800",
+            "css": "body{margin:0!important;background:#fff!important;color:#0a0a0a!important} pre{margin:0!important;padding:40px 56px!important;font:15px/1.7 ui-monospace,SFMono-Regular,Menlo,monospace!important;white-space:pre-wrap!important}",
+            "clip": "viewport"
+        },
+        {
+            "name": "frontend-feature-llms-txt-per-language",
+            "kind": "frontend",
+            "url": "/de/llms.txt",
+            "viewport": "1280x800",
+            "css": "body{margin:0!important;background:#fff!important;color:#0a0a0a!important} pre{margin:0!important;padding:40px 56px!important;font:15px/1.7 ui-monospace,SFMono-Regular,Menlo,monospace!important;white-space:pre-wrap!important}",
+            "clip": "viewport"
+        },
+        {
+            "name": "frontend-feature-sg-apicore-swagger",
+            "kind": "frontend",
+            "url": "/api/public/v1/docs/ui",
+            "viewport": "1440x1100",
+            "steps": [
+                {
+                    "click": ".theme-switcher .btn-light"
+                },
+                {
+                    "click": "h3#operations-tag-Examples"
+                },
+                {
+                    "click": "h3#operations-tag-Legacy"
+                },
+                {
+                    "evaluate": "window.scrollTo(0, 0)",
+                    "wait": 800
+                },
+                {
+                    "evaluate": "document.querySelectorAll('.theme-switcher').forEach((e) => e.remove())",
+                    "wait": 300
+                }
+            ],
+            "clip": "viewport"
+        },
+        {
+            "name": "frontend-feature-sg-apicore-try-it",
+            "kind": "frontend",
+            "url": "/api/public/v1/docs/ui#/pages/get_pages",
+            "viewport": "1440x1000",
+            "steps": [
+                {
+                    "click": ".theme-switcher .btn-light"
+                },
+                {
+                    "waitFor": "#operations-pages-get_pages .try-out__btn"
+                },
+                {
+                    "click": "#operations-pages-get_pages .try-out__btn"
+                },
+                {
+                    "fill": [
+                        "#operations-pages-get_pages tr[data-param-name=\"perPage\"] input",
+                        "5"
+                    ]
+                },
+                {
+                    "fill": [
+                        "#operations-pages-get_pages tr[data-param-name=\"filter\"] textarea",
+                        "{\"pid\": 1068}"
+                    ]
+                },
+                {
+                    "click": "#operations-pages-get_pages .execute"
+                },
+                {
+                    "waitFor": "#operations-pages-get_pages .live-responses-table",
+                    "timeout": 60000
+                },
+                {
+                    "scroll": "#operations-pages-get_pages .live-responses-table"
+                },
+                {
+                    "evaluate": "document.querySelectorAll('.theme-switcher').forEach((e) => e.remove())",
+                    "wait": 300
+                }
+            ],
+            "clip": "#operations-pages-get_pages .live-responses-table"
+        },
+        {
+            "name": "frontend-feature-sg-apicore-crud",
+            "kind": "frontend",
+            "url": "/api/partner/v1/docs/ui",
+            "viewport": "1440x1100",
+            "steps": [
+                {
+                    "click": ".theme-switcher .btn-light"
+                },
+                {
+                    "waitFor": ".opblock-tag-section:has(#operations-tag-tt_content) .opblock",
+                    "timeout": 60000
+                },
+                {
+                    "scroll": "#operations-tag-tt_content"
+                },
+                {
+                    "evaluate": "document.querySelectorAll('.theme-switcher').forEach((e) => e.remove())",
+                    "wait": 300
+                }
+            ],
+            "clip": ".opblock-tag-section:has(#operations-tag-tt_content)"
+        },
+        {
+            "name": "feature-records-list-grid",
+            "kind": "backend",
+            "url": "/typo3/module/content/records?id=44&table=tx_news_domain_model_news&displayMode=grid",
+            "viewport": "1920x1100",
+            "steps": [
+                {
+                    "waitFor": ".module-body",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "wait": 2500
+                }
+            ],
+            "clip": "frame:.module",
+            "padding": 0,
+            "frameCss": ".gridview-card__image-hint{display:none!important}section.recordlist-filters-block{display:none!important}"
+        },
+        {
+            "name": "feature-records-list-compact",
+            "kind": "backend",
+            "url": "/typo3/module/content/records?id=44&table=tx_news_domain_model_news&displayMode=compact",
+            "viewport": "1920x1100",
+            "steps": [
+                {
+                    "waitFor": ".module-body",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "wait": 2500
+                }
+            ],
+            "clip": "frame:.module",
+            "padding": 0,
+            "frameCss": ".gridview-card__image-hint{display:none!important}section.recordlist-filters-block{display:none!important}"
+        },
+        {
+            "name": "feature-records-list-teaser",
+            "kind": "backend",
+            "url": "/typo3/module/content/records?id=44&table=tx_news_domain_model_news&displayMode=teaser",
+            "viewport": "1920x1100",
+            "steps": [
+                {
+                    "waitFor": ".module-body",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "wait": 2500
+                }
+            ],
+            "clip": "frame:.module",
+            "padding": 0,
+            "frameCss": ".gridview-card__image-hint{display:none!important}section.recordlist-filters-block{display:none!important}"
+        },
+        {
+            "name": "feature-records-list-catalog",
+            "kind": "backend",
+            "url": "/typo3/module/content/records?id=44&table=tx_news_domain_model_news&displayMode=catalog",
+            "viewport": "1920x1100",
+            "steps": [
+                {
+                    "waitFor": ".module-body",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "wait": 2500
+                }
+            ],
+            "clip": "frame:.module",
+            "padding": 0,
+            "frameCss": "[class*=image-hint]{display:none!important}section.recordlist-filters-block{display:none!important}"
+        },
+        {
+            "name": "feature-records-list-list",
+            "kind": "backend",
+            "url": "/typo3/module/content/records?id=44&table=tx_news_domain_model_news&displayMode=list",
+            "viewport": "1920x1100",
+            "steps": [
+                {
+                    "waitFor": ".module-body",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "wait": 2500
+                }
+            ],
+            "clip": "frame:.module",
+            "padding": 0,
+            "frameCss": ".gridview-card__image-hint{display:none!important}"
+        },
+        {
+            "name": "feature-nr-llm-manual-overview",
+            "url": "/typo3/module/nrllm/overview",
+            "steps": [
+                {
+                    "waitFor": ".nrllm-ov",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "wait": 4000
+                }
+            ],
+            "clip": [
+                "frame:.module-docheader",
+                "frame:.nrllm-ov"
+            ],
+            "kind": "backend",
+            "viewport": "1920x1100",
+            "padding": 0
+        },
+        {
+            "name": "feature-nr-llm-manual-providers",
+            "url": "/typo3/module/nrllm/providers",
+            "steps": [
+                {
+                    "waitFor": ".table-fit",
+                    "frame": true,
+                    "timeout": 120000
+                }
+            ],
+            "clip": [
+                "frame:.module-docheader",
+                "frame:.table-fit"
+            ],
+            "kind": "backend",
+            "viewport": "1920x1100",
+            "padding": 0
+        },
+        {
+            "name": "feature-nr-llm-manual-models",
+            "url": "/typo3/module/nrllm/models",
+            "steps": [
+                {
+                    "waitFor": ".table-fit",
+                    "frame": true,
+                    "timeout": 120000
+                }
+            ],
+            "clip": [
+                "frame:.module-docheader",
+                "frame:.table-fit"
+            ],
+            "kind": "backend",
+            "viewport": "1920x1100",
+            "padding": 0
+        },
+        {
+            "name": "feature-nr-llm-manual-configurations",
+            "url": "/typo3/module/nrllm/configurations",
+            "steps": [
+                {
+                    "waitFor": "#nrllm-configuration-list",
+                    "frame": true,
+                    "timeout": 120000
+                }
+            ],
+            "clip": [
+                "frame:.module-docheader",
+                "frame:#nrllm-configuration-list"
+            ],
+            "kind": "backend",
+            "viewport": "1920x1100",
+            "padding": 0
+        },
+        {
+            "name": "feature-nr-llm-manual-test",
+            "url": "/typo3/module/nrllm/configurations",
+            "kind": "backend",
+            "viewport": "1600x1000",
+            "steps": [
+                {
+                    "waitFor": "#nrllm-configuration-list",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "click": "#nrllm-configuration-list tr[data-uid=\"9\"] .js-test-config",
+                    "frame": true
+                },
+                {
+                    "waitFor": "#config-test-success",
+                    "timeout": 120000
+                },
+                {
+                    "wait": 1500
+                }
+            ],
+            "clip": "module"
+        },
+        {
+            "name": "feature-mcp-server-connect",
+            "url": "/typo3/module/user/mcp-server",
+            "steps": [
+                {
+                    "waitFor": "#mcp-tab-setup-tab",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "click": "#mcp-tab-setup-tab",
+                    "frame": true
+                },
+                {
+                    "wait": 1200
+                }
+            ],
+            "clip": [
+                "frame:.module-docheader",
+                "frame:#mcp-tab-setup"
+            ],
+            "kind": "backend",
+            "viewport": "1920x1100",
+            "padding": 0
+        },
+        {
+            "name": "feature-mcp-server-tools",
+            "url": "/typo3/module/user/mcp-server",
+            "steps": [
+                {
+                    "waitFor": "#mcp-tab-tools-tab",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "click": "#mcp-tab-tools-tab",
+                    "frame": true
+                },
+                {
+                    "fill": [
+                        "#mcp-tool-filter",
+                        "workspace"
+                    ],
+                    "frame": true,
+                    "wait": 1500
+                }
+            ],
+            "clip": [
+                "frame:.module-docheader",
+                "frame:#mcp-tab-tools"
+            ],
+            "kind": "backend",
+            "viewport": "1920x1100",
+            "padding": 0
+        },
+        {
+            "name": "feature-mcp-server-check",
+            "url": "/typo3/module/user/mcp-server",
+            "steps": [
+                {
+                    "waitFor": "#mcp-tab-check-tab",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "click": "#mcp-tab-check-tab",
+                    "frame": true
+                },
+                {
+                    "click": "button[data-mcp-action=\"refresh-diagnostics\"]",
+                    "frame": true,
+                    "wait": 6000
+                }
+            ],
+            "clip": [
+                "frame:.module-docheader",
+                "frame:#mcp-tab-check"
+            ],
+            "kind": "backend",
+            "viewport": "1920x1100",
+            "padding": 0
+        },
+        {
+            "name": "feature-typo3-abilities-registry",
+            "url": "/typo3/module/system/abilities",
+            "steps": [
+                {
+                    "waitFor": "#abilities-tab-registry-tab",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "click": "#abilities-tab-registry-tab",
+                    "frame": true,
+                    "wait": 1500
+                }
+            ],
+            "clip": [
+                "frame:.module-docheader",
+                "frame:#abilities-tab-registry"
+            ],
+            "kind": "backend",
+            "viewport": "1920x1100",
+            "padding": 0
+        },
+        {
+            "name": "feature-typo3-abilities-catalogue",
+            "url": "/typo3/module/system/abilities",
+            "steps": [
+                {
+                    "waitFor": "#abilities-tab-catalog-tab",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "click": "#abilities-tab-catalog-tab",
+                    "frame": true,
+                    "wait": 1500
+                },
+                {
+                    "fill": [
+                        "#abilities-catalog-search",
+                        "publish"
+                    ],
+                    "frame": true,
+                    "wait": 1500
+                },
+                {
+                    "evaluate": "(() => { const row = [...document.querySelectorAll('#abilities-tab-catalog tr, #abilities-tab-catalog li, #abilities-tab-catalog article')].find(r => r.textContent.includes('workspace/publish')); row?.querySelector('details.abilities-invocations')?.setAttribute('open', ''); })()",
+                    "frame": true,
+                    "wait": 800
+                }
+            ],
+            "clip": [
+                "frame:.module-docheader",
+                "frame:#abilities-tab-catalog"
+            ],
+            "kind": "backend",
+            "viewport": "1920x1100",
+            "padding": 0
+        },
+        {
+            "name": "feature-typo3-abilities-review",
+            "url": "/typo3/module/system/abilities",
+            "steps": [
+                {
+                    "waitFor": "#abilities-tab-run-tab",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "click": "#abilities-tab-run-tab",
+                    "frame": true,
+                    "wait": 1500
+                },
+                {
+                    "select": [
+                        "#abilities-run-select",
+                        "content/delete-page"
+                    ],
+                    "frame": true,
+                    "wait": 1500
+                }
+            ],
+            "clip": [
+                "frame:.module-docheader",
+                "frame:#abilities-tab-run"
+            ],
+            "kind": "backend",
+            "viewport": "1920x1100",
+            "padding": 0
+        },
+        {
+            "name": "feature-typo3-abilities-traces",
+            "url": "/typo3/module/system/abilities",
+            "steps": [
+                {
+                    "waitFor": "#abilities-tab-traces-tab",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "click": "#abilities-tab-traces-tab",
+                    "frame": true,
+                    "wait": 2500
+                }
+            ],
+            "clip": [
+                "frame:.module-docheader",
+                "frame:#abilities-tab-traces"
+            ],
+            "kind": "backend",
+            "viewport": "1920x1100",
+            "padding": 0
+        }
+    ]
+}

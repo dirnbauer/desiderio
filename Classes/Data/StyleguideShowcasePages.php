@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Webconsulting\Desiderio\Data;
 
-use Webconsulting\Desiderio\Data\Showcase\ShowcaseAgenticPages;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseAudiencePages;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseBlocks;
-use Webconsulting\Desiderio\Data\Showcase\ShowcaseIntegrationPages;
+use Webconsulting\Desiderio\Data\Showcase\ShowcaseFeaturePages;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseLegalPages;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseStrategyPages;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseSuccessStories;
@@ -47,8 +46,7 @@ final class StyleguideShowcasePages
             self::themesPage(),
             self::contentTypesHubPage(),
             self::rteCombinationsPage(),
-            ...ShowcaseIntegrationPages::pages(),
-            ...ShowcaseAgenticPages::pages(),
+            ...ShowcaseFeaturePages::pages(),
             ...ShowcaseAudiencePages::pages(),
             ...ShowcaseStrategyPages::pages(),
             ...ShowcaseSuccessStories::pages(),

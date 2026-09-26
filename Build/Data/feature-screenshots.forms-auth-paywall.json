@@ -1,0 +1,438 @@
+{
+    "_note": "Powermail, Jev, WorkOS and the x402 page properties. The Jev routing tab needs webcon_jev 0.2.13 or later.",
+    "shots": [
+        {
+            "name": "frontend-feature-powermail-multistep",
+            "kind": "frontend",
+            "url": "/desiderio-powermail/project",
+            "viewport": "1600x1000",
+            "css": ".d-powermail > .max-w-2xl{margin-inline:auto!important}",
+            "steps": [
+                {
+                    "fill": [
+                        "#powermail_field_name",
+                        "Lena Brandt"
+                    ]
+                },
+                {
+                    "fill": [
+                        "#powermail_field_email",
+                        "lena.brandt@example.com"
+                    ]
+                },
+                {
+                    "fill": [
+                        "#powermail_field_phone",
+                        "+49 30 23125 480"
+                    ]
+                },
+                {
+                    "fill": [
+                        "#powermail_field_company",
+                        "Brandt Interiors"
+                    ]
+                },
+                {
+                    "evaluate": "document.activeElement && document.activeElement.blur()",
+                    "wait": 800
+                },
+                {
+                    "evaluate": "(() => { const card = document.querySelector(\"form.powermail_form\"); card.scrollIntoView({block: 'center'}); const r = card.getBoundingClientRect(); const h = Math.round(r.height + 2 * 44); const w = Math.round(h * 1.3333); const frame = document.createElement('div'); frame.id = 'shot-frame'; frame.style.cssText = 'position:absolute;pointer-events:none;left:' + Math.round(r.left + window.scrollX - (w - r.width) / 2) + 'px;top:' + Math.round(r.top + window.scrollY - (h - r.height) / 2) + 'px;width:' + w + 'px;height:' + h + 'px'; document.body.appendChild(frame); })()",
+                    "wait": 600
+                }
+            ],
+            "clip": "#shot-frame",
+            "padding": 0
+        },
+        {
+            "name": "frontend-feature-powermail-validation",
+            "kind": "frontend",
+            "url": "/desiderio-powermail/project",
+            "viewport": "1600x1100",
+            "css": ".d-powermail > .max-w-2xl{margin-inline:auto!important}",
+            "steps": [
+                {
+                    "fill": [
+                        "#powermail_field_name",
+                        "Lena Brandt"
+                    ]
+                },
+                {
+                    "evaluate": "document.activeElement && document.activeElement.blur()",
+                    "wait": 800
+                },
+                {
+                    "click": "fieldset button[data-powermail-morestep-show=\"1\"]:not([data-powermail-morestep-previous])",
+                    "wait": 900
+                },
+                {
+                    "waitFor": ".powermail_field_error_container_company .d-powermail-field-error-message"
+                },
+                {
+                    "evaluate": "(() => { const card = document.querySelector(\"form.powermail_form\"); card.scrollIntoView({block: 'center'}); const r = card.getBoundingClientRect(); const h = 900; const w = 1200; const frame = document.createElement('div'); frame.id = 'shot-frame'; frame.style.cssText = 'position:absolute;pointer-events:none;left:' + Math.round(r.left + window.scrollX - (w - r.width) / 2) + 'px;top:' + Math.round(r.top + window.scrollY - (h - r.height) / 2) + 'px;width:' + w + 'px;height:' + h + 'px'; document.body.appendChild(frame); })()",
+                    "wait": 600
+                }
+            ],
+            "clip": "#shot-frame",
+            "padding": 0
+        },
+        {
+            "name": "frontend-feature-powermail-final-step",
+            "kind": "frontend",
+            "url": "/desiderio-powermail/project",
+            "viewport": "1600x1000",
+            "css": ".d-powermail > .max-w-2xl{margin-inline:auto!important}",
+            "steps": [
+                {
+                    "fill": [
+                        "#powermail_field_name",
+                        "Lena Brandt"
+                    ]
+                },
+                {
+                    "fill": [
+                        "#powermail_field_email",
+                        "lena.brandt@example.com"
+                    ]
+                },
+                {
+                    "fill": [
+                        "#powermail_field_phone",
+                        "+49 30 23125 480"
+                    ]
+                },
+                {
+                    "fill": [
+                        "#powermail_field_company",
+                        "Brandt Interiors"
+                    ]
+                },
+                {
+                    "click": "fieldset button[data-powermail-morestep-show=\"1\"]:not([data-powermail-morestep-previous])",
+                    "wait": 900
+                },
+                {
+                    "check": "#powermail_field_cms_1"
+                },
+                {
+                    "check": "#powermail_field_features_1"
+                },
+                {
+                    "check": "#powermail_field_features_2"
+                },
+                {
+                    "click": "fieldset button[data-powermail-morestep-show=\"2\"]:not([data-powermail-morestep-previous])",
+                    "wait": 900
+                },
+                {
+                    "check": "#powermail_field_budget_2"
+                },
+                {
+                    "fill": [
+                        "#powermail_field_description",
+                        "A relaunch of our company website in German and English, with a showroom finder and a news section."
+                    ]
+                },
+                {
+                    "click": "fieldset button[data-powermail-morestep-show=\"3\"]:not([data-powermail-morestep-previous])",
+                    "wait": 900
+                },
+                {
+                    "waitFor": "#powermail_field_referral"
+                },
+                {
+                    "select": [
+                        "#powermail_field_referral",
+                        "search"
+                    ]
+                },
+                {
+                    "check": "#powermail_field_privacy_1"
+                },
+                {
+                    "evaluate": "document.activeElement && document.activeElement.blur()",
+                    "wait": 800
+                },
+                {
+                    "evaluate": "(() => { const card = document.querySelector(\"form.powermail_form\"); card.scrollIntoView({block: 'center'}); const r = card.getBoundingClientRect(); const h = 900; const w = 1200; const frame = document.createElement('div'); frame.id = 'shot-frame'; frame.style.cssText = 'position:absolute;pointer-events:none;left:' + Math.round(r.left + window.scrollX - (w - r.width) / 2) + 'px;top:' + Math.round(r.top + window.scrollY - (h - r.height) / 2) + 'px;width:' + w + 'px;height:' + h + 'px'; document.body.appendChild(frame); })()",
+                    "wait": 600
+                }
+            ],
+            "clip": "#shot-frame",
+            "padding": 0
+        },
+        {
+            "name": "frontend-feature-powermail-dark-mode",
+            "kind": "frontend",
+            "url": "/desiderio-powermail/contact",
+            "viewport": "1600x1100",
+            "css": ".d-powermail > .max-w-2xl{margin-inline:auto!important}",
+            "steps": [
+                {
+                    "evaluate": "document.querySelector('[data-d-theme-option=\"dark\"]').click()",
+                    "wait": 600
+                },
+                {
+                    "fill": [
+                        "#powermail_field_name",
+                        "Lena Brandt"
+                    ]
+                },
+                {
+                    "fill": [
+                        "#powermail_field_email",
+                        "lena.brandt@example.com"
+                    ]
+                },
+                {
+                    "fill": [
+                        "#powermail_field_phone",
+                        "+49 30 23125 480"
+                    ]
+                },
+                {
+                    "fill": [
+                        "#powermail_field_team_size",
+                        "12"
+                    ]
+                },
+                {
+                    "select": [
+                        "#powermail_field_topic",
+                        "sales"
+                    ]
+                },
+                {
+                    "fill": [
+                        "#powermail_field_message",
+                        "We plan to relaunch our website next spring. Could you send us a first estimate?"
+                    ]
+                },
+                {
+                    "evaluate": "document.activeElement && document.activeElement.blur()",
+                    "wait": 800
+                },
+                {
+                    "evaluate": "(() => { const card = document.querySelector(\"form.powermail_form\"); card.scrollIntoView({block: 'center'}); const r = card.getBoundingClientRect(); const h = 900; const w = 1200; const frame = document.createElement('div'); frame.id = 'shot-frame'; frame.style.cssText = 'position:absolute;pointer-events:none;left:' + Math.round(r.left + window.scrollX - (w - r.width) / 2) + 'px;top:' + Math.round(r.top + window.scrollY - (h - r.height) / 2) + 'px;width:' + w + 'px;height:' + h + 'px'; document.body.appendChild(frame); })()",
+                    "wait": 600
+                }
+            ],
+            "clip": "#shot-frame",
+            "padding": 0
+        },
+        {
+            "name": "frontend-feature-jev-support-triage",
+            "kind": "frontend",
+            "url": "/desiderio-powermail-jev/support-triage",
+            "viewport": "1600x1000",
+            "css": ".d-powermail > .max-w-2xl{margin-inline:auto!important}",
+            "steps": [
+                {
+                    "evaluate": "(() => { const e = document.querySelector(\"#powermail_field_name\"); e.value = \"Lena Brandt\"; })()"
+                },
+                {
+                    "evaluate": "(() => { const e = document.querySelector(\"#powermail_field_email\"); e.value = \"lena.brandt@example.com\"; })()"
+                },
+                {
+                    "fill": [
+                        "#powermail_field_message",
+                        "Since the last update the footer shows the wrong year."
+                    ]
+                },
+                {
+                    "evaluate": "new Promise((resolve) => { const done = () => resolve(); document.addEventListener('powermailcond:processed', done, { once: true }); setTimeout(done, 90000); document.activeElement && document.activeElement.blur(); })",
+                    "wait": 600
+                },
+                {
+                    "waitFor": "#powermail_field_reproduction",
+                    "timeout": 90000
+                },
+                {
+                    "evaluate": "(() => { const card = document.querySelector(\"form.powermail_form\"); card.scrollIntoView({block: 'center'}); const r = card.getBoundingClientRect(); const h = Math.round(r.height + 2 * 44); const w = Math.round(h * 1.3333); const frame = document.createElement('div'); frame.id = 'shot-frame'; frame.style.cssText = 'position:absolute;pointer-events:none;left:' + Math.round(r.left + window.scrollX - (w - r.width) / 2) + 'px;top:' + Math.round(r.top + window.scrollY - (h - r.height) / 2) + 'px;width:' + w + 'px;height:' + h + 'px'; document.body.appendChild(frame); })()",
+                    "wait": 600
+                }
+            ],
+            "settle": 1200,
+            "clip": "#shot-frame",
+            "padding": 0
+        },
+        {
+            "name": "frontend-feature-jev-quality-gate",
+            "kind": "frontend",
+            "url": "/desiderio-powermail-jev/quality-gate",
+            "viewport": "1600x1000",
+            "css": ".d-powermail > .max-w-2xl{margin-inline:auto!important}",
+            "steps": [
+                {
+                    "evaluate": "(() => { const e = document.querySelector(\"#powermail_field_name\"); e.value = \"Lena Brandt\"; })()"
+                },
+                {
+                    "evaluate": "(() => { const e = document.querySelector(\"#powermail_field_email\"); e.value = \"lena.brandt@example.com\"; })()"
+                },
+                {
+                    "fill": [
+                        "#powermail_field_message",
+                        "asdf"
+                    ]
+                },
+                {
+                    "evaluate": "new Promise((resolve) => { const done = () => resolve(); document.addEventListener('powermailcond:processed', done, { once: true }); setTimeout(done, 90000); document.activeElement && document.activeElement.blur(); })",
+                    "wait": 600
+                },
+                {
+                    "evaluate": "(() => { const card = document.querySelector(\"form.powermail_form\"); card.scrollIntoView({block: 'center'}); const r = card.getBoundingClientRect(); const h = Math.round(r.height + 2 * 44); const w = Math.round(h * 1.3333); const frame = document.createElement('div'); frame.id = 'shot-frame'; frame.style.cssText = 'position:absolute;pointer-events:none;left:' + Math.round(r.left + window.scrollX - (w - r.width) / 2) + 'px;top:' + Math.round(r.top + window.scrollY - (h - r.height) / 2) + 'px;width:' + w + 'px;height:' + h + 'px'; document.body.appendChild(frame); })()",
+                    "wait": 600
+                }
+            ],
+            "settle": 1200,
+            "clip": "#shot-frame",
+            "padding": 0
+        },
+        {
+            "name": "frontend-feature-workos-login",
+            "kind": "frontend",
+            "url": "/features/workos/frontend-plugins/login",
+            "viewport": "1600x1000",
+            "steps": [
+                {
+                    "waitFor": ".workos-card"
+                },
+                {
+                    "evaluate": "(() => { const card = document.querySelector(\".workos-card\"); card.scrollIntoView({block: 'center'}); const r = card.getBoundingClientRect(); const h = Math.round(r.height + 2 * 44); const w = Math.round(h * 1.3333); const frame = document.createElement('div'); frame.id = 'shot-frame'; frame.style.cssText = 'position:absolute;pointer-events:none;left:' + Math.round(r.left + window.scrollX - (w - r.width) / 2) + 'px;top:' + Math.round(r.top + window.scrollY - (h - r.height) / 2) + 'px;width:' + w + 'px;height:' + h + 'px'; document.body.appendChild(frame); })()",
+                    "wait": 600
+                }
+            ],
+            "clip": "#shot-frame",
+            "padding": 0
+        },
+        {
+            "name": "frontend-feature-workos-sign-up",
+            "kind": "frontend",
+            "url": "/features/workos/frontend-plugins/login",
+            "viewport": "1600x1000",
+            "steps": [
+                {
+                    "click": ".workos-card a[href*=\"action%5D=signUp\"]"
+                },
+                {
+                    "waitFor": "text=Create your account"
+                },
+                {
+                    "evaluate": "document.head.insertAdjacentHTML('beforeend', '<style>*,*::before,*::after{animation:none!important;transition:none!important;animation-timeline:auto!important;caret-color:transparent!important}[class*=reveal],[class*=fade],section{opacity:1!important;transform:none!important}header,.desiderio-header,[class*=site-header]{position:relative!important;top:auto!important}</style>')",
+                    "wait": 600
+                },
+                {
+                    "evaluate": "(() => { const card = document.querySelector(\".workos-card\"); card.scrollIntoView({block: 'center'}); const r = card.getBoundingClientRect(); const h = Math.round(r.height + 2 * 44); const w = Math.round(h * 1.3333); const frame = document.createElement('div'); frame.id = 'shot-frame'; frame.style.cssText = 'position:absolute;pointer-events:none;left:' + Math.round(r.left + window.scrollX - (w - r.width) / 2) + 'px;top:' + Math.round(r.top + window.scrollY - (h - r.height) / 2) + 'px;width:' + w + 'px;height:' + h + 'px'; document.body.appendChild(frame); })()",
+                    "wait": 600
+                }
+            ],
+            "clip": "#shot-frame",
+            "padding": 0
+        },
+        {
+            "name": "feature-workos-backend-login",
+            "kind": "frontend",
+            "url": "/typo3/",
+            "viewport": "1600x1000",
+            "steps": [
+                {
+                    "waitFor": ".card-login .workos-login-providers"
+                },
+                {
+                    "evaluate": "(() => { const card = document.querySelector(\".card-login\"); card.scrollIntoView({block: 'center'}); const r = card.getBoundingClientRect(); const h = Math.round(r.height + 2 * 40); const w = Math.round(h * 1.3333); const frame = document.createElement('div'); frame.id = 'shot-frame'; frame.style.cssText = 'position:absolute;pointer-events:none;left:' + Math.round(r.left + window.scrollX - (w - r.width) / 2) + 'px;top:' + Math.round(r.top + window.scrollY - (h - r.height) / 2) + 'px;width:' + w + 'px;height:' + h + 'px'; document.body.appendChild(frame); })()",
+                    "wait": 600
+                }
+            ],
+            "clip": "#shot-frame",
+            "padding": 0
+        },
+        {
+            "name": "feature-powermail-form-overview",
+            "kind": "backend",
+            "url": "/typo3/module/powermail/overviewbe?id=712",
+            "viewport": "1760x1000",
+            "steps": [
+                {
+                    "waitFor": ".module-body table",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "wait": 1500
+                },
+                {
+                    "evaluate": "(() => { const last = document.querySelector(\".module-body table\"); const r = last.getBoundingClientRect(); const frame = document.createElement('div'); frame.id = 'shot-frame'; frame.style.cssText = 'position:absolute;pointer-events:none;left:0px;top:' + (0 + window.scrollY) + 'px;width:' + (document.documentElement.clientWidth - 0) + 'px;height:' + Math.round(r.bottom + window.scrollY + 28 - 0) + 'px'; document.body.appendChild(frame); })()",
+                    "frame": true,
+                    "wait": 300
+                }
+            ],
+            "clip": "frame:#shot-frame",
+            "padding": 0
+        },
+        {
+            "name": "feature-x402-paywall-page-properties",
+            "kind": "backend",
+            "url": "/typo3/record/edit?edit%5Bpages%5D%5B82%5D=edit",
+            "viewport": "1256x900",
+            "frameCss": "form[name=editform] > .callout{display:none!important}",
+            "steps": [
+                {
+                    "waitFor": "form[name=editform] [role=tab]",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "click": "[role=tab]:has-text(\"x402 Paywall\")",
+                    "frame": true,
+                    "wait": 1200
+                },
+                {
+                    "evaluate": "(() => { const last = document.querySelector(\".tab-content > .tab-pane.active\"); const r = last.getBoundingClientRect(); const frame = document.createElement('div'); frame.id = 'shot-frame'; frame.style.cssText = 'position:absolute;pointer-events:none;left:12px;top:' + (4 + window.scrollY) + 'px;width:' + (document.documentElement.clientWidth - 24) + 'px;height:' + Math.round(r.bottom + window.scrollY + 28 - 4) + 'px'; document.body.appendChild(frame); })()",
+                    "frame": true,
+                    "wait": 300
+                }
+            ],
+            "clip": "frame:#shot-frame",
+            "padding": 0
+        },
+        {
+            "name": "feature-jev-routing-tab",
+            "kind": "backend",
+            "url": "/typo3/module/powermail/overviewbe?id=712",
+            "viewport": "1100x900",
+            "steps": [
+                {
+                    "waitFor": ".module-body table",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "evaluate": "(() => { const cell = [...document.querySelectorAll('.module-body table span[title^=\"id=\"]')].find((e) => e.textContent.trim() === 'Powermail 07: Smart contact routing'); const uid = cell.title.slice(3); window.top.location.href = '/typo3/record/edit?edit%5Btx_powermail_domain_model_form%5D%5B' + uid + '%5D=edit'; })()",
+                    "frame": true,
+                    "wait": 2000
+                },
+                {
+                    "waitFor": "form[name=editform] [role=tab]",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "evaluate": "(() => { const select = document.querySelector('select[name*=\"tx_webconjev_routing_decision\"]'); const label = select && select.selectedIndex >= 0 ? select.options[select.selectedIndex].text : ''; if (document.querySelector('.callout-danger, .alert-danger') !== null || label === '' || label.includes('Missing label')) { throw new Error('feature-jev-routing-tab: the Jev routing tab shows an error or no decision; fix the foreign_table_where of tx_webconjev_routing_decision first.'); } })()",
+                    "frame": true
+                },
+                {
+                    "click": "[role=tab]:has-text(\"Jev routing\")",
+                    "frame": true,
+                    "wait": 1200
+                },
+                {
+                    "evaluate": "(() => { const last = document.querySelector(\".tab-content > .tab-pane.active\"); const r = last.getBoundingClientRect(); const frame = document.createElement('div'); frame.id = 'shot-frame'; frame.style.cssText = 'position:absolute;pointer-events:none;left:12px;top:' + (4 + window.scrollY) + 'px;width:' + (document.documentElement.clientWidth - 24) + 'px;height:' + Math.round(r.bottom + window.scrollY + 28 - 4) + 'px'; document.body.appendChild(frame); })()",
+                    "frame": true,
+                    "wait": 300
+                }
+            ],
+            "clip": "frame:#shot-frame",
+            "padding": 0
+        }
+    ]
+}

@@ -1,0 +1,314 @@
+{
+    "_note": "Needs the Live workspace for the API Core, Jev, WorkOS, x402 and Agentation modules. The x402 shots also need an x402_paywall block in the blog site config and the paywall flag on page 297 (removed again after the capture). The Agentation notes need the Agentation switches in the account's user settings and the Admin Panel option.",
+    "shots": [
+        {
+            "name": "feature-sg-apicore-endpoints",
+            "kind": "backend",
+            "url": "/typo3/module/system/sgapicore/Backend%5CApiCore/endpoints",
+            "viewport": "1600x1300",
+            "frameCss": ".sg-backend-advertisement,.module-body .alert-info{display:none!important} table.table tbody tr:nth-child(-n+12),table.table tbody tr:nth-child(n+25){display:none!important}",
+            "steps": [
+                {
+                    "waitFor": "text=API Endpoints Overview",
+                    "frame": true,
+                    "timeout": 120000
+                }
+            ],
+            "clip": [
+                "frame:.module-docheader",
+                "frame:.module-body"
+            ],
+            "padding": 0
+        },
+        {
+            "name": "feature-jev-run-log",
+            "kind": "backend",
+            "url": "/typo3/module/webcon-jev/runs",
+            "viewport": "1600x1000",
+            "steps": [
+                {
+                    "waitFor": "table tbody tr",
+                    "frame": true,
+                    "timeout": 120000
+                }
+            ],
+            "clip": "module"
+        },
+        {
+            "name": "feature-workos-setup-assistant",
+            "kind": "backend",
+            "url": "/typo3/module/workos/setup",
+            "viewport": "1600x1100",
+            "steps": [
+                {
+                    "waitFor": "text=Redirect URLs for WorkOS",
+                    "frame": true,
+                    "timeout": 120000
+                }
+            ],
+            "clip": [
+                "frame:.module-body-container > h1",
+                "frame:.module-body-container > .table-fit"
+            ],
+            "padding": 12
+        },
+        {
+            "name": "feature-jev-playground",
+            "kind": "backend",
+            "url": "/typo3/module/webcon-jev/decisions",
+            "viewport": "1600x1100",
+            "steps": [
+                {
+                    "waitFor": "table tbody tr",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "evaluate": "(() => { const row = [...document.querySelectorAll(\"table tbody tr\")].find((tr) => /Support/.test(tr.innerText)); const a = [...row.querySelectorAll(\"a\")].find((x) => /playground/i.test(x.innerText + x.title)); location.href = a.href; })()",
+                    "frame": true,
+                    "wait": 1500
+                },
+                {
+                    "waitFor": "#webcon-jev-playground textarea",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "fill": [
+                        "#webcon-jev-playground textarea >> nth=0",
+                        "Desiderio 4.9 on TYPO3 v14"
+                    ],
+                    "frame": true
+                },
+                {
+                    "fill": [
+                        "#webcon-jev-playground textarea >> nth=1",
+                        "Since the update, saving a page in the Visual Editor shows a blank screen and my changes are gone. It happens every time, in Chrome and Firefox. Our editors cannot publish anything today."
+                    ],
+                    "frame": true
+                },
+                {
+                    "click": "#webcon-jev-playground button:has-text(\"Run\")",
+                    "frame": true
+                },
+                {
+                    "waitFor": "text=Probabilities for severity",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "evaluate": "document.activeElement && document.activeElement.blur()",
+                    "frame": true,
+                    "wait": 600
+                },
+                {
+                    "evaluate": "(() => { const hide = (el) => { el.style.filter = \"blur(5px)\"; }; document.querySelectorAll(\"input, textarea\").forEach((field) => { if (/@/.test(field.value)) { hide(field); } }); const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); const found = []; while (walker.nextNode()) { if (/@/.test(walker.currentNode.textContent)) { found.push(walker.currentNode.parentElement); } } found.forEach(hide); })()",
+                    "frame": true,
+                    "wait": 400,
+                    "note": "Blurs the routing addresses: they are real mailboxes."
+                },
+                {
+                    "evaluate": "document.querySelector(\"#webcon-jev-playground\").scrollIntoView({ block: \"end\" })",
+                    "frame": true,
+                    "wait": 600
+                }
+            ],
+            "clip": "module",
+            "anchor": "bottom"
+        },
+        {
+            "name": "frontend-feature-x402-paywall-payment-page",
+            "kind": "frontend",
+            "url": "/blog/en/storing-winter-clothes-properly",
+            "viewport": "1280x900",
+            "css": ".x402-paywall__card{transform:scale(1.6);transform-origin:top center}",
+            "steps": [
+                {
+                    "waitFor": ".x402-paywall__card"
+                }
+            ],
+            "clip": ".x402-paywall__card",
+            "padding": 48
+        },
+        {
+            "name": "feature-x402-paywall-simulator",
+            "kind": "backend",
+            "url": "/typo3/module/web/x402-paywall/simulator?site=blog",
+            "viewport": "1600x1300",
+            "steps": [
+                {
+                    "waitFor": "#x402-url",
+                    "frame": true,
+                    "timeout": 120000,
+                    "wait": 6000
+                },
+                {
+                    "fill": [
+                        "#x402-url",
+                        "https://webconsulting-typo3-lab.ddev.site/blog/en/storing-winter-clothes-properly"
+                    ],
+                    "frame": true
+                },
+                {
+                    "click": "form[data-x402-simulator] button[type=submit]",
+                    "frame": true
+                },
+                {
+                    "waitFor": "#x402-simulator-output .callout-success",
+                    "frame": true,
+                    "timeout": 120000,
+                    "wait": 1000
+                }
+            ],
+            "clip": "module"
+        },
+        {
+            "name": "feature-x402-paywall-dashboard",
+            "kind": "backend",
+            "url": "/typo3/module/web/x402-paywall/dashboard",
+            "viewport": "1600x1000",
+            "steps": [
+                {
+                    "waitFor": "text=Latest settlement attempts",
+                    "frame": true,
+                    "timeout": 120000
+                }
+            ],
+            "clip": [
+                "frame:.module-docheader",
+                "frame:.module-body"
+            ],
+            "padding": 0
+        },
+        {
+            "name": "frontend-feature-agentation-frontend-note",
+            "kind": "frontend-auth",
+            "url": "/",
+            "viewport": "1440x900",
+            "waitUntil": "domcontentloaded",
+            "css": "#typo3-preview-info,#TSFE_ADMIN_PANEL_FORM,.typo3-adminPanel{display:none!important}",
+            "steps": [
+                {
+                    "waitFor": "agentation-toolbar button[aria-label=\"Start feedback mode\"]",
+                    "timeout": 180000,
+                    "wait": 1500
+                },
+                {
+                    "evaluate": "(() => { const mark = (el, name) => el && el.setAttribute(\"data-shot-target\", name); const visible = (e) => { const r = e.getBoundingClientRect(); return r.width > 50 && r.height > 20 && r.top >= 0 && r.bottom <= innerHeight; }; mark([...document.querySelectorAll(\"h1,h2,h3\")].filter(visible).sort((a, b) => parseFloat(getComputedStyle(b).fontSize) - parseFloat(getComputedStyle(a).fontSize))[0], \"headline\"); mark([...document.querySelectorAll(\"a,button\")].find((e) => visible(e) && /get started/i.test(e.textContent)), \"button\"); mark([...document.querySelectorAll(\"main img\")].find(visible), \"image\"); })()"
+                },
+                {
+                    "click": "agentation-toolbar button[aria-label=\"Start feedback mode\"]",
+                    "wait": 900
+                },
+                {
+                    "click": "[data-shot-target=headline]",
+                    "wait": 900
+                },
+                {
+                    "fill": [
+                        "agentation-toolbar textarea[placeholder=\"What should change?\"]",
+                        "Keep \u201celements for TYPO3\u201d together: break the line after \u201ccontent\u201d."
+                    ]
+                },
+                {
+                    "click": "agentation-toolbar button[class*=submit]",
+                    "wait": 900
+                },
+                {
+                    "click": "[data-shot-target=button]",
+                    "wait": 900
+                },
+                {
+                    "fill": [
+                        "agentation-toolbar textarea[placeholder=\"What should change?\"]",
+                        "Use the brand colour here, so it stands out from See the features."
+                    ]
+                },
+                {
+                    "click": "agentation-toolbar button[class*=submit]",
+                    "wait": 900
+                },
+                {
+                    "click": "[data-shot-target=image]",
+                    "wait": 900
+                },
+                {
+                    "fill": [
+                        "agentation-toolbar textarea[placeholder=\"What should change?\"]",
+                        "Add a short caption under this preview"
+                    ]
+                },
+                {
+                    "evaluate": "document.activeElement && document.activeElement.blur && 0",
+                    "wait": 600
+                }
+            ],
+            "clip": "viewport"
+        },
+        {
+            "name": "feature-agentation-backend-note",
+            "kind": "backend",
+            "url": "/typo3/module/web/layout?id=1079",
+            "viewport": "1600x1000",
+            "steps": [
+                {
+                    "waitFor": "agentation-toolbar button[aria-label=\"Start feedback mode\"]",
+                    "frame": true,
+                    "timeout": 180000,
+                    "wait": 1500
+                },
+                {
+                    "evaluate": "(() => { const visible = (e) => { const r = e.getBoundingClientRect(); return r.width > 200 && r.height > 60 && r.top > 120 && r.bottom < innerHeight - 40; }; const ce = [...document.querySelectorAll(\".t3-page-ce .t3-page-ce-element, .t3-page-ce-body, .t3-page-ce\")].filter(visible)[1]; ce && ce.setAttribute(\"data-shot-target\", \"element\"); })()",
+                    "frame": true
+                },
+                {
+                    "click": "agentation-toolbar button[aria-label=\"Start feedback mode\"]",
+                    "frame": true,
+                    "wait": 900
+                },
+                {
+                    "click": "[data-shot-target=element]",
+                    "frame": true,
+                    "wait": 900
+                },
+                {
+                    "fill": [
+                        "agentation-toolbar textarea[placeholder=\"What should change?\"]",
+                        "Swap the order: the problem section should come before the screenshots."
+                    ],
+                    "frame": true
+                },
+                {
+                    "click": "agentation-toolbar button[class*=submit]",
+                    "frame": true,
+                    "wait": 1200
+                }
+            ],
+            "clip": "module"
+        },
+        {
+            "name": "feature-agentation-module",
+            "kind": "backend",
+            "url": "/typo3/module/system/agentation",
+            "viewport": "1600x1000",
+            "steps": [
+                {
+                    "waitFor": "#agentation-status-heading",
+                    "frame": true,
+                    "timeout": 120000,
+                    "wait": 1000
+                },
+                {
+                    "evaluate": "(() => { const heading = document.getElementById(\"agentation-annotations-heading\"); const block = heading && heading.closest(\"section, .card, .panel\"); if (block) { block.style.display = \"none\"; } })()",
+                    "frame": true,
+                    "wait": 400
+                }
+            ],
+            "clip": [
+                "frame:.module-docheader",
+                "frame:.module-body"
+            ],
+            "padding": 0
+        }
+    ]
+}

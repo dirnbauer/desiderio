@@ -1,0 +1,358 @@
+{
+    "_note": "DOCX Editor and Image Workbench. The review dialog uploads an edited Word export and cancels.",
+    "shots": [
+        {
+            "name": "feature-docx-editor-word-menu",
+            "kind": "backend",
+            "url": "/typo3/module/web/layout?id=1094",
+            "viewport": "1440x900",
+            "steps": [
+                {
+                    "waitFor": ".module-docheader button.dropdown-toggle:has-text(\"Word\")",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "waitFor": ".t3-page-ce",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "click": ".module-docheader button.dropdown-toggle:has-text(\"Word\")",
+                    "frame": true,
+                    "wait": 600
+                },
+                {
+                    "waitFor": "a.dropdown-item[href*=\"/docx-editor/page?\"]",
+                    "frame": true
+                },
+                {
+                    "hover": "a.dropdown-item[href*=\"/docx-editor/page?\"]",
+                    "frame": true,
+                    "wait": 400
+                },
+                {
+                    "evaluate": "const mark = (x, y, w, h) => { let m = document.getElementById('shot-clip'); if (!m) { m = document.createElement('div'); m.id = 'shot-clip'; document.body.append(m); } Object.assign(m.style, { position: 'fixed', left: Math.round(x) + 'px', top: Math.round(y) + 'px', width: Math.round(w) + 'px', height: Math.round(h) + 'px', pointerEvents: 'none', zIndex: '-1' }); }; const mark16 = (x, y, maxWidth) => { const w = Math.floor(maxWidth / 16) * 16; mark(x, y, w, w / 1.6); }; const frameBox = () => document.querySelector('iframe#typo3-contentIframe').getBoundingClientRect(); const frameDoc = () => document.querySelector('iframe#typo3-contentIframe').contentDocument; (() => { const f = frameBox(); mark16(f.left, f.top, f.width); })()"
+                }
+            ],
+            "settle": 1000,
+            "clip": "#shot-clip",
+            "padding": 0
+        },
+        {
+            "name": "feature-docx-editor-page-in-word",
+            "kind": "backend",
+            "url": "/typo3/module/web/layout?id=1094",
+            "viewport": "1920x1100",
+            "steps": [
+                {
+                    "waitFor": ".module-docheader button.dropdown-toggle:has-text(\"Word\")",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "click": ".module-docheader button.dropdown-toggle:has-text(\"Word\")",
+                    "frame": true,
+                    "wait": 600
+                },
+                {
+                    "click": "a.dropdown-item[href*=\"/docx-editor/page?\"]",
+                    "frame": true
+                },
+                {
+                    "waitFor": "#docx-page-sync-app [data-page-sync-surface][aria-busy=\"false\"]",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "evaluate": "document.fonts.ready",
+                    "frame": true,
+                    "wait": 2500
+                },
+                {
+                    "click": ".docx-line:has-text(\"Template hours lower the margin\")",
+                    "frame": true,
+                    "wait": 800
+                },
+                {
+                    "press": "End",
+                    "wait": 1000
+                },
+                {
+                    "evaluate": "const mark = (x, y, w, h) => { let m = document.getElementById('shot-clip'); if (!m) { m = document.createElement('div'); m.id = 'shot-clip'; document.body.append(m); } Object.assign(m.style, { position: 'fixed', left: Math.round(x) + 'px', top: Math.round(y) + 'px', width: Math.round(w) + 'px', height: Math.round(h) + 'px', pointerEvents: 'none', zIndex: '-1' }); }; const mark16 = (x, y, maxWidth) => { const w = Math.floor(maxWidth / 16) * 16; mark(x, y, w, w / 1.6); }; const frameBox = () => document.querySelector('iframe#typo3-contentIframe').getBoundingClientRect(); const frameDoc = () => document.querySelector('iframe#typo3-contentIframe').contentDocument; (() => { const f = frameBox(); mark16(f.left, f.top, f.width); })()"
+                }
+            ],
+            "settle": 1200,
+            "clip": "#shot-clip",
+            "padding": 0
+        },
+        {
+            "name": "feature-docx-editor-review",
+            "kind": "backend",
+            "url": "/typo3/module/web/layout?id=1094",
+            "viewport": "1120x700",
+            "steps": [
+                {
+                    "waitFor": ".module-docheader button.dropdown-toggle:has-text(\"Word\")",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "evaluate": "(() => { const link = document.querySelector('iframe#typo3-contentIframe').contentDocument.querySelector('a.dropdown-item[href*=\"/docx-editor/page?\"]'); setTimeout(() => { location.href = link.href; }, 50); })()",
+                    "wait": 1500
+                },
+                {
+                    "waitFor": "#docx-page-sync-app [data-page-sync-surface][aria-busy=\"false\"]",
+                    "timeout": 120000
+                },
+                {
+                    "evaluate": "document.fonts.ready",
+                    "wait": 1500
+                },
+                {
+                    "evaluate": "(async () => {  const FROM = 'Template hours lower the margin of every fixed-price TYPO3 project.'; const TO = 'Template hours cut into the margin of every fixed-price TYPO3 project.'; const link = document.querySelector('a[href*=\"docx-editor/page/download\"]'); const input = document.querySelector('[data-page-sync-upload]'); if (!link || !input) throw new Error('download link or upload field missing');  const nativeFetch = window.fetch.bind(window); window.fetch = async (...args) => { const response = await nativeFetch(...args); if (String(args[0]).includes('/docx-editor/page/preview')) { response.clone().json().then((data) => { const url = window.TYPO3?.settings?.ajaxUrls?.docx_editor_page_discard; if (data && data.id && url) { nativeFetch(url, { method: 'POST', keepalive: true, credentials: 'same-origin', headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest', Accept: 'application/json' }, body: JSON.stringify({ id: data.id }) }).catch(() => {}); } }).catch(() => {}); } return response; }; const download = await nativeFetch(link.href, { credentials: 'same-origin' }); const fileName = (/filename=\"([^\"]+)\"/.exec(download.headers.get('Content-Disposition') || '') || [])[1] || 'page.docx'; const bytes = new Uint8Array(await download.arrayBuffer()); const view = new DataView(bytes.buffer); let end = bytes.length - 22; while (end >= 0 && view.getUint32(end, true) !== 0x06054b50) end -= 1; const count = view.getUint16(end + 10, true); let at = view.getUint32(end + 16, true); const entries = []; for (let i = 0; i < count; i += 1) { const nameLength = view.getUint16(at + 28, true); const local = view.getUint32(at + 42, true); const start = local + 30 + view.getUint16(local + 26, true) + view.getUint16(local + 28, true); entries.push({ name: bytes.subarray(at + 46, at + 46 + nameLength), method: view.getUint16(at + 10, true), time: view.getUint16(at + 12, true), date: view.getUint16(at + 14, true), crc: view.getUint32(at + 16, true), size: view.getUint32(at + 24, true), data: bytes.subarray(start, start + view.getUint32(at + 20, true)), }); at += 46 + nameLength + view.getUint16(at + 30, true) + view.getUint16(at + 32, true); } const doc = entries.find((entry) => new TextDecoder().decode(entry.name) === 'word/document.xml'); const raw = doc.method === 8 ? new Uint8Array(await new Response(new Blob([doc.data]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).arrayBuffer()) : doc.data; const xml = new TextDecoder().decode(raw); if (!xml.includes(FROM)) throw new Error('sentence not found'); const changed = new TextEncoder().encode(xml.replace(FROM, TO)); let crc = 0xffffffff; for (const byte of changed) { crc ^= byte; for (let k = 0; k < 8; k += 1) crc = crc & 1 ? (crc >>> 1) ^ 0xedb88320 : crc >>> 1; } Object.assign(doc, { method: 0, crc: (crc ^ 0xffffffff) >>> 0, size: changed.length, data: changed }); const parts = []; const central = []; let offset = 0; for (const entry of entries) { const head = new DataView(new ArrayBuffer(30)); head.setUint32(0, 0x04034b50, true); head.setUint16(4, 20, true); head.setUint16(8, entry.method, true); head.setUint16(10, entry.time, true); head.setUint16(12, entry.date, true); head.setUint32(14, entry.crc, true); head.setUint32(18, entry.data.length, true); head.setUint32(22, entry.size, true); head.setUint16(26, entry.name.length, true); const dir = new DataView(new ArrayBuffer(46)); dir.setUint32(0, 0x02014b50, true); dir.setUint16(4, 20, true); dir.setUint16(6, 20, true); dir.setUint16(10, entry.method, true); dir.setUint16(12, entry.time, true); dir.setUint16(14, entry.date, true); dir.setUint32(16, entry.crc, true); dir.setUint32(20, entry.data.length, true); dir.setUint32(24, entry.size, true); dir.setUint16(28, entry.name.length, true); dir.setUint32(42, offset, true); parts.push(new Uint8Array(head.buffer), entry.name, entry.data); central.push(new Uint8Array(dir.buffer), entry.name); offset += 30 + entry.name.length + entry.data.length; } const tail = new DataView(new ArrayBuffer(22)); tail.setUint32(0, 0x06054b50, true); tail.setUint16(8, entries.length, true); tail.setUint16(10, entries.length, true); tail.setUint32(12, central.reduce((sum, part) => sum + part.length, 0), true); tail.setUint32(16, offset, true); const file = new File([...parts, ...central, new Uint8Array(tail.buffer)], fileName, { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' }); const transfer = new DataTransfer(); transfer.items.add(file); input.files = transfer.files; input.dispatchEvent(new Event('change', { bubbles: true })); })()"
+                },
+                {
+                    "waitFor": ".page-sync-review__toggle input",
+                    "timeout": 120000
+                },
+                {
+                    "click": ".page-sync-review__toggle input",
+                    "wait": 800
+                },
+                {
+                    "evaluate": "document.activeElement && document.activeElement.blur()",
+                    "wait": 400
+                }
+            ],
+            "settle": 1500,
+            "clip": "viewport"
+        },
+        {
+            "name": "feature-docx-editor-import-pages",
+            "kind": "backend",
+            "url": "/typo3/module/web/layout?id=505",
+            "viewport": "1600x1000",
+            "steps": [
+                {
+                    "waitFor": ".module-docheader button.dropdown-toggle:has-text(\"Word\")",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "evaluate": "(() => { top.__shotDocx = document.querySelector('a[href*=\"/docx-editor/page/download\"]').href.replace(/([?&]id=)\\d+/, (all, prefix) => prefix + '986'); })()",
+                    "frame": true
+                },
+                {
+                    "click": ".module-docheader button.dropdown-toggle:has-text(\"Word\")",
+                    "frame": true,
+                    "wait": 600
+                },
+                {
+                    "click": "a.dropdown-item[href*=\"/docx-editor/page/new\"]",
+                    "frame": true
+                },
+                {
+                    "waitFor": "#docx-page-sync-new",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "evaluate": "(async () => { const response = await fetch(top.__shotDocx, { credentials: 'same-origin' }); const name = (/filename=\"([^\"]+)\"/.exec(response.headers.get('Content-Disposition') || '') || [])[1] || 'document.docx'; const file = new File([await response.blob()], name, { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' }); const input = document.getElementById('docx-page-sync-file'); const transfer = new DataTransfer(); transfer.items.add(file); input.files = transfer.files; input.dispatchEvent(new Event('change', { bubbles: true })); })()",
+                    "frame": true
+                },
+                {
+                    "check": "#docx-page-sync-split-h1",
+                    "frame": true
+                },
+                {
+                    "evaluate": "document.activeElement && document.activeElement.blur()",
+                    "frame": true,
+                    "wait": 400
+                },
+                {
+                    "evaluate": "const mark = (x, y, w, h) => { let m = document.getElementById('shot-clip'); if (!m) { m = document.createElement('div'); m.id = 'shot-clip'; document.body.append(m); } Object.assign(m.style, { position: 'fixed', left: Math.round(x) + 'px', top: Math.round(y) + 'px', width: Math.round(w) + 'px', height: Math.round(h) + 'px', pointerEvents: 'none', zIndex: '-1' }); }; const mark16 = (x, y, maxWidth) => { const w = Math.floor(maxWidth / 16) * 16; mark(x, y, w, w / 1.6); }; const frameBox = () => document.querySelector('iframe#typo3-contentIframe').getBoundingClientRect(); const frameDoc = () => document.querySelector('iframe#typo3-contentIframe').contentDocument; (() => { const f = frameBox(); const form = frameDoc().getElementById('docx-page-sync-new').getBoundingClientRect(); mark16(f.left, f.top, (form.bottom + 40) * 1.6); })()"
+                }
+            ],
+            "settle": 1000,
+            "clip": "#shot-clip",
+            "padding": 0
+        },
+        {
+            "name": "feature-image-workbench-file-list",
+            "kind": "backend",
+            "url": "/typo3/module/file/list?id=1:/desiderio-grande-site/",
+            "viewport": "1880x1100",
+            "steps": [
+                {
+                    "waitFor": ".resource-tile[data-filelist-identifier$=\"/cafe-morning.jpg\"] img",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "evaluate": "Promise.all([...document.querySelectorAll('.resource-tile img')] .filter((img) => img.getBoundingClientRect().top < innerHeight) .map((img) => img.complete ? null : new Promise((done) => { img.addEventListener('load', done); img.addEventListener('error', done); })))",
+                    "frame": true,
+                    "wait": 800
+                },
+                {
+                    "evaluate": "(() => { const button = document.querySelector('.resource-tile[data-filelist-identifier$=\"/cafe-morning.jpg\"] button[data-filelist-action=\"primary\"]'); const box = button.getBoundingClientRect(); button.dispatchEvent(new MouseEvent('contextmenu', { bubbles: true, cancelable: true, composed: true, view: window, button: 2, buttons: 2, clientX: box.right - 30, clientY: box.top + 40 })); })()",
+                    "frame": true
+                },
+                {
+                    "waitFor": "#contextmenu-root .context-menu-item[aria-label=\"Edit image\"]",
+                    "timeout": 60000
+                },
+                {
+                    "press": "ArrowUp",
+                    "wait": 600
+                },
+                {
+                    "evaluate": "const mark = (x, y, w, h) => { let m = document.getElementById('shot-clip'); if (!m) { m = document.createElement('div'); m.id = 'shot-clip'; document.body.append(m); } Object.assign(m.style, { position: 'fixed', left: Math.round(x) + 'px', top: Math.round(y) + 'px', width: Math.round(w) + 'px', height: Math.round(h) + 'px', pointerEvents: 'none', zIndex: '-1' }); }; const mark16 = (x, y, maxWidth) => { const w = Math.floor(maxWidth / 16) * 16; mark(x, y, w, w / 1.6); }; const frameBox = () => document.querySelector('iframe#typo3-contentIframe').getBoundingClientRect(); const frameDoc = () => document.querySelector('iframe#typo3-contentIframe').contentDocument; (() => { const f = frameBox(); mark16(f.left, f.top, f.width); })()"
+                }
+            ],
+            "settle": 1000,
+            "clip": "#shot-clip",
+            "padding": 0
+        },
+        {
+            "name": "feature-image-workbench-editor",
+            "kind": "backend",
+            "url": "/typo3/module/file/list?id=1:/desiderio-grande-site/",
+            "viewport": "1920x994",
+            "steps": [
+                {
+                    "waitFor": ".resource-tile[data-filelist-identifier$=\"/cafe-morning.jpg\"]",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "evaluate": "(async () => {  const uid = '1:/desiderio-grande-site/cafe-morning.jpg'; const url = new URL(TYPO3.settings.ajaxUrls.contextmenu, location.origin); url.searchParams.set('table', 'sys_file'); url.searchParams.set('uid', uid); const items = await (await fetch(url, { credentials: 'same-origin', headers: { 'X-Requested-With': 'XMLHttpRequest' } })).json(); const item = Object.values(items).find((entry) => entry.additionalAttributes?.['data-action-url'] && entry.callbackAction === 'open'); const { default: actions } = await import('@webconsulting/image-workbench/context-menu-actions.js'); actions.open('sys_file', uid, { actionUrl: item.additionalAttributes['data-action-url'] }); })()"
+                },
+                {
+                    "waitFor": ".FIE_tab:has-text(\"Filters\")",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "wait": 2500,
+                    "evaluate": "document.fonts.ready",
+                    "frame": true
+                },
+                {
+                    "click": ".FIE_tab:has-text(\"Filters\")",
+                    "frame": true,
+                    "wait": 2500
+                },
+                {
+                    "evaluate": "document.activeElement && document.activeElement.blur()",
+                    "frame": true,
+                    "wait": 400
+                },
+                {
+                    "evaluate": "const mark = (x, y, w, h) => { let m = document.getElementById('shot-clip'); if (!m) { m = document.createElement('div'); m.id = 'shot-clip'; document.body.append(m); } Object.assign(m.style, { position: 'fixed', left: Math.round(x) + 'px', top: Math.round(y) + 'px', width: Math.round(w) + 'px', height: Math.round(h) + 'px', pointerEvents: 'none', zIndex: '-1' }); }; const mark16 = (x, y, maxWidth) => { const w = Math.floor(maxWidth / 16) * 16; mark(x, y, w, w / 1.6); }; const frameBox = () => document.querySelector('iframe#typo3-contentIframe').getBoundingClientRect(); const frameDoc = () => document.querySelector('iframe#typo3-contentIframe').contentDocument; (() => { const f = frameBox(); const close = frameDoc().querySelector('[data-image-workbench-close]').getBoundingClientRect(); mark16(f.left, f.top + close.top - 12, f.width); })()"
+                }
+            ],
+            "settle": 1200,
+            "clip": "#shot-clip",
+            "padding": 0
+        },
+        {
+            "name": "feature-image-workbench-ai-panel",
+            "kind": "backend",
+            "url": "/typo3/module/file/list?id=1:/desiderio-grande-site/",
+            "viewport": "1600x850",
+            "steps": [
+                {
+                    "waitFor": ".resource-tile[data-filelist-identifier$=\"/cafe-morning.jpg\"]",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "evaluate": "(async () => {  const uid = '1:/desiderio-grande-site/cafe-morning.jpg'; const url = new URL(TYPO3.settings.ajaxUrls.contextmenu, location.origin); url.searchParams.set('table', 'sys_file'); url.searchParams.set('uid', uid); const items = await (await fetch(url, { credentials: 'same-origin', headers: { 'X-Requested-With': 'XMLHttpRequest' } })).json(); const item = Object.values(items).find((entry) => entry.additionalAttributes?.['data-action-url'] && entry.callbackAction === 'open'); const { default: actions } = await import('@webconsulting/image-workbench/context-menu-actions.js'); actions.open('sys_file', uid, { actionUrl: item.additionalAttributes['data-action-url'] }); })()"
+                },
+                {
+                    "waitFor": ".FIE_tab:has-text(\"Finetune\")",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "waitFor": "#image-workbench-prompt",
+                    "frame": true
+                },
+                {
+                    "wait": 2500,
+                    "evaluate": "document.fonts.ready",
+                    "frame": true
+                },
+                {
+                    "click": ".FIE_tab:has-text(\"Finetune\")",
+                    "frame": true,
+                    "wait": 2000
+                },
+                {
+                    "fill": [
+                        "#image-workbench-prompt",
+                        "A bright caf\u00e9 counter in the morning: a barista pours latte art at the espresso machine, fresh pastries wait in a glass case, warm window light, photorealistic, eye level."
+                    ],
+                    "frame": true
+                },
+                {
+                    "select": [
+                        "#image-workbench-size",
+                        "1536x1024"
+                    ],
+                    "frame": true
+                },
+                {
+                    "evaluate": "document.activeElement && document.activeElement.blur()",
+                    "frame": true,
+                    "wait": 400
+                },
+                {
+                    "evaluate": "const mark = (x, y, w, h) => { let m = document.getElementById('shot-clip'); if (!m) { m = document.createElement('div'); m.id = 'shot-clip'; document.body.append(m); } Object.assign(m.style, { position: 'fixed', left: Math.round(x) + 'px', top: Math.round(y) + 'px', width: Math.round(w) + 'px', height: Math.round(h) + 'px', pointerEvents: 'none', zIndex: '-1' }); }; const mark16 = (x, y, maxWidth) => { const w = Math.floor(maxWidth / 16) * 16; mark(x, y, w, w / 1.6); }; const frameBox = () => document.querySelector('iframe#typo3-contentIframe').getBoundingClientRect(); const frameDoc = () => document.querySelector('iframe#typo3-contentIframe').contentDocument; (() => { const f = frameBox(); const heading = frameDoc().querySelector('h1').getBoundingClientRect(); mark16(f.left, f.top + heading.top - 20, f.width); })()"
+                }
+            ],
+            "settle": 1000,
+            "clip": "#shot-clip",
+            "padding": 0
+        },
+        {
+            "name": "feature-image-workbench-save-copy",
+            "kind": "backend",
+            "url": "/typo3/module/file/list?id=1:/desiderio-grande-site/",
+            "viewport": "1120x700",
+            "steps": [
+                {
+                    "waitFor": ".resource-tile[data-filelist-identifier$=\"/cafe-morning.jpg\"]",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "evaluate": "(async () => { const uid = '1:/desiderio-grande-site/cafe-morning.jpg'; const url = new URL(TYPO3.settings.ajaxUrls.contextmenu, location.origin); url.searchParams.set('table', 'sys_file'); url.searchParams.set('uid', uid); const items = await (await fetch(url, { credentials: 'same-origin', headers: { 'X-Requested-With': 'XMLHttpRequest' } })).json(); const item = Object.values(items).find((entry) => entry.additionalAttributes?.['data-action-url'] && entry.callbackAction === 'open'); const target = new URL(item.additionalAttributes['data-action-url'], location.origin); const list = document.querySelector('iframe#typo3-contentIframe').contentWindow.location; target.searchParams.set('target', uid); target.searchParams.set('returnUrl', list.pathname + list.search); setTimeout(() => { location.href = target.href; }, 50); })()",
+                    "wait": 1500
+                },
+                {
+                    "waitFor": ".FIE_tab:has-text(\"Filters\")",
+                    "timeout": 120000
+                },
+                {
+                    "wait": 2500,
+                    "evaluate": "document.fonts.ready"
+                },
+                {
+                    "click": ".FIE_tab:has-text(\"Filters\")",
+                    "wait": 1500
+                },
+                {
+                    "click": "[data-image-workbench-action=\"save-copy\"]"
+                },
+                {
+                    "waitFor": "#image-workbench-copy-name",
+                    "timeout": 60000
+                }
+            ],
+            "settle": 1500,
+            "clip": "viewport"
+        }
+    ]
+}

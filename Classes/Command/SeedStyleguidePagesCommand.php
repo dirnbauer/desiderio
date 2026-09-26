@@ -483,6 +483,11 @@ final class SeedStyleguidePagesCommand extends Command
                 'abstract' => $page['abstract'],
                 ...$this->buildSeoPageAttributes($page['title'], $page['description']),
             ];
+            // A page that declares its SEO title owns it; an empty one clears
+            // what an older seed or an editor left, so the page title shows.
+            if (isset($page['seoTitle'])) {
+                $pageAttributes['seo_title'] = $page['seoTitle'];
+            }
             if (isset($page['subtitle'])) {
                 $pageAttributes['subtitle'] = $page['subtitle'];
             }

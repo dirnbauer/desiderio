@@ -1,0 +1,234 @@
+{
+    "_note": "Anonymous frontend shots of Desiderio, Astryx, the blogs and Solr.",
+    "shots": [
+        {
+            "name": "frontend-feature-desiderio-theme-presets",
+            "kind": "frontend",
+            "url": "/themes",
+            "viewport": "1600x1000",
+            "steps": [
+                {
+                    "evaluate": "(async () => { const e = document.querySelectorAll('article.preset-card')[3]; window.scrollTo({ left: 0, top: e.getBoundingClientRect().top + window.scrollY - 16, behavior: 'instant' }); document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); })()",
+                    "wait": 600
+                }
+            ],
+            "clip": "viewport"
+        },
+        {
+            "name": "frontend-feature-desiderio-home-hero",
+            "kind": "frontend",
+            "url": "/",
+            "viewport": "1440x900",
+            "steps": [
+                {
+                    "evaluate": "(async () => { document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); const W = 1376; const H = 860; const x0 = 32; const y0 = 0; const m = document.createElement('div'); m.id = 'shot-frame'; m.style.cssText = 'position:fixed;pointer-events:none;opacity:0;z-index:-1;left:' + x0 + 'px;top:' + y0 + 'px;width:' + W + 'px;height:' + H + 'px'; document.body.appendChild(m); })()",
+                    "wait": 400
+                }
+            ],
+            "clip": "#shot-frame",
+            "padding": 0
+        },
+        {
+            "name": "frontend-feature-desiderio-chapter-pricing",
+            "kind": "frontend",
+            "url": "/content-types/plans-pricing",
+            "viewport": "1600x1000",
+            "steps": [
+                {
+                    "evaluate": "(async () => { const f = document.querySelectorAll('main section')[0]; const l = document.querySelectorAll('main section')[1].querySelectorAll('[data-slot=card]')[2]; window.scrollTo({ left: 0, top: f.getBoundingClientRect().top + window.scrollY - -40, behavior: 'instant' }); document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); const a = f.getBoundingClientRect(); const b = l.getBoundingClientRect(); const W = 1472; const H = 920; const x0 = Math.round((Math.min(a.left, b.left) + Math.max(a.right, b.right) - W) / 2) + 0; const y0 = Math.round((Math.min(a.top, b.top) + Math.max(a.bottom, b.bottom) - H) / 2) + 48; const m = document.createElement('div'); m.id = 'shot-frame'; m.style.cssText = 'position:fixed;pointer-events:none;opacity:0;z-index:-1;left:' + x0 + 'px;top:' + y0 + 'px;width:' + W + 'px;height:' + H + 'px'; document.body.appendChild(m); })()",
+                    "wait": 600
+                }
+            ],
+            "clip": "#shot-frame",
+            "padding": 0
+        },
+        {
+            "name": "frontend-feature-astryx-home",
+            "kind": "frontend",
+            "url": "/astryx-typo3/",
+            "viewport": "1280x800",
+            "steps": [
+                {
+                    "evaluate": "(async () => { const e = document.body; document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); const r = e.getBoundingClientRect(); const W = 1152; const H = 720; const x0 = Math.round(r.left) + 64; const y0 = Math.round(r.top) + 0; const m = document.createElement('div'); m.id = 'shot-frame'; m.style.cssText = 'position:fixed;pointer-events:none;opacity:0;z-index:-1;left:' + x0 + 'px;top:' + y0 + 'px;width:' + W + 'px;height:' + H + 'px'; document.body.appendChild(m); })()",
+                    "wait": 400
+                }
+            ],
+            "clip": "#shot-frame",
+            "padding": 0
+        },
+        {
+            "name": "frontend-feature-astryx-themes",
+            "kind": "frontend",
+            "url": "/astryx-typo3/themes",
+            "viewport": "1600x1000",
+            "steps": [
+                {
+                    "evaluate": "(async () => { const f = document.querySelectorAll('article.g-themes__card')[0]; const l = document.querySelectorAll('article.g-themes__card')[5]; window.scrollTo({ left: 0, top: f.getBoundingClientRect().top + window.scrollY - 36, behavior: 'instant' }); document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); const a = f.getBoundingClientRect(); const b = l.getBoundingClientRect(); const W = 1488; const H = 930; const x0 = Math.round((Math.min(a.left, b.left) + Math.max(a.right, b.right) - W) / 2) + 0; const y0 = Math.round((Math.min(a.top, b.top) + Math.max(a.bottom, b.bottom) - H) / 2) + 0; const m = document.createElement('div'); m.id = 'shot-frame'; m.style.cssText = 'position:fixed;pointer-events:none;opacity:0;z-index:-1;left:' + x0 + 'px;top:' + y0 + 'px;width:' + W + 'px;height:' + H + 'px'; document.body.appendChild(m); })()",
+                    "wait": 600
+                }
+            ],
+            "clip": "#shot-frame",
+            "padding": 0
+        },
+        {
+            "name": "frontend-feature-astryx-pricing-matcha",
+            "kind": "frontend",
+            "url": "/astryx-typo3/components/pricing",
+            "viewport": "1440x960",
+            "steps": [
+                {
+                    "evaluate": "(async () => { const f = document.querySelector('section.g-pricing-plan-spotlight'); const l = document.querySelector('section.g-pricing-plan-spotlight'); window.scrollTo({ left: 0, top: f.getBoundingClientRect().top + window.scrollY - 20, behavior: 'instant' }); document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); const a = f.getBoundingClientRect(); const b = l.getBoundingClientRect(); const W = 1440; const H = 900; const x0 = Math.round((Math.min(a.left, b.left) + Math.max(a.right, b.right) - W) / 2) + 0; const y0 = Math.round((Math.min(a.top, b.top) + Math.max(a.bottom, b.bottom) - H) / 2) + 0; const m = document.createElement('div'); m.id = 'shot-frame'; m.style.cssText = 'position:fixed;pointer-events:none;opacity:0;z-index:-1;left:' + x0 + 'px;top:' + y0 + 'px;width:' + W + 'px;height:' + H + 'px'; document.body.appendChild(m); })()",
+                    "wait": 800
+                }
+            ],
+            "clip": "#shot-frame",
+            "padding": 0
+        },
+        {
+            "name": "frontend-feature-astryx-dark",
+            "kind": "frontend",
+            "url": "/astryx-typo3/themes",
+            "viewport": "1600x1000",
+            "colorScheme": "dark",
+            "steps": [
+                {
+                    "evaluate": "(async () => { const f = document.querySelectorAll('article.g-themes__card')[0]; const l = document.querySelectorAll('article.g-themes__card')[5]; window.scrollTo({ left: 0, top: f.getBoundingClientRect().top + window.scrollY - 36, behavior: 'instant' }); document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); const a = f.getBoundingClientRect(); const b = l.getBoundingClientRect(); const W = 1488; const H = 930; const x0 = Math.round((Math.min(a.left, b.left) + Math.max(a.right, b.right) - W) / 2) + 0; const y0 = Math.round((Math.min(a.top, b.top) + Math.max(a.bottom, b.bottom) - H) / 2) + 0; const m = document.createElement('div'); m.id = 'shot-frame'; m.style.cssText = 'position:fixed;pointer-events:none;opacity:0;z-index:-1;left:' + x0 + 'px;top:' + y0 + 'px;width:' + W + 'px;height:' + H + 'px'; document.body.appendChild(m); })()",
+                    "wait": 600
+                }
+            ],
+            "clip": "#shot-frame",
+            "padding": 0
+        },
+        {
+            "name": "frontend-feature-blog-list",
+            "kind": "frontend",
+            "url": "/typo3-blog/",
+            "viewport": "1384x900",
+            "steps": [
+                {
+                    "evaluate": "(async () => { document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); const W = 1384; const H = 865; const x0 = 0; const y0 = 0; const m = document.createElement('div'); m.id = 'shot-frame'; m.style.cssText = 'position:fixed;pointer-events:none;opacity:0;z-index:-1;left:' + x0 + 'px;top:' + y0 + 'px;width:' + W + 'px;height:' + H + 'px'; document.body.appendChild(m); })()",
+                    "wait": 400
+                }
+            ],
+            "clip": "#shot-frame",
+            "padding": 0
+        },
+        {
+            "name": "frontend-feature-blog-post",
+            "kind": "frontend",
+            "url": "/typo3-blog/whats-new-for-editors-in-typo3-v14",
+            "viewport": "1280x900",
+            "steps": [
+                {
+                    "evaluate": "(async () => { const e = document.body; document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); const r = e.getBoundingClientRect(); const W = 1280; const H = 800; const x0 = Math.round(r.left) + 0; const y0 = Math.round(r.top) + 70; const m = document.createElement('div'); m.id = 'shot-frame'; m.style.cssText = 'position:fixed;pointer-events:none;opacity:0;z-index:-1;left:' + x0 + 'px;top:' + y0 + 'px;width:' + W + 'px;height:' + H + 'px'; document.body.appendChild(m); })()",
+                    "wait": 400
+                }
+            ],
+            "clip": "#shot-frame",
+            "padding": 0
+        },
+        {
+            "name": "frontend-feature-blog-comments",
+            "kind": "frontend",
+            "url": "/typo3-blog/whats-new-for-editors-in-typo3-v14",
+            "viewport": "1408x900",
+            "css": ".desiderio-form .frc-captcha--placeholder > span{display:none!important}.desiderio-form .frc-captcha--placeholder{width:fit-content!important}",
+            "steps": [
+                {
+                    "evaluate": "(async () => { const e = document.querySelector('#comments'); window.scrollTo({ left: 0, top: e.getBoundingClientRect().top + window.scrollY - -1, behavior: 'instant' }); document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); })()",
+                    "wait": 800
+                },
+                {
+                    "evaluate": "(async () => { document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); const W = 1384; const H = 865; const x0 = 12; const y0 = 0; const m = document.createElement('div'); m.id = 'shot-frame'; m.style.cssText = 'position:fixed;pointer-events:none;opacity:0;z-index:-1;left:' + x0 + 'px;top:' + y0 + 'px;width:' + W + 'px;height:' + H + 'px'; document.body.appendChild(m); })()",
+                    "wait": 400
+                }
+            ],
+            "clip": "#shot-frame",
+            "padding": 0
+        },
+        {
+            "name": "frontend-feature-solr-results-facets",
+            "kind": "frontend",
+            "url": "/search?tx_solr%5Bq%5D=Desiderio",
+            "viewport": "1440x1200",
+            "css": "#tx-solr-frequent-searches,#facet-accordion-category,li.facet-option[data-facet-item-value=\"tx_nrllm_skill\"]{display:none!important}#tx-solr-faceting,#tx-solr-faceting [id^=facet-accordion-],#tx-solr-faceting fieldset.d-facet-group{margin-bottom:0!important}",
+            "steps": [
+                {
+                    "evaluate": "(async () => { const e = document.querySelector('.d-solr-create'); document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); const r = e.getBoundingClientRect(); const W = 1152; const H = 720; const x0 = Math.round(r.left) + 0; const y0 = Math.round(r.top) + 10; const m = document.createElement('div'); m.id = 'shot-frame'; m.style.cssText = 'position:fixed;pointer-events:none;opacity:0;z-index:-1;left:' + x0 + 'px;top:' + y0 + 'px;width:' + W + 'px;height:' + H + 'px'; document.body.appendChild(m); })()",
+                    "wait": 400
+                }
+            ],
+            "clip": "#shot-frame",
+            "padding": 0
+        },
+        {
+            "name": "frontend-feature-solr-active-filter",
+            "kind": "frontend",
+            "url": "/search/?tx_solr%5Bfilter%5D%5B0%5D=type%3Atx_news_domain_model_news&tx_solr%5Bq%5D=Desiderio",
+            "viewport": "1440x1200",
+            "css": "#tx-solr-frequent-searches,#facet-accordion-category,li.facet-option[data-facet-item-value=\"tx_nrllm_skill\"]{display:none!important}#tx-solr-faceting,#tx-solr-faceting [id^=facet-accordion-],#tx-solr-faceting fieldset.d-facet-group{margin-bottom:0!important}",
+            "steps": [
+                {
+                    "evaluate": "(async () => { const e = document.querySelector('.d-solr-create'); document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); const r = e.getBoundingClientRect(); const W = 1152; const H = 720; const x0 = Math.round(r.left) + 0; const y0 = Math.round(r.top) + 10; const m = document.createElement('div'); m.id = 'shot-frame'; m.style.cssText = 'position:fixed;pointer-events:none;opacity:0;z-index:-1;left:' + x0 + 'px;top:' + y0 + 'px;width:' + W + 'px;height:' + H + 'px'; document.body.appendChild(m); })()",
+                    "wait": 400
+                }
+            ],
+            "clip": "#shot-frame",
+            "padding": 0
+        },
+        {
+            "name": "frontend-feature-solr-dark-mode",
+            "kind": "frontend",
+            "url": "/search?tx_solr%5Bq%5D=Desiderio",
+            "viewport": "1440x1200",
+            "css": "#tx-solr-frequent-searches,#facet-accordion-category,li.facet-option[data-facet-item-value=\"tx_nrllm_skill\"]{display:none!important}#tx-solr-faceting,#tx-solr-faceting [id^=facet-accordion-],#tx-solr-faceting fieldset.d-facet-group{margin-bottom:0!important}",
+            "steps": [
+                {
+                    "click": "details.desiderio-theme-switch > summary"
+                },
+                {
+                    "click": "[data-d-theme-option=\"dark\"]",
+                    "wait": 800
+                },
+                {
+                    "evaluate": "(async () => { const e = document.querySelector('.d-solr-create'); document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); const r = e.getBoundingClientRect(); const W = 1152; const H = 720; const x0 = Math.round(r.left) + 0; const y0 = Math.round(r.top) + 10; const m = document.createElement('div'); m.id = 'shot-frame'; m.style.cssText = 'position:fixed;pointer-events:none;opacity:0;z-index:-1;left:' + x0 + 'px;top:' + y0 + 'px;width:' + W + 'px;height:' + H + 'px'; document.body.appendChild(m); })()",
+                    "wait": 400
+                }
+            ],
+            "clip": "#shot-frame",
+            "padding": 0
+        },
+        {
+            "name": "frontend-feature-solr-suggest",
+            "kind": "frontend",
+            "url": "/content-types",
+            "viewport": "1440x900",
+            "steps": [
+                {
+                    "click": "[data-d-header-search-toggle]",
+                    "wait": 400
+                },
+                {
+                    "fill": [
+                        "#desiderio-header-search",
+                        "them"
+                    ]
+                },
+                {
+                    "waitFor": ".desiderio-header__search .d-solr-suggest__option--document",
+                    "timeout": 30000
+                },
+                {
+                    "hover": ".desiderio-breadcrumb__page"
+                },
+                {
+                    "evaluate": "(async () => { document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); const W = 1376; const H = 860; const x0 = 32; const y0 = 0; const m = document.createElement('div'); m.id = 'shot-frame'; m.style.cssText = 'position:fixed;pointer-events:none;opacity:0;z-index:-1;left:' + x0 + 'px;top:' + y0 + 'px;width:' + W + 'px;height:' + H + 'px'; document.body.appendChild(m); })()",
+                    "wait": 400
+                }
+            ],
+            "settle": 1200,
+            "clip": "#shot-frame",
+            "padding": 0
+        }
+    ]
+}

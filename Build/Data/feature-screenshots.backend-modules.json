@@ -1,0 +1,320 @@
+{
+    "_note": "Page module, wizards, record forms, Skills Inspector, Agent Nexus and Skillflow (run 12 is a typo3-seo review of page 1070).",
+    "shots": [
+        {
+            "name": "feature-desiderio-content-wizard",
+            "kind": "backend",
+            "url": "/typo3/module/web/layout?id=671",
+            "viewport": "1600x1000",
+            "css": "typo3-backend-modal .modal-size-large{--typo3-modal-width:1280px} .modal::backdrop{background:#fff!important;opacity:1!important}",
+            "steps": [
+                {
+                    "waitFor": "typo3-backend-new-content-element-wizard-button",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "click": "typo3-backend-new-content-element-wizard-button",
+                    "frame": true,
+                    "wait": 500
+                },
+                {
+                    "waitFor": "typo3-backend-new-record-wizard button.navigation-item",
+                    "timeout": 120000
+                },
+                {
+                    "click": "typo3-backend-new-record-wizard button.navigation-item:has-text(\"Plans & Pricing\")",
+                    "wait": 1500
+                },
+                {
+                    "evaluate": "(() => { document.activeElement && document.activeElement.blur(); const r = document.querySelector('typo3-backend-new-record-wizard').shadowRoot; r && r.activeElement && r.activeElement.blur(); })()",
+                    "wait": 300
+                }
+            ],
+            "settle": 1500,
+            "clip": "typo3-backend-modal dialog",
+            "padding": 0,
+            "frameCss": "input,textarea,select{caret-color:transparent!important}"
+        },
+        {
+            "name": "feature-desiderio-page-module",
+            "kind": "backend",
+            "url": "/typo3/module/web/layout?id=669",
+            "viewport": "1853x877",
+            "steps": [
+                {
+                    "waitFor": ".t3-page-ce",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "evaluate": "(async () => { for (let i = 0; i < 80; i++) { const r = document.querySelector('#typo3-contentIframe').getBoundingClientRect(); if (r.x > 400) { return; } await new Promise((res) => setTimeout(res, 250)); } })()"
+                },
+                {
+                    "wait": 1500
+                },
+                {
+                    "evaluate": "(() => { const scrollTo = (el, y) => { let c = el.parentElement; while (c && !(c.scrollHeight > c.clientHeight + 1 && /(auto|scroll)/.test(getComputedStyle(c).overflowY))) { c = c.parentElement; } c = c || document.scrollingElement; c.scrollTo({top: c.scrollTop + el.getBoundingClientRect().top - y, behavior: 'instant'}); }; const card = [...document.querySelectorAll('.t3-page-ce')].find((c) => c.innerText.includes('Announcement Hero') && c.getBoundingClientRect().height > 100); if (card) { scrollTo(card, 156); } })()",
+                    "frame": true,
+                    "wait": 800
+                }
+            ],
+            "clip": "#typo3-contentIframe",
+            "padding": 0,
+            "frameCss": "input,textarea,select{caret-color:transparent!important}"
+        },
+        {
+            "name": "feature-astryx-page-theme-field",
+            "kind": "backend",
+            "url": "/typo3/record/edit?edit[pages][1299]=edit",
+            "viewport": "1456x837",
+            "css": ".scaffold-content::before{display:none!important}",
+            "steps": [
+                {
+                    "waitFor": "[role=tab]:has-text(\"Appearance\")",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "click": "[role=tab]:has-text(\"Appearance\")",
+                    "frame": true,
+                    "wait": 1000
+                },
+                {
+                    "evaluate": "(() => { document.querySelector('select[name$=\"[tx_desiderioastryx_theme]\"]').focus({focusVisible: true}); })()",
+                    "frame": true,
+                    "wait": 400
+                }
+            ],
+            "clip": "#typo3-contentIframe",
+            "padding": 0,
+            "frameCss": "input,textarea,select{caret-color:transparent!important}"
+        },
+        {
+            "name": "feature-blog-page-module",
+            "kind": "backend",
+            "url": "/typo3/module/web/layout?id=397",
+            "viewport": "1997x967",
+            "steps": [
+                {
+                    "waitFor": ".t3-page-ce",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "evaluate": "(async () => { for (let i = 0; i < 80; i++) { const r = document.querySelector('#typo3-contentIframe').getBoundingClientRect(); if (r.x > 400) { return; } await new Promise((res) => setTimeout(res, 250)); } })()"
+                },
+                {
+                    "wait": 2000
+                }
+            ],
+            "clip": "#typo3-contentIframe",
+            "padding": 0,
+            "frameCss": "input,textarea,select{caret-color:transparent!important}"
+        },
+        {
+            "name": "feature-blog-posts-module",
+            "kind": "backend",
+            "url": "/typo3/module/blog/posts/Backend/posts?blogSetup=391",
+            "viewport": "1680x977",
+            "css": ".scaffold-content::before{display:none!important}",
+            "steps": [
+                {
+                    "waitFor": "table.dataTables tbody tr",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "wait": 2000
+                }
+            ],
+            "clip": "#typo3-contentIframe",
+            "padding": 0,
+            "frameCss": "input,textarea,select{caret-color:transparent!important}"
+        },
+        {
+            "name": "feature-llms-txt-source-fields",
+            "kind": "backend",
+            "url": "/typo3/record/edit?edit[pages][505]=edit",
+            "viewport": "1520x877",
+            "css": ".scaffold-content::before{display:none!important}",
+            "steps": [
+                {
+                    "waitFor": "[role=tab]:has-text(\"SEO\")",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "click": "[role=tab]:has-text(\"SEO\")",
+                    "frame": true,
+                    "wait": 1000
+                },
+                {
+                    "evaluate": "(() => { document.querySelector('textarea[data-formengine-input-name=\"data[pages][505][description]\"], textarea[name=\"data[pages][505][description]\"]').focus({focusVisible: true}); })()",
+                    "frame": true,
+                    "wait": 400
+                }
+            ],
+            "clip": "#typo3-contentIframe",
+            "padding": 0,
+            "frameCss": "input,textarea,select{caret-color:transparent!important}"
+        },
+        {
+            "name": "feature-skillspector-overview",
+            "kind": "backend",
+            "url": "/typo3/module/system/skillspector",
+            "viewport": "1680x977",
+            "css": ".scaffold-content::before{display:none!important}",
+            "steps": [
+                {
+                    "waitFor": ".skillspector-table",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "wait": 1000
+                }
+            ],
+            "clip": "#typo3-contentIframe",
+            "padding": 0,
+            "frameCss": "input,textarea,select{caret-color:transparent!important}"
+        },
+        {
+            "name": "feature-skillspector-findings",
+            "kind": "backend",
+            "url": "/typo3/module/system/skillspector",
+            "viewport": "1696x987",
+            "css": ".scaffold-content::before{display:none!important}",
+            "steps": [
+                {
+                    "waitFor": ".skillspector-table",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "evaluate": "(() => { const scrollTo = (el, y) => { let c = el.parentElement; while (c && !(c.scrollHeight > c.clientHeight + 1 && /(auto|scroll)/.test(getComputedStyle(c).overflowY))) { c = c.parentElement; } c = c || document.scrollingElement; c.scrollTo({top: c.scrollTop + el.getBoundingClientRect().top - y, behavior: 'instant'}); }; const row = [...document.querySelectorAll('.skillspector-table tbody tr')].find((r) => r.querySelector('td strong')?.textContent.trim() === 'php-modernization'); row.querySelector('details.skillspector-findings').open = true; scrollTo(row, 106); })()",
+                    "frame": true,
+                    "wait": 800
+                }
+            ],
+            "clip": "#typo3-contentIframe",
+            "padding": 0,
+            "frameCss": "input,textarea,select{caret-color:transparent!important}"
+        },
+        {
+            "name": "feature-skillspector-hide-confirm",
+            "kind": "backend",
+            "url": "/typo3/module/system/skillspector",
+            "viewport": "1600x927",
+            "css": ".scaffold-content::before{display:none!important}",
+            "steps": [
+                {
+                    "waitFor": ".skillspector-table",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "evaluate": "(() => { const scrollTo = (el, y) => { let c = el.parentElement; while (c && !(c.scrollHeight > c.clientHeight + 1 && /(auto|scroll)/.test(getComputedStyle(c).overflowY))) { c = c.parentElement; } c = c || document.scrollingElement; c.scrollTo({top: c.scrollTop + el.getBoundingClientRect().top - y, behavior: 'instant'}); }; const row = [...document.querySelectorAll('.skillspector-table tbody tr')].find((r) => r.querySelector('td strong')?.textContent.trim() === 'php-modernization'); scrollTo(row, 107); })()",
+                    "frame": true,
+                    "wait": 600
+                },
+                {
+                    "click": ".skillspector-table tbody tr:has(strong:text-is(\"php-modernization\")) button.t3js-modal-trigger",
+                    "frame": true,
+                    "wait": 800
+                },
+                {
+                    "waitFor": "typo3-backend-modal dialog",
+                    "timeout": 30000
+                },
+                {
+                    "evaluate": "(() => { document.activeElement && document.activeElement.blur(); })()",
+                    "wait": 300
+                }
+            ],
+            "settle": 1000,
+            "clip": "#typo3-contentIframe",
+            "padding": 0,
+            "frameCss": "input,textarea,select{caret-color:transparent!important}"
+        },
+        {
+            "name": "feature-agent-nexus-traffic",
+            "kind": "backend",
+            "url": "/typo3/module/agent-nexus/traffic?channel=widget",
+            "viewport": "1680x977",
+            "css": ".scaffold-content::before{display:none!important}",
+            "steps": [
+                {
+                    "waitFor": "table tbody tr",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "wait": 1500
+                }
+            ],
+            "clip": "#typo3-contentIframe",
+            "padding": 0,
+            "frameCss": "input,textarea,select{caret-color:transparent!important}"
+        },
+        {
+            "name": "feature-skillflow-run-report",
+            "kind": "backend",
+            "url": "/typo3/module/content/skillflow?action=showRun&run=12",
+            "viewport": "1853x877",
+            "steps": [
+                {
+                    "waitFor": ".skillflow-report",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "evaluate": "(async () => { for (let i = 0; i < 80; i++) { const r = document.querySelector('#typo3-contentIframe').getBoundingClientRect(); if (r.x > 400) { return; } await new Promise((res) => setTimeout(res, 250)); } })()"
+                },
+                {
+                    "wait": 2000
+                }
+            ],
+            "clip": "#typo3-contentIframe",
+            "padding": 0,
+            "frameCss": "input,textarea,select{caret-color:transparent!important}"
+        },
+        {
+            "name": "feature-skillflow-stage-review",
+            "kind": "backend",
+            "url": "/typo3/record/edit?edit[sys_workspace_stage][1]=edit",
+            "viewport": "1392x797",
+            "css": ".scaffold-content::before{display:none!important}",
+            "steps": [
+                {
+                    "waitFor": "[role=tab]:has-text(\"Skills\")",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "click": "[role=tab]:has-text(\"Skills\")",
+                    "frame": true,
+                    "wait": 800
+                },
+                {
+                    "evaluate": "(() => { const avail = document.querySelector('select.t3js-formengine-select-itemstoselect[data-relatedfieldname=\"data[sys_workspace_stage][1][tx_skillflow_nrllm_skills]\"]'); for (const name of ['typo3-seo', 'typo3-accessibility', 'typo3-structured-data']) { for (const o of avail.options) { o.selected = o.textContent.trim() === name; } avail.dispatchEvent(new MouseEvent('click', {bubbles: true})); } for (const o of avail.options) { o.selected = false; } })()",
+                    "frame": true,
+                    "wait": 600
+                },
+                {
+                    "evaluate": "(() => { document.querySelector('input[type=checkbox][data-formengine-input-name=\"data[sys_workspace_stage][1][tx_skillflow_auto_run]\"]').click(); })()",
+                    "frame": true,
+                    "wait": 400
+                },
+                {
+                    "evaluate": "(() => { document.activeElement && document.activeElement.blur(); })()",
+                    "frame": true,
+                    "wait": 300
+                }
+            ],
+            "clip": "#typo3-contentIframe",
+            "padding": 0,
+            "frameCss": "input,textarea,select{caret-color:transparent!important}"
+        }
+    ]
+}

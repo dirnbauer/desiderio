@@ -48,8 +48,11 @@ Core site settings
     *   - ``desiderio.layout.sectionSeam``
         - ``notch``
         - ``notch`` (hairline with a capsule in the theme's chart colours),
-          ``line`` (hairline only) or ``none``. Only between two sections on
-          the page background; panels and coloured frames never get one.
+          ``dots`` (three dots in the chart colours, no line), ``line``
+          (hairline only) or ``none``. Only between two sections on the page
+          background; panels, coloured frames and sections with their own
+          surface (a coloured call to action, a banner, a hero on a photo)
+          never get one.
     *   - ``desiderio.layout.radius``
         - ``preset``
         - ``preset``, ``none``, ``sm``, ``md``, ``lg``, or ``full``.

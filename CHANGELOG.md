@@ -6,6 +6,18 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.7.1] — 2026-09-26
+
+### Fixed
+
+- Powermail conditions work on desiderio's forms. The form template left
+  Powermail's `powermail_form` and `powermail_form_{uid}` classes off the
+  `<form>` tag, and powermail_cond's script only starts on a
+  `.powermail_form` — so it never asked the condition endpoint, and every
+  conditional field stayed visible whatever was typed. The rules and the
+  endpoint were fine; nothing called them. Powermail's own date handling
+  keys on the same class and now runs too.
+
 ## [4.7.0] — 2026-09-26
 
 ### Changed

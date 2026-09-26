@@ -39,7 +39,7 @@
                     data-powermail-message-max="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.validation.max')}"
                     data-powermail-error-summary-mode="{settings.validation.errorSummary.mode}"
                     data-powermail-error-focus="{settings.validation.errorSummary.focus}"
-                    class="{form.css} {vh:misc.morestepClass(activate: settings.main.moresteps)} {formCardClass -> f:format.trim()}">
+                    class="powermail_form powermail_form_{form.uid} {form.css} {vh:misc.morestepClass(activate: settings.main.moresteps)} {formCardClass -> f:format.trim()}">
 
                     <f:if condition="{form.css} != 'nolabel'">
                         <header data-slot="card-header" class="{cardHeaderClass -> f:format.trim()}">

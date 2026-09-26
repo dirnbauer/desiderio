@@ -1908,4 +1908,74 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
+
+  /* ------------------------------------------------------------------ */
+  /*  16. Balanced card grids: a lone last card moves to the middle      */
+  /* ------------------------------------------------------------------ */
+  // Four cards in three columns, or three in the two columns a tablet
+  // shows, leave one card alone at the start of the last row. Which widths
+  // collapse a grid to how many columns is each element's own business
+  // (base classes, modifiers, their own breakpoints), so this reads the
+  // column count the browser actually laid out instead of keeping a list.
+  // It only marks the grid (data-d-lone) and hands over one track's width;
+  // 22-modern-base.css centres the card. Without JavaScript the card simply
+  // stays where the grid put it.
+  // Candidates by name (element grids, the Layout Grid component, innesto's
+  // blocks); whether one is a card grid is decided below by its children.
+  const loneGridSelector = '.desiderio-section :is([class*="__grid"], [class*="__items"], [class*="__list"], [class*="__steps"], .grid, [class^="innesto-"])';
+  const loneGridSkip = '.desiderio-section:is([class*="footer"], [class*="navbar"], .mega-menu, .feature-bento)';
+  const loneGrids = [...document.querySelectorAll(loneGridSelector)].filter(grid => !grid.closest(loneGridSkip));
+
+  const balanceGrid = grid => {
+    const style = getComputedStyle(grid);
+    const items = [...grid.children].filter(item => getComputedStyle(item).display !== 'none');
+    const columns = style.display === 'grid' ? style.gridTemplateColumns.split(' ').filter(Boolean).length : 0;
+    // A card grid: at least two columns, more cards than columns, one of
+    // them alone in the last row, all children the same kind of element
+    // (same tag and same first class: an icon, a title and a text are the
+    // parts of one card, not three cards), and none placed or spanned by
+    // the element itself (bento layouts).
+    const placed = items.slice(0, -1).some(item => {
+      const itemStyle = getComputedStyle(item);
+      return itemStyle.gridColumnStart !== 'auto' || itemStyle.gridColumnEnd !== 'auto';
+    });
+    const lone = columns > 1
+      && items.length > columns
+      && items.length % columns === 1
+      && items.every(item => item.tagName === items[0].tagName && item.classList[0] === items[0].classList[0])
+      && !placed;
+    if (lone) {
+      grid.style.setProperty('--d-lone-width', `${items[0].getBoundingClientRect().width}px`);
+      grid.dataset.dLone = '';
+    } else if ('dLone' in grid.dataset) {
+      delete grid.dataset.dLone;
+      grid.style.removeProperty('--d-lone-width');
+    }
+  };
+
+  if (loneGrids.length) {
+    loneGrids.forEach(balanceGrid);
+    if ('ResizeObserver' in window) {
+      // One layout read per frame, however many grids resize together.
+      const pending = new Set();
+      let frame = 0;
+      const flush = () => {
+        frame = 0;
+        pending.forEach(balanceGrid);
+        pending.clear();
+      };
+      const schedule = grid => {
+        pending.add(grid);
+        frame ||= requestAnimationFrame(flush);
+      };
+      const resizeObserver = new ResizeObserver(entries => entries.forEach(entry => schedule(entry.target)));
+      // Cards added or removed in the visual editor change the count
+      // without changing the grid's size.
+      const mutationObserver = new MutationObserver(records => records.forEach(record => schedule(record.target)));
+      loneGrids.forEach(grid => {
+        resizeObserver.observe(grid);
+        mutationObserver.observe(grid, { childList: true });
+      });
+    }
+  }
 });

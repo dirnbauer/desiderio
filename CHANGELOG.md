@@ -30,9 +30,39 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
   client-list, feature-grid-4 and feature-icons no longer keeps its bottom
   padding, and the testimonial wall no longer leaves a card margin below its
   columns, so their content ends where the section's rhythm begins.
+- Evidence and process sit on panels: a rounded, tinted surface inset from
+  the page edge, so a long page gets landmarks instead of fifteen sections
+  on one white. Stats, counters, KPI and stat cards, testimonials, reviews,
+  ratings, press, awards, certifications, trust and compliance badges, logo
+  clouds and grids, client lists, case-study grids, steps, timelines,
+  milestones and history, and innesto's stats, case studies and marquee
+  become panels by default; any section whose editor picks the "muted"
+  frame becomes one too, instead of a full-bleed band. The panel is the
+  section's `::before` and takes the outer part of the section rhythm, so
+  layout and rhythm do not move; inside it `--background` is the panel, so
+  edge fades and dot rings match. Muted text holds 4.63:1 and links 4.82:1
+  on it in every preset.
+- Card grids stay balanced. At desktop width a three-column grid with two
+  or four cards shows them in one row, and a four-column grid with two,
+  three, five or six cards picks two or three columns (pure CSS, `:has()`
+  counts). At every width, a lone card in the last row moves to the middle
+  at the width of its siblings: desiderio.js reads the column count the
+  browser laid out and marks the grid (`data-d-lone`), because which widths
+  collapse a grid belongs to each element.
+- The seams between sections that 4.7.0 describes never rendered (every
+  section follows its `#c<uid>` anchor), and the page reads better without
+  them: the dead rule is gone.
 
 ### Fixed
 
+- WCAG contrast of the 4.7.0 base look, found by the extended
+  `audit-theme-contrast.php`: the glass header is 92% page colour (was 80%)
+  and its nav links mix 40% `--foreground` into `--muted-foreground`, so they
+  clear 4.5:1 with black or white content scrolling beneath; the horizon's
+  glows are capped at 0.15 / 0.10 / 0.08 (was 0.30 / 0.20 / 0.16), and the
+  breadcrumb, page title and opening section pull their muted and link inks
+  20% toward `--foreground`, so their copy clears 4.5:1 even with all three
+  glows stacked on one spot, in all fifteen presets, light and dark.
 - A classic element without heading and subheading rendered an empty intro
   that pushed its content away from the top of the section.
 

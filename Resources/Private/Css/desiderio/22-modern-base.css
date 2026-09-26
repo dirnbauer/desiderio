@@ -119,7 +119,10 @@
     position: sticky;
     top: 0;
     border-bottom: 1px solid color-mix(in oklch, var(--border) 60%, transparent);
-    background-color: color-mix(in oklch, var(--background) 80%, transparent);
+    /* 92%, not less: the worst case under the glass is black (light mode) or
+       white (dark mode) content, and the nav ink below must still clear
+       4.5:1 over it in every preset (audit-theme-contrast.php). */
+    background-color: color-mix(in oklch, var(--background) 92%, transparent);
     -webkit-backdrop-filter: blur(16px) saturate(1.6);
     backdrop-filter: blur(16px) saturate(1.6);
 }
@@ -171,6 +174,9 @@ body[data-header-style] .desiderio-header--fixed,
 
 .desiderio-header__nav-link {
     font-size: 0.875rem;
+    /* Plain --muted-foreground sits just above 4.5:1 on an opaque page; over
+       glass with dark content beneath it fell to 3.13:1. */
+    color: color-mix(in oklch, var(--muted-foreground) 60%, var(--foreground));
 }
 
 /* The horizon: the preset's first three chart hues, soft, behind whatever
@@ -188,14 +194,35 @@ body[data-header-style] .desiderio-header--fixed,
     height: min(72vh, 46rem);
     z-index: -1;
     pointer-events: none;
-    /* Alpha = chroma x factor: a saturated hue (c ~ 0.2) glows at ~0.24,
-       a muted one faintly, an achromatic one not at all. */
+    /* Alpha = chroma x factor, capped at 0.15 / 0.10 / 0.08: a saturated hue
+       glows, a muted one faintly, an achromatic one not at all. The caps are
+       the contrast budget: with all three stacked on one spot, the opening
+       copy below (pulled 20% toward --foreground) still clears 4.5:1 in all
+       fifteen presets, light and dark. */
     background:
-        radial-gradient(60% 55% at 50% -8%, oklch(from var(--chart-1, var(--primary)) l c h / clamp(0, c * 1.2, 0.3)), transparent 70%),
-        radial-gradient(38% 40% at 88% 4%, oklch(from var(--chart-2, var(--primary)) l c h / clamp(0, c * 0.8, 0.2)), transparent 70%),
-        radial-gradient(34% 36% at 10% 8%, oklch(from var(--chart-3, var(--primary)) l c h / clamp(0, c * 0.6, 0.16)), transparent 70%);
+        radial-gradient(60% 55% at 50% -8%, oklch(from var(--chart-1, var(--primary)) l c h / clamp(0, c * 1.2, 0.15)), transparent 70%),
+        radial-gradient(38% 40% at 88% 4%, oklch(from var(--chart-2, var(--primary)) l c h / clamp(0, c * 0.8, 0.1)), transparent 70%),
+        radial-gradient(34% 36% at 10% 8%, oklch(from var(--chart-3, var(--primary)) l c h / clamp(0, c * 0.6, 0.08)), transparent 70%);
     -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent);
     mask-image: linear-gradient(to bottom, #000 45%, transparent);
+}
+
+/* Text over the horizon: the lead and eyebrow inks of the breadcrumb, the
+   page title and the opening section move 20% toward --foreground, so the
+   glow never costs them AA. The inks are captured on <body>, where the
+   presets set them, because a custom property cannot mix its own value. */
+body {
+    --d-muted-ink: var(--muted-foreground);
+    --d-link-ink: var(--d-link, var(--primary));
+}
+
+.desiderio-main > :is(.desiderio-breadcrumb, .desiderio-page-title-container),
+:is(.desiderio-main > .desiderio-section, .desiderio-main > * > .desiderio-section):first-of-type {
+    --muted-foreground: color-mix(in oklch, var(--d-muted-ink) 80%, var(--foreground));
+    /* The theme resolves its --d-* aliases once on <body>; re-point the one
+       the elements read for lead copy (the hero subheadline among them). */
+    --d-muted-foreground: var(--muted-foreground);
+    --d-link: color-mix(in oklch, var(--d-link-ink) 80%, var(--foreground));
 }
 
 /* The page templates wrap the content area (the corporate preset in
@@ -214,22 +241,15 @@ body[data-header-style] .desiderio-header--fixed,
 }
 
 /* ------------------------------------------------------------------ */
-/*  3. Rules that fade instead of ruling                              */
+/*  3. No rules between sections                                      */
 /* ------------------------------------------------------------------ */
 
+/* Sections are separated by rhythm and by the panels below, never by a
+   line. (4.7.0 kept a faded seam between two sections on the same surface;
+   it never rendered, because every section follows its #c<uid> anchor, and
+   the page read better without it.) */
 .desiderio-section {
     border-block-start: 0;
-}
-
-/* Two sections on the same surface still need a seam; it fades at the
-   edges so the page reads as sections, not as rows of a table. */
-.desiderio-section.bg-background + .desiderio-section.bg-background,
-.desiderio-section.bg-card + .desiderio-section.bg-card,
-.desiderio-section.bg-muted + .desiderio-section.bg-muted {
-    background-image: linear-gradient(90deg, transparent 2%, color-mix(in oklch, var(--border) 90%, transparent) 20%, color-mix(in oklch, var(--border) 90%, transparent) 80%, transparent 98%);
-    background-size: 100% 1px;
-    background-repeat: no-repeat;
-    background-position: top center;
 }
 
 .desiderio-page-title-container .separator--horizontal {
@@ -349,5 +369,199 @@ body[data-header-style] .desiderio-header--fixed,
             animation-timeline: view();
             animation-range: entry 0% entry 28%;
         }
+    }
+}
+
+/* ------------------------------------------------------------------ */
+/*  6. Panels: evidence and process sit on their own surface           */
+/* ------------------------------------------------------------------ */
+
+/* Fifteen sections on one white page read as one long list. A panel is a
+   rounded, tinted surface inset from the page edge, and it means something:
+   the section holds evidence (numbers, quotes, logos, awards, case studies)
+   or a process (steps, timelines, milestones). Any section whose editor
+   picked the "muted" frame becomes a panel too, instead of a full-bleed
+   band. Every other section stays on the page.
+
+   The panel is the section's ::before, so layout never changes: the section
+   keeps its box, its content keeps the page's content column, and only the
+   surface behind it is inset. Inside a panel --background and
+   --d-background ARE the panel, so everything an element paints in "page
+   colour" (edge fades on carousels, timeline dot rings, outline buttons,
+   input fields) matches the surface it now sits on. --d-page keeps the real
+   page colour; it is captured on <body>, where the presets set their tokens.
+
+   Measured over all fifteen presets: muted text on the panel holds at least
+   4.67:1 in light and 6.3:1 in dark. Light panels need a strong tint to
+   show at all against white (the house presets share a neutral base), so
+   the hairline edge carries half of the separation there. */
+body {
+    --d-page: var(--background);
+}
+
+:is(.desiderio-section.bg-muted,
+    .desiderio-section.bg-background:is(
+        .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+        .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+        .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+        .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+        .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+        .client-list, .case-study-grid,
+        .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+        .company-milestones, .company-history,
+        .innesto-case-studies-section, .innesto-marquee-section,
+        [class*="innesto-stats-"])) {
+    --d-panel: color-mix(in oklch, var(--muted) 85%, var(--d-page, var(--background)));
+    --background: var(--d-panel);
+    --d-background: var(--d-panel);
+    --d-panel-gap: max(0.75rem, var(--d-section-y, 6rem) * 0.35);
+    background-color: transparent;
+    /* The section keeps the shared rhythm (--d-section-y) as its padding;
+       the panel takes the outer 35% of it, the content keeps the rest. Only
+       where that would leave less than 1.5rem inside the panel (compact
+       density) does the section grow a little. */
+    padding-block: max(var(--d-section-y, 6rem), var(--d-panel-gap) + 1.5rem);
+}
+
+.dark :is(.desiderio-section.bg-muted,
+    .desiderio-section.bg-background:is(
+        .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+        .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+        .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+        .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+        .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+        .client-list, .case-study-grid,
+        .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+        .company-milestones, .company-history,
+        .innesto-case-studies-section, .innesto-marquee-section,
+        [class*="innesto-stats-"])) {
+    /* Dark cards sit only a step above the page; a lighter tint keeps them
+       reading as lifted rather than sunk into the panel. */
+    --d-panel: color-mix(in oklch, var(--muted) 45%, var(--d-page, var(--background)));
+}
+
+:is(.desiderio-section.bg-muted,
+    .desiderio-section.bg-background:is(
+        .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+        .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+        .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+        .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+        .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+        .client-list, .case-study-grid,
+        .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+        .company-milestones, .company-history,
+        .innesto-case-studies-section, .innesto-marquee-section,
+        [class*="innesto-stats-"]))::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset-block: var(--d-panel-gap);
+    /* Wider than the content column by 1rem where the page has room (the
+       container is 80rem), never closer than 0.5rem to the viewport edge. */
+    inset-inline: max(0.5rem, (100% - 80rem) / 2 - 1rem);
+    border-radius: min(calc(var(--radius, 0.625rem) * 2.4), 2rem);
+    /* A plain surface: a chart tint here would eat the contrast budget of
+       any text that sits in that corner. */
+    background: var(--d-panel);
+    box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--border) 75%, transparent);
+    pointer-events: none;
+}
+
+/* Below 48rem the page gutter is only 1rem, so the content moves in a
+   little to keep a margin inside the panel. */
+@media (max-width: 47.99rem) {
+    :is(.desiderio-section.bg-muted,
+        .desiderio-section.bg-background:is(
+            .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+            .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+            .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+            .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+            .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+            .client-list, .case-study-grid,
+            .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+            .company-milestones, .company-history,
+            .innesto-case-studies-section, .innesto-marquee-section,
+            [class*="innesto-stats-"])) > .desiderio-container {
+        padding-inline: 1.5rem;
+    }
+}
+
+/* ------------------------------------------------------------------ */
+/*  7. Balanced card grids: no lone card, no stranded gap               */
+/* ------------------------------------------------------------------ */
+
+/* Two mechanisms, each where it can be exact.
+
+   Column counts, pure CSS at desktop width: counting the cards with :has()
+   picks a better column count before first paint. Three columns: 2 cards
+   -> 2 columns, 4 cards -> one row of 4. Four columns: 2 or 3 cards fill
+   the row, 5 or 6 become 3 + 2 and 3 + 3. This applies only when a
+   section's content box is 64rem or wider, where every listed grid shows
+   its full desktop column count; below that the elements' own breakpoints
+   stay in charge. Bento grids keep their spans and are not listed.
+
+   A lone last card, at every width: which widths collapse a grid to how
+   many columns belongs to each element (base classes, modifiers, their own
+   breakpoints), so desiderio.js (section 16) reads the laid-out column
+   count and marks a grid whose last row holds one card with data-d-lone,
+   handing over one track's width. The card then spans the row and centres
+   at exactly that width: in the middle column of three, between the two
+   columns of a tablet. Without JavaScript it stays where the grid put it. */
+.desiderio-section > .desiderio-container {
+    container-name: d-section;
+}
+
+[data-d-lone] > :last-child {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: var(--d-lone-width, auto);
+    max-width: 100%;
+}
+
+@container d-section (min-width: 64rem) {
+    :is(.article-grid__grid, .benefit-cards__grid--cols-3, .blog-teasers__grid--cols-3,
+        .case-study-grid__items--cols-3, .category-cards__grid--cols-3, .company-culture__grid,
+        .company-perks__grid, .company-values__grid, .content-columns__grid--cols-3,
+        .counter__grid--cols-3, .directions__list, .feature-cards__grid, .feature-grid-3__grid,
+        .feature-icons__grid--cols-3, .feature-numbered__grid, .features__grid--cols-3,
+        .kpi-cards__grid--cols-3, .logo-cloud__grid--cols-3, .logo-grid__items--cols-3,
+        .pricing-three-tier__grid, .pricing__grid--cols-3, .product-grid__items--cols-3,
+        .resource-library__grid, .sitemap-grid__grid--cols-3, .stat-cards__grid--cols-3,
+        .stats-counter__grid--cols-3, .stats__grid--cols-3, .testimonial-grid__items--cols-3,
+        .use-case-grid__grid, .ce-fsc-menu__grid):has(> :nth-child(2):last-child) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    :is(.article-grid__grid, .benefit-cards__grid--cols-3, .blog-teasers__grid--cols-3,
+        .case-study-grid__items--cols-3, .category-cards__grid--cols-3, .company-culture__grid,
+        .company-perks__grid, .company-values__grid, .content-columns__grid--cols-3,
+        .counter__grid--cols-3, .directions__list, .feature-cards__grid, .feature-grid-3__grid,
+        .feature-icons__grid--cols-3, .feature-numbered__grid, .features__grid--cols-3,
+        .kpi-cards__grid--cols-3, .logo-cloud__grid--cols-3, .logo-grid__items--cols-3,
+        .pricing-three-tier__grid, .pricing__grid--cols-3, .product-grid__items--cols-3,
+        .resource-library__grid, .sitemap-grid__grid--cols-3, .stat-cards__grid--cols-3,
+        .stats-counter__grid--cols-3, .stats__grid--cols-3, .testimonial-grid__items--cols-3,
+        .use-case-grid__grid, .ce-fsc-menu__grid):has(> :nth-child(4):last-child) {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    :is(.awards__grid, .category-cards__grid--cols-4, .company-milestones__grid,
+        .counter__grid--cols-4, .feature-grid-4__grid, .feature-icons__grid--cols-4,
+        .features__grid--cols-4, .kpi-cards__grid--cols-4, .logo-cloud__grid--cols-4,
+        .logo-grid__items--cols-4, .metric-dashboard__grid, .partner-grid__items,
+        .pricing-four-tier__grid, .pricing__grid--cols-4, .product-grid__items--cols-4,
+        .sitemap-grid__grid--cols-4, .stat-cards__grid--cols-4, .stats-counter__grid--cols-4,
+        .stats__grid--cols-4):has(> :nth-child(2):last-child) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    :is(.awards__grid, .category-cards__grid--cols-4, .company-milestones__grid,
+        .counter__grid--cols-4, .feature-grid-4__grid, .feature-icons__grid--cols-4,
+        .features__grid--cols-4, .kpi-cards__grid--cols-4, .logo-cloud__grid--cols-4,
+        .logo-grid__items--cols-4, .metric-dashboard__grid, .partner-grid__items,
+        .pricing-four-tier__grid, .pricing__grid--cols-4, .product-grid__items--cols-4,
+        .sitemap-grid__grid--cols-4, .stat-cards__grid--cols-4, .stats-counter__grid--cols-4,
+        .stats__grid--cols-4):has(> :nth-child(3):last-child, > :nth-child(5):last-child, > :nth-child(6):last-child) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 }

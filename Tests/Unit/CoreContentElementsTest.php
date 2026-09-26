@@ -33,6 +33,25 @@ final class CoreContentElementsTest extends TestCase
         self::assertGreaterThanOrEqual(24, count($cTypes), 'All in-scope legacy elements must be present');
     }
 
+    public function testTheFormPreviewSelectsAShippedFormDefinition(): void
+    {
+        $forms = array_values(array_filter(
+            CoreContentElements::all(),
+            static fn(array $element): bool => $element['cType'] === 'form_formframework',
+        ));
+        self::assertCount(1, $forms);
+        $flexform = $forms[0]['fixture']['pi_flexform'] ?? null;
+        self::assertIsString($flexform, 'Without a selected form definition the plugin renders its heading only');
+
+        $xml = simplexml_load_string($flexform);
+        self::assertNotFalse($xml, 'The preview flexform must be valid XML');
+        $values = $xml->xpath('//sheet[@index="sDEF"]//field[@index="settings.persistenceIdentifier"]/value');
+        self::assertIsArray($values);
+        self::assertCount(1, $values);
+        self::assertSame(CoreContentElements::FORM_DEFINITION, (string)$values[0]);
+        self::assertFileExists(self::ROOT . '/' . substr(CoreContentElements::FORM_DEFINITION, strlen('EXT:desiderio/')));
+    }
+
     public function testEveryCoreElementShipsACustomIcon(): void
     {
         $iconsSource = (string)file_get_contents(self::ROOT . '/Configuration/Icons.php');

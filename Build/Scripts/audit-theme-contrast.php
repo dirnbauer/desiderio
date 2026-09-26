@@ -54,6 +54,7 @@ const PAIRS = [
     ['muted-foreground', 'card', 4.5, REQUIRED, 'secondary text on a card'],
     ['muted-foreground', 'popover', 4.5, REQUIRED, 'secondary text in a popover'],
     ['primary-foreground', 'primary', 4.5, REQUIRED, 'label on a primary button'],
+    ['primary-foreground', 'd-primary-hover', 4.5, REQUIRED, 'label on a hovered primary button'],
     ['secondary-foreground', 'secondary', 4.5, REQUIRED, 'label on a secondary button'],
     ['accent-foreground', 'accent', 4.5, REQUIRED, 'label on an accent surface'],
     ['destructive-foreground', 'destructive', 4.5, REQUIRED, 'label on a destructive button'],

@@ -156,11 +156,10 @@
 }
 
 .d-solr-command__submit:hover {
-    /* Alpha mix (= hover:bg-primary/80): lighter over the light page, darker
-       over the dark one, and — unlike mixing towards var(--background) —
-       hue-safe: an oklch-specified achromatic color keeps its hue 0 in
-       color-mix and would rotate the brand hue towards blue. */
-    background: color-mix(in oklch, var(--primary) 80%, transparent);
+    /* The theme's hovered primary: shadcn's 80% fade where the label has
+       room, a darker (lighter in dark mode) fill in the presets that tune
+       their primary to 4.55:1 against its label. */
+    background: var(--d-primary-hover);
 }
 
 .d-solr-command__submit:active {

@@ -107,6 +107,7 @@
        label in the band colour. */
     --primary: var(--d-band-ink);
     --primary-foreground: var(--d-band);
+    --d-primary-hover: color-mix(in oklch, var(--d-band-ink) 85%, var(--d-band-ink-end));
     /* Error text and an invalid field's edge take the ink: red on the brand
        colour does not hold 4.5:1, and the message itself says what is wrong. */
     --destructive: var(--d-band-ink);

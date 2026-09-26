@@ -178,6 +178,7 @@ body[data-shadcn-preset="b4hb38Fyj"] {
   /* The teal primary already clears 4.5:1 on the muted/secondary/accent boxes,
      so brand links there keep the full primary instead of the 35% pull. */
   --d-primary-text: oklch(0.491 0.096 186.391); /* solved for brand text on a 10%/20% primary tint over muted and accent (panels, frames) */
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(0 0 none) 14%); /* a mid-tone primary: darken on hover, see body */
 }
 
 .dark body[data-shadcn-preset="b4hb38Fyj"] {
@@ -194,6 +195,7 @@ body[data-shadcn-preset="b4hb38Fyj"] {
   --primary: oklch(0.704 0.14 182.503);
   --primary-foreground: oklch(0.277 0.046 192.524);
   --d-primary-text: oklch(0.732 0.14 182.503); /* solved for brand text on a 10%/20% primary tint over muted and accent (panels, frames) */
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(1 0 none) 14%); /* dark mode: lighten on hover */
   --secondary: oklch(0.274 0.006 286.033);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.286 0.016 107.4);
@@ -257,6 +259,7 @@ body[data-shadcn-preset="b3IWPgRwnI"] {
   /* The blue primary already clears 4.5:1 on the muted/secondary/accent boxes,
      so brand links there keep the full primary instead of the 35% pull. */
   --d-primary-text: var(--primary);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(0 0 none) 14%); /* a mid-tone primary: darken on hover, see body */
 }
 
 .dark body[data-shadcn-preset="b3IWPgRwnI"] {
@@ -273,6 +276,7 @@ body[data-shadcn-preset="b3IWPgRwnI"] {
   --primary: oklch(0.685 0.169 237.323);
   --primary-foreground: oklch(0.293 0.066 243.157);
   --d-primary-text: oklch(0.731 0.169 237.323); /* solved for brand text on a 10%/20% primary tint over muted and accent (panels, frames) */
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(1 0 none) 14%); /* dark mode: lighten on hover */
   --secondary: oklch(0.274 0.006 286.033);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.275 0.011 216.9);
@@ -460,6 +464,7 @@ body[data-shadcn-preset="aurora"] {
   --sidebar-ring: oklch(0.554 0.2 293);
   --chart-1: oklch(0.554 0.2 293);
   --d-primary-text: oklch(0.534 0.2 293);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(0 0 none) 14%);
   --radius: 0.625rem;
   --d-font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --d-font-heading: var(--d-font-sans);
@@ -479,6 +484,7 @@ body[data-shadcn-preset="aurora"] {
   --sidebar-ring: oklch(0.715 0.18 293);
   --chart-1: oklch(0.715 0.18 293);
   --d-primary-text: oklch(0.793 0.115 293);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(1 0 none) 14%);
 }
 
 body[data-shadcn-preset="marine"] {
@@ -492,6 +498,7 @@ body[data-shadcn-preset="marine"] {
   --sidebar-ring: oklch(0.539 0.2 259);
   --chart-1: oklch(0.539 0.2 259);
   --d-primary-text: oklch(0.52 0.2 259);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(0 0 none) 14%);
   --radius: 0.5rem;
   --d-font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
   --d-font-heading: var(--d-font-sans);
@@ -515,6 +522,7 @@ body[data-shadcn-preset="marine"] {
   --sidebar-ring: oklch(0.71 0.18 259);
   --chart-1: oklch(0.71 0.18 259);
   --d-primary-text: oklch(0.788 0.107 259);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(1 0 none) 14%);
 }
 
 body[data-shadcn-preset="forest"] {
@@ -528,6 +536,7 @@ body[data-shadcn-preset="forest"] {
   --sidebar-ring: oklch(0.484 0.2 158);
   --chart-1: oklch(0.484 0.2 158);
   --d-primary-text: oklch(0.499 0.116 158);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(0 0 none) 14%);
   --radius: 0.375rem;
   --d-font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --d-font-heading: var(--d-font-sans);
@@ -547,6 +556,7 @@ body[data-shadcn-preset="forest"] {
   --sidebar-ring: oklch(0.677 0.18 158);
   --chart-1: oklch(0.677 0.18 158);
   --d-primary-text: oklch(0.77 0.18 158);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(1 0 none) 14%);
 }
 
 body[data-shadcn-preset="ember"] {
@@ -560,6 +570,7 @@ body[data-shadcn-preset="ember"] {
   --sidebar-ring: oklch(0.545 0.2 55);
   --chart-1: oklch(0.545 0.2 55);
   --d-primary-text: oklch(0.52 0.128 55);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(0 0 none) 14%);
   --radius: 0.75rem;
   --d-font-sans: "Nunito Sans Variable", ui-sans-serif, system-ui, sans-serif;
   --d-font-heading: var(--d-font-sans);
@@ -583,6 +594,7 @@ body[data-shadcn-preset="ember"] {
   --sidebar-ring: oklch(0.71 0.18 55);
   --chart-1: oklch(0.71 0.18 55);
   --d-primary-text: oklch(0.793 0.138 55);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(1 0 none) 14%);
 }
 
 body[data-shadcn-preset="bloom"] {
@@ -596,6 +608,7 @@ body[data-shadcn-preset="bloom"] {
   --sidebar-ring: oklch(0.554 0.2 12);
   --chart-1: oklch(0.554 0.2 12);
   --d-primary-text: oklch(0.532 0.2 12);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(0 0 none) 14%);
   --radius: 1rem;
   --d-font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --d-font-heading: var(--d-font-sans);
@@ -615,6 +628,7 @@ body[data-shadcn-preset="bloom"] {
   --sidebar-ring: oklch(0.716 0.18 12);
   --chart-1: oklch(0.716 0.18 12);
   --d-primary-text: oklch(0.795 0.12 12);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(1 0 none) 14%);
 }
 
 body[data-shadcn-preset="lagoon"] {
@@ -628,6 +642,7 @@ body[data-shadcn-preset="lagoon"] {
   --sidebar-ring: oklch(0.468 0.2 185);
   --chart-1: oklch(0.468 0.2 185);
   --d-primary-text: oklch(0.502 0.088 185);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(0 0 none) 14%);
   --radius: 0.5rem;
   --d-font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
   --d-font-heading: var(--d-font-sans);
@@ -651,6 +666,7 @@ body[data-shadcn-preset="lagoon"] {
   --sidebar-ring: oklch(0.661 0.18 185);
   --chart-1: oklch(0.661 0.18 185);
   --d-primary-text: oklch(0.777 0.136 185);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(1 0 none) 14%);
 }
 
 body[data-shadcn-preset="gold"] {
@@ -664,6 +680,7 @@ body[data-shadcn-preset="gold"] {
   --sidebar-ring: oklch(0.533 0.16 85);
   --chart-1: oklch(0.533 0.16 85);
   --d-primary-text: oklch(0.516 0.105 85);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(0 0 none) 14%);
   --radius: 0.375rem;
   --d-font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --d-font-heading: var(--d-font-sans);
@@ -683,6 +700,7 @@ body[data-shadcn-preset="gold"] {
   --sidebar-ring: oklch(0.7 0.17 85);
   --chart-1: oklch(0.7 0.17 85);
   --d-primary-text: oklch(0.79 0.161 85);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(1 0 none) 14%);
 }
 
 body[data-shadcn-preset="midnight"] {
@@ -696,6 +714,7 @@ body[data-shadcn-preset="midnight"] {
   --sidebar-ring: oklch(0.547 0.2 275);
   --chart-1: oklch(0.547 0.2 275);
   --d-primary-text: oklch(0.528 0.2 275);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(0 0 none) 14%);
   --radius: 0.625rem;
   --d-font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --d-font-heading: var(--d-font-sans);
@@ -719,6 +738,7 @@ body[data-shadcn-preset="midnight"] {
   --sidebar-ring: oklch(0.716 0.18 275);
   --chart-1: oklch(0.716 0.18 275);
   --d-primary-text: oklch(0.791 0.105 275);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(1 0 none) 14%);
 }
 
 body[data-shadcn-preset="blossom"] {
@@ -732,6 +752,7 @@ body[data-shadcn-preset="blossom"] {
   --sidebar-ring: oklch(0.556 0.2 350);
   --chart-1: oklch(0.556 0.2 350);
   --d-primary-text: oklch(0.535 0.2 350);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(0 0 none) 14%);
   --radius: 0.75rem;
   --d-font-sans: "Nunito Sans Variable", ui-sans-serif, system-ui, sans-serif;
   --d-font-heading: var(--d-font-sans);
@@ -751,6 +772,7 @@ body[data-shadcn-preset="blossom"] {
   --sidebar-ring: oklch(0.716 0.18 350);
   --chart-1: oklch(0.716 0.18 350);
   --d-primary-text: oklch(0.798 0.138 350);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(1 0 none) 14%);
 }
 
 body[data-shadcn-preset="citrus"] {
@@ -764,6 +786,7 @@ body[data-shadcn-preset="citrus"] {
   --sidebar-ring: oklch(0.518 0.16 130);
   --chart-1: oklch(0.518 0.16 130);
   --d-primary-text: oklch(0.504 0.135 130);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(0 0 none) 14%);
   --radius: 0.3rem;
   --d-font-sans: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   --d-font-heading: var(--d-font-sans);
@@ -787,6 +810,7 @@ body[data-shadcn-preset="citrus"] {
   --sidebar-ring: oklch(0.69 0.17 130);
   --chart-1: oklch(0.69 0.17 130);
   --d-primary-text: oklch(0.779 0.17 130);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(1 0 none) 14%);
 }
 
 /* === END Desiderio house presets === */
@@ -934,6 +958,11 @@ body {
      quiet edge of an outline button or an active tab, which their labels
      identify. In every shadcn base it equals --border in light mode. */
   --d-input-subtle: var(--border);
+  /* The fill of a hovered primary button. shadcn fades it to 80%, which
+     lightens the fill under a white label: fine where the label has room,
+     as here, but the house presets tune their primary to 4.55:1 and override
+     this with a fill that moves away from the label instead. */
+  --d-primary-hover: color-mix(in oklch, var(--primary) 80%, transparent);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);

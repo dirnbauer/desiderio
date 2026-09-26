@@ -6,6 +6,34 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+- The core Form element and the core login form render their forms. TYPO3
+  hands every Extbase content-element plugin to the Generic template with
+  the plugin at `tt_content.<CType>.20`, and Desiderio's Generic template,
+  which replaces fluid_styled_content's, never rendered that object: both
+  elements showed their heading and nothing else. Generic now renders the
+  plugin (new `dv:contentPlugin` condition), the Form element sits in the
+  same `.desiderio-form` wrapper as the forms inside Content Blocks, and the
+  login form gets the shadcn control and button look.
+- A hovered primary button keeps a readable label. The registry fades the
+  fill to 80%, which lightens it under a white label: 3.4:1 in the ten house
+  presets, whose primary is tuned to 4.55:1. The new `--d-primary-hover`
+  token (Tailwind `primary-hover`) keeps shadcn's fade where the label has
+  room and darkens the fill (lightens it in dark mode) in the house, olive
+  and mist presets; the generator, the news magazine list, the legacy
+  button and badge, the ext:form submit button and the search button use it.
+  The theme audit gates the hovered label on every surface.
+
+### Changed
+
+- The element library's Form and Powermail previews show real forms, so
+  the visual and contrast checks now see form fields: the Form preview
+  selects the shipped contact form, the Powermail preview the demo
+  appointment request. When the Powermail demo seeder replaces its forms it
+  re-points every Powermail element that used one, instead of leaving it on
+  a deleted form.
+
 ## [4.8.1] — 2026-09-26
 
 ### Fixed

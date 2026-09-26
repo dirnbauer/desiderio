@@ -97,6 +97,7 @@
   --d-link: var(--primary);
   --d-overlay-foreground: var(--background);
   --d-input-subtle: var(--border);
+  --d-primary-hover: color-mix(in oklch, var(--primary) 80%, transparent);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);
@@ -232,6 +233,7 @@
   --d-link: var(--primary);
   --d-overlay-foreground: var(--background);
   --d-input-subtle: var(--border);
+  --d-primary-hover: color-mix(in oklch, var(--primary) 80%, transparent);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);
@@ -373,6 +375,7 @@
   --d-link: var(--primary);
   --d-overlay-foreground: var(--background);
   --d-input-subtle: var(--border);
+  --d-primary-hover: color-mix(in oklch, var(--primary) 80%, transparent);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);
@@ -508,6 +511,7 @@
   --d-link: var(--primary);
   --d-overlay-foreground: var(--background);
   --d-input-subtle: var(--border);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(0 0 none) 14%);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);
@@ -560,6 +564,7 @@
   --d-primary-text: oklch(0.732 0.14 182.503);
   --d-link: var(--primary);
   --d-input-subtle: oklch(1 0 0 / 15%);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(1 0 none) 14%);
 }
 
 /* Mist dashboard — b3IWPgRwnI */
@@ -643,6 +648,7 @@
   --d-link: var(--primary);
   --d-overlay-foreground: var(--background);
   --d-input-subtle: var(--border);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(0 0 none) 14%);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);
@@ -695,6 +701,7 @@
   --d-primary-text: oklch(0.731 0.169 237.323);
   --d-link: var(--primary);
   --d-input-subtle: oklch(1 0 0 / 15%);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(1 0 none) 14%);
 }
 
 /* Aurora — aurora */
@@ -778,6 +785,7 @@
   --d-link: var(--primary);
   --d-overlay-foreground: var(--background);
   --d-input-subtle: var(--border);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(0 0 none) 14%);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);
@@ -836,6 +844,7 @@
   --d-primary-text: oklch(0.793 0.115 293);
   --d-link: var(--primary);
   --d-input-subtle: oklch(1 0 0 / 15%);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(1 0 none) 14%);
 }
 
 /* Marine — marine */
@@ -919,6 +928,7 @@
   --d-link: var(--primary);
   --d-overlay-foreground: var(--background);
   --d-input-subtle: var(--border);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(0 0 none) 14%);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);
@@ -977,6 +987,7 @@
   --d-primary-text: oklch(0.788 0.107 259);
   --d-link: var(--primary);
   --d-input-subtle: oklch(1 0 0 / 15%);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(1 0 none) 14%);
 }
 
 /* Forest — forest */
@@ -1060,6 +1071,7 @@
   --d-link: var(--primary);
   --d-overlay-foreground: var(--background);
   --d-input-subtle: var(--border);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(0 0 none) 14%);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);
@@ -1118,6 +1130,7 @@
   --d-primary-text: oklch(0.77 0.18 158);
   --d-link: var(--primary);
   --d-input-subtle: oklch(1 0 0 / 15%);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(1 0 none) 14%);
 }
 
 /* Ember — ember */
@@ -1201,6 +1214,7 @@
   --d-link: var(--primary);
   --d-overlay-foreground: var(--background);
   --d-input-subtle: var(--border);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(0 0 none) 14%);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);
@@ -1259,6 +1273,7 @@
   --d-primary-text: oklch(0.793 0.138 55);
   --d-link: var(--primary);
   --d-input-subtle: oklch(1 0 0 / 15%);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(1 0 none) 14%);
 }
 
 /* Bloom — bloom */
@@ -1342,6 +1357,7 @@
   --d-link: var(--primary);
   --d-overlay-foreground: var(--background);
   --d-input-subtle: var(--border);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(0 0 none) 14%);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);
@@ -1400,6 +1416,7 @@
   --d-primary-text: oklch(0.795 0.12 12);
   --d-link: var(--primary);
   --d-input-subtle: oklch(1 0 0 / 15%);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(1 0 none) 14%);
 }
 
 /* Lagoon — lagoon */
@@ -1483,6 +1500,7 @@
   --d-link: var(--primary);
   --d-overlay-foreground: var(--background);
   --d-input-subtle: var(--border);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(0 0 none) 14%);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);
@@ -1541,6 +1559,7 @@
   --d-primary-text: oklch(0.777 0.136 185);
   --d-link: var(--primary);
   --d-input-subtle: oklch(1 0 0 / 15%);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(1 0 none) 14%);
 }
 
 /* Gold — gold */
@@ -1624,6 +1643,7 @@
   --d-link: var(--primary);
   --d-overlay-foreground: var(--background);
   --d-input-subtle: var(--border);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(0 0 none) 14%);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);
@@ -1682,6 +1702,7 @@
   --d-primary-text: oklch(0.79 0.161 85);
   --d-link: var(--primary);
   --d-input-subtle: oklch(1 0 0 / 15%);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(1 0 none) 14%);
 }
 
 /* Midnight — midnight */
@@ -1765,6 +1786,7 @@
   --d-link: var(--primary);
   --d-overlay-foreground: var(--background);
   --d-input-subtle: var(--border);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(0 0 none) 14%);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);
@@ -1823,6 +1845,7 @@
   --d-primary-text: oklch(0.791 0.105 275);
   --d-link: var(--primary);
   --d-input-subtle: oklch(1 0 0 / 15%);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(1 0 none) 14%);
 }
 
 /* Blossom — blossom */
@@ -1906,6 +1929,7 @@
   --d-link: var(--primary);
   --d-overlay-foreground: var(--background);
   --d-input-subtle: var(--border);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(0 0 none) 14%);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);
@@ -1964,6 +1988,7 @@
   --d-primary-text: oklch(0.798 0.138 350);
   --d-link: var(--primary);
   --d-input-subtle: oklch(1 0 0 / 15%);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(1 0 none) 14%);
 }
 
 /* Citrus — citrus */
@@ -2047,6 +2072,7 @@
   --d-link: var(--primary);
   --d-overlay-foreground: var(--background);
   --d-input-subtle: var(--border);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(0 0 none) 14%);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);
@@ -2105,4 +2131,5 @@
   --d-primary-text: oklch(0.779 0.17 130);
   --d-link: var(--primary);
   --d-input-subtle: oklch(1 0 0 / 15%);
+  --d-primary-hover: color-mix(in oklch, var(--primary), oklch(1 0 none) 14%);
 }

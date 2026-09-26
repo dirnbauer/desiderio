@@ -851,3 +851,85 @@ article[itemtype="https://schema.org/BlogPosting"] [itemprop="articleBody"] .ce-
     display: grid;
     gap: var(--d-content-gap, 1.5rem);
 }
+
+/* ------------------------------------------------------------------ */
+/*  Core login form (EXT:felogin)                                      */
+/* ------------------------------------------------------------------ */
+
+/* felogin renders its own templates (a fieldset of labelled inputs and a
+   submit input); these give them the shadcn control and button look from
+   the same tokens, at the width of the other form elements. */
+.ce-fsc--felogin_login form {
+    width: 100%;
+    max-width: 42rem;
+    margin-block-start: var(--d-spacing-lg);
+}
+
+.ce-fsc--felogin_login fieldset {
+    display: grid;
+    gap: var(--d-spacing-md);
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+/* The heading above the form already names it; the legend stays for
+   assistive technology. */
+.ce-fsc--felogin_login legend {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.ce-fsc--felogin_login fieldset > div {
+    display: grid;
+    gap: var(--d-spacing-xs);
+}
+
+.ce-fsc--felogin_login label {
+    font-size: var(--d-control-text);
+    font-weight: var(--d-weight-medium);
+    line-height: 1.25;
+    color: var(--foreground);
+}
+
+.ce-fsc--felogin_login input:is([type="text"], [type="password"], [type="email"]) {
+    width: 100%;
+    min-width: 0;
+    height: var(--d-control-h);
+    padding-inline: var(--d-control-px);
+    border: 1px solid var(--input);
+    border-radius: var(--d-radius-md);
+    background-color: transparent;
+    color: var(--foreground);
+    font: inherit;
+    font-size: var(--d-control-text);
+}
+
+.ce-fsc--felogin_login input[type="submit"] {
+    justify-self: start;
+    height: var(--d-control-h);
+    padding-inline: var(--d-spacing-md);
+    border: 1px solid transparent;
+    border-radius: var(--d-radius-md);
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    font: inherit;
+    font-size: var(--d-control-text);
+    font-weight: var(--d-weight-medium);
+    cursor: pointer;
+}
+
+.ce-fsc--felogin_login input[type="submit"]:hover {
+    background-color: var(--d-primary-hover, var(--primary));
+}
+
+.ce-fsc--felogin_login input:focus-visible {
+    outline: none;
+    border-color: var(--ring);
+    box-shadow: 0 0 0 var(--d-ring-width, 3px) color-mix(in oklch, var(--ring) 50%, transparent);
+}

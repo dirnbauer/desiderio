@@ -31,6 +31,12 @@ lib.contentElement {
   dataProcessing.1421884800 = record-transformation
 }
 
+# Core registers every Extbase content-element plugin with templateName =
+# Generic, which renders heading plus plugin (Templates/Generic.fluid.html).
+# The core Form element gets its own template: the .desiderio-form wrapper
+# the Content Block forms use, so its fields are styled like theirs.
+tt_content.form_formframework.templateName = FormFormframework
+
 lib.desiderioContentWithBullets =< lib.contentElement
 lib.desiderioContentWithBullets {
   dataProcessing.20 = split

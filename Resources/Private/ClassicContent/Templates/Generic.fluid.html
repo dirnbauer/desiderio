@@ -14,17 +14,28 @@
         <f:else>
             <f:render partial="Header" arguments="{record: record}"/>
 
-            <f:if condition="{record.mainType} == 'tx_news_domain_model_news'">
+            <f:comment>
+                Core renders every Extbase content-element plugin with this
+                template (templateName = Generic) and puts the plugin at .20:
+                the form, the login form and third-party plugins.
+            </f:comment>
+            <dv:contentPlugin cType="{data.CType}">
                 <f:then>
-                    <dv:recordHasField record="{record}" field="body">
-                        <f:render partial="RichText" arguments="{record: record, field: 'body'}"/>
-                    </dv:recordHasField>
+                    <f:cObject typoscriptObjectPath="tt_content.{data.CType}.20" data="{data}" table="tt_content"/>
                 </f:then>
                 <f:else>
-                    <f:render partial="RichText" arguments="{record: record, field: 'bodytext'}"/>
+                    <f:if condition="{record.mainType} == 'tx_news_domain_model_news'">
+                        <f:then>
+                            <dv:recordHasField record="{record}" field="body">
+                                <f:render partial="RichText" arguments="{record: record, field: 'body'}"/>
+                            </dv:recordHasField>
+                        </f:then>
+                        <f:else>
+                            <f:render partial="RichText" arguments="{record: record, field: 'bodytext'}"/>
+                        </f:else>
+                    </f:if>
                 </f:else>
-            </f:if>
-
+            </dv:contentPlugin>
         </f:else>
     </f:if>
 </f:section>

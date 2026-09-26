@@ -47,7 +47,7 @@
 }
 
 .btn--default:hover {
-  background-color: color-mix(in oklch, var(--primary) 90%, transparent);
+  background-color: var(--d-primary-hover);
 }
 
 .btn--secondary {
@@ -272,7 +272,7 @@
 }
 
 .desiderio-form .btn-primary:hover {
-  background-color: color-mix(in oklch, var(--primary) 80%, transparent);
+  background-color: var(--d-primary-hover);
 }
 
 .desiderio-form .btn-primary:active {

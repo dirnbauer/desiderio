@@ -1299,6 +1299,11 @@ function tokenizeRecipes(array $recipes): array
     // token is what the theme audit proves on every surface.
     $recipes['tabs'] = mapRecipeClasses($recipes['tabs'], mutedInactiveTabLabel(...));
 
+    // A hovered primary fill fades to 80% in the registry, which lightens it
+    // under a white label (3.4:1 in the house presets). The theme solves
+    // --d-primary-hover per preset; Tailwind exposes it as primary-hover.
+    $recipes = mapRecipeClasses($recipes, primaryHoverFill(...));
+
     // Every soft destructive variant, wherever it is rendered (the Button and
     // Badge primitives as well as the form's ControlClass button).
     $recipes['button']['variants']['destructive'] = accessibleDestructiveText($recipes['button']['variants']['destructive'] ?? '');
@@ -1325,6 +1330,12 @@ function mapRecipeClasses(array $recipe, callable $map): array
     }
 
     return $recipe;
+}
+
+/** `hover:bg-primary/NN`, under any further variant, becomes `hover:bg-primary-hover`. */
+function primaryHoverFill(string $class): string
+{
+    return preg_replace('/((?:^|\s)\S*hover:)bg-primary\/\d+(?=\s|$)/', '$1bg-primary-hover', $class) ?? $class;
 }
 
 /** An unprefixed `text-foreground/60` becomes `text-muted-foreground`. */

@@ -46,6 +46,9 @@ final class CoreContentElements
     private const string IMAGE_SECONDARY = 'Resources/Public/Styleguide/Unsplash/laptop-glenn-carstens-peters.jpg';
     private const string IMAGE_TERTIARY = 'Resources/Public/Styleguide/Unsplash/workspace-marvin-meyer.jpg';
 
+    /** The ext:form definition the form element's preview renders. */
+    public const string FORM_DEFINITION = 'EXT:desiderio/Resources/Private/Forms/DesiderioContact.form.yaml';
+
     /**
      * Every defined core element, regardless of whether its gate extension is
      * installed. Pure (no TYPO3 service calls) so it is safe in unit tests.
@@ -333,7 +336,13 @@ final class CoreContentElements
                 'iconSlug' => 'form',
                 'group' => 'conversion',
                 'gateExtension' => 'form',
-                'fixture' => ['header' => 'Ask about a membership'],
+                'fixture' => [
+                    'header' => 'Ask about a membership',
+                    // The plugin renders nothing until a form definition is
+                    // selected: the preview showed its heading only, and no
+                    // visual or contrast check ever saw a form field in it.
+                    'pi_flexform' => self::formFrameworkFlexform(self::FORM_DEFINITION),
+                ],
             ],
             [
                 // felogin registers its plugin as CType "felogin_login" (v13+
@@ -354,6 +363,20 @@ final class CoreContentElements
                 'fixture' => ['header' => 'Book a tour of the depot'],
             ],
         ];
+    }
+
+    /**
+     * The ext:form plugin's flexform with one selected form definition, in
+     * sheet sDEF as EXT:form/Configuration/FlexForms/FormFramework.xml
+     * defines it.
+     */
+    private static function formFrameworkFlexform(string $persistenceIdentifier): string
+    {
+        return '<?xml version="1.0" encoding="utf-8" standalone="yes" ?>' . "\n"
+            . "<T3FlexForms>\n    <data>\n        <sheet index=\"sDEF\">\n            <language index=\"lDEF\">\n"
+            . '                <field index="settings.persistenceIdentifier"><value index="vDEF">'
+            . htmlspecialchars($persistenceIdentifier, ENT_XML1) . "</value></field>\n"
+            . "            </language>\n        </sheet>\n    </data>\n</T3FlexForms>";
     }
 
     /**

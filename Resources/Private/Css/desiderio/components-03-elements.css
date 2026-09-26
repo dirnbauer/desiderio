@@ -28,7 +28,7 @@
 }
 
 .badge--default:hover {
-  background-color: color-mix(in oklch, var(--primary) 80%, transparent);
+  background-color: var(--d-primary-hover);
 }
 
 .badge--secondary {

@@ -181,7 +181,7 @@ final readonly class LibraryElementUpserter
     private function buildContentData(int $pid, array $element, int $sorting, int $now, array $columns): array
     {
         $fixture = $element['hostExtension'] === CoreContentElements::HOST
-            ? $element['fixture']
+            ? $this->withPowermailDemoForm($element['cType'], $element['fixture'])
             : ($element['libraryFixture'] ?? []);
 
         return $this->fixtureResolver->buildContentInsert(
@@ -193,6 +193,78 @@ final readonly class LibraryElementUpserter
             $now,
             $columns
         );
+    }
+
+    /**
+     * The Powermail plugin renders nothing until its flexform names a form,
+     * and a form is a record whose uid differs per installation, so the
+     * static fixture cannot carry it. The preview uses a form the Powermail
+     * demo seeder created (their css marks them): the appointment request,
+     * which matches the preview's heading, else the contact form, else any
+     * demo form. When that seeder replaces its forms it re-points this
+     * record too. Without a demo form the preview keeps its heading only.
+     *
+     * @param array<string, mixed> $fixture
+     * @return array<string, mixed>
+     */
+    private function withPowermailDemoForm(string $cType, array $fixture): array
+    {
+        if ($cType !== 'powermail_pi1' || isset($fixture['pi_flexform'])) {
+            return $fixture;
+        }
+        $columns = $this->databaseSchema->getColumnNames('tx_powermail_domain_model_form');
+        if (!isset($columns['css'])) {
+            return $fixture;
+        }
+        $conditions = ['deleted = 0', 'css LIKE :css'];
+        foreach (['hidden', 'sys_language_uid', 't3ver_wsid'] as $column) {
+            if (isset($columns[$column])) {
+                $conditions[] = $column . ' = 0';
+            }
+        }
+        $forms = $this->connectionPool->getConnectionForTable('tx_powermail_domain_model_form')
+            ->executeQuery(
+                'SELECT uid, css FROM tx_powermail_domain_model_form WHERE ' . implode(' AND ', $conditions) . ' ORDER BY uid DESC',
+                ['css' => '%desiderio-powermail-demo%'],
+                ['css' => ParameterType::STRING]
+            )
+            ->fetchAllAssociative();
+        $formUid = 0;
+        foreach (['appointment', 'contact'] as $slug) {
+            foreach ($forms as $form) {
+                if (in_array('desiderio-powermail-' . $slug, explode(' ', (string)$form['css']), true)) {
+                    $formUid = (int)$form['uid'];
+                    break 2;
+                }
+            }
+        }
+        if ($formUid <= 0 && $forms !== []) {
+            $formUid = (int)$forms[0]['uid'];
+        }
+        if ($formUid <= 0) {
+            return $fixture;
+        }
+        $fixture['pi_flexform'] = self::powermailFlexform($formUid);
+
+        return $fixture;
+    }
+
+    /** The plugin's main sheet: one form, all pages at once, no confirmation step. */
+    private static function powermailFlexform(int $formUid): string
+    {
+        $fields = [
+            'settings.flexform.main.form' => (string)$formUid,
+            'settings.flexform.main.confirmation' => '0',
+            'settings.flexform.main.optin' => '0',
+            'settings.flexform.main.moresteps' => '0',
+        ];
+        $xml = '<?xml version="1.0" encoding="utf-8" standalone="yes" ?>' . "\n"
+            . "<T3FlexForms>\n    <data>\n        <sheet index=\"main\">\n            <language index=\"lDEF\">\n";
+        foreach ($fields as $field => $value) {
+            $xml .= '                <field index="' . $field . '"><value index="vDEF">' . $value . "</value></field>\n";
+        }
+
+        return $xml . "            </language>\n        </sheet>\n    </data>\n</T3FlexForms>";
     }
 
     /**

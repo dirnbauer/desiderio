@@ -81,7 +81,8 @@ final readonly class PowermailDemoSeeder
         );
         $storagePid = $storagePid > 0 ? $storagePid : $rootUid;
 
-        $this->softDeleteOwnedPowermailRecords($now);
+        $replacedForms = $this->softDeleteOwnedPowermailRecords($now);
+        $createdForms = [];
         $ownedPageUids = $this->findOwnedChildPageUids();
         if ($ownedPageUids !== []) {
             $this->softDeleteContentOnPages($ownedPageUids, $now);
@@ -114,12 +115,12 @@ final readonly class PowermailDemoSeeder
         );
 
         $createdPages = 2;
-        $createdForms = 0;
         $overviewEntries = [];
         foreach ($forms as $index => $form) {
             $sorting = ($index + 1) * 512;
             $formUids = $this->insertPowermailForm($storagePid, $form, $germanLanguageUid, $now);
-            $createdForms++;
+            $createdForms[$form['slug'] . ':default'] = $formUids['default'];
+            $createdForms[$form['slug'] . ':german'] = $formUids['german'];
 
             $formPageUid = $this->upsertPage(
                 $rootUid,
@@ -240,7 +241,58 @@ final readonly class PowermailDemoSeeder
             $overviewUid
         );
 
-        return ['pages' => $createdPages, 'forms' => $createdForms, 'skipped' => false];
+        $this->repointFormReferences($replacedForms, $createdForms, $now);
+
+        return ['pages' => $createdPages, 'forms' => intdiv(count($createdForms), 2), 'skipped' => false];
+    }
+
+    /**
+     * Content outside the lab pages that uses a demo form (the element
+     * library's Powermail preview, a page an editor built from one) still
+     * names a uid this run has just deleted, and Powermail would answer it
+     * with "choose a form". Point it at the form that replaced it.
+     *
+     * @param array<int, string> $replaced deleted form uid => "slug:default" | "slug:german"
+     * @param array<string, int> $created "slug:default" | "slug:german" => new form uid
+     */
+    private function repointFormReferences(array $replaced, array $created, int $now): void
+    {
+        if ($replaced === [] || $created === []) {
+            return;
+        }
+        $connection = $this->connectionPool->getConnectionForTable('tt_content');
+        $rows = $connection->executeQuery(
+            'SELECT uid, pi_flexform FROM tt_content WHERE CType = :ctype AND deleted = 0 AND pi_flexform LIKE :field',
+            ['ctype' => 'powermail_pi1', 'field' => '%settings.flexform.main.form%'],
+            ['ctype' => ParameterType::STRING, 'field' => ParameterType::STRING]
+        )->fetchAllAssociative();
+        foreach ($rows as $row) {
+            $flexform = (string)$row['pi_flexform'];
+            $updated = self::repointFlexform($flexform, $replaced, $created);
+            if ($updated !== $flexform) {
+                $connection->update('tt_content', ['pi_flexform' => $updated, 'tstamp' => $now], ['uid' => (int)$row['uid']]);
+            }
+        }
+    }
+
+    /**
+     * The plugin flexform with its form uid swapped for the form that replaced
+     * it; unchanged when it names a form this run did not replace.
+     *
+     * @param array<int, string> $replaced deleted form uid => "slug:default" | "slug:german"
+     * @param array<string, int> $created "slug:default" | "slug:german" => new form uid
+     */
+    public static function repointFlexform(string $flexform, array $replaced, array $created): string
+    {
+        return preg_replace_callback(
+            '#(<field index="settings\.flexform\.main\.form">\s*<value index="vDEF">)(\d+)(</value>)#',
+            static function (array $match) use ($replaced, $created): string {
+                $key = $replaced[(int)$match[2]] ?? null;
+
+                return $key !== null && isset($created[$key]) ? $match[1] . $created[$key] . $match[3] : $match[0];
+            },
+            $flexform
+        ) ?? $flexform;
     }
 
     /**
@@ -646,19 +698,28 @@ final readonly class PowermailDemoSeeder
         $queryBuilder->executeStatement();
     }
 
-    private function softDeleteOwnedPowermailRecords(int $now): void
+    /**
+     * @return array<int, string> soft-deleted form uid => "slug:default" | "slug:german"
+     */
+    private function softDeleteOwnedPowermailRecords(int $now): array
     {
-        $formUids = $this->connectionPool
+        $forms = $this->connectionPool
             ->getConnectionForTable('tx_powermail_domain_model_form')
             ->executeQuery(
-                'SELECT uid FROM tx_powermail_domain_model_form WHERE deleted = 0 AND css LIKE :css',
+                'SELECT uid, css, sys_language_uid FROM tx_powermail_domain_model_form WHERE deleted = 0 AND css LIKE :css',
                 ['css' => 'desiderio-powermail-demo%'],
                 ['css' => ParameterType::STRING]
             )
-            ->fetchFirstColumn();
-        $formUids = $this->normalizeIntegerList($formUids);
+            ->fetchAllAssociative();
+        $replaced = [];
+        foreach ($forms as $form) {
+            if (preg_match('/(?:^|\s)desiderio-powermail-(?!demo(?:\s|$))([a-z0-9-]+)/', (string)$form['css'], $slug) === 1) {
+                $replaced[(int)$form['uid']] = $slug[1] . ':' . ((int)$form['sys_language_uid'] === 0 ? 'default' : 'german');
+            }
+        }
+        $formUids = $this->normalizeIntegerList(array_column($forms, 'uid'));
         if ($formUids === []) {
-            return;
+            return [];
         }
 
         $pageUids = $this->connectionPool
@@ -676,6 +737,8 @@ final readonly class PowermailDemoSeeder
             $this->softDeleteRows('tx_powermail_domain_model_page', 'uid', $pageUids, $now);
         }
         $this->softDeleteRows('tx_powermail_domain_model_form', 'uid', $formUids, $now);
+
+        return $replaced;
     }
 
     /**

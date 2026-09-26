@@ -40,6 +40,8 @@
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  /* A hovered primary fill that keeps its label readable (see shadcn-theme.css). */
+  --color-primary-hover: var(--d-primary-hover);
   /* Brand link ink: --primary, except where a preset overrides --d-link with a
      solved darker/brighter value so small text on background/card holds 4.5:1
      (bright amber/lime primaries). Use text-link instead of text-primary for

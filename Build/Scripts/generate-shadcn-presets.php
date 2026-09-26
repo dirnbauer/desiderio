@@ -472,6 +472,10 @@ function accentTokens(int $hue, bool $lightAccent): array
         '--sidebar-ring' => $lp,
         '--chart-1' => $lp,
         '--d-primary-text' => $lightPrimaryText,
+        // A hovered primary button: the primary is solved to 4.55:1 against
+        // its white label, so shadcn's 80% fade (a lighter fill) drops the
+        // label to ~3.4:1. Darken instead; the label only gains.
+        '--d-primary-hover' => 'color-mix(in oklch, var(--primary), oklch(0 0 none) 14%)',
     ];
     $dark = [
         '--primary' => $dp,
@@ -484,6 +488,8 @@ function accentTokens(int $hue, bool $lightAccent): array
         '--sidebar-ring' => $dp,
         '--chart-1' => $dp,
         '--d-primary-text' => $darkPrimaryText,
+        // Dark mode: a light primary under a dark label, so the hover lightens.
+        '--d-primary-hover' => 'color-mix(in oklch, var(--primary), oklch(1 0 none) 14%)',
     ];
 
     // --d-link colors links on the default background/card surfaces. The base

@@ -6,6 +6,8 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.8.0] — 2026-09-26
+
 ### Changed
 
 - One vertical rhythm for every element. The Section component pads each

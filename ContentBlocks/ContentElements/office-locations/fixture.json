@@ -1,21 +1,28 @@
 {
     "_type": "grid",
-    "header": "Visit the team behind Desiderio",
-    "subheadline": "The team behind the 244 elements works from our headquarters in Mattersburg and our office in Vienna. Visit, call or send an email, and the people who built it will answer.",
+    "header": "One card for every office",
+    "subheadline": "Each card shows an address, a phone number and an email, with a button that opens the map. The three studios here are examples.",
     "location_items": [
         {
-            "city": "Mattersburg",
-            "address": "Johann Nepomuk Berger-Straße 7/2/14\n7210 Mattersburg, Austria",
-            "phone": "+43 2626 20156",
-            "email": "office@webconsulting.at",
-            "map_link": "https://maps.google.com/?q=Johann+Nepomuk+Berger-Stra%C3%9Fe+7,+7210+Mattersburg"
+            "city": "Berlin",
+            "address": "Musterstraße 12\n10115 Berlin, Germany",
+            "phone": "+49 30 23125 100",
+            "email": "berlin@example.com",
+            "map_link": "https://www.openstreetmap.org/search?query=Berlin"
         },
         {
-            "city": "Vienna",
-            "address": "Ungargasse 64-66/3/404\n1030 Vienna, Austria",
-            "phone": "+43 2626 20156",
-            "email": "office@webconsulting.at",
-            "map_link": "https://maps.google.com/?q=Ungargasse+64-66,+1030+Wien"
+            "city": "Hamburg",
+            "address": "Beispielweg 4\n20095 Hamburg, Germany",
+            "phone": "+49 40 66969 200",
+            "email": "hamburg@example.com",
+            "map_link": "https://www.openstreetmap.org/search?query=Hamburg"
+        },
+        {
+            "city": "Munich",
+            "address": "Beispielallee 3\n80331 Munich, Germany",
+            "phone": "+49 89 99998 300",
+            "email": "munich@example.com",
+            "map_link": "https://www.openstreetmap.org/search?query=M%C3%BCnchen"
         }
     ]
 }

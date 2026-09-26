@@ -6,6 +6,23 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- Demo contact data reaches no one. The styleguide, the element library
+  and the demo value generator gave real addresses and a real phone number:
+  since 4.7.0 webconsulting's headquarters, office and register entries,
+  before that real streets in Vienna, Berlin and Zurich with numbers that
+  may belong to anyone. They now give a made-up company, Example Studio
+  GmbH, at Musterstraße 12 in Berlin, Beispielweg 4 in Hamburg and
+  Beispielallee 3 in Munich, streets that OpenStreetMap knows nowhere. The
+  phone numbers come from the blocks the Bundesnetzagentur keeps free for
+  film and television (+49 30 23125 xxx, +49 40 66969 xxx, +49 89 99998 xxx),
+  the email addresses are on example.com (RFC 2606) and the register entry
+  is zeros (HRB 000000 B, DE000000000, Max Mustermann). The map shows
+  central Berlin without a marker, the directions name no real stop or
+  line, and the imprint and privacy texts say that their details are
+  examples.
+
 ## [4.7.1] — 2026-09-26
 
 ### Fixed

@@ -930,7 +930,7 @@ final class StyleguideFixtureResolverTest extends AbstractStyleguideSeedingTestC
 
         self::assertSame('Our Headquarters', $fields['header']);
         self::assertSame(400, $fields['height']);
-        self::assertSame('Johann Nepomuk Berger-Straße 7/2/14, 7210 Mattersburg', $fields['address']);
+        self::assertSame('Musterstraße 12, 10115 Berlin', $fields['address']);
         self::assertStringStartsWith('https://www.openstreetmap.org/export/embed.html?', $embedUrl);
         self::assertStringNotContainsString('ui.shadcn.com/docs', $embedUrl);
         self::assertStringNotContainsString('Embed Url for', $embedUrl);

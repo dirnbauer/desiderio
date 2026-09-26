@@ -35,25 +35,26 @@ final class ShowcaseLegalPages
             'title' => 'Imprint',
             'navTitle' => 'Imprint',
             'slug' => '/imprint',
-            'abstract' => 'The imprint of webconsulting business services gmbh, the company behind Desiderio. The page is built with the desiderio_imprint element.',
-            'description' => 'Imprint of webconsulting business services gmbh, the company behind Desiderio, shown with the Desiderio imprint content element for TYPO3.',
+            'abstract' => 'An example imprint for a made-up company, built with the desiderio_imprint element. On your site, the element shows your company.',
+            'description' => 'Example imprint shown with the Desiderio imprint content element for TYPO3. The company, address and register data on this page are made up.',
             'parentSlug' => null,
             'content' => [
+                // Demo data only: the street does not exist, the phone number is
+                // a Bundesnetzagentur drama number and example.com is reserved.
                 ShowcaseBlocks::block('desiderio_imprint', [
-                    'header' => 'Imprint',
-                    'company_name' => 'webconsulting business services gmbh',
-                    'address' => "Johann Nepomuk Berger-Straße 7/2/14\n7210 Mattersburg\nAustria",
-                    'contact_email' => 'office@webconsulting.at',
-                    'contact_phone' => '+43 2626 20156',
-                    'registry_info' => "Company register number: FN 401904 k\nCompany register court: Landesgericht Eisenstadt\nManaging director: DI(FH) Kurt Dirnbauer",
-                    'vat_id' => 'ATU68140807',
-                    'additional_info' => '<p>Company purpose: management consulting including business organisation, IT services (software development, web design, web consulting, trade in hardware and software), advertising agency. Trade licence: services in automatic data processing and information technology.</p>'
-                        . '<p>Member of the Wirtschaftskammer Burgenland, Fachgruppe UBIT. Supervisory authority: Bezirkshauptmannschaft Mattersburg. Applicable law: Gewerbeordnung 1994 (GewO), E-Commerce-Gesetz (ECG), Mediengesetz (MedienG) and Telekommunikationsgesetz (TKG).</p>'
-                        . '<p>Media owner under § 25 MedienG: webconsulting business services gmbh, based in Mattersburg, share capital EUR 35,000. Managing director and sole shareholder: DI(FH) Kurt Dirnbauer.</p>',
+                    'header' => 'Imprint (demo)',
+                    'company_name' => 'Example Studio GmbH',
+                    'address' => "Musterstraße 12\n10115 Berlin\nGermany",
+                    'contact_email' => 'hello@example.com',
+                    'contact_phone' => '+49 30 23125 100',
+                    'registry_info' => "Register court: Amtsgericht Charlottenburg (Berlin)\nRegister number: HRB 000000 B\nManaging director: Max Mustermann",
+                    'vat_id' => 'DE000000000',
+                    'additional_info' => '<p>Responsible for the content under § 18 (2) MStV: Max Mustermann, address as above.</p>'
+                        . '<p>This imprint is example content from the Desiderio styleguide. The company, address, phone number and register data are made up.</p>',
                 ]),
                 ShowcaseBlocks::block('desiderio_contenthighlight', [
                     'header' => 'Your site needs its own imprint',
-                    'content' => '<p>This page is the imprint of webconsulting business services gmbh, which builds Desiderio. On your site, the desiderio_imprint element shows your company. Enter your own company, register and contact details, and have them reviewed before launch.</p>',
+                    'content' => '<p>This page shows the desiderio_imprint element with made-up details: Example Studio GmbH, its address, phone number and register entries do not exist. On your site, the element shows your company. Enter your own company, register and contact details, and have them reviewed before launch.</p>',
                     'variant' => 'muted',
                     'alignment' => 'center',
                     'link' => '',
@@ -120,7 +121,7 @@ final class ShowcaseLegalPages
                     'header' => 'Accessibility statement (demo)',
                     'conformance_level' => 'aa',
                     'content' => '<p>This demo statement comes with the Desiderio demo site as a template. Replace it with your own audited statement before launch. Desiderio content elements are designed for WCAG 2.2 Level AA.</p><h3>What the markup gives you</h3><ul><li>Every interactive component works with the keyboard, with a visible focus state on buttons, links and form fields.</li><li>All 244 elements use semantic landmarks, native elements and a logical heading order.</li><li>Image fields have an input for alternative text. Decorative SVG icons are hidden from screen readers.</li><li>A template audit keeps inline styles and hard-coded colours out of every release.</li></ul><h3>What you still need to do</h3><p>Editor content, embedded media and uploaded documents still need a human review. This demo template does not replace a real conformance audit of your site.</p>',
-                    'contact_email' => 'office@webconsulting.at',
+                    'contact_email' => 'accessibility@example.com',
                     'last_updated' => '12 May 2026',
                 ]),
                 ShowcaseBlocks::block('desiderio_contenthighlight', [

@@ -404,9 +404,11 @@ class StyleguideDemoValueGenerator
             str_contains($normalizedField, 'company') || str_contains($normalizedField, 'brand') => $person[2],
             str_contains($normalizedField, 'name') && str_contains($this->normalizeIdentifier($name), 'pricing') => ['Community', 'Pro', 'Agency'][$index % 3],
             str_contains($normalizedField, 'name') || str_contains($normalizedField, 'author') => $person[0],
-            str_contains($normalizedField, 'email') => 'office@webconsulting.at',
-            str_contains($normalizedField, 'phone') || str_contains($normalizedField, 'tel') => '+43 2626 20156',
-            str_contains($normalizedField, 'address') || str_contains($normalizedField, 'location') => 'Johann Nepomuk Berger-Straße 7/2/14, 7210 Mattersburg',
+            // Demo contact data that reaches no one: example.com is reserved (RFC 2606),
+            // +49 30 23125 xxx is a Bundesnetzagentur drama number and the street does not exist.
+            str_contains($normalizedField, 'email') => 'hello@example.com',
+            str_contains($normalizedField, 'phone') || str_contains($normalizedField, 'tel') => '+49 30 23125 100',
+            str_contains($normalizedField, 'address') || str_contains($normalizedField, 'location') => 'Musterstraße 12, 10115 Berlin',
             str_contains($normalizedField, 'date') => min(28, $index + 8) . ' May 2026',
             str_contains($normalizedField, 'year') => '2026',
             str_contains($normalizedField, 'trend') => ['positive', 'stable', 'up'][$index % 3],
@@ -477,7 +479,8 @@ PHP;
 
     public function buildDefaultMapEmbedUrl(): string
     {
-        return 'https://www.openstreetmap.org/export/embed.html?bbox=16.3995%2C47.7296%2C16.4095%2C47.7396&layer=mapnik&marker=47.7346%2C16.4045';
+        // Central Berlin without a marker: the demo address is made up, so the map pins no real building.
+        return 'https://www.openstreetmap.org/export/embed.html?bbox=13.3750%2C52.5225%2C13.4050%2C52.5375&layer=mapnik';
     }
 
     public function normalizeResolvedFixtureFieldValue(string $ctype, string $field, mixed $value): mixed

@@ -1,20 +1,27 @@
 {
-    "header": "Our offices in Mattersburg and Vienna",
-    "subheadline": "Our headquarters is in Mattersburg, Burgenland. The Vienna office is in the 3rd district, next to the Rennweg stop.",
+    "header": "Our studios in Berlin, Hamburg and Munich",
+    "subheadline": "Our headquarters is in Berlin. The teams in Hamburg and Munich look after clients in their region.",
     "location_items": [
         {
-            "city": "Mattersburg",
-            "address": "Johann Nepomuk Berger-Straße 7/2/14\n7210 Mattersburg, Austria",
-            "phone": "+43 2626 20156",
-            "email": "office@webconsulting.at",
-            "map_link": "https://maps.google.com/?q=Johann+Nepomuk+Berger-Stra%C3%9Fe+7,+7210+Mattersburg"
+            "city": "Berlin",
+            "address": "Musterstraße 12\n10115 Berlin, Germany",
+            "phone": "+49 30 23125 100",
+            "email": "berlin@example.com",
+            "map_link": "https://www.openstreetmap.org/search?query=Berlin"
         },
         {
-            "city": "Vienna",
-            "address": "Ungargasse 64-66/3/404\n1030 Vienna, Austria",
-            "phone": "+43 2626 20156",
-            "email": "office@webconsulting.at",
-            "map_link": "https://maps.google.com/?q=Ungargasse+64-66,+1030+Wien"
+            "city": "Hamburg",
+            "address": "Beispielweg 4\n20095 Hamburg, Germany",
+            "phone": "+49 40 66969 200",
+            "email": "hamburg@example.com",
+            "map_link": "https://www.openstreetmap.org/search?query=Hamburg"
+        },
+        {
+            "city": "Munich",
+            "address": "Beispielallee 3\n80331 Munich, Germany",
+            "phone": "+49 89 99998 300",
+            "email": "munich@example.com",
+            "map_link": "https://www.openstreetmap.org/search?query=M%C3%BCnchen"
         }
     ]
 }

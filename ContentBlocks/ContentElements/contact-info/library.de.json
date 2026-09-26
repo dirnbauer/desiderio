@@ -1,30 +1,30 @@
 {
-    "header": "So erreichen Sie webconsulting",
-    "subheadline": "Eine Telefonnummer und eine E-Mail-Adresse erreichen das Team an beiden Standorten.",
+    "header": "So erreichen Sie uns",
+    "subheadline": "Eine Telefonnummer und eine E-Mail-Adresse erreichen das Team in Berlin und Hamburg.",
     "items": [
         {
             "icon": "mail",
             "label": "E-Mail",
-            "value": "office@webconsulting.at",
-            "link": "mailto:office@webconsulting.at"
+            "value": "hello@example.com",
+            "link": "mailto:hello@example.com"
         },
         {
             "icon": "phone",
             "label": "Telefon",
-            "value": "+43 2626 20156",
-            "link": "tel:+43262620156"
+            "value": "+49 30 23125 100",
+            "link": "tel:+493023125100"
         },
         {
             "icon": "map-pin",
             "label": "Hauptsitz",
-            "value": "Johann Nepomuk Berger-Straße 7/2/14, 7210 Mattersburg",
-            "link": "https://maps.google.com/?q=Johann+Nepomuk+Berger-Stra%C3%9Fe+7,+7210+Mattersburg"
+            "value": "Musterstraße 12, 10115 Berlin",
+            "link": "https://www.openstreetmap.org/search?query=Berlin"
         },
         {
             "icon": "map-pin",
-            "label": "Büro Wien",
-            "value": "Ungargasse 64-66/3/404, 1030 Wien",
-            "link": "https://maps.google.com/?q=Ungargasse+64-66,+1030+Wien"
+            "label": "Studio Hamburg",
+            "value": "Beispielweg 4, 20095 Hamburg",
+            "link": "https://www.openstreetmap.org/search?query=Hamburg"
         }
     ]
 }

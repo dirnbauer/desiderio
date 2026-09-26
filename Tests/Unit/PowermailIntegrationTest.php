@@ -82,7 +82,10 @@ final class PowermailIntegrationTest extends TestCase
         self::assertStringContainsString('<d:molecule.cardContent', $form);
         self::assertStringContainsString('<d:atom.controlClass slot="card"', $form);
         self::assertStringContainsString('data-slot="card-header"', $form);
-        self::assertStringNotContainsString('powermail_form powermail_form_', $form);
+        // Behaviour, not styling: powermail_cond's script only starts on a
+        // .powermail_form, and Powermail's own date handling keys on it too.
+        // Without it no condition is ever asked (fixed in 4.7.1).
+        self::assertStringContainsString('class="powermail_form powermail_form_{form.uid} ', $form);
         self::assertStringContainsString('data-powermail-morestep-show', $form);
         self::assertStringContainsString('data-state="{f:if(condition: iterationPages.isFirst', $form);
         self::assertStringContainsString('aria-current="{f:if(condition: iterationPages.isFirst', $form);

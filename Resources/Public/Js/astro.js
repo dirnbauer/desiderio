@@ -50,19 +50,26 @@
       }
     }
 
+    // Group digits only when the editor's number was grouped ("1,490") or is
+    // long enough to need it: a year such as "2029" must not become "2,029".
+    var integerText = decimalDigits > 0 ? numberText.slice(0, lastSeparator) : numberText;
+    var grouped = /[.,]/.test(integerText) || Math.abs(Number(normalized)) >= 10000;
+
     return {
       target: Number(normalized),
       decimals: decimalDigits,
+      grouped: grouped,
       prefix: source.slice(0, match.index),
       suffix: source.slice(match.index + numberText.length),
       source: source
     };
   }
 
-  function formatNumber(value, decimals, locale) {
+  function formatNumber(value, decimals, locale, grouped) {
     return new Intl.NumberFormat(locale || document.documentElement.lang || undefined, {
       minimumFractionDigits: decimals,
-      maximumFractionDigits: decimals
+      maximumFractionDigits: decimals,
+      useGrouping: grouped !== false
     }).format(value);
   }
 
@@ -71,7 +78,7 @@
   }
 
   function setCounterText(element, parts, value) {
-    element.textContent = parts.prefix + formatNumber(value, parts.decimals) + parts.suffix;
+    element.textContent = parts.prefix + formatNumber(value, parts.decimals, undefined, parts.grouped) + parts.suffix;
   }
 
   function closestCopyRoot(button) {

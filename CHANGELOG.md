@@ -6,6 +6,13 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+- Counters no longer group the digits of a short ungrouped number: a year
+  such as "2029" in Hero Stats counted up to "2,029". Digits are grouped
+  when the editor's number was grouped ("1,490") or has five digits or
+  more.
+
 ## [4.10.0] — 2026-09-27
 
 ### Added

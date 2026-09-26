@@ -91,6 +91,17 @@ settings:
     default: wide
     category: desiderio.layout
 
+  desiderio.layout.sectionSeam:
+    label: 'Seam between sections'
+    description: 'What separates two sections that sit on the page background. Notch: a hairline across the content column, fading at both ends, with a short capsule in the theme''s chart colours in the middle. Line: the hairline alone. None: space only. Panels and coloured frames never get a seam; their surface already separates them.'
+    type: string
+    enum:
+      notch: 'Notch (hairline with a palette capsule)'
+      line: 'Line (hairline only)'
+      none: 'None (space only)'
+    default: notch
+    category: desiderio.layout
+
   desiderio.layout.radius:
     label: 'Border radius'
     description: 'Global corner rounding for cards, buttons, inputs. Use preset when the shadcn preset should own the radius.'

@@ -6,6 +6,17 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Seams between sections. Two sections on the page background now meet at
+  a seam: a hairline across the content column that fades out at both ends,
+  with a short capsule in the middle in the preset's five chart colours (the
+  primary ink in neutral presets). As a seam scrolls into view, its capsule
+  grows from a dot to its full length; under reduced motion it is simply
+  there. Panels and coloured frames get no seam, their surface already
+  separates them. The new site setting `desiderio.layout.sectionSeam`
+  chooses `notch` (default), `line` (the hairline alone) or `none`.
+
 ## [4.8.2] — 2026-09-26
 
 ### Fixed

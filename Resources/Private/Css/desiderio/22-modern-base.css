@@ -241,15 +241,399 @@ body {
 }
 
 /* ------------------------------------------------------------------ */
-/*  3. No rules between sections                                      */
+/*  3. Seams between sections                                          */
 /* ------------------------------------------------------------------ */
 
-/* Sections are separated by rhythm and by the panels below, never by a
-   line. (4.7.0 kept a faded seam between two sections on the same surface;
-   it never rendered, because every section follows its #c<uid> anchor, and
-   the page read better without it.) */
+/* Two sections on the page background meet at a seam; panels and coloured
+   frames never get one, their surface already separates them. The site
+   setting desiderio.layout.sectionSeam picks it (body[data-section-seam]):
+
+   - notch (default): a hairline across the content column that fades out at
+     both ends, with a gap in the middle holding a short capsule in the
+     preset's five chart colours - the palette band the header wears, so
+     every seam repeats the site's one signature. Neutral presets get a
+     capsule in the primary ink. As the seam scrolls into view the capsule
+     grows from a dot to its full length (scroll-driven, never under
+     prefers-reduced-motion).
+   - line: the hairline alone, without the gap.
+   - none: space only.
+
+   The seam straddles the section edge, so it never moves content or the
+   shared --d-section-y rhythm. Sections follow their #c<uid> anchor, which is
+   why the selector also accepts one anchor between the two sections (4.7.0
+   missed that, and its seam never rendered). */
 .desiderio-section {
     border-block-start: 0;
+}
+
+/* initial-value must be computationally independent: 56px, not 3.5rem (a
+   rem value makes Chrome drop the whole registration, and the capsule had no
+   width). The var() fallbacks below cover browsers without @property. */
+@property --d-seam-length {
+    syntax: "<length>";
+    inherits: true;
+    initial-value: 56px;
+}
+
+:is(.desiderio-section.bg-background:not(
+        .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+        .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+        .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+        .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+        .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+        .client-list, .case-study-grid,
+        .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+        .company-milestones, .company-history,
+        .innesto-case-studies-section, .innesto-marquee-section,
+        [class*="innesto-stats-"])
+    + a[id] + .desiderio-section.bg-background:not(
+        .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+        .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+        .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+        .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+        .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+        .client-list, .case-study-grid,
+        .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+        .company-milestones, .company-history,
+        .innesto-case-studies-section, .innesto-marquee-section,
+        [class*="innesto-stats-"]),
+  .desiderio-section.bg-background:not(
+        .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+        .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+        .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+        .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+        .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+        .client-list, .case-study-grid,
+        .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+        .company-milestones, .company-history,
+        .innesto-case-studies-section, .innesto-marquee-section,
+        [class*="innesto-stats-"])
+    + .desiderio-section.bg-background:not(
+        .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+        .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+        .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+        .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+        .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+        .client-list, .case-study-grid,
+        .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+        .company-milestones, .company-history,
+        .innesto-case-studies-section, .innesto-marquee-section,
+        [class*="innesto-stats-"]))::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: min(100% - 2rem, 76rem);
+    height: 1px;
+    translate: -50% 0;
+    background: linear-gradient(90deg, transparent, var(--border) 22%, var(--border) 78%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, #000 calc(50% - var(--d-seam-length, 3.5rem) / 2 - 0.75rem), transparent calc(50% - var(--d-seam-length, 3.5rem) / 2 - 0.25rem), transparent calc(50% + var(--d-seam-length, 3.5rem) / 2 + 0.25rem), #000 calc(50% + var(--d-seam-length, 3.5rem) / 2 + 0.75rem));
+    mask-image: linear-gradient(90deg, #000 calc(50% - var(--d-seam-length, 3.5rem) / 2 - 0.75rem), transparent calc(50% - var(--d-seam-length, 3.5rem) / 2 - 0.25rem), transparent calc(50% + var(--d-seam-length, 3.5rem) / 2 + 0.25rem), #000 calc(50% + var(--d-seam-length, 3.5rem) / 2 + 0.75rem));
+    pointer-events: none;
+}
+
+:is(.desiderio-section.bg-background:not(
+        .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+        .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+        .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+        .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+        .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+        .client-list, .case-study-grid,
+        .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+        .company-milestones, .company-history,
+        .innesto-case-studies-section, .innesto-marquee-section,
+        [class*="innesto-stats-"])
+    + a[id] + .desiderio-section.bg-background:not(
+        .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+        .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+        .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+        .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+        .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+        .client-list, .case-study-grid,
+        .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+        .company-milestones, .company-history,
+        .innesto-case-studies-section, .innesto-marquee-section,
+        [class*="innesto-stats-"]),
+  .desiderio-section.bg-background:not(
+        .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+        .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+        .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+        .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+        .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+        .client-list, .case-study-grid,
+        .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+        .company-milestones, .company-history,
+        .innesto-case-studies-section, .innesto-marquee-section,
+        [class*="innesto-stats-"])
+    + .desiderio-section.bg-background:not(
+        .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+        .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+        .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+        .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+        .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+        .client-list, .case-study-grid,
+        .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+        .company-milestones, .company-history,
+        .innesto-case-studies-section, .innesto-marquee-section,
+        [class*="innesto-stats-"]))::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: var(--d-seam-length, 3.5rem);
+    height: 3px;
+    translate: -50% -1px;
+    border-radius: 999px;
+    background:
+        linear-gradient(90deg,
+            oklch(from var(--chart-1, var(--primary)) l c h / clamp(0, c * 12, 1)),
+            oklch(from var(--chart-2, var(--primary)) l c h / clamp(0, c * 12, 1)),
+            oklch(from var(--chart-3, var(--primary)) l c h / clamp(0, c * 12, 1)),
+            oklch(from var(--chart-4, var(--primary)) l c h / clamp(0, c * 12, 1)),
+            oklch(from var(--chart-5, var(--primary)) l c h / clamp(0, c * 12, 1))),
+        var(--primary);
+    pointer-events: none;
+}
+
+@keyframes d-seam-grow {
+    from { --d-seam-length: 6px; }
+    to { --d-seam-length: 56px; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+        body:not([data-section-seam="line"], [data-section-seam="none"]) :is(.desiderio-section.bg-background:not(
+        .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+        .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+        .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+        .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+        .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+        .client-list, .case-study-grid,
+        .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+        .company-milestones, .company-history,
+        .innesto-case-studies-section, .innesto-marquee-section,
+        [class*="innesto-stats-"])
+    + a[id] + .desiderio-section.bg-background:not(
+        .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+        .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+        .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+        .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+        .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+        .client-list, .case-study-grid,
+        .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+        .company-milestones, .company-history,
+        .innesto-case-studies-section, .innesto-marquee-section,
+        [class*="innesto-stats-"]),
+  .desiderio-section.bg-background:not(
+        .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+        .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+        .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+        .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+        .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+        .client-list, .case-study-grid,
+        .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+        .company-milestones, .company-history,
+        .innesto-case-studies-section, .innesto-marquee-section,
+        [class*="innesto-stats-"])
+    + .desiderio-section.bg-background:not(
+        .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+        .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+        .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+        .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+        .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+        .client-list, .case-study-grid,
+        .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+        .company-milestones, .company-history,
+        .innesto-case-studies-section, .innesto-marquee-section,
+        [class*="innesto-stats-"])) {
+            animation: d-seam-grow linear both;
+            animation-timeline: view();
+            animation-range: entry 0% entry 35%;
+        }
+    }
+}
+
+body[data-section-seam="line"] :is(.desiderio-section.bg-background:not(
+        .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+        .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+        .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+        .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+        .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+        .client-list, .case-study-grid,
+        .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+        .company-milestones, .company-history,
+        .innesto-case-studies-section, .innesto-marquee-section,
+        [class*="innesto-stats-"])
+    + a[id] + .desiderio-section.bg-background:not(
+        .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+        .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+        .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+        .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+        .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+        .client-list, .case-study-grid,
+        .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+        .company-milestones, .company-history,
+        .innesto-case-studies-section, .innesto-marquee-section,
+        [class*="innesto-stats-"]),
+  .desiderio-section.bg-background:not(
+        .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+        .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+        .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+        .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+        .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+        .client-list, .case-study-grid,
+        .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+        .company-milestones, .company-history,
+        .innesto-case-studies-section, .innesto-marquee-section,
+        [class*="innesto-stats-"])
+    + .desiderio-section.bg-background:not(
+        .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+        .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+        .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+        .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+        .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+        .client-list, .case-study-grid,
+        .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+        .company-milestones, .company-history,
+        .innesto-case-studies-section, .innesto-marquee-section,
+        [class*="innesto-stats-"]))::before {
+    -webkit-mask-image: none;
+    mask-image: none;
+}
+
+body[data-section-seam="line"] :is(.desiderio-section.bg-background:not(
+        .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+        .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+        .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+        .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+        .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+        .client-list, .case-study-grid,
+        .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+        .company-milestones, .company-history,
+        .innesto-case-studies-section, .innesto-marquee-section,
+        [class*="innesto-stats-"])
+    + a[id] + .desiderio-section.bg-background:not(
+        .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+        .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+        .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+        .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+        .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+        .client-list, .case-study-grid,
+        .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+        .company-milestones, .company-history,
+        .innesto-case-studies-section, .innesto-marquee-section,
+        [class*="innesto-stats-"]),
+  .desiderio-section.bg-background:not(
+        .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+        .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+        .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+        .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+        .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+        .client-list, .case-study-grid,
+        .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+        .company-milestones, .company-history,
+        .innesto-case-studies-section, .innesto-marquee-section,
+        [class*="innesto-stats-"])
+    + .desiderio-section.bg-background:not(
+        .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+        .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+        .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+        .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+        .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+        .client-list, .case-study-grid,
+        .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+        .company-milestones, .company-history,
+        .innesto-case-studies-section, .innesto-marquee-section,
+        [class*="innesto-stats-"]))::after,
+body[data-section-seam="none"] :is(.desiderio-section.bg-background:not(
+        .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+        .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+        .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+        .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+        .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+        .client-list, .case-study-grid,
+        .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+        .company-milestones, .company-history,
+        .innesto-case-studies-section, .innesto-marquee-section,
+        [class*="innesto-stats-"])
+    + a[id] + .desiderio-section.bg-background:not(
+        .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+        .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+        .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+        .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+        .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+        .client-list, .case-study-grid,
+        .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+        .company-milestones, .company-history,
+        .innesto-case-studies-section, .innesto-marquee-section,
+        [class*="innesto-stats-"]),
+  .desiderio-section.bg-background:not(
+        .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+        .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+        .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+        .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+        .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+        .client-list, .case-study-grid,
+        .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+        .company-milestones, .company-history,
+        .innesto-case-studies-section, .innesto-marquee-section,
+        [class*="innesto-stats-"])
+    + .desiderio-section.bg-background:not(
+        .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+        .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+        .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+        .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+        .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+        .client-list, .case-study-grid,
+        .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+        .company-milestones, .company-history,
+        .innesto-case-studies-section, .innesto-marquee-section,
+        [class*="innesto-stats-"]))::before,
+body[data-section-seam="none"] :is(.desiderio-section.bg-background:not(
+        .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+        .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+        .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+        .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+        .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+        .client-list, .case-study-grid,
+        .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+        .company-milestones, .company-history,
+        .innesto-case-studies-section, .innesto-marquee-section,
+        [class*="innesto-stats-"])
+    + a[id] + .desiderio-section.bg-background:not(
+        .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+        .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+        .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+        .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+        .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+        .client-list, .case-study-grid,
+        .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+        .company-milestones, .company-history,
+        .innesto-case-studies-section, .innesto-marquee-section,
+        [class*="innesto-stats-"]),
+  .desiderio-section.bg-background:not(
+        .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+        .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+        .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+        .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+        .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+        .client-list, .case-study-grid,
+        .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+        .company-milestones, .company-history,
+        .innesto-case-studies-section, .innesto-marquee-section,
+        [class*="innesto-stats-"])
+    + .desiderio-section.bg-background:not(
+        .stats, .stats-bar, .stats-counter, .stats-inline, .social-proof-counter,
+        .counter-section, .kpi-cards, .stat-cards, .feature-stats,
+        .testimonial-grid, .testimonial-wall, .testimonial-carousel, .review-carousel,
+        .rating-display, .press-mentions, .awards, .certifications, .trust-badges,
+        .compliance-badges-section, .logo-cloud, .logo-grid, .logo-carousel,
+        .client-list, .case-study-grid,
+        .how-to-steps, .feature-numbered, .feature-timeline, .timeline,
+        .company-milestones, .company-history,
+        .innesto-case-studies-section, .innesto-marquee-section,
+        [class*="innesto-stats-"]))::after {
+    content: none;
 }
 
 .desiderio-page-title-container .separator--horizontal {

@@ -122,7 +122,7 @@ page {
     }
 
     30 = TEXT
-    30.value = " data-shadcn-style="{$desiderio.shadcn.style}" data-icon-library="{$desiderio.shadcn.iconLibrary}" data-density="{$desiderio.layout.density}" data-container="{$desiderio.layout.container}" data-radius="{$desiderio.layout.radius}" data-font="{$desiderio.typography.fontSans}" data-header-style="{$desiderio.header.style}" data-footer-style="{$desiderio.footer.style}">
+    30.value = " data-shadcn-style="{$desiderio.shadcn.style}" data-icon-library="{$desiderio.shadcn.iconLibrary}" data-density="{$desiderio.layout.density}" data-container="{$desiderio.layout.container}" data-section-seam="{$desiderio.layout.sectionSeam}" data-radius="{$desiderio.layout.radius}" data-font="{$desiderio.typography.fontSans}" data-header-style="{$desiderio.header.style}" data-footer-style="{$desiderio.footer.style}">
   }
 
   10 >

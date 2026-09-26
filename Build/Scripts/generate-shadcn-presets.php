@@ -420,8 +420,23 @@ function accentTokens(int $hue, bool $lightAccent): array
     $darkPrimaryRgb = oklchToSrgb($dpL, $dpC, (float)$hue);
     $lightTint = compositeSrgb($lightPrimaryRgb, 0.1, $lightCard);
     $darkTint = compositeSrgb($darkPrimaryRgb, 0.2, $darkCard);
-    $lightLinkSurfaces = [$lightMuted, $lightAccentSurface, $lightTint];
-    $darkLinkSurfaces = [$darkMuted, $darkAccentSurface, $darkTint];
+    // The tint also lands on tinted surfaces: a year or step badge inside a
+    // panel (22-modern-base.css) or a secondary/accent frame. Brand text on
+    // those double tints measured 3.9-4.3:1 with the card tint alone.
+    $lightLinkSurfaces = [
+        $lightMuted,
+        $lightAccentSurface,
+        $lightTint,
+        compositeSrgb($lightPrimaryRgb, 0.1, $lightMuted),
+        compositeSrgb($lightPrimaryRgb, 0.1, $lightAccentSurface),
+    ];
+    $darkLinkSurfaces = [
+        $darkMuted,
+        $darkAccentSurface,
+        $darkTint,
+        compositeSrgb($darkPrimaryRgb, 0.2, $darkMuted),
+        compositeSrgb($darkPrimaryRgb, 0.2, $darkAccentSurface),
+    ];
 
     $meetsAll = static function (array $rgb, array $surfaces, float $target): bool {
         foreach ($surfaces as $surface) {

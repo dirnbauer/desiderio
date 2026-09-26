@@ -32,11 +32,11 @@
   --muted-foreground: oklch(0.538 0.031 107.3);
   --accent: oklch(0.966 0.005 106.5);
   --accent-foreground: oklch(0.228 0.013 107.4);
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.565 0.23 27.325);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.93 0.007 106.5);
-  --input: oklch(0.93 0.007 106.5);
-  --ring: oklch(0.655 0.021 106.9);
+  --input: oklch(0.63 0.022 107.3);
+  --ring: oklch(0.45 0.021 106.9);
   --chart-1: oklch(0.905 0.182 98.111);
   --chart-2: oklch(0.795 0.184 86.047);
   --chart-3: oklch(0.681 0.162 75.834);
@@ -96,6 +96,7 @@
   --d-link-on-muted: var(--d-primary-text);
   --d-link: var(--primary);
   --d-overlay-foreground: var(--background);
+  --d-input-subtle: var(--border);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);
@@ -117,11 +118,11 @@
   --muted-foreground: oklch(0.737 0.021 106.9);
   --accent: oklch(0.286 0.016 107.4);
   --accent-foreground: oklch(0.988 0.003 106.5);
-  --destructive: oklch(0.58 0.2 22.216);
-  --destructive-foreground: oklch(1 0 0);
+  --destructive: oklch(0.73 0.165 22.216);
+  --destructive-foreground: oklch(0.205 0 0);
   --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.58 0.031 107.3);
+  --input: oklch(0.6 0.015 106.9);
+  --ring: oklch(0.75 0.031 107.3);
   --chart-1: oklch(0.905 0.182 98.111);
   --chart-2: oklch(0.795 0.184 86.047);
   --chart-3: oklch(0.681 0.162 75.834);
@@ -143,8 +144,11 @@
   --d-shadow-lg: 0 10px 15px -3px oklch(0 0 0 / 0.3), 0 4px 6px -4px oklch(0 0 0 / 0.2);
   --d-shadow-xl: 0 20px 25px -5px oklch(0 0 0 / 0.3), 0 8px 10px -6px oklch(0 0 0 / 0.2);
   --d-shadow-2xl: 0 25px 50px -12px oklch(0 0 0 / 0.5);
+  --d-warning-text: color-mix(in oklch, var(--d-warning), var(--foreground) 55%);
+  --d-danger-text: color-mix(in oklch, var(--d-danger), var(--foreground) 50%);
   --d-primary-text: color-mix(in oklch, var(--primary), oklch(1 0 none) 35%);
   --d-link: var(--primary);
+  --d-input-subtle: oklch(1 0 0 / 15%);
 }
 
 /* Default neutral — b0 */
@@ -163,11 +167,11 @@
   --muted-foreground: oklch(0.542 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.565 0.23 27.325);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.660 0 0);
+  --input: oklch(0.63 0 0);
+  --ring: oklch(0.45 0 0);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -227,6 +231,7 @@
   --d-link-on-muted: var(--d-primary-text);
   --d-link: var(--primary);
   --d-overlay-foreground: var(--background);
+  --d-input-subtle: var(--border);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);
@@ -248,11 +253,17 @@
   --muted-foreground: oklch(0.708 0 0);
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.58 0.2 22.216);
-  --destructive-foreground: oklch(1 0 0);
+  --destructive: a field's message, an
+     invalid label, the destructive alert. It must hold 4.5:1 on the page, a
+     card and the lighter accent surfaces of the house presets, which takes
+     L 0.73 (0.58 was 4.17:1 on the page and 3.01:1 on muted). A solid fill
+     (.btn--destructive, .badge--destructive) then carries dark ink, as
+     Material's dark error colour does. */
+  --destructive: oklch(0.73 0.165 22.216);
+  --destructive-foreground: oklch(0.205 0 0);
   --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --input: oklch(0.61 0 0);
+  --ring: oklch(0.75 0 0);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -274,8 +285,11 @@
   --d-shadow-lg: 0 10px 15px -3px oklch(0 0 0 / 0.3), 0 4px 6px -4px oklch(0 0 0 / 0.2);
   --d-shadow-xl: 0 20px 25px -5px oklch(0 0 0 / 0.3), 0 8px 10px -6px oklch(0 0 0 / 0.2);
   --d-shadow-2xl: 0 25px 50px -12px oklch(0 0 0 / 0.5);
+  --d-warning-text: color-mix(in oklch, var(--d-warning), var(--foreground) 55%);
+  --d-danger-text: color-mix(in oklch, var(--d-danger), var(--foreground) 50%);
   --d-primary-text: color-mix(in oklch, var(--primary), oklch(1 0 none) 35%);
   --d-link: var(--primary);
+  --d-input-subtle: oklch(1 0 0 / 15%);
 }
 
 /* Rhea modern neutral — b27GcrRo */
@@ -294,11 +308,11 @@
   --muted-foreground: oklch(0.542 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.565 0.23 27.325);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.660 0 0);
+  --input: oklch(0.63 0 0);
+  --ring: oklch(0.45 0 0);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -358,6 +372,7 @@
   --d-link-on-muted: var(--d-primary-text);
   --d-link: var(--primary);
   --d-overlay-foreground: var(--background);
+  --d-input-subtle: var(--border);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);
@@ -379,11 +394,11 @@
   --muted-foreground: oklch(0.708 0 0);
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.58 0.2 22.216);
-  --destructive-foreground: oklch(1 0 0);
+  --destructive: oklch(0.73 0.165 22.216);
+  --destructive-foreground: oklch(0.205 0 0);
   --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --input: oklch(0.61 0 0);
+  --ring: oklch(0.75 0 0);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -405,8 +420,11 @@
   --d-shadow-lg: 0 10px 15px -3px oklch(0 0 0 / 0.3), 0 4px 6px -4px oklch(0 0 0 / 0.2);
   --d-shadow-xl: 0 20px 25px -5px oklch(0 0 0 / 0.3), 0 8px 10px -6px oklch(0 0 0 / 0.2);
   --d-shadow-2xl: 0 25px 50px -12px oklch(0 0 0 / 0.5);
+  --d-warning-text: color-mix(in oklch, var(--d-warning), var(--foreground) 55%);
+  --d-danger-text: color-mix(in oklch, var(--d-danger), var(--foreground) 50%);
   --d-primary-text: color-mix(in oklch, var(--primary), oklch(1 0 none) 35%);
   --d-link: var(--primary);
+  --d-input-subtle: oklch(1 0 0 / 15%);
 }
 
 /* Olive product system — b4hb38Fyj */
@@ -425,11 +443,11 @@
   --muted-foreground: oklch(0.538 0.031 107.3);
   --accent: oklch(0.966 0.005 106.5);
   --accent-foreground: oklch(0.228 0.013 107.4);
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.565 0.23 27.325);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.93 0.007 106.5);
-  --input: oklch(0.93 0.007 106.5);
-  --ring: oklch(0.655 0.021 106.9);
+  --input: oklch(0.63 0.022 107.3);
+  --ring: oklch(0.45 0.021 106.9);
   --chart-1: oklch(0.808 0.114 19.571);
   --chart-2: oklch(0.637 0.237 25.331);
   --chart-3: oklch(0.577 0.245 27.325);
@@ -485,10 +503,11 @@
   --d-success-text: color-mix(in oklch, var(--d-success), var(--foreground) 42%);
   --d-warning-text: color-mix(in oklch, var(--d-warning), var(--foreground) 42%);
   --d-danger-text: color-mix(in oklch, var(--d-danger), var(--foreground) 30%);
-  --d-primary-text: var(--primary);
+  --d-primary-text: oklch(0.491 0.096 186.391);
   --d-link-on-muted: var(--d-primary-text);
   --d-link: var(--primary);
   --d-overlay-foreground: var(--background);
+  --d-input-subtle: var(--border);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);
@@ -510,11 +529,11 @@
   --muted-foreground: oklch(0.737 0.021 106.9);
   --accent: oklch(0.286 0.016 107.4);
   --accent-foreground: oklch(0.988 0.003 106.5);
-  --destructive: oklch(0.58 0.2 22.216);
-  --destructive-foreground: oklch(1 0 0);
+  --destructive: oklch(0.73 0.165 22.216);
+  --destructive-foreground: oklch(0.205 0 0);
   --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.58 0.031 107.3);
+  --input: oklch(0.6 0.015 106.9);
+  --ring: oklch(0.75 0.031 107.3);
   --chart-1: oklch(0.808 0.114 19.571);
   --chart-2: oklch(0.637 0.237 25.331);
   --chart-3: oklch(0.577 0.245 27.325);
@@ -536,8 +555,11 @@
   --d-shadow-lg: 0 10px 15px -3px oklch(0 0 0 / 0.3), 0 4px 6px -4px oklch(0 0 0 / 0.2);
   --d-shadow-xl: 0 20px 25px -5px oklch(0 0 0 / 0.3), 0 8px 10px -6px oklch(0 0 0 / 0.2);
   --d-shadow-2xl: 0 25px 50px -12px oklch(0 0 0 / 0.5);
-  --d-primary-text: var(--primary);
+  --d-warning-text: color-mix(in oklch, var(--d-warning), var(--foreground) 55%);
+  --d-danger-text: color-mix(in oklch, var(--d-danger), var(--foreground) 50%);
+  --d-primary-text: oklch(0.732 0.14 182.503);
   --d-link: var(--primary);
+  --d-input-subtle: oklch(1 0 0 / 15%);
 }
 
 /* Mist dashboard — b3IWPgRwnI */
@@ -556,11 +578,11 @@
   --muted-foreground: oklch(0.535 0.021 213.5);
   --accent: oklch(0.963 0.002 197.1);
   --accent-foreground: oklch(0.218 0.008 223.9);
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.565 0.23 27.325);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.925 0.005 214.3);
-  --input: oklch(0.925 0.005 214.3);
-  --ring: oklch(0.655 0.014 214.4);
+  --input: oklch(0.63 0.015 213.5);
+  --ring: oklch(0.45 0.014 214.4);
   --chart-1: oklch(0.808 0.114 19.571);
   --chart-2: oklch(0.637 0.237 25.331);
   --chart-3: oklch(0.577 0.245 27.325);
@@ -620,6 +642,7 @@
   --d-link-on-muted: var(--d-primary-text);
   --d-link: var(--primary);
   --d-overlay-foreground: var(--background);
+  --d-input-subtle: var(--border);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);
@@ -641,11 +664,11 @@
   --muted-foreground: oklch(0.723 0.014 214.4);
   --accent: oklch(0.275 0.011 216.9);
   --accent-foreground: oklch(0.987 0.002 197.1);
-  --destructive: oklch(0.58 0.2 22.216);
-  --destructive-foreground: oklch(1 0 0);
+  --destructive: oklch(0.73 0.165 22.216);
+  --destructive-foreground: oklch(0.205 0 0);
   --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.56 0.021 213.5);
+  --input: oklch(0.59 0.01 214.4);
+  --ring: oklch(0.75 0.021 213.5);
   --chart-1: oklch(0.808 0.114 19.571);
   --chart-2: oklch(0.637 0.237 25.331);
   --chart-3: oklch(0.577 0.245 27.325);
@@ -667,8 +690,11 @@
   --d-shadow-lg: 0 10px 15px -3px oklch(0 0 0 / 0.3), 0 4px 6px -4px oklch(0 0 0 / 0.2);
   --d-shadow-xl: 0 20px 25px -5px oklch(0 0 0 / 0.3), 0 8px 10px -6px oklch(0 0 0 / 0.2);
   --d-shadow-2xl: 0 25px 50px -12px oklch(0 0 0 / 0.5);
-  --d-primary-text: var(--primary);
+  --d-warning-text: color-mix(in oklch, var(--d-warning), var(--foreground) 55%);
+  --d-danger-text: color-mix(in oklch, var(--d-danger), var(--foreground) 50%);
+  --d-primary-text: oklch(0.731 0.169 237.323);
   --d-link: var(--primary);
+  --d-input-subtle: oklch(1 0 0 / 15%);
 }
 
 /* Aurora — aurora */
@@ -687,10 +713,10 @@
   --muted-foreground: oklch(0.542 0 0);
   --accent: oklch(0.97 0.02 293);
   --accent-foreground: oklch(0.32 0.07 293);
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.565 0.23 27.325);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
+  --input: oklch(0.63 0 0);
   --ring: oklch(0.554 0.2 293);
   --chart-1: oklch(0.554 0.2 293);
   --chart-2: oklch(0.556 0 0);
@@ -747,10 +773,11 @@
   --d-success-text: color-mix(in oklch, var(--d-success), var(--foreground) 42%);
   --d-warning-text: color-mix(in oklch, var(--d-warning), var(--foreground) 42%);
   --d-danger-text: color-mix(in oklch, var(--d-danger), var(--foreground) 30%);
-  --d-primary-text: var(--primary);
+  --d-primary-text: oklch(0.534 0.2 293);
   --d-link-on-muted: var(--d-primary-text);
   --d-link: var(--primary);
   --d-overlay-foreground: var(--background);
+  --d-input-subtle: var(--border);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);
@@ -772,10 +799,16 @@
   --muted-foreground: oklch(0.708 0 0);
   --accent: oklch(0.33 0.045 293);
   --accent-foreground: oklch(0.96 0.02 293);
-  --destructive: oklch(0.58 0.2 22.216);
-  --destructive-foreground: oklch(1 0 0);
+  --destructive: a field's message, an
+     invalid label, the destructive alert. It must hold 4.5:1 on the page, a
+     card and the lighter accent surfaces of the house presets, which takes
+     L 0.73 (0.58 was 4.17:1 on the page and 3.01:1 on muted). A solid fill
+     (.btn--destructive, .badge--destructive) then carries dark ink, as
+     Material's dark error colour does. */
+  --destructive: oklch(0.73 0.165 22.216);
+  --destructive-foreground: oklch(0.205 0 0);
   --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
+  --input: oklch(0.61 0 0);
   --ring: oklch(0.715 0.18 293);
   --chart-1: oklch(0.715 0.18 293);
   --chart-2: oklch(0.556 0 0);
@@ -798,8 +831,11 @@
   --d-shadow-lg: 0 10px 15px -3px oklch(0 0 0 / 0.3), 0 4px 6px -4px oklch(0 0 0 / 0.2);
   --d-shadow-xl: 0 20px 25px -5px oklch(0 0 0 / 0.3), 0 8px 10px -6px oklch(0 0 0 / 0.2);
   --d-shadow-2xl: 0 25px 50px -12px oklch(0 0 0 / 0.5);
-  --d-primary-text: oklch(0.71 0.167 293);
+  --d-warning-text: color-mix(in oklch, var(--d-warning), var(--foreground) 55%);
+  --d-danger-text: color-mix(in oklch, var(--d-danger), var(--foreground) 50%);
+  --d-primary-text: oklch(0.793 0.115 293);
   --d-link: var(--primary);
+  --d-input-subtle: oklch(1 0 0 / 15%);
 }
 
 /* Marine — marine */
@@ -818,10 +854,10 @@
   --muted-foreground: oklch(0.542 0 0);
   --accent: oklch(0.97 0.02 259);
   --accent-foreground: oklch(0.32 0.07 259);
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.565 0.23 27.325);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
+  --input: oklch(0.63 0 0);
   --ring: oklch(0.539 0.2 259);
   --chart-1: oklch(0.539 0.2 259);
   --chart-2: oklch(0.556 0 0);
@@ -878,10 +914,11 @@
   --d-success-text: color-mix(in oklch, var(--d-success), var(--foreground) 42%);
   --d-warning-text: color-mix(in oklch, var(--d-warning), var(--foreground) 42%);
   --d-danger-text: color-mix(in oklch, var(--d-danger), var(--foreground) 30%);
-  --d-primary-text: var(--primary);
+  --d-primary-text: oklch(0.52 0.2 259);
   --d-link-on-muted: var(--d-primary-text);
   --d-link: var(--primary);
   --d-overlay-foreground: var(--background);
+  --d-input-subtle: var(--border);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);
@@ -903,10 +940,16 @@
   --muted-foreground: oklch(0.708 0 0);
   --accent: oklch(0.33 0.045 259);
   --accent-foreground: oklch(0.96 0.02 259);
-  --destructive: oklch(0.58 0.2 22.216);
-  --destructive-foreground: oklch(1 0 0);
+  --destructive: a field's message, an
+     invalid label, the destructive alert. It must hold 4.5:1 on the page, a
+     card and the lighter accent surfaces of the house presets, which takes
+     L 0.73 (0.58 was 4.17:1 on the page and 3.01:1 on muted). A solid fill
+     (.btn--destructive, .badge--destructive) then carries dark ink, as
+     Material's dark error colour does. */
+  --destructive: oklch(0.73 0.165 22.216);
+  --destructive-foreground: oklch(0.205 0 0);
   --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
+  --input: oklch(0.61 0 0);
   --ring: oklch(0.71 0.18 259);
   --chart-1: oklch(0.71 0.18 259);
   --chart-2: oklch(0.556 0 0);
@@ -929,8 +972,11 @@
   --d-shadow-lg: 0 10px 15px -3px oklch(0 0 0 / 0.3), 0 4px 6px -4px oklch(0 0 0 / 0.2);
   --d-shadow-xl: 0 20px 25px -5px oklch(0 0 0 / 0.3), 0 8px 10px -6px oklch(0 0 0 / 0.2);
   --d-shadow-2xl: 0 25px 50px -12px oklch(0 0 0 / 0.5);
-  --d-primary-text: var(--primary);
+  --d-warning-text: color-mix(in oklch, var(--d-warning), var(--foreground) 55%);
+  --d-danger-text: color-mix(in oklch, var(--d-danger), var(--foreground) 50%);
+  --d-primary-text: oklch(0.788 0.107 259);
   --d-link: var(--primary);
+  --d-input-subtle: oklch(1 0 0 / 15%);
 }
 
 /* Forest — forest */
@@ -949,10 +995,10 @@
   --muted-foreground: oklch(0.542 0 0);
   --accent: oklch(0.97 0.02 158);
   --accent-foreground: oklch(0.32 0.07 158);
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.565 0.23 27.325);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
+  --input: oklch(0.63 0 0);
   --ring: oklch(0.484 0.2 158);
   --chart-1: oklch(0.484 0.2 158);
   --chart-2: oklch(0.556 0 0);
@@ -1009,10 +1055,11 @@
   --d-success-text: color-mix(in oklch, var(--d-success), var(--foreground) 42%);
   --d-warning-text: color-mix(in oklch, var(--d-warning), var(--foreground) 42%);
   --d-danger-text: color-mix(in oklch, var(--d-danger), var(--foreground) 30%);
-  --d-primary-text: var(--primary);
+  --d-primary-text: oklch(0.499 0.116 158);
   --d-link-on-muted: var(--d-primary-text);
   --d-link: var(--primary);
   --d-overlay-foreground: var(--background);
+  --d-input-subtle: var(--border);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);
@@ -1034,10 +1081,16 @@
   --muted-foreground: oklch(0.708 0 0);
   --accent: oklch(0.33 0.045 158);
   --accent-foreground: oklch(0.96 0.02 158);
-  --destructive: oklch(0.58 0.2 22.216);
-  --destructive-foreground: oklch(1 0 0);
+  --destructive: a field's message, an
+     invalid label, the destructive alert. It must hold 4.5:1 on the page, a
+     card and the lighter accent surfaces of the house presets, which takes
+     L 0.73 (0.58 was 4.17:1 on the page and 3.01:1 on muted). A solid fill
+     (.btn--destructive, .badge--destructive) then carries dark ink, as
+     Material's dark error colour does. */
+  --destructive: oklch(0.73 0.165 22.216);
+  --destructive-foreground: oklch(0.205 0 0);
   --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
+  --input: oklch(0.61 0 0);
   --ring: oklch(0.677 0.18 158);
   --chart-1: oklch(0.677 0.18 158);
   --chart-2: oklch(0.556 0 0);
@@ -1060,8 +1113,11 @@
   --d-shadow-lg: 0 10px 15px -3px oklch(0 0 0 / 0.3), 0 4px 6px -4px oklch(0 0 0 / 0.2);
   --d-shadow-xl: 0 20px 25px -5px oklch(0 0 0 / 0.3), 0 8px 10px -6px oklch(0 0 0 / 0.2);
   --d-shadow-2xl: 0 25px 50px -12px oklch(0 0 0 / 0.5);
-  --d-primary-text: oklch(0.685 0.16 158);
+  --d-warning-text: color-mix(in oklch, var(--d-warning), var(--foreground) 55%);
+  --d-danger-text: color-mix(in oklch, var(--d-danger), var(--foreground) 50%);
+  --d-primary-text: oklch(0.77 0.18 158);
   --d-link: var(--primary);
+  --d-input-subtle: oklch(1 0 0 / 15%);
 }
 
 /* Ember — ember */
@@ -1080,10 +1136,10 @@
   --muted-foreground: oklch(0.542 0 0);
   --accent: oklch(0.97 0.02 55);
   --accent-foreground: oklch(0.32 0.07 55);
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.565 0.23 27.325);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
+  --input: oklch(0.63 0 0);
   --ring: oklch(0.545 0.2 55);
   --chart-1: oklch(0.545 0.2 55);
   --chart-2: oklch(0.556 0 0);
@@ -1140,10 +1196,11 @@
   --d-success-text: color-mix(in oklch, var(--d-success), var(--foreground) 42%);
   --d-warning-text: color-mix(in oklch, var(--d-warning), var(--foreground) 42%);
   --d-danger-text: color-mix(in oklch, var(--d-danger), var(--foreground) 30%);
-  --d-primary-text: oklch(0.541 0.133 55);
+  --d-primary-text: oklch(0.52 0.128 55);
   --d-link-on-muted: var(--d-primary-text);
   --d-link: var(--primary);
   --d-overlay-foreground: var(--background);
+  --d-input-subtle: var(--border);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);
@@ -1165,10 +1222,16 @@
   --muted-foreground: oklch(0.708 0 0);
   --accent: oklch(0.33 0.045 55);
   --accent-foreground: oklch(0.96 0.02 55);
-  --destructive: oklch(0.58 0.2 22.216);
-  --destructive-foreground: oklch(1 0 0);
+  --destructive: a field's message, an
+     invalid label, the destructive alert. It must hold 4.5:1 on the page, a
+     card and the lighter accent surfaces of the house presets, which takes
+     L 0.73 (0.58 was 4.17:1 on the page and 3.01:1 on muted). A solid fill
+     (.btn--destructive, .badge--destructive) then carries dark ink, as
+     Material's dark error colour does. */
+  --destructive: oklch(0.73 0.165 22.216);
+  --destructive-foreground: oklch(0.205 0 0);
   --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
+  --input: oklch(0.61 0 0);
   --ring: oklch(0.71 0.18 55);
   --chart-1: oklch(0.71 0.18 55);
   --chart-2: oklch(0.556 0 0);
@@ -1191,8 +1254,11 @@
   --d-shadow-lg: 0 10px 15px -3px oklch(0 0 0 / 0.3), 0 4px 6px -4px oklch(0 0 0 / 0.2);
   --d-shadow-xl: 0 20px 25px -5px oklch(0 0 0 / 0.3), 0 8px 10px -6px oklch(0 0 0 / 0.2);
   --d-shadow-2xl: 0 25px 50px -12px oklch(0 0 0 / 0.5);
-  --d-primary-text: var(--primary);
+  --d-warning-text: color-mix(in oklch, var(--d-warning), var(--foreground) 55%);
+  --d-danger-text: color-mix(in oklch, var(--d-danger), var(--foreground) 50%);
+  --d-primary-text: oklch(0.793 0.138 55);
   --d-link: var(--primary);
+  --d-input-subtle: oklch(1 0 0 / 15%);
 }
 
 /* Bloom — bloom */
@@ -1211,10 +1277,10 @@
   --muted-foreground: oklch(0.542 0 0);
   --accent: oklch(0.97 0.02 12);
   --accent-foreground: oklch(0.32 0.07 12);
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.565 0.23 27.325);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
+  --input: oklch(0.63 0 0);
   --ring: oklch(0.554 0.2 12);
   --chart-1: oklch(0.554 0.2 12);
   --chart-2: oklch(0.556 0 0);
@@ -1271,10 +1337,11 @@
   --d-success-text: color-mix(in oklch, var(--d-success), var(--foreground) 42%);
   --d-warning-text: color-mix(in oklch, var(--d-warning), var(--foreground) 42%);
   --d-danger-text: color-mix(in oklch, var(--d-danger), var(--foreground) 30%);
-  --d-primary-text: oklch(0.554 0.2 12);
+  --d-primary-text: oklch(0.532 0.2 12);
   --d-link-on-muted: var(--d-primary-text);
   --d-link: var(--primary);
   --d-overlay-foreground: var(--background);
+  --d-input-subtle: var(--border);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);
@@ -1296,10 +1363,16 @@
   --muted-foreground: oklch(0.708 0 0);
   --accent: oklch(0.33 0.045 12);
   --accent-foreground: oklch(0.96 0.02 12);
-  --destructive: oklch(0.58 0.2 22.216);
-  --destructive-foreground: oklch(1 0 0);
+  --destructive: a field's message, an
+     invalid label, the destructive alert. It must hold 4.5:1 on the page, a
+     card and the lighter accent surfaces of the house presets, which takes
+     L 0.73 (0.58 was 4.17:1 on the page and 3.01:1 on muted). A solid fill
+     (.btn--destructive, .badge--destructive) then carries dark ink, as
+     Material's dark error colour does. */
+  --destructive: oklch(0.73 0.165 22.216);
+  --destructive-foreground: oklch(0.205 0 0);
   --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
+  --input: oklch(0.61 0 0);
   --ring: oklch(0.716 0.18 12);
   --chart-1: oklch(0.716 0.18 12);
   --chart-2: oklch(0.556 0 0);
@@ -1322,8 +1395,11 @@
   --d-shadow-lg: 0 10px 15px -3px oklch(0 0 0 / 0.3), 0 4px 6px -4px oklch(0 0 0 / 0.2);
   --d-shadow-xl: 0 20px 25px -5px oklch(0 0 0 / 0.3), 0 8px 10px -6px oklch(0 0 0 / 0.2);
   --d-shadow-2xl: 0 25px 50px -12px oklch(0 0 0 / 0.5);
-  --d-primary-text: var(--primary);
+  --d-warning-text: color-mix(in oklch, var(--d-warning), var(--foreground) 55%);
+  --d-danger-text: color-mix(in oklch, var(--d-danger), var(--foreground) 50%);
+  --d-primary-text: oklch(0.795 0.12 12);
   --d-link: var(--primary);
+  --d-input-subtle: oklch(1 0 0 / 15%);
 }
 
 /* Lagoon — lagoon */
@@ -1342,10 +1418,10 @@
   --muted-foreground: oklch(0.542 0 0);
   --accent: oklch(0.97 0.02 185);
   --accent-foreground: oklch(0.32 0.07 185);
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.565 0.23 27.325);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
+  --input: oklch(0.63 0 0);
   --ring: oklch(0.468 0.2 185);
   --chart-1: oklch(0.468 0.2 185);
   --chart-2: oklch(0.556 0 0);
@@ -1402,10 +1478,11 @@
   --d-success-text: color-mix(in oklch, var(--d-success), var(--foreground) 42%);
   --d-warning-text: color-mix(in oklch, var(--d-warning), var(--foreground) 42%);
   --d-danger-text: color-mix(in oklch, var(--d-danger), var(--foreground) 30%);
-  --d-primary-text: var(--primary);
+  --d-primary-text: oklch(0.502 0.088 185);
   --d-link-on-muted: var(--d-primary-text);
   --d-link: var(--primary);
   --d-overlay-foreground: var(--background);
+  --d-input-subtle: var(--border);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);
@@ -1427,10 +1504,16 @@
   --muted-foreground: oklch(0.708 0 0);
   --accent: oklch(0.33 0.045 185);
   --accent-foreground: oklch(0.96 0.02 185);
-  --destructive: oklch(0.58 0.2 22.216);
-  --destructive-foreground: oklch(1 0 0);
+  --destructive: a field's message, an
+     invalid label, the destructive alert. It must hold 4.5:1 on the page, a
+     card and the lighter accent surfaces of the house presets, which takes
+     L 0.73 (0.58 was 4.17:1 on the page and 3.01:1 on muted). A solid fill
+     (.btn--destructive, .badge--destructive) then carries dark ink, as
+     Material's dark error colour does. */
+  --destructive: oklch(0.73 0.165 22.216);
+  --destructive-foreground: oklch(0.205 0 0);
   --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
+  --input: oklch(0.61 0 0);
   --ring: oklch(0.661 0.18 185);
   --chart-1: oklch(0.661 0.18 185);
   --chart-2: oklch(0.556 0 0);
@@ -1453,8 +1536,11 @@
   --d-shadow-lg: 0 10px 15px -3px oklch(0 0 0 / 0.3), 0 4px 6px -4px oklch(0 0 0 / 0.2);
   --d-shadow-xl: 0 20px 25px -5px oklch(0 0 0 / 0.3), 0 8px 10px -6px oklch(0 0 0 / 0.2);
   --d-shadow-2xl: 0 25px 50px -12px oklch(0 0 0 / 0.5);
-  --d-primary-text: oklch(0.689 0.121 185);
+  --d-warning-text: color-mix(in oklch, var(--d-warning), var(--foreground) 55%);
+  --d-danger-text: color-mix(in oklch, var(--d-danger), var(--foreground) 50%);
+  --d-primary-text: oklch(0.777 0.136 185);
   --d-link: var(--primary);
+  --d-input-subtle: oklch(1 0 0 / 15%);
 }
 
 /* Gold — gold */
@@ -1473,10 +1559,10 @@
   --muted-foreground: oklch(0.542 0 0);
   --accent: oklch(0.97 0.02 85);
   --accent-foreground: oklch(0.32 0.07 85);
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.565 0.23 27.325);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
+  --input: oklch(0.63 0 0);
   --ring: oklch(0.533 0.16 85);
   --chart-1: oklch(0.533 0.16 85);
   --chart-2: oklch(0.556 0 0);
@@ -1533,10 +1619,11 @@
   --d-success-text: color-mix(in oklch, var(--d-success), var(--foreground) 42%);
   --d-warning-text: color-mix(in oklch, var(--d-warning), var(--foreground) 42%);
   --d-danger-text: color-mix(in oklch, var(--d-danger), var(--foreground) 30%);
-  --d-primary-text: var(--primary);
+  --d-primary-text: oklch(0.516 0.105 85);
   --d-link-on-muted: var(--d-primary-text);
   --d-link: var(--primary);
   --d-overlay-foreground: var(--background);
+  --d-input-subtle: var(--border);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);
@@ -1558,10 +1645,16 @@
   --muted-foreground: oklch(0.708 0 0);
   --accent: oklch(0.33 0.045 85);
   --accent-foreground: oklch(0.96 0.02 85);
-  --destructive: oklch(0.58 0.2 22.216);
-  --destructive-foreground: oklch(1 0 0);
+  --destructive: a field's message, an
+     invalid label, the destructive alert. It must hold 4.5:1 on the page, a
+     card and the lighter accent surfaces of the house presets, which takes
+     L 0.73 (0.58 was 4.17:1 on the page and 3.01:1 on muted). A solid fill
+     (.btn--destructive, .badge--destructive) then carries dark ink, as
+     Material's dark error colour does. */
+  --destructive: oklch(0.73 0.165 22.216);
+  --destructive-foreground: oklch(0.205 0 0);
   --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
+  --input: oklch(0.61 0 0);
   --ring: oklch(0.7 0.17 85);
   --chart-1: oklch(0.7 0.17 85);
   --chart-2: oklch(0.556 0 0);
@@ -1584,8 +1677,11 @@
   --d-shadow-lg: 0 10px 15px -3px oklch(0 0 0 / 0.3), 0 4px 6px -4px oklch(0 0 0 / 0.2);
   --d-shadow-xl: 0 20px 25px -5px oklch(0 0 0 / 0.3), 0 8px 10px -6px oklch(0 0 0 / 0.2);
   --d-shadow-2xl: 0 25px 50px -12px oklch(0 0 0 / 0.5);
-  --d-primary-text: oklch(0.701 0.143 85);
+  --d-warning-text: color-mix(in oklch, var(--d-warning), var(--foreground) 55%);
+  --d-danger-text: color-mix(in oklch, var(--d-danger), var(--foreground) 50%);
+  --d-primary-text: oklch(0.79 0.161 85);
   --d-link: var(--primary);
+  --d-input-subtle: oklch(1 0 0 / 15%);
 }
 
 /* Midnight — midnight */
@@ -1604,10 +1700,10 @@
   --muted-foreground: oklch(0.542 0 0);
   --accent: oklch(0.97 0.02 275);
   --accent-foreground: oklch(0.32 0.07 275);
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.565 0.23 27.325);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
+  --input: oklch(0.63 0 0);
   --ring: oklch(0.547 0.2 275);
   --chart-1: oklch(0.547 0.2 275);
   --chart-2: oklch(0.556 0 0);
@@ -1664,10 +1760,11 @@
   --d-success-text: color-mix(in oklch, var(--d-success), var(--foreground) 42%);
   --d-warning-text: color-mix(in oklch, var(--d-warning), var(--foreground) 42%);
   --d-danger-text: color-mix(in oklch, var(--d-danger), var(--foreground) 30%);
-  --d-primary-text: var(--primary);
+  --d-primary-text: oklch(0.528 0.2 275);
   --d-link-on-muted: var(--d-primary-text);
   --d-link: var(--primary);
   --d-overlay-foreground: var(--background);
+  --d-input-subtle: var(--border);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);
@@ -1689,10 +1786,16 @@
   --muted-foreground: oklch(0.708 0 0);
   --accent: oklch(0.33 0.045 275);
   --accent-foreground: oklch(0.96 0.02 275);
-  --destructive: oklch(0.58 0.2 22.216);
-  --destructive-foreground: oklch(1 0 0);
+  --destructive: a field's message, an
+     invalid label, the destructive alert. It must hold 4.5:1 on the page, a
+     card and the lighter accent surfaces of the house presets, which takes
+     L 0.73 (0.58 was 4.17:1 on the page and 3.01:1 on muted). A solid fill
+     (.btn--destructive, .badge--destructive) then carries dark ink, as
+     Material's dark error colour does. */
+  --destructive: oklch(0.73 0.165 22.216);
+  --destructive-foreground: oklch(0.205 0 0);
   --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
+  --input: oklch(0.61 0 0);
   --ring: oklch(0.716 0.18 275);
   --chart-1: oklch(0.716 0.18 275);
   --chart-2: oklch(0.556 0 0);
@@ -1715,8 +1818,11 @@
   --d-shadow-lg: 0 10px 15px -3px oklch(0 0 0 / 0.3), 0 4px 6px -4px oklch(0 0 0 / 0.2);
   --d-shadow-xl: 0 20px 25px -5px oklch(0 0 0 / 0.3), 0 8px 10px -6px oklch(0 0 0 / 0.2);
   --d-shadow-2xl: 0 25px 50px -12px oklch(0 0 0 / 0.5);
-  --d-primary-text: var(--primary);
+  --d-warning-text: color-mix(in oklch, var(--d-warning), var(--foreground) 55%);
+  --d-danger-text: color-mix(in oklch, var(--d-danger), var(--foreground) 50%);
+  --d-primary-text: oklch(0.791 0.105 275);
   --d-link: var(--primary);
+  --d-input-subtle: oklch(1 0 0 / 15%);
 }
 
 /* Blossom — blossom */
@@ -1735,10 +1841,10 @@
   --muted-foreground: oklch(0.542 0 0);
   --accent: oklch(0.97 0.02 350);
   --accent-foreground: oklch(0.32 0.07 350);
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.565 0.23 27.325);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
+  --input: oklch(0.63 0 0);
   --ring: oklch(0.556 0.2 350);
   --chart-1: oklch(0.556 0.2 350);
   --chart-2: oklch(0.556 0 0);
@@ -1795,10 +1901,11 @@
   --d-success-text: color-mix(in oklch, var(--d-success), var(--foreground) 42%);
   --d-warning-text: color-mix(in oklch, var(--d-warning), var(--foreground) 42%);
   --d-danger-text: color-mix(in oklch, var(--d-danger), var(--foreground) 30%);
-  --d-primary-text: var(--primary);
+  --d-primary-text: oklch(0.535 0.2 350);
   --d-link-on-muted: var(--d-primary-text);
   --d-link: var(--primary);
   --d-overlay-foreground: var(--background);
+  --d-input-subtle: var(--border);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);
@@ -1820,10 +1927,16 @@
   --muted-foreground: oklch(0.708 0 0);
   --accent: oklch(0.33 0.045 350);
   --accent-foreground: oklch(0.96 0.02 350);
-  --destructive: oklch(0.58 0.2 22.216);
-  --destructive-foreground: oklch(1 0 0);
+  --destructive: a field's message, an
+     invalid label, the destructive alert. It must hold 4.5:1 on the page, a
+     card and the lighter accent surfaces of the house presets, which takes
+     L 0.73 (0.58 was 4.17:1 on the page and 3.01:1 on muted). A solid fill
+     (.btn--destructive, .badge--destructive) then carries dark ink, as
+     Material's dark error colour does. */
+  --destructive: oklch(0.73 0.165 22.216);
+  --destructive-foreground: oklch(0.205 0 0);
   --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
+  --input: oklch(0.61 0 0);
   --ring: oklch(0.716 0.18 350);
   --chart-1: oklch(0.716 0.18 350);
   --chart-2: oklch(0.556 0 0);
@@ -1846,8 +1959,11 @@
   --d-shadow-lg: 0 10px 15px -3px oklch(0 0 0 / 0.3), 0 4px 6px -4px oklch(0 0 0 / 0.2);
   --d-shadow-xl: 0 20px 25px -5px oklch(0 0 0 / 0.3), 0 8px 10px -6px oklch(0 0 0 / 0.2);
   --d-shadow-2xl: 0 25px 50px -12px oklch(0 0 0 / 0.5);
-  --d-primary-text: oklch(0.716 0.18 350);
+  --d-warning-text: color-mix(in oklch, var(--d-warning), var(--foreground) 55%);
+  --d-danger-text: color-mix(in oklch, var(--d-danger), var(--foreground) 50%);
+  --d-primary-text: oklch(0.798 0.138 350);
   --d-link: var(--primary);
+  --d-input-subtle: oklch(1 0 0 / 15%);
 }
 
 /* Citrus — citrus */
@@ -1866,10 +1982,10 @@
   --muted-foreground: oklch(0.542 0 0);
   --accent: oklch(0.97 0.02 130);
   --accent-foreground: oklch(0.32 0.07 130);
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.565 0.23 27.325);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
+  --input: oklch(0.63 0 0);
   --ring: oklch(0.518 0.16 130);
   --chart-1: oklch(0.518 0.16 130);
   --chart-2: oklch(0.556 0 0);
@@ -1926,10 +2042,11 @@
   --d-success-text: color-mix(in oklch, var(--d-success), var(--foreground) 42%);
   --d-warning-text: color-mix(in oklch, var(--d-warning), var(--foreground) 42%);
   --d-danger-text: color-mix(in oklch, var(--d-danger), var(--foreground) 30%);
-  --d-primary-text: var(--primary);
+  --d-primary-text: oklch(0.504 0.135 130);
   --d-link-on-muted: var(--d-primary-text);
   --d-link: var(--primary);
   --d-overlay-foreground: var(--background);
+  --d-input-subtle: var(--border);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);
@@ -1951,10 +2068,16 @@
   --muted-foreground: oklch(0.708 0 0);
   --accent: oklch(0.33 0.045 130);
   --accent-foreground: oklch(0.96 0.02 130);
-  --destructive: oklch(0.58 0.2 22.216);
-  --destructive-foreground: oklch(1 0 0);
+  --destructive: a field's message, an
+     invalid label, the destructive alert. It must hold 4.5:1 on the page, a
+     card and the lighter accent surfaces of the house presets, which takes
+     L 0.73 (0.58 was 4.17:1 on the page and 3.01:1 on muted). A solid fill
+     (.btn--destructive, .badge--destructive) then carries dark ink, as
+     Material's dark error colour does. */
+  --destructive: oklch(0.73 0.165 22.216);
+  --destructive-foreground: oklch(0.205 0 0);
   --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
+  --input: oklch(0.61 0 0);
   --ring: oklch(0.69 0.17 130);
   --chart-1: oklch(0.69 0.17 130);
   --chart-2: oklch(0.556 0 0);
@@ -1977,6 +2100,9 @@
   --d-shadow-lg: 0 10px 15px -3px oklch(0 0 0 / 0.3), 0 4px 6px -4px oklch(0 0 0 / 0.2);
   --d-shadow-xl: 0 20px 25px -5px oklch(0 0 0 / 0.3), 0 8px 10px -6px oklch(0 0 0 / 0.2);
   --d-shadow-2xl: 0 25px 50px -12px oklch(0 0 0 / 0.5);
-  --d-primary-text: var(--primary);
+  --d-warning-text: color-mix(in oklch, var(--d-warning), var(--foreground) 55%);
+  --d-danger-text: color-mix(in oklch, var(--d-danger), var(--foreground) 50%);
+  --d-primary-text: oklch(0.779 0.17 130);
   --d-link: var(--primary);
+  --d-input-subtle: oklch(1 0 0 / 15%);
 }

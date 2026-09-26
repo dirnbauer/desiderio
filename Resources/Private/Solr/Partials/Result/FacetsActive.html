@@ -13,7 +13,7 @@
             <span class="font-medium text-muted-foreground"><f:translate key="solr.facets.narrowedBy" domain="desiderio.labels">Narrowed by</f:translate>:</span>
             <f:for each="{resultSet.facets.used}" as="facet">
                 <f:for each="{facet.allFacetItems.selected}" as="item">
-                    <d:atom.badge href="{s:uri.facet.removeFacetItem(facet: facet, facetItem: item)}" variant="outline" class="facet remove-facet-option solr-ajaxified h-7 rounded-full bg-background px-3 active:translate-y-px dark:border-input dark:bg-input/30 dark:hover:bg-input/50">
+                    <d:atom.badge href="{s:uri.facet.removeFacetItem(facet: facet, facetItem: item)}" variant="outline" class="facet remove-facet-option solr-ajaxified h-7 rounded-full bg-background px-3 active:translate-y-px dark:border-input-subtle dark:bg-input-subtle/30 dark:hover:bg-input-subtle/50">
                         <span class="sr-only"><f:translate key="solr.facets.remove" domain="desiderio.labels">Remove filter</f:translate></span>
                         {facet.label}: {item.label}
                         <span aria-hidden="true">&#215;</span>

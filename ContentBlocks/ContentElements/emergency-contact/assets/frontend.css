@@ -22,7 +22,10 @@
 }
 .emergency-contact__description {
     font-size: var(--d-text-sm);
-    color: var(--muted-foreground);
+    /* Full ink: grey on the card's red tint dropped to 4.23:1 once the card
+       sat on a tinted frame, and what to do in an emergency is not
+       secondary text. */
+    color: var(--foreground);
     margin-block-start: var(--d-spacing-xs);
 }
 .emergency-contact__phone {
@@ -56,7 +59,7 @@ a.emergency-contact__number:focus-visible {
     justify-content: center;
     gap: var(--d-spacing-xs);
     font-size: var(--d-text-sm);
-    color: var(--muted-foreground);
+    color: var(--foreground);
     margin-block-start: var(--d-spacing-sm);
 }
 .emergency-contact__available-icon {

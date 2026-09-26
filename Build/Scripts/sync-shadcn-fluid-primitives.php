@@ -782,7 +782,7 @@ function composeControlClassMap(array $recipes): array
     return [
         'alertDestructive' => 'rounded-md border border-destructive/30 bg-destructive/10 p-4 text-sm text-[var(--d-danger-text)]',
         'buttonDefault' => normalizeClass(composeButtonClass($recipes['button'], 'default', 'default') . ' ' . $controlMarker),
-        'buttonDestructive' => normalizeClass(accessibleDestructiveText(composeButtonClass($recipes['button'], 'destructive', 'default')) . ' ' . $controlMarker),
+        'buttonDestructive' => normalizeClass(composeButtonClass($recipes['button'], 'destructive', 'default') . ' ' . $controlMarker),
         'buttonOutline' => normalizeClass(composeButtonClass($recipes['button'], 'outline', 'default') . ' ' . $controlMarker),
         'captchaImage' => 'mt-3 rounded-md border border-border',
         'card' => normalizeClass($recipes['card']['root'] . ' ' . $cardRootCompatibility),
@@ -1159,10 +1159,11 @@ function renderTabsContent(array $recipe, string $header): string
 }
 
 /**
- * The registry's destructive button puts text-destructive on bg-destructive/10,
- * which measures 4.0:1 in light mode (WCAG AA needs 4.5). Swap the standalone
- * text class for the theme's solved token (--d-danger-text pulls the hue 30%
- * toward --foreground); every state/aria variant keeps its original class.
+ * The registry's destructive button and badge put text-destructive on
+ * bg-destructive/10, which measures 4.0:1 in light mode (WCAG AA needs 4.5).
+ * Swap the standalone text class for the theme's solved token
+ * (--d-danger-text pulls the hue 30% toward --foreground); every state/aria
+ * variant keeps its original class.
  */
 function accessibleDestructiveText(string $class): string
 {
@@ -1285,7 +1286,63 @@ function tokenizeRecipes(array $recipes): array
     $recipes['button'] = hoistBorderColorOutOfBase($recipes['button']);
     $recipes['badge'] = hoistBorderColorOutOfBase($recipes['badge']);
 
+    // Two jobs, two colours. `--input` is the 3:1 boundary that identifies a
+    // text field, select, textarea, checkbox and radio (WCAG 1.4.11), far too
+    // strong for a fill. Every fill, and the edge of a button or a tab (which
+    // their labels identify), use `input-subtle`: shadcn's original --input,
+    // kept as --d-input-subtle in shadcn-theme.css.
+    $recipes = mapRecipeClasses($recipes, subtleInputFill(...));
+    $recipes['button'] = mapRecipeClasses($recipes['button'], subtleInputEdge(...));
+    $recipes['tabs'] = mapRecipeClasses($recipes['tabs'], subtleInputEdge(...));
+    // An inactive tab's label is the foreground at 60%: fine on the page,
+    // 2.4:1 wherever the ink has no headroom (a primary frame). The muted
+    // token is what the theme audit proves on every surface.
+    $recipes['tabs'] = mapRecipeClasses($recipes['tabs'], mutedInactiveTabLabel(...));
+
+    // Every soft destructive variant, wherever it is rendered (the Button and
+    // Badge primitives as well as the form's ControlClass button).
+    $recipes['button']['variants']['destructive'] = accessibleDestructiveText($recipes['button']['variants']['destructive'] ?? '');
+    $recipes['badge']['variants']['destructive'] = accessibleDestructiveText($recipes['badge']['variants']['destructive'] ?? '');
+
     return $recipes;
+}
+
+/**
+ * Applies $map to every class string of a recipe, however deeply nested.
+ *
+ * @param array<array-key, mixed> $recipe
+ * @param callable(string): string $map
+ * @return array<array-key, mixed>
+ */
+function mapRecipeClasses(array $recipe, callable $map): array
+{
+    foreach ($recipe as $key => $value) {
+        if (is_array($value)) {
+            $recipe[$key] = mapRecipeClasses($value, $map);
+        } elseif (is_string($value)) {
+            $recipe[$key] = $map($value);
+        }
+    }
+
+    return $recipe;
+}
+
+/** An unprefixed `text-foreground/60` becomes `text-muted-foreground`. */
+function mutedInactiveTabLabel(string $class): string
+{
+    return preg_replace('/(^|\s)text-foreground\/60(?=\s|$)/', '$1text-muted-foreground', $class) ?? $class;
+}
+
+/** `bg-input`, with any variant prefix and opacity, becomes `bg-input-subtle`. */
+function subtleInputFill(string $class): string
+{
+    return preg_replace('/(^|[\s:])bg-input(?=[\s\/]|$)/', '$1bg-input-subtle', $class) ?? $class;
+}
+
+/** `border-input`, with any variant prefix and opacity, becomes `border-input-subtle`. */
+function subtleInputEdge(string $class): string
+{
+    return preg_replace('/(^|[\s:])border-input(?=[\s\/]|$)/', '$1border-input-subtle', $class) ?? $class;
 }
 
 /**

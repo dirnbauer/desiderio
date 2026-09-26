@@ -13,6 +13,12 @@
  *   T1  every element x b0            x {light,dark} x {390,768,1440}
  *   T2  every element x b6G5977cw     x light        x 390       (JetBrains Mono, widest glyphs)
  *   T3  a computed subset x 15 presets x {light,dark} x 1440
+ *   contrast  every element x 15 presets x {light,dark} x 1440, axe colour
+ *             contrast only — the full colour matrix, for a release or after
+ *             a preset change (not part of `all`; ~8 500 checks, ~10 minutes).
+ *             --frames primary,secondary,accent,card,muted also paints each
+ *             element's section with the Appearance frame an editor can pick,
+ *             and --presets a,b narrows the preset list.
  *
  * 390 sits below the 480px breakpoint so all four max-width tiers fire at once.
  * 768 is the exact width where `max-width:768px` (71 rules) and `min-width:768px`
@@ -48,6 +54,34 @@ const TIER = (flag('tier', 'all') ?? 'all').toLowerCase();
 const ONLY = flag('only');
 const SHOTS = has('shots');
 const CONCURRENCY = Number(flag('concurrency', '6'));
+const FRAMES = (flag('frames', '') ?? '').split(',').map((f) => f.trim()).filter(Boolean);
+const ONLY_PRESETS = (flag('presets', '') ?? '').split(',').map((p) => p.trim()).filter(Boolean);
+
+/** Section classes per Appearance frame, as the Section component renders them. */
+const FRAME_CLASSES = {
+    default: ['bg-background'],
+    muted: ['bg-muted'],
+    card: ['bg-card', 'text-card-foreground'],
+    primary: ['bg-primary', 'text-primary-foreground'],
+    secondary: ['bg-secondary', 'text-secondary-foreground'],
+    accent: ['bg-accent', 'text-accent-foreground'],
+};
+
+async function applyFrame(page, frame) {
+    await page.evaluate(([name, all]) => {
+        const section = document.querySelector('section[data-d-section]');
+        if (!section) return;
+        // A frame swapped after load would otherwise be measured halfway
+        // through every `transition-colors`: text and fills animate from the
+        // page's colours to the band's while axe reads them.
+        const still = document.createElement('style');
+        still.textContent = '*, *::before, *::after { transition: none !important; }';
+        document.head.append(still);
+        section.classList.remove(...Object.values(all).flat());
+        section.classList.add(...all[name]);
+        void section.offsetHeight;
+    }, [frame, FRAME_CLASSES]);
+}
 
 if (!URLS) {
     console.error('Pass --urls <file>. Produce it with:\n  ddev typo3 desiderio:library:urls --site=desiderio --json > /tmp/preview-urls.json');
@@ -105,6 +139,18 @@ function buildMatrix() {
     if (want('t2')) {
         for (const entry of entries) {
             jobs.push({ entry, preset: MONO_PRESET, mode: 'light', width: 390, tier: 't2' });
+        }
+    }
+    if (TIER === 'contrast') {
+        const presets = ONLY_PRESETS.length > 0 ? PRESETS.filter((p) => ONLY_PRESETS.includes(p)) : PRESETS;
+        for (const entry of entries) {
+            for (const preset of presets) {
+                for (const mode of ['light', 'dark']) {
+                    for (const frame of FRAMES.length > 0 ? FRAMES : ['default']) {
+                        jobs.push({ entry, preset, mode, width: 1440, tier: 'contrast', frame });
+                    }
+                }
+            }
         }
     }
     if (want('t3')) {
@@ -175,7 +221,9 @@ for (const [key, bucketJobs] of buckets) {
                     // and setting it unconditionally means a page reused across
                     // presets never keeps the previous one.
                     await applyPreset(page, job.preset);
-                    const findings = await collectFindings(page);
+                    if (job.frame) await applyFrame(page, job.frame);
+                    const contrastOnly = job.tier === 'contrast';
+                    const findings = contrastOnly ? [] : await collectFindings(page);
 
                     let axeViolations = [];
                     try {
@@ -184,7 +232,7 @@ for (const [key, bucketJobs] of buckets) {
                             // neither own nor can fix, and axe reports their
                             // internals as our violations.
                             .exclude('iframe')
-                            .withRules(['color-contrast', 'image-alt', 'heading-order', 'link-name', 'button-name'])
+                            .withRules(contrastOnly ? ['color-contrast'] : ['color-contrast', 'image-alt', 'heading-order', 'link-name', 'button-name'])
                             .analyze();
                         axeViolations = axe.violations.flatMap((violation) =>
                             violation.nodes.slice(0, 3).map((node) => ({
@@ -213,6 +261,7 @@ for (const [key, bucketJobs] of buckets) {
                         mode: job.mode,
                         width: job.width,
                         tier: job.tier,
+                        frame: job.frame ?? 'default',
                         findings: [...findings, ...axeViolations, ...pageErrors.splice(0)],
                     });
                     done++;
@@ -245,6 +294,8 @@ await browser.close();
 
 const summary = writeReport(OUT, results, { elements: entries.length, renders: jobs.length });
 writeFileSync(join(OUT, 'summary.json'), JSON.stringify(summary, null, 2));
+// Every render with findings, for analysis beyond the HTML report.
+writeFileSync(join(OUT, 'findings.json'), JSON.stringify(results.filter((r) => r.findings.length > 0), null, 2));
 
 console.log(`\n${summary.totals.renders} renders, ${summary.totals.findings} findings across ${summary.totals.elementsWithFindings} elements`);
 for (const [check, count] of Object.entries(summary.byCheck).sort((a, b) => b[1] - a[1])) {

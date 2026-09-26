@@ -52,6 +52,53 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 - The seams between sections that 4.7.0 describes never rendered (every
   section follows its `#c<uid>` anchor), and the page reads better without
   them: the dead rule is gone.
+- The primary frame is a theme of its own. Painting the section was not
+  enough: every element inside kept drawing with page tokens, so a card in
+  a primary frame kept its white surface while its text took the frame's
+  white ink (1.03:1), and grey secondary text sat on the brand colour
+  (3.56:1). The frame now re-points every token for its content: cards and
+  chips shade away from the ink, secondary text, links and status text take
+  the full ink, a default button or a checked box is the ink with the frame
+  colour as its label, and the white-pill overrides for buttons are gone.
+  The house presets tune their primary to exactly 4.55:1 against its
+  foreground, which left no room for the tints elements lay under text, so
+  the frame paints the brand colour 12% deeper and moves its ink further
+  out: 6.7:1 at worst. It also paints the section itself, so an element
+  whose own CSS painted its section (a highlight variant, a transparent
+  navbar, the utility and announcement bars) shows the frame the editor
+  picked instead of white text on a light surface. Secondary and accent
+  frames keep the page's tokens; brand-coloured text in them takes the ink
+  solved for tinted surfaces, and their heading, copy and link colours no
+  longer override an element's own styling (a pill link turned dark on
+  teal).
+- An inactive tab's label is `text-muted-foreground` instead of the
+  registry's 60% foreground, which fell to 2.4:1 in a primary frame.
+- `--d-primary-text`, the brand ink for text on brand tints, is solved for a
+  tint that lies on a tinted surface too: a year or step badge inside a
+  panel or a secondary/accent frame measured 3.9-4.3:1 in eleven presets.
+  The preset generator adds those surfaces to its solver, and the olive and
+  mist presets carry solved values instead of `var(--primary)`.
+- `--input` is the boundary of a form field and holds 3:1 on every surface
+  (WCAG 1.4.11) in all fifteen presets: oklch(0.63) in light mode and an
+  opaque oklch(0.61) in dark mode, tinted in the olive and mist presets.
+  shadcn's 0.922 was 1.26:1 on white. Fills and the edges of outline
+  buttons, tabs and filter chips, which their labels identify, keep the old
+  colour as the new `--d-input-subtle` token (Tailwind `input-subtle`); the
+  primitives generator rewrites the registry's `bg-input` and the buttons'
+  and tabs' `border-input` to it. Own templates that fill with
+  `bg-input/…` should do the same.
+- The focus ring is darker than the field boundary in light mode (0.45) and
+  lighter in dark mode (0.75), so a focused field's edge visibly changes.
+  Focus on ext:form fields turns the edge to the ring colour like every
+  other control; it kept the field grey and showed a 24% halo.
+- `--destructive` carries text first. Dark mode uses oklch(0.73 0.165 22)
+  (0.58 put error text at 4.17:1 on the page and 3.01:1 on muted), with dark
+  ink as `--destructive-foreground` for the solid legacy button and badge;
+  light mode moves from 0.577 to 0.565 so error text also clears a muted
+  surface. The soft destructive Button and Badge primitives take
+  `--d-danger-text` like the form's button, the destructive alert's
+  description is no longer faded to 90%, and dark mode pulls warning and
+  danger text further toward the foreground (55% and 50%).
 
 ### Fixed
 
@@ -65,11 +112,30 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
   glows stacked on one spot, in all fifteen presets, light and dark.
 - A classic element without heading and subheading rendered an empty intro
   that pushed its content away from the top of the section.
+- Powermail forms no longer redefine `--input` as a 24% foreground mix,
+  which put their field borders at 2.35:1.
+- Emergency contact: the description and availability are full ink, and a
+  pricing slider's active tier shows its features in full ink. Grey text on
+  their tinted cards fell to 4.23:1 and 4.33:1 once they sat on a tinted
+  frame.
+- The theme's comments cited WCAG 2.4.11 for focus-ring contrast; in WCAG
+  2.2 that is Focus Not Obscured. The requirement is 1.4.11.
 
 ### Added
 
 - `Build/VisualQa/rhythm.mjs`: measures the space above and below every
   element's content at each width and fails on outliers; runs in Browser QA.
+- `audit-theme-contrast.php` measures every token pair of all fifteen
+  presets in light and dark mode again inside the primary frame (as its own
+  theme), on the secondary and accent frames and on panels, plus text on the
+  soft destructive tint at rest and on hover: 6,720 checks. It reads the
+  glass header, the nav ink, the horizon and the opening-section pulls from
+  22-modern-base.css and the frames from 07-content-frames.css, so it
+  measures what ships, and it fails when a stylesheet it does not model
+  redeclares a colour token. It runs as its own CI job.
+- `Build/VisualQa/run.mjs --tier contrast` runs axe's colour-contrast rule
+  on every element; `--frames primary,secondary,accent` repaints each
+  element's section in those frames and `--presets` limits the presets.
 
 - Demo contact data reaches no one. The styleguide, the element library
   and the demo value generator gave real addresses and a real phone number:

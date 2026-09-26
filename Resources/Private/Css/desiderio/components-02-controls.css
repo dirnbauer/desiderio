@@ -73,7 +73,8 @@
 
 .btn--outline {
   background-color: transparent;
-  border-color: var(--input);
+  /* A labelled button, not a field: the quiet edge (see shadcn-theme.css). */
+  border-color: var(--d-input-subtle);
   color: var(--foreground);
 }
 
@@ -201,8 +202,10 @@
 .desiderio-form .form-control:focus-visible,
 .desiderio-form .form-select:focus-visible,
 .desiderio-form textarea:focus-visible {
-  border-color: var(--input);
-  box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 24%, transparent);
+  /* The edge turns to the ring colour, as on every other control: the old
+     24% halo on an unchanged edge was all but invisible (WCAG 2.4.7). */
+  border-color: var(--ring);
+  box-shadow: 0 0 0 var(--d-ring-width, 3px) color-mix(in oklch, var(--ring) 50%, transparent);
 }
 
 .desiderio-form .form-check,
@@ -277,7 +280,7 @@
 }
 
 .desiderio-form .btn-outline-primary {
-  border-color: var(--input);
+  border-color: var(--d-input-subtle);
   background-color: var(--background);
   color: var(--foreground);
 }
@@ -450,10 +453,8 @@
 .d-powermail {
   /* +1px on control text (inputs/buttons/selects use --d-control-text, was 14px) */
   --d-control-text: 0.9375rem;
-  /* the bare --input border is very faint; mix in the foreground so inputs,
-     selects and the radio/checkbox outlines read clearly in BOTH modes (both
-     --foreground and --border flip with the theme, so this one value adapts) */
-  --input: color-mix(in oklch, var(--foreground) 24%, var(--border));
+  /* No local --input: the theme's own is the 3:1 field boundary now. The
+     24% foreground mix that used to live here measured 2.35:1. */
 }
 /* nudge labels, option text, hints, errors and the card description up ~1px */
 .d-powermail [class*="text-xs"] {

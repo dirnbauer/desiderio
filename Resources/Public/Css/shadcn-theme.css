@@ -27,11 +27,20 @@
   --muted-foreground: oklch(0.542 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
+  /* 0.565, not shadcn's 0.577: error text must hold 4.5:1 on a muted
+     surface too (a form in a muted section), and 0.577 gave 4.37:1 there. */
+  --destructive: oklch(0.565 0.23 27.325);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.660 0 0); /* was 0.708 = 2.59:1 on white; WCAG 2.4.11 wants 3:1 */
+  /* The boundary of a text field, select, textarea, checkbox and radio:
+     their fill is transparent, so this edge alone identifies them and needs
+     3:1 against every surface a form sits on (WCAG 1.4.11). shadcn's 0.922
+     was 1.26:1 on white. Fills and the quiet edges of outline buttons and
+     tabs keep the old colour as --d-input-subtle. */
+  --input: oklch(0.63 0 0);
+  /* The focus ring: 3:1 on every surface (1.4.11), and darker than --input,
+     so a focused field's edge visibly changes rather than keeping its grey. */
+  --ring: oklch(0.45 0 0);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -95,14 +104,19 @@
   --muted-foreground: oklch(0.708 0 0);
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
-  /* L lowered from shadcn's 0.704: white --destructive-foreground on that
-     surface is 2.89:1, and .btn--destructive / .badge--destructive both
-     paint label text with it. 0.58 keeps the hue and clears 4.5:1. */
-  --destructive: oklch(0.58 0.2 22.216);
-  --destructive-foreground: oklch(1 0 0);
+  /* Error text is the main job of --destructive: a field's message, an
+     invalid label, the destructive alert. It must hold 4.5:1 on the page, a
+     card and the lighter accent surfaces of the house presets, which takes
+     L 0.73 (0.58 was 4.17:1 on the page and 3.01:1 on muted). A solid fill
+     (.btn--destructive, .badge--destructive) then carries dark ink, as
+     Material's dark error colour does. */
+  --destructive: oklch(0.73 0.165 22.216);
+  --destructive-foreground: oklch(0.205 0 0);
   --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  /* Opaque, so the field boundary holds 3:1 on the page, a card and the
+     house presets' lighter accent surfaces alike (15% white was 1.47:1). */
+  --input: oklch(0.61 0 0);
+  --ring: oklch(0.75 0 0); /* lighter than --input, see :root */
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -141,10 +155,10 @@ body[data-shadcn-preset="b4hb38Fyj"] {
   --muted-foreground: oklch(0.538 0.031 107.3);
   --accent: oklch(0.966 0.005 106.5);
   --accent-foreground: oklch(0.228 0.013 107.4);
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.565 0.23 27.325); /* see :root */
   --border: oklch(0.93 0.007 106.5);
-  --input: oklch(0.93 0.007 106.5);
-  --ring: oklch(0.655 0.021 106.9); /* was 0.737 = 2.32:1 on white; WCAG 2.4.11 wants 3:1 */
+  --input: oklch(0.63 0.022 107.3);
+  --ring: oklch(0.45 0.021 106.9); /* see :root */
   --chart-1: oklch(0.808 0.114 19.571);
   --chart-2: oklch(0.637 0.237 25.331);
   --chart-3: oklch(0.577 0.245 27.325);
@@ -163,7 +177,7 @@ body[data-shadcn-preset="b4hb38Fyj"] {
   --d-font-heading: var(--d-font-sans);
   /* The teal primary already clears 4.5:1 on the muted/secondary/accent boxes,
      so brand links there keep the full primary instead of the 35% pull. */
-  --d-primary-text: var(--primary);
+  --d-primary-text: oklch(0.491 0.096 186.391); /* solved for brand text on a 10%/20% primary tint over muted and accent (panels, frames) */
 }
 
 .dark body[data-shadcn-preset="b4hb38Fyj"] {
@@ -179,17 +193,17 @@ body[data-shadcn-preset="b4hb38Fyj"] {
      sidebar-primary pair, which upstream already solved for exactly that role. */
   --primary: oklch(0.704 0.14 182.503);
   --primary-foreground: oklch(0.277 0.046 192.524);
-  --d-primary-text: var(--primary);
+  --d-primary-text: oklch(0.732 0.14 182.503); /* solved for brand text on a 10%/20% primary tint over muted and accent (panels, frames) */
   --secondary: oklch(0.274 0.006 286.033);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.286 0.016 107.4);
   --muted-foreground: oklch(0.737 0.021 106.9);
   --accent: oklch(0.286 0.016 107.4);
   --accent-foreground: oklch(0.988 0.003 106.5);
-  --destructive: oklch(0.58 0.2 22.216); /* was 0.704: white label text was 2.89:1 */
+  --destructive: oklch(0.73 0.165 22.216); /* see .dark */
   --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.58 0.031 107.3);
+  --input: oklch(0.6 0.015 106.9); /* see .dark */
+  --ring: oklch(0.75 0.031 107.3); /* see .dark */
   --chart-1: oklch(0.808 0.114 19.571);
   --chart-2: oklch(0.637 0.237 25.331);
   --chart-3: oklch(0.577 0.245 27.325);
@@ -220,10 +234,10 @@ body[data-shadcn-preset="b3IWPgRwnI"] {
   --muted-foreground: oklch(0.535 0.021 213.5);
   --accent: oklch(0.963 0.002 197.1);
   --accent-foreground: oklch(0.218 0.008 223.9);
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.565 0.23 27.325); /* see :root */
   --border: oklch(0.925 0.005 214.3);
-  --input: oklch(0.925 0.005 214.3);
-  --ring: oklch(0.655 0.014 214.4); /* was 0.723 = 2.44:1 on white; WCAG 2.4.11 wants 3:1 */
+  --input: oklch(0.63 0.015 213.5);
+  --ring: oklch(0.45 0.014 214.4); /* see :root */
   --chart-1: oklch(0.808 0.114 19.571);
   --chart-2: oklch(0.637 0.237 25.331);
   --chart-3: oklch(0.577 0.245 27.325);
@@ -258,17 +272,17 @@ body[data-shadcn-preset="b3IWPgRwnI"] {
      sidebar-primary pair, which upstream already solved for exactly that role. */
   --primary: oklch(0.685 0.169 237.323);
   --primary-foreground: oklch(0.293 0.066 243.157);
-  --d-primary-text: var(--primary);
+  --d-primary-text: oklch(0.731 0.169 237.323); /* solved for brand text on a 10%/20% primary tint over muted and accent (panels, frames) */
   --secondary: oklch(0.274 0.006 286.033);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.275 0.011 216.9);
   --muted-foreground: oklch(0.723 0.014 214.4);
   --accent: oklch(0.275 0.011 216.9);
   --accent-foreground: oklch(0.987 0.002 197.1);
-  --destructive: oklch(0.58 0.2 22.216); /* was 0.704: white label text was 2.89:1 */
+  --destructive: oklch(0.73 0.165 22.216); /* see .dark */
   --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.56 0.021 213.5);
+  --input: oklch(0.59 0.01 214.4); /* see .dark */
+  --ring: oklch(0.75 0.021 213.5); /* see .dark */
   --chart-1: oklch(0.808 0.114 19.571);
   --chart-2: oklch(0.637 0.237 25.331);
   --chart-3: oklch(0.577 0.245 27.325);
@@ -299,10 +313,10 @@ body[data-shadcn-preset="b6G5977cw"] {
   --muted-foreground: oklch(0.538 0.031 107.3);
   --accent: oklch(0.966 0.005 106.5);
   --accent-foreground: oklch(0.228 0.013 107.4);
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.565 0.23 27.325); /* see :root */
   --border: oklch(0.93 0.007 106.5);
-  --input: oklch(0.93 0.007 106.5);
-  --ring: oklch(0.655 0.021 106.9); /* was 0.737 = 2.32:1 on white; WCAG 2.4.11 wants 3:1 */
+  --input: oklch(0.63 0.022 107.3);
+  --ring: oklch(0.45 0.021 106.9); /* see :root */
   --chart-1: oklch(0.905 0.182 98.111);
   --chart-2: oklch(0.795 0.184 86.047);
   --chart-3: oklch(0.681 0.162 75.834);
@@ -344,10 +358,10 @@ body[data-shadcn-preset="b6G5977cw"] {
   --muted-foreground: oklch(0.737 0.021 106.9);
   --accent: oklch(0.286 0.016 107.4);
   --accent-foreground: oklch(0.988 0.003 106.5);
-  --destructive: oklch(0.58 0.2 22.216); /* was 0.704: white label text was 2.89:1 */
+  --destructive: oklch(0.73 0.165 22.216); /* see .dark */
   --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.58 0.031 107.3);
+  --input: oklch(0.6 0.015 106.9); /* see .dark */
+  --ring: oklch(0.75 0.031 107.3); /* see .dark */
   --chart-1: oklch(0.905 0.182 98.111);
   --chart-2: oklch(0.795 0.184 86.047);
   --chart-3: oklch(0.681 0.162 75.834);
@@ -378,10 +392,10 @@ body[data-shadcn-preset="b27GcrRo"] {
   --muted-foreground: oklch(0.542 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.565 0.23 27.325); /* see :root */
   --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.660 0 0); /* was 0.708 = 2.59:1 on white; WCAG 2.4.11 wants 3:1 */
+  --input: oklch(0.63 0 0);
+  --ring: oklch(0.45 0 0); /* see :root */
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -413,10 +427,10 @@ body[data-shadcn-preset="b27GcrRo"] {
   --muted-foreground: oklch(0.708 0 0);
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.58 0.2 22.216); /* was 0.704: white label text was 2.89:1 */
+  --destructive: oklch(0.73 0.165 22.216); /* see .dark */
   --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --input: oklch(0.61 0 0); /* see .dark */
+  --ring: oklch(0.75 0 0); /* see .dark */
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -445,7 +459,7 @@ body[data-shadcn-preset="aurora"] {
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-ring: oklch(0.554 0.2 293);
   --chart-1: oklch(0.554 0.2 293);
-  --d-primary-text: var(--primary);
+  --d-primary-text: oklch(0.534 0.2 293);
   --radius: 0.625rem;
   --d-font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --d-font-heading: var(--d-font-sans);
@@ -464,7 +478,7 @@ body[data-shadcn-preset="aurora"] {
   --sidebar-primary-foreground: oklch(0.329 0.035 293);
   --sidebar-ring: oklch(0.715 0.18 293);
   --chart-1: oklch(0.715 0.18 293);
-  --d-primary-text: oklch(0.71 0.167 293);
+  --d-primary-text: oklch(0.793 0.115 293);
 }
 
 body[data-shadcn-preset="marine"] {
@@ -477,7 +491,7 @@ body[data-shadcn-preset="marine"] {
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-ring: oklch(0.539 0.2 259);
   --chart-1: oklch(0.539 0.2 259);
-  --d-primary-text: var(--primary);
+  --d-primary-text: oklch(0.52 0.2 259);
   --radius: 0.5rem;
   --d-font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
   --d-font-heading: var(--d-font-sans);
@@ -500,7 +514,7 @@ body[data-shadcn-preset="marine"] {
   --sidebar-primary-foreground: oklch(0.33 0.035 259);
   --sidebar-ring: oklch(0.71 0.18 259);
   --chart-1: oklch(0.71 0.18 259);
-  --d-primary-text: var(--primary);
+  --d-primary-text: oklch(0.788 0.107 259);
 }
 
 body[data-shadcn-preset="forest"] {
@@ -513,7 +527,7 @@ body[data-shadcn-preset="forest"] {
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-ring: oklch(0.484 0.2 158);
   --chart-1: oklch(0.484 0.2 158);
-  --d-primary-text: var(--primary);
+  --d-primary-text: oklch(0.499 0.116 158);
   --radius: 0.375rem;
   --d-font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --d-font-heading: var(--d-font-sans);
@@ -532,7 +546,7 @@ body[data-shadcn-preset="forest"] {
   --sidebar-primary-foreground: oklch(0.331 0.035 158);
   --sidebar-ring: oklch(0.677 0.18 158);
   --chart-1: oklch(0.677 0.18 158);
-  --d-primary-text: oklch(0.685 0.16 158);
+  --d-primary-text: oklch(0.77 0.18 158);
 }
 
 body[data-shadcn-preset="ember"] {
@@ -545,7 +559,7 @@ body[data-shadcn-preset="ember"] {
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-ring: oklch(0.545 0.2 55);
   --chart-1: oklch(0.545 0.2 55);
-  --d-primary-text: oklch(0.541 0.133 55);
+  --d-primary-text: oklch(0.52 0.128 55);
   --radius: 0.75rem;
   --d-font-sans: "Nunito Sans Variable", ui-sans-serif, system-ui, sans-serif;
   --d-font-heading: var(--d-font-sans);
@@ -568,7 +582,7 @@ body[data-shadcn-preset="ember"] {
   --sidebar-primary-foreground: oklch(0.329 0.035 55);
   --sidebar-ring: oklch(0.71 0.18 55);
   --chart-1: oklch(0.71 0.18 55);
-  --d-primary-text: var(--primary);
+  --d-primary-text: oklch(0.793 0.138 55);
 }
 
 body[data-shadcn-preset="bloom"] {
@@ -581,7 +595,7 @@ body[data-shadcn-preset="bloom"] {
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-ring: oklch(0.554 0.2 12);
   --chart-1: oklch(0.554 0.2 12);
-  --d-primary-text: oklch(0.554 0.2 12);
+  --d-primary-text: oklch(0.532 0.2 12);
   --radius: 1rem;
   --d-font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --d-font-heading: var(--d-font-sans);
@@ -600,7 +614,7 @@ body[data-shadcn-preset="bloom"] {
   --sidebar-primary-foreground: oklch(0.329 0.035 12);
   --sidebar-ring: oklch(0.716 0.18 12);
   --chart-1: oklch(0.716 0.18 12);
-  --d-primary-text: var(--primary);
+  --d-primary-text: oklch(0.795 0.12 12);
 }
 
 body[data-shadcn-preset="lagoon"] {
@@ -613,7 +627,7 @@ body[data-shadcn-preset="lagoon"] {
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-ring: oklch(0.468 0.2 185);
   --chart-1: oklch(0.468 0.2 185);
-  --d-primary-text: var(--primary);
+  --d-primary-text: oklch(0.502 0.088 185);
   --radius: 0.5rem;
   --d-font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
   --d-font-heading: var(--d-font-sans);
@@ -636,7 +650,7 @@ body[data-shadcn-preset="lagoon"] {
   --sidebar-primary-foreground: oklch(0.331 0.035 185);
   --sidebar-ring: oklch(0.661 0.18 185);
   --chart-1: oklch(0.661 0.18 185);
-  --d-primary-text: oklch(0.689 0.121 185);
+  --d-primary-text: oklch(0.777 0.136 185);
 }
 
 body[data-shadcn-preset="gold"] {
@@ -649,7 +663,7 @@ body[data-shadcn-preset="gold"] {
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-ring: oklch(0.533 0.16 85);
   --chart-1: oklch(0.533 0.16 85);
-  --d-primary-text: var(--primary);
+  --d-primary-text: oklch(0.516 0.105 85);
   --radius: 0.375rem;
   --d-font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --d-font-heading: var(--d-font-sans);
@@ -668,7 +682,7 @@ body[data-shadcn-preset="gold"] {
   --sidebar-primary-foreground: oklch(0.33 0.05 85);
   --sidebar-ring: oklch(0.7 0.17 85);
   --chart-1: oklch(0.7 0.17 85);
-  --d-primary-text: oklch(0.701 0.143 85);
+  --d-primary-text: oklch(0.79 0.161 85);
 }
 
 body[data-shadcn-preset="midnight"] {
@@ -681,7 +695,7 @@ body[data-shadcn-preset="midnight"] {
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-ring: oklch(0.547 0.2 275);
   --chart-1: oklch(0.547 0.2 275);
-  --d-primary-text: var(--primary);
+  --d-primary-text: oklch(0.528 0.2 275);
   --radius: 0.625rem;
   --d-font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --d-font-heading: var(--d-font-sans);
@@ -704,7 +718,7 @@ body[data-shadcn-preset="midnight"] {
   --sidebar-primary-foreground: oklch(0.33 0.035 275);
   --sidebar-ring: oklch(0.716 0.18 275);
   --chart-1: oklch(0.716 0.18 275);
-  --d-primary-text: var(--primary);
+  --d-primary-text: oklch(0.791 0.105 275);
 }
 
 body[data-shadcn-preset="blossom"] {
@@ -717,7 +731,7 @@ body[data-shadcn-preset="blossom"] {
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-ring: oklch(0.556 0.2 350);
   --chart-1: oklch(0.556 0.2 350);
-  --d-primary-text: var(--primary);
+  --d-primary-text: oklch(0.535 0.2 350);
   --radius: 0.75rem;
   --d-font-sans: "Nunito Sans Variable", ui-sans-serif, system-ui, sans-serif;
   --d-font-heading: var(--d-font-sans);
@@ -736,7 +750,7 @@ body[data-shadcn-preset="blossom"] {
   --sidebar-primary-foreground: oklch(0.328 0.035 350);
   --sidebar-ring: oklch(0.716 0.18 350);
   --chart-1: oklch(0.716 0.18 350);
-  --d-primary-text: oklch(0.716 0.18 350);
+  --d-primary-text: oklch(0.798 0.138 350);
 }
 
 body[data-shadcn-preset="citrus"] {
@@ -749,7 +763,7 @@ body[data-shadcn-preset="citrus"] {
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-ring: oklch(0.518 0.16 130);
   --chart-1: oklch(0.518 0.16 130);
-  --d-primary-text: var(--primary);
+  --d-primary-text: oklch(0.504 0.135 130);
   --radius: 0.3rem;
   --d-font-sans: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   --d-font-heading: var(--d-font-sans);
@@ -772,7 +786,7 @@ body[data-shadcn-preset="citrus"] {
   --sidebar-primary-foreground: oklch(0.33 0.05 130);
   --sidebar-ring: oklch(0.69 0.17 130);
   --chart-1: oklch(0.69 0.17 130);
-  --d-primary-text: var(--primary);
+  --d-primary-text: oklch(0.779 0.17 130);
 }
 
 /* === END Desiderio house presets === */
@@ -915,6 +929,11 @@ body {
      preset and scheme. NOT --primary-foreground — that is dark in the bright
      amber/lime presets and vanishes on a dark scrim. */
   --d-overlay-foreground: var(--background);
+  /* shadcn's original --input, kept for what it still suits: the fill of a
+     field in dark mode (dark:bg-input-subtle/30), a disabled field, and the
+     quiet edge of an outline button or an active tab, which their labels
+     identify. In every shadcn base it equals --border in light mode. */
+  --d-input-subtle: var(--border);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);
@@ -1004,4 +1023,12 @@ body {
 .dark body {
   --d-primary-text: color-mix(in oklch, var(--primary), oklch(1 0 none) 35%);
   --d-link: var(--primary);
+  --d-input-subtle: oklch(1 0 0 / 15%);
+  /* Status text needs a stronger pull in dark mode: the house presets'
+     secondary and accent surfaces are lighter than the page (L 0.33), and a
+     painted band in those colours put warning text at 3.40:1 and the soft
+     destructive button's hover label at 3.88:1. Toward --foreground is
+     toward white here, so the stronger pull only adds contrast. */
+  --d-warning-text: color-mix(in oklch, var(--d-warning), var(--foreground) 55%);
+  --d-danger-text: color-mix(in oklch, var(--d-danger), var(--foreground) 50%);
 }

@@ -198,6 +198,25 @@ jobs:
           TYPO3_PATH_ROOT: ${{ github.workspace }}/Build/Functional/document-root
         run: php -d memory_limit=1G vendor/bin/phpunit -c Build/phpunit/FunctionalTests.xml --testdox
 
+  theme-contrast:
+    name: Theme contrast (WCAG 2.2 AA, every preset, frame and panel)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.4"
+          coverage: none
+
+      # Token pairs of all fifteen presets in light and dark mode, inside the
+      # painted frames and the panels, plus the glass header and the horizon
+      # as 22-modern-base.css composes them. Fails on any required pair below
+      # WCAG 2.2 AA and on a colour token redeclared where it is not measured.
+      - name: Audit theme contrast
+        run: php Build/Scripts/audit-theme-contrast.php
+
   generated-assets:
     name: Generated assets are in sync with sources
     runs-on: ubuntu-24.04

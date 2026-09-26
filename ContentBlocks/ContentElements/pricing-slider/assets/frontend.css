@@ -12,6 +12,9 @@
 .pricing-slider__volume { font-size: var(--d-text-sm); font-weight: var(--d-weight-semibold); }
 .pricing-slider__price { font-size: var(--d-text-2xl); font-weight: var(--d-weight-display); color: var(--primary); }
 .pricing-slider__features { font-size: var(--d-text-xs); color: var(--muted-foreground); }
+/* The active tier's tint costs grey 12px text its margin on a tinted frame
+   (4.33:1); the chosen tier's features take the full ink. */
+.pricing-slider__tier--active .pricing-slider__features { color: var(--foreground); }
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */
 .pricing-slider__intro {

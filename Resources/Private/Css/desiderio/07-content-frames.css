@@ -44,53 +44,151 @@
     text-underline-offset: 0.25rem;
 }
 
+/* ------------------------------------------------------------------ */
+/*  Painted sections (Appearance > Frame)                              */
+/* ------------------------------------------------------------------ */
+
+/* The primary band inverts the page: the brand colour becomes the surface
+   and its foreground the ink. Painting the section alone was not enough.
+   Every element inside draws with page tokens, so a card kept its white
+   surface while its text took the band's white ink (1.03:1), and secondary
+   text stayed page grey on the brand colour (3.56:1). So the band re-points
+   the whole token set for everything inside it, the way the panels in
+   22-modern-base.css re-point --background.
+
+   Build/Scripts/audit-theme-contrast.php measures the palette in all fifteen
+   presets, light and dark. What shapes it:
+   - The house presets tune --primary-foreground on --primary to 4.55:1,
+     which leaves no room for the tints elements lay under text (a chip, a
+     year badge, an error box). The band is therefore the brand colour 12%
+     deeper, and its ink moves 40% further out, which gives 6.7:1 at worst:
+     ink on a 12% ink tint still clears 5:1. Secondary text, links and
+     status text take the full ink.
+   - Surfaces inside the band (cards, chips, hover fills) move away from the
+     ink, so text on them only gains contrast. The ink is light in light
+     mode and dark in dark mode in every preset, so the band and its
+     surfaces move toward black in light mode and toward white in dark mode,
+     and the ink the other way.
+   - The band paints the section itself at two-class specificity, so an
+     element whose own CSS paints its section (a highlight's variant, a
+     transparent navbar) still shows the frame the editor picked.
+   - The --d-* aliases resolve once on <body>. The band re-points each one,
+     or it would keep the page's value. */
 .desiderio-section.bg-primary {
-    color: var(--primary-foreground);
+    --d-band-shade: oklch(0 0 none);
+    --d-band-ink-end: oklch(1 0 none);
+    --d-band: color-mix(in oklch, var(--primary) 88%, var(--d-band-shade));
+    --d-band-ink: color-mix(in oklch, var(--primary-foreground) 60%, var(--d-band-ink-end));
+    background-color: var(--d-band);
+    color: var(--d-band-ink);
 }
 
+.dark .desiderio-section.bg-primary {
+    --d-band-shade: oklch(1 0 none);
+    --d-band-ink-end: oklch(0 0 none);
+}
+
+/* On the children, not on the section: the section paints itself with the
+   brand's --primary, which the band re-points to the ink. */
+.desiderio-section.bg-primary > * {
+    --background: var(--d-band);
+    --foreground: var(--d-band-ink);
+    --card: color-mix(in oklch, var(--d-band) 90%, var(--d-band-shade));
+    --card-foreground: var(--d-band-ink);
+    --popover: var(--card);
+    --popover-foreground: var(--d-band-ink);
+    --muted: color-mix(in oklch, var(--d-band) 84%, var(--d-band-shade));
+    --muted-foreground: var(--d-band-ink);
+    --secondary: var(--muted);
+    --secondary-foreground: var(--d-band-ink);
+    --accent: var(--muted);
+    --accent-foreground: var(--d-band-ink);
+    /* A default button, a checked box, a progress value: ink on the band,
+       label in the band colour. */
+    --primary: var(--d-band-ink);
+    --primary-foreground: var(--d-band);
+    /* Error text and an invalid field's edge take the ink: red on the brand
+       colour does not hold 4.5:1, and the message itself says what is wrong. */
+    --destructive: var(--d-band-ink);
+    --destructive-foreground: var(--d-band);
+    --border: color-mix(in oklch, var(--d-band-ink) 24%, transparent);
+    --input: color-mix(in oklch, var(--d-band-ink) 80%, var(--d-band));
+    --ring: var(--d-band-ink);
+    --d-input-subtle: color-mix(in oklch, var(--d-band-shade) 18%, transparent);
+    --d-background: var(--background);
+    --d-foreground: var(--foreground);
+    --d-card: var(--card);
+    --d-popover: var(--popover);
+    --d-primary: var(--primary);
+    --d-primary-foreground: var(--primary-foreground);
+    --d-accent: var(--accent);
+    --d-accent-foreground: var(--accent-foreground);
+    --d-muted: var(--muted);
+    --d-muted-foreground: var(--muted-foreground);
+    --d-border: var(--border);
+    --d-ring: var(--ring);
+    --d-link: var(--d-band-ink);
+    --d-link-on-muted: var(--d-band-ink);
+    --d-primary-text: var(--d-band-ink);
+    --d-overlay-foreground: var(--d-band);
+    --d-info: var(--d-band-ink);
+    --d-success: var(--d-band-ink);
+    --d-warning: var(--d-band-ink);
+    --d-danger: var(--d-band-ink);
+    --d-info-text: var(--d-band-ink);
+    --d-success-text: var(--d-band-ink);
+    --d-warning-text: var(--d-band-ink);
+    --d-danger-text: var(--d-band-ink);
+    --d-info-muted: var(--muted);
+    --d-success-muted: var(--muted);
+    --d-warning-muted: var(--muted);
+    --d-danger-muted: var(--muted);
+}
+
+/* The soft destructive button and badge tint toward --destructive, which
+   is the ink here; tint away from it instead so the label keeps its
+   contrast. */
+.desiderio-section.bg-primary :is([data-slot="button"], [data-slot="badge"])[data-variant="destructive"] {
+    background-color: color-mix(in oklch, var(--d-band-shade) 16%, transparent);
+}
+
+/* Secondary and accent bands keep the page's polarity, so the page's tokens
+   hold on them; brand ink takes the ink solved for tinted surfaces. Their
+   heading, copy and link colours below are zero-specificity: an element's
+   own CSS (a link painted as a pill, a highlighted card) must win over them,
+   as it does on the page. */
 .desiderio-section.bg-secondary {
     color: var(--secondary-foreground);
+    --d-link: var(--d-link-on-muted);
 }
 
 .desiderio-section.bg-accent {
     color: var(--accent-foreground);
+    --d-link: var(--d-link-on-muted);
 }
 
-.desiderio-section.bg-primary :where(h1, h2, h3, h4, h5, h6) {
-    color: var(--primary-foreground);
-}
-
-.desiderio-section.bg-secondary :where(h1, h2, h3, h4, h5, h6) {
+:where(.desiderio-section.bg-secondary) :where(h1, h2, h3, h4, h5, h6) {
     color: var(--secondary-foreground);
 }
 
-.desiderio-section.bg-accent :where(h1, h2, h3, h4, h5, h6) {
+:where(.desiderio-section.bg-accent) :where(h1, h2, h3, h4, h5, h6) {
     color: var(--accent-foreground);
 }
 
-.desiderio-section.bg-primary :where(p, li, figcaption) {
-    color: color-mix(in oklch, var(--primary-foreground) 88%, transparent);
-}
-
-.desiderio-section.bg-secondary :where(p, li, figcaption) {
+:where(.desiderio-section.bg-secondary) :where(p, li, figcaption) {
     color: color-mix(in oklch, var(--secondary-foreground) 86%, transparent);
 }
 
-.desiderio-section.bg-accent :where(p, li, figcaption) {
+:where(.desiderio-section.bg-accent) :where(p, li, figcaption) {
     color: color-mix(in oklch, var(--accent-foreground) 86%, transparent);
 }
 
-.desiderio-section.bg-primary :where(a:not([data-slot="button"])) {
-    color: var(--primary-foreground);
-    text-decoration-color: color-mix(in oklch, var(--primary-foreground) 70%, transparent);
-}
-
-.desiderio-section.bg-secondary :where(a:not([data-slot="button"])) {
+:where(.desiderio-section.bg-secondary) :where(a:not([data-slot="button"])) {
     color: var(--secondary-foreground);
     text-decoration-color: color-mix(in oklch, var(--secondary-foreground) 70%, transparent);
 }
 
-.desiderio-section.bg-accent :where(a:not([data-slot="button"])) {
+:where(.desiderio-section.bg-accent) :where(a:not([data-slot="button"])) {
     color: var(--accent-foreground);
     text-decoration-color: color-mix(in oklch, var(--accent-foreground) 70%, transparent);
 }
@@ -99,35 +197,6 @@
 .desiderio-section.bg-secondary [data-slot="button"],
 .desiderio-section.bg-accent [data-slot="button"] {
     text-decoration-line: none;
-}
-
-.desiderio-section.bg-primary [data-slot="button"][data-variant="default"],
-.desiderio-section.bg-primary [data-slot="button"][data-variant="secondary"],
-.desiderio-section.bg-primary [data-slot="button"][data-variant="outline"] {
-    color: var(--foreground);
-    background-color: var(--background);
-    border-color: color-mix(in oklch, var(--primary-foreground) 72%, transparent);
-    box-shadow: var(--shadow-sm);
-}
-
-.desiderio-section.bg-primary [data-slot="button"][data-variant="default"]:hover,
-.desiderio-section.bg-primary [data-slot="button"][data-variant="secondary"]:hover,
-.desiderio-section.bg-primary [data-slot="button"][data-variant="outline"]:hover {
-    color: var(--foreground);
-    background-color: color-mix(in oklch, var(--background) 92%, var(--primary));
-    border-color: var(--primary-foreground);
-}
-
-.desiderio-section.bg-primary [data-slot="button"][data-variant="ghost"],
-.desiderio-section.bg-primary [data-slot="button"][data-variant="link"] {
-    color: var(--primary-foreground);
-    background-color: transparent;
-}
-
-.desiderio-section.bg-primary [data-slot="button"][data-variant="ghost"]:hover,
-.desiderio-section.bg-primary [data-slot="button"][data-variant="link"]:hover {
-    color: var(--primary-foreground);
-    background-color: color-mix(in oklch, var(--primary-foreground) 14%, transparent);
 }
 
 .frame :where(img, video, iframe),

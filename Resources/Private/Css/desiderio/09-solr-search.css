@@ -98,7 +98,7 @@
 
 @supports (color: color-mix(in oklch, black, white)) {
     .d-solr-command__bar {
-        background: color-mix(in oklch, var(--input) 42%, transparent);
+        background: color-mix(in oklch, var(--d-input-subtle) 42%, transparent);
     }
 }
 

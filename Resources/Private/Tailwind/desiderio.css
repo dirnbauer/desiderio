@@ -55,6 +55,8 @@
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
+  /* shadcn's original --input: fills and quiet edges (see shadcn-theme.css). */
+  --color-input-subtle: var(--d-input-subtle);
   --color-ring: var(--ring);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);

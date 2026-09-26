@@ -71,6 +71,18 @@ The active preset defines their light and dark values.
 *   Use the shared tokens rather than raw colors in element CSS and templates.
 *   Status text uses the corresponding ``--d-success-text``,
     ``--d-warning-text``, or ``--d-danger-text`` token on tinted surfaces.
+*   ``--input`` is the boundary that identifies a form field and holds 3:1 on
+    every surface (WCAG 1.4.11). Give text fields, selects, textareas,
+    checkboxes and radios ``border-input``. Fills, and the edges of controls
+    that a label already identifies (outline buttons, tabs, chips), use the
+    quieter ``--d-input-subtle`` (Tailwind ``input-subtle``).
+*   ``--ring`` marks focus. It differs from ``--input``, so a focused field's
+    edge changes; turn the edge to the ring colour on ``:focus-visible``.
+*   ``text-destructive`` holds 4.5:1 on the page, a card and a muted surface.
+    On the destructive tint (``bg-destructive/10``) use ``--d-danger-text``.
+*   Do not redeclare a colour token in element CSS. The primary frame
+    re-points every token for its content, and the contrast audit fails on a
+    redeclaration it does not measure.
 *   Follow the page's ``.dark`` class; an element-specific
     ``prefers-color-scheme`` query would bypass the visitor's theme choice.
 *   Check composed colors and text over images in the browser. Token contrast
@@ -165,7 +177,11 @@ Verification after an element change
     ddev exec php Build/Scripts/audit-theme-contrast.php
     ddev exec npm run build
 
-Run the contrast check when changing theme tokens. For browser checks, obtain
-the current preview URLs from ``desiderio:library:urls --json`` and use them
-with ``Build/VisualQa/anatomy.mjs`` and ``Build/VisualQa/run.mjs``. Inspect the
-changed elements at desktop and mobile widths, in both light and dark mode.
+Run the contrast check when changing theme tokens. It measures every preset in
+light and dark mode, inside the painted frames and on panels. For browser
+checks, obtain the current preview URLs from ``desiderio:library:urls --json``
+and use them with ``Build/VisualQa/anatomy.mjs`` and ``Build/VisualQa/run.mjs``.
+``run.mjs --tier contrast`` runs axe's colour-contrast rule on every element;
+add ``--frames primary,secondary,accent`` to repaint each element's section in
+those frames. Inspect the changed elements at desktop and mobile widths, in
+both light and dark mode.

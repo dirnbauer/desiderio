@@ -418,6 +418,7 @@
       element.dataset.astroParsedDecimals = String(parts.decimals);
       element.dataset.astroParsedPrefix = parts.prefix;
       element.dataset.astroParsedSuffix = parts.suffix;
+      element.dataset.astroParsedGrouped = String(parts.grouped);
       element.dataset[readyAttr] = [element.dataset[readyAttr], 'counter'].filter(Boolean).join(' ');
 
       if (reducedMotion() || !this.counterObserver) {
@@ -435,7 +436,9 @@
       target: Number(element.dataset.astroParsedTarget || 0),
       decimals: Number(element.dataset.astroParsedDecimals || 0),
       prefix: element.dataset.astroParsedPrefix || '',
-      suffix: element.dataset.astroParsedSuffix || ''
+      suffix: element.dataset.astroParsedSuffix || '',
+      // Without this the animation frames group digits again: 2029 ended as "2,029".
+      grouped: element.dataset.astroParsedGrouped !== 'false'
     };
     var duration = Number(element.dataset.astroDuration || element.dataset.duration || 1400);
     var start = performance.now();

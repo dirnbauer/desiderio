@@ -306,6 +306,7 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString('data-astro-counter', $statsCounterTemplate);
         self::assertStringContainsString("scope.querySelectorAll('[data-astro-counter], [data-d-counter]')", $javascript);
         self::assertStringContainsString('window.requestAnimationFrame(step)', $javascript);
+        self::assertStringContainsString("grouped: element.dataset.astroParsedGrouped !== 'false'", $javascript);
     }
 
     public function testCodeBlockTemplateIsConnectedToAstroHighlightRuntime(): void

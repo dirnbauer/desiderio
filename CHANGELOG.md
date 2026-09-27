@@ -6,6 +6,13 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+- Counters keep a year ungrouped until the last frame. The 4.10.1 fix
+  set the grouping on the first frame only; the count-up animation read
+  its settings back without it, so Hero Stats still ended on "2,029"
+  ("2.029" in German).
+
 ## [4.14.2] — 2026-09-27
 
 ### Fixed

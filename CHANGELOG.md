@@ -6,6 +6,15 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.14.1] — 2026-09-27
+
+### Changed
+
+- Blog – Modern: the post count on each topic tab is a small round badge
+  (a light circle on the tab track, the theme's primary on the open
+  topic) instead of a bare number beside the name. Screen readers hear
+  the count as "4 posts".
+
 ## [4.14.0] — 2026-09-27
 
 ### Changed

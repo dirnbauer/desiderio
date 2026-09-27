@@ -621,7 +621,13 @@ final readonly class PowermailDemoSeeder
      */
     private function findExistingPageUid(int $pid, string $slug, int $languageUid, int $l10nParent, array $columns): ?int
     {
-        $where = ['pid = :pid', 'deleted = 0', 'slug = :slug'];
+        // Directly below $pid, or one level deeper: the site menu may move the
+        // lab below a hub page (Resources), and the pages keep their slugs.
+        $where = [
+            '(pid = :pid OR pid IN (SELECT hub.uid FROM pages hub WHERE hub.pid = :pid AND hub.deleted = 0 AND hub.sys_language_uid = 0))',
+            'deleted = 0',
+            'slug = :slug',
+        ];
         $parameters = ['pid' => $pid, 'slug' => $slug];
         $types = ['pid' => ParameterType::INTEGER, 'slug' => ParameterType::STRING];
 

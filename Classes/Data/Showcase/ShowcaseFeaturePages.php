@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Webconsulting\Desiderio\Data\Showcase;
 
 /**
- * The /features section: a hub that lists every feature built in the lab, by
- * category, and one page per feature. Every feature page has the same seven
+ * The /features and /ai sections: two hubs that list the features built in
+ * the lab, by category, and one page per feature. Every feature page has the same seven
  * blocks, so the pages read alike and a new one is a definition, not a layout:
  *
  *  1. hero with the product badge, the outcome, two buttons and the best screenshot
@@ -24,18 +24,53 @@ namespace Webconsulting\Desiderio\Data\Showcase;
  * @phpstan-import-type ShowcasePage from ShowcaseBlocks
  * @phpstan-import-type FeatureDefinition from ShowcaseFeatureDefinitions
  * @phpstan-import-type FeatureCategory from ShowcaseFeatureDefinitions
+ * @phpstan-import-type FeatureHub from ShowcaseFeatureDefinitions
  */
 final class ShowcaseFeaturePages
 {
     /**
+     * Both sections: Features first, then AI.
+     *
      * @return array<int, ShowcasePage>
      */
     public static function pages(): array
     {
-        $pages = [self::hubPage()];
-        foreach (ShowcaseFeatureDefinitions::categories() as $category) {
+        return [...self::websitePages(), ...self::aiPages()];
+    }
+
+    /**
+     * The Features hub and the pages of the website tools.
+     *
+     * @return array<int, ShowcasePage>
+     */
+    public static function websitePages(): array
+    {
+        return self::section(ShowcaseFeatureDefinitions::hub(), ShowcaseFeatureDefinitions::categories(), 'features', null);
+    }
+
+    /**
+     * The AI hub and the pages of the AI tools. They lived below /features
+     * until the menu split, so the seeder moves them and redirects the old
+     * URLs.
+     *
+     * @return array<int, ShowcasePage>
+     */
+    public static function aiPages(): array
+    {
+        return self::section(ShowcaseFeatureDefinitions::aiHub(), ShowcaseFeatureDefinitions::aiCategories(), 'ai', 'features');
+    }
+
+    /**
+     * @param FeatureHub $hub
+     * @param list<FeatureCategory> $categories
+     * @return array<int, ShowcasePage>
+     */
+    private static function section(array $hub, array $categories, string $section, ?string $formerSection): array
+    {
+        $pages = [self::hubPage($hub, $categories, $section)];
+        foreach ($categories as $category) {
             foreach ($category['features'] as $feature) {
-                $pages[] = self::featurePage($feature);
+                $pages[] = self::featurePage($feature, $section, $formerSection);
             }
         }
 
@@ -43,25 +78,36 @@ final class ShowcaseFeaturePages
     }
 
     /**
+     * @param FeatureHub $hub
+     * @param list<FeatureCategory> $categories
      * @return ShowcasePage
      */
-    private static function hubPage(): array
+    private static function hubPage(array $hub, array $categories, string $section): array
     {
-        $hub = ShowcaseFeatureDefinitions::hub();
         $content = [
-            ShowcaseBlocks::block('desiderio_herosaas', [
-                'badge_text' => $hub['badge'],
-                'header' => $hub['header'],
-                'subheadline' => $hub['subheadline'],
-                'primary_button_text' => $hub['primaryButton']['text'],
-                'primary_button_link' => $hub['primaryButton']['link'],
-                'secondary_button_text' => $hub['secondaryButton']['text'],
-                'secondary_button_link' => $hub['secondaryButton']['link'],
-                'dashboard_image' => $hub['image'],
-            ]),
+            ShowcaseBlocks::salesHero(
+                $hub['badge'],
+                $hub['header'],
+                $hub['subheadline'],
+                $hub['primaryButton'],
+                $hub['secondaryButton'],
+                $hub['image'],
+            ),
         ];
-        foreach (ShowcaseFeatureDefinitions::categories() as $category) {
-            $content[] = self::categoryBlock($category);
+        foreach ($categories as $category) {
+            $content[] = self::categoryBlock($category, $section);
+        }
+        if ($section === 'ai') {
+            $content[] = ShowcaseBlocks::block('desiderio_benefitcards', [
+                'eyebrow' => 'Strategy',
+                'header' => 'AI search and our TYPO3 v14 plan',
+                'subheadline' => 'How your content gets quoted by AI search, and how we build for AI agents.',
+                'columns' => '2',
+                'items' => [
+                    ['icon' => 'search', 'title' => 'GEO and AI search', 'description' => 'What makes AI search quote a page, and how Desiderio helps.', 'link' => '{{page:geo-ai-search}}'],
+                    ['icon' => 'trending-up', 'title' => 'TYPO3 v14 and AI agents', 'description' => 'Our strategy for TYPO3 v14, AI agents and the next LTS.', 'link' => '{{page:typo3-v14-strategy}}'],
+                ],
+            ]);
         }
         $content[] = ShowcaseBlocks::block('desiderio_ctabanner', [
             'header' => $hub['cta']['header'],
@@ -74,10 +120,8 @@ final class ShowcaseFeaturePages
         return [
             'title' => $hub['title'],
             'navTitle' => $hub['navTitle'],
-            'slug' => '/features',
-            // The page title is the SEO title; this clears older ones (the hub had one
-            // from before the rework, the nr-llm page one from its old seeder).
-            'seoTitle' => '',
+            'slug' => '/' . $section,
+            'seoTitle' => $hub['seoTitle'],
             'abstract' => $hub['abstract'],
             'description' => $hub['description'],
             'parentSlug' => null,
@@ -91,7 +135,7 @@ final class ShowcaseFeaturePages
      * @param FeatureCategory $category
      * @return ShowcaseBlock
      */
-    private static function categoryBlock(array $category): array
+    private static function categoryBlock(array $category, string $section): array
     {
         $posts = [];
         foreach ($category['features'] as $feature) {
@@ -100,7 +144,7 @@ final class ShowcaseFeaturePages
                 'meta' => $feature['product'],
                 'title' => $feature['navTitle'],
                 'excerpt' => '<p>' . $feature['abstract'] . '</p>',
-                'link' => '{{page:features/' . $feature['slug'] . '}}',
+                'link' => '{{page:' . $section . '/' . $feature['slug'] . '}}',
                 'image' => $feature['hero']['image'],
             ];
         }
@@ -117,7 +161,7 @@ final class ShowcaseFeaturePages
      * @param FeatureDefinition $feature
      * @return ShowcasePage
      */
-    private static function featurePage(array $feature): array
+    private static function featurePage(array $feature, string $section, ?string $formerSection): array
     {
         $content = [
             ShowcaseBlocks::block('desiderio_herosaas', [
@@ -146,7 +190,7 @@ final class ShowcaseFeaturePages
                 'subheadline' => $feature['tour']['subheadline'],
                 'columns' => (string)min(4, max(2, count($feature['tour']['shots']))),
                 'items' => array_map(
-                    static fn (array $shot): array => [
+                    static fn(array $shot): array => [
                         'title' => $shot['title'],
                         // The gallery prints its captions as plain text.
                         'description' => strip_tags($shot['description']),
@@ -161,7 +205,7 @@ final class ShowcaseFeaturePages
                 'eyebrow' => $feature['badge'],
                 'columns' => '2',
                 'items' => array_map(
-                    static fn (array $benefit): array => [
+                    static fn(array $benefit): array => [
                         'icon' => $benefit['icon'],
                         'title' => $benefit['title'],
                         'description' => $benefit['description'],
@@ -174,7 +218,7 @@ final class ShowcaseFeaturePages
                 'header' => $feature['faq']['header'],
                 'subheadline' => $feature['faq']['subheadline'],
                 'items' => array_map(
-                    static fn (array $item): array => ['question' => $item['question'], 'answer' => '<p>' . $item['answer'] . '</p>'],
+                    static fn(array $item): array => ['question' => $item['question'], 'answer' => '<p>' . $item['answer'] . '</p>'],
                     $feature['faq']['items'],
                 ),
             ]),
@@ -195,15 +239,20 @@ final class ShowcaseFeaturePages
             'bg_style' => 'primary',
         ]);
 
-        return [
+        $page = [
             'title' => $feature['title'],
             'navTitle' => $feature['navTitle'],
-            'slug' => '/features/' . $feature['slug'],
+            'slug' => '/' . $section . '/' . $feature['slug'],
             'seoTitle' => '',
             'abstract' => $feature['abstract'],
             'description' => $feature['description'],
-            'parentSlug' => 'features',
+            'parentSlug' => $section,
             'content' => $content,
         ];
+        if ($formerSection !== null) {
+            $page['formerSlugs'] = ['/' . $formerSection . '/' . $feature['slug']];
+        }
+
+        return $page;
     }
 }

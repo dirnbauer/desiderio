@@ -83,9 +83,9 @@ final class NewsDemoSeeder
                 'istopnews' => false,
             ],
             [
-                'title' => 'Creator Care: maintainers run your updates',
-                'teaser' => 'For €490 a month, the people who built Desiderio look after your updates, upgrades and uptime. Your team works on content, not patches.',
-                'bodytext' => '<p>Creator Care is a new service for teams that want the makers to maintain their stack. It covers TYPO3 and Desiderio updates, LTS upgrades, monitoring and direct answers to your questions. It costs €490 per month for 4 hours of work.</p><p>Add managed hosting from €99 per month to hand off the whole platform. The GPL package stays free: Creator Care buys time and guarantees, never features.</p>',
+                'title' => 'New plans for TYPO3 agencies',
+                'teaser' => 'From €590 a year, Studio, Agency and Partner add early access, the maintenance promise and answers from the maintainers. The code stays free.',
+                'bodytext' => '<p>Desiderio stays free under GPL-2.0, with every element and every extension. The new plans are for agencies that build client sites on it: Studio for up to 5 live sites, Agency for up to 25 and Partner without a limit.</p><p>Every plan brings early access to new releases, the maintenance promise and direct answers. Staging and local installations are always free.</p>',
                 'daysAgo' => 31,
                 'istopnews' => false,
             ],
@@ -188,16 +188,16 @@ final class NewsDemoSeeder
                 'istopnews' => false,
             ],
             [
-                'title' => 'A workshop with the maintainers for €690',
-                'teaser' => 'One day with your integrators, your editors and the people who built the system. A hands-on workshop for teams that start with Desiderio.',
-                'bodytext' => '<p>The workshop covers building pages from elements, theme presets, accessibility patterns and the seeding workflow, all based on your own project.</p><p>It goes well with the €890 installation service if you want a fast start.</p>',
+                'title' => 'The Kickstart workshop for your developers',
+                'teaser' => 'Three remote hours with the people who built the system, for up to eight developers, based on your own first project.',
+                'bodytext' => '<p>The workshop covers building pages from elements, theme presets, accessibility patterns and the seeding workflow. We review the setup of your first project and answer questions for 30 days.</p><p>It costs €1,490 and is part of the Launch Pack.</p>',
                 'daysAgo' => 57,
                 'istopnews' => false,
             ],
             [
-                'title' => 'LTS upgrades to TYPO3 v14 from €2,400',
-                'teaser' => 'The maintainers move your Desiderio installation to the next LTS version, with the Extension Scanner, Rector, tests and a checked handover.',
-                'bodytext' => '<p>Major upgrades are routine when the people who wrote the templates run them. The LTS service covers the Extension Scanner, automated Rector migrations and a full test run.</p><p>Fixed scope and fixed price, from €2,400 per installation.</p>',
+                'title' => 'Upgrade audits for older TYPO3 sites',
+                'teaser' => 'For €690, we check a client site on TYPO3 v10 to v13 and quote a fixed price for the move to v14 with Desiderio.',
+                'bodytext' => '<p>The audit lists the extensions, the risks and the work, and ends with a fixed quote. It uses the Extension Scanner and automated Rector migrations, and it costs €690.</p><p>Book the upgrade within 60 days and the audit is credited in full.</p>',
                 'daysAgo' => 63,
                 'istopnews' => false,
             ],
@@ -466,7 +466,7 @@ final class NewsDemoSeeder
             ]),
             $this->block('desiderio_ctabanner', [
                 'header' => 'Build your next site on the free package',
-                'description' => 'Everything in this article is in the GPL package. For a fast start, the maintainers install it for €890.',
+                'description' => 'Everything in this article is in the GPL package. For a fast start, book the Kickstart workshop for your developers.',
                 'cta_text' => 'View on GitHub',
                 'cta_link' => self::REPO_URL,
                 'bg_style' => 'primary',
@@ -595,7 +595,13 @@ final class NewsDemoSeeder
      */
     private function findExistingPageUid(int $pid, string $title, string $slug, array $columns): ?int
     {
-        $where = ['pid = :pid', 'deleted = 0', '(title = :title OR slug = :slug)'];
+        // Directly below $pid, or one level deeper: the site menu may move the
+        // news page below a hub page (Resources), and it keeps its slug.
+        $where = [
+            '(pid = :pid OR pid IN (SELECT hub.uid FROM pages hub WHERE hub.pid = :pid AND hub.deleted = 0 AND hub.sys_language_uid = 0))',
+            'deleted = 0',
+            '(title = :title OR slug = :slug)',
+        ];
         $parameters = ['pid' => $pid, 'title' => $title, 'slug' => $slug];
         $types = ['pid' => ParameterType::INTEGER, 'title' => ParameterType::STRING, 'slug' => ParameterType::STRING];
 

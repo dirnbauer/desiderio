@@ -15,8 +15,11 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 use TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Exception\SiteNotFoundException;
 use TYPO3\CMS\Core\Resource\StorageRepository;
+use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use Webconsulting\Desiderio\Data\Showcase\ShowcaseBlocks;
 use Webconsulting\Desiderio\Data\StyleguideContentGroups;
 use Webconsulting\Desiderio\Data\StyleguideShowcasePages;
 use Webconsulting\Desiderio\Library\CoreContentElements;
@@ -33,6 +36,9 @@ use Webconsulting\Desiderio\Seeding\StyleguideCollectionAliasPolicy;
 use Webconsulting\Desiderio\Seeding\StyleguideDemoValueGenerator;
 use Webconsulting\Desiderio\Seeding\StyleguideFixtureResolver;
 
+/**
+ * @phpstan-import-type ShowcasePage from ShowcaseBlocks
+ */
 #[AsCommand(
     name: 'desiderio:styleguide:seed',
     description: 'Create or update shadcn styled Desiderio content element test pages below a parent page.'
@@ -52,7 +58,8 @@ final class SeedStyleguidePagesCommand extends Command
 
     private const string CONTENT_TYPES_PAGE_TITLE = 'Content types';
     private const string CONTENT_TYPES_PAGE_SLUG = '/content-types';
-    private const int CONTENT_TYPES_PAGE_SORTING = 258;
+    // First below Product, before Themes and Tech facts.
+    private const int CONTENT_TYPES_PAGE_SORTING = 24;
 
     /**
      * Canonical public content-type chapters, in the same order as the cleaned
@@ -114,6 +121,20 @@ final class SeedStyleguidePagesCommand extends Command
         'midnight' => 'Midnight',
         'blossom' => 'Blossom',
         'citrus' => 'Citrus',
+    ];
+
+    /**
+     * Pages the showcase does not define that belong below a menu hub: slug
+     * => [hub slug, sorting below the hub]. The Innesto demo sits below
+     * Product, the news and the Powermail Lab below Resources. Their seeders
+     * find them there (by slug).
+     *
+     * @var array<string, array{0: string, 1: int}>
+     */
+    private const array PAGE_PLACEMENT = [
+        '/innesto-demo' => ['product', 4000],
+        '/news' => ['resources', 16],
+        '/desiderio-powermail-lab' => ['resources', 32],
     ];
 
     private const array LEGACY_ROOT_PAGE_SLUGS = [
@@ -360,6 +381,7 @@ final class SeedStyleguidePagesCommand extends Command
         $contentElementSeeder = $this->getContentElementSeeder();
 
         $linkTargets = [];
+        $movedPages = 0;
         /** @var list<array{pageUid: int, ctype: string, name: string, fixture: array<string, mixed>, sorting: int}> $chapterContent */
         $chapterContent = [];
 
@@ -370,12 +392,13 @@ final class SeedStyleguidePagesCommand extends Command
                 'Desiderio content elements in 10 chapters: heroes, navigation, editorial content, features, pricing, trust, team, data, conversion and footers.'
             ),
         ];
+        // Found wherever the menu put it (below Product, see PAGE_PLACEMENT).
         $contentTypesPageUid = $pageUpserter->findExistingPageUid(
             $parentPid,
             self::CONTENT_TYPES_PAGE_TITLE,
             self::CONTENT_TYPES_PAGE_SLUG,
             $pageColumns
-        );
+        ) ?? $pageUpserter->findPageBySlugBelow($parentPid, self::CONTENT_TYPES_PAGE_SLUG, $pageColumns);
         if ($contentTypesPageUid === null) {
             $contentTypesPageUid = $pageUpserter->create(
                 $parentPid,
@@ -531,6 +554,28 @@ final class SeedStyleguidePagesCommand extends Command
 
             $pageUid = $pageUpserter->findExistingPageUid($pagePid, $page['title'], $page['slug'], $pageColumns);
             if ($pageUid === null) {
+                // A page the menu moved (Themes below Product) or renamed (an
+                // AI feature from /features/<x> to /ai/<x>) keeps its uid, its
+                // content and its translations: found anywhere below the root,
+                // it moves here.
+                $formerSlug = null;
+                $pageUid = $pageUpserter->findPageBySlugBelow($parentPid, $page['slug'], $pageColumns);
+                foreach ($page['formerSlugs'] ?? [] as $candidate) {
+                    if ($pageUid !== null) {
+                        break;
+                    }
+                    $pageUid = $pageUpserter->findPageBySlugBelow($parentPid, $candidate, $pageColumns);
+                    $formerSlug = $pageUid !== null ? $candidate : null;
+                }
+                if ($pageUid !== null) {
+                    $pageUpserter->move($pageUid, $pagePid, $sorting, $now, $pageColumns);
+                    if ($formerSlug !== null) {
+                        $pageUpserter->renameTranslationSlugs($pageUid, $formerSlug, $page['slug'], $pageColumns);
+                    }
+                    $movedPages++;
+                }
+            }
+            if ($pageUid === null) {
                 $pageUid = $pageUpserter->create($pagePid, $page['title'], $page['slug'], $sorting, $now, $pageColumns, $pageAttributes);
                 $createdPages++;
             } else {
@@ -639,6 +684,25 @@ final class SeedStyleguidePagesCommand extends Command
             }
         }
 
+        // First-level pages another package owns (the site package's Download
+        // page) open with the showcase's sales hero. Only the showcase's own
+        // elements there are replaced; the page's content stays below.
+        foreach (StyleguideShowcasePages::adoptedHeroes() as $slug => $hero) {
+            $adoptedUid = $pageUpserter->findPageBySlugBelow($parentPid, $slug, $pageColumns);
+            if ($adoptedUid === null) {
+                continue;
+            }
+            $contentCleaner->softDeleteSeededContent($adoptedUid, $now, [], true);
+            $contentElementSeeder->insert($adoptedUid, $now, $this->getStarterContentBuilder()->buildContentInsert(
+                $adoptedUid,
+                $this->substituteLinkPlaceholders($hero, $linkTargets),
+                1,
+                $now,
+                $contentColumns
+            ));
+            $createdContentElements++;
+        }
+
         $newsSummary = ['pages' => 0, 'records' => 0, 'contentElements' => 0, 'skipped' => true];
         if (!$skipNews) {
             $newsSummary = $this->getNewsDemoSeeder()->seed(
@@ -650,10 +714,24 @@ final class SeedStyleguidePagesCommand extends Command
             );
         }
 
+        // Pages other seeders own (or nobody does) move below their menu hub
+        // once the hub exists; they keep their slugs, so no URL changes.
+        foreach (self::PAGE_PLACEMENT as $slug => [$hubSlug, $hubSorting]) {
+            $hubUid = $linkTargets[$hubSlug] ?? null;
+            $placedUid = $pageUpserter->findPageBySlugBelow($parentPid, $slug, $pageColumns);
+            if ($hubUid !== null && $placedUid !== null && $pageUpserter->parentOf($placedUid) !== $hubUid) {
+                $pageUpserter->move($placedUid, $hubUid, $hubSorting, $now, $pageColumns);
+                $movedPages++;
+            }
+        }
+        $redirects = $this->ensureFormerSlugRedirects($showcasePages, $parentPid, $now);
+
         $io->success(sprintf(
-            'Created or updated %d styleguide pages (%d new) and inserted %d content elements below page uid %d%s%s%s.',
+            'Created or updated %d styleguide pages (%d new, %d moved, %d redirects kept) and inserted %d content elements below page uid %d%s%s%s.',
             count($groups) + count(self::CONTENT_TYPE_SUPPORT_PAGES) + count($showcasePages),
             $createdPages,
+            $movedPages,
+            $redirects,
             $createdContentElements,
             $parentPid,
             $powermailSummary['skipped'] ? '' : sprintf(' Added %d powermail demo forms across %d EN/DE pages.', $powermailSummary['forms'], $powermailSummary['pages']),
@@ -819,6 +897,95 @@ final class SeedStyleguidePagesCommand extends Command
         }
 
         return $deleted;
+    }
+
+    /**
+     * A permanent redirect from each former slug of a showcase page to its
+     * current one, in every language of the site: one regular expression per
+     * page covers the language prefixes. A row is found again by its source
+     * path, so reseeding keeps one row per move.
+     *
+     * @param array<int, ShowcasePage> $showcasePages
+     * @return int Redirects created or updated
+     */
+    private function ensureFormerSlugRedirects(array $showcasePages, int $rootPid, int $now): int
+    {
+        $moves = [];
+        foreach ($showcasePages as $page) {
+            foreach ($page['formerSlugs'] ?? [] as $formerSlug) {
+                $moves[$formerSlug] = $page['slug'];
+            }
+        }
+        $columns = $this->databaseSchema->getColumnNames('sys_redirect');
+        if ($moves === [] || $columns === []) {
+            return 0;
+        }
+
+        [$basePath, $prefixes] = $this->languagePathPrefixes($rootPid);
+        // The optional group always takes part, so $1 is empty for the
+        // default language instead of staying literal in the target.
+        $languageGroup = '((?:' . implode('|', array_map(static fn(string $prefix): string => preg_quote($prefix, '#'), $prefixes)) . ')?)';
+        $connection = $this->connectionPool->getConnectionForTable('sys_redirect');
+        $count = 0;
+        foreach ($moves as $formerSlug => $slug) {
+            $sourcePath = '#^' . preg_quote($basePath, '#') . $languageGroup . preg_quote(ltrim($formerSlug, '/'), '#') . '/?$#';
+            $row = $this->databaseSchema->filterRow([
+                'pid' => 0,
+                'updatedon' => $now,
+                'source_host' => '*',
+                'source_path' => $sourcePath,
+                'is_regexp' => 1,
+                'target' => $basePath . '$1' . ltrim($slug, '/'),
+                'target_statuscode' => 301,
+                'description' => sprintf('Desiderio showcase: %s moved to %s.', $formerSlug, $slug),
+            ], $columns);
+
+            $queryBuilder = $this->connectionPool->getQueryBuilderForTable('sys_redirect');
+            $queryBuilder->getRestrictions()->removeAll();
+            $existing = $queryBuilder
+                ->select('uid')
+                ->from('sys_redirect')
+                ->where(
+                    $queryBuilder->expr()->eq('source_path', $queryBuilder->createNamedParameter($sourcePath)),
+                    $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER))
+                )
+                ->executeQuery()
+                ->fetchOne();
+            if (is_numeric($existing)) {
+                $connection->update('sys_redirect', $row, ['uid' => (int)$existing]);
+            } else {
+                $connection->insert('sys_redirect', [...$row, ...$this->databaseSchema->filterRow(['createdon' => $now], $columns)]);
+            }
+            $count++;
+        }
+
+        return $count;
+    }
+
+    /**
+     * The site's base path ("/" or "/desiderio/") and the path prefixes of its
+     * other languages relative to it ("de/", "zh/"), for redirect patterns.
+     *
+     * @return array{0: string, 1: list<string>}
+     */
+    private function languagePathPrefixes(int $rootPid): array
+    {
+        try {
+            $site = GeneralUtility::makeInstance(SiteFinder::class)->getSiteByPageId($rootPid);
+        } catch (SiteNotFoundException) {
+            return ['/', []];
+        }
+        $basePath = rtrim($site->getBase()->getPath(), '/') . '/';
+        $prefixes = [];
+        foreach ($site->getLanguages() as $language) {
+            $languagePath = rtrim($language->getBase()->getPath(), '/') . '/';
+            if ($language->getLanguageId() === 0 || !str_starts_with($languagePath, $basePath) || $languagePath === $basePath) {
+                continue;
+            }
+            $prefixes[] = substr($languagePath, strlen($basePath));
+        }
+
+        return [$basePath, $prefixes];
     }
 
     /**

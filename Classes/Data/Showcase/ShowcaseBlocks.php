@@ -14,7 +14,7 @@ namespace Webconsulting\Desiderio\Data\Showcase;
  * @phpstan-type ShowcaseBlock array{ctype: string, colPos: int, fields: array<string, mixed>}
  * @phpstan-type ShowcaseMedia array{file: string, title: string, alternative: string, description: string, source: string}
  * @phpstan-type ShowcaseBlogMeta array{publishDate: string, categories: list<string>, tags: list<string>}
- * @phpstan-type ShowcasePage array{title: string, navTitle: string, slug: string, abstract: string, description: string, parentSlug: string|null, seoTitle?: string, subtitle?: string, pageTsConfig?: string, backendLayout?: string, blogList?: bool, blog?: ShowcaseBlogMeta, hideInNav?: bool, content: array<int, ShowcaseBlock>}
+ * @phpstan-type ShowcasePage array{title: string, navTitle: string, slug: string, abstract: string, description: string, parentSlug: string|null, seoTitle?: string, subtitle?: string, pageTsConfig?: string, backendLayout?: string, blogList?: bool, blog?: ShowcaseBlogMeta, hideInNav?: bool, formerSlugs?: list<string>, content: array<int, ShowcaseBlock>}
  */
 final class ShowcaseBlocks
 {
@@ -47,6 +47,52 @@ final class ShowcaseBlocks
             'alternative' => $alternative,
             'description' => $description,
             'source' => self::REPO_URL,
+        ];
+    }
+
+    /**
+     * The sales hero every first-level page and the homepage open with: the
+     * same split hero, a photo on the right in 16:10 (the element crops to
+     * that ratio and renders up to 720 px wide, 1440 px on sharp screens).
+     *
+     * @param array{text: string, link: string} $primary
+     * @param array{text: string, link: string} $secondary
+     * @param ShowcaseMedia $image
+     * @return ShowcaseBlock
+     */
+    public static function salesHero(string $badge, string $header, string $subheadline, array $primary, array $secondary, array $image): array
+    {
+        return self::block('desiderio_hero', [
+            'variant' => 'split',
+            'badge_text' => $badge,
+            'header' => $header,
+            'subheadline' => $subheadline,
+            'primary_button_text' => $primary['text'],
+            'primary_button_link' => $primary['link'],
+            'primary_button_variant' => 'default',
+            'secondary_button_text' => $secondary['text'],
+            'secondary_button_link' => $secondary['link'],
+            'hero_image' => $image,
+            'image_position' => 'right',
+            'overlay_opacity' => '0.5',
+        ]);
+    }
+
+    /**
+     * A hero photo from Resources/Public/Styleguide/Heroes/. The photos are
+     * generated with AI and show people who do not exist, which the site's
+     * AI notice (desiderio.footer.aiNotice) discloses.
+     *
+     * @return ShowcaseMedia
+     */
+    public static function heroPhoto(string $filename, string $title, string $alternative): array
+    {
+        return [
+            'file' => 'Resources/Public/Styleguide/Heroes/' . $filename,
+            'title' => $title,
+            'alternative' => $alternative,
+            'description' => 'AI-generated image; the people shown do not exist.',
+            'source' => '',
         ];
     }
 

@@ -35,7 +35,7 @@ final class ShowcaseStrategyPages
             'slug' => '/geo-ai-search',
             'abstract' => 'What Generative Engine Optimisation (GEO) means for a Desiderio site. The page covers what AI answers change, the chances, the risks and what the package includes.',
             'description' => 'How semantic markup, a clean heading order, FAQ elements and page metadata in Desiderio prepare a TYPO3 site for AI Overviews and AI citations.',
-            'parentSlug' => null,
+            'parentSlug' => 'ai',
             'content' => [
                 ShowcaseBlocks::block('desiderio_headersection', [
                     'eyebrow' => 'SEO and GEO',
@@ -115,7 +115,7 @@ final class ShowcaseStrategyPages
             'slug' => '/typo3-v14-strategy',
             'abstract' => 'A plan by webconsulting for TYPO3 v14 as a CMS that AI agents can use safely. It shows what runs today, what comes next and how to start.',
             'description' => 'The TYPO3 v14 strategy for AI agents by webconsulting: what runs in the lab today, the roadmap to 2030, a readiness check and first steps.',
-            'parentSlug' => null,
+            'parentSlug' => 'ai',
             'content' => [
                 // ------------------------------------------------ the answer first
                 ShowcaseBlocks::block('desiderio_herostats', [

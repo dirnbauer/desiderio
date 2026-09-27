@@ -7,7 +7,11 @@ namespace Webconsulting\Desiderio\Data;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseAudiencePages;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseBlocks;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseFeaturePages;
+use Webconsulting\Desiderio\Data\Showcase\ShowcaseHeroPhotos;
+use Webconsulting\Desiderio\Data\Showcase\ShowcaseHubPages;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseLegalPages;
+use Webconsulting\Desiderio\Data\Showcase\ShowcasePricing;
+use Webconsulting\Desiderio\Data\Showcase\ShowcasePricingPages;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseStrategyPages;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseSuccessStories;
 
@@ -41,16 +45,44 @@ final class StyleguideShowcasePages
      */
     public static function subpages(): array
     {
+        // The first-level pages come in menu order: Product, Features, AI,
+        // Solutions, Pricing, Resources (Download is the site package's).
         return [
-            self::technicalFeaturesPage(),
-            self::themesPage(),
+            ShowcaseHubPages::productPage(),
             self::contentTypesHubPage(),
+            self::themesPage(),
+            self::technicalFeaturesPage(),
             self::rteCombinationsPage(),
-            ...ShowcaseFeaturePages::pages(),
-            ...ShowcaseAudiencePages::pages(),
+            ...ShowcaseFeaturePages::websitePages(),
+            ...ShowcaseFeaturePages::aiPages(),
             ...ShowcaseStrategyPages::pages(),
+            ...ShowcaseAudiencePages::pages(),
             ...ShowcaseSuccessStories::pages(),
+            ...ShowcasePricingPages::pages(),
+            ShowcaseHubPages::resourcesPage(),
             ...ShowcaseLegalPages::pages(),
+        ];
+    }
+
+    /**
+     * Sales heroes for first-level pages another package owns, by slug: the
+     * seeder puts the hero first on the page and replaces only its own
+     * elements there, so the page's own content stays. The site package's
+     * Download page is the one today.
+     *
+     * @return array<string, ShowcaseBlock>
+     */
+    public static function adoptedHeroes(): array
+    {
+        return [
+            '/downloads' => ShowcaseBlocks::salesHero(
+                'Free download',
+                'Run the whole lab on your laptop',
+                'One script sets up this TYPO3 v14 site in DDEV, with its database, its files and every extension.',
+                ['text' => 'Get install script', 'link' => 'https://typo3-lab.webconsulting.at/fileadmin/_downloads/install.txt'],
+                ['text' => 'See pricing', 'link' => '{{page:pricing}}'],
+                ShowcaseHeroPhotos::for('downloads'),
+            ),
         ];
     }
 
@@ -68,20 +100,14 @@ final class StyleguideShowcasePages
     public static function homeContent(): array
     {
         return [
-            ShowcaseBlocks::block('desiderio_hero', [
-                'variant' => 'split',
-                'badge_text' => 'For TYPO3 v14',
-                'header' => '244 ready-made content elements for TYPO3',
-                'subheadline' => 'Desiderio brings shadcn/ui to TYPO3: 244 content elements, 62 Fluid components and 15 theme presets in one Composer package. Change the theme in the site settings, without a rebuild.',
-                'primary_button_text' => 'Get started free',
-                'primary_button_link' => ShowcaseBlocks::REPO_URL,
-                'primary_button_variant' => 'default',
-                'secondary_button_text' => 'See the features',
-                'secondary_button_link' => '{{page:technical-features}}',
-                'hero_image' => ShowcaseBlocks::screenshot('frontend-themes-overview-296b3997.png', 'Six of the 15 theme presets', 'Preset cards on the Desiderio themes page, each rendered live in its own theme preset.'),
-                'image_position' => 'right',
-                'overlay_opacity' => '0.5',
-            ]),
+            ShowcaseBlocks::salesHero(
+                'For TYPO3 agencies',
+                'Ship TYPO3 client sites in days, not weeks',
+                '244 finished content elements, 15 themes and the editor tools around them. Free to use; paid plans add early access and direct support.',
+                ['text' => 'Download the demo', 'link' => '{{page:downloads}}'],
+                ['text' => 'See pricing', 'link' => '{{page:pricing}}'],
+                ShowcaseHeroPhotos::for('home'),
+            ),
 
             // ------------------------------------------------- the problem
             ShowcaseBlocks::block('desiderio_featurecards', [
@@ -172,7 +198,7 @@ final class StyleguideShowcasePages
                     ['value' => '0', 'label' => 'Rebuilds for a new design', 'description_text' => 'Themes switch through CSS tokens at runtime. No Tailwind build and no deployment.'],
                     ['value' => '100%', 'label' => 'Static CSS, no JS framework', 'description_text' => 'No React or Vue in the frontend. Charts render on the server.'],
                     ['value' => '1', 'label' => 'Command for the full demo site', 'description_text' => 'The seeder builds all 244 examples in seconds. You can run it as often as you like.'],
-                    ['value' => '30', 'label' => 'Minutes from install to themed site', 'description_text' => 'Install, seed, pick a preset, publish. Or book the installation service for €890.'],
+                    ['value' => '30', 'label' => 'Minutes from install to themed site', 'description_text' => 'Install, seed, pick a preset, publish. Or book a Kickstart workshop for your team.'],
                 ],
             ]),
 
@@ -251,7 +277,7 @@ final class StyleguideShowcasePages
                     ['title' => 'Fewer tickets from editors', 'description_text' => 'Backend previews for all 244 elements, inline editing and a content wizard in ten groups.'],
                     ['title' => 'Accessibility you can prove', 'description_text' => 'The build checks WCAG 2.2 contrast for every preset, in light and dark mode.'],
                     ['title' => 'Measured quality', 'description_text' => 'PHPStan at level 8, unit and functional tests on PHP 8.4 and 8.5, and a template audit with zero findings.'],
-                    ['title' => 'Free and open source', 'description_text' => 'GPL-2.0, with the full source on GitHub. Paid plans buy support, not features.'],
+                    ['title' => 'Free and open source', 'description_text' => 'GPL-2.0, with the full source on GitHub. Paid plans add early access, the maintenance promise and answers from the maintainers.'],
                 ],
             ]),
 
@@ -273,13 +299,21 @@ final class StyleguideShowcasePages
             // ----------------------------------------------------- pricing
             ShowcaseBlocks::block('desiderio_pricingthreetier', [
                 'eyebrow' => 'Pricing',
-                'header' => 'Free to use. Paid plans add support.',
-                'subheadline' => 'The package is complete and free under GPL-2.0. Pro and Agency add support and guarantees, and yearly billing saves two months.',
-                'plans' => [
-                    ['name' => 'Community', 'price' => '€0', 'billing_period' => 'forever', 'description' => 'The full package: all elements, themes and integrations.', 'features' => ['All 244 content elements', '15 theme presets', 'Demo site in one command', 'Community support on GitHub'], 'is_recommended' => false, 'button_text' => 'Install for free', 'button_link' => ShowcaseBlocks::REPO_URL],
-                    ['name' => 'Pro', 'price' => '€49', 'billing_period' => 'per month · €490 per year', 'description' => 'For teams that ship sites on a deadline.', 'features' => ['Email support, answer within 2 days', 'LTS compatibility updates', 'Early access to new elements', 'Help with minor upgrades'], 'is_recommended' => true, 'button_text' => 'Choose Pro', 'button_link' => ShowcaseBlocks::REPO_URL],
-                    ['name' => 'Agency', 'price' => '€149', 'billing_period' => 'per month · €1,490 per year', 'description' => 'Unlimited projects and direct contact with the maintainers.', 'features' => ['Everything in Pro, unlimited projects', 'Answer within 4 business hours (CET)', 'Quarterly editor onboarding', 'Preset review by the maintainers'], 'is_recommended' => false, 'button_text' => 'Choose Agency', 'button_link' => ShowcaseBlocks::REPO_URL],
-                ],
+                'header' => 'Free to use. Pay for certainty.',
+                'subheadline' => 'Community is complete and free under GPL-2.0. Paid plans add early access, the maintenance promise and answers from the maintainers.',
+                'plans' => array_map(
+                    static fn(array $plan): array => [
+                        'name' => $plan['name'],
+                        'price' => $plan['price'],
+                        'billing_period' => $plan['period'],
+                        'description' => $plan['for'],
+                        'features' => array_slice($plan['features'], 0, 4),
+                        'is_recommended' => $plan['featured'],
+                        'button_text' => $plan['button']['text'],
+                        'button_link' => $plan['button']['link'],
+                    ],
+                    array_values(array_filter(ShowcasePricing::plans(), static fn(array $plan): bool => $plan['key'] !== 'community')),
+                ),
             ]),
 
             // ----------------------------------------------------- proof + CTA
@@ -295,9 +329,9 @@ final class StyleguideShowcasePages
             ]),
             ShowcaseBlocks::block('desiderio_ctabanner', [
                 'header' => 'Build your next TYPO3 site with Desiderio',
-                'description' => 'This demo site, with 10 themed chapters and 244 elements, was created with one command. Install Desiderio for free, or book the setup for €890.',
-                'cta_text' => 'Get started free',
-                'cta_link' => ShowcaseBlocks::REPO_URL,
+                'description' => 'This demo site, with 10 themed chapters and 244 elements, was created with one command. Download it and run it on your own machine.',
+                'cta_text' => 'Download the demo',
+                'cta_link' => '{{page:downloads}}',
                 'bg_style' => 'primary',
             ]),
         ];
@@ -333,7 +367,7 @@ final class StyleguideShowcasePages
             'backendLayout' => 'pagets__DesiderioThemes',
             'abstract' => 'All 15 Desiderio theme presets side by side. Each card is shown in its own preset, with its colours, fonts, corner radius, density, focus ring and icons.',
             'description' => 'Compare the 15 Desiderio theme presets: colours, fonts, corner radius and density. Switch them per site or per page tree, without a rebuild.',
-            'parentSlug' => null,
+            'parentSlug' => 'product',
             'content' => [
                 ShowcaseBlocks::block('desiderio_contenthighlight', [
                     'header' => 'A new theme needs no rebuild',
@@ -390,7 +424,7 @@ final class StyleguideShowcasePages
             'slug' => '/technical-features',
             'abstract' => 'Every main technical feature of Desiderio in one list: Fluid 5.3 components, translations, the theme engine, CSS, integrations and quality checks.',
             'description' => 'How Desiderio works: typed Fluid 5.3 components, a runtime theme engine, Content Blocks 2.2 and PHPStan level 8. All of it is on GitHub.',
-            'parentSlug' => null,
+            'parentSlug' => 'product',
             'content' => [
                 ShowcaseBlocks::block('desiderio_headersection', [
                     'eyebrow' => 'For developers',
@@ -508,7 +542,7 @@ final class StyleguideShowcasePages
                 ]),
                 ShowcaseBlocks::block('desiderio_ctabanner', [
                     'header' => 'Install it yourself or book the setup',
-                    'description' => 'The package is free. If you prefer, we install and configure it on your TYPO3 site for €890. Brand adaptation starts at €1,990.',
+                    'description' => 'The package is free. A Kickstart workshop gets your team going for €1,490, and a Brand Theme turns a client\'s brand into a preset for €2,490.',
                     'cta_text' => 'Get started free',
                     'cta_link' => ShowcaseBlocks::REPO_URL,
                     'bg_style' => 'muted',
@@ -531,7 +565,7 @@ final class StyleguideShowcasePages
             'slug' => '/content-types',
             'abstract' => 'All 244 Desiderio content elements in 10 groups. Each one has a backend preview, demo content and accessible markup.',
             'description' => '244 content elements in 10 groups, from heroes and navigation to charts, forms and footers. Each group is shown live in its own theme preset.',
-            'parentSlug' => null,
+            'parentSlug' => 'product',
             'content' => [
                 ShowcaseBlocks::block('desiderio_headersection', [
                     'eyebrow' => 'Content types',

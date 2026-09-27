@@ -50,7 +50,7 @@ final class ShowcaseSuccessStories
             'slug' => '/success-stories',
             'abstract' => 'Fifteen example stories show what Desiderio changes for TYPO3 teams. The organisations, people and figures in them are invented.',
             'description' => 'Fifteen example stories, from an AI lab to a toy maker, show how Desiderio helps TYPO3 teams run many brands and publish faster.',
-            'parentSlug' => null,
+            'parentSlug' => 'target-groups',
             'subtitle' => 'Fifteen example stories about organisations that run their websites on TYPO3 with Desiderio. Each shows one before and after.',
             'blogList' => true,
             // The seeder prepends a paginated blog_posts list plugin when

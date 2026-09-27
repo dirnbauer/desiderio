@@ -70,6 +70,121 @@ final readonly class SeedPageUpserter
     }
 
     /**
+     * A live, default-language page with this slug anywhere below the root.
+     *
+     * A page keeps its slug when the menu moves it to another parent (the
+     * themes page below Product, the Powermail Lab below Resources), so the
+     * seeders find it there instead of creating it again at its old place.
+     *
+     * @param array<string, true> $columns
+     */
+    public function findPageBySlugBelow(int $rootPid, string $slug, array $columns): ?int
+    {
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('pages');
+        $queryBuilder->getRestrictions()->removeAll();
+        $constraints = [
+            $queryBuilder->expr()->eq('slug', $queryBuilder->createNamedParameter($slug)),
+            $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)),
+            ...$this->liveWorkspaceQueryHelper->buildLiveWorkspaceConstraints($queryBuilder, 'pages'),
+        ];
+        if (isset($columns['sys_language_uid'])) {
+            $constraints[] = $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER));
+        }
+        $rows = $queryBuilder
+            ->select('uid', 'pid')
+            ->from('pages')
+            ->where(...$constraints)
+            ->orderBy('hidden')
+            ->addOrderBy('uid', 'DESC')
+            ->executeQuery()
+            ->fetchAllAssociative();
+        foreach ($rows as $row) {
+            $uid = is_numeric($row['uid'] ?? null) ? (int)$row['uid'] : 0;
+            $pid = is_numeric($row['pid'] ?? null) ? (int)$row['pid'] : 0;
+            if ($uid > 0 && $this->isPageBelow($pid, $rootPid)) {
+                return $uid;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Moves a page and its translations to another parent. The uids stay, so
+     * the content, the translations and every link to the page stay too.
+     *
+     * @param array<string, true> $columns
+     */
+    public function move(int $pageUid, int $parentPid, int $sorting, int $now, array $columns): void
+    {
+        $connection = $this->connectionPool->getConnectionForTable('pages');
+        $connection->update(
+            'pages',
+            $this->databaseSchema->filterRow(['pid' => $parentPid, 'sorting' => $sorting, 'tstamp' => $now], $columns),
+            ['uid' => $pageUid]
+        );
+        if (isset($columns['l10n_parent'])) {
+            $connection->update(
+                'pages',
+                $this->databaseSchema->filterRow(['pid' => $parentPid, 'sorting' => $sorting, 'tstamp' => $now], $columns),
+                ['l10n_parent' => $pageUid]
+            );
+        }
+    }
+
+    /**
+     * Gives the translations of a renamed page its new slug, where they still
+     * carry the old one (the translation seeder copies the default slug).
+     *
+     * @param array<string, true> $columns
+     */
+    public function renameTranslationSlugs(int $pageUid, string $formerSlug, string $slug, array $columns): void
+    {
+        if (!isset($columns['l10n_parent'])) {
+            return;
+        }
+        $this->connectionPool->getConnectionForTable('pages')->update(
+            'pages',
+            ['slug' => $slug],
+            ['l10n_parent' => $pageUid, 'slug' => $formerSlug]
+        );
+    }
+
+    /**
+     * The parent of a live page, hidden or not, or null for an unknown page.
+     */
+    public function parentOf(int $pageUid): ?int
+    {
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('pages');
+        $queryBuilder->getRestrictions()->removeAll();
+        $pid = $queryBuilder
+            ->select('pid')
+            ->from('pages')
+            ->where($queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($pageUid, ParameterType::INTEGER)))
+            ->executeQuery()
+            ->fetchOne();
+
+        return is_numeric($pid) ? (int)$pid : null;
+    }
+
+    /**
+     * Whether $pid is $rootPid or one of its descendants (walks up at most
+     * 20 levels, the depth of any seeded tree). Hidden pages count: the
+     * restrictions are removed, as Connection::select() would apply them.
+     */
+    private function isPageBelow(int $pid, int $rootPid): bool
+    {
+        for ($level = 0; $pid > 0 && $level < 20; $level++) {
+            if ($pid === $rootPid) {
+                return true;
+            }
+            $pid = $this->parentOf($pid) ?? 0;
+        }
+
+        return false;
+    }
+
+    /**
      * @param array<string, true> $columns
      * @param array<string, mixed> $attributes Additional page columns (nav_title, abstract, backend_layout, ...)
      */

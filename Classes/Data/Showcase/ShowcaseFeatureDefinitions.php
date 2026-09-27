@@ -16,26 +16,29 @@ namespace Webconsulting\Desiderio\Data\Showcase;
  * @phpstan-type FeatureShot array{tab: string, title: string, description: string, image: ShowcaseMedia}
  * @phpstan-type FeatureDefinition array{slug: string, product: string, badge: string, title: string, navTitle: string, description: string, abstract: string, hero: array{header: string, subheadline: string, primaryButton: FeatureButton, secondaryButton: FeatureButton, image: ShowcaseMedia}, problem: array{header: string, content: string}, tour: array{header: string, subheadline: string, shots: list<FeatureShot>}, benefits: array{header: string, items: list<array{icon: string, title: string, description: string}>}, faq: array{header: string, subheadline: string, items: list<array{question: string, answer: string}>}, install: array{header: string, code: string}|null, cta: array{header: string, description: string, text: string, link: string}}
  * @phpstan-type FeatureCategory array{label: string, header: string, subheadline: string, features: list<FeatureDefinition>}
- * @phpstan-type FeatureHub array{title: string, navTitle: string, description: string, abstract: string, badge: string, header: string, subheadline: string, primaryButton: FeatureButton, secondaryButton: FeatureButton, image: ShowcaseMedia, cta: array{header: string, description: string, text: string, link: string}}
+ * @phpstan-type FeatureHub array{title: string, navTitle: string, seoTitle: string, description: string, abstract: string, badge: string, header: string, subheadline: string, primaryButton: FeatureButton, secondaryButton: FeatureButton, image: ShowcaseMedia, cta: array{header: string, description: string, text: string, link: string}}
  */
 final class ShowcaseFeatureDefinitions
 {
     /**
+     * The Features hub: the 13 tools for websites and editors.
+     *
      * @return FeatureHub
      */
     public static function hub(): array
     {
         return [
-            'title' => 'Everything we built for TYPO3 v14',
+            'title' => 'Features',
             'navTitle' => 'Features',
-            'description' => '23 tools built and tested in this TYPO3 v14 lab: design systems, editing and publishing, search and forms, sign-in, payments and AI agents.',
-            'abstract' => 'Every feature built in this lab, with live screenshots: design systems, editing tools, search and forms, sign-in and payments, AI and agents.',
-            'badge' => '23 features',
-            'header' => 'See every feature working before you install it',
-            'subheadline' => 'Each page shows live screenshots from this TYPO3 v14 lab, the problem it solves and how to install it.',
+            'seoTitle' => 'Desiderio features: website tools for TYPO3 v14',
+            'description' => '13 tools for TYPO3 v14 websites: design systems, editing and publishing, search and forms, sign-in, payments and a REST API, with live screenshots.',
+            'abstract' => 'The website tools built in this lab, with live screenshots: design systems, editing and publishing, search and forms, sign-in, payments and APIs.',
+            'badge' => '13 website tools',
+            'header' => 'Tools that save your editors clicks',
+            'subheadline' => 'Design systems, editing, publishing, search, forms, sign-in and payments, each shown working in this TYPO3 v14 lab.',
             'primaryButton' => ['text' => 'Start with Desiderio', 'link' => '{{page:features/desiderio}}'],
-            'secondaryButton' => ['text' => 'Code on GitHub', 'link' => 'https://github.com/dirnbauer'],
-            'image' => ShowcaseBlocks::screenshot('frontend-feature-desiderio-theme-presets-f63d31b0.webp', 'Six of the 15 theme presets, rendered live', 'Six Desiderio preset cards in teal, blue, violet, blue, green and orange, each with buttons, badges and font details.', 'Live screenshot from the TYPO3 v14 lab.'),
+            'secondaryButton' => ['text' => 'See AI tools', 'link' => '{{page:ai}}'],
+            'image' => ShowcaseHeroPhotos::for('features'),
             'cta' => [
                 'header' => 'Start with the free design system',
                 'description' => 'Desiderio is free under GPL-2.0. Add the other tools when a project needs them.',
@@ -46,6 +49,36 @@ final class ShowcaseFeatureDefinitions
     }
 
     /**
+     * The AI hub: the 10 AI and agent tools.
+     *
+     * @return FeatureHub
+     */
+    public static function aiHub(): array
+    {
+        return [
+            'title' => 'AI',
+            'navTitle' => 'AI',
+            'seoTitle' => 'AI for TYPO3 v14, with people in charge',
+            'description' => '10 AI tools for TYPO3 v14: an assistant that asks before it writes, model setup, AI form logic, agent skills, MCP and agent protocols.',
+            'abstract' => 'The AI tools built in this lab, with live screenshots: an assistant, model setup, AI form logic, skills, MCP, agent protocols and llms.txt.',
+            'badge' => '10 AI tools',
+            'header' => 'AI in TYPO3, with people in charge',
+            'subheadline' => 'An assistant, one model setup, AI form logic, agent skills and open agent protocols. The assistant asks before every write.',
+            'primaryButton' => ['text' => 'Meet the assistant', 'link' => '{{page:ai/ai-assistant}}'],
+            'secondaryButton' => ['text' => 'Read our strategy', 'link' => '{{page:typo3-v14-strategy}}'],
+            'image' => ShowcaseHeroPhotos::for('ai'),
+            'cta' => [
+                'header' => 'Try the AI tools on your own copy',
+                'description' => 'Download the demo site, add your own provider key and see every AI tool working. There is no AI fee from us.',
+                'text' => 'Download the demo',
+                'link' => '{{page:downloads}}',
+            ],
+        ];
+    }
+
+    /**
+     * The website tools, in the order the Features hub and menu list them.
+     *
      * @return list<FeatureCategory>
      */
     public static function categories(): array
@@ -53,10 +86,22 @@ final class ShowcaseFeatureDefinitions
         return [
             ['label' => 'Design systems', 'header' => 'Design systems for finished pages', 'subheadline' => 'Two component libraries and a blog template set, all themed at runtime.', 'features' => [self::desiderio(), self::astryx(), self::blog()]],
             ['label' => 'Editing and publishing', 'header' => 'Editing that saves editors clicks', 'subheadline' => 'Work on the page, in the Records module, in Word files and on images, then publish in one click.', 'features' => [self::visualEditor(), self::recordsList(), self::easyWorkspace(), self::docxEditor(), self::imageWorkbench()]],
-            ['label' => 'Search and forms', 'header' => 'Search and forms that fit your site', 'subheadline' => 'Styled Solr search, Powermail forms and AI routing that reads what people write.', 'features' => [self::solr(), self::powermail(), self::jev()]],
-            ['label' => 'Access and payments', 'header' => 'Sign-in and payments without custom code', 'subheadline' => 'Single sign-on for frontend and backend, and a paywall for people and AI agents.', 'features' => [self::workos(), self::x402Paywall()]],
-            ['label' => 'AI in the backend', 'header' => 'AI your editors can control', 'subheadline' => 'An assistant, one model setup, reusable skills and security checks for those skills.', 'features' => [self::aiAssistant(), self::nrLlmManual(), self::skillflow(), self::skillspector()]],
-            ['label' => 'Agents and APIs', 'header' => 'Open TYPO3 to agents, on your terms', 'subheadline' => 'MCP, a permission registry, a REST API, agent protocols, visual feedback and llms.txt.', 'features' => [self::mcpServer(), self::typo3Abilities(), self::sgApicore(), self::agentNexus(), self::agentation(), self::llmsTxt()]],
+            ['label' => 'Search and forms', 'header' => 'Search and forms that fit your site', 'subheadline' => 'Styled Solr search and Powermail forms your editors build themselves.', 'features' => [self::solr(), self::powermail()]],
+            ['label' => 'Sign-in, payments and APIs', 'header' => 'Sign-in, payments and APIs without custom code', 'subheadline' => 'Single sign-on for frontend and backend, a paywall for people and AI agents, and a REST API.', 'features' => [self::workos(), self::x402Paywall(), self::sgApicore()]],
+        ];
+    }
+
+    /**
+     * The AI tools, in the order the AI hub and menu list them.
+     *
+     * @return list<FeatureCategory>
+     */
+    public static function aiCategories(): array
+    {
+        return [
+            ['label' => 'AI for editors', 'header' => 'AI your editors can control', 'subheadline' => 'An assistant that asks before it writes, one model setup for every extension, and forms that understand what people write.', 'features' => [self::aiAssistant(), self::nrLlmManual(), self::jev()]],
+            ['label' => 'Skills and safety', 'header' => 'Reusable skills, checked before they run', 'subheadline' => 'Agent skills your team shares, and security checks for every skill.', 'features' => [self::skillflow(), self::skillspector()]],
+            ['label' => 'Agents and the open web', 'header' => 'Open TYPO3 to agents, on your terms', 'subheadline' => 'MCP, a permission registry, agent protocols, visual feedback and llms.txt.', 'features' => [self::mcpServer(), self::typo3Abilities(), self::agentNexus(), self::agentation(), self::llmsTxt()]],
         ];
     }
 
@@ -1593,7 +1638,7 @@ final class ShowcaseFeatureDefinitions
                 'subheadline' => 'Click an element on a TYPO3 page or backend screen and write a note. Your coding agent receives it with the selector, page and computed styles.',
                 'primaryButton' => ['text' => 'Get Agentation', 'link' => 'https://github.com/dirnbauer/typo3-agentation'],
                 'secondaryButton' => ['text' => 'Read the manual', 'link' => 'https://github.com/dirnbauer/typo3-agentation/tree/main/Documentation'],
-                'image' => ShowcaseBlocks::screenshot('frontend-feature-agentation-frontend-note-dbfbbbf8.webp', 'Notes pinned to the exact element', 'Desiderio home page with the Agentation toolbar, numbered notes on the headline and the Get started free button, and a third note being written on the preview image.', 'Live screenshot from the TYPO3 v14 lab.'),
+                'image' => ShowcaseBlocks::screenshot('frontend-feature-agentation-frontend-note-dbfbbbf8.webp', 'Notes pinned to the exact element', 'The home page with the Agentation toolbar, two numbered notes on the headline and main button, and a third note being written.', 'Live screenshot from the TYPO3 v14 lab.'),
             ],
             'problem' => ['header' => 'Feedback gets lost before it reaches the agent', 'content' => '<p>Clients and editors describe problems in words, like the button on the right or the heading that looks off. Your coding agent has to guess the element and the file. Screenshots in a chat lose the selector and the styles.</p>'],
             'tour' => [

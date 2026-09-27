@@ -6,10 +6,14 @@ namespace Webconsulting\Desiderio\Tests\Unit;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
+use Webconsulting\Desiderio\Data\Showcase\ShowcaseBlocks;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseFeatureDefinitions;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseFeaturePages;
 use Webconsulting\Desiderio\Data\StyleguideShowcasePages;
 
+/**
+ * @phpstan-import-type ShowcasePage from ShowcaseBlocks
+ */
 final class ShowcaseFeaturePagesTest extends TestCase
 {
     public function testTheShowcaseSeedsTheFeaturePages(): void
@@ -21,9 +25,21 @@ final class ShowcaseFeaturePagesTest extends TestCase
         }
     }
 
-    public function testTheHubListsEveryFeaturePageOnce(): void
+    /**
+     * @return iterable<string, array{0: array<int, ShowcasePage>, 1: string}>
+     */
+    public static function sections(): iterable
     {
-        $pages = ShowcaseFeaturePages::pages();
+        yield 'features' => [ShowcaseFeaturePages::websitePages(), '/features'];
+        yield 'ai' => [ShowcaseFeaturePages::aiPages(), '/ai'];
+    }
+
+    /**
+     * @param array<int, ShowcasePage> $pages
+     */
+    #[DataProvider('sections')]
+    public function testEachHubListsItsFeaturePagesOnce(array $pages, string $hubSlug): void
+    {
         $hub = $pages[0];
         $featureSlugs = array_map(static fn(array $page): string => $page['slug'], array_slice($pages, 1));
         $linked = [];
@@ -39,14 +55,35 @@ final class ShowcaseFeaturePagesTest extends TestCase
             }
         }
 
-        self::assertSame('/features', $hub['slug']);
+        self::assertSame($hubSlug, $hub['slug']);
+        self::assertSame('desiderio_hero', $hub['content'][0]['ctype'] ?? null, 'The hub opens with the sales hero.');
         self::assertCount(count(array_unique($featureSlugs)), $featureSlugs, 'Feature slugs are unique.');
         self::assertSame($featureSlugs, $linked, 'The hub links every feature page once, in page order.');
+        foreach ($featureSlugs as $slug) {
+            self::assertStringStartsWith($hubSlug . '/', $slug);
+        }
+    }
+
+    public function testTheSplitKeepsThe23Features(): void
+    {
+        self::assertCount(1 + 13, ShowcaseFeaturePages::websitePages());
+        self::assertCount(1 + 10, ShowcaseFeaturePages::aiPages());
+    }
+
+    public function testTheAiPagesRedirectFromTheirFormerFeatureUrls(): void
+    {
+        foreach (array_slice(ShowcaseFeaturePages::aiPages(), 1) as $page) {
+            self::assertSame(['/features/' . substr($page['slug'], strlen('/ai/'))], $page['formerSlugs'] ?? null, $page['slug']);
+        }
+        foreach (ShowcaseFeaturePages::websitePages() as $page) {
+            self::assertArrayNotHasKey('formerSlugs', $page, $page['slug']);
+        }
     }
 
     public function testEveryFeaturePageFollowsTheSameOutline(): void
     {
-        foreach (array_slice(ShowcaseFeaturePages::pages(), 1) as $page) {
+        $featurePages = [...array_slice(ShowcaseFeaturePages::websitePages(), 1), ...array_slice(ShowcaseFeaturePages::aiPages(), 1)];
+        foreach ($featurePages as $page) {
             $ctypes = array_map(static fn(array $block): string => $block['ctype'], $page['content']);
             $expected = ['desiderio_herosaas', 'desiderio_contenthighlight', 'desiderio_gallery', 'desiderio_benefitcards', 'desiderio_faq'];
             if (in_array('desiderio_codeblock', $ctypes, true)) {
@@ -97,12 +134,12 @@ final class ShowcaseFeaturePagesTest extends TestCase
     public function testEveryScreenshotExists(string $file, string $name): void
     {
         self::assertFileExists(dirname(__DIR__, 2) . '/' . $file);
-        self::assertMatchesRegularExpression('/^(frontend-)?feature-[a-z0-9-]+-[0-9a-f]{8}\.webp$/', $name);
+        self::assertMatchesRegularExpression('/^((frontend-)?feature-[a-z0-9-]+|hero-[a-z]+)-[0-9a-f]{8}\.webp$/', $name);
     }
 
     public function testTheCopyNamesNoRealContactData(): void
     {
-        $copy = json_encode([ShowcaseFeatureDefinitions::hub(), ShowcaseFeatureDefinitions::categories()], JSON_THROW_ON_ERROR);
+        $copy = json_encode([ShowcaseFeatureDefinitions::hub(), ShowcaseFeatureDefinitions::categories(), ShowcaseFeatureDefinitions::aiHub(), ShowcaseFeatureDefinitions::aiCategories()], JSON_THROW_ON_ERROR);
 
         self::assertDoesNotMatchRegularExpression('/[\w.+-]+@(?!example\.(com|org|net)\b)[\w-]+\.[a-z]{2,}/i', $copy, 'Addresses use example.com.');
         self::assertDoesNotMatchRegularExpression('/\+\d{2}[\s\d]{7,}/', $copy, 'No phone numbers.');

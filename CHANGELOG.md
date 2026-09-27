@@ -6,6 +6,66 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.12.0] — 2026-09-27
+
+### Added
+
+- **A sales menu for the showcase.** The first level now reads Product,
+  Features, AI, Solutions, Pricing, Resources and Download, down from twelve
+  entries. Product holds the content types, the themes, the tech facts and
+  the Innesto demo; AI holds the ten AI tools, GEO and AI search and the
+  TYPO3 v14 strategy; Solutions holds the three target groups and the example
+  stories; Resources holds the news and the Powermail Lab.
+- **Features and AI are two hubs.** /features lists the 13 website tools,
+  /ai the 10 AI tools. The AI pages moved from /features/<tool> to
+  /ai/<tool>, and the seeder keeps a 301 redirect for each old URL in every
+  language.
+- **A pricing page with an order page.** Desiderio stays free with every
+  release; /pricing sells yearly support plans (Studio €590, Agency €1,990
+  and Partner €4,900 a year) next to Community €0: what every support plan
+  promises, a comparison table, fixed-price services, the Launch Pack, the
+  founding offer and the questions agencies ask.
+  /pricing/order explains the order and carries the demo request form.
+  Every price comes from one class, `ShowcasePricing`.
+- **Product and Resources hubs.** Both open with the same sales hero as
+  every first-level page and the homepage: a split hero with a photo in one
+  style (`ShowcaseBlocks::salesHero()`, `ShowcaseHeroPhotos`). The photos
+  are AI-generated, 16:10 at 1440 × 900, the size the hero shows.
+- **A header button** (`desiderio.header.ctaSlug`): the first-level page
+  with this slug shows as a button next to the search on desktop and stays a
+  menu entry on phones. A slug, not a uid, so the setting holds in every copy
+  of a site.
+- **An AI transparency notice** (`desiderio.footer.aiNotice`): a short
+  line above the footer that says which images and texts were made with AI,
+  with its legal basis (EU AI Act, Art. 50), in English, German, Chinese and
+  Hungarian (`footer.aiNotice.*` labels).
+- The seeder moves pages the menu places below another parent, with their
+  translations, instead of creating them again, and finds pages other
+  seeders own (news, Powermail Lab) wherever the menu put them. A page can
+  list `formerSlugs` for redirects, and a first-level page another package
+  owns can get the showcase's sales hero (`adoptedHeroes()`).
+
+### Changed
+
+- **New plans and prices everywhere.** The homepage, the target-group pages,
+  the demo news and the element demos use the new scheme. Retired: the Pro
+  plan (€49 a month), the old Agency price (€149 a month, unlimited projects,
+  answers within four business hours), the discount code DESIDERIO20,
+  managed hosting, Creator Care, the installation service and the "from"
+  prices for elements and upgrades. Services are fixed prices now: Kickstart
+  workshop €1,490, Brand Theme €2,490, custom elements €890 and €1,690, an
+  upgrade audit for €690 (credited to the upgrade), editor training €790.
+- The homepage opens with the sales hero: "Ship TYPO3 client sites in days,
+  not weeks", with the demo download and the pricing page as its buttons.
+
+### Fixed
+
+- The thank-you card on the Tech facts page named nr_mcp_agent and the AI
+  cowriter, which the lab no longer ships; it names nr_llm and nr_vault.
+- A card grid links all its cards or none. Tech facts linked one of three
+  quality cards, and the target-group pages mixed linked and unlinked
+  benefits; every card now leads to a real page, and a test keeps it so.
+
 ## [4.11.1] — 2026-09-27
 
 ### Fixed

@@ -6,6 +6,19 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.11.1] — 2026-09-27
+
+### Fixed
+
+- Powermail's form overview lists the pages that use a demo form. "Used on
+  Page" was empty for the six demo forms: their plugins, and the element
+  library's Powermail preview, carried FlexForm XML written by hand, each
+  value on its field's line, and the overview looked for the layout the
+  backend writes. The Powermail demo seeder and the element library now
+  store the plugin as DataHandler does, through the core's FlexFormTools.
+  Reseed (`desiderio:styleguide:seed`, `desiderio:library:seed`) to rewrite
+  the plugins that exist; Powermail 14.0.3.7 reads either layout.
+
 ## [4.11.0] — 2026-09-27
 
 ### Added

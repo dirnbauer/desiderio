@@ -6,6 +6,42 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.14.0] — 2026-09-27
+
+### Changed
+
+- **No more `.container` and `.table` classes in Desiderio's CSS.** Both
+  had the name of a Tailwind utility and, unlayered, beat every utility on
+  the same element. Now it is done the shadcn/ui way: `container` is
+  Tailwind's own utility, extended with `@utility container` (centred,
+  1rem gutters, 1.5rem from 640px) as shadcn's site does it, so `px-*`,
+  `mx-*` and `max-w-*` next to it win. Tables are shadcn's Table markup
+  (`data-slot` plus utilities). The theme overview's preset matrix uses the
+  Table components in a card, like the classic Table element, and the
+  component browser renders its previews the same way. The BEM classes
+  `.container--*`, `.table-wrapper` and `.table__*` are gone; use
+  `<d:layout.container>` and `<d:molecule.table>` instead. Powermail's
+  confirmation table is unchanged: the content frame's table rules style it.
+- `.sr-only` sits below the utilities, like `.grid`, so `md:not-sr-only`
+  on the same element works.
+- **The seed commands use the new blog templates.**
+  `desiderio:blog:seed-pages` puts a blog on Blog – Classic, or keeps Blog –
+  Classic or Blog – Modern when the blog already has one, so reseeding
+  never undoes an editor's choice; `--layout=classic` or `--layout=modern`
+  chooses. The success stories seeded by `desiderio:styleguide:seed` use
+  Blog – Classic. Nothing seeds the previous single blog template any more,
+  and existing posts no longer get a made-up example comment (the demo
+  posts still have theirs).
+- The Blog feature page describes the two templates, with new screenshots
+  of the TYPO3 v14 blog (Blog – Modern) and of a post and its comments in
+  Blog – Classic.
+
+### Fixed
+
+- The preset matrix scrolls in a labelled region that takes keyboard
+  focus on narrow screens (axe: scrollable-region-focusable), like the
+  data-table element.
+
 ## [4.13.2] — 2026-09-27
 
 ### Fixed

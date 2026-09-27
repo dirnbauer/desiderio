@@ -522,10 +522,40 @@ html:not(:lang(zh), :lang(ja), :lang(ko)) .desiderio-blog-classic-post__body > .
     box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 45%, transparent);
 }
 
+/* The post count as a small round badge: a light circle on the muted
+   track, the theme's primary on the open topic. Two-digit counts widen it
+   into a pill. Both colour pairs are contrast-audited token pairs. */
 .desiderio-blog-topics__count {
-    font-size: 0.75rem;
+    display: inline-grid;
+    place-items: center;
+    min-width: 1.25rem;
+    height: 1.25rem;
+    padding-inline: 0.3125rem;
+    border-radius: 999px;
+    background: var(--background);
     color: var(--muted-foreground);
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
     font-variant-numeric: tabular-nums;
+    box-shadow: 0 0 0 1px color-mix(in oklch, var(--foreground) 8%, transparent);
+    transition: background-color 150ms ease, color 150ms ease;
+}
+
+.desiderio-blog-topics__pill:hover .desiderio-blog-topics__count {
+    color: var(--foreground);
+}
+
+.desiderio-blog-topics__pill[aria-current="page"] .desiderio-blog-topics__count {
+    background: var(--primary);
+    color: var(--primary-foreground);
+    box-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .desiderio-blog-topics__count {
+        transition: none;
+    }
 }
 
 /* The card grid. Three columns on a wide screen, and the last row always

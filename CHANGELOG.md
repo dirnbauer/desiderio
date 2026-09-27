@@ -6,6 +6,16 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.14.2] — 2026-09-27
+
+### Fixed
+
+- The styleguide seed gives a page's translations the template it writes
+  to the page. The success stories moved to Blog – Classic in English
+  only; in German, Chinese and Hungarian they kept the previous blog
+  template, because each translation renders its own copy of the page
+  template.
+
 ## [4.14.1] — 2026-09-27
 
 ### Changed

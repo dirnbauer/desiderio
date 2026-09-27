@@ -6,6 +6,7 @@ namespace Webconsulting\Desiderio\Seeding;
 
 use Doctrine\DBAL\ArrayParameterType;
 use Doctrine\DBAL\ParameterType;
+use TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Resource\StorageRepository;
 use Webconsulting\Desiderio\Library\CoreContentElements;
@@ -40,6 +41,7 @@ final readonly class LibraryElementUpserter
         private StyleguideFixtureResolver $fixtureResolver,
         private CollectionCleanupService $collectionCleanupService,
         private ContentBlockCollectionMap $collectionMap,
+        private FlexFormTools $flexFormTools,
     ) {
         $this->falSeeder = new ExtensionFalSeeder(
             $connectionPool,
@@ -244,13 +246,17 @@ final readonly class LibraryElementUpserter
         if ($formUid <= 0) {
             return $fixture;
         }
-        $fixture['pi_flexform'] = self::powermailFlexform($formUid);
+        $fixture['pi_flexform'] = $this->powermailFlexform($formUid);
 
         return $fixture;
     }
 
-    /** The plugin's main sheet: one form, all pages at once, no confirmation step. */
-    private static function powermailFlexform(int $formUid): string
+    /**
+     * The plugin's main sheet: one form, all pages at once, no confirmation step. Stored as
+     * DataHandler stores it, so Powermail's form overview lists the library among the pages
+     * that use the form.
+     */
+    private function powermailFlexform(int $formUid): string
     {
         $fields = [
             'settings.flexform.main.form' => (string)$formUid,
@@ -258,13 +264,12 @@ final readonly class LibraryElementUpserter
             'settings.flexform.main.optin' => '0',
             'settings.flexform.main.moresteps' => '0',
         ];
-        $xml = '<?xml version="1.0" encoding="utf-8" standalone="yes" ?>' . "\n"
-            . "<T3FlexForms>\n    <data>\n        <sheet index=\"main\">\n            <language index=\"lDEF\">\n";
+        $data = [];
         foreach ($fields as $field => $value) {
-            $xml .= '                <field index="' . $field . '"><value index="vDEF">' . $value . "</value></field>\n";
+            $data['main']['lDEF'][$field]['vDEF'] = $value;
         }
 
-        return $xml . "            </language>\n        </sheet>\n    </data>\n</T3FlexForms>";
+        return $this->flexFormTools->flexArray2Xml(['data' => $data]);
     }
 
     /**

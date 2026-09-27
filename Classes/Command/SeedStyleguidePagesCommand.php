@@ -12,9 +12,11 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Resource\StorageRepository;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Webconsulting\Desiderio\Data\StyleguideContentGroups;
 use Webconsulting\Desiderio\Data\StyleguideShowcasePages;
 use Webconsulting\Desiderio\Library\CoreContentElements;
@@ -994,7 +996,11 @@ final class SeedStyleguidePagesCommand extends Command
     private function getPowermailDemoSeeder(): PowermailDemoSeeder
     {
         // DI provides the seeder; the fallback only serves direct instantiation in tests.
-        return $this->powermailDemoSeeder ??= new PowermailDemoSeeder($this->connectionPool, $this->databaseSchema);
+        return $this->powermailDemoSeeder ??= new PowermailDemoSeeder(
+            $this->connectionPool,
+            $this->databaseSchema,
+            GeneralUtility::makeInstance(FlexFormTools::class),
+        );
     }
 
     private function getNewsDemoSeeder(): NewsDemoSeeder

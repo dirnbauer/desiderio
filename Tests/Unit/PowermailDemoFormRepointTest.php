@@ -5,6 +5,10 @@ declare(strict_types=1);
 namespace Webconsulting\Desiderio\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
+use TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools;
+use TYPO3\CMS\Core\Configuration\Tca\TcaMigration;
+use TYPO3\CMS\Core\Configuration\Tca\TcaPreparation;
+use TYPO3\CMS\Core\EventDispatcher\NoopEventDispatcher;
 use Webconsulting\Desiderio\Command\PowermailDemoSeeder;
 
 /**
@@ -29,6 +33,14 @@ final class PowermailDemoFormRepointTest extends TestCase
         </T3FlexForms>
         XML;
 
+    public static function setUpBeforeClass(): void
+    {
+        // FlexFormTools writes line breaks as LF, which TYPO3's bootstrap defines; this suite has none.
+        if (!defined('LF')) {
+            define('LF', chr(10));
+        }
+    }
+
     public function testAReplacedFormIsSwappedForItsSuccessor(): void
     {
         $repointed = PowermailDemoSeeder::repointFlexform(
@@ -39,6 +51,24 @@ final class PowermailDemoFormRepointTest extends TestCase
 
         self::assertSame(sprintf(self::FLEXFORM, 1203), $repointed);
         self::assertStringContainsString('<value index="vDEF">712</value>', $repointed, 'Other fields stay as they are');
+    }
+
+    /**
+     * The seeder now writes its plugins as the backend does, with each value on a line of its
+     * own, and so does every plugin an editor saved.
+     */
+    public function testAPluginInTheBackendLayoutIsRepointedToo(): void
+    {
+        $flexFormTools = new FlexFormTools(new NoopEventDispatcher(), new TcaMigration(), new TcaPreparation());
+        $flexform = static fn(int $form): string => $flexFormTools->flexArray2Xml(['data' => ['main' => ['lDEF' => [
+            'settings.flexform.main.form' => ['vDEF' => (string)$form],
+            'settings.flexform.main.pid' => ['vDEF' => '712'],
+        ]]]]);
+
+        self::assertSame(
+            $flexform(1203),
+            PowermailDemoSeeder::repointFlexform($flexform(978), [978 => 'appointment:default'], ['appointment:default' => 1203]),
+        );
     }
 
     public function testAFormTheRunDidNotReplaceIsLeftAlone(): void

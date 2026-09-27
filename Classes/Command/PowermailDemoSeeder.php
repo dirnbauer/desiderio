@@ -7,6 +7,7 @@ namespace Webconsulting\Desiderio\Command;
 use Doctrine\DBAL\ArrayParameterType;
 use Doctrine\DBAL\ParameterType;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use Webconsulting\Desiderio\Data\PowermailDemoFormDefinitions;
 use Webconsulting\Desiderio\Seeding\DatabaseSchemaHelper;
@@ -35,6 +36,7 @@ final readonly class PowermailDemoSeeder
     public function __construct(
         private ConnectionPool $connectionPool,
         private DatabaseSchemaHelper $databaseSchema,
+        private FlexFormTools $flexFormTools,
     ) {}
 
     public function canSeed(): bool
@@ -528,6 +530,13 @@ final readonly class PowermailDemoSeeder
         ], $columns);
     }
 
+    /**
+     * The plugin's FlexForm as DataHandler stores it when an editor saves the plugin.
+     *
+     * Written by hand, each value sat on its field's line. TYPO3 reads that the same way, but
+     * Powermail's form overview looked for the backend's layout as text and listed no page under
+     * "Used on Page" for any plugin this seeder had made.
+     */
     private function buildPowermailFlexform(int $formUid, int $storagePid, int $thankPid, bool $moresteps): string
     {
         $values = [
@@ -556,17 +565,14 @@ final readonly class PowermailDemoSeeder
             ],
         ];
 
-        $xml = "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\" ?>\n<T3FlexForms>\n    <data>\n";
+        $data = [];
         foreach ($values as $sheet => $fields) {
-            $xml .= '        <sheet index="' . $sheet . "\">\n            <language index=\"lDEF\">\n";
             foreach ($fields as $field => $value) {
-                $xml .= '                <field index="' . htmlspecialchars($field, ENT_XML1) . '"><value index="vDEF">' . htmlspecialchars($value, ENT_XML1) . "</value></field>\n";
+                $data[$sheet]['lDEF'][$field]['vDEF'] = $value;
             }
-            $xml .= "            </language>\n        </sheet>\n";
         }
-        $xml .= "    </data>\n</T3FlexForms>";
 
-        return $xml;
+        return $this->flexFormTools->flexArray2Xml(['data' => $data]);
     }
 
     /**

@@ -11,6 +11,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use TYPO3\CMS\Core\Cache\CacheManager;
+use TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Resource\StorageRepository;
@@ -46,6 +47,7 @@ final class SeedElementLibraryCommand extends Command
         private readonly PreviewWarmer $previewWarmer,
         private readonly CacheManager $cacheManager,
         private readonly LiveWorkspaceQueryHelper $liveWorkspaceQueryHelper,
+        private readonly FlexFormTools $flexFormTools,
     ) {
         parent::__construct();
     }
@@ -175,6 +177,7 @@ final class SeedElementLibraryCommand extends Command
             $fixtureResolver,
             new CollectionCleanupService($this->connectionPool, $this->databaseSchema, $this->liveWorkspaceQueryHelper),
             new ContentBlockCollectionMap(),
+            $this->flexFormTools,
         );
 
         $created = 0;

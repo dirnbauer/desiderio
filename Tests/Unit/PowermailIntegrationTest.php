@@ -5,7 +5,11 @@ declare(strict_types=1);
 namespace Webconsulting\Desiderio\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
+use TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools;
+use TYPO3\CMS\Core\Configuration\Tca\TcaMigration;
+use TYPO3\CMS\Core\Configuration\Tca\TcaPreparation;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\EventDispatcher\NoopEventDispatcher;
 use Webconsulting\Desiderio\Command\PowermailDemoSeeder;
 use Webconsulting\Desiderio\Data\PowermailDemoFormDefinitions;
 use Webconsulting\Desiderio\Seeding\DatabaseSchemaHelper;
@@ -267,6 +271,7 @@ final class PowermailIntegrationTest extends TestCase
         $seeder = new PowermailDemoSeeder(
             self::createStub(ConnectionPool::class),
             new DatabaseSchemaHelper(self::createStub(ConnectionPool::class)),
+            new FlexFormTools(new NoopEventDispatcher(), new TcaMigration(), new TcaPreparation()),
         );
         $forms = $seeder->getDemoForms();
 

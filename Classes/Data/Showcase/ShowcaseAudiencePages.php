@@ -171,7 +171,7 @@ final class ShowcaseAudiencePages
             'title' => 'For in-house marketing and product teams',
             'navTitle' => 'For in-house teams',
             'slug' => '/target-groups/for-inhouse-teams',
-            'abstract' => 'How in-house teams use Desiderio: editors build campaign pages without developer tickets, and design tokens keep every page on brand. Studio adds early access and support.',
+            'abstract' => 'How in-house teams use Desiderio: editors build campaign pages without developer tickets, and design tokens keep every page on brand. Studio adds guaranteed support.',
             'description' => 'Desiderio for in-house teams: editors build campaign pages from 244 elements with backend previews, and design tokens keep every page on brand.',
             'parentSlug' => 'target-groups',
             'content' => [
@@ -209,7 +209,7 @@ final class ShowcaseAudiencePages
                     'billing_period' => '/year, or €59 a month',
                     'description' => 'We recommend Studio. An agency-built landing page costs €1,200–2,400, for 10–20 hours at €120 per hour, and it waits in a queue. With Desiderio, your editors publish it the same day. One campaign page a year pays for the plan.',
                     'features' => [
-                        ['text' => 'Studio, €590 a year: up to 5 live sites, early access and the maintenance promise'],
+                        ['text' => 'Studio, €590 a year: support for up to 5 live sites and the maintenance promise'],
                         ['text' => 'Answers from the maintainers within 2 business days'],
                         ['text' => 'Editor training, €790 once: afterwards the whole team publishes without tickets'],
                         ['text' => 'Kickstart workshop, €1,490 once: your developers learn the system in one session'],
@@ -277,7 +277,7 @@ final class ShowcaseAudiencePages
                         ['icon' => 'sparkles', 'title' => 'Design included', 'description' => 'You get shadcn/ui components, checked colour contrast, dark mode and 5 icon libraries. Clients see a finished design system.', 'link' => ''],
                         ['icon' => 'book-open', 'title' => 'Quality checks included', 'description' => 'PHPStan level 8, more than 170 tests and a template audit come with the package. Your clients get the quality checks of a large agency.', 'link' => ''],
                         ['icon' => 'zap', 'title' => 'Live demos for prospects', 'description' => 'Seed the demo site on a test DDEV project and send the prospect a link. A working demo shows more than a PDF offer.', 'link' => ''],
-                        ['icon' => 'users', 'title' => 'Support when needed', 'description' => 'Studio costs €590 a year: answers from the maintainers within 2 business days, the maintenance promise and early access. Custom elements start at €890.', 'link' => '{{page:pricing}}'],
+                        ['icon' => 'users', 'title' => 'Support when needed', 'description' => 'Studio costs €590 a year: answers from the maintainers within 2 business days and the maintenance promise. Custom elements start at €890.', 'link' => '{{page:pricing}}'],
                     ],
                 ]),
                 ShowcaseBlocks::block('desiderio_pricingsimple', [
@@ -288,7 +288,7 @@ final class ShowcaseAudiencePages
                     'features' => [
                         ['text' => '€0 forever: all 244 elements and 62 components, worth about €55,000 at freelance rates'],
                         ['text' => 'Around 60 hours saved per fixed-price project, about €5,400 at €90 per hour'],
-                        ['text' => 'Studio, €590 a year or €59 a month: answers within 2 business days and early access'],
+                        ['text' => 'Studio, €590 a year or €59 a month: answers within 2 business days and the maintenance promise'],
                         ['text' => 'Custom elements from €890, when a client needs something new'],
                         ['text' => 'A live demo site from one command, for pitches against agencies'],
                     ],

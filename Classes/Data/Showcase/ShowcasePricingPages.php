@@ -38,20 +38,20 @@ final class ShowcasePricingPages
             'navTitle' => 'Pricing',
             'slug' => '/pricing',
             'seoTitle' => 'Desiderio pricing: plans and services for TYPO3 agencies',
-            'abstract' => 'Desiderio is free under GPL-2.0. Studio, Agency and Partner add early access, the maintenance promise and answers from the maintainers; services have fixed prices.',
-            'description' => 'Desiderio is free. Studio €590, Agency €1,990 and Partner €4,900 a year add early access and support; services have fixed prices.',
+            'abstract' => 'Desiderio is free under GPL-2.0, with every release. The Studio, Agency and Partner support plans add guaranteed answers and the maintenance promise; services have fixed prices.',
+            'description' => 'Desiderio is free. Support plans: Studio €590, Agency €1,990, Partner €4,900 a year, with guaranteed answers; services at fixed prices.',
             'parentSlug' => null,
             'content' => [
                 ShowcaseBlocks::salesHero(
                     'Free to use',
                     'Free to use. Pay for certainty.',
-                    'The code is open source and stays that way. Paid plans add early access, the maintenance promise and answers from the people who wrote it.',
+                    'Every element and every release is free and open source. Support plans add guaranteed answers, the maintenance promise and help from the people who wrote it.',
                     ['text' => 'Choose a plan', 'link' => ShowcasePricing::ORDER_LINK],
                     ['text' => 'Download the demo', 'link' => '{{page:downloads}}'],
                     ShowcaseHeroPhotos::for('pricing'),
                 ),
                 ShowcaseBlocks::block('desiderio_pricingfourtier', [
-                    'eyebrow' => 'Plans',
+                    'eyebrow' => 'Support plans',
                     'header' => 'One price per year, by live sites',
                     'subheadline' => 'Prices are net. Staging and local installations are always free, and yearly billing saves two months.',
                     'plans' => array_map(
@@ -68,7 +68,7 @@ final class ShowcasePricingPages
                     ),
                 ]),
                 ShowcaseBlocks::block('desiderio_trustbadges', [
-                    'header' => 'What every paid plan promises',
+                    'header' => 'What every support plan promises',
                     'subheadline' => 'In the terms, not only on this page.',
                     'badge_items' => array_map(
                         static fn(array $promise): array => [

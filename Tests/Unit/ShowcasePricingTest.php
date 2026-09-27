@@ -67,6 +67,8 @@ final class ShowcasePricingTest extends TestCase
         yield 'unlimited projects' => ['/unlimited (client )?projects/i'];
         yield 'four-hour answers' => ['/4 business hours/i'];
         yield 'installation service' => ['/installation service/i'];
+        // Every release is free; the plans sell support (owner decision 2026-09-27).
+        yield 'paid early access' => ['/early[- ]access/i'];
     }
 
     #[DataProvider('retiredOffers')]

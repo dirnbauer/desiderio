@@ -83,9 +83,9 @@ final class NewsDemoSeeder
                 'istopnews' => false,
             ],
             [
-                'title' => 'New plans for TYPO3 agencies',
-                'teaser' => 'From €590 a year, Studio, Agency and Partner add early access, the maintenance promise and answers from the maintainers. The code stays free.',
-                'bodytext' => '<p>Desiderio stays free under GPL-2.0, with every element and every extension. The new plans are for agencies that build client sites on it: Studio for up to 5 live sites, Agency for up to 25 and Partner without a limit.</p><p>Every plan brings early access to new releases, the maintenance promise and direct answers. Staging and local installations are always free.</p>',
+                'title' => 'Support plans for TYPO3 agencies',
+                'teaser' => 'From €590 a year, the Studio, Agency and Partner support plans add guaranteed answers and the maintenance promise. Every release stays free.',
+                'bodytext' => '<p>Desiderio stays free under GPL-2.0, with every element and every extension. The new support plans are for agencies that build client sites on it: Studio for up to 5 live sites, Agency for up to 25 and Partner without a limit.</p><p>Every plan brings guaranteed answer times, named developers and the maintenance promise. Staging and local installations are always free.</p>',
                 'daysAgo' => 31,
                 'istopnews' => false,
             ],

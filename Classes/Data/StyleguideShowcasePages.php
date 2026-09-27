@@ -103,7 +103,7 @@ final class StyleguideShowcasePages
             ShowcaseBlocks::salesHero(
                 'For TYPO3 agencies',
                 'Ship TYPO3 client sites in days, not weeks',
-                '244 finished content elements, 15 themes and the editor tools around them. Free to use; paid plans add early access and direct support.',
+                '244 finished content elements, 15 themes and the editor tools around them. Free and open source; support plans add guaranteed answers.',
                 ['text' => 'Download the demo', 'link' => '{{page:downloads}}'],
                 ['text' => 'See pricing', 'link' => '{{page:pricing}}'],
                 ShowcaseHeroPhotos::for('home'),
@@ -277,7 +277,7 @@ final class StyleguideShowcasePages
                     ['title' => 'Fewer tickets from editors', 'description_text' => 'Backend previews for all 244 elements, inline editing and a content wizard in ten groups.'],
                     ['title' => 'Accessibility you can prove', 'description_text' => 'The build checks WCAG 2.2 contrast for every preset, in light and dark mode.'],
                     ['title' => 'Measured quality', 'description_text' => 'PHPStan at level 8, unit and functional tests on PHP 8.4 and 8.5, and a template audit with zero findings.'],
-                    ['title' => 'Free and open source', 'description_text' => 'GPL-2.0, with the full source on GitHub. Paid plans add early access, the maintenance promise and answers from the maintainers.'],
+                    ['title' => 'Free and open source', 'description_text' => 'GPL-2.0, with the full source on GitHub and every release free. Support plans add guaranteed answers and the maintenance promise.'],
                 ],
             ]),
 
@@ -300,7 +300,7 @@ final class StyleguideShowcasePages
             ShowcaseBlocks::block('desiderio_pricingthreetier', [
                 'eyebrow' => 'Pricing',
                 'header' => 'Free to use. Pay for certainty.',
-                'subheadline' => 'Community is complete and free under GPL-2.0. Paid plans add early access, the maintenance promise and answers from the maintainers.',
+                'subheadline' => 'Desiderio is complete and free under GPL-2.0, every release. Support plans add guaranteed answers, the maintenance promise and onboarding.',
                 'plans' => array_map(
                     static fn(array $plan): array => [
                         'name' => $plan['name'],

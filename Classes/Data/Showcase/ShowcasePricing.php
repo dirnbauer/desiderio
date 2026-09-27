@@ -10,6 +10,8 @@ namespace Webconsulting\Desiderio\Data\Showcase;
  * and the target-group pages all read from here, so a price changes once.
  * The content canon (facts.desiderio.pricing and .services) mirrors it.
  *
+ * Desiderio is free with every release; the paid plans are support plans
+ * (sales model decided 2026-09-27): no plan buys code or earlier releases.
  * Plans are priced by live sites; staging and local installations are free.
  * Every service is a fixed price that earns at least €125 an hour.
  *
@@ -35,9 +37,9 @@ final class ShowcasePricing
                 'for' => 'For anyone trying Desiderio, and teams that support themselves.',
                 'features' => [
                     'All 244 content elements, 62 components and 15 theme presets',
-                    'Public releases of every extension in the suite',
+                    'Every extension of the suite, every release the day it ships',
                     'Unlimited sites, commercial use included',
-                    'Security fixes at the same time as paid plans',
+                    'Every bug and security fix, for everyone',
                     'Help from the community on GitHub',
                 ],
                 'button' => ['text' => 'Install for free', 'link' => ShowcaseBlocks::REPO_URL],
@@ -51,7 +53,6 @@ final class ShowcasePricing
                 'for' => 'For freelancers and small studios.',
                 'features' => [
                     'Up to 5 live sites; staging and local installs are free',
-                    'Early access to new releases of Desiderio and the suite',
                     'The maintenance promise',
                     'Email answers within 2 business days',
                     '1 named developer',
@@ -108,7 +109,7 @@ final class ShowcasePricing
             ['feature' => 'Price', 'values' => ['€0', '€590 a year', '€1,990 a year', '€4,900 a year']],
             ['feature' => 'Live sites', 'values' => ['Unlimited', 'Up to 5', 'Up to 25', 'Unlimited']],
             ['feature' => 'Staging and local installs', 'values' => ['Free', 'Free', 'Free', 'Free']],
-            ['feature' => 'Early access to new releases', 'values' => ['–', 'Yes', 'Yes', 'Yes']],
+            ['feature' => 'Every release, free for everyone', 'values' => ['Yes', 'Yes', 'Yes', 'Yes']],
             ['feature' => 'The maintenance promise', 'values' => ['–', 'Yes', 'Yes', 'Yes']],
             ['feature' => 'Answers from the maintainers', 'values' => ['GitHub issues', 'Within 2 business days', 'Next business day', 'Next business day']],
             ['feature' => 'Named developers', 'values' => ['–', '1', '3', '6']],
@@ -167,7 +168,7 @@ final class ShowcasePricing
             'savings' => 'Editor training included (€790)',
             'description' => 'The Agency plan for a year, the Kickstart workshop and one Brand Theme. The editor training for your first client is included.',
             'items' => [
-                ['name' => 'Agency plan, one year', 'price' => '€1,990', 'description' => 'Up to 25 live sites, early access and answers by the next business day.'],
+                ['name' => 'Agency plan, one year', 'price' => '€1,990', 'description' => 'Support for up to 25 live sites, with answers by the next business day.'],
                 ['name' => 'Kickstart workshop', 'price' => '€1,490', 'description' => 'Your developers learn the system in one session.'],
                 ['name' => 'Brand Theme', 'price' => '€2,490', 'description' => 'Your first client\'s brand as a preset.'],
                 ['name' => 'Editor training', 'price' => '€790', 'description' => 'Included: 3 hours for your client\'s editors.'],
@@ -196,13 +197,13 @@ final class ShowcasePricing
     public static function faq(): array
     {
         return [
-            ['question' => 'Is Desiderio really free?', 'answer' => 'Yes. It is GPL-2.0: unlimited sites, commercial use included, and the full source is on GitHub.'],
-            ['question' => 'What do paid plans add?', 'answer' => 'The code is open source either way. Paid plans add early access to new releases, the maintenance promise and answers from the people who wrote it. Agency and Partner add onboarding, priority and enquiries we pass on.'],
+            ['question' => 'Is Desiderio really free?', 'answer' => 'Yes, with every release. It is GPL-2.0: unlimited sites, commercial use included, and the full source is on GitHub.'],
+            ['question' => 'What do paid plans add?', 'answer' => 'Desiderio and every release are free for everyone. The support plans add guaranteed answer times, named developers and the maintenance promise; Agency and Partner add onboarding, priority and enquiries we pass on.'],
             ['question' => 'What counts as a live site?', 'answer' => 'A TYPO3 site with its own public domain in production. Development, staging and local installations are free.'],
             ['question' => 'Can we move a site to another client?', 'answer' => 'Yes. Swap sites whenever you like; only the number of live sites counts.'],
             ['question' => 'Can we charge our clients for it?', 'answer' => 'Yes. Many agencies add it to their maintenance contracts. We never contact your clients.'],
-            ['question' => 'What happens if we cancel?', 'answer' => 'You keep every version you have, and your sites keep working. Early access and answers end, and public releases continue.'],
-            ['question' => 'Which TYPO3 versions do you support?', 'answer' => 'TYPO3 v14 LTS, which gets security fixes until 30 June 2029. Support for the next LTS reaches paid plans first.'],
+            ['question' => 'What happens if we cancel?', 'answer' => 'Nothing changes on your sites, and every release stays free. The guaranteed answers and the maintenance promise end.'],
+            ['question' => 'Which TYPO3 versions do you support?', 'answer' => 'TYPO3 v14 LTS, which gets security fixes until 30 June 2029. Support for the next LTS comes as a free release, like every other.'],
             ['question' => 'Do the AI features cost extra?', 'answer' => 'Not from us. You add your own provider key and pay the provider directly.'],
             ['question' => 'How do we pay?', 'answer' => 'Yearly by invoice, or monthly. Prices are net; businesses in the EU get a reverse-charge invoice.'],
             ['question' => 'Can we get our money back?', 'answer' => 'Yes, within 30 days of the first yearly payment, no questions asked.'],

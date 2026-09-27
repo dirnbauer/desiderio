@@ -112,6 +112,46 @@ headers.
 Existing Blog page trees are aligned with ``desiderio:blog:seed-pages``
 (:ref:`developer-commands`).
 
+..  _configuration-extensions-blog-templates:
+
+Two blog page templates
+-----------------------
+
+A blog picks its look with its page template, set on the blog's start page
+for the page and its subpages:
+
+**Blog – Classic** (``DesiderioBlogClassic``)
+    A journal. A centred masthead, one post after another with a date leaf
+    in the margin, the widgets in a sidebar panel, a drop cap on the first
+    paragraph and a dinkus (three dots in the chart colours) where other
+    lists draw a rule.
+
+**Blog – Modern** (``DesiderioBlogModern``)
+    A magazine. The newest post as a large card, the others in a card grid
+    whose last row always fills, topics as a tab row, tags, archive and
+    comments on one panel below the posts. A post gets a wide picture, a
+    table of contents from its headers, share buttons (copy link, LinkedIn)
+    and a reading progress bar (site setting
+    ``desiderio.editorial.readingProgress``).
+
+Each template is a page template in
+:file:`Resources/Private/ShadcnUi/Templates/Pages/` and a folder with the
+EXT:blog templates it changes:
+
+..  code-block:: text
+
+    Resources/Private/Extensions/Blog/
+    ├── Templates/ Partials/ Layouts/   shared by every blog page template
+    ├── Classic/Templates/ Partials/    what Blog – Classic changes
+    └── Modern/Templates/ Partials/     what Blog – Modern changes
+
+A ``[tree.pagelayout == "pagets__DesiderioBlogClassic"]`` (or ``…Modern``)
+condition in the ``webconsulting/desiderio-blog`` set puts the folder at
+``templateRootPaths.300`` and ``partialRootPaths.300``, in front of the
+shared ones at ``.200``; a template missing there falls back to the shared
+folder. The older ``DesiderioBlog`` template keeps working unchanged and is
+listed as "Blog (previous version)".
+
 ..  _configuration-extensions-news:
 
 News (EXT:news)

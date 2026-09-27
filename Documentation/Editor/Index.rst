@@ -98,6 +98,13 @@ Blog list and detail views use the templates under
 widgets, metadata, categories, tags, author boxes, comments, related
 posts, and RSS output.
 
+To choose the look of a blog, open the page properties of its start page,
+go to :guilabel:`Appearance` and pick :guilabel:`Desiderio: Blog – Classic`
+(a journal with a sidebar) or :guilabel:`Desiderio: Blog – Modern` (a
+magazine with a card grid) for the page and its subpages. Every post,
+category, tag, author and archive page below follows
+(:ref:`configuration-extensions-blog-templates`).
+
 ..  _editor-workspaces:
 
 Workspaces

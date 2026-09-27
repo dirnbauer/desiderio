@@ -29,7 +29,13 @@ template of the same name from its own ``lib.fluidPage.paths`` entry.
     *   - ``DesiderioStyleguide``
         - ``main``
         - ``Pages/DesiderioStyleguide.fluid.html``
-    *   - ``DesiderioBlog``
+    *   - ``DesiderioBlogClassic`` (Blog – Classic)
+        - ``main``, ``sidebar``
+        - ``Pages/DesiderioBlogClassic.fluid.html``
+    *   - ``DesiderioBlogModern`` (Blog – Modern)
+        - ``main``, ``sidebar`` (shown below the posts)
+        - ``Pages/DesiderioBlogModern.fluid.html``
+    *   - ``DesiderioBlog`` (Blog, previous version)
         - ``main``, ``sidebar``
         - ``Pages/DesiderioBlog.fluid.html``
     *   - ``DesiderioNews``

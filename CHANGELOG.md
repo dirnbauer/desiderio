@@ -6,6 +6,18 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.14.4] — 2026-09-27
+
+### Fixed
+
+- Timeline and Feature Timeline chevrons sit on the card's outer edge,
+  level with the numbered dot, and the connector runs straight into
+  their tip. Feature Timeline's chevron sat inside the card, so its arms
+  poked through the border, and the connector met it off-centre and
+  short of the tip; Timeline's connector sat up to 2.5px off the dot and
+  ran into the chevron.
+- The timeline lines stay crisp on 1x screens.
+
 ## [4.14.3] — 2026-09-27
 
 ### Fixed

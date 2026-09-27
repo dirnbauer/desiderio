@@ -43,6 +43,35 @@ final class ImageAlternativeTextTest extends TestCase
     }
 
     /**
+     * The headline as alt text repeats what a screen reader has just read and
+     * hides the description the editor gave the photo. It stays as the
+     * fallback for a reference without an alternative, until 4.13.1 it was the
+     * only alt of seven hero elements.
+     */
+    #[Test]
+    public function noContentElementReplacesTheImageAlternativeWithTheHeadline(): void
+    {
+        $offenders = [];
+        foreach ($this->frontendTemplates() as $path) {
+            $markup = (string)file_get_contents($path);
+            preg_match_all('/<f:image\b[^>]*>/s', $markup, $matches);
+            foreach ($matches[0] as $tag) {
+                if (str_contains($tag, 'alt="{data.header}"')) {
+                    $offenders[] = substr($path, (int)strpos($path, 'ContentElements'));
+                }
+            }
+        }
+
+        $unique = array_values(array_unique($offenders));
+
+        self::assertSame([], $unique, sprintf(
+            "These templates pass the headline as alt to f:image and drop the editor's alternative text. "
+            . "Prefer the reference's own, for example alt=\"{f:if(condition: image.alternative, then: image.alternative, else: data.header)}\":\n%s",
+            implode("\n", $unique)
+        ));
+    }
+
+    /**
      * @return list<string>
      */
     private function frontendTemplates(): array

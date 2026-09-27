@@ -6,6 +6,15 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.14.5] — 2026-09-27
+
+### Fixed
+
+- A multi-step Powermail form renders one submit button, on its last
+  step. A submit field an editor added to an earlier page rendered as a
+  real submit button next to Next and sent the whole form from that
+  step; the Jev examples 10 and 11 had two of them.
+
 ## [4.14.4] — 2026-09-27
 
 ### Fixed

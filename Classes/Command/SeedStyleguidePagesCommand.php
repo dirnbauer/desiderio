@@ -580,6 +580,8 @@ final class SeedStyleguidePagesCommand extends Command
                 $createdPages++;
             } else {
                 $pageUpserter->update($pageUid, $page['title'], $page['slug'], $sorting, $now, $pageColumns, $pageAttributes);
+                // Each language renders its own copy of the page template.
+                $pageUpserter->syncTranslationLayout($pageUid, $pageAttributes, $pageColumns);
             }
 
             if ($blogAvailable && is_array($blogMeta)) {

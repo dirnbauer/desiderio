@@ -167,6 +167,42 @@ final class SeedStyleguidePagesCommandBlogFunctionalTest extends FunctionalTestC
         self::assertSame(3, $this->countRows('tt_content', "deleted = 0 AND CType IN ('blog_posts', 'blog_category', 'blog_tag')"));
     }
 
+    public function testReseedingGivesTranslationsTheTemplateOfTheirPage(): void
+    {
+        self::assertSame(Command::SUCCESS, $this->createCommandTester()->execute(['--parent' => '1', '--skip-powermail' => true, '--skip-news' => true]));
+
+        // Translations made while the success stories used the previous blog
+        // template keep their own copy of it.
+        $translations = [];
+        foreach (['/success-stories', '/success-stories/an-ai-lab'] as $slug) {
+            $page = $this->fetchPageBySlug($slug);
+            $connection = $this->getConnectionPool()->getConnectionForTable('pages');
+            $connection->insert('pages', [
+                'pid' => $this->intValue($page, 'pid'),
+                'sys_language_uid' => 1,
+                'l10n_parent' => $this->intValue($page, 'uid'),
+                'title' => $this->stringValue($page, 'title') . ' (de)',
+                'slug' => $slug,
+                'doktype' => $this->intValue($page, 'doktype'),
+                'backend_layout' => BlogPageTreeSeeder::PREVIOUS_BACKEND_LAYOUT,
+                'backend_layout_next_level' => BlogPageTreeSeeder::PREVIOUS_BACKEND_LAYOUT,
+            ]);
+            $translations[$slug] = (int)$connection->lastInsertId();
+        }
+
+        self::assertSame(Command::SUCCESS, $this->createCommandTester()->execute(['--parent' => '1', '--skip-powermail' => true, '--skip-news' => true]));
+
+        foreach ($translations as $slug => $uid) {
+            $translation = $this->getConnectionPool()
+                ->getConnectionForTable('pages')
+                ->executeQuery('SELECT backend_layout, backend_layout_next_level FROM pages WHERE uid = ?', [$uid])
+                ->fetchAssociative();
+            self::assertIsArray($translation, $slug);
+            self::assertSame(BlogPageTreeSeeder::DEFAULT_BACKEND_LAYOUT, $translation['backend_layout'], $slug);
+            self::assertSame(BlogPageTreeSeeder::DEFAULT_BACKEND_LAYOUT, $translation['backend_layout_next_level'], $slug);
+        }
+    }
+
     /**
      * @return list<array{slug: string, blog: array{publishDate: string, categories: list<string>, tags: list<string>}}>
      */

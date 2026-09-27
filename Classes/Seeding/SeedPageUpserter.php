@@ -151,6 +151,31 @@ final readonly class SeedPageUpserter
     }
 
     /**
+     * Gives the translations of a page the page template just written to it.
+     * A translation keeps its own copy of backend_layout, and that copy is
+     * what its language renders: the success stories moved to Blog – Classic
+     * in English and stayed on the previous blog template in German, Chinese
+     * and Hungarian.
+     *
+     * @param array<string, mixed> $attributes The columns written to the default-language page
+     * @param array<string, true> $columns
+     */
+    public function syncTranslationLayout(int $pageUid, array $attributes, array $columns): void
+    {
+        if (!isset($columns['l10n_parent'])) {
+            return;
+        }
+        $layout = $this->databaseSchema->filterRow(
+            array_intersect_key($attributes, ['backend_layout' => true, 'backend_layout_next_level' => true]),
+            $columns
+        );
+        if ($layout === []) {
+            return;
+        }
+        $this->connectionPool->getConnectionForTable('pages')->update('pages', $layout, ['l10n_parent' => $pageUid]);
+    }
+
+    /**
      * The parent of a live page, hidden or not, or null for an unknown page.
      */
     public function parentOf(int $pageUid): ?int

@@ -265,6 +265,18 @@
         <target>无障碍</target>
       </segment>
     </unit>
+    <unit id="footer.aiNotice.label">
+      <segment state="final">
+        <source>AI transparency notice</source>
+        <target>人工智能透明度说明</target>
+      </segment>
+    </unit>
+    <unit id="footer.aiNotice.text">
+      <segment state="final">
+        <source>Some images on this website, including photos of people, were generated with artificial intelligence (AI). The people shown in them do not exist. Texts and translations were created with AI support; the site operator is editorially responsible for them. Notice under Art. 50 of the EU AI Act (Regulation (EU) 2024/1689).</source>
+        <target>本网站的部分图片（包括人物照片）由人工智能（AI）生成，图中人物并不真实存在。文本和译文借助 AI 创作，由网站运营方承担编辑责任。本说明依据欧盟《人工智能法》（条例 (EU) 2024/1689）第 50 条作出。</target>
+      </segment>
+    </unit>
     <unit id="consent.label">
       <segment state="final">
         <source>Cookie consent</source>

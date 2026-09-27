@@ -634,3 +634,21 @@
     }
 }
 
+/* Header button page (desiderio.header.ctaSlug): a button in the actions
+   on desktop, an ordinary entry of the burger menu below 1025px. The menu
+   entry is hidden on desktop wherever the priority nav puts it. */
+.desiderio-header__cta {
+    white-space: nowrap;
+}
+
+@media (min-width: 1025px) {
+    .desiderio-header__nav-item--cta {
+        display: none;
+    }
+}
+
+@media (max-width: 1024px) {
+    .desiderio-header__cta {
+        display: none;
+    }
+}

@@ -144,6 +144,13 @@ settings:
     default: true
     category: desiderio.header
 
+  desiderio.header.ctaSlug:
+    label: 'Header button page'
+    description: 'The slug of a first-level page shown as a button next to the search on desktop, for example /downloads or /contact. On phones it stays an entry of the menu. A slug, not a uid, so the setting holds in every copy of the site. Empty shows no button.'
+    type: string
+    default: ''
+    category: desiderio.header
+
   # --------------------------------------------------------------- Footer
   desiderio.footer.style:
     label: 'Footer style'
@@ -169,6 +176,13 @@ settings:
     description: 'Comma-separated list of pages for the legal footer menu, for example imprint, privacy, accessibility.'
     type: string
     default: ''
+    category: desiderio.footer
+
+  desiderio.footer.aiNotice:
+    label: 'AI transparency notice'
+    description: 'Show a short notice above the footer that images and texts were made with AI (EU AI Act, Art. 50). The text comes from the translation labels footer.aiNotice.*.'
+    type: bool
+    default: false
     category: desiderio.footer
 
   # --------------------------------------------------------------- Search

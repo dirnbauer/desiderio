@@ -97,3 +97,36 @@
     color: var(--foreground);
 }
 
+
+/* AI transparency notice (desiderio.footer.aiNotice): small print right above
+   the footer, so the footer's own top margin moves to the notice. */
+.desiderio-ai-notice {
+    margin-top: 4rem;
+    padding-block: 1rem;
+    border-top: 1px solid var(--border);
+}
+
+.desiderio-ai-notice + .desiderio-footer {
+    margin-top: 0;
+    border-top: 0;
+}
+
+.desiderio-ai-notice__text {
+    margin: 0;
+    max-width: 90ch;
+    font-size: var(--d-text-xs, 0.75rem);
+    line-height: 1.55;
+    color: var(--muted-foreground);
+    text-wrap: pretty;
+}
+
+/* A chip instead of a colon: the label reads right in every language. */
+.desiderio-ai-notice__label {
+    display: inline-block;
+    margin-inline-end: 0.5em;
+    padding: 0 0.45em;
+    border-radius: var(--radius-sm, 0.25rem);
+    background: var(--muted);
+    color: var(--foreground);
+    font-weight: var(--d-weight-semibold, 600);
+}

@@ -18,6 +18,15 @@
     <f:variable name="searchAction" value="{f:uri.page(pageUid: site.configuration.settings.desiderio.search.targetPageId)}"/>
 </f:if>
 
+<f:comment>
+    desiderio.header.ctaSlug: the first-level page with this slug shows as a
+    button in the header actions on desktop. Below 1025px the button hides
+    and the page stays an entry of the burger menu
+    (desiderio-header__nav-item--cta). A slug, because uids differ between
+    copies of a site.
+</f:comment>
+<f:variable name="ctaSlug" value="{site.configuration.settings.desiderio.header.ctaSlug}"/>
+
 <header class="desiderio-header {f:if(condition: '{site.configuration.settings.desiderio.header.fixedPosition}', then: 'desiderio-header--fixed')}" data-d-site-header>
     <d:layout.container>
         <div class="desiderio-header__inner">
@@ -32,7 +41,7 @@
                 <f:if condition="{mainMenu}">
                     <ul class="desiderio-header__nav-list" role="list">
                         <f:for each="{mainMenu}" as="item" iteration="navIteration">
-                            <li class="desiderio-header__nav-item" {f:if(condition: item.children, then: 'data-d-nav-sub')}>
+                            <li class="desiderio-header__nav-item{f:if(condition: '{ctaSlug} && {item.data.slug} == {ctaSlug}', then: ' desiderio-header__nav-item--cta')}" {f:if(condition: item.children, then: 'data-d-nav-sub')}>
                                 <f:if condition="{item.children}">
                                     <f:then>
                                         <span class="desiderio-header__nav-trigger">
@@ -234,6 +243,14 @@
                             </ul>
                         </details>
                     </nav>
+                </f:if>
+
+                <f:if condition="{ctaSlug}">
+                    <f:for each="{mainMenu}" as="ctaItem">
+                        <f:if condition="{ctaItem.data.slug} == {ctaSlug}">
+                            <d:atom.button href="{ctaItem.link}" size="sm" class="desiderio-header__cta">{ctaItem.title}</d:atom.button>
+                        </f:if>
+                    </f:for>
                 </f:if>
 
                 <button type="button" class="desiderio-header__menu-toggle btn btn--ghost btn--icon" data-d-menu-toggle data-d-menu-target="#desiderio-main-nav" aria-expanded="false" aria-controls="desiderio-main-nav" aria-label="{f:translate(extensionName: 'desiderio', key: 'a11y.menu.toggle', default: 'Toggle menu')}">

@@ -17,6 +17,23 @@
     <f:variable name="footerAttribution" value="{brandTagline -> f:format.trim(characters: '.') -> f:format.case(mode: 'lower')}" />
 </f:if>
 
+<f:comment>
+    The AI transparency notice (desiderio.footer.aiNotice) sits right above the
+    footer on every page: the EU AI Act (Art. 50) asks for AI-generated images
+    of people to be disclosed. The wording lives in the translation labels
+    footer.aiNotice.label and footer.aiNotice.text.
+</f:comment>
+<f:if condition="{site.configuration.settings.desiderio.footer.aiNotice}">
+    <aside class="desiderio-ai-notice" aria-label="{f:translate(extensionName: 'desiderio', key: 'footer.aiNotice.label', default: 'AI transparency notice')}">
+        <d:layout.container>
+            <p class="desiderio-ai-notice__text">
+                <strong class="desiderio-ai-notice__label">{f:translate(extensionName: 'desiderio', key: 'footer.aiNotice.label', default: 'AI transparency notice')}</strong>
+                {f:translate(extensionName: 'desiderio', key: 'footer.aiNotice.text')}
+            </p>
+        </d:layout.container>
+    </aside>
+</f:if>
+
 <footer class="desiderio-footer">
     <d:layout.container>
         <div class="desiderio-footer__inner">

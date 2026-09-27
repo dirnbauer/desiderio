@@ -265,6 +265,18 @@
         <target>Akadálymentesség</target>
       </segment>
     </unit>
+    <unit id="footer.aiNotice.label">
+      <segment state="final">
+        <source>AI transparency notice</source>
+        <target>MI-átláthatósági tájékoztató</target>
+      </segment>
+    </unit>
+    <unit id="footer.aiNotice.text">
+      <segment state="final">
+        <source>Some images on this website, including photos of people, were generated with artificial intelligence (AI). The people shown in them do not exist. Texts and translations were created with AI support; the site operator is editorially responsible for them. Notice under Art. 50 of the EU AI Act (Regulation (EU) 2024/1689).</source>
+        <target>A weboldal egyes képei, köztük személyeket ábrázoló fotók, mesterséges intelligenciával (MI) készültek. A rajtuk látható személyek nem léteznek. A szövegek és fordítások MI-támogatással készültek; szerkesztői felelősségüket a weboldal üzemeltetője viseli. Tájékoztatás az (EU) 2024/1689 rendelet (MI-rendelet) 50. cikke alapján.</target>
+      </segment>
+    </unit>
     <unit id="consent.label">
       <segment state="final">
         <source>Cookie consent</source>

@@ -6,6 +6,27 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.13.2] — 2026-09-27
+
+### Fixed
+
+- **Tailwind spacing and display utilities work on grids again.** The
+  layout block's base rule `.grid { display: grid; gap: 1.5rem }` has the
+  name of Tailwind's `grid` utility and beat every utility on a Tailwind
+  grid, so 89 grids in the lab rendered 1.5rem where their templates asked
+  for another gap, and `grid hidden` stayed visible. It now sits in
+  Tailwind's `components` layer, below the utilities. Visible changes:
+  card headers keep title and description 4px apart (shadcn's `gap-1`,
+  was 24px), alerts 2px, Powermail option lists 12px, team, board and
+  investor grids 32px, and `<d:layout.grid gap="sm|lg|xl">` finally
+  applies its gap. A grid without a gap utility keeps 1.5rem; the block's
+  modifiers work as before.
+- Pricing Two Tier and Pricing Four Tier put their price 0.75rem below the
+  plan name, as the other pricing elements do (their CSS spaced a price
+  row the templates do not render).
+- Radio and checkbox groups in forms keep their order: the balanced-grid
+  script no longer centres a lone last option.
+
 ## [4.13.1] — 2026-09-27
 
 ### Fixed

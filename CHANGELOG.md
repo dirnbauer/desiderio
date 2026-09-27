@@ -6,6 +6,41 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.11.0] — 2026-09-27
+
+### Added
+
+- **/features lists everything the TYPO3 v14 lab offers.** A hub with every
+  feature by category, and one sales page per feature: 23 pages, ten of them
+  new (Astryx, visual editing, Word documents, image editing, AI form logic,
+  the AI assistant, AI models, skill security, agent protocols and AI
+  discovery). Every page has the same outline: a hero, the problem, a tour of
+  live screenshots in a gallery, four benefits, the questions people ask, the
+  install commands and a call to action. The menu titles are short and
+  consistent ("Record views", "One-click publishing", "Single sign-on"), and
+  the copy is in German, Chinese and Hungarian as well.
+- **102 live screenshots from the lab.** `Build/Scripts/capture-feature-screenshots.mjs`
+  takes them from the shot lists in `Build/Data/` at twice the resolution, as
+  WebP in 16:10, the frame the hero, the gallery and the hub cards show. Each
+  file is named after its content hash, and `--relink` points the pages at the
+  newest capture of every shot.
+- A showcase page can declare its SEO title (`seoTitle`); an empty one clears
+  an older SEO title so the page title shows. The /features pages do: the hub
+  still carried the SEO title of its old version, and the nr-llm page the one
+  of the retired nr-llm manual.
+- A unit test keeps /features in shape: the outline of every page, one hub card
+  per page, every screenshot present, no real contact data.
+
+### Changed
+
+- The third step of the Powermail project request is called "Budget" (German
+  too): the step indicator cut "Budget and timing" to "Budget and timi…".
+
+### Removed
+
+- The previous /features pages (`ShowcaseIntegrationPages`,
+  `ShowcaseAgenticPages`) and their 14 PNG screenshots.
+
 ## [4.10.1] — 2026-09-27
 
 ### Fixed

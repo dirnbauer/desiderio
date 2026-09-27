@@ -6,6 +6,8 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.14.3] — 2026-09-27
+
 ### Fixed
 
 - Counters keep a year ungrouped until the last frame. The 4.10.1 fix

@@ -75,6 +75,13 @@
     margin-block-start: var(--d-spacing-sm);
 }
 
+/* The template renders the price as one paragraph, without a price row,
+   so it takes the row's distance to the plan name itself. */
+p.pricing-two-tier__price {
+    margin: 0;
+    margin-block-start: var(--d-spacing-sm);
+}
+
 .pricing-two-tier__price,
 .pricing-two-tier__plan-price {
     font-size: var(--d-text-3xl);

@@ -384,6 +384,31 @@ final class ShadcnThemeTest extends TestCase
         self::assertStringContainsString('text-decoration-line: none', $css);
     }
 
+    public function testLayoutGridBlockSitsBelowTailwindUtilities(): void
+    {
+        // The BEM layout block .grid shares its name with Tailwind's `grid`
+        // utility. Unlayered it beat every utility on a Tailwind grid (a
+        // `grid gap-2` rendered 1.5rem, `grid hidden` stayed visible), so its
+        // base rule lives in Tailwind's `components` layer; the modifiers
+        // stay unlayered.
+        $partial = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Css/desiderio/components-04-layout.css');
+        self::assertMatchesRegularExpression('/@layer components\\s*\\{\\s*\\.grid\\s*\\{\\s*display:\\s*grid;\\s*gap:\\s*1\\.5rem;\\s*\\}\\s*\\}/', $partial);
+        self::assertDoesNotMatchRegularExpression('/^\\.grid\\s*\\{/m', $partial, 'The .grid base rule must not be unlayered.');
+        self::assertMatchesRegularExpression('/^\\.grid--gap-sm\\s*\\{/m', $partial, 'The block modifiers stay unlayered.');
+
+        $css = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Css/desiderio.css');
+        self::assertStringContainsString('@layer components{.grid{display: grid;gap: 1.5rem}}', $css, 'Run npm run build:desiderio-css after changing the partials.');
+
+        // Tailwind's output must declare the components layer before
+        // utilities, or the layered rule would land above them.
+        $tailwind = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Css/desiderio-tailwind.css');
+        $components = strpos($tailwind, '@layer components{');
+        $utilities = strpos($tailwind, '@layer utilities{');
+        self::assertIsInt($components);
+        self::assertIsInt($utilities);
+        self::assertLessThan($utilities, $components);
+    }
+
     public function testStyleguidePageListsEveryElementOverview(): void
     {
         $template = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Templates/Pages/DesiderioStyleguide.fluid.html');

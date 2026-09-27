@@ -1981,7 +1981,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // blocks); whether one is a card grid is decided below by its children.
   const loneGridSelector = '.desiderio-section :is([class*="__grid"], [class*="__items"], [class*="__list"], [class*="__steps"], .grid, [class^="innesto-"])';
   const loneGridSkip = '.desiderio-section:is([class*="footer"], [class*="navbar"], .mega-menu, .feature-bento)';
-  const loneGrids = [...document.querySelectorAll(loneGridSelector)].filter(grid => !grid.closest(loneGridSkip));
+  // Option lists in a form (radio and checkbox groups) keep their reading
+  // order: a centred last option reads like a control of its own.
+  const loneGrids = [...document.querySelectorAll(loneGridSelector)].filter(grid => !grid.closest(loneGridSkip) && !grid.closest('form'));
 
   const balanceGrid = grid => {
     const style = getComputedStyle(grid);

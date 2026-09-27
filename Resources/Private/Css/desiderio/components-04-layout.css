@@ -112,9 +112,18 @@
    25. LAYOUT: GRID  (.grid)
    ========================================================================== */
 
-.grid {
-  display: grid;
-  gap: 1.5rem;
+/* The block's base rule shares its name with Tailwind's `grid` utility, so
+   it sits in Tailwind's `components` layer, below `utilities`. Unlayered, it
+   beat every utility on a Tailwind grid: `grid gap-2` rendered a 1.5rem gap
+   and `grid lg:hidden` never hid. A grid without a gap utility keeps the
+   1.5rem default; the block's modifiers below stay unlayered and still set
+   their gap and columns. Tailwind's output declares the layer order (theme,
+   base, components, utilities) before this file loads. */
+@layer components {
+  .grid {
+    display: grid;
+    gap: 1.5rem;
+  }
 }
 
 /* -- Gap variants -- */

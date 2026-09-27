@@ -123,9 +123,6 @@ final class BlogPageTemplatesTest extends TestCase
             if (str_contains($relative, '/Partials/') && str_contains($template, '{post')) {
                 self::assertMatchesRegularExpression('/<f:argument\s+name="[^"]+"\s+type="[^"]+"/', $template, "{$relative} declares typed arguments");
             }
-            // The legacy .grid block class (components-04-layout.css) wins over
-            // Tailwind's gap utilities, so blog templates use flex columns.
-            self::assertDoesNotMatchRegularExpression('/class="(?:[^"]*\s)?grid(?:\s[^"]*)?"/', $template, "{$relative} must not use the bare grid utility");
             preg_match_all('/<d:atom\.icon\b[^>]*\bname="([^"{]+)"/', $template, $icons);
             foreach ($icons[1] as $icon) {
                 self::assertArrayHasKey($icon, $knownIcons, "{$relative} uses an unknown icon: {$icon}");

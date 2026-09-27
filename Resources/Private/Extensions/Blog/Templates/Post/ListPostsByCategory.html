@@ -17,7 +17,7 @@
                             <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="folder" size="xs"/></span>
                             <span><f:translate extensionName="Blog" key="headline.category.simple">Category</f:translate></span>
                         </d:atom.badge>
-                        <d:atom.typography tag="h2" variant="h1" class="text-balance">{category.title}</d:atom.typography>
+                        <d:atom.typography tag="h2" variant="h2" class="text-balance">{category.title}</d:atom.typography>
                         <f:if condition="{category.description}">
                             <p class="max-w-3xl text-base leading-7 text-muted-foreground">{category.description}</p>
                         </f:if>
@@ -48,7 +48,8 @@
             </f:if>
         </f:then>
         <f:else>
-            <header class="mb-8 flex flex-col gap-3">
+            <f:comment>The page title above already names this list; the heading stays for screen readers.</f:comment>
+            <header class="sr-only">
                 <d:atom.badge variant="secondary" class="w-fit gap-1">
                     <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="folder" size="xs"/></span>
                     <span><f:translate extensionName="Blog" key="headline.categories">Categories</f:translate></span>

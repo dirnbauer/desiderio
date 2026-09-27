@@ -17,7 +17,7 @@
                             <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="calendar" size="xs"/></span>
                             <span><f:translate extensionName="Blog" key="headline.archive">Archive</f:translate></span>
                         </d:atom.badge>
-                        <d:atom.typography tag="h2" variant="h1">
+                        <d:atom.typography tag="h2" variant="h2">
                             <f:if condition="{month}">{f:format.date(format: '{settings.widgets.archive.monthDateFormat}', date: timestamp)}</f:if> {year}
                         </d:atom.typography>
                     </div>
@@ -38,7 +38,8 @@
             </f:if>
         </f:then>
         <f:else>
-            <header class="mb-8 flex flex-col gap-3">
+            <f:comment>The page title above already names this list; the heading stays for screen readers.</f:comment>
+            <header class="sr-only">
                 <d:atom.badge variant="secondary" class="w-fit gap-1">
                     <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="calendar" size="xs"/></span>
                     <span><f:translate extensionName="Blog" key="headline.archive">Archive</f:translate></span>

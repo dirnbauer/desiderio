@@ -65,7 +65,8 @@
                         </d:atom.typography>
                     </f:if>
                 </div>
-                <f:if condition="{site.configuration.settings.plugin.tx_blog.settings.blogUid}">
+                <f:comment>The blog's feed on its start page; category, tag and author lists bring their own.</f:comment>
+                <f:if condition="{site.configuration.settings.plugin.tx_blog.settings.blogUid} && {page.pageRecord.uid} == {site.configuration.settings.plugin.tx_blog.settings.blogUid}">
                     <d:atom.button href="{f:uri.page(pageUid: site.configuration.settings.plugin.tx_blog.settings.blogUid, pageType: 200)}" variant="outline" size="sm" class="w-fit">
                         <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="rss" size="xs"/></span>
                         <span><f:translate extensionName="Blog" key="link.rss" default="RSS"/></span>

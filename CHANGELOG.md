@@ -6,6 +6,52 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.13.0] — 2026-09-27
+
+### Added
+
+- **Two blog page templates.** Editors pick the look of a blog in the page
+  properties, like any page template; both are shadcn/ui throughout and
+  follow the active preset, light and dark.
+  - **Blog – Classic** (`DesiderioBlogClassic`) is a journal: a centred
+    masthead, one post after another with a date leaf in the margin, the
+    widgets in a sidebar panel, a drop cap on the first paragraph and a
+    dinkus (three dots in the chart colours) where other lists draw a rule.
+  - **Blog – Modern** (`DesiderioBlogModern`) is a magazine: the newest
+    post as a large card, a card grid whose last row always fills, topics
+    as a tab row with post counts, and tags, archive and comments on one
+    panel below the posts. A post gets a wide picture, a table of contents
+    from its headers, share buttons (copy link, LinkedIn) and a reading
+    progress bar (`desiderio.editorial.readingProgress`).
+  - Each template keeps the EXT:blog templates it changes in its own folder,
+    `Resources/Private/Extensions/Blog/Classic/` and `.../Modern/`; a
+    `tree.pagelayout` condition puts it in front of the shared templates.
+    The backend layouts come with thumbnails for the page properties. The
+    old `DesiderioBlog` template keeps working as "Blog (previous version)".
+- **Reading time** for blog posts: `<di:blog.readingTime page="{post.uid}"/>`
+  counts the words of a post's content elements (Chinese, Japanese and
+  Korean by character).
+- A `link` icon, and desiderio.js section 17: a `data-d-copy-link` button
+  copies a URL and confirms it, where the clipboard is available.
+
+### Changed
+
+- The shared blog templates draw no divider lines: widgets, post lists,
+  post footers, the author box and comments are set apart by space and
+  soft panels. The recent posts widget shows each post's date.
+- Category, tag, author and archive lists head their posts with an h2 in
+  h2 size; the overview variants hide their heading visually, since the
+  page title above names the list.
+- Blog dates (comments, widgets, the new templates) follow the page
+  language.
+
+### Fixed
+
+- A code block (`<pre>` in rich text) shows URLs as written: makelinks no
+  longer turns them into links without their `https://`.
+- The comment avatar is decorative for screen readers (`role="presentation"`;
+  it had no alt text).
+
 ## [4.12.0] — 2026-09-27
 
 ### Added

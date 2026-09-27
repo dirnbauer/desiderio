@@ -3,7 +3,7 @@
    source of Resources/Public/Css/desiderio.css like every other feature
    stylesheet. Unlayered on purpose (see Documentation/Developer/Build.rst):
    unlayered CSS beats Tailwind's layers, which is what these component
-   defaults rely on. Badge, card, typography, inputs, avatar, icon, alert, accordion, tabs, table and the remaining component classes. */
+   defaults rely on. Badge, card, typography, inputs, avatar, icon, alert, accordion, tabs and the remaining component classes. */
 
 /* ==========================================================================
    3. BADGE  (.badge)
@@ -724,54 +724,13 @@
 }
 
 /* ==========================================================================
-   20. TABLE  (.table-wrapper, .table)
-   ========================================================================== */
+   20. TABLE (removed)
+   ==========================================================================
 
-.table-wrapper {
-  position: relative;
-  width: 100%;
-  overflow: auto;
-  border: 1px solid var(--border);
-  border-radius: calc(var(--radius, 0.375rem) + 2px);
-}
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.875rem;
-  text-align: left;
-  caption-side: bottom;
-}
-
-.table__header {
-  background-color: color-mix(in oklch, var(--muted) 50%, transparent);
-}
-
-.table__row {
-  border-bottom: 1px solid var(--border);
-  transition: background-color 150ms ease;
-}
-
-.table__row:last-child {
-  border-bottom: none;
-}
-
-tbody .table__row:hover {
-  background-color: color-mix(in oklch, var(--muted) 50%, transparent);
-}
-
-.table__head {
-  padding: 0.75rem 1rem;
-  font-weight: 500;
-  color: var(--muted-foreground);
-  white-space: nowrap;
-}
-
-.table__cell {
-  padding: 0.75rem 1rem;
-  color: var(--foreground);
-  vertical-align: middle;
-}
+   Tables are shadcn/ui's Table: d:molecule.table, tableHeader, tableRow and
+   tableCell (data-slot attributes and Tailwind utilities). A global .table
+   block shared its name with Tailwind's `table` utility (display: table) and
+   leaked width, font size and border-collapse onto anything using it. */
 
 /* ==========================================================================
    21. ASPECT RATIO  (.aspect-ratio)

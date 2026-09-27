@@ -95,8 +95,10 @@ uses native CSS cascade layers: ``@import "tailwindcss"`` declares the order
           content elements override component defaults per instance.
     *   - ``@utility``
         - Custom utilities (``d-control-h``, ``d-control-text``,
-          ``d-control-px``). Never write ``@layer utilities { … }`` in Tailwind
-          v4; ``@utility`` is the replacement and makes the class
+          ``d-control-px``) and the extension of Tailwind's own ``container``
+          (centred, ``1rem`` gutters, ``1.5rem`` from 640px), the way
+          shadcn/ui's site extends it. Never write ``@layer utilities { … }``
+          in Tailwind v4; ``@utility`` is the replacement and makes the class
           variant-aware.
     *   - Unlayered CSS
         - The per-feature stylesheets in
@@ -108,6 +110,16 @@ layers, unlayered CSS always beats layered CSS regardless of specificity. That
 is what lets the feature stylesheets reliably override Tailwind utilities
 without specificity hacks or ``!important``. Do not wrap them in
 ``@layer components`` — utility classes would suddenly win against them.
+
+One exception: a class with the name of a Tailwind utility. Unlayered, it
+beats every utility on the same element, so ``grid gap-2`` rendered a
+``1.5rem`` gap, and ``sr-only md:not-sr-only`` would never show. Such a rule sits
+in ``@layer components`` inside its unlayered file (``.grid`` and ``.sr-only``
+do), or does not exist: Desiderio defines no ``.container`` and no ``.table``.
+Layout code uses ``<d:layout.container>`` or the ``container`` utility, and
+tables use shadcn/ui's Table (``<d:molecule.table>``, ``tableHeader``,
+``tableRow``, ``tableCell``). :file:`Tests/Unit/ShadcnThemeTest.php` checks
+the built stylesheet for both names.
 
 The first four manifest entries (``components-01-base.css`` …
 ``components-04-layout.css``) are the former

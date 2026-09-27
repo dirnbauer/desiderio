@@ -157,6 +157,22 @@
 
 /* ---------------------------------------------------------- the matrix */
 
+/* The region owns the horizontal scroll, so keyboard users can reach it
+   (tabindex="0"); the table molecule's own scroll container steps back.
+   Same as the data-table element. */
+.preset-matrix__region {
+    overflow-x: auto;
+}
+
+.preset-matrix__region:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+
+.preset-matrix__region [data-slot="table-container"] {
+    overflow-x: visible;
+}
+
 .preset-matrix__name {
     white-space: nowrap;
     font-weight: var(--d-weight-medium);

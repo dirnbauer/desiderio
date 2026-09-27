@@ -409,6 +409,47 @@ final class ShadcnThemeTest extends TestCase
         self::assertLessThan($utilities, $components);
     }
 
+    public function testNoUnlayeredRuleSharesATailwindUtilityName(): void
+    {
+        // shadcn/ui has no .container or .table class: its Table is data-slot
+        // markup with utilities, and its site extends Tailwind's own
+        // `container` with @utility. Desiderio's unlayered BEM blocks under
+        // those names beat every utility next to them (px-*, mx-*, max-w-* on
+        // a container; width and font size leaked onto Tailwind's `table`).
+        $css = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Css/desiderio.css');
+        foreach (['container', 'table'] as $utility) {
+            self::assertDoesNotMatchRegularExpression('/(^|[{},])\\.' . $utility . '(?![\\w-])/', $css, sprintf('desiderio.css must not define .%s; it is a Tailwind utility.', $utility));
+        }
+        foreach (['.table-wrapper', '.table__', '.container--'] as $block) {
+            self::assertStringNotContainsString($block, $css);
+        }
+        // .sr-only stays for markup that loads desiderio.css alone, below the
+        // utilities like .grid, so `md:not-sr-only` still wins.
+        self::assertStringContainsString('@layer components{.sr-only{', $css, 'Run npm run build:desiderio-css after changing the partials.');
+
+        $source = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Tailwind/desiderio.css');
+        self::assertMatchesRegularExpression('/@utility container\\s*\\{\\s*@apply mx-auto px-4 sm:px-6;\\s*\\}/', $source);
+        self::assertStringContainsString('@source inline("container");', $source);
+        $tailwind = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Css/desiderio-tailwind.css');
+        self::assertStringContainsString('.container{padding-inline:calc(var(--spacing) * 4);margin-inline:auto}', $tailwind, 'Run npm run build:css after changing the Tailwind source.');
+
+        foreach ([
+            'Resources/Public/Js/styleguide.js',
+            'Resources/Private/Templates/Partials/Pages/PresetOverview.fluid.html',
+            'Build/Scripts/build-preset-overview.php',
+        ] as $file) {
+            $content = (string)file_get_contents(__DIR__ . '/../../' . $file);
+            self::assertDoesNotMatchRegularExpression('/class="(?:[^"]* )?(?:container|table)(?: [^"]*)?"/', $content, $file);
+            self::assertStringNotContainsString('table__', $content, $file);
+            self::assertStringNotContainsString('container--', $content, $file);
+        }
+        $overview = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Templates/Partials/Pages/PresetOverview.fluid.html');
+        self::assertStringContainsString('<d:molecule.table class="preset-matrix">', $overview);
+        self::assertStringContainsString('<th scope="col" data-slot="table-head"', $overview);
+        self::assertStringContainsString('<th scope="row" data-slot="table-head"', $overview);
+        self::assertStringContainsString('role="region" tabindex="0" aria-labelledby="preset-matrix-title"', $overview);
+    }
+
     public function testStyleguidePageListsEveryElementOverview(): void
     {
         $template = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Templates/Pages/DesiderioStyleguide.fluid.html');

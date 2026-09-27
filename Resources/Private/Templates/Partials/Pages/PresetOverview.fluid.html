@@ -487,260 +487,272 @@
 <d:layout.section spacing="lg" class="preset-matrix-section">
     <d:layout.container>
         <header class="preset-matrix__head">
-            <h2 class="typography typography--h2"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:matrix.title" /></h2>
+            <h2 id="preset-matrix-title" class="typography typography--h2"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:matrix.title" /></h2>
             <p class="typography typography--lead preset-overview__lead">
                 <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:matrix.lead" />
             </p>
         </header>
 
-        <div class="table-wrapper">
-            <table class="table preset-matrix">
-                <caption class="sr-only">
-                    <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:matrix.caption" arguments="{0: 15}" />
-                </caption>
-                <thead class="table__header">
-                    <tr class="table__row">
-                        <th scope="col" class="table__head"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:matrix.column.preset" /></th>
-                        <th scope="col" class="table__head"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:matrix.column.key" /></th>
-                        <th scope="col" class="table__head"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.headings" /></th>
-                        <th scope="col" class="table__head"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.body" /></th>
-                        <th scope="col" class="table__head"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:matrix.column.code" /></th>
-                        <th scope="col" class="table__head"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.corners" /></th>
-                        <th scope="col" class="table__head"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.controls" /></th>
-                        <th scope="col" class="table__head"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:matrix.column.focusRing" /></th>
-                        <th scope="col" class="table__head"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:matrix.column.elevation" /></th>
-                        <th scope="col" class="table__head"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.icons" /></th>
-                    </tr>
-                </thead>
-                <tbody>
-                            <tr class="table__row">
-                                <th scope="row" class="table__cell preset-matrix__name">
-                                    <span class="preset-matrix__dot" data-shadcn-preset-sample="b6G5977cw"></span>
-                                    Lyra mono olive
-                                </th>
-                                <td class="table__cell"><code>b6G5977cw</code></td>
-                                <td class="table__cell">JetBrains Mono</td>
-                                <td class="table__cell">JetBrains Mono</td>
-                                <td class="table__cell">JetBrains Mono</td>
-                                <td class="table__cell">0.625rem</td>
-                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.compact" /></td>
-                                <td class="table__cell">1px</td>
-                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.flat" /></td>
-                                <td class="table__cell">Tabler</td>
-                            </tr>
-                            <tr class="table__row">
-                                <th scope="row" class="table__cell preset-matrix__name">
-                                    <span class="preset-matrix__dot" data-shadcn-preset-sample="b0"></span>
-                                    Default neutral
-                                </th>
-                                <td class="table__cell"><code>b0</code></td>
-                                <td class="table__cell">Inter</td>
-                                <td class="table__cell">Inter</td>
-                                <td class="table__cell">JetBrains Mono</td>
-                                <td class="table__cell">0.625rem</td>
-                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></td>
-                                <td class="table__cell">3px</td>
-                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.flat" /></td>
-                                <td class="table__cell">Lucide</td>
-                            </tr>
-                            <tr class="table__row">
-                                <th scope="row" class="table__cell preset-matrix__name">
-                                    <span class="preset-matrix__dot" data-shadcn-preset-sample="b27GcrRo"></span>
-                                    Rhea modern neutral
-                                </th>
-                                <td class="table__cell"><code>b27GcrRo</code></td>
-                                <td class="table__cell">Inter</td>
-                                <td class="table__cell">Inter</td>
-                                <td class="table__cell">JetBrains Mono</td>
-                                <td class="table__cell">0.625rem</td>
-                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></td>
-                                <td class="table__cell">3px</td>
-                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.flat" /></td>
-                                <td class="table__cell">Lucide</td>
-                            </tr>
-                            <tr class="table__row">
-                                <th scope="row" class="table__cell preset-matrix__name">
-                                    <span class="preset-matrix__dot" data-shadcn-preset-sample="b4hb38Fyj"></span>
-                                    Olive product system
-                                </th>
-                                <td class="table__cell"><code>b4hb38Fyj</code></td>
-                                <td class="table__cell">Nunito Sans</td>
-                                <td class="table__cell">Nunito Sans</td>
-                                <td class="table__cell">JetBrains Mono</td>
-                                <td class="table__cell">0.625rem</td>
-                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></td>
-                                <td class="table__cell">3px</td>
-                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.flat" /></td>
-                                <td class="table__cell">Phosphor</td>
-                            </tr>
-                            <tr class="table__row">
-                                <th scope="row" class="table__cell preset-matrix__name">
-                                    <span class="preset-matrix__dot" data-shadcn-preset-sample="b3IWPgRwnI"></span>
-                                    Mist dashboard
-                                </th>
-                                <td class="table__cell"><code>b3IWPgRwnI</code></td>
-                                <td class="table__cell">JetBrains Mono</td>
-                                <td class="table__cell">Geist</td>
-                                <td class="table__cell">JetBrains Mono</td>
-                                <td class="table__cell">0.45rem</td>
-                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></td>
-                                <td class="table__cell">3px</td>
-                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.flat" /></td>
-                                <td class="table__cell">Phosphor</td>
-                            </tr>
-                            <tr class="table__row">
-                                <th scope="row" class="table__cell preset-matrix__name">
-                                    <span class="preset-matrix__dot" data-shadcn-preset-sample="aurora"></span>
-                                    Aurora
-                                </th>
-                                <td class="table__cell"><code>aurora</code></td>
-                                <td class="table__cell">Inter</td>
-                                <td class="table__cell">Inter</td>
-                                <td class="table__cell">JetBrains Mono</td>
-                                <td class="table__cell">0.625rem</td>
-                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></td>
-                                <td class="table__cell">3px</td>
-                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.subtle" /></td>
-                                <td class="table__cell">Lucide</td>
-                            </tr>
-                            <tr class="table__row">
-                                <th scope="row" class="table__cell preset-matrix__name">
-                                    <span class="preset-matrix__dot" data-shadcn-preset-sample="marine"></span>
-                                    Marine
-                                </th>
-                                <td class="table__cell"><code>marine</code></td>
-                                <td class="table__cell">Geist</td>
-                                <td class="table__cell">Geist</td>
-                                <td class="table__cell">JetBrains Mono</td>
-                                <td class="table__cell">0.5rem</td>
-                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.comfortable" /></td>
-                                <td class="table__cell">2px</td>
-                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.raised" /></td>
-                                <td class="table__cell">Tabler</td>
-                            </tr>
-                            <tr class="table__row">
-                                <th scope="row" class="table__cell preset-matrix__name">
-                                    <span class="preset-matrix__dot" data-shadcn-preset-sample="forest"></span>
-                                    Forest
-                                </th>
-                                <td class="table__cell"><code>forest</code></td>
-                                <td class="table__cell">Inter</td>
-                                <td class="table__cell">Inter</td>
-                                <td class="table__cell">JetBrains Mono</td>
-                                <td class="table__cell">0.375rem</td>
-                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></td>
-                                <td class="table__cell">2px</td>
-                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.subtle" /></td>
-                                <td class="table__cell">Phosphor</td>
-                            </tr>
-                            <tr class="table__row">
-                                <th scope="row" class="table__cell preset-matrix__name">
-                                    <span class="preset-matrix__dot" data-shadcn-preset-sample="ember"></span>
-                                    Ember
-                                </th>
-                                <td class="table__cell"><code>ember</code></td>
-                                <td class="table__cell">Nunito Sans</td>
-                                <td class="table__cell">Nunito Sans</td>
-                                <td class="table__cell">JetBrains Mono</td>
-                                <td class="table__cell">0.75rem</td>
-                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.comfortable" /></td>
-                                <td class="table__cell">3px</td>
-                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.raised" /></td>
-                                <td class="table__cell">HugeIcons</td>
-                            </tr>
-                            <tr class="table__row">
-                                <th scope="row" class="table__cell preset-matrix__name">
-                                    <span class="preset-matrix__dot" data-shadcn-preset-sample="bloom"></span>
-                                    Bloom
-                                </th>
-                                <td class="table__cell"><code>bloom</code></td>
-                                <td class="table__cell">Inter</td>
-                                <td class="table__cell">Inter</td>
-                                <td class="table__cell">JetBrains Mono</td>
-                                <td class="table__cell">1rem</td>
-                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></td>
-                                <td class="table__cell">3px</td>
-                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.subtle" /></td>
-                                <td class="table__cell">Lucide</td>
-                            </tr>
-                            <tr class="table__row">
-                                <th scope="row" class="table__cell preset-matrix__name">
-                                    <span class="preset-matrix__dot" data-shadcn-preset-sample="lagoon"></span>
-                                    Lagoon
-                                </th>
-                                <td class="table__cell"><code>lagoon</code></td>
-                                <td class="table__cell">Geist</td>
-                                <td class="table__cell">Geist</td>
-                                <td class="table__cell">JetBrains Mono</td>
-                                <td class="table__cell">0.5rem</td>
-                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.compact" /></td>
-                                <td class="table__cell">1px</td>
-                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.flat" /></td>
-                                <td class="table__cell">Phosphor</td>
-                            </tr>
-                            <tr class="table__row">
-                                <th scope="row" class="table__cell preset-matrix__name">
-                                    <span class="preset-matrix__dot" data-shadcn-preset-sample="gold"></span>
-                                    Gold
-                                </th>
-                                <td class="table__cell"><code>gold</code></td>
-                                <td class="table__cell">Inter</td>
-                                <td class="table__cell">Inter</td>
-                                <td class="table__cell">JetBrains Mono</td>
-                                <td class="table__cell">0.375rem</td>
-                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></td>
-                                <td class="table__cell">2px</td>
-                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.subtle" /></td>
-                                <td class="table__cell">Tabler</td>
-                            </tr>
-                            <tr class="table__row">
-                                <th scope="row" class="table__cell preset-matrix__name">
-                                    <span class="preset-matrix__dot" data-shadcn-preset-sample="midnight"></span>
-                                    Midnight
-                                </th>
-                                <td class="table__cell"><code>midnight</code></td>
-                                <td class="table__cell">Inter</td>
-                                <td class="table__cell">Inter</td>
-                                <td class="table__cell">JetBrains Mono</td>
-                                <td class="table__cell">0.625rem</td>
-                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.comfortable" /></td>
-                                <td class="table__cell">3px</td>
-                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.raised" /></td>
-                                <td class="table__cell">Lucide</td>
-                            </tr>
-                            <tr class="table__row">
-                                <th scope="row" class="table__cell preset-matrix__name">
-                                    <span class="preset-matrix__dot" data-shadcn-preset-sample="blossom"></span>
-                                    Blossom
-                                </th>
-                                <td class="table__cell"><code>blossom</code></td>
-                                <td class="table__cell">Nunito Sans</td>
-                                <td class="table__cell">Nunito Sans</td>
-                                <td class="table__cell">JetBrains Mono</td>
-                                <td class="table__cell">0.75rem</td>
-                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></td>
-                                <td class="table__cell">2px</td>
-                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.subtle" /></td>
-                                <td class="table__cell">Remix Icon</td>
-                            </tr>
-                            <tr class="table__row">
-                                <th scope="row" class="table__cell preset-matrix__name">
-                                    <span class="preset-matrix__dot" data-shadcn-preset-sample="citrus"></span>
-                                    Citrus
-                                </th>
-                                <td class="table__cell"><code>citrus</code></td>
-                                <td class="table__cell">JetBrains Mono</td>
-                                <td class="table__cell">JetBrains Mono</td>
-                                <td class="table__cell">JetBrains Mono</td>
-                                <td class="table__cell">0.3rem</td>
-                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.compact" /></td>
-                                <td class="table__cell">1px</td>
-                                <td class="table__cell"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.flat" /></td>
-                                <td class="table__cell">Tabler</td>
-                            </tr>
-                </tbody>
-            </table>
-        </div>
+        <f:comment>
+            shadcn/ui's Table inside a Card, as the classic Table element renders
+            it. Header cells need a scope, which d:molecule.tableCell has no
+            argument for, so they carry the same data-slot and classes by hand
+            (the data-table and feature-matrix elements do the same). The
+            region scrolls the table on narrow screens and takes keyboard focus
+            for it, like the data-table element's region.
+        </f:comment>
+        <d:molecule.card>
+            <d:molecule.cardContent>
+                <div class="preset-matrix__region" role="region" tabindex="0" aria-labelledby="preset-matrix-title">
+                <d:molecule.table class="preset-matrix">
+                    <caption class="sr-only">
+                        <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:matrix.caption" arguments="{0: 15}" />
+                    </caption>
+                    <d:molecule.tableHeader>
+                        <d:molecule.tableRow>
+                            <th scope="col" data-slot="table-head" class="h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:matrix.column.preset" /></th>
+                            <th scope="col" data-slot="table-head" class="h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:matrix.column.key" /></th>
+                            <th scope="col" data-slot="table-head" class="h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.headings" /></th>
+                            <th scope="col" data-slot="table-head" class="h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.body" /></th>
+                            <th scope="col" data-slot="table-head" class="h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:matrix.column.code" /></th>
+                            <th scope="col" data-slot="table-head" class="h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.corners" /></th>
+                            <th scope="col" data-slot="table-head" class="h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.controls" /></th>
+                            <th scope="col" data-slot="table-head" class="h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:matrix.column.focusRing" /></th>
+                            <th scope="col" data-slot="table-head" class="h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:matrix.column.elevation" /></th>
+                            <th scope="col" data-slot="table-head" class="h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:fact.icons" /></th>
+                        </d:molecule.tableRow>
+                    </d:molecule.tableHeader>
+                    <tbody data-slot="table-body" class="[&_tr:last-child]:border-0">
+                                <d:molecule.tableRow>
+                                    <th scope="row" data-slot="table-head" class="p-2 text-left align-middle font-medium whitespace-nowrap text-foreground preset-matrix__name">
+                                        <span class="preset-matrix__dot" data-shadcn-preset-sample="b6G5977cw"></span>
+                                        Lyra mono olive
+                                    </th>
+                                    <d:molecule.tableCell><code>b6G5977cw</code></d:molecule.tableCell>
+                                    <d:molecule.tableCell>JetBrains Mono</d:molecule.tableCell>
+                                    <d:molecule.tableCell>JetBrains Mono</d:molecule.tableCell>
+                                    <d:molecule.tableCell>JetBrains Mono</d:molecule.tableCell>
+                                    <d:molecule.tableCell>0.625rem</d:molecule.tableCell>
+                                    <d:molecule.tableCell><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.compact" /></d:molecule.tableCell>
+                                    <d:molecule.tableCell>1px</d:molecule.tableCell>
+                                    <d:molecule.tableCell><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.flat" /></d:molecule.tableCell>
+                                    <d:molecule.tableCell>Tabler</d:molecule.tableCell>
+                                </d:molecule.tableRow>
+                                <d:molecule.tableRow>
+                                    <th scope="row" data-slot="table-head" class="p-2 text-left align-middle font-medium whitespace-nowrap text-foreground preset-matrix__name">
+                                        <span class="preset-matrix__dot" data-shadcn-preset-sample="b0"></span>
+                                        Default neutral
+                                    </th>
+                                    <d:molecule.tableCell><code>b0</code></d:molecule.tableCell>
+                                    <d:molecule.tableCell>Inter</d:molecule.tableCell>
+                                    <d:molecule.tableCell>Inter</d:molecule.tableCell>
+                                    <d:molecule.tableCell>JetBrains Mono</d:molecule.tableCell>
+                                    <d:molecule.tableCell>0.625rem</d:molecule.tableCell>
+                                    <d:molecule.tableCell><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></d:molecule.tableCell>
+                                    <d:molecule.tableCell>3px</d:molecule.tableCell>
+                                    <d:molecule.tableCell><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.flat" /></d:molecule.tableCell>
+                                    <d:molecule.tableCell>Lucide</d:molecule.tableCell>
+                                </d:molecule.tableRow>
+                                <d:molecule.tableRow>
+                                    <th scope="row" data-slot="table-head" class="p-2 text-left align-middle font-medium whitespace-nowrap text-foreground preset-matrix__name">
+                                        <span class="preset-matrix__dot" data-shadcn-preset-sample="b27GcrRo"></span>
+                                        Rhea modern neutral
+                                    </th>
+                                    <d:molecule.tableCell><code>b27GcrRo</code></d:molecule.tableCell>
+                                    <d:molecule.tableCell>Inter</d:molecule.tableCell>
+                                    <d:molecule.tableCell>Inter</d:molecule.tableCell>
+                                    <d:molecule.tableCell>JetBrains Mono</d:molecule.tableCell>
+                                    <d:molecule.tableCell>0.625rem</d:molecule.tableCell>
+                                    <d:molecule.tableCell><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></d:molecule.tableCell>
+                                    <d:molecule.tableCell>3px</d:molecule.tableCell>
+                                    <d:molecule.tableCell><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.flat" /></d:molecule.tableCell>
+                                    <d:molecule.tableCell>Lucide</d:molecule.tableCell>
+                                </d:molecule.tableRow>
+                                <d:molecule.tableRow>
+                                    <th scope="row" data-slot="table-head" class="p-2 text-left align-middle font-medium whitespace-nowrap text-foreground preset-matrix__name">
+                                        <span class="preset-matrix__dot" data-shadcn-preset-sample="b4hb38Fyj"></span>
+                                        Olive product system
+                                    </th>
+                                    <d:molecule.tableCell><code>b4hb38Fyj</code></d:molecule.tableCell>
+                                    <d:molecule.tableCell>Nunito Sans</d:molecule.tableCell>
+                                    <d:molecule.tableCell>Nunito Sans</d:molecule.tableCell>
+                                    <d:molecule.tableCell>JetBrains Mono</d:molecule.tableCell>
+                                    <d:molecule.tableCell>0.625rem</d:molecule.tableCell>
+                                    <d:molecule.tableCell><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></d:molecule.tableCell>
+                                    <d:molecule.tableCell>3px</d:molecule.tableCell>
+                                    <d:molecule.tableCell><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.flat" /></d:molecule.tableCell>
+                                    <d:molecule.tableCell>Phosphor</d:molecule.tableCell>
+                                </d:molecule.tableRow>
+                                <d:molecule.tableRow>
+                                    <th scope="row" data-slot="table-head" class="p-2 text-left align-middle font-medium whitespace-nowrap text-foreground preset-matrix__name">
+                                        <span class="preset-matrix__dot" data-shadcn-preset-sample="b3IWPgRwnI"></span>
+                                        Mist dashboard
+                                    </th>
+                                    <d:molecule.tableCell><code>b3IWPgRwnI</code></d:molecule.tableCell>
+                                    <d:molecule.tableCell>JetBrains Mono</d:molecule.tableCell>
+                                    <d:molecule.tableCell>Geist</d:molecule.tableCell>
+                                    <d:molecule.tableCell>JetBrains Mono</d:molecule.tableCell>
+                                    <d:molecule.tableCell>0.45rem</d:molecule.tableCell>
+                                    <d:molecule.tableCell><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></d:molecule.tableCell>
+                                    <d:molecule.tableCell>3px</d:molecule.tableCell>
+                                    <d:molecule.tableCell><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.flat" /></d:molecule.tableCell>
+                                    <d:molecule.tableCell>Phosphor</d:molecule.tableCell>
+                                </d:molecule.tableRow>
+                                <d:molecule.tableRow>
+                                    <th scope="row" data-slot="table-head" class="p-2 text-left align-middle font-medium whitespace-nowrap text-foreground preset-matrix__name">
+                                        <span class="preset-matrix__dot" data-shadcn-preset-sample="aurora"></span>
+                                        Aurora
+                                    </th>
+                                    <d:molecule.tableCell><code>aurora</code></d:molecule.tableCell>
+                                    <d:molecule.tableCell>Inter</d:molecule.tableCell>
+                                    <d:molecule.tableCell>Inter</d:molecule.tableCell>
+                                    <d:molecule.tableCell>JetBrains Mono</d:molecule.tableCell>
+                                    <d:molecule.tableCell>0.625rem</d:molecule.tableCell>
+                                    <d:molecule.tableCell><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></d:molecule.tableCell>
+                                    <d:molecule.tableCell>3px</d:molecule.tableCell>
+                                    <d:molecule.tableCell><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.subtle" /></d:molecule.tableCell>
+                                    <d:molecule.tableCell>Lucide</d:molecule.tableCell>
+                                </d:molecule.tableRow>
+                                <d:molecule.tableRow>
+                                    <th scope="row" data-slot="table-head" class="p-2 text-left align-middle font-medium whitespace-nowrap text-foreground preset-matrix__name">
+                                        <span class="preset-matrix__dot" data-shadcn-preset-sample="marine"></span>
+                                        Marine
+                                    </th>
+                                    <d:molecule.tableCell><code>marine</code></d:molecule.tableCell>
+                                    <d:molecule.tableCell>Geist</d:molecule.tableCell>
+                                    <d:molecule.tableCell>Geist</d:molecule.tableCell>
+                                    <d:molecule.tableCell>JetBrains Mono</d:molecule.tableCell>
+                                    <d:molecule.tableCell>0.5rem</d:molecule.tableCell>
+                                    <d:molecule.tableCell><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.comfortable" /></d:molecule.tableCell>
+                                    <d:molecule.tableCell>2px</d:molecule.tableCell>
+                                    <d:molecule.tableCell><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.raised" /></d:molecule.tableCell>
+                                    <d:molecule.tableCell>Tabler</d:molecule.tableCell>
+                                </d:molecule.tableRow>
+                                <d:molecule.tableRow>
+                                    <th scope="row" data-slot="table-head" class="p-2 text-left align-middle font-medium whitespace-nowrap text-foreground preset-matrix__name">
+                                        <span class="preset-matrix__dot" data-shadcn-preset-sample="forest"></span>
+                                        Forest
+                                    </th>
+                                    <d:molecule.tableCell><code>forest</code></d:molecule.tableCell>
+                                    <d:molecule.tableCell>Inter</d:molecule.tableCell>
+                                    <d:molecule.tableCell>Inter</d:molecule.tableCell>
+                                    <d:molecule.tableCell>JetBrains Mono</d:molecule.tableCell>
+                                    <d:molecule.tableCell>0.375rem</d:molecule.tableCell>
+                                    <d:molecule.tableCell><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></d:molecule.tableCell>
+                                    <d:molecule.tableCell>2px</d:molecule.tableCell>
+                                    <d:molecule.tableCell><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.subtle" /></d:molecule.tableCell>
+                                    <d:molecule.tableCell>Phosphor</d:molecule.tableCell>
+                                </d:molecule.tableRow>
+                                <d:molecule.tableRow>
+                                    <th scope="row" data-slot="table-head" class="p-2 text-left align-middle font-medium whitespace-nowrap text-foreground preset-matrix__name">
+                                        <span class="preset-matrix__dot" data-shadcn-preset-sample="ember"></span>
+                                        Ember
+                                    </th>
+                                    <d:molecule.tableCell><code>ember</code></d:molecule.tableCell>
+                                    <d:molecule.tableCell>Nunito Sans</d:molecule.tableCell>
+                                    <d:molecule.tableCell>Nunito Sans</d:molecule.tableCell>
+                                    <d:molecule.tableCell>JetBrains Mono</d:molecule.tableCell>
+                                    <d:molecule.tableCell>0.75rem</d:molecule.tableCell>
+                                    <d:molecule.tableCell><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.comfortable" /></d:molecule.tableCell>
+                                    <d:molecule.tableCell>3px</d:molecule.tableCell>
+                                    <d:molecule.tableCell><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.raised" /></d:molecule.tableCell>
+                                    <d:molecule.tableCell>HugeIcons</d:molecule.tableCell>
+                                </d:molecule.tableRow>
+                                <d:molecule.tableRow>
+                                    <th scope="row" data-slot="table-head" class="p-2 text-left align-middle font-medium whitespace-nowrap text-foreground preset-matrix__name">
+                                        <span class="preset-matrix__dot" data-shadcn-preset-sample="bloom"></span>
+                                        Bloom
+                                    </th>
+                                    <d:molecule.tableCell><code>bloom</code></d:molecule.tableCell>
+                                    <d:molecule.tableCell>Inter</d:molecule.tableCell>
+                                    <d:molecule.tableCell>Inter</d:molecule.tableCell>
+                                    <d:molecule.tableCell>JetBrains Mono</d:molecule.tableCell>
+                                    <d:molecule.tableCell>1rem</d:molecule.tableCell>
+                                    <d:molecule.tableCell><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></d:molecule.tableCell>
+                                    <d:molecule.tableCell>3px</d:molecule.tableCell>
+                                    <d:molecule.tableCell><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.subtle" /></d:molecule.tableCell>
+                                    <d:molecule.tableCell>Lucide</d:molecule.tableCell>
+                                </d:molecule.tableRow>
+                                <d:molecule.tableRow>
+                                    <th scope="row" data-slot="table-head" class="p-2 text-left align-middle font-medium whitespace-nowrap text-foreground preset-matrix__name">
+                                        <span class="preset-matrix__dot" data-shadcn-preset-sample="lagoon"></span>
+                                        Lagoon
+                                    </th>
+                                    <d:molecule.tableCell><code>lagoon</code></d:molecule.tableCell>
+                                    <d:molecule.tableCell>Geist</d:molecule.tableCell>
+                                    <d:molecule.tableCell>Geist</d:molecule.tableCell>
+                                    <d:molecule.tableCell>JetBrains Mono</d:molecule.tableCell>
+                                    <d:molecule.tableCell>0.5rem</d:molecule.tableCell>
+                                    <d:molecule.tableCell><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.compact" /></d:molecule.tableCell>
+                                    <d:molecule.tableCell>1px</d:molecule.tableCell>
+                                    <d:molecule.tableCell><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.flat" /></d:molecule.tableCell>
+                                    <d:molecule.tableCell>Phosphor</d:molecule.tableCell>
+                                </d:molecule.tableRow>
+                                <d:molecule.tableRow>
+                                    <th scope="row" data-slot="table-head" class="p-2 text-left align-middle font-medium whitespace-nowrap text-foreground preset-matrix__name">
+                                        <span class="preset-matrix__dot" data-shadcn-preset-sample="gold"></span>
+                                        Gold
+                                    </th>
+                                    <d:molecule.tableCell><code>gold</code></d:molecule.tableCell>
+                                    <d:molecule.tableCell>Inter</d:molecule.tableCell>
+                                    <d:molecule.tableCell>Inter</d:molecule.tableCell>
+                                    <d:molecule.tableCell>JetBrains Mono</d:molecule.tableCell>
+                                    <d:molecule.tableCell>0.375rem</d:molecule.tableCell>
+                                    <d:molecule.tableCell><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></d:molecule.tableCell>
+                                    <d:molecule.tableCell>2px</d:molecule.tableCell>
+                                    <d:molecule.tableCell><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.subtle" /></d:molecule.tableCell>
+                                    <d:molecule.tableCell>Tabler</d:molecule.tableCell>
+                                </d:molecule.tableRow>
+                                <d:molecule.tableRow>
+                                    <th scope="row" data-slot="table-head" class="p-2 text-left align-middle font-medium whitespace-nowrap text-foreground preset-matrix__name">
+                                        <span class="preset-matrix__dot" data-shadcn-preset-sample="midnight"></span>
+                                        Midnight
+                                    </th>
+                                    <d:molecule.tableCell><code>midnight</code></d:molecule.tableCell>
+                                    <d:molecule.tableCell>Inter</d:molecule.tableCell>
+                                    <d:molecule.tableCell>Inter</d:molecule.tableCell>
+                                    <d:molecule.tableCell>JetBrains Mono</d:molecule.tableCell>
+                                    <d:molecule.tableCell>0.625rem</d:molecule.tableCell>
+                                    <d:molecule.tableCell><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.comfortable" /></d:molecule.tableCell>
+                                    <d:molecule.tableCell>3px</d:molecule.tableCell>
+                                    <d:molecule.tableCell><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.raised" /></d:molecule.tableCell>
+                                    <d:molecule.tableCell>Lucide</d:molecule.tableCell>
+                                </d:molecule.tableRow>
+                                <d:molecule.tableRow>
+                                    <th scope="row" data-slot="table-head" class="p-2 text-left align-middle font-medium whitespace-nowrap text-foreground preset-matrix__name">
+                                        <span class="preset-matrix__dot" data-shadcn-preset-sample="blossom"></span>
+                                        Blossom
+                                    </th>
+                                    <d:molecule.tableCell><code>blossom</code></d:molecule.tableCell>
+                                    <d:molecule.tableCell>Nunito Sans</d:molecule.tableCell>
+                                    <d:molecule.tableCell>Nunito Sans</d:molecule.tableCell>
+                                    <d:molecule.tableCell>JetBrains Mono</d:molecule.tableCell>
+                                    <d:molecule.tableCell>0.75rem</d:molecule.tableCell>
+                                    <d:molecule.tableCell><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.default" /></d:molecule.tableCell>
+                                    <d:molecule.tableCell>2px</d:molecule.tableCell>
+                                    <d:molecule.tableCell><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.subtle" /></d:molecule.tableCell>
+                                    <d:molecule.tableCell>Remix Icon</d:molecule.tableCell>
+                                </d:molecule.tableRow>
+                                <d:molecule.tableRow>
+                                    <th scope="row" data-slot="table-head" class="p-2 text-left align-middle font-medium whitespace-nowrap text-foreground preset-matrix__name">
+                                        <span class="preset-matrix__dot" data-shadcn-preset-sample="citrus"></span>
+                                        Citrus
+                                    </th>
+                                    <d:molecule.tableCell><code>citrus</code></d:molecule.tableCell>
+                                    <d:molecule.tableCell>JetBrains Mono</d:molecule.tableCell>
+                                    <d:molecule.tableCell>JetBrains Mono</d:molecule.tableCell>
+                                    <d:molecule.tableCell>JetBrains Mono</d:molecule.tableCell>
+                                    <d:molecule.tableCell>0.3rem</d:molecule.tableCell>
+                                    <d:molecule.tableCell><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:density.compact" /></d:molecule.tableCell>
+                                    <d:molecule.tableCell>1px</d:molecule.tableCell>
+                                    <d:molecule.tableCell><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:elevation.flat" /></d:molecule.tableCell>
+                                    <d:molecule.tableCell>Tabler</d:molecule.tableCell>
+                                </d:molecule.tableRow>
+                    </tbody>
+                </d:molecule.table>
+                </div>
+            </d:molecule.cardContent>
+        </d:molecule.card>
 
         <p class="typography typography--muted preset-note">
             <f:format.raw><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/presets.xlf:matrix.note" arguments="{0: 5, 1: 10}" /></f:format.raw>

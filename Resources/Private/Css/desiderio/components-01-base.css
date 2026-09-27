@@ -107,7 +107,6 @@ body[data-icon-library="remixicon"] .d-icon[data-icon-library="remixicon"] {
   outline-offset: 2px;
 }
 
-.sr-only,
 .d-sr-only {
   position: absolute;
   width: 1px;
@@ -118,6 +117,23 @@ body[data-icon-library="remixicon"] .d-icon[data-icon-library="remixicon"] {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+/* Tailwind's `sr-only` utility under the same name, kept for markup that
+   loads this file alone. In the components layer, like .grid: unlayered it
+   beat `md:not-sr-only` and every other utility on the same element. */
+@layer components {
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
 }
 
 .d-sr-only-focusable:not(:focus):not(:focus-within) {

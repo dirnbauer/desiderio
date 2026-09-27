@@ -114,6 +114,17 @@
   padding-inline: var(--d-control-px, 0.75rem);
 }
 
+/* `container` is Tailwind's own utility, extended the way shadcn/ui's site
+   does it (@utility container in its globals.css) instead of a BEM block
+   under the same name: centred, 1rem gutters, 1.5rem from 640px. Being a
+   utility, it loses to px-*, mx-* and max-w-* on the same element. Listed
+   inline so it exists for templates outside the scanned paths. */
+@utility container {
+  @apply mx-auto px-4 sm:px-6;
+}
+
+@source inline("container");
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -165,13 +176,13 @@
     container-type: inline-size;
   }
 
-  .desiderio-section :where(.card, .feature-card, .pricing-card, .testimonial-card, .metric-card, .stat-card, .team-card, .case-study-card, .resource-card, .product-card, .job-card, .leaderboard__item, .notification, .alert, .table-wrapper, [class$="__card"], [class*="__card "], [class$="__panel"], [class*="__panel "]) {
+  .desiderio-section :where(.card, .feature-card, .pricing-card, .testimonial-card, .metric-card, .stat-card, .team-card, .case-study-card, .resource-card, .product-card, .job-card, .leaderboard__item, .notification, .alert, [class$="__card"], [class*="__card "], [class$="__panel"], [class*="__panel "]) {
     border-color: color-mix(in oklch, var(--border) 82%, transparent);
     background-color: color-mix(in oklch, var(--card) 96%, var(--background));
     box-shadow: var(--shadow-sm);
   }
 
-  .desiderio-section :where(.card, .feature-card, .pricing-card, .testimonial-card, .metric-card, .stat-card, .team-card, .case-study-card, .resource-card, .product-card, .job-card, .leaderboard__item, .notification, .alert, .table-wrapper, [class$="__card"], [class*="__card "], [class$="__panel"], [class*="__panel "]) :where(.btn, button, a) {
+  .desiderio-section :where(.card, .feature-card, .pricing-card, .testimonial-card, .metric-card, .stat-card, .team-card, .case-study-card, .resource-card, .product-card, .job-card, .leaderboard__item, .notification, .alert, [class$="__card"], [class*="__card "], [class$="__panel"], [class*="__panel "]) :where(.btn, button, a) {
     max-width: 100%;
   }
 

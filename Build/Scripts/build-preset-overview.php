@@ -605,21 +605,21 @@ foreach ($rows as $row) {
     $matrixRows .= sprintf(
         <<<'HTML'
 
-                            <tr class="table__row">
-                                <th scope="row" class="table__cell preset-matrix__name">
-                                    <span class="preset-matrix__dot" data-shadcn-preset-sample="%1$s"></span>
-                                    %2$s
-                                </th>
-                                <td class="table__cell"><code>%1$s</code></td>
-                                <td class="table__cell">%3$s</td>
-                                <td class="table__cell">%4$s</td>
-                                <td class="table__cell">%5$s</td>
-                                <td class="table__cell">%6$s</td>
-                                <td class="table__cell">%7$s</td>
-                                <td class="table__cell">%8$s</td>
-                                <td class="table__cell">%9$s</td>
-                                <td class="table__cell">%10$s</td>
-                            </tr>
+                                <d:molecule.tableRow>
+                                    <th scope="row" data-slot="table-head" class="p-2 text-left align-middle font-medium whitespace-nowrap text-foreground preset-matrix__name">
+                                        <span class="preset-matrix__dot" data-shadcn-preset-sample="%1$s"></span>
+                                        %2$s
+                                    </th>
+                                    <d:molecule.tableCell><code>%1$s</code></d:molecule.tableCell>
+                                    <d:molecule.tableCell>%3$s</d:molecule.tableCell>
+                                    <d:molecule.tableCell>%4$s</d:molecule.tableCell>
+                                    <d:molecule.tableCell>%5$s</d:molecule.tableCell>
+                                    <d:molecule.tableCell>%6$s</d:molecule.tableCell>
+                                    <d:molecule.tableCell>%7$s</d:molecule.tableCell>
+                                    <d:molecule.tableCell>%8$s</d:molecule.tableCell>
+                                    <d:molecule.tableCell>%9$s</d:molecule.tableCell>
+                                    <d:molecule.tableCell>%10$s</d:molecule.tableCell>
+                                </d:molecule.tableRow>
 HTML,
         escape($row['id']),
         escape($row['name']),
@@ -662,6 +662,9 @@ $text = [
     ),
 ];
 
+// shadcn/ui's TableHead classes, as d:molecule.tableCell renders a header cell.
+$headClass = 'h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground';
+
 $partial = <<<HTML
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
@@ -701,35 +704,47 @@ $partial = <<<HTML
 <d:layout.section spacing="lg" class="preset-matrix-section">
     <d:layout.container>
         <header class="preset-matrix__head">
-            <h2 class="typography typography--h2">{$text['matrixTitle']}</h2>
+            <h2 id="preset-matrix-title" class="typography typography--h2">{$text['matrixTitle']}</h2>
             <p class="typography typography--lead preset-overview__lead">
                 {$text['matrixLead']}
             </p>
         </header>
 
-        <div class="table-wrapper">
-            <table class="table preset-matrix">
-                <caption class="sr-only">
-                    {$text['caption']}
-                </caption>
-                <thead class="table__header">
-                    <tr class="table__row">
-                        <th scope="col" class="table__head">{$text['colPreset']}</th>
-                        <th scope="col" class="table__head">{$text['colKey']}</th>
-                        <th scope="col" class="table__head">{$text['colHeadings']}</th>
-                        <th scope="col" class="table__head">{$text['colBody']}</th>
-                        <th scope="col" class="table__head">{$text['colCode']}</th>
-                        <th scope="col" class="table__head">{$text['colCorners']}</th>
-                        <th scope="col" class="table__head">{$text['colControls']}</th>
-                        <th scope="col" class="table__head">{$text['colRing']}</th>
-                        <th scope="col" class="table__head">{$text['colElevation']}</th>
-                        <th scope="col" class="table__head">{$text['colIcons']}</th>
-                    </tr>
-                </thead>
-                <tbody>{$matrixRows}
-                </tbody>
-            </table>
-        </div>
+        <f:comment>
+            shadcn/ui's Table inside a Card, as the classic Table element renders
+            it. Header cells need a scope, which d:molecule.tableCell has no
+            argument for, so they carry the same data-slot and classes by hand
+            (the data-table and feature-matrix elements do the same). The
+            region scrolls the table on narrow screens and takes keyboard focus
+            for it, like the data-table element's region.
+        </f:comment>
+        <d:molecule.card>
+            <d:molecule.cardContent>
+                <div class="preset-matrix__region" role="region" tabindex="0" aria-labelledby="preset-matrix-title">
+                <d:molecule.table class="preset-matrix">
+                    <caption class="sr-only">
+                        {$text['caption']}
+                    </caption>
+                    <d:molecule.tableHeader>
+                        <d:molecule.tableRow>
+                            <th scope="col" data-slot="table-head" class="{$headClass}">{$text['colPreset']}</th>
+                            <th scope="col" data-slot="table-head" class="{$headClass}">{$text['colKey']}</th>
+                            <th scope="col" data-slot="table-head" class="{$headClass}">{$text['colHeadings']}</th>
+                            <th scope="col" data-slot="table-head" class="{$headClass}">{$text['colBody']}</th>
+                            <th scope="col" data-slot="table-head" class="{$headClass}">{$text['colCode']}</th>
+                            <th scope="col" data-slot="table-head" class="{$headClass}">{$text['colCorners']}</th>
+                            <th scope="col" data-slot="table-head" class="{$headClass}">{$text['colControls']}</th>
+                            <th scope="col" data-slot="table-head" class="{$headClass}">{$text['colRing']}</th>
+                            <th scope="col" data-slot="table-head" class="{$headClass}">{$text['colElevation']}</th>
+                            <th scope="col" data-slot="table-head" class="{$headClass}">{$text['colIcons']}</th>
+                        </d:molecule.tableRow>
+                    </d:molecule.tableHeader>
+                    <tbody data-slot="table-body" class="[&_tr:last-child]:border-0">{$matrixRows}
+                    </tbody>
+                </d:molecule.table>
+                </div>
+            </d:molecule.cardContent>
+        </d:molecule.card>
 
         <p class="typography typography--muted preset-note">
             <f:format.raw>{$text['note']}</f:format.raw>

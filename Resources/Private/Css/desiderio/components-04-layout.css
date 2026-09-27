@@ -3,7 +3,7 @@
    source of Resources/Public/Css/desiderio.css like every other feature
    stylesheet. Unlayered on purpose (see Documentation/Developer/Build.rst):
    unlayered CSS beats Tailwind's layers, which is what these component
-   defaults rely on. Section, container, grid and stack primitives plus the page-template chrome. */
+   defaults rely on. Section, grid and stack primitives plus the page-template chrome. */
 
 /* ==========================================================================
    23. LAYOUT: SECTION  (.section)
@@ -70,43 +70,14 @@
 }
 
 /* ==========================================================================
-   24. LAYOUT: CONTAINER  (.container)
-   ========================================================================== */
+   24. LAYOUT: CONTAINER (removed)
+   ==========================================================================
 
-.container {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-@media (min-width: 640px) {
-  .container {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-}
-
-.container--sm {
-  max-width: 640px;
-}
-
-.container--default {
-  max-width: 1024px;
-}
-
-.container--lg {
-  max-width: 1280px;
-}
-
-.container--xl {
-  max-width: 1536px;
-}
-
-.container--full {
-  max-width: 100%;
-}
+   `container` is Tailwind's utility, extended with @utility in
+   Resources/Private/Tailwind/desiderio.css the way shadcn/ui's own site does
+   it: centred, 1rem gutters, 1.5rem from 640px. Layout code uses
+   d:layout.container. The unlayered BEM block beat every px-* and mx-*
+   utility next to Tailwind's `container`. */
 
 /* ==========================================================================
    25. LAYOUT: GRID  (.grid)

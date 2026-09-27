@@ -305,6 +305,26 @@ function desiderioInit() {
   /* ================================================================ */
   /*  RENDER — shadcn-compatible Desiderio preview classes              */
   /* ================================================================ */
+  /* Containers are Tailwind utilities, as in shadcn/ui: a BEM `.container`
+     block clashed with Tailwind's own `container` utility. Same widths and
+     gutters as before (640px, 1024px, 1280px; 1rem, 1.5rem from 640px). */
+  var CONTAINER = {
+    sm: 'mx-auto w-full max-w-2xl px-4 sm:px-6',
+    default: 'mx-auto w-full max-w-5xl px-4 sm:px-6',
+    lg: 'mx-auto w-full max-w-7xl px-4 sm:px-6'
+  };
+
+  /* shadcn/ui's Table, with the classes d:molecule.table, tableHeader,
+     tableRow and tableCell render (TableBody from shadcn itself). */
+  var TABLE = {
+    table: 'w-full caption-bottom text-sm',
+    header: '[&_tr]:border-b',
+    body: '[&_tr:last-child]:border-0',
+    row: 'border-b transition-colors hover:bg-muted/50',
+    head: 'h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground',
+    cell: 'p-2 align-middle whitespace-nowrap'
+  };
+
   function renderPreview(d) {
     var fn = renderers[d._type] || renderSection;
     return fn(d);
@@ -328,7 +348,7 @@ function desiderioInit() {
 
   function renderHero(d) {
     return '<div class="section section--bg-muted section--spacing-lg">' +
-      '<div class="container container--sm" style="text-align:center;">' +
+      '<div class="' + CONTAINER.sm + '" style="text-align:center;">' +
         '<div class="stack stack--vertical stack--align-center stack--gap-default">' +
           (d.badge ? '<span class="badge badge--outline">' + esc(d.badge) + '</span>' : '') +
           '<h1 class="typography typography--h1">' + esc(d.header) + '</h1>' +
@@ -347,7 +367,7 @@ function desiderioInit() {
     var cols = items.length <= 3 ? 'grid--cols-3' : 'grid--cols-4';
     var description = d.description || d.subheadline;
     return '<div class="section section--spacing-sm">' +
-      '<div class="container container--lg">' +
+      '<div class="' + CONTAINER.lg + '">' +
         '<div style="text-align:center;margin-bottom:2rem;">' +
           '<h2 class="typography typography--h2">' + esc(d.header) + '</h2>' +
           (description ? '<p class="typography typography--muted" style="margin-top:0.5rem;">' + esc(description) + '</p>' : '') +
@@ -369,7 +389,7 @@ function desiderioInit() {
   function renderList(d) {
     var items = d.items || [];
     return '<div class="section section--spacing-sm">' +
-      '<div class="container container--default">' +
+      '<div class="' + CONTAINER.default + '">' +
         '<div style="margin-bottom:1.5rem;">' +
           '<h2 class="typography typography--h2">' + esc(d.header) + '</h2>' +
           (d.description ? '<p class="typography typography--muted" style="margin-top:0.5rem;">' + esc(d.description) + '</p>' : '') +
@@ -389,7 +409,7 @@ function desiderioInit() {
   function renderCard(d) {
     var cardIcon = renderIcon(d.icon || d.icon_style || 'sparkles', 48);
     return '<div class="section section--spacing-sm">' +
-      '<div class="container container--sm">' +
+      '<div class="' + CONTAINER.sm + '">' +
         '<div class="card">' +
           '<div class="aspect-ratio aspect-ratio--16-9" style="background:var(--muted);display:flex;align-items:center;justify-content:center;">' +
             '<span class="icon" style="color:var(--primary);position:static;">' + cardIcon + '</span>' +
@@ -407,7 +427,7 @@ function desiderioInit() {
   function renderForm(d) {
     var fields = d.fields || [{ label: 'Email', type: 'email', placeholder: 'you@example.com' }];
     return '<div class="section section--spacing-sm">' +
-      '<div class="container container--sm">' +
+      '<div class="' + CONTAINER.sm + '">' +
         '<div class="card">' +
           '<div class="card__header"><h3 class="card__title">' + esc(d.header) + '</h3>' +
             (d.description ? '<p class="card__description">' + esc(d.description) + '</p>' : '') +
@@ -429,7 +449,7 @@ function desiderioInit() {
   function renderPricing(d) {
     var plans = d.plans || [];
     return '<div class="section section--spacing-sm">' +
-      '<div class="container container--lg">' +
+      '<div class="' + CONTAINER.lg + '">' +
         '<div style="text-align:center;margin-bottom:2rem;">' +
           '<h2 class="typography typography--h2">' + esc(d.header) + '</h2>' +
           (d.description ? '<p class="typography typography--muted" style="margin-top:0.5rem;">' + esc(d.description) + '</p>' : '') +
@@ -462,7 +482,7 @@ function desiderioInit() {
     if (d.rating) { for (var i = 0; i < 5; i++) stars += '<span class="icon">' + (i < d.rating ? SVG.star : SVG.starEmpty) + '</span>'; }
     var initial = (d.author || 'A').charAt(0).toUpperCase();
     return '<div class="section section--spacing-sm">' +
-      '<div class="container container--sm" style="text-align:center;">' +
+      '<div class="' + CONTAINER.sm + '" style="text-align:center;">' +
         '<div class="stack stack--vertical stack--align-center stack--gap-default">' +
           '<p class="typography typography--h1" style="opacity:0.15;line-height:1;">\u201C</p>' +
           (stars ? '<div class="stack stack--horizontal stack--gap-sm" style="color:#f59e0b;">' + stars + '</div>' : '') +
@@ -482,7 +502,7 @@ function desiderioInit() {
   function renderStats(d) {
     var items = d.stats || d.counters || [];
     return '<div class="section section--spacing-sm">' +
-      '<div class="container container--default">' +
+      '<div class="' + CONTAINER.default + '">' +
         (d.header ? '<h2 class="typography typography--h2" style="text-align:center;margin-bottom:2rem;">' + esc(d.header) + '</h2>' : '') +
         '<div class="grid grid--cols-' + Math.min(items.length, 4) + '" style="text-align:center;">' +
           items.map(function (s) {
@@ -499,7 +519,7 @@ function desiderioInit() {
 
   function renderNav(d) {
     var links = d.links || [];
-    return '<div class="section section--spacing-sm"><div class="container container--lg">' +
+    return '<div class="section section--spacing-sm"><div class="' + CONTAINER.lg + '">' +
       '<div class="card" style="padding:0.75rem 1.5rem;">' +
         '<div class="stack stack--horizontal stack--align-center" style="justify-content:space-between;flex-wrap:wrap;gap:1rem;">' +
           '<span class="typography typography--large">' + esc(d.logo || 'Brand') + '</span>' +
@@ -514,7 +534,7 @@ function desiderioInit() {
 
   function renderFooter(d) {
     var columns = d.columns || [];
-    return '<div class="section section--spacing-sm"><div class="container container--lg">' +
+    return '<div class="section section--spacing-sm"><div class="' + CONTAINER.lg + '">' +
       '<div style="border-top:1px solid var(--border);padding-top:2rem;">' +
         '<div class="grid grid--cols-4">' +
           columns.map(function (col) {
@@ -532,7 +552,7 @@ function desiderioInit() {
 
   function renderTeam(d) {
     var members = d.members || [];
-    return '<div class="section section--spacing-sm"><div class="container container--lg">' +
+    return '<div class="section section--spacing-sm"><div class="' + CONTAINER.lg + '">' +
       (d.header ? '<div style="text-align:center;margin-bottom:2rem;">' +
         '<h2 class="typography typography--h2">' + esc(d.header) + '</h2>' +
         (d.description ? '<p class="typography typography--muted" style="margin-top:0.5rem;">' + esc(d.description) + '</p>' : '') +
@@ -552,21 +572,24 @@ function desiderioInit() {
   function renderTable(d) {
     var rows = d.rows || [];
     var headers = d.headers || (rows.length > 0 ? Object.keys(rows[0]) : []);
-    return '<div class="section section--spacing-sm"><div class="container container--default">' +
+    return '<div class="section section--spacing-sm"><div class="' + CONTAINER.default + '">' +
       (d.header ? '<h3 class="typography typography--h3" style="margin-bottom:1rem;">' + esc(d.header) + '</h3>' : '') +
-      '<div class="table-wrapper"><table class="table">' +
-        '<thead class="table__header"><tr class="table__row">' +
-          headers.map(function (h) { return '<th class="table__head">' + esc(h) + '</th>'; }).join('') +
-        '</tr></thead><tbody>' +
+      /* The region scrolls and takes keyboard focus, as in the data-table
+         element; the table container inside it no longer scrolls itself. */
+      '<div role="region" tabindex="0" aria-label="' + esc(d.header || 'Table').replace(/"/g, '&quot;') + '" class="overflow-x-auto rounded-xl border focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring">' +
+      '<div data-slot="table-container" class="relative w-full"><table data-slot="table" class="' + TABLE.table + '">' +
+        '<thead data-slot="table-header" class="' + TABLE.header + '"><tr data-slot="table-row" class="' + TABLE.row + '">' +
+          headers.map(function (h) { return '<th data-slot="table-head" scope="col" class="' + TABLE.head + '">' + esc(h) + '</th>'; }).join('') +
+        '</tr></thead><tbody data-slot="table-body" class="' + TABLE.body + '">' +
           rows.map(function (row) {
-            return '<tr class="table__row">' + headers.map(function (h) { return '<td class="table__cell">' + esc(row[h] || '') + '</td>'; }).join('') + '</tr>';
+            return '<tr data-slot="table-row" class="' + TABLE.row + '">' + headers.map(function (h) { return '<td data-slot="table-cell" class="' + TABLE.cell + '">' + esc(row[h] || '') + '</td>'; }).join('') + '</tr>';
           }).join('') +
-        '</tbody></table></div>' +
+        '</tbody></table></div></div>' +
     '</div></div>';
   }
 
   function renderSection(d) {
-    return '<div class="section section--spacing-sm"><div class="container container--default">' +
+    return '<div class="section section--spacing-sm"><div class="' + CONTAINER.default + '">' +
       '<div class="stack stack--vertical stack--gap-default">' +
         '<h2 class="typography typography--h2">' + esc(d.header) + '</h2>' +
         (d.description ? '<p class="typography typography--lead">' + esc(d.description) + '</p>' : '') +

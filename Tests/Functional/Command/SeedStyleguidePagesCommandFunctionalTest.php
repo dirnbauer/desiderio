@@ -191,7 +191,7 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
         $secondRun = $this->createCommandTester();
         self::assertSame(Command::SUCCESS, $secondRun->execute(['--parent' => '1', '--skip-powermail' => true, '--skip-news' => true]));
 
-        self::assertStringContainsString('(0 new)', $secondRun->getDisplay());
+        self::assertStringContainsString('(0 new, 0 moved,', $secondRun->getDisplay());
         self::assertSame($expectedTopLevelPages, $this->countRows('pages', 'pid = 1 AND deleted = 0'));
         self::assertSame($expectedPages, $this->countRows('pages', 'uid <> 1 AND deleted = 0'));
         // The previous generation is soft-deleted, the live set stays constant.

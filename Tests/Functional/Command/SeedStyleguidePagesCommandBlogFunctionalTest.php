@@ -135,7 +135,7 @@ final class SeedStyleguidePagesCommandBlogFunctionalTest extends FunctionalTestC
 
         $secondRun = $this->createCommandTester();
         self::assertSame(Command::SUCCESS, $secondRun->execute(['--parent' => '1', '--skip-powermail' => true, '--skip-news' => true]));
-        self::assertStringContainsString('(0 new)', $secondRun->getDisplay());
+        self::assertStringContainsString('(0 new, 0 moved,', $secondRun->getDisplay());
 
         $expectedPages = count($this->seededContentTypeGroups(StyleguideContentGroups::getGroupsWithFixtures()))
             + self::CONTENT_TYPE_SUPPORT_PAGE_COUNT

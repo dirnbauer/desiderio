@@ -272,8 +272,8 @@ final class ShowcaseFeatureDefinitions
                 'header' => 'Run your blog with the pages you know',
                 'subheadline' => 'Posts are TYPO3 pages built from ordinary content elements. Desiderio\'s templates style lists, posts, widgets and comments in your theme, in light and dark mode.',
                 'primaryButton' => ['text' => 'Get the extension', 'link' => 'https://github.com/TYPO3GmbH/blog'],
-                'secondaryButton' => ['text' => 'See the blog', 'link' => '/typo3-blog/'],
-                'image' => ShowcaseBlocks::screenshot('frontend-feature-blog-list-ecf4af3e.webp', 'Post list with images, badges and sidebar widgets', 'TYPO3 blog list with two posts and featured photos, and a sidebar with recent posts, categories and tags.', 'Live screenshot from the TYPO3 v14 lab.'),
+                'secondaryButton' => ['text' => 'See the blog', 'link' => '/14/'],
+                'image' => ShowcaseBlocks::screenshot('frontend-feature-blog-list-43957885.webp', 'Blog – Modern: newest post first, then cards', 'The TYPO3 v14 blog in Blog – Modern: topic tabs, the newest post as a large card and the next posts below.', 'Live screenshot from the TYPO3 v14 lab.'),
             ],
             'problem' => ['header' => 'Blog add-ons pull editors out of TYPO3', 'content' => '<p>Many blog setups keep posts in their own tables, with their own editor and rules. Editors learn a second tool, and staging a post needs a workaround. The blog rarely looks like the rest of the site.</p>'],
             'tour' => [
@@ -283,14 +283,14 @@ final class ShowcaseFeatureDefinitions
                     [
                         'tab' => 'Post',
                         'title' => 'Posts open with metadata and a featured image',
-                        'description' => 'Each post starts with its title, teaser and <strong>metadata badges</strong>, then ordinary content elements follow.',
-                        'image' => ShowcaseBlocks::screenshot('frontend-feature-blog-post-292ff97a.webp', 'Posts open with metadata and a featured image', 'Blog post What\'s new for editors in TYPO3 v14 with author, category and tag badges and a photo of a laptop user.', 'Live screenshot from the TYPO3 v14 lab.'),
+                        'description' => 'Blog – Classic opens a post with a <strong>date leaf</strong>, the title, the teaser and a byline with the reading time. Content elements follow.',
+                        'image' => ShowcaseBlocks::screenshot('frontend-feature-blog-post-6e34a9cb.webp', 'Posts open with metadata and a featured image', 'Blog post What\'s new for editors in TYPO3 v14 in Blog – Classic, with a date leaf, byline, laptop photo and a sidebar.', 'Live screenshot from the TYPO3 v14 lab.'),
                     ],
                     [
                         'tab' => 'Comments',
                         'title' => 'Comments with moderation and spam protection',
                         'description' => 'Readers comment under the post, and editors can <strong>approve each comment</strong>. Friendly Captcha guards the form in production.',
-                        'image' => ShowcaseBlocks::screenshot('frontend-feature-blog-comments-ada8ecd8.webp', 'Comments with moderation and spam protection', 'Blog comments section with an example comment, a Write comment form with a spam protection box, and sidebar widgets.', 'Live screenshot from the TYPO3 v14 lab.'),
+                        'image' => ShowcaseBlocks::screenshot('frontend-feature-blog-comments-4ff964de.webp', 'Comments with moderation and spam protection', 'Blog comments with an example comment and the Write comment form on a soft panel, with its spam protection box.', 'Live screenshot from the TYPO3 v14 lab.'),
                     ],
                     [
                         'tab' => 'Page module',
@@ -312,7 +312,7 @@ final class ShowcaseFeatureDefinitions
                     ['icon' => 'file-text', 'title' => 'Posts are pages', 'description' => 'Editors create posts in the page tree and fill them with the content elements they already use. Access rights and workspaces apply as usual.'],
                     ['icon' => 'layout-sidebar-right', 'title' => '20 plugins for every blog block', 'description' => 'Post lists, archives, category, tag and author pages, related posts, sidebar widgets and RSS feeds, placed like any content element.'],
                     ['icon' => 'message-circle', 'title' => 'Comments you control', 'description' => 'Turn on moderation and each comment waits for approval; the author and an admin can get an email. Friendly Captcha guards the form if installed.'],
-                    ['icon' => 'moon', 'title' => 'Your theme, light and dark', 'description' => 'Desiderio\'s 66 Fluid templates restyle lists, posts, widgets and comments with the active preset. Switch the theme and the blog follows.'],
+                    ['icon' => 'layout-grid', 'title' => 'Two templates, your theme', 'description' => 'Blog – Classic reads like a journal, Blog – Modern like a magazine. Both follow the active preset, light and dark.'],
                 ],
             ],
             'faq' => [

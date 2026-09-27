@@ -11,7 +11,21 @@ use Webconsulting\Desiderio\Data\BlogDemoPostDefinitions;
 
 final readonly class BlogPageTreeSeeder
 {
-    public const string DEFAULT_BACKEND_LAYOUT = 'pagets__DesiderioBlog';
+    /** "Desiderio: Blog – Classic": a journal with a sidebar. */
+    public const string CLASSIC_BACKEND_LAYOUT = 'pagets__DesiderioBlogClassic';
+
+    /** "Desiderio: Blog – Modern": a magazine with a card grid. */
+    public const string MODERN_BACKEND_LAYOUT = 'pagets__DesiderioBlogModern';
+
+    /**
+     * The single blog template before Classic and Modern ("Blog (previous
+     * version)"). Still rendered for pages that use it, never seeded.
+     */
+    public const string PREVIOUS_BACKEND_LAYOUT = 'pagets__DesiderioBlog';
+
+    /** What a blog gets when nobody chose a template for it. */
+    public const string DEFAULT_BACKEND_LAYOUT = self::CLASSIC_BACKEND_LAYOUT;
+
     public const int BLOG_POST_DOKTYPE = 137;
 
     /**
@@ -26,6 +40,57 @@ final readonly class BlogPageTreeSeeder
     public function __construct(
         private ConnectionPool $connectionPool,
     ) {}
+
+    /**
+     * The two blog page templates a blog can choose.
+     *
+     * @return list<string>
+     */
+    public static function templateLayouts(): array
+    {
+        return [self::CLASSIC_BACKEND_LAYOUT, self::MODERN_BACKEND_LAYOUT];
+    }
+
+    /**
+     * `classic` and `modern` name the two templates; anything else is taken
+     * as a backend layout identifier as it is.
+     */
+    public static function resolveLayout(string $layout): string
+    {
+        return match (strtolower(trim($layout))) {
+            'classic' => self::CLASSIC_BACKEND_LAYOUT,
+            'modern' => self::MODERN_BACKEND_LAYOUT,
+            default => trim($layout),
+        };
+    }
+
+    /**
+     * The blog template a blog root already uses (for its subpages, or for
+     * itself), or null when it has none of the two — no layout yet, or the
+     * previous single blog template.
+     */
+    public function currentTemplateLayout(int $rootUid): ?string
+    {
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('pages');
+        $queryBuilder->getRestrictions()->removeAll();
+        $row = $queryBuilder
+            ->select('backend_layout', 'backend_layout_next_level')
+            ->from('pages')
+            ->where($queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($rootUid, ParameterType::INTEGER)))
+            ->executeQuery()
+            ->fetchAssociative();
+        if (!is_array($row)) {
+            return null;
+        }
+        foreach (['backend_layout_next_level', 'backend_layout'] as $field) {
+            $value = $row[$field] ?? null;
+            if (is_string($value) && in_array($value, self::templateLayouts(), true)) {
+                return $value;
+            }
+        }
+
+        return null;
+    }
 
     /**
      * @return array{posts: int, contentElements: int}
@@ -605,8 +670,8 @@ final readonly class BlogPageTreeSeeder
             if ($authorUid > 0 && DbRowValues::integer($row, 'authors') <= 0) {
                 $this->replaceAuthorRelations($postUid, [$authorUid]);
             }
-
-            $this->ensureComment($postUid);
+            // No example comment here: seedDemoContent() gives one to its own
+            // demo posts, and an editor's post should not get a made-up one.
         }
     }
 

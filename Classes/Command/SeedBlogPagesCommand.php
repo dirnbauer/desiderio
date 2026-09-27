@@ -50,8 +50,8 @@ final class SeedBlogPagesCommand extends Command
                 'layout',
                 null,
                 InputOption::VALUE_REQUIRED,
-                'Backend layout identifier to apply to Blog root, list, and post pages.',
-                BlogPageTreeSeeder::DEFAULT_BACKEND_LAYOUT
+                'Page template for the blog\'s root, list and post pages: "classic" (Blog – Classic), "modern" (Blog – Modern) or a backend layout identifier. '
+                . 'Without it a blog keeps Blog – Classic or Blog – Modern when it has one and gets Blog – Classic otherwise.'
             )
             ->addOption(
                 'dry-run',
@@ -70,10 +70,13 @@ final class SeedBlogPagesCommand extends Command
             return self::SUCCESS;
         }
 
-        $layout = $this->getStringInputOption($input, 'layout');
-        if ($layout === '') {
-            $io->error('The --layout option must not be empty.');
-            return self::FAILURE;
+        $explicitLayout = null;
+        if ($input->getOption('layout') !== null) {
+            $explicitLayout = BlogPageTreeSeeder::resolveLayout($this->getStringInputOption($input, 'layout'));
+            if ($explicitLayout === '') {
+                $io->error('The --layout option must not be empty.');
+                return self::FAILURE;
+            }
         }
 
         $rootFilter = $this->getRootFilter($input->getOption('root'));
@@ -102,6 +105,10 @@ final class SeedBlogPagesCommand extends Command
             if ($pageUids === []) {
                 continue;
             }
+            // Reseeding never takes back an editor's choice of template.
+            $layout = $explicitLayout
+                ?? $this->getBlogPageTreeSeeder()->currentTemplateLayout((int)$setup['rootUid'])
+                ?? BlogPageTreeSeeder::DEFAULT_BACKEND_LAYOUT;
 
             $plannedRows[] = [
                 (string)$setup['rootUid'],

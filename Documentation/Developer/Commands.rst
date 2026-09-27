@@ -26,8 +26,10 @@ belongs in ``Classes/Seeding/``.
     *   - ``desiderio:starter:seed``
         - Create or update the corporate starter site structure and content.
     *   - ``desiderio:blog:seed-pages``
-        - Normalize an existing Blog page tree to Desiderio backend layouts.
-          No-op when ``t3g/blog`` is not loaded.
+        - Put a Blog page tree on a Desiderio blog page template and seed the
+          English demo posts. A blog keeps "Blog – Classic" or "Blog – Modern"
+          when it has one and gets Blog – Classic otherwise; ``--layout=classic``
+          or ``--layout=modern`` chooses. No-op when ``t3g/blog`` is not loaded.
     *   - ``desiderio:news:seed-taxonomy``
         - Assign default category/tag relations to visible News records that
           have none. No-op when ``georgringer/news`` is not loaded.
@@ -47,7 +49,7 @@ belongs in ``Classes/Seeding/``.
     vendor/bin/typo3 desiderio:templates:lint
     vendor/bin/typo3 desiderio:styleguide:seed --parent=<page-uid>
     vendor/bin/typo3 desiderio:starter:seed
-    vendor/bin/typo3 desiderio:blog:seed-pages --root=<blog-root-uid>
+    vendor/bin/typo3 desiderio:blog:seed-pages --root=<blog-root-uid> [--layout=classic|modern]
     vendor/bin/typo3 desiderio:news:seed-taxonomy --storage-pid=<news-storage-pid>
 
 Seed commands write FAL assets under :file:`fileadmin/desiderio-styleguide/` or

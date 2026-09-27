@@ -7,6 +7,7 @@ namespace Webconsulting\Desiderio\Tests\Unit;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Webconsulting\Desiderio\Icon\IconRegistry;
+use Webconsulting\Desiderio\Seeding\BlogPageTreeSeeder;
 
 /**
  * The two blog page templates, "Blog – Classic" and "Blog – Modern": each is
@@ -163,6 +164,22 @@ final class BlogPageTemplatesTest extends TestCase
                 self::assertStringContainsString('id="' . $key . '"', $this->read('Resources/Private/Language/' . $prefix . 'locallang.xlf'), "{$prefix}locallang.xlf lacks {$key}");
             }
         }
+    }
+
+    public function testSeedersUseTheNewTemplatesAndNeverTheOldOne(): void
+    {
+        self::assertContains(BlogPageTreeSeeder::DEFAULT_BACKEND_LAYOUT, BlogPageTreeSeeder::templateLayouts());
+        self::assertSame(['pagets__DesiderioBlogClassic', 'pagets__DesiderioBlogModern'], BlogPageTreeSeeder::templateLayouts());
+        self::assertNotContains(BlogPageTreeSeeder::PREVIOUS_BACKEND_LAYOUT, BlogPageTreeSeeder::templateLayouts());
+        self::assertSame(BlogPageTreeSeeder::CLASSIC_BACKEND_LAYOUT, BlogPageTreeSeeder::resolveLayout('classic'));
+        self::assertSame(BlogPageTreeSeeder::MODERN_BACKEND_LAYOUT, BlogPageTreeSeeder::resolveLayout(' Modern '));
+        self::assertSame('pagets__Custom', BlogPageTreeSeeder::resolveLayout('pagets__Custom'));
+
+        // The command has no default layout of its own: without --layout a
+        // blog keeps the template it has (see currentTemplateLayout()).
+        $command = $this->read('Classes/Command/SeedBlogPagesCommand.php');
+        self::assertStringContainsString('currentTemplateLayout', $command);
+        self::assertStringNotContainsString("'Backend layout identifier to apply to Blog root, list, and post pages.',\n                BlogPageTreeSeeder::DEFAULT_BACKEND_LAYOUT", $command);
     }
 
     private function read(string $relativePath): string

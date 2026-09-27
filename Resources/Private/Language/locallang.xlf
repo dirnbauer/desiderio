@@ -111,6 +111,61 @@
         <source>{count, plural, =0 {0 comments} one {# comment} other {# comments}}</source>
       </segment>
     </unit>
+    <unit id="blog.readingTime">
+      <segment>
+        <source>{minutes, plural, one {# min read} other {# min read}}</source>
+      </segment>
+    </unit>
+    <unit id="blog.continueReading">
+      <segment>
+        <source>Continue reading</source>
+      </segment>
+    </unit>
+    <unit id="blog.latest">
+      <segment>
+        <source>Latest</source>
+      </segment>
+    </unit>
+    <unit id="blog.onThisPage">
+      <segment>
+        <source>On this page</source>
+      </segment>
+    </unit>
+    <unit id="blog.allPosts">
+      <segment>
+        <source>All posts</source>
+      </segment>
+    </unit>
+    <unit id="blog.topics.aria">
+      <segment>
+        <source>Blog topics</source>
+      </segment>
+    </unit>
+    <unit id="blog.explore">
+      <segment>
+        <source>More on this blog</source>
+      </segment>
+    </unit>
+    <unit id="blog.share">
+      <segment>
+        <source>Share</source>
+      </segment>
+    </unit>
+    <unit id="blog.share.copyLink">
+      <segment>
+        <source>Copy link</source>
+      </segment>
+    </unit>
+    <unit id="blog.share.copied">
+      <segment>
+        <source>Link copied</source>
+      </segment>
+    </unit>
+    <unit id="blog.readingProgress">
+      <segment>
+        <source>Reading progress</source>
+      </segment>
+    </unit>
     <unit id="a11y.skipToContent">
       <segment>
         <source>Skip to main content</source>

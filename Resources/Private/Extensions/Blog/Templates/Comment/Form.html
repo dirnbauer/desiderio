@@ -8,7 +8,7 @@
 
 <f:section name="Content">
     <f:if condition="{post} && {settings.comments.active}">
-        <section class="scroll-mt-24 border-t border-border pt-8" id="postcommentform-{post.uid}" aria-labelledby="postcommentform-{post.uid}-title">
+        <section class="desiderio-blog-commentform scroll-mt-24" id="postcommentform-{post.uid}" aria-labelledby="postcommentform-{post.uid}-title">
             <f:variable name="formName" value="Local" />
             <f:if condition="{settings.comments.disqus.enable}"><f:variable name="formName" value="Disqus" /></f:if>
             <f:if condition="{post.commentsActive}"><f:else><f:variable name="formName" value="Closed" /></f:else></f:if>

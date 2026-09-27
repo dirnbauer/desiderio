@@ -11,7 +11,7 @@
 
 <div data-blog-archive-year="{year}">
 <d:molecule.card class="border-border bg-card">
-    <d:molecule.cardHeader class="border-b border-border/70 pb-3">
+    <d:molecule.cardHeader class="pb-1">
         <div class="flex items-center justify-between gap-3">
             <d:atom.typography tag="h2" variant="large" class="text-foreground" attributes="{itemprop: 'name'}">
                 <blogvh:link.archive year="{year}" title="{year}" class="!no-underline outline-none transition-colors hover:text-link focus-visible:ring-3 focus-visible:ring-ring/40">{year}</blogvh:link.archive>
@@ -22,9 +22,9 @@
         </div>
     </d:molecule.cardHeader>
     <d:molecule.cardContent class="pt-0">
-        <ul role="list" class="divide-y divide-border/70 text-sm">
+        <ul role="list" class="flex flex-col gap-0.5 text-sm">
             <f:for each="{months}" as="month">
-                <li class="flex items-center justify-between gap-3 py-3" data-blog-archive-year="{year}" data-blog-archive-month="{month.month}">
+                <li class="flex items-center justify-between gap-3 py-1.5" data-blog-archive-year="{year}" data-blog-archive-month="{month.month}">
                     <blogvh:link.archive year="{year}" month="{month.month}" title="{f:format.date(format: '{settings.archive.monthDateFormat} {settings.archive.yearDateFormat}', date: month.timestamp)}" class="font-medium text-foreground !no-underline outline-none transition-colors hover:text-link focus-visible:ring-3 focus-visible:ring-ring/40">
                         {f:format.date(format: '{settings.archive.monthDateFormat}', date: month.timestamp)}
                     </blogvh:link.archive>

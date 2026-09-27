@@ -1,0 +1,49 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:blogvh="http://typo3.org/ns/T3G/AgencyPack/Blog/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+<f:comment>
+    Blog – Classic: the head of a post, in the reading column next to the
+    sidebar. The date leaf in the margin, the topics, the title, the teaser
+    as the lead, the byline, then the picture.
+</f:comment>
+
+<f:layout name="Post" />
+
+<f:section name="Content">
+    <header class="desiderio-blog-classic-post__header">
+        <div class="desiderio-blog-classic-entry desiderio-blog-classic-entry--post">
+            <f:render partial="Post/DateLeaf" arguments="{date: post.publishDate}"/>
+            <div class="desiderio-blog-classic-entry__main">
+                <f:if condition="{post.categories}">
+                    <p class="desiderio-blog-classic-entry__topics">
+                        <f:for each="{post.categories}" as="postCategory" iteration="categoryIterator">
+                            <meta itemprop="articleSection" content="{postCategory.title}"/>
+                            <blogvh:link.category category="{postCategory}" class="desiderio-blog-classic-entry__topic">{postCategory.title}</blogvh:link.category><f:if condition="!{categoryIterator.isLast}"><span aria-hidden="true">, </span></f:if>
+                        </f:for>
+                    </p>
+                </f:if>
+                <d:atom.typography tag="h1" variant="h1" class="desiderio-blog-classic-post__title text-balance" attributes="{itemprop: 'headline'}">{post.title}</d:atom.typography>
+                <f:if condition="{post.abstract} || {post.description}">
+                    <d:atom.typography variant="lead" class="text-pretty" attributes="{itemprop: 'description'}">
+                        <f:if condition="{post.abstract}">
+                            <f:then>{post.abstract}</f:then>
+                            <f:else>{post.description}</f:else>
+                        </f:if>
+                    </d:atom.typography>
+                </f:if>
+                <f:render partial="Post/Byline" arguments="{post: post, settings: settings}"/>
+            </div>
+        </div>
+
+        <f:if condition="{post.featuredImage}">
+            <div class="desiderio-blog-classic-post__media">
+                <f:render partial="General/FeaturedImage" arguments="{image: post.featuredImage, settings: {maxWidth: 1400, sizes: '(min-width: 1024px) 860px, 100vw'}, layout: 'inline'}"/>
+            </div>
+        </f:if>
+    </header>
+</f:section>
+
+</html>

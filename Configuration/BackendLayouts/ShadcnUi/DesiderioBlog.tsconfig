@@ -1,3 +1,7 @@
+# Blog (previous version): the one blog page template Desiderio had before
+# "Blog – Classic" (DesiderioBlogClassic) and "Blog – Modern"
+# (DesiderioBlogModern). Pages that still use it keep rendering as before;
+# new blogs pick one of the two.
 mod {
   web_layout {
     BackendLayouts {

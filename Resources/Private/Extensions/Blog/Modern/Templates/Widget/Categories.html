@@ -1,0 +1,57 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:blogvh="http://typo3.org/ns/T3G/AgencyPack/Blog/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+<f:comment>
+    Blog – Modern: the topics above the posts. EXT:blog's category widget as
+    one row of pills that scrolls sideways on a phone (scroll snap). The open
+    category carries aria-current; with no category open, "All posts" does.
+    Categories without posts are left out.
+</f:comment>
+
+<f:if condition="{categories}">
+    <nav class="desiderio-blog-topics" aria-label="{f:translate(key: 'blog.topics.aria', extensionName: 'desiderio', default: 'Blog topics')}">
+        <ul role="list" class="desiderio-blog-topics__list">
+            <f:if condition="{settings.blogUid}">
+                <li>
+                    <f:if condition="{currentCategory}">
+                        <f:then>
+                            <f:link.page pageUid="{settings.blogUid}" class="desiderio-blog-topics__pill"><f:translate key="blog.allPosts" extensionName="desiderio" default="All posts"/></f:link.page>
+                        </f:then>
+                        <f:else>
+                            <f:link.page pageUid="{settings.blogUid}" class="desiderio-blog-topics__pill" additionalAttributes="{aria-current: 'page'}"><f:translate key="blog.allPosts" extensionName="desiderio" default="All posts"/></f:link.page>
+                        </f:else>
+                    </f:if>
+                </li>
+            </f:if>
+            <f:for each="{categories}" as="category">
+                <f:variable name="categoryCount" value="{category.posts -> f:count()}"/>
+                <f:if condition="{categoryCount}">
+                    <li data-blog-category="{category.uid}">
+                        <f:if condition="{currentCategory} == {category.uid}">
+                            <f:then>
+                                <blogvh:link.category category="{category}" class="desiderio-blog-topics__pill" additionalAttributes="{aria-current: 'page'}">
+                                    <f:render section="PillLabel" arguments="{title: category.title, count: categoryCount}"/>
+                                </blogvh:link.category>
+                            </f:then>
+                            <f:else>
+                                <blogvh:link.category category="{category}" class="desiderio-blog-topics__pill">
+                                    <f:render section="PillLabel" arguments="{title: category.title, count: categoryCount}"/>
+                                </blogvh:link.category>
+                            </f:else>
+                        </f:if>
+                    </li>
+                </f:if>
+            </f:for>
+        </ul>
+    </nav>
+</f:if>
+
+<f:section name="PillLabel">
+    <span>{title}</span>
+    <span class="desiderio-blog-topics__count">{count}</span>
+</f:section>
+
+</html>

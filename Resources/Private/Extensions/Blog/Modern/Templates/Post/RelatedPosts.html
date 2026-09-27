@@ -1,0 +1,31 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:blogvh="http://typo3.org/ns/T3G/AgencyPack/Blog/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+<f:comment>
+    Blog – Modern: related posts as the same cards the start page uses, in
+    the same balanced grid. The Modern condition in the blog set asks EXT:blog
+    for three, one row on a wide screen.
+</f:comment>
+
+<f:layout name="Post" />
+
+<f:section name="Content">
+    <f:if condition="{posts}">
+        <section class="desiderio-blog-modern-related" aria-labelledby="desiderio-blog-related-title">
+            <d:layout.stack gap="lg">
+                <d:atom.typography tag="h2" variant="h3" attributes="{id: 'desiderio-blog-related-title'}"><f:translate extensionName="Blog" key="headline.relatedposts">Related posts</f:translate></d:atom.typography>
+                <div class="desiderio-blog-modern-posts">
+                    <f:for each="{posts}" as="post" iteration="iterator">
+                        <blogvh:cache post="{post}"/>
+                        <f:render partial="List/Post" arguments="{post: post, settings: settings, iterator: iterator}"/>
+                    </f:for>
+                </div>
+            </d:layout.stack>
+        </section>
+    </f:if>
+</f:section>
+
+</html>

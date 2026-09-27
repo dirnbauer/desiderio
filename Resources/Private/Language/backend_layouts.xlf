@@ -38,7 +38,17 @@
     </unit>
     <unit id="backend_layout.desiderio_blog.title">
       <segment>
-        <source>Desiderio: Blog</source>
+        <source>Desiderio: Blog (previous version)</source>
+      </segment>
+    </unit>
+    <unit id="backend_layout.desiderio_blog_classic.title">
+      <segment>
+        <source>Desiderio: Blog – Classic</source>
+      </segment>
+    </unit>
+    <unit id="backend_layout.desiderio_blog_modern.title">
+      <segment>
+        <source>Desiderio: Blog – Modern</source>
       </segment>
     </unit>
     <unit id="backend_layout.desiderio_extension.title">
@@ -59,6 +69,11 @@
     <unit id="backend_layout.colPos.1.name">
       <segment>
         <source>Sidebar</source>
+      </segment>
+    </unit>
+    <unit id="backend_layout.colPos.1.belowPosts">
+      <segment>
+        <source>Below the posts</source>
       </segment>
     </unit>
   </file>

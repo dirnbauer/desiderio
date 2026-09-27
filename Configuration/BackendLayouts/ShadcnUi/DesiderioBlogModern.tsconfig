@@ -1,0 +1,44 @@
+# Blog – Modern: the magazine look. The newest post as a large card, the
+# others in a card grid, topics as pills above them and no sidebar; a post
+# gets a wide header picture, a table of contents and a reading progress bar.
+# Column 1 keeps the identifier "sidebar", so content moves along when a
+# page switches between the two blog templates; Modern shows it below the
+# posts. Templates: Resources/Private/ShadcnUi/Templates/Pages/DesiderioBlogModern.fluid.html
+# and the plugin overrides in Resources/Private/Extensions/Blog/Modern/.
+mod {
+  web_layout {
+    BackendLayouts {
+      DesiderioBlogModern {
+        title = LLL:desiderio.backend_layouts:backend_layout.desiderio_blog_modern.title
+        icon = EXT:desiderio/Resources/Public/Icons/BackendLayouts/blog-modern.svg
+        config {
+          backend_layout {
+            colCount = 1
+            rowCount = 2
+            rows {
+              1 {
+                columns {
+                  1 {
+                    name = LLL:desiderio.backend_layouts:backend_layout.colPos.0.name
+                    colPos = 0
+                    identifier = main
+                  }
+                }
+              }
+              2 {
+                columns {
+                  1 {
+                    name = LLL:desiderio.backend_layouts:backend_layout.colPos.1.belowPosts
+                    colPos = 1
+                    identifier = sidebar
+                    slideMode = slide
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

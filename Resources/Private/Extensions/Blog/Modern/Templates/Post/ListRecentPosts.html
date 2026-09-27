@@ -1,0 +1,16 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+<f:comment>
+    Blog – Modern: the blog's start page. The page template already says what
+    the page is (heading, lead, topics), so the list starts with the posts.
+</f:comment>
+
+<f:layout name="Default" />
+
+<f:section name="Content">
+    <f:render partial="List" arguments="{_all}"/>
+</f:section>
+
+</html>

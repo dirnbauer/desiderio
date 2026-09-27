@@ -1,0 +1,208 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+<f:comment>
+    Page template "Desiderio: Blog – Modern" (backend layout DesiderioBlogModern).
+
+    The magazine look: the newest post as a large card, the others in a card
+    grid, the blog's topics as pills above them and no sidebar. A post opens
+    with a wide picture and reads in one column next to its table of
+    contents, with a reading progress bar at the top of the window.
+
+    The EXT:blog plugins on these pages render with the templates in
+    Resources/Private/Extensions/Blog/Modern/ first and fall back to the
+    shared ones in Resources/Private/Extensions/Blog/ (see the
+    webconsulting/desiderio-blog set). Styles: .desiderio-blog--modern in
+    Resources/Private/Css/desiderio/23-blog.css.
+</f:comment>
+
+<f:layout name="Pages/Default"/>
+
+<f:section name="Main">
+    <!--TYPO3SEARCH_begin-->
+    <d:layout.section spacing="sm" class="desiderio-blog desiderio-blog--modern">
+        <f:comment>
+            A blog post is its own doktype-137 page (BlogPageTreeSeeder::BLOG_POST_DOKTYPE).
+            Category and tag helper folders sit next to the posts, so posts are
+            told apart by doktype alone, never by their storage folder.
+        </f:comment>
+        <f:if condition="{page.pageRecord.doktype} == 137">
+            <f:then>
+                <f:if condition="{desiderioReadingProgress}">
+                    <div class="desiderio-blog-progress" data-d-reading-progress="" data-d-reading-progress-label="{f:translate(key: 'blog.readingProgress', extensionName: 'desiderio', default: 'Reading progress')}">
+                        <d:atom.progress value="0" class="h-[3px] rounded-none bg-transparent"/>
+                    </div>
+                </f:if>
+                <d:layout.container size="xl">
+                    <f:render section="PostPage" arguments="{_all}"/>
+                </d:layout.container>
+            </f:then>
+            <f:else>
+                <d:layout.container size="xl">
+                    <f:render section="ListPage" arguments="{_all}"/>
+                </d:layout.container>
+            </f:else>
+        </f:if>
+    </d:layout.section>
+    <!--TYPO3SEARCH_end-->
+</f:section>
+
+<f:section name="ListPage">
+    <d:layout.stack gap="xl">
+        <f:if condition="!{pageHeadingOwnedByContent}">
+            <header class="desiderio-blog-modern__header">
+                <div class="desiderio-blog-modern__intro">
+                    <p class="desiderio-blog-modern__eyebrow">Blog</p>
+                    <d:atom.typography tag="h1" variant="h1" class="text-balance">{page.pageRecord.title}</d:atom.typography>
+                    <f:if condition="{page.pageRecord.abstract} || {page.pageRecord.description}">
+                        <d:atom.typography variant="lead" class="max-w-2xl text-pretty">
+                            <f:if condition="{page.pageRecord.abstract}">
+                                <f:then>{page.pageRecord.abstract}</f:then>
+                                <f:else>{page.pageRecord.description}</f:else>
+                            </f:if>
+                        </d:atom.typography>
+                    </f:if>
+                </div>
+                <f:if condition="{site.configuration.settings.plugin.tx_blog.settings.blogUid}">
+                    <d:atom.button href="{f:uri.page(pageUid: site.configuration.settings.plugin.tx_blog.settings.blogUid, pageType: 200)}" variant="outline" size="sm" class="w-fit">
+                        <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="rss" size="xs"/></span>
+                        <span><f:translate extensionName="Blog" key="link.rss" default="RSS"/></span>
+                    </d:atom.button>
+                </f:if>
+            </header>
+        </f:if>
+
+        <f:comment>The topics: EXT:blog's category widget, drawn as pills by Modern/Templates/Widget/Categories.html.</f:comment>
+        <f:render section="BlogPlugin" arguments="{typoScriptPath: 'tt_content.blog_categorywidget.20'}"/>
+
+        <div class="desiderio-blog-list__content min-w-0">
+            <f:if condition="{content.main}">
+                <f:render.contentArea contentArea="{content.main}"/>
+            </f:if>
+        </div>
+
+        <f:if condition="{content.sidebar.records}">
+            <div class="desiderio-blog-modern__below min-w-0">
+                <f:render.contentArea contentArea="{content.sidebar}"/>
+            </div>
+        </f:if>
+
+        <f:render section="Explore" arguments="{_all}"/>
+    </d:layout.stack>
+</f:section>
+
+<f:section name="PostPage">
+    <article class="desiderio-blog-modern-post" itemscope="itemscope" itemtype="https://schema.org/BlogPosting">
+        <d:layout.stack gap="xl">
+            <f:if condition="{site.configuration.settings.plugin.tx_blog.settings.blogUid}">
+                <div>
+                    <d:atom.button href="{f:uri.page(pageUid: site.configuration.settings.plugin.tx_blog.settings.blogUid)}" variant="ghost" size="sm" class="-ml-2 text-muted-foreground">
+                        <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="arrow-left" size="xs"/></span>
+                        <span><f:translate key="blog.allPosts" extensionName="desiderio" default="All posts"/></span>
+                    </d:atom.button>
+                </div>
+            </f:if>
+
+            <f:render section="BlogPlugin" arguments="{typoScriptPath: 'tt_content.blog_header.20'}"/>
+
+            <div class="desiderio-blog-modern-post__columns">
+                <div class="desiderio-blog-modern-post__body min-w-0" itemprop="articleBody">
+                    <f:if condition="{content.main}">
+                        <f:render.contentArea contentArea="{content.main}"/>
+                    </f:if>
+                </div>
+                <aside class="desiderio-blog-modern-post__aside" aria-label="{f:translate(key: 'blog.onThisPage', extensionName: 'desiderio', default: 'On this page')}">
+                    <div class="desiderio-blog-modern-post__aside-inner">
+                        <f:render section="TableOfContents" arguments="{records: content.main.records}"/>
+                        <f:render section="Share" arguments="{_all}"/>
+                    </div>
+                </aside>
+            </div>
+
+            <div class="desiderio-blog-modern-post__after">
+                <d:layout.stack gap="xl">
+                    <f:render section="BlogPlugin" arguments="{typoScriptPath: 'tt_content.blog_footer.20'}"/>
+                    <f:render section="BlogPlugin" arguments="{typoScriptPath: 'tt_content.blog_authors.20'}"/>
+                    <f:render section="BlogPlugin" arguments="{typoScriptPath: 'tt_content.blog_comments.20'}"/>
+                    <f:render section="BlogPlugin" arguments="{typoScriptPath: 'tt_content.blog_commentform.20'}"/>
+                </d:layout.stack>
+            </div>
+
+            <f:render section="BlogPlugin" arguments="{typoScriptPath: 'tt_content.blog_relatedposts.20'}"/>
+
+            <f:if condition="{content.sidebar.records}">
+                <div class="desiderio-blog-modern__below min-w-0">
+                    <f:render.contentArea contentArea="{content.sidebar}"/>
+                </div>
+            </f:if>
+        </d:layout.stack>
+    </article>
+</f:section>
+
+<f:section name="TableOfContents">
+    <f:comment>
+        One entry per content element with a visible header (header_layout 100
+        hides it). The links point at the #c<uid> anchor every element carries.
+        Fewer than three entries are no table of contents, only noise.
+    </f:comment>
+    <f:variable name="tocCount" value="0"/>
+    <f:for each="{records}" as="record">
+        <f:if condition="{record.header} && {record.header_layout} != 100">
+            <f:variable name="tocCount" value="{tocCount + 1}"/>
+        </f:if>
+    </f:for>
+    <f:if condition="{tocCount} >= 3">
+        <nav class="desiderio-blog-toc" aria-labelledby="desiderio-blog-toc-title">
+            <p id="desiderio-blog-toc-title" class="desiderio-blog-toc__title"><f:translate key="blog.onThisPage" extensionName="desiderio" default="On this page"/></p>
+            <ol role="list" class="desiderio-blog-toc__list">
+                <f:for each="{records}" as="record">
+                    <f:if condition="{record.header} && {record.header_layout} != 100">
+                        <li><a href="#c{record.uid}" class="desiderio-blog-toc__link">{record.header}</a></li>
+                    </f:if>
+                </f:for>
+            </ol>
+        </nav>
+    </f:if>
+</f:section>
+
+<f:section name="Share">
+    <f:variable name="postUrl" value="{f:uri.page(absolute: 1)}"/>
+    <div class="desiderio-blog-share">
+        <p class="desiderio-blog-share__title"><f:translate key="blog.share" extensionName="desiderio" default="Share"/></p>
+        <div class="flex flex-wrap gap-2">
+            <f:comment>Hidden until desiderio.js (section 17) finds a clipboard to write to.</f:comment>
+            <d:atom.button variant="outline" size="sm" class="desiderio-blog-share__copy" attributes="{hidden: 'hidden', data-d-copy-link: postUrl}">
+                <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="link" size="xs"/></span>
+                <span data-d-copy-label=""><f:translate key="blog.share.copyLink" extensionName="desiderio" default="Copy link"/></span>
+                <span data-d-copy-done=""><f:translate key="blog.share.copied" extensionName="desiderio" default="Link copied"/></span>
+            </d:atom.button>
+            <d:atom.button href="https://www.linkedin.com/sharing/share-offsite/?url={postUrl -> f:format.urlencode()}" target="_blank" variant="outline" size="sm">
+                <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="brand-linkedin" size="xs"/></span>
+                <span>LinkedIn</span>
+            </d:atom.button>
+        </div>
+    </div>
+</f:section>
+
+<f:section name="Explore">
+    <f:comment>
+        What a sidebar holds elsewhere sits below the posts here, on one quiet
+        panel: tags, the archive and the latest comments.
+    </f:comment>
+    <section class="desiderio-blog-modern__explore" aria-labelledby="desiderio-blog-explore-title">
+        <h2 id="desiderio-blog-explore-title" class="sr-only"><f:translate key="blog.explore" extensionName="desiderio" default="More on this blog"/></h2>
+        <div class="desiderio-blog-modern__explore-grid">
+            <f:render section="BlogPlugin" arguments="{typoScriptPath: 'tt_content.blog_tagwidget.20'}"/>
+            <f:render section="BlogPlugin" arguments="{typoScriptPath: 'tt_content.blog_archivewidget.20'}"/>
+            <f:render section="BlogPlugin" arguments="{typoScriptPath: 'tt_content.blog_commentswidget.20'}"/>
+        </div>
+    </section>
+</f:section>
+
+<f:section name="BlogPlugin">
+    <f:cObject typoscriptObjectPath="{typoScriptPath}"/>
+</f:section>
+
+</html>

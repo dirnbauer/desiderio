@@ -10,14 +10,13 @@
     <d:layout.section spacing="md" class="desiderio-blog desiderio-blog--post bg-background">
         <d:layout.container size="xl">
             <d:layout.stack gap="lg">
-                <div class="border-b border-border pb-5 md:pb-6">
+                <div class="pb-2">
                     <f:render section="renderPlugin" arguments="{listType: 'blog_header'}" />
                 </div>
 
                 <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_20rem]">
                 <article
                     class="min-w-0"
-                    role="main"
                     itemscope="itemscope"
                     itemtype="https://schema.org/BlogPosting"
                 >
@@ -35,7 +34,7 @@
                     </d:layout.stack>
                 </article>
 
-                <aside class="min-w-0 border-t pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0" aria-label="{f:translate(extensionName: 'desiderio', key: 'blog.sidebar.aria', default: 'Blog sidebar')}">
+                <aside class="min-w-0" aria-label="{f:translate(extensionName: 'desiderio', key: 'blog.sidebar.aria', default: 'Blog sidebar')}">
                     <div class="lg:sticky lg:top-24">
                         <d:layout.stack gap="lg" class="lg:max-h-[calc(100dvh-7rem)] lg:overflow-y-auto lg:overscroll-contain lg:pr-3">
                             <f:render section="renderPlugin" arguments="{listType: 'blog_sidebar'}" />

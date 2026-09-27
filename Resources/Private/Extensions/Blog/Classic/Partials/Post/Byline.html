@@ -1,0 +1,46 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:blogvh="http://typo3.org/ns/T3G/AgencyPack/Blog/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    xmlns:di="http://typo3.org/ns/Webconsulting/Desiderio/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+<f:comment>
+    Blog – Classic: the byline under a title. Author, date, reading time and
+    the comment count in one quiet line, separated by middle dots.
+</f:comment>
+
+<f:argument name="post" type="T3G\AgencyPack\Blog\Domain\Model\Post" optional="true"/>
+<f:argument name="settings" type="array" optional="true"/>
+
+<p class="desiderio-blog-byline">
+    <f:if condition="{post.authors}">
+        <span class="desiderio-blog-byline__authors">
+            <f:for each="{post.authors}" as="author" iteration="authorIterator">
+                <f:if condition="{authorIterator.isFirst}">
+                    <d:atom.avatar src="{blogvh:uri.avatar(author: author, size: 64)}" alt="" size="sm" class="size-6"/>
+                </f:if>
+                <span itemprop="author" itemscope="itemscope" itemtype="https://schema.org/Person">
+                    <f:if condition="{author.detailsPage} || {settings.authorUid}">
+                        <f:then><blogvh:link.author rel="author" author="{author}" class="desiderio-blog-byline__author"><span itemprop="name">{author.name}</span></blogvh:link.author></f:then>
+                        <f:else><span class="desiderio-blog-byline__author" itemprop="name">{author.name}</span></f:else>
+                    </f:if>
+                </span><f:if condition="!{authorIterator.isLast}"><span aria-hidden="true">, </span></f:if>
+            </f:for>
+        </span>
+    </f:if>
+    <time datetime="{f:format.date(format: 'c', date: post.publishDate)}" itemprop="datePublished">{f:format.date(pattern: 'LONGDATE', date: post.publishDate)}</time>
+    <f:variable name="readingMinutes" value="{di:blog.readingTime(page: post.uid)}"/>
+    <span><f:translate key="blog.readingTime" extensionName="desiderio" arguments="{minutes: readingMinutes}"/></span>
+    <f:if condition="{settings.comments.active} && {post.commentsActive}">
+        <f:variable name="commentCount" value="{post.activeComments -> f:count()}"/>
+        <meta itemprop="commentCount" content="{commentCount}"/>
+        <span>
+            <blogvh:link.post post="{post}" section="comments" class="desiderio-blog-byline__comments">
+                <f:translate key="blog.comments.count" extensionName="desiderio" arguments="{count: commentCount}"/>
+            </blogvh:link.post>
+        </span>
+    </f:if>
+</p>
+
+</html>

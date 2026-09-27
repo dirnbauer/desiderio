@@ -17,7 +17,7 @@
                     <f:render section="CommentUrl" arguments="{_all}" contentAs="content">{comment.name}</f:render>
                 </p>
                 <time datetime="{f:format.date(format: 'c', date: comment.crdate)}" itemprop="dateCreated" class="text-xs text-muted-foreground">
-                    <f:format.date format="{settings.comments.date.format}">{comment.crdate}</f:format.date>
+                    <f:format.date pattern="LONGDATE">{comment.crdate}</f:format.date>
                 </time>
             </div>
         </div>
@@ -28,7 +28,7 @@
                 </p>
                 <span class="size-1 rounded-full bg-muted-foreground/40" aria-hidden="true"></span>
                 <time datetime="{f:format.date(format: 'c', date: comment.crdate)}" itemprop="dateCreated" class="text-xs text-muted-foreground">
-                    <f:format.date format="{settings.comments.date.format}">{comment.crdate}</f:format.date>
+                    <f:format.date pattern="LONGDATE">{comment.crdate}</f:format.date>
                 </time>
             </header>
             <div class="prose prose-sm max-w-none text-muted-foreground prose-p:my-2" itemprop="text">

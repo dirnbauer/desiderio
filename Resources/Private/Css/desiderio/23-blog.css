@@ -1,0 +1,931 @@
+/* Blog — the two page templates "Blog – Classic" and "Blog – Modern".
+
+   Both are shadcn/ui through and through: they reuse the atoms (badge,
+   button, avatar, card, progress) and read every colour, face, corner and
+   shadow from the preset's tokens, so a preset or dark mode repaints them
+   like any other page. What differs is the arrangement:
+
+   - Classic (.desiderio-blog--classic) is a journal: a centred masthead,
+     one post after another in a reading column with a date leaf in the
+     margin, the widgets in a sidebar, a drop cap on the first paragraph.
+   - Modern (.desiderio-blog--modern) is a magazine: the newest post as a
+     large card, a card grid that never strands a lone card, topics as a
+     tab row, no sidebar; a post has a wide picture, a table of contents
+     and a reading progress bar.
+
+   Neither draws rules between things. Space, soft panels and one small
+   ornament (the dinkus: three dots in the preset's chart colours, the same
+   mark as body[data-section-seam="dots"]) do that work.
+
+   Loaded after 22-modern-base.css and unlayered like it, so these rules
+   beat the Tailwind utilities on the same elements. */
+
+/* ------------------------------------------------------------------ */
+/*  1. Shared                                                          */
+/* ------------------------------------------------------------------ */
+
+/* A post reads as one text: no seams between its content elements, the
+   gap between two of them about a paragraph's, more air above a heading,
+   and an anchor jump (table of contents, #comments) stops below the
+   header. */
+.desiderio-blog [itemprop="articleBody"] {
+    --d-section-y: 0.75rem;
+    --d-seam-line: none;
+    --d-seam-mark: none;
+    --d-seam-grow: none;
+}
+
+.desiderio-blog [itemprop="articleBody"] > .desiderio-section:first-of-type {
+    padding-top: 0;
+}
+
+.desiderio-blog [itemprop="articleBody"] > .desiderio-section:not(:first-of-type):has(.ce-fsc__headline) {
+    padding-top: 2.5rem;
+}
+
+.desiderio-blog [itemprop="articleBody"] > [id],
+.desiderio-blog #comments {
+    scroll-margin-top: 6rem;
+}
+
+/* Headings in the blog follow the preset's face; the display tracking of
+   22-modern-base.css is too tight for the mono faces some presets use. */
+.desiderio-blog :is(h1, h2) {
+    letter-spacing: -0.015em;
+}
+
+.desiderio-blog [itemprop="articleBody"] :is(.ce-bodytext, .ce-fsc__richtext) {
+    color: color-mix(in oklch, var(--foreground) 86%, var(--background));
+}
+
+.desiderio-blog [itemprop="articleBody"] .ce-fsc__headline {
+    font-size: clamp(1.375rem, 1.2rem + 0.6vw, 1.75rem);
+    line-height: 1.25;
+}
+
+/* The dinkus: three dots, each its chart colour over the primary ink, so
+   a neutral preset shows three ink dots. */
+.desiderio-blog-dinkus {
+    display: block;
+    flex: none;
+    width: 5px;
+    height: 5px;
+    margin-inline: auto;
+    border-radius: 999px;
+    background:
+        linear-gradient(oklch(from var(--chart-3, var(--primary)) l c h / clamp(0, c * 12, 1)), oklch(from var(--chart-3, var(--primary)) l c h / clamp(0, c * 12, 1))),
+        var(--primary);
+    box-shadow:
+        -13px 0 0 oklch(from var(--chart-1, var(--primary)) l c h / clamp(0, c * 12, 1)),
+        -13px 0 0 var(--primary),
+        13px 0 0 oklch(from var(--chart-5, var(--primary)) l c h / clamp(0, c * 12, 1)),
+        13px 0 0 var(--primary);
+}
+
+/* Soft panels instead of boxes and rules: the author, the comment form,
+   Classic's sidebar and Modern's "more on this blog". */
+.desiderio-blog-authors,
+.desiderio-blog-commentform,
+.desiderio-blog-classic__sidebar-panel,
+.desiderio-blog-modern__explore {
+    border-radius: calc(var(--radius, 0.625rem) * 2);
+    background: color-mix(in oklch, var(--muted) 62%, transparent);
+    padding: clamp(1.25rem, 0.9rem + 1.2vw, 2rem);
+}
+
+/* Widget titles speak like the site's eyebrows, without the dot. */
+.desiderio-blog-widget__title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+}
+
+/* A byline: author, date, reading time, comments, set apart by middle
+   dots that wrap with the items. */
+.desiderio-blog-byline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: 0.5rem;
+    row-gap: 0.25rem;
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--muted-foreground);
+}
+
+.desiderio-blog-byline > :not(meta) + :not(meta)::before,
+.desiderio-blog-byline > meta + :not(meta)::before {
+    content: "·";
+    margin-inline-end: 0.5rem;
+}
+
+.desiderio-blog-byline__authors {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    color: var(--foreground);
+}
+
+.desiderio-blog-byline a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.desiderio-blog-byline a:hover {
+    color: var(--d-link, var(--primary));
+}
+
+/* Copy link: the done label replaces the button label for two seconds. */
+[data-d-copy-link] [data-d-copy-done],
+[data-d-copy-link][data-copied] [data-d-copy-label] {
+    display: none;
+}
+
+[data-d-copy-link][data-copied] [data-d-copy-done] {
+    display: inline;
+}
+
+/* ------------------------------------------------------------------ */
+/*  2. Classic: the journal                                            */
+/* ------------------------------------------------------------------ */
+
+.desiderio-blog-classic__masthead {
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+    max-width: 46rem;
+    margin-inline: auto;
+    padding-block: 0.5rem 0.75rem;
+    text-align: center;
+}
+
+.desiderio-blog-classic__masthead > .desiderio-blog-dinkus {
+    margin-top: 1rem;
+}
+
+.desiderio-blog-classic__columns {
+    display: grid;
+    gap: 3.5rem;
+}
+
+@media (min-width: 64rem) {
+    .desiderio-blog-classic__columns {
+        grid-template-columns: minmax(0, 1fr) 20rem;
+        gap: 4rem;
+    }
+}
+
+@media (min-width: 80rem) {
+    .desiderio-blog-classic__columns {
+        gap: 5rem;
+    }
+}
+
+.desiderio-blog-classic-list {
+    display: grid;
+    gap: 3.5rem;
+}
+
+/* An entry: the date leaf in the margin, the post beside it. */
+.desiderio-blog-classic-entry {
+    display: grid;
+    gap: 1.25rem;
+    min-width: 0;
+}
+
+@media (min-width: 48rem) {
+    .desiderio-blog-classic-entry {
+        grid-template-columns: 4.5rem minmax(0, 1fr);
+        column-gap: 1.75rem;
+    }
+}
+
+.desiderio-blog-classic-entry__main {
+    display: grid;
+    gap: 1.125rem;
+    min-width: 0;
+    align-content: start;
+}
+
+.desiderio-blog-classic-entry__header {
+    display: grid;
+    gap: 0.625rem;
+}
+
+.desiderio-blog-classic-entry__topics {
+    margin: 0;
+    font-family: var(--font-mono, var(--d-font-mono));
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+}
+
+.desiderio-blog-classic-entry__topic {
+    color: var(--d-link, var(--primary));
+    text-decoration: none;
+}
+
+.desiderio-blog-classic-entry__topic:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+.desiderio-blog-classic-entry__title {
+    margin: 0;
+    font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+    line-height: 1.2;
+}
+
+.desiderio-blog-classic-entry__link {
+    color: var(--foreground);
+    text-decoration: none;
+    border-radius: calc(var(--radius, 0.625rem) - 4px);
+    transition: color 150ms ease;
+}
+
+.desiderio-blog-classic-entry__link:hover {
+    color: var(--d-link, var(--primary));
+}
+
+.desiderio-blog-classic-entry__link:focus-visible,
+.desiderio-blog-classic-entry__more-link:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 45%, transparent);
+}
+
+.desiderio-blog-classic-entry__media {
+    display: block;
+    overflow: hidden;
+    border-radius: calc(var(--radius, 0.625rem) * 1.5);
+    background: var(--muted);
+}
+
+/* A wide strip, so ten posts on a page stay a list and not a gallery. */
+.desiderio-blog-classic-entry__media .desiderio-blog-media--card {
+    aspect-ratio: 2 / 1;
+}
+
+.desiderio-blog-classic-entry__media img {
+    transition: transform 400ms var(--d-ease, ease);
+}
+
+.desiderio-blog-classic-entry__media:hover img {
+    transform: scale(1.02);
+}
+
+.desiderio-blog-classic-entry__excerpt {
+    max-width: 68ch;
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--muted-foreground);
+    text-wrap-style: pretty;
+}
+
+.desiderio-blog-classic-entry__more {
+    margin: 0;
+}
+
+.desiderio-blog-classic-entry__more-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    border-radius: calc(var(--radius, 0.625rem) - 4px);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--d-link, var(--primary));
+    text-decoration: none;
+}
+
+.desiderio-blog-classic-entry__more-link [data-icon] {
+    transition: translate 200ms var(--d-ease, ease);
+}
+
+.desiderio-blog-classic-entry__more-link:hover [data-icon] {
+    translate: 3px 0;
+}
+
+/* The date leaf, like the dated corner of a diary page: a small muted
+   tile with the day large, the month in the preset's link colour. */
+.desiderio-blog-leaf {
+    display: none;
+}
+
+@media (min-width: 48rem) {
+    .desiderio-blog-leaf {
+        display: grid;
+        justify-items: center;
+        align-content: start;
+        gap: 0.25rem;
+        height: fit-content;
+        padding: 0.875rem 0.375rem 0.75rem;
+        border-radius: var(--radius, 0.625rem);
+        background: var(--muted);
+        text-align: center;
+        line-height: 1;
+    }
+}
+
+.desiderio-blog-leaf__day {
+    font-family: var(--font-heading, inherit);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--foreground);
+    font-variant-numeric: tabular-nums;
+}
+
+.desiderio-blog-leaf__month {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--d-link, var(--primary));
+}
+
+.desiderio-blog-leaf__year {
+    font-size: 0.75rem;
+    color: var(--muted-foreground);
+    font-variant-numeric: tabular-nums;
+}
+
+/* A post. */
+.desiderio-blog-classic-post__header {
+    display: grid;
+    gap: 2rem;
+}
+
+.desiderio-blog-classic-entry--post .desiderio-blog-leaf {
+    margin-top: 0.25rem;
+}
+
+.desiderio-blog-classic-post__title {
+    margin: 0;
+    font-size: clamp(2rem, 1.45rem + 1.8vw, 2.75rem);
+    line-height: 1.12;
+}
+
+.desiderio-blog-classic-post__media {
+    overflow: hidden;
+    border-radius: calc(var(--radius, 0.625rem) * 1.5);
+    background: var(--muted);
+}
+
+/* The drop cap on the first paragraph of the post, in the preset's heading
+   face and link colour. Chinese, Japanese and Korean text keeps its first
+   character as it is. */
+html:not(:lang(zh), :lang(ja), :lang(ko)) .desiderio-blog-classic-post__body > .desiderio-section:first-of-type :is(.ce-bodytext, .ce-fsc__richtext) > p:first-of-type::first-letter {
+    float: left;
+    margin: 0.06em 0.12em 0 0;
+    font-family: var(--font-heading, inherit);
+    font-size: 3.6em;
+    font-weight: 700;
+    line-height: 0.82;
+    color: var(--d-link, var(--primary));
+}
+
+.desiderio-blog-classic-post__filed {
+    margin-top: -0.5rem;
+}
+
+/* Related posts: a short reading list in two columns. */
+.desiderio-blog-classic-related__list {
+    display: grid;
+    gap: 1.25rem 2rem;
+}
+
+@media (min-width: 48rem) {
+    .desiderio-blog-classic-related__list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.desiderio-blog-classic-related__item {
+    display: grid;
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+    align-items: center;
+    gap: 1rem;
+}
+
+.desiderio-blog-classic-related__item:not(:has(.desiderio-blog-classic-related__media)) {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.desiderio-blog-classic-related__media {
+    overflow: hidden;
+    border-radius: var(--radius, 0.625rem);
+    background: var(--muted);
+}
+
+.desiderio-blog-classic-related__link {
+    font-weight: 500;
+    line-height: 1.35;
+    color: var(--foreground);
+    text-decoration: none;
+}
+
+.desiderio-blog-classic-related__link:hover {
+    color: var(--d-link, var(--primary));
+}
+
+/* ------------------------------------------------------------------ */
+/*  3. Modern: the magazine                                            */
+/* ------------------------------------------------------------------ */
+
+.desiderio-blog-modern__header {
+    display: grid;
+    gap: 1.5rem;
+    align-items: end;
+}
+
+@media (min-width: 48rem) {
+    .desiderio-blog-modern__header {
+        grid-template-columns: minmax(0, 1fr) auto;
+    }
+}
+
+.desiderio-blog-modern__intro {
+    display: grid;
+    gap: 1rem;
+    max-width: 48rem;
+}
+
+.desiderio-blog-modern__intro h1,
+.desiderio-blog-modern-post__intro h1 {
+    margin: 0;
+    font-size: var(--d-text-5xl, 3rem);
+    line-height: 1.05;
+}
+
+/* Topics: a tab row in the shadcn tabs look — a muted track, the current
+   topic raised on the page colour. Scrolls sideways on a phone. */
+.desiderio-blog-topics {
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+}
+
+.desiderio-blog-topics::-webkit-scrollbar {
+    display: none;
+}
+
+.desiderio-blog-topics__list {
+    display: inline-flex;
+    gap: 0.125rem;
+    margin: 0;
+    padding: 3px;
+    border-radius: calc(var(--radius, 0.625rem) + 2px);
+    background: var(--muted);
+    list-style: none;
+}
+
+.desiderio-blog-topics__pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: 2rem;
+    padding-inline: 0.875rem;
+    border-radius: calc(var(--radius, 0.625rem) - 2px);
+    font-size: 0.875rem;
+    font-weight: 500;
+    white-space: nowrap;
+    color: var(--muted-foreground);
+    text-decoration: none;
+    scroll-snap-align: start;
+    transition: color 150ms ease, background-color 150ms ease, box-shadow 150ms ease;
+}
+
+.desiderio-blog-topics__pill:hover {
+    color: var(--foreground);
+}
+
+.desiderio-blog-topics__pill[aria-current="page"] {
+    background: var(--background);
+    color: var(--foreground);
+    box-shadow:
+        0 0 0 1px color-mix(in oklch, var(--foreground) 7%, transparent),
+        var(--shadow-sm, 0 1px 2px rgb(0 0 0 / 0.08));
+}
+
+.desiderio-blog-topics__pill:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 45%, transparent);
+}
+
+.desiderio-blog-topics__count {
+    font-size: 0.75rem;
+    color: var(--muted-foreground);
+    font-variant-numeric: tabular-nums;
+}
+
+/* The card grid. Three columns on a wide screen, and the last row always
+   fills: two cards left over share it, one card left over takes it whole
+   (and lays itself out wide, see the card below). Six tracks make the
+   halves possible. The featured card sits above the grid, so the counting
+   starts with the first card of the grid. */
+.desiderio-blog-modern-posts {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.desiderio-blog-modern-posts:not(:has(> *)) {
+    display: none;
+}
+
+@media (min-width: 48rem) and (max-width: 63.999rem) {
+    .desiderio-blog-modern-posts {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .desiderio-blog-modern-posts > :last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (min-width: 64rem) {
+    .desiderio-blog-modern-posts {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 2rem 1.5rem;
+    }
+
+    .desiderio-blog-modern-posts > * {
+        grid-column: span 2;
+    }
+
+    .desiderio-blog-modern-posts > :nth-last-child(2):nth-child(3n + 1),
+    .desiderio-blog-modern-posts > :last-child:nth-child(3n + 2) {
+        grid-column: span 3;
+    }
+
+    .desiderio-blog-modern-posts > :last-child:nth-child(3n + 1) {
+        grid-column: 1 / -1;
+    }
+}
+
+/* A card: the shadcn card (ring, radius, surface shadow and the lift of
+   22-modern-base.css) with the whole surface as the link. */
+.desiderio-blog-modern-card {
+    position: relative;
+    height: 100%;
+    padding: 0;
+    gap: 0;
+    container: blog-card / inline-size;
+}
+
+.desiderio-blog-modern-card__inner {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    height: 100%;
+}
+
+.desiderio-blog-modern-card__media {
+    overflow: hidden;
+    background: var(--muted);
+}
+
+.desiderio-blog-modern-card__media img {
+    transition: transform 500ms var(--d-ease, ease);
+}
+
+.desiderio-blog-modern-card:hover .desiderio-blog-modern-card__media img {
+    transform: scale(1.03);
+}
+
+.desiderio-blog-modern-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-width: 0;
+    padding: 1.25rem 1.25rem 1.375rem;
+}
+
+.desiderio-blog-modern-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.625rem;
+    font-size: 0.8125rem;
+    color: var(--muted-foreground);
+}
+
+/* The category badge and the author link stay clickable above the
+   stretched title link. */
+.desiderio-blog-modern-card__category {
+    position: relative;
+    z-index: 1;
+    text-decoration: none;
+}
+
+.desiderio-blog-modern-card__title {
+    margin: 0;
+    font-size: 1.25rem;
+    line-height: 1.3;
+    text-wrap: balance;
+}
+
+.desiderio-blog-modern-card__link {
+    color: var(--foreground);
+    text-decoration: none;
+    transition: color 150ms ease;
+}
+
+.desiderio-blog-modern-card__link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+}
+
+.desiderio-blog-modern-card:hover .desiderio-blog-modern-card__link {
+    color: var(--d-link, var(--primary));
+}
+
+.desiderio-blog-modern-card__link:focus-visible {
+    outline: none;
+}
+
+.desiderio-blog-modern-card:has(.desiderio-blog-modern-card__link:focus-visible) {
+    box-shadow:
+        0 0 0 2px var(--background),
+        0 0 0 4px color-mix(in oklch, var(--ring) 70%, transparent);
+}
+
+.desiderio-blog-modern-card__excerpt {
+    display: -webkit-box;
+    margin: 0;
+    overflow: hidden;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--muted-foreground);
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+}
+
+.desiderio-blog-modern-card__footer {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    white-space: nowrap;
+    margin-top: auto;
+    padding-top: 0.25rem;
+    font-size: 0.8125rem;
+    color: var(--muted-foreground);
+}
+
+.desiderio-blog-modern-card__author {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+    font-weight: 500;
+    color: var(--foreground);
+}
+
+.desiderio-blog-modern-card__author > [itemprop="name"] {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.desiderio-blog-modern-card__reading {
+    flex: none;
+}
+
+.desiderio-blog-modern-card__author + .desiderio-blog-modern-card__reading::before {
+    content: "·";
+    margin-inline-end: 0.75rem;
+}
+
+/* A post without a picture is text only, however wide its card. */
+.desiderio-blog-modern-card__inner:not(:has(> .desiderio-blog-modern-card__media)) {
+    grid-template-rows: minmax(0, 1fr);
+}
+
+/* A card with room lays out wide: picture left, text right. That is the
+   featured card and a card alone in the last row. */
+@container blog-card (min-width: 36rem) {
+    .desiderio-blog-modern-card__inner:has(> .desiderio-blog-modern-card__media) {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+        grid-template-rows: none;
+    }
+
+    .desiderio-blog-modern-card__inner:not(:has(> .desiderio-blog-modern-card__media)) > .desiderio-blog-modern-card__body {
+        max-width: 48rem;
+    }
+
+    .desiderio-blog-modern-card__media .desiderio-blog-media {
+        height: 100%;
+        min-height: 15rem;
+        aspect-ratio: auto;
+    }
+
+    .desiderio-blog-modern-card__body {
+        justify-content: center;
+        padding: 1.75rem 2rem;
+    }
+
+    .desiderio-blog-modern-card__title {
+        font-size: 1.5rem;
+    }
+}
+
+.desiderio-blog-modern-card--featured .desiderio-blog-modern-card__title {
+    font-size: clamp(1.625rem, 1.2rem + 1.4vw, 2.25rem);
+    line-height: 1.15;
+}
+
+.desiderio-blog-modern-card--featured .desiderio-blog-modern-card__excerpt {
+    font-size: 1.125rem;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+}
+
+@container blog-card (min-width: 52rem) {
+    .desiderio-blog-modern-card--featured .desiderio-blog-modern-card__media .desiderio-blog-media {
+        min-height: 22rem;
+    }
+
+    .desiderio-blog-modern-card--featured .desiderio-blog-modern-card__body {
+        gap: 1rem;
+        padding: 2.5rem 3rem;
+    }
+}
+
+/* More on this blog: tags, archive and comments on one panel. */
+.desiderio-blog-modern__explore-grid {
+    display: grid;
+    gap: 2rem;
+}
+
+@media (min-width: 48rem) {
+    .desiderio-blog-modern__explore-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 64rem) {
+    .desiderio-blog-modern__explore-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 3rem;
+    }
+}
+
+/* A post: one centred column of 64rem, the text next to its table of
+   contents. */
+.desiderio-blog-modern-post {
+    max-width: 64rem;
+    margin-inline: auto;
+}
+
+.desiderio-blog-modern-post__header {
+    display: grid;
+    gap: 2.5rem;
+}
+
+.desiderio-blog-modern-post__intro {
+    display: grid;
+    gap: 1.25rem;
+    max-width: 48rem;
+}
+
+.desiderio-blog-modern-post__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+}
+
+.desiderio-blog-modern-post__meta > time::before,
+.desiderio-blog-modern-post__meta > time + span::before {
+    content: "·";
+    margin-inline-end: 0.75rem;
+}
+
+.desiderio-blog-modern-post__meta > time:first-child::before {
+    content: none;
+}
+
+.desiderio-blog-modern-post__authors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 1.75rem;
+    margin: 0;
+    padding: 0;
+    font-size: 0.875rem;
+    line-height: 1.35;
+    list-style: none;
+}
+
+.desiderio-blog-modern-post__author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.desiderio-blog-modern-post__media {
+    overflow: hidden;
+    border-radius: calc(var(--radius, 0.625rem) * 2);
+    background: var(--muted);
+    box-shadow: 0 0 0 1px color-mix(in oklch, var(--foreground) 8%, transparent);
+}
+
+.desiderio-blog-modern-post__columns {
+    display: grid;
+    gap: 3rem;
+}
+
+@media (min-width: 64rem) {
+    .desiderio-blog-modern-post__columns {
+        grid-template-columns: minmax(0, 1fr) 13.5rem;
+        gap: 4rem;
+    }
+}
+
+.desiderio-blog-modern-post__aside-inner {
+    display: grid;
+    gap: 2rem;
+}
+
+@media (min-width: 64rem) {
+    .desiderio-blog-modern-post__aside-inner {
+        position: sticky;
+        top: 6rem;
+    }
+}
+
+.desiderio-blog-modern-post__after {
+    max-width: 46.5rem;
+}
+
+.desiderio-blog-toc {
+    display: none;
+}
+
+@media (min-width: 64rem) {
+    .desiderio-blog-toc {
+        display: block;
+    }
+}
+
+.desiderio-blog-toc__title,
+.desiderio-blog-share__title {
+    margin: 0 0 0.625rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+}
+
+.desiderio-blog-toc__list {
+    display: grid;
+    gap: 0.125rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.desiderio-blog-toc__link {
+    display: block;
+    margin-inline: -0.625rem;
+    padding: 0.375rem 0.625rem;
+    border-radius: calc(var(--radius, 0.625rem) - 2px);
+    font-size: 0.875rem;
+    line-height: 1.4;
+    color: var(--muted-foreground);
+    text-decoration: none;
+    transition: color 150ms ease, background-color 150ms ease;
+}
+
+.desiderio-blog-toc__link:hover {
+    background: var(--muted);
+    color: var(--foreground);
+}
+
+.desiderio-blog-toc__link:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 45%, transparent);
+}
+
+/* The reading progress bar: fixed to the top of the window, above the
+   header's palette band, in the preset's primary ink (desiderio.js 13). */
+.desiderio-blog-progress {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 90;
+    pointer-events: none;
+}

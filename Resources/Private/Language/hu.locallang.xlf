@@ -133,6 +133,72 @@
         <target>{count, plural, =0 {0 hozzászólás} one {# hozzászólás} other {# hozzászólás}}</target>
       </segment>
     </unit>
+    <unit id="blog.readingTime">
+      <segment>
+        <source>{minutes, plural, one {# min read} other {# min read}}</source>
+        <target>{minutes, plural, one {# perc olvasás} other {# perc olvasás}}</target>
+      </segment>
+    </unit>
+    <unit id="blog.continueReading">
+      <segment>
+        <source>Continue reading</source>
+        <target>Tovább olvasom</target>
+      </segment>
+    </unit>
+    <unit id="blog.latest">
+      <segment>
+        <source>Latest</source>
+        <target>Legújabb</target>
+      </segment>
+    </unit>
+    <unit id="blog.onThisPage">
+      <segment>
+        <source>On this page</source>
+        <target>Ezen az oldalon</target>
+      </segment>
+    </unit>
+    <unit id="blog.allPosts">
+      <segment>
+        <source>All posts</source>
+        <target>Összes bejegyzés</target>
+      </segment>
+    </unit>
+    <unit id="blog.topics.aria">
+      <segment>
+        <source>Blog topics</source>
+        <target>A blog témái</target>
+      </segment>
+    </unit>
+    <unit id="blog.explore">
+      <segment>
+        <source>More on this blog</source>
+        <target>Még több a blogon</target>
+      </segment>
+    </unit>
+    <unit id="blog.share">
+      <segment>
+        <source>Share</source>
+        <target>Megosztás</target>
+      </segment>
+    </unit>
+    <unit id="blog.share.copyLink">
+      <segment>
+        <source>Copy link</source>
+        <target>Link másolása</target>
+      </segment>
+    </unit>
+    <unit id="blog.share.copied">
+      <segment>
+        <source>Link copied</source>
+        <target>Link kimásolva</target>
+      </segment>
+    </unit>
+    <unit id="blog.readingProgress">
+      <segment>
+        <source>Reading progress</source>
+        <target>Olvasási előrehaladás</target>
+      </segment>
+    </unit>
     <unit id="a11y.skipToContent">
       <segment state="final">
         <source>Skip to main content</source>

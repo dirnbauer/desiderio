@@ -1,0 +1,22 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+<f:comment>
+    Blog – Classic: the date leaf in the margin of a post, like the dated
+    corner of a diary page. Decoration only: the byline carries the date as
+    a <time> element, so the leaf is hidden from assistive technology.
+    Day, month and year follow the page language (ICU patterns).
+</f:comment>
+
+<f:argument name="date" type="integer" optional="true"/>
+
+<f:if condition="{date}">
+    <div class="desiderio-blog-leaf" aria-hidden="true">
+        <span class="desiderio-blog-leaf__day">{f:format.date(pattern: 'd', date: date)}</span>
+        <span class="desiderio-blog-leaf__month">{f:format.date(pattern: 'MMM', date: date)}</span>
+        <span class="desiderio-blog-leaf__year">{f:format.date(pattern: 'y', date: date)}</span>
+    </div>
+</f:if>
+
+</html>

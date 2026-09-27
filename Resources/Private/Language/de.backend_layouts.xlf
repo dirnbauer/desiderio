@@ -61,5 +61,29 @@
         <target>Seitenleiste</target>
       </segment>
     </unit>
+    <unit id="backend_layout.desiderio_blog.title">
+      <segment state="final">
+        <source>Desiderio: Blog (previous version)</source>
+        <target>Desiderio: Blog (frühere Version)</target>
+      </segment>
+    </unit>
+    <unit id="backend_layout.desiderio_blog_classic.title">
+      <segment state="final">
+        <source>Desiderio: Blog – Classic</source>
+        <target>Desiderio: Blog – Klassisch</target>
+      </segment>
+    </unit>
+    <unit id="backend_layout.desiderio_blog_modern.title">
+      <segment state="final">
+        <source>Desiderio: Blog – Modern</source>
+        <target>Desiderio: Blog – Modern</target>
+      </segment>
+    </unit>
+    <unit id="backend_layout.colPos.1.belowPosts">
+      <segment state="final">
+        <source>Below the posts</source>
+        <target>Unter den Beiträgen</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

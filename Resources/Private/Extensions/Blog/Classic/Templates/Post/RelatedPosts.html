@@ -1,0 +1,41 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:blogvh="http://typo3.org/ns/T3G/AgencyPack/Blog/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+<f:comment>
+    Blog – Classic: "Related posts" as a short reading list, two columns of
+    small pictures with title and date, the way a journal points to its
+    older pages. No cards, no rules.
+</f:comment>
+
+<f:layout name="Post" />
+
+<f:section name="Content">
+    <f:if condition="{posts}">
+        <section class="desiderio-blog-classic-related" aria-labelledby="desiderio-blog-related-title">
+            <d:layout.stack gap="md">
+                <d:atom.typography tag="h2" variant="h3" attributes="{id: 'desiderio-blog-related-title'}"><f:translate extensionName="Blog" key="headline.relatedposts">Related posts</f:translate></d:atom.typography>
+                <ul role="list" class="desiderio-blog-classic-related__list">
+                    <f:for each="{posts}" as="post">
+                        <blogvh:cache post="{post}"/>
+                        <li class="desiderio-blog-classic-related__item" itemscope="itemscope" itemtype="https://schema.org/BlogPosting">
+                            <f:if condition="{post.featuredImage}">
+                                <div class="desiderio-blog-classic-related__media">
+                                    <f:render partial="General/FeaturedImage" arguments="{image: post.featuredImage, settings: {maxWidth: 320, sizes: '160px'}}"/>
+                                </div>
+                            </f:if>
+                            <div class="flex flex-col gap-1">
+                                <blogvh:link.post post="{post}" class="desiderio-blog-classic-related__link"><span itemprop="headline">{post.title}</span></blogvh:link.post>
+                                <time class="text-sm text-muted-foreground" datetime="{f:format.date(format: 'c', date: post.publishDate)}" itemprop="datePublished">{f:format.date(pattern: 'LONGDATE', date: post.publishDate)}</time>
+                            </div>
+                        </li>
+                    </f:for>
+                </ul>
+            </d:layout.stack>
+        </section>
+    </f:if>
+</f:section>
+
+</html>

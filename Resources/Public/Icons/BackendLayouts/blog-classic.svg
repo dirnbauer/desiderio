@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="icon-root">
+  <title>Blog – Classic: posts one after another, sidebar on the right</title>
+  <style>
+    .icon-root{color-scheme:light dark;color:CanvasText;--icon-color-accent:AccentColor}
+    .tile{fill:Canvas}
+    .edge{fill:none;stroke:color-mix(in srgb,currentColor 20%,Canvas);stroke-width:1.5}
+    .ink{fill:currentColor}
+    .soft{fill:currentColor;opacity:.4}
+    .faint{fill:currentColor;opacity:.14}
+    .icon-signature{fill:var(--icon-color-accent)}
+  </style>
+  <rect class="tile" x="2" y="2" width="60" height="60" rx="8"/>
+  <rect class="edge" x="2.75" y="2.75" width="58.5" height="58.5" rx="7.25"/>
+  <rect class="ink" x="21" y="8" width="22" height="4" rx="1"/>
+  <rect class="soft" x="25" y="14" width="14" height="2" rx="1"/>
+  <rect class="faint" x="7" y="21" width="6" height="7" rx="1.5"/>
+  <rect class="ink" x="15" y="21" width="25" height="3" rx="1"/>
+  <rect class="soft" x="15" y="25.5" width="15" height="1.5" rx=".75"/>
+  <rect class="faint" x="15" y="29" width="25" height="10" rx="1.5"/>
+  <circle class="soft" cx="23.5" cy="43" r="1"/>
+  <circle class="icon-signature" cx="27.5" cy="43" r="1"/>
+  <circle class="soft" cx="31.5" cy="43" r="1"/>
+  <rect class="faint" x="7" y="47" width="6" height="7" rx="1.5"/>
+  <rect class="ink" x="15" y="47" width="21" height="3" rx="1"/>
+  <rect class="soft" x="15" y="51.5" width="25" height="1.5" rx=".75"/>
+  <rect class="soft" x="15" y="54.5" width="19" height="1.5" rx=".75"/>
+  <rect class="faint" x="44" y="21" width="14" height="36" rx="2"/>
+  <rect class="soft" x="47" y="25" width="8" height="1.5" rx=".75"/>
+  <rect class="soft" x="47" y="29" width="6" height="1.5" rx=".75"/>
+  <rect class="soft" x="47" y="35" width="8" height="1.5" rx=".75"/>
+  <rect class="soft" x="47" y="39" width="7" height="1.5" rx=".75"/>
+</svg>

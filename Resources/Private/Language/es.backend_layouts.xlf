@@ -43,5 +43,29 @@
         <target>Barra lateral</target>
       </segment>
     </unit>
+    <unit id="backend_layout.desiderio_blog.title">
+      <segment state="final">
+        <source>Desiderio: Blog (previous version)</source>
+        <target>Desiderio: Blog (versión anterior)</target>
+      </segment>
+    </unit>
+    <unit id="backend_layout.desiderio_blog_classic.title">
+      <segment state="final">
+        <source>Desiderio: Blog – Classic</source>
+        <target>Desiderio: Blog – Clásico</target>
+      </segment>
+    </unit>
+    <unit id="backend_layout.desiderio_blog_modern.title">
+      <segment state="final">
+        <source>Desiderio: Blog – Modern</source>
+        <target>Desiderio: Blog – Moderno</target>
+      </segment>
+    </unit>
+    <unit id="backend_layout.colPos.1.belowPosts">
+      <segment state="final">
+        <source>Below the posts</source>
+        <target>Debajo de las entradas</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

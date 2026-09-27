@@ -8,7 +8,7 @@
 
 <f:section name="Main">
     <!--TYPO3SEARCH_begin-->
-    <d:layout.section spacing="none" class="border-b border-border py-5 md:py-6">
+    <d:layout.section spacing="none" class="py-5 md:py-6">
         <d:layout.container size="xl">
             <f:render section="BlogPlugin" arguments="{listType: 'blog_header'}"/>
         </d:layout.container>
@@ -38,7 +38,7 @@
 </f:section>
 
 <f:section name="BlogPostContent">
-    <article role="main" itemscope="itemscope" itemtype="https://schema.org/BlogPosting">
+    <article itemscope="itemscope" itemtype="https://schema.org/BlogPosting">
         <d:layout.stack gap="xl">
             <div itemprop="articleBody">
                 <f:if condition="{content.main}">

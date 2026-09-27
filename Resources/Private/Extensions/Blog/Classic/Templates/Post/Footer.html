@@ -1,0 +1,43 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:blogvh="http://typo3.org/ns/T3G/AgencyPack/Blog/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+<f:comment>
+    Blog – Classic: "Filed under" after the ornament that ends a post. The
+    topics and tags in one line of badges, without a rule above them.
+</f:comment>
+
+<f:layout name="Post" />
+
+<f:section name="Content">
+    <f:if condition="{post.categories} || {post.tags}">
+        <footer class="desiderio-blog-classic-post__filed" aria-label="{f:translate(extensionName: 'Blog', key: 'post.footer.meta', default: 'Filed under')}">
+            <ul role="list" class="flex flex-wrap items-center justify-center gap-2">
+                <f:for each="{post.categories}" as="postCategory">
+                    <li data-blog-category="{postCategory.uid}">
+                        <blogvh:link.category category="{postCategory}" class="!no-underline">
+                            <d:atom.badge variant="secondary">
+                                <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="folder" size="xs"/></span>
+                                <span>{postCategory.title}</span>
+                            </d:atom.badge>
+                        </blogvh:link.category>
+                    </li>
+                </f:for>
+                <f:for each="{post.tags}" as="postTag">
+                    <li data-blog-tag="{postTag.uid}" itemprop="keywords">
+                        <blogvh:link.tag tag="{postTag}" class="!no-underline">
+                            <d:atom.badge variant="outline">
+                                <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="tag" size="xs"/></span>
+                                <span>{postTag.title}</span>
+                            </d:atom.badge>
+                        </blogvh:link.tag>
+                    </li>
+                </f:for>
+            </ul>
+        </footer>
+    </f:if>
+</f:section>
+
+</html>

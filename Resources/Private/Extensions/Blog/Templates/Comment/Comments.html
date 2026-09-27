@@ -11,7 +11,7 @@
         <f:if condition="{comments}">
             <f:variable name="commentCount" value="{comments -> f:count()}"/>
         </f:if>
-        <section class="scroll-mt-24 border-t border-border pt-8" id="comments" aria-labelledby="comments-title">
+        <section class="scroll-mt-24" id="comments" aria-labelledby="comments-title">
             <d:layout.stack gap="md">
                 <header class="flex flex-wrap items-center gap-2">
                     <d:atom.typography tag="h2" variant="h3" class="text-balance" attributes="{id: 'comments-title'}">
@@ -32,9 +32,9 @@
                 <f:if condition="{settings.comments.disqus.enable} !== '1'">
                     <f:if condition="{comments}">
                         <f:then>
-                            <ol role="list" class="divide-y divide-border">
+                            <ol role="list" class="flex flex-col gap-6">
                                 <f:for each="{comments}" as="comment">
-                                    <li class="py-4 first:pt-0 last:pb-0"><f:render partial="Comments/Comment" arguments="{comment: comment, settings: settings}"/></li>
+                                    <li><f:render partial="Comments/Comment" arguments="{comment: comment, settings: settings}"/></li>
                                 </f:for>
                             </ol>
                         </f:then>

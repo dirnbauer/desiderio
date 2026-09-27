@@ -1,0 +1,69 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:blogvh="http://typo3.org/ns/T3G/AgencyPack/Blog/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    xmlns:di="http://typo3.org/ns/Webconsulting/Desiderio/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+<f:comment>
+    Blog – Classic: one post in the journal. A date leaf in the margin, the
+    topic, the title, a byline, the picture, the teaser and "Continue
+    reading". Posts are set apart by space and the ornament between them
+    (Classic/Partials/List.html), not by rules.
+</f:comment>
+
+<f:argument name="post" type="T3G\AgencyPack\Blog\Domain\Model\Post" optional="true"/>
+<f:argument name="settings" type="array" optional="true"/>
+<f:argument name="iterator" type="array" optional="true"/>
+
+<article
+    class="desiderio-blog-classic-entry"
+    data-blog-tag="{f:if(condition: post.tags, then: post.tags.0.uid, else: 0)}"
+    data-blog-category="{f:if(condition: post.categories, then: post.categories.0.uid, else: 0)}"
+    itemscope="itemscope"
+    itemtype="https://schema.org/BlogPosting"
+>
+    <f:render partial="Post/DateLeaf" arguments="{date: post.publishDate}"/>
+
+    <div class="desiderio-blog-classic-entry__main">
+        <header class="desiderio-blog-classic-entry__header">
+            <f:if condition="{post.categories}">
+                <p class="desiderio-blog-classic-entry__topics">
+                    <f:for each="{post.categories}" as="postCategory" iteration="categoryIterator">
+                        <meta itemprop="articleSection" content="{postCategory.title}"/>
+                        <blogvh:link.category category="{postCategory}" class="desiderio-blog-classic-entry__topic">{postCategory.title}</blogvh:link.category><f:if condition="!{categoryIterator.isLast}"><span aria-hidden="true">, </span></f:if>
+                    </f:for>
+                </p>
+            </f:if>
+            <d:atom.typography tag="h2" variant="h2" class="desiderio-blog-classic-entry__title" attributes="{itemprop: 'headline'}">
+                <blogvh:link.post post="{post}" class="desiderio-blog-classic-entry__link">{post.title}</blogvh:link.post>
+            </d:atom.typography>
+            <f:render partial="Post/Byline" arguments="{post: post, settings: settings}"/>
+        </header>
+
+        <f:if condition="{post.featuredImage}">
+            <blogvh:link.post post="{post}" class="desiderio-blog-classic-entry__media" additionalAttributes="{aria-hidden: 'true', tabindex: '-1'}">
+                <f:render partial="General/FeaturedImage" arguments="{image: post.featuredImage, settings: {maxWidth: 1200, sizes: '(min-width: 1024px) 760px, 100vw'}}"/>
+            </blogvh:link.post>
+        </f:if>
+
+        <f:if condition="{post.abstract} || {post.description}">
+            <p class="desiderio-blog-classic-entry__excerpt" itemprop="description">
+                <f:if condition="{post.abstract}">
+                    <f:then>{post.abstract}</f:then>
+                    <f:else>{post.description}</f:else>
+                </f:if>
+            </p>
+        </f:if>
+
+        <p class="desiderio-blog-classic-entry__more">
+            <blogvh:link.post post="{post}" class="desiderio-blog-classic-entry__more-link">
+                <span><f:translate key="blog.continueReading" extensionName="desiderio" default="Continue reading"/></span>
+                <span data-icon="inline-end" aria-hidden="true"><d:atom.icon name="arrow-right" size="xs"/></span>
+                <span class="sr-only">: {post.title}</span>
+            </blogvh:link.post>
+        </p>
+    </div>
+</article>
+
+</html>

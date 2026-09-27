@@ -1,0 +1,70 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:blogvh="http://typo3.org/ns/T3G/AgencyPack/Blog/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    xmlns:di="http://typo3.org/ns/Webconsulting/Desiderio/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+<f:comment>
+    Blog – Modern: the head of a post. Topic, date and reading time above a
+    large title, the teaser as the lead, the authors, then the picture at
+    the full width of the page column.
+</f:comment>
+
+<f:layout name="Post" />
+
+<f:section name="Content">
+    <header class="desiderio-blog-modern-post__header">
+        <div class="desiderio-blog-modern-post__intro">
+            <div class="desiderio-blog-modern-post__meta">
+                <f:for each="{post.categories}" as="postCategory">
+                    <meta itemprop="articleSection" content="{postCategory.title}"/>
+                    <blogvh:link.category category="{postCategory}" class="!no-underline">
+                        <d:atom.badge variant="secondary">{postCategory.title}</d:atom.badge>
+                    </blogvh:link.category>
+                </f:for>
+                <time datetime="{f:format.date(format: 'c', date: post.publishDate)}" itemprop="datePublished">{f:format.date(pattern: 'LONGDATE', date: post.publishDate)}</time>
+                <f:variable name="readingMinutes" value="{di:blog.readingTime(page: post.uid)}"/>
+                <span><f:translate key="blog.readingTime" extensionName="desiderio" arguments="{minutes: readingMinutes}"/></span>
+            </div>
+
+            <d:atom.typography tag="h1" variant="h1" class="text-balance" attributes="{itemprop: 'headline'}">{post.title}</d:atom.typography>
+
+            <f:if condition="{post.abstract} || {post.description}">
+                <d:atom.typography variant="lead" class="text-pretty" attributes="{itemprop: 'description'}">
+                    <f:if condition="{post.abstract}">
+                        <f:then>{post.abstract}</f:then>
+                        <f:else>{post.description}</f:else>
+                    </f:if>
+                </d:atom.typography>
+            </f:if>
+
+            <f:if condition="{post.authors}">
+                <ul role="list" class="desiderio-blog-modern-post__authors">
+                    <f:for each="{post.authors}" as="author">
+                        <li class="desiderio-blog-modern-post__author" itemprop="author" itemscope="itemscope" itemtype="https://schema.org/Person">
+                            <d:atom.avatar src="{blogvh:uri.avatar(author: author, size: 96)}" alt="" size="default"/>
+                            <span class="flex flex-col">
+                                <f:if condition="{author.detailsPage} || {settings.authorUid}">
+                                    <f:then><blogvh:link.author rel="author" author="{author}" class="font-medium text-foreground !no-underline hover:text-link"><span itemprop="name">{author.name}</span></blogvh:link.author></f:then>
+                                    <f:else><span class="font-medium text-foreground" itemprop="name">{author.name}</span></f:else>
+                                </f:if>
+                                <f:if condition="{author.title}">
+                                    <span class="text-muted-foreground" itemprop="jobTitle">{author.title}</span>
+                                </f:if>
+                            </span>
+                        </li>
+                    </f:for>
+                </ul>
+            </f:if>
+        </div>
+
+        <f:if condition="{post.featuredImage}">
+            <div class="desiderio-blog-modern-post__media">
+                <f:render partial="General/FeaturedImage" arguments="{image: post.featuredImage, settings: {maxWidth: 1600, sizes: '(min-width: 1280px) 1216px, 100vw'}, layout: 'card'}"/>
+            </div>
+        </f:if>
+    </header>
+</f:section>
+
+</html>

@@ -133,6 +133,72 @@
         <target>{count, plural, =0 {0 条评论} one {# 条评论} other {# 条评论}}</target>
       </segment>
     </unit>
+    <unit id="blog.readingTime">
+      <segment>
+        <source>{minutes, plural, one {# min read} other {# min read}}</source>
+        <target>{minutes, plural, other {阅读约 # 分钟}}</target>
+      </segment>
+    </unit>
+    <unit id="blog.continueReading">
+      <segment>
+        <source>Continue reading</source>
+        <target>继续阅读</target>
+      </segment>
+    </unit>
+    <unit id="blog.latest">
+      <segment>
+        <source>Latest</source>
+        <target>最新</target>
+      </segment>
+    </unit>
+    <unit id="blog.onThisPage">
+      <segment>
+        <source>On this page</source>
+        <target>本页内容</target>
+      </segment>
+    </unit>
+    <unit id="blog.allPosts">
+      <segment>
+        <source>All posts</source>
+        <target>全部文章</target>
+      </segment>
+    </unit>
+    <unit id="blog.topics.aria">
+      <segment>
+        <source>Blog topics</source>
+        <target>博客主题</target>
+      </segment>
+    </unit>
+    <unit id="blog.explore">
+      <segment>
+        <source>More on this blog</source>
+        <target>本博客的更多内容</target>
+      </segment>
+    </unit>
+    <unit id="blog.share">
+      <segment>
+        <source>Share</source>
+        <target>分享</target>
+      </segment>
+    </unit>
+    <unit id="blog.share.copyLink">
+      <segment>
+        <source>Copy link</source>
+        <target>复制链接</target>
+      </segment>
+    </unit>
+    <unit id="blog.share.copied">
+      <segment>
+        <source>Link copied</source>
+        <target>链接已复制</target>
+      </segment>
+    </unit>
+    <unit id="blog.readingProgress">
+      <segment>
+        <source>Reading progress</source>
+        <target>阅读进度</target>
+      </segment>
+    </unit>
     <unit id="a11y.skipToContent">
       <segment state="final">
         <source>Skip to main content</source>

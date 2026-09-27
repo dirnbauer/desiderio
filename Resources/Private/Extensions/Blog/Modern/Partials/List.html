@@ -1,0 +1,76 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:blogvh="http://typo3.org/ns/T3G/AgencyPack/Blog/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+<f:comment>
+    Blog – Modern: the post list. On the first page the newest post opens as
+    a large card (List/Post with featured), the others follow as a card grid.
+    The grid balances its last row in CSS (23-blog.css), so a page never ends
+    with one card next to two empty slots.
+</f:comment>
+
+<f:argument name="posts" type="iterable" optional="true"/>
+<f:argument name="pagination" type="object" optional="true"/>
+<f:argument name="settings" type="array" optional="true"/>
+<f:argument name="type" type="string" optional="true"/>
+
+<f:variable name="listType" value="{type ?: 'default'}"/>
+<f:variable name="isFirstPage" value="1"/>
+<f:if condition="{pagination} && {pagination.paginatedItems}">
+    <f:then>
+        <f:variable name="items" value="{pagination.paginatedItems}"/>
+        <f:if condition="{pagination.currentPageNumber} > 1">
+            <f:variable name="isFirstPage" value="0"/>
+        </f:if>
+    </f:then>
+    <f:else>
+        <f:variable name="items" value="{posts}"/>
+    </f:else>
+</f:if>
+
+<section class="min-w-0" data-blog-list="{listType}">
+    <f:if condition="{items}">
+        <f:then>
+            <d:layout.stack gap="xl">
+                <f:if condition="{pagination} && {settings.lists.pagination.insertAbove}">
+                    <f:render partial="Pagination/Pagination" arguments="{pagination: pagination}"/>
+                </f:if>
+
+                <f:if condition="{isFirstPage}">
+                    <f:for each="{items}" as="post" iteration="iterator">
+                        <f:if condition="{iterator.isFirst}">
+                            <blogvh:cache post="{post}"/>
+                            <div class="desiderio-blog-modern-featured">
+                                <f:render partial="List/Post" arguments="{post: post, settings: settings, featured: 1}"/>
+                            </div>
+                        </f:if>
+                    </f:for>
+                </f:if>
+
+                <div class="desiderio-blog-modern-posts">
+                    <f:for each="{items}" as="post" iteration="iterator">
+                        <f:if condition="!{isFirstPage} || !{iterator.isFirst}">
+                            <blogvh:cache post="{post}"/>
+                            <f:render partial="List/Post" arguments="{post: post, settings: settings, iterator: iterator}"/>
+                        </f:if>
+                    </f:for>
+                </div>
+
+                <f:if condition="{pagination} && {settings.lists.pagination.insertBelow}">
+                    <f:render partial="Pagination/Pagination" arguments="{pagination: pagination}"/>
+                </f:if>
+            </d:layout.stack>
+        </f:then>
+        <f:else>
+            <d:molecule.alert>
+                <d:atom.icon name="book-open" size="sm"/>
+                <d:molecule.alertTitle><f:translate extensionName="Blog" key="list.no_posts.title">No posts</f:translate></d:molecule.alertTitle>
+                <d:molecule.alertDescription><f:translate extensionName="Blog" key="list.no_posts.message">There are no posts yet.</f:translate></d:molecule.alertDescription>
+            </d:molecule.alert>
+        </f:else>
+    </f:if>
+</section>
+
+</html>

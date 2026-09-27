@@ -85,6 +85,30 @@ plugin.tx_blog {
   }
 }
 
+# The blog page templates "Blog – Classic" and "Blog – Modern" each bring the
+# EXT:blog templates they change (list, post header, related posts, widgets)
+# in their own folder. Everything they leave out comes from the shared folder
+# above (.200). tree.pagelayout follows backend_layout_next_level, so a blog
+# root that sets the template for its subpages covers every post below it.
+[tree.pagelayout == "pagets__DesiderioBlogClassic"]
+plugin.tx_blog.view {
+  templateRootPaths.300 = EXT:desiderio/Resources/Private/Extensions/Blog/Classic/Templates/
+  partialRootPaths.300 = EXT:desiderio/Resources/Private/Extensions/Blog/Classic/Partials/
+}
+[end]
+
+[tree.pagelayout == "pagets__DesiderioBlogModern"]
+plugin.tx_blog.view {
+  templateRootPaths.300 = EXT:desiderio/Resources/Private/Extensions/Blog/Modern/Templates/
+  partialRootPaths.300 = EXT:desiderio/Resources/Private/Extensions/Blog/Modern/Partials/
+}
+[end]
+
+# "Blog – Modern" shows a reading progress bar on posts unless the site
+# setting desiderio.editorial.readingProgress turns it off.
+lib.fluidPage.variables.desiderioReadingProgress = TEXT
+lib.fluidPage.variables.desiderioReadingProgress.value = {$desiderio.editorial.readingProgress}
+
 # Blog plugin CTypes render through EXT:blog's EXTBASEPLUGIN renderers (.20).
 # Desiderio's lib.contentElement resolves templateName to uppercamelcase(CType)
 # and would otherwise fall back to Generic, which never renders the plugin body.

@@ -1,0 +1,39 @@
+# Blog – Classic: the journal look. One post after another in a reading
+# column (date leaf, title, picture, teaser), a sidebar with the blog's
+# widgets, and on a post a drop cap and an ornament at the end.
+# Templates: Resources/Private/ShadcnUi/Templates/Pages/DesiderioBlogClassic.fluid.html
+# and the plugin overrides in Resources/Private/Extensions/Blog/Classic/.
+mod {
+  web_layout {
+    BackendLayouts {
+      DesiderioBlogClassic {
+        title = LLL:desiderio.backend_layouts:backend_layout.desiderio_blog_classic.title
+        icon = EXT:desiderio/Resources/Public/Icons/BackendLayouts/blog-classic.svg
+        config {
+          backend_layout {
+            colCount = 4
+            rowCount = 1
+            rows {
+              1 {
+                columns {
+                  1 {
+                    name = LLL:desiderio.backend_layouts:backend_layout.colPos.0.name
+                    colPos = 0
+                    colspan = 3
+                    identifier = main
+                  }
+                  2 {
+                    name = LLL:desiderio.backend_layouts:backend_layout.colPos.1.name
+                    colPos = 1
+                    identifier = sidebar
+                    slideMode = slide
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

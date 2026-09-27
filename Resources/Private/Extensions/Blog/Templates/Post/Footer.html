@@ -9,7 +9,7 @@
 
 <f:section name="Content">
     <f:if condition="{post.categories} || {post.tags}">
-        <footer class="border-t border-border pt-5" aria-label="{f:translate(extensionName: 'Blog', key: 'post.footer.meta', default: 'Filed under')}">
+        <footer aria-label="{f:translate(extensionName: 'Blog', key: 'post.footer.meta', default: 'Filed under')}">
             <div class="grid gap-3 text-sm sm:grid-cols-[7rem_minmax(0,1fr)]">
                 <f:if condition="{post.categories}">
                     <d:atom.typography tag="span" variant="small" class="pt-0.5 text-muted-foreground">

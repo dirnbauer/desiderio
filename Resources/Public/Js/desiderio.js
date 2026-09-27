@@ -2035,4 +2035,36 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   }
+  /* ------------------------------------------------------------------ */
+  /*  17. Copy a link                                                    */
+  /* ------------------------------------------------------------------ */
+  // A button with data-d-copy-link writes that URL (or the page's own) to
+  // the clipboard. It ships hidden and only appears where the clipboard can
+  // be written (a secure context). After a copy the button shows its
+  // [data-d-copy-done] label for two seconds (data-copied, 23-blog.css) and
+  // a polite status region tells screen readers.
+  if (navigator.clipboard && window.isSecureContext) {
+    document.querySelectorAll('[data-d-copy-link]').forEach(button => {
+      button.hidden = false;
+      const status = document.createElement('span');
+      status.className = 'sr-only';
+      status.setAttribute('role', 'status');
+      button.after(status);
+      let timer = 0;
+      button.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(button.dataset.dCopyLink || window.location.href);
+        } catch {
+          return;
+        }
+        button.dataset.copied = '';
+        status.textContent = button.querySelector('[data-d-copy-done]')?.textContent.trim() ?? '';
+        window.clearTimeout(timer);
+        timer = window.setTimeout(() => {
+          delete button.dataset.copied;
+          status.textContent = '';
+        }, 2000);
+      });
+    });
+  }
 });

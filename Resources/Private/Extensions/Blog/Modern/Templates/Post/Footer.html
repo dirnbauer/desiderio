@@ -1,0 +1,33 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:blogvh="http://typo3.org/ns/T3G/AgencyPack/Blog/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+<f:comment>
+    Blog – Modern: the end of a post. The topic already heads the post, so
+    only the tags follow the text, as one row of quiet badges.
+</f:comment>
+
+<f:layout name="Post" />
+
+<f:section name="Content">
+    <f:if condition="{post.tags}">
+        <footer class="desiderio-blog-modern-post__tags" aria-label="{f:translate(extensionName: 'Blog', key: 'headline.tags', default: 'Tags')}">
+            <ul role="list" class="flex flex-wrap items-center gap-2" itemprop="keywords">
+                <f:for each="{post.tags}" as="postTag">
+                    <li data-blog-tag="{postTag.uid}">
+                        <blogvh:link.tag tag="{postTag}" class="!no-underline">
+                            <d:atom.badge variant="outline">
+                                <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="tag" size="xs"/></span>
+                                <span>{postTag.title}</span>
+                            </d:atom.badge>
+                        </blogvh:link.tag>
+                    </li>
+                </f:for>
+            </ul>
+        </footer>
+    </f:if>
+</f:section>
+
+</html>

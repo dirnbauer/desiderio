@@ -8,7 +8,7 @@
 
 <f:section name="Content">
     <f:if condition="{post.authors}">
-        <section class="border-t border-border pt-6" aria-label="{f:translate(extensionName: 'Blog', key: 'author.aboutTheAuthor', default: 'About the author')}">
+        <section class="desiderio-blog-authors" aria-label="{f:translate(extensionName: 'Blog', key: 'author.aboutTheAuthor', default: 'About the author')}">
             <d:layout.stack gap="md">
                 <f:for each="{post.authors}" as="author">
                     <f:render partial="Post/Author" arguments="{_all}" />

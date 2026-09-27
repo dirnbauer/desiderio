@@ -17,21 +17,15 @@
         <legend class="sr-only">{page.title}</legend>
     </f:if>
 
+    <f:comment>
+        A multi-step form sends from its last page only. No submit field renders
+        among a page's fields: the last page's moves into the step row below, and
+        one on an earlier page would send the whole form from that step, so the
+        Next button stands in for it there.
+    </f:comment>
     <d:molecule.fieldGroup>
         <f:for each="{page.fields}" as="field" iteration="iteration">
-            <f:if condition="{settings.main.moresteps}">
-                <f:then>
-                    <f:if condition="{iterationPages.isLast}">
-                        <f:then>
-                            <f:if condition="{field.type} != 'submit'">
-                                <f:render partial="Form/Field/{vh:string.upper(string: field.type)}" arguments="{field: field, settings: settings, mail: mail}" />
-                            </f:if>
-                        </f:then>
-                        <f:else>
-                            <f:render partial="Form/Field/{vh:string.upper(string: field.type)}" arguments="{field: field, settings: settings, mail: mail}" />
-                        </f:else>
-                    </f:if>
-                </f:then>
+            <f:if condition="{settings.main.moresteps} && {field.type} == 'submit'">
                 <f:else>
                     <f:render partial="Form/Field/{vh:string.upper(string: field.type)}" arguments="{field: field, settings: settings, mail: mail}" />
                 </f:else>

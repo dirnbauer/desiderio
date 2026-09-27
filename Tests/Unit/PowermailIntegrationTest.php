@@ -186,7 +186,11 @@ final class PowermailIntegrationTest extends TestCase
         self::assertStringContainsString('<f:argument name="iterationPages" type="array"', $page);
         self::assertStringContainsString('powermail_fieldset_{page.uid}', $page);
         self::assertStringContainsString('data-powermail-morestep-show="{iterationPages.index - 1}"', $page);
-        self::assertStringContainsString("{field.type} != 'submit'", $page);
+        // A multi-step form sends from its last page only: no page renders a submit
+        // field among its fields (one on step 1 posted the whole form from there),
+        // and the last page's renders once, in the step row.
+        self::assertStringContainsString("<f:if condition=\"{settings.main.moresteps} && {field.type} == 'submit'\">", $page);
+        self::assertSame(2, substr_count($page, '<f:render partial="Form/Field/{vh:string.upper(string: field.type)}"'));
         self::assertStringContainsString('{iterationPages.isLast}', $page);
         self::assertStringContainsString('class="ms-auto"', $page);
         self::assertStringContainsString("{field.type} == 'submit'", $page);

@@ -1,29 +1,29 @@
 {
     "_type": "pricing",
-    "eyebrow": "Creator Care",
-    "header": "Maintainer hours on a monthly retainer",
-    "description": "<p>Creator Care costs <strong>€490 per month</strong> for 4 development hours, or €122.50 an hour. It includes priority fixes, security monitoring and LTS upgrade planning.<br />For more hours, book several retainers at the same rate.</p>",
-    "unit_label": "Developer hours per month",
+    "eyebrow": "Plan calculator",
+    "header": "One price per year, by live sites",
+    "description": "<p>Plans are priced by live sites, and staging and local installs are free.<br />10 more sites on Agency cost €490 a year.</p>",
+    "unit_label": "live sites",
     "tiers": [
         {
-            "label": "Creator Care",
-            "up_to": "4",
-            "price_per_unit": "€490 / month"
+            "label": "Studio",
+            "up_to": "5",
+            "price_per_unit": "€590 / year"
         },
         {
-            "label": "Creator Care ×2",
-            "up_to": "8",
-            "price_per_unit": "€980 / month"
+            "label": "Agency",
+            "up_to": "25",
+            "price_per_unit": "€1,990 / year"
         },
         {
-            "label": "Creator Care ×3",
-            "up_to": "12",
-            "price_per_unit": "€1,470 / month"
+            "label": "Agency + 10 sites",
+            "up_to": "35",
+            "price_per_unit": "€2,480 / year"
         },
         {
-            "label": "More hours",
+            "label": "Partner",
             "up_to": "Unlimited",
-            "price_per_unit": "Book a call"
+            "price_per_unit": "€4,900 / year"
         }
     ]
 }

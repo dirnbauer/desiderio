@@ -2,34 +2,34 @@
     "_type": "pricing",
     "header": "Services at fixed prices",
     "eyebrow": "Pay per service",
-    "subheadline": "Book the team that built Desiderio for work beyond the catalogue. Rates are fixed, and Creator Care gives you their time every month.",
+    "subheadline": "Book the team that built Desiderio for work beyond the catalogue. Every service has a fixed price.",
     "items": [
         {
             "title": "Custom elements",
-            "rate": "from €390",
+            "rate": "from €890",
             "unit": "element",
             "description": "<p>A new content element, built by the maintainers to the <strong>same audit rules</strong> as the other 244.</p>",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "title": "Creator Care",
-            "rate": "€490",
-            "unit": "month",
-            "description": "<p><strong>4 dev hours</strong>, priority fixes, security monitoring and LTS upgrade planning, every month.</p>",
+            "title": "Brand Theme",
+            "rate": "€2,490",
+            "unit": "theme",
+            "description": "<p>Your client's brand as a <strong>theme preset</strong>, built by the maintainers.</p>",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "title": "Editor workshop",
-            "rate": "€690",
-            "unit": "half-day",
+            "title": "Editor training",
+            "rate": "€790",
+            "unit": "session",
             "description": "<p>Remote training for your editors on previews, the content wizard and per-page themes.</p>",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "title": "LTS upgrade",
-            "rate": "from €2,400",
-            "unit": "upgrade",
-            "description": "<p>The maintainers move your site to the next <a href=\"https://typo3.org\">TYPO3 LTS</a> and check it for regressions.</p>",
+            "title": "Upgrade audit",
+            "rate": "€690",
+            "unit": "audit",
+            "description": "<p>The maintainers check your site and give a <strong>fixed quote</strong> for the move to <a href=\"https://typo3.org\">TYPO3 v14</a>. The fee is credited to the upgrade.</p>",
             "link": "https://github.com/dirnbauer/desiderio"
         }
     ]

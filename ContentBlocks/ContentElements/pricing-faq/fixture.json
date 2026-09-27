@@ -2,31 +2,31 @@
     "_type": "list",
     "header": "Common questions about pricing",
     "eyebrow": "Pricing FAQ",
-    "subheadline": "The core is free. Paid plans buy the maintainers' time and guaranteed updates.",
+    "subheadline": "The core is free. Paid plans buy the maintainers' time and the maintenance promise.",
     "question_items": [
         {
             "question": "Is there a free version?",
             "answer": "<p>Yes, and it is not a trial. Community is free under GPL-2.0-or-later: all 244 content elements, <strong>62 components</strong> and 15 theme presets, on as many sites as you like. The full source is on <a href=\"https://github.com\">GitHub</a>. Paid plans add the maintainers' time and guarantees, <strong>never features</strong>.</p>"
         },
         {
-            "question": "What does Pro add?",
-            "answer": "<p>Pro costs €49/month or €490/year per project. It adds email support with an <strong>answer within 2 days</strong>, <a href=\"https://typo3.org\">TYPO3</a> LTS compatibility updates, early access to new elements and help with minor upgrades. It is the plan we recommend.</p>"
+            "question": "What does Studio add?",
+            "answer": "<p>Studio costs €590 a year or €59 a month for up to 5 live <a href=\"https://typo3.org\">TYPO3</a> sites; staging and local installs are free. It adds early access to new releases, the maintenance promise and email answers <strong>within 2 business days</strong>.</p>"
         },
         {
             "question": "Monthly or yearly?",
-            "answer": "<p>Both work. Paying yearly gives you <strong>2 months free</strong>: Pro costs €490 instead of €588, and Agency €1,490 instead of €1,788. Founding customers get another 20% off the first year with code DESIDERIO20.</p>"
+            "answer": "<p>Both work. Paying yearly gives you <strong>2 months free</strong>: Studio costs €590 instead of €708, and Agency €1,990 instead of €2,388. The first 20 agencies keep their price for as long as the plan runs, until 31 March 2027.</p>"
         },
         {
-            "question": "What does installation cost?",
-            "answer": "<p><strong>€890</strong>, once. The maintainers install it with Composer, configure the site and set a theme preset. You can start building the same day. The half-day editor workshop costs €690. Or book both with a year of Pro in the <strong>€1,790 Launch bundle</strong> and save €280.</p>"
+            "question": "What does the Kickstart workshop cost?",
+            "answer": "<p><strong>€1,490</strong>, once. Your developers learn Desiderio from the maintainers in one session. The editor training costs €790. Or book the <strong>€5,970 Launch Pack</strong>: the Agency plan for a year, the Kickstart workshop and a Brand Theme, with the editor training included.</p>"
         },
         {
-            "question": "Do you host?",
-            "answer": "<p>Yes. Managed <a href=\"https://typo3.org\">TYPO3</a> hosting costs €99/month, with updates, daily backups, monitoring and an EU data centre. Hosting Business at €179/month adds a staging environment, a <strong>99.9% SLA</strong> and a CDN. The people who built Desiderio run your site.</p>"
+            "question": "Can you upgrade our older sites?",
+            "answer": "<p>Yes. An <strong>upgrade audit costs €690</strong> and ends with a fixed quote for the move to <a href=\"https://typo3.org\">TYPO3</a> v14. If you book the upgrade, the €690 is credited to it.</p>"
         },
         {
             "question": "Can we get custom elements?",
-            "answer": "<p>Yes. Custom content elements start at <strong>€390 per element</strong>. The maintainers build them to the same audit rules as the other 244, with a backend preview. For regular work, <strong>Creator Care</strong> adds 4 dev hours every month for €490.</p>"
+            "answer": "<p>Yes. Custom content elements start at <strong>€890 per element</strong>. The maintainers build them to the same audit rules as the other 244, with a backend preview. Elements with repeating items or tabs (size M) cost €1,690.</p>"
         }
     ]
 }

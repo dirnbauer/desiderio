@@ -8,12 +8,12 @@
             "price": "€0 forever"
         },
         {
-            "name": "Pro",
-            "price": "€49/month · €490/year"
+            "name": "Studio",
+            "price": "€590/year · €59/month"
         },
         {
             "name": "Agency",
-            "price": "€149/month · €1,490/year"
+            "price": "€1,990/year · €199/month"
         }
     ],
     "pricing_feature_items": [
@@ -32,16 +32,16 @@
             ]
         },
         {
-            "feature_name": "Projects covered",
+            "feature_name": "Live sites",
             "tier_values": [
                 {
                     "value": "Unlimited (GPL)"
                 },
                 {
-                    "value": "1 project"
+                    "value": "Up to 5"
                 },
                 {
-                    "value": "Unlimited"
+                    "value": "Up to 25"
                 }
             ]
         },
@@ -52,29 +52,15 @@
                     "value": "GitHub community"
                 },
                 {
-                    "value": "Email, within 2 days"
+                    "value": "Email, within 2 business days"
                 },
                 {
-                    "value": "Within 4 business hours"
+                    "value": "By the next business day"
                 }
             ]
         },
         {
-            "feature_name": "LTS compatibility updates",
-            "tier_values": [
-                {
-                    "value": "Self-managed"
-                },
-                {
-                    "value": "Guaranteed"
-                },
-                {
-                    "value": "Guaranteed"
-                }
-            ]
-        },
-        {
-            "feature_name": "Early access to new elements",
+            "feature_name": "The maintenance promise",
             "tier_values": [
                 {
                     "value": "—"
@@ -88,21 +74,35 @@
             ]
         },
         {
-            "feature_name": "Editor onboarding and preset review",
+            "feature_name": "Early access to new releases",
             "tier_values": [
                 {
                     "value": "—"
                 },
                 {
-                    "value": "—"
+                    "value": "Included"
                 },
                 {
-                    "value": "Quarterly, with preset review"
+                    "value": "Included"
                 }
             ]
         },
         {
-            "feature_name": "Services (installation €890, elements from €390)",
+            "feature_name": "Onboarding call for your team",
+            "tier_values": [
+                {
+                    "value": "—"
+                },
+                {
+                    "value": "—"
+                },
+                {
+                    "value": "90 minutes, every year"
+                }
+            ]
+        },
+        {
+            "feature_name": "Services (Kickstart €1,490, elements from €890)",
             "tier_values": [
                 {
                     "value": "Bookable"
@@ -111,7 +111,7 @@
                     "value": "Bookable"
                 },
                 {
-                    "value": "Bookable, with a direct line"
+                    "value": "Bookable"
                 }
             ]
         }

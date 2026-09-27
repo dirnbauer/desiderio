@@ -1,27 +1,27 @@
 {
     "_type": "pricing",
-    "eyebrow": "Launch bundle",
-    "header": "Pro, setup and editor training in one booking",
-    "description": "<p>A Pro licence for one year, installation by the maintainers and a half-day editor workshop. Booked separately, they cost €2,070. The Launch bundle costs €1,790, so you <strong>save €280</strong>.</p>",
-    "bundle_price": "€1,790",
-    "savings_text": "Save €280",
+    "eyebrow": "Launch Pack",
+    "header": "Your first project in one order",
+    "description": "<p>The Agency plan for a year, the Kickstart workshop and one Brand Theme. Editor training for your first client is included, so you <strong>save €790</strong>.</p>",
+    "bundle_price": "€5,970",
+    "savings_text": "Editor training included (€790)",
     "items": [
         {
-            "name": "Pro licence, first year",
-            "individual_price": "€490",
-            "description_text": "Priority support, LTS updates and early access for 12 months"
+            "name": "Agency plan, first year",
+            "individual_price": "€1,990",
+            "description_text": "Up to 25 live sites, early access and answers by the next business day"
         },
         {
-            "name": "Installation and setup",
-            "individual_price": "€890",
-            "description_text": "The maintainers install, configure and theme Desiderio on your TYPO3 site"
+            "name": "Kickstart workshop",
+            "individual_price": "€1,490",
+            "description_text": "Your developers learn Desiderio from the maintainers in one session"
         },
         {
-            "name": "Editor onboarding workshop",
-            "individual_price": "€690",
-            "description_text": "A half-day remote session on previews, the content wizard and per-page themes"
+            "name": "Brand Theme",
+            "individual_price": "€2,490",
+            "description_text": "Your first client's brand as a theme preset"
         }
     ],
-    "button_text": "Book the bundle",
+    "button_text": "Order Launch Pack",
     "button_link": "https://github.com/dirnbauer/desiderio"
 }

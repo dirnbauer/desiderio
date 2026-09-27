@@ -1,55 +1,55 @@
 {
     "_type": "pricing",
-    "header": "Pro per project, Agency for all projects",
-    "eyebrow": "Pro or Agency",
-    "subheadline": "Both plans use the same free core with all 244 elements. They differ in how much maintainer time you get, and for how many projects.",
+    "header": "Studio for 5 sites, Agency for 25",
+    "eyebrow": "Studio or Agency",
+    "subheadline": "Both plans use the same free core with all 244 elements. They differ in how much maintainer time you get, and for how many live sites.",
     "plans": [
         {
-            "title": "Pro",
-            "price": "€49/month · €490/year",
-            "description": "<p>Per project. Priority answers, guaranteed updates and early access. Our recommendation.</p>",
+            "title": "Studio",
+            "price": "€590/year · €59/month",
+            "description": "<p>Up to 5 live sites. Early access, the maintenance promise and email answers.</p>",
             "features": [
                 {
-                    "text": "Email support, answer within 2 days"
+                    "text": "Email answers within 2 business days"
                 },
                 {
-                    "text": "LTS compatibility updates"
+                    "text": "The maintenance promise"
                 },
                 {
-                    "text": "Early access to new elements and presets"
+                    "text": "Early access to new releases"
                 },
                 {
-                    "text": "Help with minor upgrades"
+                    "text": "Staging and local installs free"
                 }
             ],
-            "button_text": "Choose Pro",
+            "button_text": "Choose Studio",
             "button_link": "https://github.com/dirnbauer/desiderio",
-            "featured": true
+            "featured": false
         },
         {
             "title": "Agency",
-            "price": "€149/month · €1,490/year",
-            "description": "<p>Everything in Pro for <strong>unlimited projects</strong>, plus a direct line to the maintainers.</p>",
+            "price": "€1,990/year · €199/month",
+            "description": "<p>Everything in Studio for <strong>up to 25 live sites</strong>, plus 3 named developers.</p>",
             "features": [
                 {
-                    "text": "Everything in Pro, unlimited projects"
+                    "text": "Everything in Studio, up to 25 live sites"
                 },
                 {
-                    "text": "Answer within 4 business hours"
+                    "text": "An answer by the next business day (CET)"
                 },
                 {
-                    "text": "Quarterly editor onboarding"
+                    "text": "A 90-minute onboarding call every year"
                 },
                 {
-                    "text": "Preset review by the maintainers"
+                    "text": "3 named developers"
                 },
                 {
-                    "text": "Direct line to the maintainers"
+                    "text": "10 more live sites for €490 a year"
                 }
             ],
             "button_text": "Choose Agency",
             "button_link": "https://github.com/dirnbauer/desiderio",
-            "featured": false
+            "featured": true
         }
     ]
 }

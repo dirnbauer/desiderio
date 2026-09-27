@@ -1,8 +1,8 @@
 {
     "_type": "pricing",
-    "header": "From the free core to a monthly retainer",
+    "header": "From the free core to unlimited sites",
     "eyebrow": "Four plans",
-    "subheadline": "Three licence plans, plus a retainer with the maintainers. Paying yearly for Pro or Agency gives you 2 months free.",
+    "subheadline": "One free plan and three paid plans, priced by live sites. Paying yearly for Studio or Agency gives you 2 months free.",
     "plans": [
         {
             "title": "Community",
@@ -27,83 +27,83 @@
             "featured": false
         },
         {
-            "title": "Pro",
-            "price": "€49/month",
-            "description": "<p>Per project, or €490/year with 2 months free. Our recommendation.</p>",
+            "title": "Studio",
+            "price": "€590/year",
+            "description": "<p>Or €59 a month, for freelancers and <strong>small studios</strong>.</p>",
             "features": [
                 {
                     "text": "Everything in Community"
                 },
                 {
-                    "text": "Email support, answer within 2 days"
+                    "text": "Up to 5 live sites; staging and local installs free"
                 },
                 {
-                    "text": "LTS compatibility updates"
+                    "text": "The maintenance promise"
                 },
                 {
-                    "text": "Early access to new elements and presets"
+                    "text": "Early access to new releases"
                 },
                 {
-                    "text": "Help with minor upgrades"
+                    "text": "Email answers within 2 business days"
                 }
             ],
-            "button_text": "Choose Pro",
-            "button_link": "https://github.com/dirnbauer/desiderio",
-            "featured": true
-        },
-        {
-            "title": "Agency",
-            "price": "€149/month",
-            "description": "<p>Unlimited projects, or <strong>€1,490/year</strong> with 2 months free.</p>",
-            "features": [
-                {
-                    "text": "Everything in Pro, unlimited projects"
-                },
-                {
-                    "text": "Answer within 4 business hours"
-                },
-                {
-                    "text": "Quarterly editor onboarding"
-                },
-                {
-                    "text": "Preset review by the maintainers"
-                },
-                {
-                    "text": "Direct line to the maintainers"
-                },
-                {
-                    "text": "One plan for every client site"
-                }
-            ],
-            "button_text": "Choose Agency",
+            "button_text": "Choose Studio",
             "button_link": "https://github.com/dirnbauer/desiderio",
             "featured": false
         },
         {
-            "title": "Creator Care",
-            "price": "€490/month",
-            "description": "<p>A <strong>monthly retainer</strong> with the team that built Desiderio.</p>",
+            "title": "Agency",
+            "price": "€1,990/year",
+            "description": "<p>Or €199 a month, for agencies with a <strong>development team</strong>.</p>",
             "features": [
                 {
-                    "text": "4 development hours every month"
+                    "text": "Everything in Studio"
                 },
                 {
-                    "text": "Priority fixes from the maintainers"
+                    "text": "Up to 25 live sites, 10 more for €490 a year"
                 },
                 {
-                    "text": "Security monitoring"
+                    "text": "An answer by the next business day (CET)"
                 },
                 {
-                    "text": "LTS upgrade planning"
+                    "text": "3 named developers"
                 },
                 {
-                    "text": "Work by the people who built Desiderio"
+                    "text": "A 90-minute onboarding call every year"
                 },
                 {
-                    "text": "Works with Community, Pro or Agency"
+                    "text": "Staging and local installs free"
                 }
             ],
-            "button_text": "Book Creator Care",
+            "button_text": "Choose Agency",
+            "button_link": "https://github.com/dirnbauer/desiderio",
+            "featured": true
+        },
+        {
+            "title": "Partner",
+            "price": "€4,900/year",
+            "description": "<p>For agencies that build most client sites on Desiderio. There are <strong>five places</strong>.</p>",
+            "features": [
+                {
+                    "text": "Everything in Agency"
+                },
+                {
+                    "text": "Unlimited live sites"
+                },
+                {
+                    "text": "Staging and local installs free"
+                },
+                {
+                    "text": "An answer by the next business day (CET)"
+                },
+                {
+                    "text": "Early access to new releases"
+                },
+                {
+                    "text": "The maintenance promise"
+                }
+            ],
+            "button_text": "Apply as partner",
             "button_link": "https://github.com/dirnbauer/desiderio",
             "featured": false
         }

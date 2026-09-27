@@ -5,9 +5,9 @@
     "columns": "3",
     "products": [
         {
-            "name": "Installation and setup",
-            "price": "€890",
-            "description_text": "We install, configure and theme Desiderio on your TYPO3 site.",
+            "name": "Kickstart workshop",
+            "price": "€1,490",
+            "description_text": "Your developers learn Desiderio from the maintainers in one session.",
             "link": "https://github.com/dirnbauer/desiderio",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-page-module-hero-e23618aa.png",
@@ -18,8 +18,8 @@
             }
         },
         {
-            "name": "Brand adaptation",
-            "price": "from €1,990",
+            "name": "Brand Theme",
+            "price": "€2,490",
             "description_text": "A theme preset in your brand colours, with contrast checked like the other 15.",
             "link": "https://github.com/dirnbauer/desiderio",
             "image": {
@@ -32,7 +32,7 @@
         },
         {
             "name": "Custom element development",
-            "price": "from €390",
+            "price": "from €890",
             "description_text": "Priced per element and built to the same audit rules as the other 244.",
             "link": "https://github.com/dirnbauer/desiderio",
             "image": {
@@ -44,9 +44,9 @@
             }
         },
         {
-            "name": "Editor onboarding workshop",
-            "price": "€690",
-            "description_text": "A half-day remote session on previews, the content wizard, the Visual Editor and per-page themes.",
+            "name": "Editor training",
+            "price": "€790",
+            "description_text": "A remote session for your editors on previews, the content wizard, the Visual Editor and per-page themes.",
             "link": "https://github.com/dirnbauer/desiderio",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-visual-editor-460d5038.png",
@@ -57,9 +57,9 @@
             }
         },
         {
-            "name": "TYPO3 LTS upgrade",
-            "price": "from €2,400",
-            "description_text": "The maintainers plan the upgrade, carry it out and check for regressions.",
+            "name": "Upgrade audit",
+            "price": "€690",
+            "description_text": "The maintainers audit your site and give a fixed quote for the upgrade. The €690 is credited to it.",
             "link": "https://github.com/dirnbauer/desiderio",
             "image": {
                 "file": "Resources/Public/Styleguide/Frontend/frontend-hero-lagoon-e69362e6.png",
@@ -70,9 +70,9 @@
             }
         },
         {
-            "name": "Managed TYPO3 hosting",
-            "price": "€99/month",
-            "description_text": "Updates, daily backups and monitoring in an EU data centre. Business at €179/month adds staging, a 99.9% SLA and a CDN.",
+            "name": "Launch Pack",
+            "price": "€5,970",
+            "description_text": "The Agency plan for a year, the Kickstart workshop and a Brand Theme, with editor training included.",
             "link": "https://github.com/dirnbauer/desiderio",
             "image": {
                 "file": "Resources/Public/Styleguide/Frontend/frontend-dashboards-forest-ef70e13d.png",

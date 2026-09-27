@@ -2,7 +2,7 @@
     "_type": "pricing",
     "header": "Free to use. Paid plans add support.",
     "eyebrow": "Plans and pricing",
-    "subheadline": "Every plan includes all 244 elements under GPL-2.0-or-later. Pro and Agency add guaranteed updates, faster answers and early access, with 2 months free if you pay yearly.",
+    "subheadline": "Every plan includes all 244 elements under GPL-2.0-or-later. Studio and Agency add early access and answers from the maintainers, with 2 months free if you pay yearly.",
     "columns": "3",
     "plans": [
         {
@@ -30,58 +30,58 @@
             "is_featured": false
         },
         {
-            "badge_text": "Recommended",
-            "name": "Pro",
-            "price": "€49",
-            "billing_period": "/month, or €490/year (2 months free)",
-            "description": "<p>For teams that build client sites and need guaranteed updates. The maintainers keep your installation current.</p>",
+            "badge_text": "5 live sites",
+            "name": "Studio",
+            "price": "€590",
+            "billing_period": "/year, or €59 a month",
+            "description": "<p>For freelancers and small studios that build client sites. <strong>Staging and local installs</strong> are free.</p>",
             "features": [
                 {
                     "text": "Everything in Community"
                 },
                 {
-                    "text": "Email support, answer within 2 days"
+                    "text": "Up to 5 live sites"
                 },
                 {
-                    "text": "TYPO3 LTS compatibility updates"
+                    "text": "Early access to new releases"
                 },
                 {
-                    "text": "Early access to new elements and presets"
+                    "text": "The maintenance promise"
                 },
                 {
-                    "text": "Help with minor upgrades"
+                    "text": "Email answers within 2 business days"
                 }
             ],
-            "button_text": "Choose Pro",
+            "button_text": "Choose Studio",
             "button_link": "https://github.com/dirnbauer/desiderio",
-            "is_featured": true
+            "is_featured": false
         },
         {
-            "badge_text": "Unlimited projects",
+            "badge_text": "Recommended",
             "name": "Agency",
-            "price": "€149",
-            "billing_period": "/month, or €1,490/year (2 months free)",
-            "description": "<p>Everything in Pro for unlimited projects, plus a <strong>direct line</strong> to the maintainers.</p>",
+            "price": "€1,990",
+            "billing_period": "/year, or €199 a month",
+            "description": "<p>Everything in Studio for up to 25 live sites, plus <strong>3 named developers</strong>.</p>",
             "features": [
                 {
-                    "text": "Everything in Pro, unlimited projects"
+                    "text": "Everything in Studio, up to 25 live sites"
                 },
                 {
-                    "text": "Answer within 4 business hours"
+                    "text": "An answer by the next business day (CET)"
                 },
                 {
-                    "text": "Quarterly editor onboarding"
+                    "text": "A 90-minute onboarding call every year"
                 },
                 {
-                    "text": "Preset review by the maintainers"
+                    "text": "3 named developers"
                 },
                 {
-                    "text": "Direct line to the maintainers"
+                    "text": "10 more live sites for €490 a year"
                 }
             ],
             "button_text": "Choose Agency",
             "button_link": "https://github.com/dirnbauer/desiderio",
-            "is_featured": false
+            "is_featured": true
         }
     ]
 }

@@ -2,7 +2,7 @@
     "_type": "pricing",
     "header": "Pay monthly, or get two months free",
     "eyebrow": "Monthly or yearly",
-    "subheadline": "The package is the same either way. Paying yearly, Pro costs €490 instead of €588 and Agency €1,490 instead of €1,788.",
+    "subheadline": "The package is the same either way. Paying yearly, Studio costs €590 instead of €708 and Agency €1,990 instead of €2,388.",
     "plans": [
         {
             "title": "Community",
@@ -24,47 +24,47 @@
             "button_link": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "title": "Pro",
-            "monthly_price": "€49",
-            "yearly_price": "€490",
-            "description": "<p><strong>Priority support</strong> and guaranteed updates from the maintainers. Our recommendation.</p>",
+            "title": "Studio",
+            "monthly_price": "€59",
+            "yearly_price": "€590",
+            "description": "<p><strong>Early access</strong> and the maintenance promise, for freelancers and small studios.</p>",
             "features": [
                 {
-                    "text": "Email support, answer within 2 days"
+                    "text": "Up to 5 live sites, staging free"
                 },
                 {
-                    "text": "LTS compatibility updates"
+                    "text": "The maintenance promise"
                 },
                 {
-                    "text": "Early access to new elements"
+                    "text": "Early access to new releases"
                 },
                 {
-                    "text": "Help with minor upgrades"
+                    "text": "Email answers within 2 business days"
                 }
             ],
-            "button_text": "Choose Pro",
+            "button_text": "Choose Studio",
             "button_link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "title": "Agency",
-            "monthly_price": "€149",
-            "yearly_price": "€1,490",
-            "description": "<p>Everything in Pro for unlimited projects, with <strong>direct contact</strong> to the maintainers.</p>",
+            "monthly_price": "€199",
+            "yearly_price": "€1,990",
+            "description": "<p>For agencies with a development team, with <strong>answers by the next business day</strong>.</p>",
             "features": [
                 {
-                    "text": "Everything in Pro, unlimited projects"
+                    "text": "Everything in Studio, up to 25 live sites"
                 },
                 {
-                    "text": "Answer within 4 business hours"
+                    "text": "10 more live sites for €490 a year"
                 },
                 {
-                    "text": "Quarterly editor onboarding"
+                    "text": "An answer by the next business day (CET)"
                 },
                 {
-                    "text": "Preset review by the maintainers"
+                    "text": "3 named developers"
                 },
                 {
-                    "text": "Direct line to the maintainers"
+                    "text": "A 90-minute onboarding call every year"
                 }
             ],
             "button_text": "Choose Agency",

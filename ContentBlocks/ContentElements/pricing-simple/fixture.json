@@ -1,29 +1,29 @@
 {
     "_type": "pricing",
-    "header": "Pro: the plan we recommend",
-    "price": "€49",
-    "billing_period": "/month, or €490/year (2 months free)",
-    "description": "<p>Pro adds <strong>support and guaranteed updates</strong> to the free Desiderio core. You get priority answers from the maintainers, LTS updates and early access to new elements.</p>",
+    "header": "Studio: for freelancers and small studios",
+    "price": "€590",
+    "billing_period": "/year, or €59 a month",
+    "description": "<p>Studio adds <strong>early access and the maintenance promise</strong> to the free Desiderio core. You get answers within 2 business days for up to 5 live sites.</p>",
     "features": [
         {
             "text": "Everything in the free Community core"
         },
         {
-            "text": "Email support, answer within 2 days"
+            "text": "Up to 5 live sites; staging and local installs free"
         },
         {
-            "text": "TYPO3 LTS compatibility updates"
+            "text": "The maintenance promise"
         },
         {
-            "text": "Early access to new elements and presets"
+            "text": "Early access to new releases"
         },
         {
-            "text": "Help with minor upgrades"
+            "text": "Email answers within 2 business days"
         },
         {
-            "text": "20% off the first year with code DESIDERIO20"
+            "text": "Founding offer: the first 20 agencies keep their price"
         }
     ],
-    "button_text": "Choose Pro",
+    "button_text": "Choose Studio",
     "button_link": "https://github.com/dirnbauer/desiderio"
 }

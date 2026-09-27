@@ -6,6 +6,17 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.13.1] — 2026-09-27
+
+### Fixed
+
+- A hero photo keeps its own alternative text. Seven elements (Hero
+  Section, App Hero, SaaS Hero, Stacked Hero, Product Spotlight Hero,
+  Article Hero and Profile Header) gave their image the headline as alt
+  text, so the description typed on the file never reached the page and a
+  screen reader read the headline twice. They use the image's alternative
+  now and fall back to the headline only when it is empty.
+
 ## [4.13.0] — 2026-09-27
 
 ### Added

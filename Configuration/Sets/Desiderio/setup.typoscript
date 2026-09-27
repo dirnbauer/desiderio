@@ -181,6 +181,9 @@ lib.parseFunc_RTE {
     }
     pre {
       stdWrap.parseFunc < lib.parseFunc
+      # A code block shows its text as written. makelinks would turn a URL
+      # in a command into a link and drop its "https://" (http.keep = path).
+      stdWrap.parseFunc.makelinks = 0
     }
     table {
       stripNL = 1

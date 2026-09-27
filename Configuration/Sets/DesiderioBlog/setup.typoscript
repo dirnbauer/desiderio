@@ -102,6 +102,8 @@ plugin.tx_blog.view {
   templateRootPaths.300 = EXT:desiderio/Resources/Private/Extensions/Blog/Modern/Templates/
   partialRootPaths.300 = EXT:desiderio/Resources/Private/Extensions/Blog/Modern/Partials/
 }
+# Related posts as one row of three cards.
+plugin.tx_blog.settings.relatedPosts.limit = 3
 [end]
 
 # "Blog – Modern" shows a reading progress bar on posts unless the site

@@ -12,13 +12,15 @@
     margin-inline: auto;
     position: relative;
 }
+/* The 1px lines are centred by a half-pixel offset, not translate(-50%):
+   a transform skips pixel snapping and smears a line over two pixel rows
+   on 1x screens. */
 .timeline__list::before {
     content: '';
     position: absolute;
     inset-block: 0;
-    left: 50%;
+    left: calc(50% - 0.5px);
     width: 1px;
-    transform: translateX(-50%);
     background: linear-gradient(
         to bottom,
         transparent,
@@ -29,13 +31,24 @@
 }
 .timeline__item {
     --timeline-marker-column: 3rem;
+    --timeline-gap: var(--d-spacing-xl);
+    --timeline-dot-size: 2rem;
+    --timeline-dot-offset: var(--d-spacing-lg);
+    /* Height of the dot's centre: connector and chevron tip meet it there. */
+    --timeline-joint-y: calc(var(--timeline-dot-offset) + var(--timeline-dot-size) / 2);
+    --timeline-chevron-size: var(--d-spacing-sm);
+    /* The chevron is a square turned 45deg and centred on the card's outer
+       edge, so its tip reaches half a diagonal past that edge. */
+    --timeline-chevron-reach: calc(var(--timeline-chevron-size) * 0.7071);
+    /* The connector paints above the card, so it stops at the chevron tip;
+       the extra pixel lands on the tip's own border, never on the fill. */
     --timeline-connector-width: calc(
-        50% + (var(--timeline-marker-column) - 100%) / 2 + var(--d-spacing-xl) - 4px
+        50% + (var(--timeline-marker-column) - 100%) / 2 + var(--timeline-gap) - var(--timeline-chevron-reach) + 1px
     );
 
     display: grid;
     grid-template-columns: minmax(0, 1fr) var(--timeline-marker-column) minmax(0, 1fr);
-    gap: var(--d-spacing-xl);
+    gap: var(--timeline-gap);
     align-items: start;
     position: relative;
     padding-block: var(--d-spacing-md);
@@ -48,14 +61,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: var(--d-spacing-lg);
+    padding-top: var(--timeline-dot-offset);
     position: relative;
     z-index: 2;
 }
 .timeline__marker::after {
     content: '';
     position: absolute;
-    top: calc(var(--d-spacing-lg) + 0.875rem);
+    top: calc(var(--timeline-joint-y) - 0.5px);
     left: 50%;
     width: var(--timeline-connector-width);
     height: 1px;
@@ -69,8 +82,8 @@
 .timeline__dot {
     display: grid;
     place-items: center;
-    width: 2rem;
-    height: 2rem;
+    width: var(--timeline-dot-size);
+    height: var(--timeline-dot-size);
     border-radius: 9999px;
     background: var(--primary);
     color: var(--primary-foreground);
@@ -97,22 +110,25 @@
     grid-column: 1;
     grid-row: 1;
 }
+/* Offsets count from the padding box, 1px inside the card's border: the
+   chevron's centre lands on the card's outer edge, level with the dot's
+   centre. */
 .timeline__content::before {
     content: '';
     position: absolute;
-    top: calc(var(--d-spacing-lg) + 0.4375rem);
-    left: calc(var(--d-spacing-xs) * -1 + 1px);
-    width: var(--d-spacing-sm);
-    height: var(--d-spacing-sm);
+    top: calc(var(--timeline-joint-y) - 1px);
+    left: calc(var(--timeline-chevron-size) / -2 - 1px);
+    width: var(--timeline-chevron-size);
+    height: var(--timeline-chevron-size);
     border-left: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     background: inherit;
-    transform: rotate(45deg);
+    transform: translateY(-50%) rotate(45deg);
     z-index: 2;
 }
 .timeline__item:nth-child(even) .timeline__content::before {
     left: auto;
-    right: calc(var(--d-spacing-xs) * -1 + 1px);
+    right: calc(var(--timeline-chevron-size) / -2 - 1px);
     border: 0;
     border-right: 1px solid var(--border);
     border-top: 1px solid var(--border);
@@ -159,18 +175,17 @@
     .timeline__list {
         max-width: 42rem;
     }
+    /* Same axis as the dots: the middle of the 2rem marker column. */
     .timeline__list::before {
-        left: var(--d-spacing-md);
-        transform: none;
+        left: calc(var(--d-spacing-md) - 0.5px);
     }
     .timeline__item {
         --timeline-marker-column: 2rem;
-        --timeline-connector-width: calc(
-            50% + (var(--timeline-marker-column) - 100%) / 2 + var(--d-spacing-md) - 4px
-        );
+        --timeline-gap: var(--d-spacing-md);
+        --timeline-dot-size: 1.75rem;
+        --timeline-dot-offset: var(--d-spacing-md);
 
         grid-template-columns: var(--timeline-marker-column) minmax(0, 1fr);
-        gap: var(--d-spacing-md);
         padding-block: var(--d-spacing-sm);
     }
     .timeline__item:nth-child(even) .timeline__content,
@@ -180,21 +195,12 @@
     }
     .timeline__marker {
         grid-column: 1;
-        padding-top: var(--d-spacing-md);
-    }
-    .timeline__marker::after {
-        top: calc(var(--d-spacing-md) + 1rem);
-        left: 50%;
-        right: auto;
-        width: var(--timeline-connector-width);
     }
     .timeline__item:nth-child(even) .timeline__marker::after {
         left: 50%;
         right: auto;
     }
     .timeline__dot {
-        width: 1.75rem;
-        height: 1.75rem;
         border-width: 3px;
     }
     .timeline__content {
@@ -202,8 +208,7 @@
     }
     .timeline__content::before,
     .timeline__item:nth-child(even) .timeline__content::before {
-        top: calc(var(--d-spacing-md) + 0.375rem);
-        left: calc(var(--d-spacing-xs) * -1 + 1px);
+        left: calc(var(--timeline-chevron-size) / -2 - 1px);
         right: auto;
         border: 0;
         border-left: 1px solid var(--border);

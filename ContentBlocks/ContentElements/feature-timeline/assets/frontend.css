@@ -8,7 +8,9 @@
     --feature-timeline-marker-size: 3rem;
     --feature-timeline-gap: var(--d-spacing-lg);
     --feature-timeline-chevron-size: var(--d-spacing-sm);
-    --feature-timeline-connector-target-offset: calc(var(--feature-timeline-chevron-size) / 2 + 1px);
+    /* The chevron is a square turned 45deg and centred on the card's outer
+       edge, so its tip reaches half a diagonal past that edge. */
+    --feature-timeline-chevron-reach: calc(var(--feature-timeline-chevron-size) * 0.7071);
     --feature-timeline-dot-clearance: 0.25rem;
 
     display: flex;
@@ -20,15 +22,17 @@
     position: relative;
 }
 /* Connector drawn per item so the line ends exactly at the last marker
-   instead of running on to the bottom of the (taller) last card. */
+   instead of running on to the bottom of the (taller) last card.
+   The 1px lines are centred by a half-pixel offset, not translate(-50%):
+   a transform skips pixel snapping and smears a line over two pixel rows
+   on 1x screens. */
 .feature-timeline__item:not(:last-child)::after {
     content: '';
     position: absolute;
-    left: calc(var(--feature-timeline-marker-size) / 2);
+    left: calc(var(--feature-timeline-marker-size) / 2 - 0.5px);
     top: calc(var(--feature-timeline-marker-size) / 2);
     bottom: calc(var(--feature-timeline-marker-size) / -2);
     width: 1px;
-    transform: translateX(-50%);
     background: var(--border);
     z-index: 0;
 }
@@ -42,18 +46,20 @@
 .feature-timeline__item:last-child {
     padding-block-end: 0;
 }
+/* Runs from the dot's clearance ring into the chevron tip; the extra pixel
+   tucks its end under the tip, so the join shows no seam. */
 .feature-timeline__item::before {
     content: '';
     position: absolute;
-    top: calc(var(--feature-timeline-marker-size) / 2);
+    top: calc(var(--feature-timeline-marker-size) / 2 - 0.5px);
     left: calc(var(--feature-timeline-marker-size) + var(--feature-timeline-dot-clearance));
     width: calc(
         var(--feature-timeline-gap) -
         var(--feature-timeline-dot-clearance) -
-        var(--feature-timeline-connector-target-offset)
+        var(--feature-timeline-chevron-reach) +
+        1px
     );
     height: 1px;
-    transform: translateY(-50%);
     background: var(--border);
     z-index: 0;
     pointer-events: none;
@@ -92,11 +98,14 @@
     box-shadow: var(--d-surface-shadow, var(--d-shadow-sm, none));
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
+/* Offsets count from the padding box, 1px inside the card's border: the
+   chevron's centre lands on the card's outer edge, level with the dot's
+   centre, so both arms end on the border instead of poking into the card. */
 .feature-timeline__card::before {
     content: '';
     position: absolute;
-    top: calc(var(--feature-timeline-marker-size) / 2);
-    left: calc(var(--feature-timeline-chevron-size) / -2 + 1px);
+    top: calc(var(--feature-timeline-marker-size) / 2 - 1px);
+    left: calc(var(--feature-timeline-chevron-size) / -2 - 1px);
     width: var(--feature-timeline-chevron-size);
     height: var(--feature-timeline-chevron-size);
     border-left: 1px solid var(--border);

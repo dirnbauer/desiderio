@@ -6,6 +6,24 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.15.0] — 2026-09-28
+
+### Added
+
+- Forms with powermail_cond conditions start in their final state: where
+  powermail_cond is active, the form renders the conditions' starting
+  state with the page, so a field a condition hides is never visible
+  first and no request goes to the condition endpoint on load.
+
+### Fixed
+
+- The thank-you state after sending reads as a result: a titled card
+  with a check, the text in body type and "Back to the form". Muted small
+  text in a bordered box read as an empty field.
+- The confirmation step's title and description render again; both
+  templates wrapped the card header's content in `<f:slot>`, which drops
+  it.
+
 ## [4.14.5] — 2026-09-27
 
 ### Fixed

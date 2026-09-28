@@ -108,6 +108,9 @@
                     <f:form.hidden name="mail[form]" value="{form.uid}" class="powermail_form_uid" respectSubmittedDataValue="false" />
                     <f:render partial="Misc/HoneyPod" arguments="{form: form}" />
                 </f:form>
+                <f:if condition="{settings.powermailCond.prerender}">
+                    <f:render partial="Misc/ConditionsState" arguments="{form: form}" />
+                </f:if>
             </div>
         </f:then>
         <f:else>

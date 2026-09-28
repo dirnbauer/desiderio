@@ -1,0 +1,14 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:pc="http://typo3.org/ns/In2code/PowermailCond/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+<f:comment>
+    The starting state of the form's conditions, rendered with the page. powermail_cond's script
+    applies it at once instead of asking its endpoint after load, so a field a condition hides is
+    never visible first. Form.html renders this only when powermail_cond sets
+    settings.powermailCond.prerender: without that extension the pc: namespace does not exist.
+</f:comment>
+<f:argument name="form" type="object" />
+<script type="application/json" id="form-{form.uid}-actions">{pc:conditions(form: form) -> f:format.raw()}</script>
+</html>

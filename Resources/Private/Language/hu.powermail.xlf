@@ -49,6 +49,18 @@
         <target>Következő</target>
       </segment>
     </unit>
+    <unit id="powermail.thanks.title">
+      <segment state="final">
+        <source>Thank you</source>
+        <target>Köszönjük</target>
+      </segment>
+    </unit>
+    <unit id="powermail.thanks.back">
+      <segment state="final">
+        <source>Back to the form</source>
+        <target>Vissza az űrlaphoz</target>
+      </segment>
+    </unit>
     <unit id="powermail.confirmation.title">
       <segment state="final">
         <source>Review your submission</source>

@@ -28,6 +28,12 @@
     <unit id="powermail.multistep.next">
       <segment state="final"><source>Next</source><target>Weiter</target></segment>
     </unit>
+    <unit id="powermail.thanks.title">
+      <segment state="final"><source>Thank you</source><target>Vielen Dank</target></segment>
+    </unit>
+    <unit id="powermail.thanks.back">
+      <segment state="final"><source>Back to the form</source><target>Zurück zum Formular</target></segment>
+    </unit>
     <unit id="powermail.confirmation.title">
       <segment state="final"><source>Review your submission</source><target>Eingaben prüfen</target></segment>
     </unit>

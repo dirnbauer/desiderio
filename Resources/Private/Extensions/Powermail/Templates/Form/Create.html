@@ -2,6 +2,7 @@
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:vh="http://typo3.org/ns/In2code/Powermail/ViewHelpers"
     xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    xmlns:di="http://typo3.org/ns/Webconsulting/Desiderio/ViewHelpers"
     data-namespace-typo3-fluid="true"
 >
 <f:layout name="Default" />
@@ -10,23 +11,36 @@
 <f:argument name="mail" type="object" optional="{true}" />
 <f:argument name="powermail_rte" type="string" optional="{true}" />
 <f:argument name="optinActive" type="bool" optional="{true}" default="{false}" />
+<f:argument name="ttContentData" type="array" optional="{true}" />
 
+<f:comment>
+    What a visitor sees after sending: a titled card in the form's place, the editor's thank-you
+    text in body type, and a way back to the form. Built like the confirmation step, so the two
+    read as one flow; muted small text in a bordered box read as an empty field.
+</f:comment>
 <f:section name="main">
     <f:variable name="flashMessageClass"><d:atom.controlClass slot="flashDestructive" /></f:variable>
     <f:variable name="cardCompactClass"><d:atom.controlClass slot="cardCompact" /></f:variable>
+    <f:variable name="cardTitleClass"><d:atom.controlClass slot="cardTitle" /></f:variable>
 
     <f:render partial="Misc/FlashMessages" arguments="{_all}" />
 
     <div class="mt-8 w-full max-w-2xl">
         <div data-powermail-form="{mail.form.uid}">
-        <d:molecule.card class="{cardCompactClass -> f:format.trim()}" attributes="{role: 'region'}">
-            <d:molecule.cardContent>
+        <d:molecule.card tag="section" class="{cardCompactClass -> f:format.trim()} p-4" attributes="{aria-labelledby: 'powermail-thanks-{mail.form.uid}'}">
+            <d:molecule.cardHeader class="border-b">
+                <h2 id="powermail-thanks-{mail.form.uid}" data-slot="card-title" class="{cardTitleClass -> f:format.trim()} flex items-center gap-2">
+                    <di:icon name="check" size="sm" class="text-primary" />
+                    <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.thanks.title" />
+                </h2>
+            </d:molecule.cardHeader>
+            <d:molecule.cardContent class="pt-4">
                 <f:if condition="{optinActive}">
                     <f:then>
-                        <p class="text-sm text-muted-foreground"><f:translate key="optin_seeMail" extensionName="Powermail" /></p>
+                        <p class="text-sm"><f:translate key="optin_seeMail" extensionName="Powermail" /></p>
                     </f:then>
                     <f:else>
-                        <div class="prose max-w-none text-sm text-muted-foreground">
+                        <div class="prose max-w-none text-sm">
                             <vh:misc.variables mail="{mail}">
                                 <f:format.html parseFuncTSPath="lib.parseFunc_RTE">{powermail_rte}</f:format.html>
                             </vh:misc.variables>
@@ -35,6 +49,14 @@
                     </f:else>
                 </f:if>
             </d:molecule.cardContent>
+            <d:molecule.cardFooter class="mt-6 flex flex-wrap gap-2">
+                <f:comment>The page URL with the anchor appended: typolink turns a link to the current
+                    page plus a section into the bare anchor, which on the /create/ URL only jumps
+                    within this page.</f:comment>
+                <d:atom.button variant="outline" href="{f:uri.page(pageUid: ttContentData.pid)}#c{ttContentData.uid}">
+                    <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.thanks.back" />
+                </d:atom.button>
+            </d:molecule.cardFooter>
         </d:molecule.card>
         </div>
     </div>

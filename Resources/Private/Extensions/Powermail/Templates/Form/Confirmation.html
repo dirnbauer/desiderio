@@ -23,14 +23,12 @@
     <div class="mt-8 w-full max-w-2xl">
         <d:molecule.card class="{cardCompactClass -> f:format.trim()} p-4">
             <d:molecule.cardHeader class="border-b">
-                <f:slot>
-                    <h2 data-slot="card-title" class="{cardTitleClass -> f:format.trim()}">
-                        <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.confirmation.title" />
-                    </h2>
-                    <p data-slot="card-description" class="{cardDescriptionClass -> f:format.trim()}">
-                        <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.confirmation.description" />
-                    </p>
-                </f:slot>
+                <h2 data-slot="card-title" class="{cardTitleClass -> f:format.trim()}">
+                    <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.confirmation.title" />
+                </h2>
+                <p data-slot="card-description" class="{cardDescriptionClass -> f:format.trim()}">
+                    <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.confirmation.description" />
+                </p>
             </d:molecule.cardHeader>
             <d:molecule.cardContent class="{panelContentClass -> f:format.trim()}">
                 {powermail_all -> f:format.raw()}

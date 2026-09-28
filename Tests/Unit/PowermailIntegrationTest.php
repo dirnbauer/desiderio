@@ -98,6 +98,25 @@ final class PowermailIntegrationTest extends TestCase
         self::assertStringContainsString('data-powermail-error-focus="{settings.validation.errorSummary.focus}"', $form);
         self::assertStringContainsString('novalidate="novalidate"', $form);
         self::assertStringContainsString('data-powermail-error-summary hidden role="alert"', $form);
+        // A component renders its children through <f:slot />; wrapping them in <f:slot>…</f:slot>
+        // in the calling template drops them, which left the thank-you and confirmation titles empty.
+        $root = __DIR__ . '/../../Resources/Private/Extensions/Powermail/';
+        foreach (['Templates/Form/Create.html', 'Templates/Form/Confirmation.html', 'Templates/Form/Form.html'] as $file) {
+            self::assertStringNotContainsString('<f:slot>', (string)file_get_contents($root . $file), $file);
+        }
+        $create = (string)file_get_contents($root . 'Templates/Form/Create.html');
+        self::assertStringContainsString('powermail.thanks.title', $create);
+        // The way back is the page URL plus the anchor: typolink shortens "current page + section"
+        // to the bare anchor, which on the /create/ URL never leaves the thank-you page.
+        self::assertStringContainsString('href="{f:uri.page(pageUid: ttContentData.pid)}#c{ttContentData.uid}"', $create);
+
+        // The conditions' starting state renders with the page, but only where powermail_cond
+        // says it is there: the partial's pc: namespace does not exist without it.
+        self::assertStringContainsString('<f:if condition="{settings.powermailCond.prerender}">', $form);
+        self::assertStringContainsString('<f:render partial="Misc/ConditionsState" arguments="{form: form}" />', $form);
+        $conditionsState = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Misc/ConditionsState.html');
+        self::assertStringContainsString('id="form-{form.uid}-actions"', $conditionsState);
+        self::assertStringContainsString('{pc:conditions(form: form) -> f:format.raw()}', $conditionsState);
         self::assertStringNotContainsString('aria-live="assertive"', $form);
 
         $fieldError = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Misc/FieldError.html');

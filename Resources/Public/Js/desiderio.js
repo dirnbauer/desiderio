@@ -2154,13 +2154,47 @@ document.addEventListener('DOMContentLoaded', () => {
   /*  18. Videos that play by themselves                                 */
   /* ------------------------------------------------------------------ */
   // A <video data-d-autoplay> (its file reference has "autoplay" set) plays
-  // muted while a third of it is on screen and pauses when it leaves. It
-  // never starts for visitors who ask for reduced motion, and once someone
-  // pauses it with its controls it stays paused. Without JavaScript the
-  // poster and the controls remain.
+  // while a third of it is on screen and pauses when it leaves. It never
+  // starts for visitors who ask for reduced motion, and once someone pauses
+  // it with its controls it stays paused. Without JavaScript the poster and
+  // the controls remain.
+  //
+  // Sound: browsers allow a video to start by itself with sound only once
+  // the visitor has clicked or typed on the page. Then the film starts with
+  // sound and plays once; otherwise it plays muted in a loop and shows its
+  // "Turn sound on" button, which unmutes and starts it again from the top.
+  // Pressing play in the controls is a click too, so that plays with sound.
   const autoplayVideos = document.querySelectorAll('video[data-d-autoplay]');
   if (autoplayVideos.length > 0 && 'IntersectionObserver' in window) {
     const calm = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const soundButton = video => video.parentElement?.querySelector('[data-d-video-sound]') ?? null;
+    const withSound = video => {
+      video.dataset.dSound = '';
+      video.muted = false;
+      video.loop = false;
+      const button = soundButton(video);
+      if (button) button.hidden = true;
+    };
+    const mutedLoop = video => {
+      video.muted = true;
+      video.loop = true;
+      const button = soundButton(video);
+      if (button) button.hidden = false;
+    };
+    const start = video => {
+      video.dataset.dAuto = '';
+      if ('dSound' in video.dataset || navigator.userActivation?.hasBeenActive) {
+        withSound(video);
+        video.play().catch(() => {
+          mutedLoop(video);
+          video.dataset.dAuto = '';
+          video.play().catch(() => {});
+        });
+      } else {
+        mutedLoop(video);
+        video.play().catch(() => {});
+      }
+    };
     const pauseQuietly = video => {
       if (!video.paused) {
         video.dataset.dAutoPause = '';
@@ -2172,8 +2206,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isIntersecting) {
           pauseQuietly(video);
         } else if (!calm.matches && !('dHeld' in video.dataset)) {
-          video.muted = true;
-          video.play().catch(() => {});
+          start(video);
         }
       });
     }, { threshold: 0.35 });
@@ -2185,7 +2218,23 @@ document.addEventListener('DOMContentLoaded', () => {
           video.dataset.dHeld = '';
         }
       });
-      video.addEventListener('play', () => delete video.dataset.dHeld);
+      video.addEventListener('play', () => {
+        delete video.dataset.dHeld;
+        if ('dAuto' in video.dataset) {
+          delete video.dataset.dAuto;
+        } else {
+          withSound(video);
+        }
+      });
+      video.addEventListener('volumechange', () => {
+        if (!video.muted) withSound(video);
+      });
+      soundButton(video)?.addEventListener('click', () => {
+        withSound(video);
+        video.currentTime = 0;
+        delete video.dataset.dHeld;
+        video.play().catch(() => {});
+      });
       observer.observe(video);
     });
     calm.addEventListener('change', () => {

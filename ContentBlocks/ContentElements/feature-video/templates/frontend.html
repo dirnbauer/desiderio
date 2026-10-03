@@ -36,6 +36,15 @@
                             </f:if>
                             <a href="{data.video_file.0.publicUrl}"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:video_download"/></a>
                         </video>
+                        <f:comment>
+                            Browsers start a video by itself only without sound, until the
+                            visitor has clicked or typed on the page. The runtime shows this
+                            button while the film plays muted; it turns the sound on and
+                            starts the film again from the beginning.
+                        </f:comment>
+                        <f:if condition="{data.video_file.0.properties.autoplay}">
+                            <d:atom.button variant="secondary" size="sm" class="feature-video__sound" attributes="{'data-d-video-sound': '', 'hidden': 'hidden'}"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:video_sound_on"/></d:atom.button>
+                        </f:if>
                     </f:if>
                 </f:else>
             </f:if>

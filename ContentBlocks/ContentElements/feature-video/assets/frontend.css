@@ -63,3 +63,19 @@
 .d-richtext ol { list-style: decimal; }
 .d-richtext li { margin-block-end: var(--d-spacing-2xs); }
 .d-richtext a { color: var(--d-link, var(--primary)); text-decoration: underline; text-underline-offset: 2px; }
+
+/* "Turn sound on" over the top corner of a film that plays by itself.
+   The button atom's display utility would beat the hidden attribute. */
+.feature-video__player:has(.feature-video__sound) {
+    position: relative;
+}
+.feature-video__sound {
+    position: absolute;
+    inset-block-start: var(--d-spacing-sm, 0.75rem);
+    inset-inline-start: var(--d-spacing-sm, 0.75rem);
+    z-index: 1;
+}
+.feature-video__sound[hidden] {
+    display: none;
+}
+

@@ -1783,6 +1783,12 @@
         <target>下载视频</target>
       </segment>
     </unit>
+    <unit id="video_sound_on">
+      <segment state="final">
+        <source>Turn sound on</source>
+        <target>打开声音</target>
+      </segment>
+    </unit>
     <unit id="poster_image">
       <segment state="final">
         <source>Poster image</source>

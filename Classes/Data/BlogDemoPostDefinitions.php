@@ -41,7 +41,7 @@ final class BlogDemoPostDefinitions
                     ],
                     [
                         'header' => 'What to verify',
-                        'body' => '<ul><li>Category and tag badges appear once, near the title.</li><li>Date, authors and comments share one metadata row.</li><li>Badges look the same in the list and in the detail view.</li></ul>',
+                        'body' => '<ul><li>Every category and tag links to its own list of posts.</li><li>Author, date and reading time appear near the title.</li><li>Badges look the same in the list and on the post.</li></ul>',
                     ],
                 ],
             ],

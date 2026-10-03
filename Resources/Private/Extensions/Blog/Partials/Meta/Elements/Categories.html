@@ -17,7 +17,7 @@
             <f:for each="{post.categories}" as="postCategory">
                 <li data-blog-category="{postCategory.uid}">
                     <meta itemprop="articleSection" content="{postCategory.title}"/>
-                    <blogvh:link.category category="{postCategory}" class="!no-underline">
+                    <blogvh:link.category category="{postCategory}" class="desiderio-blog-badge-link !no-underline">
                         <d:atom.badge variant="secondary">
                             <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="folder" size="xs"/></span>
                             <span>{postCategory.title}</span>

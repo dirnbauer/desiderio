@@ -2,14 +2,14 @@
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:blogvh="http://typo3.org/ns/T3G/AgencyPack/Blog/ViewHelpers"
     xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
-    xmlns:di="http://typo3.org/ns/Webconsulting/Desiderio/ViewHelpers"
     data-namespace-typo3-fluid="true"
 >
 <f:comment>
     Blog – Classic: one post in the journal. A date leaf in the margin, the
     topic, the title, a byline, the picture, the teaser and "Continue
     reading". Posts are set apart by space and the ornament between them
-    (Classic/Partials/List.html), not by rules.
+    (Classic/Partials/List.html), not by rules. The first post's picture is
+    in the first screen, so it loads at once instead of lazily.
 </f:comment>
 
 <f:argument name="post" type="T3G\AgencyPack\Blog\Domain\Model\Post" optional="true"/>
@@ -43,7 +43,7 @@
 
         <f:if condition="{post.featuredImage}">
             <blogvh:link.post post="{post}" class="desiderio-blog-classic-entry__media" additionalAttributes="{aria-hidden: 'true', tabindex: '-1'}">
-                <f:render partial="General/FeaturedImage" arguments="{image: post.featuredImage, settings: {maxWidth: 1200, sizes: '(min-width: 1024px) 760px, 100vw'}}"/>
+                <f:render partial="General/FeaturedImage" arguments="{image: post.featuredImage, settings: {maxWidth: 1200, sizes: '(min-width: 1024px) 760px, 100vw'}, priority: iterator.isFirst}"/>
             </blogvh:link.post>
         </f:if>
 

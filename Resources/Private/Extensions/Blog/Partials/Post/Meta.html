@@ -18,7 +18,7 @@
         <span aria-hidden="true">·</span>
         <span class="inline-flex flex-wrap items-center gap-1">
             <f:for each="{post.categories}" as="postCategory">
-                <blogvh:link.category category="{postCategory}" class="!no-underline">
+                <blogvh:link.category category="{postCategory}" class="desiderio-blog-badge-link !no-underline">
                     <d:atom.badge variant="secondary">{postCategory.title}</d:atom.badge>
                 </blogvh:link.category>
             </f:for>
@@ -28,7 +28,7 @@
         <span aria-hidden="true">·</span>
         <span class="inline-flex flex-wrap items-center gap-1" itemprop="keywords">
             <f:for each="{post.tags}" as="postTag">
-                <blogvh:link.tag tag="{postTag}" class="!no-underline">
+                <blogvh:link.tag tag="{postTag}" class="desiderio-blog-badge-link !no-underline">
                     <d:atom.badge variant="outline">{postTag.title}</d:atom.badge>
                 </blogvh:link.tag>
             </f:for>

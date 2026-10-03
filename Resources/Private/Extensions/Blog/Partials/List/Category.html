@@ -8,25 +8,30 @@
 <f:argument name="category" type="T3G\AgencyPack\Blog\Domain\Model\Category" optional="true"/>
 <f:argument name="settings" type="array" optional="true"/>
 
+<f:comment>
+    One category on the "all categories" page. The title link stretches over
+    the card, so the whole card leads to the category (and lifts like every
+    card that leads somewhere); "All posts" stays a link of its own above it.
+</f:comment>
 <div class="h-full" data-blog-category="{category.uid}">
-<d:molecule.card class="h-full border-border bg-card transition-colors hover:border-primary/40">
+<d:molecule.card class="relative h-full border-border bg-card transition-colors hover:border-primary/40">
     <d:molecule.cardContent class="flex h-full flex-col gap-4">
         <div class="flex items-center justify-between gap-3">
-            <d:atom.typography tag="h2" variant="large" class="text-foreground" attributes="{itemprop: 'name'}">
-                <blogvh:link.category category="{category}" class="!no-underline outline-none transition-colors hover:text-link focus-visible:ring-3 focus-visible:ring-ring/40" />
+            <d:atom.typography tag="h2" variant="large" class="min-w-0 text-foreground" attributes="{itemprop: 'name'}">
+                <blogvh:link.category category="{category}" class="!no-underline outline-none transition-colors hover:text-link focus-visible:ring-3 focus-visible:ring-ring/40 after:absolute after:inset-0 after:content-['']" />
             </d:atom.typography>
-            <span class="inline-flex size-8 items-center justify-center rounded-md bg-muted text-muted-foreground" aria-hidden="true">
+            <span class="inline-flex size-8 shrink-0 items-center justify-center rounded-md bg-muted text-muted-foreground" aria-hidden="true">
                 <d:atom.icon name="folder" size="sm"/>
             </span>
         </div>
         <f:if condition="{category.description}">
-            <p class="text-sm leading-6 text-muted-foreground" itemprop="description">
+            <p class="text-sm leading-6 text-muted-foreground text-pretty" itemprop="description">
                 <f:format.crop maxCharacters="220" append="&nbsp;[…]">{category.description}</f:format.crop>
             </p>
         </f:if>
         <p class="mt-auto">
-            <blogvh:link.category category="{category}" class="inline-flex items-center gap-1 text-sm font-medium text-link !no-underline outline-none transition-colors hover:text-link focus-visible:ring-3 focus-visible:ring-ring/40">
-                <span><f:translate extensionName="Blog" key="list.show.category">All posts</f:translate></span>
+            <blogvh:link.category category="{category}" class="relative z-10 inline-flex items-center gap-1 text-sm font-medium text-link !no-underline outline-none transition-colors hover:text-link focus-visible:ring-3 focus-visible:ring-ring/40">
+                <span><f:translate key="blog.allPosts" extensionName="desiderio" default="All posts"/><span class="sr-only">: {category.title}</span></span>
                 <d:atom.icon name="arrow-right" size="xs"/>
             </blogvh:link.category>
         </p>

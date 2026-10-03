@@ -7,7 +7,8 @@
 <f:comment>
     Blog – Classic: the head of a post, in the reading column next to the
     sidebar. The date leaf in the margin, the topics, the title, the teaser
-    as the lead, the byline, then the picture.
+    as the lead, the byline, then the picture, which loads at once: it is
+    the largest paint of the page.
 </f:comment>
 
 <f:layout name="Post" />
@@ -40,7 +41,7 @@
 
         <f:if condition="{post.featuredImage}">
             <div class="desiderio-blog-classic-post__media">
-                <f:render partial="General/FeaturedImage" arguments="{image: post.featuredImage, settings: {maxWidth: 1400, sizes: '(min-width: 1024px) 860px, 100vw'}, layout: 'inline'}"/>
+                <f:render partial="General/FeaturedImage" arguments="{image: post.featuredImage, settings: {maxWidth: 1400, sizes: '(min-width: 1024px) 860px, 100vw'}, layout: 'inline', priority: 1}"/>
             </div>
         </f:if>
     </header>

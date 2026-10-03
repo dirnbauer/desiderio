@@ -17,12 +17,21 @@
                             <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="user" size="xs"/></span>
                             <span><f:translate extensionName="Blog" key="headline.author.simple">Author</f:translate></span>
                         </d:atom.badge>
-                        <d:atom.typography tag="h2" variant="h2" class="text-balance">{author.name}</d:atom.typography>
+                        <f:comment>The author's picture and role next to the name, as the post's author box shows them.</f:comment>
+                        <div class="flex items-center gap-4">
+                            <d:atom.avatar src="{blogvh:uri.avatar(author: author, size: 128)}" alt="" size="xl" class="bg-muted"/>
+                            <div class="flex min-w-0 flex-col gap-1">
+                                <d:atom.typography tag="h2" variant="h2" class="text-balance">{author.name}</d:atom.typography>
+                                <f:if condition="{author.title}">
+                                    <p class="text-sm text-muted-foreground">{author.title}</p>
+                                </f:if>
+                            </div>
+                        </div>
                         <f:if condition="{author.bio}">
                             <p class="max-w-3xl text-base leading-7 text-muted-foreground">{author.bio}</p>
                         </f:if>
                     </div>
-                    <blogvh:link.author class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm font-medium text-foreground !no-underline transition-colors hover:bg-muted" rss="true" author="{author}">
+                    <blogvh:link.author class="inline-flex h-9 w-fit shrink-0 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm font-medium text-foreground !no-underline transition-colors hover:bg-muted outline-none focus-visible:ring-3 focus-visible:ring-ring/40" rss="true" author="{author}">
                         <d:atom.icon name="rss" size="xs"/>
                         <span><f:translate extensionName="Blog" key="link.rss" default="RSS"/></span>
                     </blogvh:link.author>
@@ -31,7 +40,7 @@
                     <ul role="list" class="mt-5 flex flex-wrap gap-2">
                         <f:for each="{author.allTags}" as="tag">
                             <li>
-                                <blogvh:link.tag tag="{tag}" class="!no-underline">
+                                <blogvh:link.tag tag="{tag}" class="desiderio-blog-badge-link !no-underline">
                                     <d:atom.badge variant="outline">
                                         <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="tag" size="xs"/></span>
                                         <span>{tag.title}</span>
@@ -45,7 +54,7 @@
             <f:render partial="List" arguments="{_all}" />
             <f:if condition="{settings.authorUid}">
                 <footer class="mt-8">
-                    <f:link.page pageUid="{settings.authorUid}" class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm font-medium text-foreground !no-underline transition-colors hover:bg-muted">
+                    <f:link.page pageUid="{settings.authorUid}" class="inline-flex h-9 w-fit shrink-0 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm font-medium text-foreground !no-underline transition-colors hover:bg-muted outline-none focus-visible:ring-3 focus-visible:ring-ring/40">
                         <d:atom.icon name="arrow-left" size="xs"/>
                         <span><f:translate extensionName="Blog" key="list.backlink.authors">Back to all authors</f:translate></span>
                     </f:link.page>
@@ -61,7 +70,7 @@
                 </d:atom.badge>
                 <d:atom.typography tag="h2" variant="h1"><f:translate extensionName="Blog" key="headline.authors">Authors</f:translate></d:atom.typography>
             </header>
-            <d:layout.grid cols="3" gap="md">
+            <d:layout.grid cols="3" gap="md" class="desiderio-blog-card-grid">
                 <f:for each="{authors}" as="author">
                     <f:render partial="List/Author" arguments="{_all}" />
                 </f:for>

@@ -32,7 +32,7 @@
 
         <f:if condition="{post.featuredImage}">
             <div class="desiderio-blog-post__media mt-5 overflow-hidden rounded-lg border border-border bg-muted">
-                <f:render partial="General/FeaturedImage" arguments="{image: post.featuredImage, settings: settings.post.featuredImage, layout: 'inline'}" />
+                <f:render partial="General/FeaturedImage" arguments="{image: post.featuredImage, settings: settings.post.featuredImage, layout: 'inline', priority: 1}" />
             </div>
         </f:if>
     </header>

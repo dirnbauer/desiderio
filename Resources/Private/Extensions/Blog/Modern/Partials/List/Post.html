@@ -10,7 +10,8 @@
     link stretches over it); the category badge stays its own link above it.
     The card lays itself out by its own width: narrow it stacks picture and
     text, wide (the featured post, a card alone in its row) it puts them side
-    by side (container query in 23-blog.css).
+    by side (container query in 23-blog.css). The featured card's picture is
+    in the first screen and loads at once; the others load lazily.
 </f:comment>
 
 <f:argument name="post" type="T3G\AgencyPack\Blog\Domain\Model\Post" optional="true"/>
@@ -26,7 +27,7 @@
     <div class="desiderio-blog-modern-card__inner">
         <f:if condition="{post.featuredImage}">
             <div class="desiderio-blog-modern-card__media">
-                <f:render partial="General/FeaturedImage" arguments="{image: post.featuredImage, settings: {maxWidth: 1200, sizes: '(min-width: 768px) 50vw, 100vw'}}"/>
+                <f:render partial="General/FeaturedImage" arguments="{image: post.featuredImage, settings: {maxWidth: 1200, sizes: '(min-width: 768px) 50vw, 100vw'}, priority: featured}"/>
             </div>
         </f:if>
 
@@ -38,7 +39,7 @@
                 <f:for each="{post.categories}" as="postCategory" iteration="categoryIterator">
                     <f:if condition="{categoryIterator.isFirst}">
                         <meta itemprop="articleSection" content="{postCategory.title}"/>
-                        <blogvh:link.category category="{postCategory}" class="desiderio-blog-modern-card__category !no-underline">
+                        <blogvh:link.category category="{postCategory}" class="desiderio-blog-modern-card__category desiderio-blog-badge-link !no-underline">
                             <d:atom.badge variant="secondary">{postCategory.title}</d:atom.badge>
                         </blogvh:link.category>
                     </f:if>

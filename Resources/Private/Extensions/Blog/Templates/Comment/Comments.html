@@ -39,10 +39,21 @@
                             </ol>
                         </f:then>
                         <f:else>
+                            <f:comment>
+                                The title already says there are none (EXT:blog's
+                                message.no_comments repeated it as "No Comments"), so
+                                the description offers the next step: the form below,
+                                or the note that this post takes no comments.
+                            </f:comment>
                             <d:molecule.alert class="bg-muted/40">
                                 <d:atom.icon name="message-circle" size="sm"/>
                                 <d:molecule.alertTitle><f:translate extensionName="Blog" key="comments.empty.title">No comments yet</f:translate></d:molecule.alertTitle>
-                                <d:molecule.alertDescription><f:translate extensionName="Blog" key="message.no_comments">No comments yet</f:translate></d:molecule.alertDescription>
+                                <d:molecule.alertDescription>
+                                    <f:if condition="{post.commentsActive}">
+                                        <f:then><a href="#postcommentform-{post.uid}"><f:translate extensionName="Blog" key="headline.commentform">Write comment</f:translate></a></f:then>
+                                        <f:else><f:translate extensionName="Blog" key="message.comments_closed">Comments are closed.</f:translate></f:else>
+                                    </f:if>
+                                </d:molecule.alertDescription>
                             </d:molecule.alert>
                         </f:else>
                     </f:if>

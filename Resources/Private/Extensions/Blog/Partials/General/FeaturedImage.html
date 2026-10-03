@@ -3,21 +3,33 @@
     data-namespace-typo3-fluid="true"
 >
 
+<f:comment>
+    `priority` marks the picture that opens the page (a post's own picture,
+    the first post of a list): it loads at once with a high fetch priority
+    instead of lazily, because it is usually the largest paint. Every other
+    picture stays lazy.
+</f:comment>
 <f:argument name="image" type="object" optional="true"/>
 <f:argument name="settings" type="array" optional="true"/>
 <f:argument name="featured" type="bool" optional="true"/>
 <f:argument name="layout" type="string" optional="true" default="card"/>
+<f:argument name="priority" type="bool" optional="true" default="false"/>
 
 <f:if condition="{image}">
     <f:variable name="maxWidth" value="{f:if(condition: settings.maxWidth, then: settings.maxWidth, else: '960')}" />
     <f:variable name="imageSizes" value="{f:if(condition: settings.sizes, then: settings.sizes, else: '(min-width: 1024px) 960px, (min-width: 768px) 80vw, 100vw')}" />
     <f:variable name="imageAttributes" value="{sizes: imageSizes, decoding: 'async'}" />
+    <f:variable name="imageLoading" value="lazy" />
+    <f:if condition="{priority}">
+        <f:variable name="imageAttributes" value="{sizes: imageSizes, decoding: 'async', fetchpriority: 'high'}" />
+        <f:variable name="imageLoading" value="eager" />
+    </f:if>
 
     <f:if condition="{layout} == 'inline'">
         <f:then>
             <figure class="desiderio-blog-media desiderio-blog-media--inline m-0 w-full min-w-0">
                 <f:image
-                    loading="lazy"
+                    loading="{imageLoading}"
                     image="{image}"
                     alt="{image.alternative}"
                     title="{image.title}"
@@ -40,7 +52,7 @@
             </f:variable>
             <figure class="desiderio-blog-media desiderio-blog-media--cover m-0 w-full min-w-0 overflow-hidden bg-muted {aspectClass -> f:format.trim()}">
                 <f:image
-                    loading="lazy"
+                    loading="{imageLoading}"
                     image="{image}"
                     alt="{image.alternative}"
                     title="{image.title}"

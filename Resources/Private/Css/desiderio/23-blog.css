@@ -104,41 +104,144 @@
 }
 
 /* A byline: author, date, reading time, comments, set apart by middle
-   dots that wrap with the items. */
-.desiderio-blog-byline {
+   dots. Every item carries its dot in front, in a box as wide as the space
+   between two items. The line is pulled out by that width and clipped
+   there, so the dot of the item that opens a line (the first one, or one
+   that wrapped on a phone) is cut off: no line ever starts with a dot. The
+   clip leaves room above, below and at the end for focus rings.
+
+   A byline is a row of facts, not running text: the 70ch reading measure
+   of 18-section-anatomy.css (every <p> in a __header) does not apply, it
+   wrapped the comment count onto a line of its own. The Modern post meta
+   uses the same dots (section 3). */
+.desiderio-blog-byline,
+.desiderio-blog-modern-post__meta {
+    --d-byline-dot: 1.5rem;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    column-gap: 0.5rem;
     row-gap: 0.25rem;
-    margin: 0;
+    max-width: none;
+    margin-block: 0;
+    margin-inline: calc(var(--d-byline-dot) * -1) 0;
+    clip-path: inset(-0.5rem -0.5rem -0.5rem calc(var(--d-byline-dot) - 4px));
     font-size: 0.875rem;
     line-height: 1.5;
     color: var(--muted-foreground);
 }
 
-.desiderio-blog-byline > :not(meta) + :not(meta)::before,
-.desiderio-blog-byline > meta + :not(meta)::before {
+.desiderio-blog-byline:dir(rtl),
+.desiderio-blog-modern-post__meta:dir(rtl) {
+    clip-path: inset(-0.5rem calc(var(--d-byline-dot) - 4px) -0.5rem -0.5rem);
+}
+
+/* Each item is a flex box, so the whitespace around a link inside it is
+   dropped instead of widening the gap after the dot. */
+.desiderio-blog-byline > :not(meta),
+.desiderio-blog-modern-post__meta > :not(meta) {
+    display: inline-flex;
+    align-items: center;
+    min-width: 0;
+}
+
+.desiderio-blog-byline > :not(meta)::before,
+.desiderio-blog-modern-post__meta > :not(meta)::before {
     content: "·";
-    margin-inline-end: 0.5rem;
+    flex: none;
+    width: var(--d-byline-dot);
+    font-weight: 400;
+    text-align: center;
+    color: var(--muted-foreground);
 }
 
 .desiderio-blog-byline__authors {
-    display: inline-flex;
     flex-wrap: wrap;
-    align-items: center;
     gap: 0.5rem;
     font-weight: 500;
     color: var(--foreground);
 }
 
+/* The authors keep their own gap; the dot box already holds the space. */
+.desiderio-blog-byline > .desiderio-blog-byline__authors::before {
+    margin-inline-end: -0.5rem;
+}
+
 .desiderio-blog-byline a {
     color: inherit;
     text-decoration: none;
+    transition: color var(--d-motion-fast, 160ms) var(--d-ease, ease-out);
 }
 
-.desiderio-blog-byline a:hover {
-    color: var(--d-link, var(--primary));
+@media (hover: hover) and (pointer: fine) {
+    .desiderio-blog-byline a:hover {
+        color: var(--d-link, var(--primary));
+    }
+}
+
+/* Badges that link (a topic, a tag): shadcn gives a badge that is itself
+   a link a hover fill ([a]:hover:bg-secondary/80, [a]:hover:bg-muted) and
+   a 3px focus ring. The blog's badges sit inside EXT:blog's link
+   ViewHelpers, so the link passes both on to its badge; without this a
+   badge link had no hover at all and a square browser outline. */
+.desiderio-blog-badge-link {
+    display: inline-flex;
+    max-width: 100%;
+    border-radius: calc(var(--radius, 0.625rem) - 2px);
+    text-decoration: none;
+}
+
+.desiderio-blog-badge-link:focus-visible {
+    outline: none;
+}
+
+.desiderio-blog-badge-link:focus-visible > [data-slot="badge"] {
+    border-color: var(--ring);
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 50%, transparent);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .desiderio-blog-badge-link:hover > [data-slot="badge"][data-variant="secondary"] {
+        background-color: color-mix(in oklch, var(--secondary) 80%, transparent);
+    }
+
+    .desiderio-blog-badge-link:hover > [data-slot="badge"][data-variant="outline"] {
+        background-color: var(--muted);
+        color: var(--muted-foreground);
+    }
+
+    .desiderio-blog-badge-link:hover > [data-slot="badge"][data-variant="default"] {
+        background-color: var(--d-primary-hover, var(--primary));
+    }
+}
+
+/* A picture never zooms for someone who asked for reduced motion
+   (FeaturedImage scales a card's picture on hover). */
+@media (prefers-reduced-motion: reduce) {
+    .desiderio-blog-media__image {
+        scale: none;
+    }
+}
+
+/* All categories, all authors: two cards share the row instead of leaving
+   a third of it empty (the grid has three tracks from 64rem up). */
+@media (min-width: 64rem) {
+    .desiderio-blog-card-grid:has(> :nth-child(2):last-child) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* The pager under a list: centred, as shadcn's Pagination is, and its page
+   numbers without the underline the site gives links in running text. */
+.desiderio-blog-pagination > ul {
+    justify-content: center;
+}
+
+.desiderio-blog-pagination a {
+    text-decoration: none;
+}
+
+.desiderio-blog-pagination :is(a, span) {
+    font-variant-numeric: tabular-nums;
 }
 
 /* Copy link: the done label replaces the button label for two seconds. */
@@ -232,10 +335,6 @@
 .desiderio-blog-classic-entry__topic {
     color: var(--d-link, var(--primary));
     text-decoration: none;
-}
-
-.desiderio-blog-classic-entry__topic:hover {
-    text-decoration: underline;
     text-underline-offset: 0.2em;
 }
 
@@ -249,11 +348,7 @@
     color: var(--foreground);
     text-decoration: none;
     border-radius: calc(var(--radius, 0.625rem) - 4px);
-    transition: color 150ms ease;
-}
-
-.desiderio-blog-classic-entry__link:hover {
-    color: var(--d-link, var(--primary));
+    transition: color var(--d-motion-fast, 160ms) var(--d-ease, ease-out);
 }
 
 .desiderio-blog-classic-entry__link:focus-visible,
@@ -275,11 +370,27 @@
 }
 
 .desiderio-blog-classic-entry__media img {
-    transition: transform 400ms var(--d-ease, ease);
+    transition: transform 300ms var(--d-ease, ease-out);
 }
 
-.desiderio-blog-classic-entry__media:hover img {
-    transform: scale(1.02);
+/* Title and picture lead to the same post, so they answer a pointer
+   together: either one colours the title and draws the picture a little
+   closer. Touch screens skip it (a tap would leave it stuck). */
+@media (hover: hover) and (pointer: fine) {
+    .desiderio-blog-classic-entry__topic:hover {
+        text-decoration: underline;
+    }
+
+    .desiderio-blog-classic-entry__link:hover,
+    .desiderio-blog-classic-entry__main:has(.desiderio-blog-classic-entry__media:hover) .desiderio-blog-classic-entry__link {
+        color: var(--d-link, var(--primary));
+    }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .desiderio-blog-classic-entry__main:has(.desiderio-blog-classic-entry__link:hover, .desiderio-blog-classic-entry__media:hover) .desiderio-blog-classic-entry__media img {
+        transform: scale(1.02);
+    }
 }
 
 .desiderio-blog-classic-entry__excerpt {
@@ -307,11 +418,13 @@
 }
 
 .desiderio-blog-classic-entry__more-link [data-icon] {
-    transition: translate 200ms var(--d-ease, ease);
+    transition: translate var(--d-motion, 220ms) var(--d-ease, ease-out);
 }
 
-.desiderio-blog-classic-entry__more-link:hover [data-icon] {
-    translate: 3px 0;
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .desiderio-blog-classic-entry__more-link:hover [data-icon] {
+        translate: 3px 0;
+    }
 }
 
 /* The date leaf, like the dated corner of a diary page: a small muted
@@ -408,11 +521,15 @@ html:not(:lang(zh), :lang(ja), :lang(ko)) .desiderio-blog-classic-post__body > .
     }
 }
 
+/* The title link stretches over its row, so the picture leads to the post
+   as well; a keyboard focus rings the whole row. */
 .desiderio-blog-classic-related__item {
+    position: relative;
     display: grid;
     grid-template-columns: 6.5rem minmax(0, 1fr);
     align-items: center;
     gap: 1rem;
+    border-radius: var(--radius, 0.625rem);
 }
 
 .desiderio-blog-classic-related__item:not(:has(.desiderio-blog-classic-related__media)) {
@@ -425,15 +542,43 @@ html:not(:lang(zh), :lang(ja), :lang(ko)) .desiderio-blog-classic-post__body > .
     background: var(--muted);
 }
 
+.desiderio-blog-classic-related__media img {
+    transition: transform 300ms var(--d-ease, ease-out);
+}
+
 .desiderio-blog-classic-related__link {
     font-weight: 500;
     line-height: 1.35;
     color: var(--foreground);
     text-decoration: none;
+    transition: color var(--d-motion-fast, 160ms) var(--d-ease, ease-out);
 }
 
-.desiderio-blog-classic-related__link:hover {
-    color: var(--d-link, var(--primary));
+.desiderio-blog-classic-related__link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+}
+
+.desiderio-blog-classic-related__link:focus-visible {
+    outline: none;
+}
+
+.desiderio-blog-classic-related__item:has(.desiderio-blog-classic-related__link:focus-visible) {
+    outline: 2px solid var(--ring);
+    outline-offset: 4px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .desiderio-blog-classic-related__item:hover .desiderio-blog-classic-related__link {
+        color: var(--d-link, var(--primary));
+    }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .desiderio-blog-classic-related__item:hover .desiderio-blog-classic-related__media img {
+        transform: scale(1.04);
+    }
 }
 
 /* ------------------------------------------------------------------ */
@@ -502,11 +647,19 @@ html:not(:lang(zh), :lang(ja), :lang(ko)) .desiderio-blog-classic-post__body > .
     color: var(--muted-foreground);
     text-decoration: none;
     scroll-snap-align: start;
-    transition: color 150ms ease, background-color 150ms ease, box-shadow 150ms ease;
+    transition-property: color, background-color, box-shadow;
+    transition-duration: var(--d-motion-fast, 160ms);
+    transition-timing-function: var(--d-ease, ease-out);
 }
 
-.desiderio-blog-topics__pill:hover {
-    color: var(--foreground);
+@media (hover: hover) and (pointer: fine) {
+    .desiderio-blog-topics__pill:hover {
+        color: var(--foreground);
+    }
+
+    .desiderio-blog-topics__pill:hover .desiderio-blog-topics__count {
+        color: var(--foreground);
+    }
 }
 
 .desiderio-blog-topics__pill[aria-current="page"] {
@@ -539,11 +692,9 @@ html:not(:lang(zh), :lang(ja), :lang(ko)) .desiderio-blog-classic-post__body > .
     line-height: 1;
     font-variant-numeric: tabular-nums;
     box-shadow: 0 0 0 1px color-mix(in oklch, var(--foreground) 8%, transparent);
-    transition: background-color 150ms ease, color 150ms ease;
-}
-
-.desiderio-blog-topics__pill:hover .desiderio-blog-topics__count {
-    color: var(--foreground);
+    transition-property: background-color, color;
+    transition-duration: var(--d-motion-fast, 160ms);
+    transition-timing-function: var(--d-ease, ease-out);
 }
 
 .desiderio-blog-topics__pill[aria-current="page"] .desiderio-blog-topics__count {
@@ -623,12 +774,15 @@ html:not(:lang(zh), :lang(ja), :lang(ko)) .desiderio-blog-classic-post__body > .
     background: var(--muted);
 }
 
+/* The picture draws a little closer under a pointer. FeaturedImage's
+   group-hover/card:scale-[1.03] does that (Tailwind's hover variant skips
+   touch screens); a transform here as well doubled it to 6 %. This rule
+   only gives the scale the site's ease; reduced motion keeps the picture
+   still (section 1). */
 .desiderio-blog-modern-card__media img {
-    transition: transform 500ms var(--d-ease, ease);
-}
-
-.desiderio-blog-modern-card:hover .desiderio-blog-modern-card__media img {
-    transform: scale(1.03);
+    transition-property: transform, scale;
+    transition-duration: 300ms;
+    transition-timing-function: var(--d-ease, ease-out);
 }
 
 .desiderio-blog-modern-card__body {
@@ -666,7 +820,7 @@ html:not(:lang(zh), :lang(ja), :lang(ko)) .desiderio-blog-classic-post__body > .
 .desiderio-blog-modern-card__link {
     color: var(--foreground);
     text-decoration: none;
-    transition: color 150ms ease;
+    transition: color var(--d-motion-fast, 160ms) var(--d-ease, ease-out);
 }
 
 .desiderio-blog-modern-card__link::after {
@@ -676,8 +830,10 @@ html:not(:lang(zh), :lang(ja), :lang(ko)) .desiderio-blog-classic-post__body > .
     border-radius: inherit;
 }
 
-.desiderio-blog-modern-card:hover .desiderio-blog-modern-card__link {
-    color: var(--d-link, var(--primary));
+@media (hover: hover) and (pointer: fine) {
+    .desiderio-blog-modern-card:hover .desiderio-blog-modern-card__link {
+        color: var(--d-link, var(--primary));
+    }
 }
 
 .desiderio-blog-modern-card__link:focus-visible {
@@ -829,23 +985,21 @@ html:not(:lang(zh), :lang(ja), :lang(ko)) .desiderio-blog-classic-post__body > .
     max-width: 48rem;
 }
 
+/* Topic, date and reading time above the title, with the byline's dots
+   (section 1): a phone wraps the reading time onto the next line without a
+   dot in front of it. */
 .desiderio-blog-modern-post__meta {
-    display: flex;
+    --d-byline-dot: 2rem;
+    row-gap: 0.5rem;
+}
+
+.desiderio-blog-modern-post__topics {
     flex-wrap: wrap;
-    align-items: center;
-    gap: 0.5rem 0.75rem;
-    font-size: 0.875rem;
-    color: var(--muted-foreground);
+    gap: 0.5rem;
 }
 
-.desiderio-blog-modern-post__meta > time::before,
-.desiderio-blog-modern-post__meta > time + span::before {
-    content: "·";
-    margin-inline-end: 0.75rem;
-}
-
-.desiderio-blog-modern-post__meta > time:first-child::before {
-    content: none;
+.desiderio-blog-modern-post__meta > .desiderio-blog-modern-post__topics::before {
+    margin-inline-end: -0.5rem;
 }
 
 .desiderio-blog-modern-post__authors {
@@ -938,12 +1092,16 @@ html:not(:lang(zh), :lang(ja), :lang(ko)) .desiderio-blog-classic-post__body > .
     line-height: 1.4;
     color: var(--muted-foreground);
     text-decoration: none;
-    transition: color 150ms ease, background-color 150ms ease;
+    transition-property: color, background-color;
+    transition-duration: var(--d-motion-fast, 160ms);
+    transition-timing-function: var(--d-ease, ease-out);
 }
 
-.desiderio-blog-toc__link:hover {
-    background: var(--muted);
-    color: var(--foreground);
+@media (hover: hover) and (pointer: fine) {
+    .desiderio-blog-toc__link:hover {
+        background: var(--muted);
+        color: var(--foreground);
+    }
 }
 
 .desiderio-blog-toc__link:focus-visible {

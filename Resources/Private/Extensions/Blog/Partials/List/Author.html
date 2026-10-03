@@ -8,23 +8,29 @@
 <f:argument name="author" type="T3G\AgencyPack\Blog\Domain\Model\Author" optional="true"/>
 <f:argument name="settings" type="array" optional="true"/>
 
+<f:comment>
+    One author on the "all authors" page. The name link stretches over the
+    card, so the whole card leads to the author's posts; "All posts" stays a
+    link of its own above it. The picture sits next to the name it shows, so
+    it carries no text of its own.
+</f:comment>
 <div class="h-full" data-blog-author="{author.uid}">
-<d:molecule.card class="h-full border-border bg-card transition-colors hover:border-primary/40">
+<d:molecule.card class="relative h-full border-border bg-card transition-colors hover:border-primary/40">
     <d:molecule.cardContent class="flex h-full flex-col gap-4">
         <div class="flex items-center gap-3">
             <f:variable name="avatarsize" value="{settings.authors.avatar.provider.size as integer}" />
             <f:if condition="{avatarsize}"><f:else><f:variable name="avatarsize" value="56" /></f:else></f:if>
             <img
                 loading="lazy"
-                class="size-14 rounded-full border border-border object-cover"
+                class="size-14 shrink-0 rounded-full border border-border object-cover"
                 height="{avatarsize}"
                 width="{avatarsize}"
                 src="{blogvh:uri.avatar(author: author, size: avatarsize)}"
-                alt="{author.name}"
+                alt=""
             >
-            <div class="min-w-0">
+            <div class="flex min-w-0 flex-col gap-1">
                 <d:atom.typography tag="h2" variant="large" class="text-foreground" attributes="{itemprop: 'name'}">
-                    <blogvh:link.author author="{author}" class="!no-underline outline-none transition-colors hover:text-link focus-visible:ring-3 focus-visible:ring-ring/40" />
+                    <blogvh:link.author author="{author}" class="!no-underline outline-none transition-colors hover:text-link focus-visible:ring-3 focus-visible:ring-ring/40 after:absolute after:inset-0 after:content-['']" />
                 </d:atom.typography>
                 <f:if condition="{author.title}">
                     <p class="text-sm text-muted-foreground">{author.title}</p>
@@ -32,13 +38,13 @@
             </div>
         </div>
         <f:if condition="{author.bio}">
-            <p class="text-sm leading-6 text-muted-foreground" itemprop="description">
+            <p class="text-sm leading-6 text-muted-foreground text-pretty" itemprop="description">
                 <f:format.crop maxCharacters="220" append="&nbsp;[…]">{author.bio}</f:format.crop>
             </p>
         </f:if>
         <p class="mt-auto">
-            <blogvh:link.author author="{author}" class="inline-flex items-center gap-1 text-sm font-medium text-link !no-underline outline-none transition-colors hover:text-link focus-visible:ring-3 focus-visible:ring-ring/40">
-                <span><f:translate extensionName="Blog" key="list.show.author">All posts</f:translate></span>
+            <blogvh:link.author author="{author}" class="relative z-10 inline-flex items-center gap-1 text-sm font-medium text-link !no-underline outline-none transition-colors hover:text-link focus-visible:ring-3 focus-visible:ring-ring/40">
+                <span><f:translate key="blog.allPosts" extensionName="desiderio" default="All posts"/><span class="sr-only">: {author.name}</span></span>
                 <d:atom.icon name="arrow-right" size="xs"/>
             </blogvh:link.author>
         </p>

@@ -10,17 +10,33 @@
 <f:section name="Title"><f:translate extensionName="Blog" key="headline.tags">Tags</f:translate></f:section>
 
 <f:section name="Content">
+    <f:comment>
+        The open tag (a tag page) is the one filled badge, in shadcn's default
+        variant, and carries aria-current; the others stay outlined.
+    </f:comment>
     <f:if condition="{tags}">
         <f:then>
             <ul role="list" class="flex flex-wrap gap-2">
                 <f:for each="{tags}" as="tag">
                     <li data-blog-tag="{tag.uid}" data-active="{f:if(condition: '{currentTag} == {tag.uid}', then: 'true', else: 'false')}">
-                        <blogvh:link.tag tag="{tag.tagObject}" title="{tag.tagObject.title}" class="!no-underline">
-                            <d:atom.badge variant="outline">
-                                <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="tag" size="xs"/></span>
-                                <span>{tag.tagObject.title}</span>
-                            </d:atom.badge>
-                        </blogvh:link.tag>
+                        <f:if condition="{currentTag} == {tag.uid}">
+                            <f:then>
+                                <blogvh:link.tag tag="{tag.tagObject}" title="{tag.tagObject.title}" class="desiderio-blog-badge-link !no-underline" additionalAttributes="{aria-current: 'page'}">
+                                    <d:atom.badge variant="default">
+                                        <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="tag" size="xs"/></span>
+                                        <span>{tag.tagObject.title}</span>
+                                    </d:atom.badge>
+                                </blogvh:link.tag>
+                            </f:then>
+                            <f:else>
+                                <blogvh:link.tag tag="{tag.tagObject}" title="{tag.tagObject.title}" class="desiderio-blog-badge-link !no-underline">
+                                    <d:atom.badge variant="outline">
+                                        <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="tag" size="xs"/></span>
+                                        <span>{tag.tagObject.title}</span>
+                                    </d:atom.badge>
+                                </blogvh:link.tag>
+                            </f:else>
+                        </f:if>
                     </li>
                 </f:for>
             </ul>

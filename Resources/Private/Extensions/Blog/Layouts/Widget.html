@@ -4,8 +4,14 @@
     data-namespace-typo3-fluid="true"
 >
 
+<f:comment>
+    A widget is a plain section under its heading. The page template's
+    sidebar (or Modern's "More on this blog" panel) is the one landmark
+    around the widgets; an <aside> per widget had screen readers list each
+    one as another unnamed complementary region.
+</f:comment>
 <f:spaceless>
-    <aside class="desiderio-blog-widget min-w-0">
+    <section class="desiderio-blog-widget min-w-0">
         <d:layout.stack gap="sm">
             <header>
                 <d:atom.typography tag="h3" variant="small" class="desiderio-blog-widget__title"><f:render section="Title" /></d:atom.typography>
@@ -14,7 +20,7 @@
                 <f:render section="Content" />
             </div>
         </d:layout.stack>
-    </aside>
+    </section>
 </f:spaceless>
 
 </html>

@@ -18,7 +18,7 @@
                     <span class="inline-flex size-9 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary" aria-hidden="true">
                         <d:atom.icon name="{f:if(condition: settings.comments.disqus.enable, then: 'messages', else: 'send')}" size="sm"/>
                     </span>
-                    <div class="space-y-1">
+                    <div class="flex flex-col gap-1">
                         <d:atom.typography tag="h2" variant="h3" attributes="{id: 'postcommentform-{post.uid}-title'}">
                             <f:if condition="{settings.comments.disqus.enable}">
                                 <f:then><f:translate extensionName="Blog" key="headline.comments">Comments</f:translate></f:then>

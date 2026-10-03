@@ -109,8 +109,11 @@
     <f:comment>
         The sidebar stays in the page flow, as in a printed journal: it is
         taller than a window, and a sticky box would need its own scrollbar.
+        Its hidden h2 puts the widgets' h3 titles under the sidebar in the
+        page outline instead of under the last post.
     </f:comment>
     <aside class="desiderio-blog-classic__sidebar min-w-0" aria-label="{f:translate(extensionName: 'Blog', key: 'headline.sidebar', default: 'Blog sidebar')}">
+        <h2 class="sr-only"><f:translate extensionName="Blog" key="headline.sidebar" default="Blog sidebar"/></h2>
         <d:layout.stack gap="xl" class="desiderio-blog-classic__sidebar-panel">
             <f:if condition="{content.sidebar.records}">
                 <f:render.contentArea contentArea="{content.sidebar}"/>

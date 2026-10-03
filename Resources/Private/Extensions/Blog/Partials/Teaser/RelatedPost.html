@@ -24,13 +24,13 @@
         </f:if>
 
         <d:molecule.cardContent class="flex min-w-0 flex-1 flex-col gap-3 {f:if(condition: post.featuredImage, then: 'pt-0', else: '')}">
-            <header class="min-w-0 space-y-2">
+            <header class="flex min-w-0 flex-col gap-2">
                 <f:if condition="{post.categories}">
                     <f:for each="{post.categories}" as="postCategory" iteration="categoryIterator">
                         <f:if condition="{categoryIterator.isFirst}">
                             <div data-blog-category="{postCategory.uid}">
                                 <meta itemprop="articleSection" content="{postCategory.title}"/>
-                                <blogvh:link.category category="{postCategory}" class="!no-underline">
+                                <blogvh:link.category category="{postCategory}" class="desiderio-blog-badge-link !no-underline">
                                     <d:atom.badge variant="secondary" class="max-w-full">
                                         <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="folder" size="xs"/></span>
                                         <span class="truncate">{postCategory.title}</span>

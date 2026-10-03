@@ -8,7 +8,10 @@
 <f:comment>
     Blog – Modern: the head of a post. Topic, date and reading time above a
     large title, the teaser as the lead, the authors, then the picture at
-    the full width of the page column.
+    the full width of the page column. The topics form one item of the meta
+    row, so the dots between topic, date and reading time (23-blog.css)
+    never start a wrapped line. The picture is the page's largest paint: it
+    loads first, not lazily.
 </f:comment>
 
 <f:layout name="Post" />
@@ -17,13 +20,17 @@
     <header class="desiderio-blog-modern-post__header">
         <div class="desiderio-blog-modern-post__intro">
             <div class="desiderio-blog-modern-post__meta">
-                <f:for each="{post.categories}" as="postCategory">
-                    <meta itemprop="articleSection" content="{postCategory.title}"/>
-                    <blogvh:link.category category="{postCategory}" class="!no-underline">
-                        <d:atom.badge variant="secondary">{postCategory.title}</d:atom.badge>
-                    </blogvh:link.category>
-                </f:for>
-                <time datetime="{f:format.date(format: 'c', date: post.publishDate)}" itemprop="datePublished">{f:format.date(pattern: 'LONGDATE', date: post.publishDate)}</time>
+                <f:if condition="{post.categories}">
+                    <span class="desiderio-blog-modern-post__topics">
+                        <f:for each="{post.categories}" as="postCategory">
+                            <meta itemprop="articleSection" content="{postCategory.title}"/>
+                            <blogvh:link.category category="{postCategory}" class="desiderio-blog-badge-link !no-underline">
+                                <d:atom.badge variant="secondary">{postCategory.title}</d:atom.badge>
+                            </blogvh:link.category>
+                        </f:for>
+                    </span>
+                </f:if>
+                <time class="tabular-nums" datetime="{f:format.date(format: 'c', date: post.publishDate)}" itemprop="datePublished">{f:format.date(pattern: 'LONGDATE', date: post.publishDate)}</time>
                 <f:variable name="readingMinutes" value="{di:blog.readingTime(page: post.uid)}"/>
                 <span><f:translate key="blog.readingTime" extensionName="desiderio" arguments="{minutes: readingMinutes}"/></span>
             </div>
@@ -61,7 +68,7 @@
 
         <f:if condition="{post.featuredImage}">
             <div class="desiderio-blog-modern-post__media">
-                <f:render partial="General/FeaturedImage" arguments="{image: post.featuredImage, settings: {maxWidth: 1600, sizes: '(min-width: 1280px) 1216px, 100vw'}, layout: 'card'}"/>
+                <f:render partial="General/FeaturedImage" arguments="{image: post.featuredImage, settings: {maxWidth: 1600, sizes: '(min-width: 1280px) 1216px, 100vw'}, layout: 'card', priority: 1}"/>
             </div>
         </f:if>
     </header>

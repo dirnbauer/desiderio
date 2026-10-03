@@ -10,23 +10,33 @@
 <f:section name="Title"><f:translate extensionName="Blog" key="headline.categories">Categories</f:translate></f:section>
 
 <f:section name="Content">
+    <f:comment>
+        The open category (a category page) is the one filled badge, in
+        shadcn's default variant, and carries aria-current; the others stay
+        secondary.
+    </f:comment>
     <f:if condition="{categories}">
         <f:then>
             <ul role="list" class="flex flex-wrap gap-2">
                 <f:for each="{categories}" as="category">
+                    <f:variable name="categoryCount" value="{category.posts -> f:count()}"/>
                     <li id="category-{category.uid}" data-blog-category="{category.uid}" data-active="{f:if(condition: '{currentCategory} == {category.uid}', then: 'true', else: 'false')}">
-                        <blogvh:link.category category="{category}" title="{category.title}" class="!no-underline">
-                            <d:atom.badge variant="secondary">
-                                <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="folder" size="xs"/></span>
-                                <span>{category.title}</span>
-                                <span class="text-muted-foreground">
-                                    <f:variable name="categoryCount" value="{category.posts -> f:count()}"/>
-                                    <f:translate key="blog.posts.count" extensionName="desiderio" arguments="{count: categoryCount}">
-                                        {categoryCount} posts
-                                    </f:translate>
-                                </span>
-                            </d:atom.badge>
-                        </blogvh:link.category>
+                        <f:if condition="{currentCategory} == {category.uid}">
+                            <f:then>
+                                <blogvh:link.category category="{category}" title="{category.title}" class="desiderio-blog-badge-link !no-underline" additionalAttributes="{aria-current: 'page'}">
+                                    <d:atom.badge variant="default">
+                                        <f:render section="CategoryLabel" arguments="{title: category.title, count: categoryCount, countClass: 'opacity-80'}"/>
+                                    </d:atom.badge>
+                                </blogvh:link.category>
+                            </f:then>
+                            <f:else>
+                                <blogvh:link.category category="{category}" title="{category.title}" class="desiderio-blog-badge-link !no-underline">
+                                    <d:atom.badge variant="secondary">
+                                        <f:render section="CategoryLabel" arguments="{title: category.title, count: categoryCount, countClass: 'text-muted-foreground'}"/>
+                                    </d:atom.badge>
+                                </blogvh:link.category>
+                            </f:else>
+                        </f:if>
                     </li>
                 </f:for>
             </ul>
@@ -38,6 +48,16 @@
             </d:molecule.alert>
         </f:else>
     </f:if>
+</f:section>
+
+<f:section name="CategoryLabel">
+    <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="folder" size="xs"/></span>
+    <span>{title}</span>
+    <span class="tabular-nums {countClass}">
+        <f:translate key="blog.posts.count" extensionName="desiderio" arguments="{count: count}">
+            {count} posts
+        </f:translate>
+    </span>
 </f:section>
 
 </html>

@@ -299,7 +299,7 @@ final readonly class BlogPageTreeSeeder
             'xing' => '',
             'instagram' => '',
             'profile' => '',
-            'bio' => 'TYPO3 implementation team maintaining the Desiderio shadcn Blog templates.',
+            'bio' => 'The TYPO3 team at webconsulting maintains the Desiderio blog templates.',
             'posts' => '',
             'details_page' => 0,
         ];
@@ -631,7 +631,7 @@ final readonly class BlogPageTreeSeeder
             $title = DbRowValues::nonEmptyString($row['title'] ?? null, 'Blog post');
             $description = DbRowValues::nonEmptyString($row['description'] ?? null, '');
             if ($description === '') {
-                $description = sprintf('Seeded fallback metadata for "%s" so the shadcn Blog list and detail templates can show a complete article preview.', $title);
+                $description = sprintf('Sample description for "%s". Replace it in the page properties.', $title);
             }
 
             $publishDate = DbRowValues::integer($row, 'publish_date');
@@ -645,7 +645,7 @@ final readonly class BlogPageTreeSeeder
                 'tstamp' => $now,
                 'SYS_LASTCHANGED' => $now,
                 'subtitle' => DbRowValues::nonEmptyString($row['subtitle'] ?? null, ''),
-                'abstract' => DbRowValues::nonEmptyString($row['abstract'] ?? null, 'Complete sample metadata for the Desiderio Blog list template.'),
+                'abstract' => DbRowValues::nonEmptyString($row['abstract'] ?? null, 'Sample summary for the blog list. Replace it in the page properties.'),
                 'description' => $description,
                 'seo_title' => DbRowValues::nonEmptyString($row['seo_title'] ?? null, $title),
                 'og_title' => DbRowValues::nonEmptyString($row['og_title'] ?? null, $title),

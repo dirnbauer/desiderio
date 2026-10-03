@@ -40,6 +40,7 @@
         </d:layout.stack>
 
         <aside class="md:col-span-2 lg:col-span-1" aria-label="{f:translate(extensionName: 'Blog', key: 'headline.sidebar', default: 'Blog sidebar')}">
+            <h2 class="sr-only"><f:translate extensionName="Blog" key="headline.sidebar" default="Blog sidebar"/></h2>
             <div class="lg:sticky lg:top-24">
                 <d:layout.stack gap="xl" class="lg:max-h-[calc(100dvh-7rem)] lg:overflow-y-auto lg:overscroll-contain lg:pr-3">
                     <f:if condition="{content.sidebar.records}">
@@ -88,6 +89,7 @@
         </article>
 
         <aside class="md:col-span-2 lg:col-span-1" aria-label="{f:translate(extensionName: 'Blog', key: 'headline.sidebar', default: 'Blog sidebar')}">
+            <h2 class="sr-only"><f:translate extensionName="Blog" key="headline.sidebar" default="Blog sidebar"/></h2>
             <div class="lg:sticky lg:top-24">
                 <d:layout.stack gap="xl" class="lg:max-h-[calc(100dvh-7rem)] lg:overflow-y-auto lg:overscroll-contain lg:pr-3">
                     <f:if condition="{content.sidebar.records}">

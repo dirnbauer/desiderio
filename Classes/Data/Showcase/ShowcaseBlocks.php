@@ -134,7 +134,7 @@ final class ShowcaseBlocks
             'header' => $header,
             'description' => $description,
             'video_file' => [
-                'file' => 'Resources/Public/Styleguide/Video/desiderio-film-a258c48a.mp4',
+                'file' => 'Resources/Public/Styleguide/Video/desiderio-film-0f05e1a8.mp4',
                 'title' => 'Desiderio in 26 seconds',
                 'alternative' => 'A short film without sound: one page in 15 theme presets, light and dark mode, four languages and the editor tools.',
                 'description' => 'Rendered from code over screens of this site.',
@@ -142,7 +142,7 @@ final class ShowcaseBlocks
                 'autoplay' => true,
             ],
             'poster' => [
-                'file' => 'Resources/Public/Styleguide/Video/desiderio-film-poster-a258c48a.jpg',
+                'file' => 'Resources/Public/Styleguide/Video/desiderio-film-poster-0f05e1a8.jpg',
                 'title' => 'Desiderio in 26 seconds',
                 'alternative' => 'The seed-runs chart in the Blossom preset, one of 15.',
                 'description' => '',

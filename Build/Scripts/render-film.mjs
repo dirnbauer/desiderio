@@ -18,12 +18,13 @@
  *
  * With Build/Film/audio/ in place (Build/Scripts/generate-film-audio.mjs)
  * the film gets its soundtrack: each narration line at its scene, the music
- * under it, ducked while the voice speaks, faded in and out and normalised
- * to -16 LUFS. The captions in film.html come from the same narration.json.
+ * under it 15 LU below the voice and 10 % louder in the pauses, faded in and
+ * out, then one measured gain to -16 LUFS and a peak limiter. The captions
+ * in film.html come from the same narration.json.
  */
 
 import { chromium } from '@playwright/test';
-import { spawn } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { copyFileSync, createReadStream, existsSync, mkdirSync, readFileSync, readdirSync, renameSync, statSync, unlinkSync, writeFileSync } from 'node:fs';
 import { createServer } from 'node:http';
@@ -34,6 +35,10 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const OUT = join(ROOT, 'Build/Film/out');
 const TARGET = join(ROOT, 'Resources/Public/Styleguide/Video');
 const AUDIO = join(ROOT, 'Build/Film/audio');
+/** How far the music sits below the voice while it speaks, in LU. */
+const MUSIC_DB = 15;
+/** How much louder the music gets in the pauses: 10 %. */
+const BREAK_LIFT = 1.1;
 /** Files that name the film. */
 const REFERENCES = ['Classes/Data/Showcase/ShowcaseBlocks.php'];
 const FPS = 30;
@@ -57,6 +62,14 @@ const server = createServer((request, response) => {
 await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
 const base = `http://127.0.0.1:${server.address().port}`;
 
+/** Integrated loudness of a file in LUFS (EBU R128). */
+function lufs(file) {
+    const report = spawnSync('ffmpeg', ['-hide_banner', '-nostats', '-i', file, '-af', 'ebur128=framelog=quiet', '-f', 'null', '-'], { encoding: 'utf8' }).stderr;
+    const match = [...report.matchAll(/I:\s+(-?[0-9.]+) LUFS/g)].pop();
+    if (!match) throw new Error(`No loudness for ${file}`);
+    return Number(match[1]);
+}
+
 function ffmpeg(args, input) {
     return new Promise((resolve, reject) => {
         const process = spawn('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-y', ...args], { stdio: [input ? 'pipe' : 'ignore', 'inherit', 'inherit'] });
@@ -75,19 +88,32 @@ async function finish(mp4, poster) {
     if (existsSync(narrationFile) && existsSync(join(AUDIO, 'music.mp3'))) {
         const lines = JSON.parse(readFileSync(narrationFile, 'utf8')).lines;
         const end = duration / 1000;
-        const inputs = ['-i', mp4, '-i', join(AUDIO, 'music.mp3'), ...lines.flatMap((line) => ['-i', join(AUDIO, line.file)])];
-        const voices = lines.map((line, i) => `[${i + 2}:a]aformat=sample_rates=44100:channel_layouts=stereo,adelay=${line.at}|${line.at}[v${i}]`);
+        // The music sits MUSIC_DB below the voice while it speaks and rises by
+        // exactly BREAK_LIFT in the pauses: a volume automation, not a
+        // compressor, so nothing pumps. Both levels follow from the measured
+        // loudness of the stems, whatever the generator produced.
+        const voiceLufs = lines.reduce((sum, line) => sum + lufs(join(AUDIO, line.file)), 0) / lines.length;
+        const musicGain = 10 ** ((voiceLufs - MUSIC_DB - lufs(join(AUDIO, 'music.mp3'))) / 20);
+        const speaking = lines.map((line) => `between(t,${(line.at - 100) / 1000},${(line.at + line.duration + 150) / 1000})`).join('+');
+        const musicVolume = `${(musicGain * BREAK_LIFT).toFixed(5)}-${(musicGain * (BREAK_LIFT - 1)).toFixed(5)}*(${speaking})`;
+        const inputs = ['-i', join(AUDIO, 'music.mp3'), ...lines.flatMap((line) => ['-i', join(AUDIO, line.file)])];
+        const voices = lines.map((line, i) => `[${i + 1}:a]aformat=sample_rates=44100:channel_layouts=stereo,adelay=${line.at}|${line.at}[v${i}]`);
         const graph = [
             ...voices,
-            `${lines.map((_, i) => `[v${i}]`).join('')}amix=inputs=${lines.length}:normalize=0,asplit=2[voice][key]`,
-            `[1:a]aformat=sample_rates=44100:channel_layouts=stereo,volume=0.32,afade=t=in:st=0:d=1.2,afade=t=out:st=${end - 2.2}:d=2.2[music]`,
-            '[music][key]sidechaincompress=threshold=0.02:ratio=8:attack=15:release=500[ducked]',
-            `[ducked][voice]amix=inputs=2:normalize=0,atrim=0:${end},loudnorm=I=-16:TP=-1.5:LRA=11[mix]`,
+            `${lines.map((_, i) => `[v${i}]`).join('')}amix=inputs=${lines.length}:normalize=0[voice]`,
+            `[0:a]aformat=sample_rates=44100:channel_layouts=stereo,volume='${musicVolume}':eval=frame,afade=t=in:st=0:d=1.2,afade=t=out:st=${end - 2.2}:d=2.2[music]`,
+            `[music][voice]amix=inputs=2:normalize=0,atrim=0:${end}[mix]`,
         ].join(';');
+        // Mix, measure, then one static gain to -16 LUFS and a peak limiter:
+        // a single-pass loudnorm rides the gain and lifted every pause.
+        const raw = join(OUT, 'soundtrack-raw.wav');
+        await ffmpeg([...inputs, '-filter_complex', graph, '-map', '[mix]', '-ar', '44100', raw]);
+        const gain = (-16 - lufs(raw)).toFixed(2);
         const scored = join(OUT, 'film-scored.mp4');
-        await ffmpeg([...inputs, '-filter_complex', graph, '-map', '0:v', '-map', '[mix]', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '160k', '-ar', '44100', '-movflags', '+faststart', '-t', String(end), scored]);
+        await ffmpeg(['-i', mp4, '-i', raw, '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-af', `volume=${gain}dB,alimiter=limit=0.84:level=false`, '-c:a', 'aac', '-b:a', '160k', '-ar', '44100', '-movflags', '+faststart', '-t', String(end), scored]);
+        unlinkSync(raw);
         renameSync(scored, mp4);
-        console.log(`soundtrack: ${lines.length} narration lines + music`);
+        console.log(`soundtrack: ${lines.length} narration lines + music ${MUSIC_DB} dB below the voice, +${Math.round((BREAK_LIFT - 1) * 100)}% in the pauses, ${gain} dB to -16 LUFS`);
     }
 
     mkdirSync(TARGET, { recursive: true });

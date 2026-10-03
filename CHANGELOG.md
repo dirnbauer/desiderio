@@ -6,6 +6,8 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.17.0] — 2026-10-03
+
 ### Added
 
 - **A thank-you on the pages that present other people's extensions.** A

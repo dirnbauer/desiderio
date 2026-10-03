@@ -207,15 +207,12 @@ final class SeedStarterSitesCommand extends Command
                 }
             }
 
-            $seededContentElements += $this->seedPageContent(
-                $rootUid,
-                $starter['home']['content'],
-                $now,
-                $contentColumns,
-                $additionalDeleteCTypes
-            );
-
+            // Pages first, content second: the content links to its sibling
+            // pages ("#contact"), and those links can only become
+            // t3://page links once every page of the starter has a uid.
+            $linkTargets = ['/' => $rootUid];
             $managedChildPageUids = [];
+            $childPages = [];
             foreach (array_values($starter['subpages']) as $pageIndex => $page) {
                 $childSlug = $this->buildChildPageSlug($rootSlug, $page['slug']);
                 $childAttributes = $this->buildStarterPageAttributes(
@@ -234,10 +231,21 @@ final class SeedStarterSitesCommand extends Command
                     $updatedPages++;
                 }
                 $managedChildPageUids[] = $pageUid;
+                $linkTargets['#' . ltrim($page['slug'], '/')] = $pageUid;
+                $childPages[] = [$pageUid, $page['content']];
+            }
 
+            $seededContentElements += $this->seedPageContent(
+                $rootUid,
+                self::resolveStarterLinks($starter['home']['content'], $linkTargets),
+                $now,
+                $contentColumns,
+                $additionalDeleteCTypes
+            );
+            foreach ($childPages as [$pageUid, $pageContent]) {
                 $seededContentElements += $this->seedPageContent(
                     $pageUid,
-                    $page['content'],
+                    self::resolveStarterLinks($pageContent, $linkTargets),
                     $now,
                     $contentColumns,
                     $additionalDeleteCTypes
@@ -292,6 +300,40 @@ final class SeedStarterSitesCommand extends Command
         }
 
         return $created;
+    }
+
+    /**
+     * Turns the starter's page references into real page links: a link or
+     * form target "#<slug>" that names a starter page becomes
+     * t3://page?uid=<uid>, "/" the starter's root page. TYPO3 then writes
+     * the URL for the site the starter was seeded into, with its base and
+     * language. Anything else, a real in-page anchor included, stays as it is.
+     *
+     * @param array<int, StarterBlock> $blocks
+     * @param array<string, int> $linkTargets
+     * @return array<int, StarterBlock>
+     */
+    private static function resolveStarterLinks(array $blocks, array $linkTargets): array
+    {
+        $resolve = static function (array $values) use (&$resolve, $linkTargets): array {
+            foreach ($values as $key => $value) {
+                if (is_array($value)) {
+                    $values[$key] = $resolve($value);
+                } elseif (is_string($key) && is_string($value) && isset($linkTargets[$value])
+                    && preg_match('/(^|_)(link|form_action)$/', $key) === 1
+                ) {
+                    $values[$key] = 't3://page?uid=' . $linkTargets[$value];
+                }
+            }
+
+            return $values;
+        };
+
+        foreach ($blocks as $index => $block) {
+            $blocks[$index]['fields'] = $resolve($block['fields']);
+        }
+
+        return $blocks;
     }
 
     /**

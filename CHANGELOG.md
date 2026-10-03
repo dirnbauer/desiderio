@@ -6,6 +6,25 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.17.1] — 2026-10-03
+
+### Fixed
+
+- **The search facets list only what this site has.** The sites of an
+  installation share their Solr cores, and with `minimumCount = 0` Solr
+  returned every value of the field in the core: the content type facet
+  showed another site's retired skill type and the category facet the
+  blog's "News" category, each with 0 results. Both facets count from 1
+  now.
+- **Skills have their label.** EXT:skillflow indexes nr_llm's skill
+  records, so their type is `tx_nrllm_skill`. The facet printed that table
+  name; it now says Skills (Skills, 技能, Skills in German and Hungarian),
+  and the old `tx_skillflow_skill` type keeps the same label.
+- **Frequent searches take a few lines instead of a screen.** Eight terms
+  instead of twenty, without the bare `*` wildcard. They are outline badges
+  that wrap instead of one full-width row per term, under a heading set
+  like the facet legends.
+
 ## [4.17.0] — 2026-10-03
 
 ### Added

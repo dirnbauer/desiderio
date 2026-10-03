@@ -36,6 +36,10 @@
    behind the first line — never a bare line above the text. */
 .testimonial--large .testimonial__quote {
     position: relative;
+    /* The quote is the mark's stacking context: without it the mark's
+       z-index -1 sent it behind the card's background, and only the few
+       pixels outside the card showed, as a sliver beside the first line. */
+    isolation: isolate;
     font-size: var(--d-text-2xl);
     font-style: normal;
     font-weight: var(--d-weight-medium);
@@ -44,8 +48,8 @@
     padding-block-start: var(--d-spacing-lg);
     margin-block-end: var(--d-spacing-lg);
 }
-/* z-index -1 puts the mark behind the words it overlaps (the section is the
-   stacking context, so it still paints above the section's own surface). */
+/* z-index -1 puts the mark behind the words it overlaps, inside the quote's
+   own stacking context, so it paints above the card and the section. */
 .testimonial__quote-mark {
     position: absolute;
     z-index: -1;

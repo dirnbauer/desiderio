@@ -3,6 +3,50 @@
  * Framework-free, auto-initialised on DOMContentLoaded.
  */
 document.addEventListener('DOMContentLoaded', () => {
+  // Storage can be refused (private windows, strict policies). Every read
+  // and write is optional, so a refusal never stops the rest of this file.
+  const store = {
+    get: key => {
+      try {
+        return window.localStorage.getItem(key);
+      } catch {
+        return null;
+      }
+    },
+    set: (key, value) => {
+      try {
+        window.localStorage.setItem(key, value);
+      } catch {
+        // Not remembered; nothing else depends on it.
+      }
+    },
+    remove: key => {
+      try {
+        window.localStorage.removeItem(key);
+      } catch {
+        // Nothing stored to remove.
+      }
+    },
+  };
+
+  // A control that removes or hides its own box would drop keyboard focus
+  // to the top of the page; hand it to the main landmark instead.
+  const rescueFocus = container => {
+    if (container && container.contains(document.activeElement)) {
+      document.getElementById('main-content')?.focus({ preventScroll: true });
+    }
+  };
+
+  // The sticky header's real height (it differs per breakpoint): scroll
+  // padding and anything docked below the header read --d-header-height.
+  const siteHeader = document.querySelector('.desiderio-header');
+  if (siteHeader && 'ResizeObserver' in window) {
+    new ResizeObserver(([entry]) => {
+      const height = entry.borderBoxSize?.[0]?.blockSize ?? siteHeader.offsetHeight;
+      document.documentElement.style.setProperty('--d-header-height', `${Math.round(height)}px`);
+    }).observe(siteHeader);
+  }
+
   /* ------------------------------------------------------------------ */
   /*  1. Accordion                                                       */
   /* ------------------------------------------------------------------ */
@@ -110,7 +154,11 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ------------------------------------------------------------------ */
   document.addEventListener('click', e => {
     const button = e.target.closest('[data-d-dismiss]');
-    if (button) button.closest('[data-d-dismissible]')?.remove();
+    if (button) {
+      const dismissible = button.closest('[data-d-dismissible]');
+      rescueFocus(dismissible);
+      dismissible?.remove();
+    }
   });
 
   /* ------------------------------------------------------------------ */
@@ -177,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const html = document.documentElement;
   const body = document.body;
   const media = window.matchMedia('(prefers-color-scheme: dark)');
-  const storedTheme = () => localStorage.getItem('d-theme');
+  const storedTheme = () => store.get('d-theme');
   const siteTheme = () => body?.dataset.theme || 'system';
   const themeLabels = {
     light: 'Light',
@@ -241,7 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('[data-d-theme-toggle]').forEach(btn => {
     btn.addEventListener('click', () => {
       const next = html.classList.contains('dark') ? 'light' : 'dark';
-      localStorage.setItem('d-theme', next);
+      store.set('d-theme', next);
       applyTheme(next);
     });
   });
@@ -249,7 +297,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('[data-d-theme-option]').forEach(btn => {
     btn.addEventListener('click', () => {
       const next = btn.dataset.dThemeOption || 'system';
-      localStorage.setItem('d-theme', next);
+      store.set('d-theme', next);
       applyTheme(next);
       const root = btn.closest('[data-d-theme-switch]');
       if (root && root.tagName.toLowerCase() === 'details') {
@@ -283,18 +331,47 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ------------------------------------------------------------------ */
   /*  6. Mobile menu toggle                                              */
   /* ------------------------------------------------------------------ */
-  document.querySelectorAll('[data-d-menu-toggle]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const targetSel = btn.dataset.dMenuTarget;
-      const target = targetSel ? document.querySelector(targetSel) : null;
-      if (!target) return;
+  // Escape closes the menu and returns focus to its toggle; a click outside
+  // or a resize to the desktop layout closes it as well.
+  const menuToggles = [...document.querySelectorAll('[data-d-menu-toggle]')];
+  const menuTarget = btn => {
+    const targetSel = btn.dataset.dMenuTarget;
+    return targetSel ? document.querySelector(targetSel) : null;
+  };
+  const setMenu = (btn, open) => {
+    const target = menuTarget(btn);
+    if (!target) return;
+    btn.setAttribute('aria-expanded', String(open));
+    target.classList.toggle('is-open', open);
+    target.classList.toggle('is-hidden', !open);
+  };
+  const openMenus = () => menuToggles.filter(btn => btn.getAttribute('aria-expanded') === 'true');
 
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
-      const nextExpanded = !expanded;
-      btn.setAttribute('aria-expanded', String(nextExpanded));
-      target.classList.toggle('is-open', nextExpanded);
-      target.classList.toggle('is-hidden', !nextExpanded);
+  menuToggles.forEach(btn => {
+    btn.addEventListener('click', () => {
+      setMenu(btn, btn.getAttribute('aria-expanded') !== 'true');
     });
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+    openMenus().forEach(btn => {
+      setMenu(btn, false);
+      btn.focus();
+    });
+  });
+
+  document.addEventListener('click', e => {
+    openMenus().forEach(btn => {
+      const target = menuTarget(btn);
+      if (target && !target.contains(e.target) && !btn.contains(e.target)) {
+        setMenu(btn, false);
+      }
+    });
+  });
+
+  window.matchMedia('(min-width: 1025px)').addEventListener?.('change', e => {
+    if (e.matches) openMenus().forEach(btn => setMenu(btn, false));
   });
 
   /* ------------------------------------------------------------------ */
@@ -529,7 +606,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (consentBanners.length > 0) {
     const key = 'd-consent';
     const preferencesKey = 'd-consent-preferences';
-    const stored = localStorage.getItem(key);
+    const stored = store.get(key);
 
     consentBanners.forEach(candidate => { candidate.hidden = true; });
 
@@ -550,14 +627,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }));
 
       const choose = (status, selectedPreferences = []) => {
-        localStorage.setItem(key, status);
+        store.set(key, status);
         if (selectedPreferences.length > 0) {
-          localStorage.setItem(preferencesKey, JSON.stringify(selectedPreferences));
+          store.set(preferencesKey, JSON.stringify(selectedPreferences));
         } else {
-          localStorage.removeItem(preferencesKey);
+          store.remove(preferencesKey);
         }
         body.dataset.consent = status;
-        consentBanners.forEach(candidate => { candidate.hidden = true; });
+        consentBanners.forEach(candidate => {
+          rescueFocus(candidate);
+          candidate.hidden = true;
+        });
         window.dispatchEvent(new CustomEvent('desiderio:consent-change', {
           detail: { status, preferences: selectedPreferences },
         }));
@@ -2067,6 +2147,51 @@ document.addEventListener('DOMContentLoaded', () => {
           status.textContent = '';
         }, 2000);
       });
+    });
+  }
+
+  /* ------------------------------------------------------------------ */
+  /*  18. Videos that play by themselves                                 */
+  /* ------------------------------------------------------------------ */
+  // A <video data-d-autoplay> (its file reference has "autoplay" set) plays
+  // muted while a third of it is on screen and pauses when it leaves. It
+  // never starts for visitors who ask for reduced motion, and once someone
+  // pauses it with its controls it stays paused. Without JavaScript the
+  // poster and the controls remain.
+  const autoplayVideos = document.querySelectorAll('video[data-d-autoplay]');
+  if (autoplayVideos.length > 0 && 'IntersectionObserver' in window) {
+    const calm = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const pauseQuietly = video => {
+      if (!video.paused) {
+        video.dataset.dAutoPause = '';
+        video.pause();
+      }
+    };
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(({ target: video, isIntersecting }) => {
+        if (!isIntersecting) {
+          pauseQuietly(video);
+        } else if (!calm.matches && !('dHeld' in video.dataset)) {
+          video.muted = true;
+          video.play().catch(() => {});
+        }
+      });
+    }, { threshold: 0.35 });
+    autoplayVideos.forEach(video => {
+      video.addEventListener('pause', () => {
+        if ('dAutoPause' in video.dataset) {
+          delete video.dataset.dAutoPause;
+        } else {
+          video.dataset.dHeld = '';
+        }
+      });
+      video.addEventListener('play', () => delete video.dataset.dHeld);
+      observer.observe(video);
+    });
+    calm.addEventListener('change', () => {
+      if (calm.matches) {
+        autoplayVideos.forEach(pauseQuietly);
+      }
     });
   }
 });

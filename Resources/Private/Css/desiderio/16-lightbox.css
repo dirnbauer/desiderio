@@ -34,6 +34,18 @@
     color: var(--foreground);
     box-shadow: var(--shadow-lg, var(--d-surface-shadow, none));
 }
+/* The dialog arrives from almost its full size, never from nothing. */
+.d-lightbox-dialog[open] {
+    transition: opacity 200ms var(--d-ease, ease-out), scale 200ms var(--d-ease, ease-out);
+}
+
+@starting-style {
+    .d-lightbox-dialog[open] {
+        opacity: 0;
+        scale: 0.96;
+    }
+}
+
 .d-lightbox-dialog::backdrop {
     background: color-mix(in oklch, black 80%, transparent);
 }

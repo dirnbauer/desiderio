@@ -244,7 +244,9 @@ final class ShadcnThemeTest extends TestCase
         // Scoped to the Fluid templates on purpose: scanning the whole
         // ContentBlocks tree turned utility-looking words in config.yaml
         // descriptions and XLF keyword catalogs into dead CSS candidates.
-        self::assertStringContainsString('@source "../../../ContentBlocks/ContentElements/*/templates";', $tailwindCss);
+        // The glob names the files: ".../*/templates" matched none of them,
+        // so utilities used only in element templates never reached the CSS.
+        self::assertStringContainsString('@source "../../../ContentBlocks/ContentElements/*/templates/*.html";', $tailwindCss);
         self::assertStringContainsString('@custom-variant dark', $tailwindCss);
         self::assertStringContainsString('@theme inline', $tailwindCss);
         self::assertStringContainsString('.ce-bodytext', $tailwindCss);

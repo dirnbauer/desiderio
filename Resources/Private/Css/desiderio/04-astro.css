@@ -10,11 +10,17 @@
 @media (prefers-reduced-motion: no-preference) {
     [data-astro-reveal],
     [data-d-animate] {
+        transition:
+            opacity 300ms var(--d-ease, ease-out),
+            transform 300ms var(--d-ease, ease-out);
+        transition-delay: calc(var(--d-i, 0) * 50ms);
+    }
+
+    /* Hidden only once the runtime has armed an element below the fold:
+       without JavaScript, or when it fails, the content simply shows. */
+    [data-astro-ready~="reveal"]:not([data-astro-visible="true"], .is-visible) {
         opacity: 0;
         transform: translateY(var(--astro-reveal-y));
-        transition:
-            opacity 0.42s ease,
-            transform 0.42s ease;
     }
 
     [data-astro-reveal="fade"],
@@ -39,14 +45,16 @@
     }
 }
 
-[data-astro-tilt] {
-    transform: perspective(900px) rotateX(var(--astro-tilt-x, 0deg)) rotateY(var(--astro-tilt-y, 0deg));
-    transform-style: preserve-3d;
-    transition:
-        transform 0.18s ease,
-        box-shadow 0.18s ease,
-        border-color 0.18s ease;
-    will-change: transform;
+/* Tilt only where the runtime armed it: a fine pointer that hovers. */
+@media (hover: hover) and (pointer: fine) {
+    [data-astro-tilt][data-astro-ready~="tilt"] {
+        transform: perspective(900px) rotateX(var(--astro-tilt-x, 0deg)) rotateY(var(--astro-tilt-y, 0deg));
+        transform-style: preserve-3d;
+        transition:
+            transform var(--d-motion-fast, 160ms) var(--d-ease, ease-out),
+            box-shadow var(--d-motion-fast, 160ms) var(--d-ease, ease-out),
+            border-color var(--d-motion-fast, 160ms) var(--d-ease, ease-out);
+    }
 }
 
 [data-astro-marquee] {
@@ -63,6 +71,7 @@
 }
 
 [data-astro-marquee]:hover > *,
+[data-astro-marquee]:focus-within > *,
 [data-astro-paused="true"] > * {
     animation-play-state: paused;
 }

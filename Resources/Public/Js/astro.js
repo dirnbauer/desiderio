@@ -9,7 +9,7 @@
 
   var readyAttr = 'astroReady';
   var reduceMotionQuery = '(prefers-reduced-motion: reduce)';
-  var coarsePointerQuery = '(pointer: coarse)';
+  var finePointerQuery = '(hover: hover) and (pointer: fine)';
 
   function supports(selector) {
     return typeof selector === 'string' && selector.trim() !== '';
@@ -17,6 +17,14 @@
 
   function reducedMotion() {
     return window.matchMedia && window.matchMedia(reduceMotionQuery).matches;
+  }
+
+  // "Slide 2 of 5" in the page language: the template passes the translated
+  // carousel.status label ("Folie %1$s von %2$s") on the live region.
+  function slideStatus(region, current, total) {
+    var pattern = region.getAttribute('data-astro-status-pattern') || 'Slide %1$s of %2$s';
+
+    return pattern.replace('%1$s', String(current)).replace('%2$s', String(total));
   }
 
   function parseNumberParts(input) {
@@ -78,7 +86,8 @@
   }
 
   function setCounterText(element, parts, value) {
-    element.textContent = parts.prefix + formatNumber(value, parts.decimals, undefined, parts.grouped) + parts.suffix;
+    var visual = element.querySelector('[data-astro-counter-visual]') || element;
+    visual.textContent = parts.prefix + formatNumber(value, parts.decimals, undefined, parts.grouped) + parts.suffix;
   }
 
   function closestCopyRoot(button) {
@@ -360,8 +369,18 @@
       });
     }
 
+    var viewportBottom = window.innerHeight || document.documentElement.clientHeight;
+
     elements.forEach(function (element) {
-      if (element.dataset[readyAttr]?.includes('reveal')) {
+      if (element.dataset[readyAttr]?.includes('reveal') || element.dataset.astroVisible === 'true') {
+        return;
+      }
+
+      // Already on screen: show it as it is. Hiding it first only to fade it
+      // back in is a flash, and the CSS hides nothing that is not armed.
+      if (element.getBoundingClientRect().top < viewportBottom) {
+        element.dataset.astroVisible = 'true';
+        element.classList.add('is-visible');
         return;
       }
 
@@ -414,6 +433,22 @@
       }
 
       element.dataset.astroOriginalText = element.textContent.trim();
+
+      // Counting from 0 to 1 is no news: values under ten stay as they are.
+      if (Math.abs(parts.target) < 10) {
+        element.dataset[readyAttr] = [element.dataset[readyAttr], 'counter'].filter(Boolean).join(' ');
+        return;
+      }
+
+      // Screen readers and find-in-page read the real value from an sr-only
+      // twin; only the hidden copy counts up.
+      var visual = document.createElement('span');
+      var spoken = document.createElement('span');
+      visual.setAttribute('aria-hidden', 'true');
+      visual.dataset.astroCounterVisual = '';
+      spoken.className = 'sr-only';
+      spoken.textContent = element.dataset.astroOriginalText;
+      element.replaceChildren(visual, spoken);
       element.dataset.astroParsedTarget = String(parts.target);
       element.dataset.astroParsedDecimals = String(parts.decimals);
       element.dataset.astroParsedPrefix = parts.prefix;
@@ -511,7 +546,7 @@
   };
 
   AstroRuntime.prototype.initTilt = function (scope) {
-    if (reducedMotion() || (window.matchMedia && window.matchMedia(coarsePointerQuery).matches)) {
+    if (reducedMotion() || !(window.matchMedia && window.matchMedia(finePointerQuery).matches)) {
       return;
     }
 
@@ -558,6 +593,7 @@
 
       var clone = track.cloneNode(true);
       clone.setAttribute('aria-hidden', 'true');
+      clone.inert = true;
       element.appendChild(clone);
     });
   };
@@ -586,7 +622,13 @@
         ? root.dataset.astroCarouselLabels.split('|')
         : { prev: 'Previous slide', next: 'Next slide', dot: 'Go to slide' };
       if (Array.isArray(labels)) {
-        labels = { prev: labels[0] || 'Previous slide', next: labels[1] || 'Next slide', dot: labels[2] || 'Go to slide' };
+        labels = {
+          prev: labels[0] || 'Previous slide',
+          next: labels[1] || 'Next slide',
+          dot: labels[2] || 'Go to slide',
+          pause: labels[3] || 'Pause slideshow',
+          play: labels[4] || 'Play slideshow'
+        };
       }
 
       function makeButton(cls, text) {
@@ -633,7 +675,7 @@
           dot.tabIndex = active ? 0 : -1;
         });
         if (live) {
-          live.textContent = 'Slide ' + (index + 1) + ' of ' + slides.length;
+          live.textContent = slideStatus(live, index + 1, slides.length);
         }
       }
 
@@ -658,8 +700,115 @@
       root.appendChild(controls);
 
       show(0);
+
+      if (root.dataset.astroCarouselAutoplay === 'true' && !reducedMotion()) {
+        startAutoplay(root, controls, live, labels, function () {
+          show(index + 1);
+        }, [prev, next, dots]);
+      }
     });
   };
+
+  // Autoplay for a carousel whose editor ticked it. Never under reduced
+  // motion. It holds while the carousel is hovered, has focus, is off screen
+  // or sits in a hidden tab, and stops for good once the visitor picks a
+  // slide. The first control is a pause/play button, so the visitor can stop
+  // the movement (WCAG 2.2.2). While it plays, the status region stays
+  // silent instead of announcing every slide.
+  function startAutoplay(root, controls, live, labels, advance, navigation) {
+    var delay = parseInt(root.dataset.astroCarouselInterval || '', 10) || 6000;
+    var timer = 0;
+    var paused = false;
+    var holds = { view: 'IntersectionObserver' in window };
+    var pauseIcon = '<svg aria-hidden="true" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><rect x="4" y="3" width="3" height="10" rx="1"/><rect x="9" y="3" width="3" height="10" rx="1"/></svg>';
+    var playIcon = '<svg aria-hidden="true" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M5.5 3.2v9.6a.6.6 0 0 0 .92.5l7.2-4.8a.6.6 0 0 0 0-1l-7.2-4.8a.6.6 0 0 0-.92.5z"/></svg>';
+    var toggle = document.createElement('button');
+
+    toggle.type = 'button';
+    toggle.className = 'hero-carousel__nav hero-carousel__toggle';
+    controls.insertBefore(toggle, controls.firstChild);
+
+    function held() {
+      return Object.keys(holds).some(function (reason) {
+        return holds[reason];
+      });
+    }
+
+    function schedule() {
+      window.clearTimeout(timer);
+      timer = 0;
+      if (live) {
+        live.setAttribute('aria-live', paused ? 'polite' : 'off');
+      }
+      if (!paused && !held()) {
+        timer = window.setTimeout(function () {
+          advance();
+          schedule();
+        }, delay);
+      }
+    }
+
+    function hold(reason, on) {
+      holds[reason] = on;
+      schedule();
+    }
+
+    function setPaused(value) {
+      paused = value;
+      toggle.setAttribute('aria-label', paused ? labels.play : labels.pause);
+      toggle.innerHTML = paused ? playIcon : pauseIcon;
+      schedule();
+    }
+
+    // Play means play now, although the pointer and the focus are still on
+    // the carousel: the button lifts those holds until they happen again.
+    toggle.addEventListener('click', function () {
+      holds.hover = false;
+      holds.focus = false;
+      setPaused(!paused);
+    });
+
+    navigation.forEach(function (control) {
+      control.addEventListener('click', function () {
+        setPaused(true);
+      });
+    });
+    root.addEventListener('keydown', function (event) {
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        setPaused(true);
+      }
+    });
+
+    root.addEventListener('focusin', function (event) {
+      hold('focus', event.target !== toggle);
+    });
+    root.addEventListener('focusout', function (event) {
+      if (!root.contains(event.relatedTarget)) {
+        hold('focus', false);
+      }
+    });
+
+    if (window.matchMedia && window.matchMedia(finePointerQuery).matches) {
+      root.addEventListener('pointerenter', function () {
+        hold('hover', true);
+      });
+      root.addEventListener('pointerleave', function () {
+        hold('hover', false);
+      });
+    }
+
+    document.addEventListener('visibilitychange', function () {
+      hold('page', document.hidden);
+    });
+
+    if (holds.view) {
+      new IntersectionObserver(function (entries) {
+        hold('view', !entries[entries.length - 1].isIntersecting);
+      }, { threshold: 0.35 }).observe(root);
+    }
+
+    setPaused(false);
+  }
 
   AstroRuntime.prototype.initContentCarousel = function (scope) {
     scope.querySelectorAll('[data-astro-content-carousel]').forEach(function (root) {
@@ -709,7 +858,7 @@
           });
         });
         if (status) {
-          status.textContent = 'Slide ' + (active + 1) + ' of ' + total;
+          status.textContent = slideStatus(status, active + 1, total);
         }
       }
 

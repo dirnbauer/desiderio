@@ -16,12 +16,17 @@
 
     <d:organism.pageHeader page="{page}" newsDetailUid="{newsDetailUid}" headingOwnedByContent="{pageHeadingOwnedByContent}"/>
 
+    <f:comment>
+        Every content element brings its own section and container, so this
+        wrapper adds none: a second container doubled the side gutter and
+        boxed the full-width bands.
+    </f:comment>
     <div class="desiderio-corporate-template">
-        <d:layout.container size="xl" class="desiderio-corporate-template__container">
+        <div class="desiderio-corporate-template__container">
             <div class="desiderio-corporate-template__content">
                 <f:render partial="Presets/ContentArea" arguments="{content: content.main}"/>
             </div>
-        </d:layout.container>
+        </div>
     </div>
 </f:section>
 

@@ -601,3 +601,8 @@
   height: 2.75rem;
 }
 
+/* The Form Framework opens every form with a <div> of hidden fields. As a
+   grid item it was an empty row plus a gap above the first field. */
+form > div:not([class]):has(> input[type="hidden"]):not(:has(> :not(input[type="hidden"]))) {
+    display: contents;
+}

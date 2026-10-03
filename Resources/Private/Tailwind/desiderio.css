@@ -23,7 +23,7 @@
    ContentBlocks tree would treat words in config.yaml descriptions and
    XLF keyword catalogs (grid, table, flex, ...) as class candidates and
    bloat the bundle with dead utilities. */
-@source "../../../ContentBlocks/ContentElements/*/templates";
+@source "../../../ContentBlocks/ContentElements/*/templates/*.html";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -197,7 +197,9 @@
     box-shadow: var(--shadow-sm);
   }
 
-  .desiderio-section :where(.btn, button, input, textarea, select) {
+  /* Tab triggers keep their label width: the tab list scrolls sideways
+     instead (overflow-x-auto), where squeezed triggers would clip labels. */
+  .desiderio-section :where(.btn, button:not([role="tab"]), input, textarea, select) {
     min-width: 0;
   }
 

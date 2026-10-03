@@ -28,7 +28,8 @@
 .d-section-intro__lead {
     max-width: 65ch;
 }
-.d-section-intro[data-align="center"] .d-section-intro__lead {
+.d-section-intro[data-align="center"] .d-section-intro__lead,
+.d-section-intro[data-align="center"] > * {
     margin-inline: auto;
 }
 

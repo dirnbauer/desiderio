@@ -2551,6 +2551,18 @@
         <target>第 %1$s 张幻灯片，共 %2$s 张</target>
       </segment>
     </unit>
+    <unit id="carousel.pause">
+      <segment state="final">
+        <source>Pause slideshow</source>
+        <target>暂停轮播</target>
+      </segment>
+    </unit>
+    <unit id="carousel.play">
+      <segment state="final">
+        <source>Play slideshow</source>
+        <target>播放轮播</target>
+      </segment>
+    </unit>
     <unit id="resource.open">
       <segment state="final">
         <source>Open resource</source>

@@ -22,6 +22,11 @@
     priority="1"
 />
 <vite:asset entry="EXT:desiderio/Resources/Private/Assets/Main.entry.css"/>
+<f:comment>
+    The stored theme applies before the first paint (no light flash for a
+    visitor who chose dark); desiderio.js keeps switching it later.
+</f:comment>
+<f:asset.script identifier="desiderioThemeBoot" src="EXT:desiderio/Resources/Public/Js/theme-boot.js" priority="1"/>
 <vite:asset entry="EXT:desiderio/Resources/Private/Assets/Components.entry.js"/>
 
 <a href="#main-content" class="d-skip-link">

@@ -14,7 +14,8 @@
 <f:variable name="brandTagline" value="{site.configuration.settings.desiderio.brand.tagline}"/>
 <f:variable name="footerAttribution" value="" />
 <f:if condition="{brandTagline}">
-    <f:variable name="footerAttribution" value="{brandTagline -> f:format.trim(characters: '.') -> f:format.case(mode: 'lower')}" />
+    <f:comment>The tagline keeps its case: it names things (Camino, TYPO3).</f:comment>
+    <f:variable name="footerAttribution" value="{brandTagline -> f:format.trim(characters: '.')}" />
 </f:if>
 
 <f:comment>
@@ -56,7 +57,7 @@
 
             <nav class="desiderio-footer__legal" aria-label="{f:translate(extensionName: 'desiderio', key: 'a11y.nav.legal', default: 'Legal navigation')}">
                 <ul class="desiderio-footer__legal-list" role="list">
-                    <!--
+                    <f:comment>
                         Only pages the site actually configures through
                         desiderio.footer.legalPageIds are linked. The previous
                         fallback guessed the slugs "imprint", "privacy" and
@@ -64,7 +65,7 @@
                         three 404s on every site that has no such pages — the
                         Agent Nexus site advertised all three and none existed.
                         A site without legal pages shows no legal links.
-                    -->
+                    </f:comment>
                     <f:for each="{legalMenu}" as="item">
                         <li>
                             <f:link.typolink parameter="{item.link}" class="desiderio-footer__legal-link">

@@ -2551,6 +2551,18 @@
         <target>Folie %1$s von %2$s</target>
       </segment>
     </unit>
+    <unit id="carousel.pause">
+      <segment state="final">
+        <source>Pause slideshow</source>
+        <target>Diashow anhalten</target>
+      </segment>
+    </unit>
+    <unit id="carousel.play">
+      <segment state="final">
+        <source>Play slideshow</source>
+        <target>Diashow abspielen</target>
+      </segment>
+    </unit>
     <unit id="resource.open">
       <segment state="final">
         <source>Open resource</source>

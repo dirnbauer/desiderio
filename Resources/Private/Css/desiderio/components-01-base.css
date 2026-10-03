@@ -51,11 +51,13 @@ body[data-icon-library] .d-icon[data-icon-library] {
   display: none;
 }
 
-body[data-icon-library="lucide"] .d-icon[data-icon-library="lucide"],
-body[data-icon-library="tabler"] .d-icon[data-icon-library="tabler"],
-body[data-icon-library="hugeicons"] .d-icon[data-icon-library="hugeicons"],
-body[data-icon-library="phosphor"] .d-icon[data-icon-library="phosphor"],
-body[data-icon-library="remixicon"] .d-icon[data-icon-library="remixicon"] {
+/* An icon a template hides on purpose stays hidden: this rule outranks a
+   plain .hidden class, so it leaves those icons out. */
+body[data-icon-library="lucide"] .d-icon[data-icon-library="lucide"]:not([hidden], .hidden),
+body[data-icon-library="tabler"] .d-icon[data-icon-library="tabler"]:not([hidden], .hidden),
+body[data-icon-library="hugeicons"] .d-icon[data-icon-library="hugeicons"]:not([hidden], .hidden),
+body[data-icon-library="phosphor"] .d-icon[data-icon-library="phosphor"]:not([hidden], .hidden),
+body[data-icon-library="remixicon"] .d-icon[data-icon-library="remixicon"]:not([hidden], .hidden) {
   display: block;
 }
 
@@ -88,8 +90,10 @@ body[data-icon-library="remixicon"] .d-icon[data-icon-library="remixicon"] {
 
 .d-skip-link {
   position: absolute;
-  top: -100%;
+  top: 0;
   left: 0;
+  /* Parked above the viewport with a transform, so showing it moves no layout. */
+  transform: translateY(-110%);
   z-index: 10000;
   padding: 0.75rem 1.25rem;
   background-color: var(--primary);
@@ -97,12 +101,12 @@ body[data-icon-library="remixicon"] .d-icon[data-icon-library="remixicon"] {
   font-weight: 600;
   text-decoration: none;
   border-bottom-right-radius: var(--radius);
-  transition: top 150ms ease;
+  transition: transform 150ms var(--d-ease, ease-out);
 }
 
 .d-skip-link:focus,
 .d-skip-link:focus-visible {
-  top: 0;
+  transform: none;
   outline: 2px solid var(--ring);
   outline-offset: 2px;
 }

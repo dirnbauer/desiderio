@@ -93,8 +93,18 @@
     text-decoration: none;
 }
 
-.desiderio-footer__legal-link:hover {
+.desiderio-footer__legal-link:hover,
+.desiderio-footer__legal-link:focus-visible {
     color: var(--foreground);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+/* Small links get a full tap target on phones. */
+@media (max-width: 767px) {
+    .desiderio-footer__legal-link {
+        min-height: 2.75rem;
+    }
 }
 
 
@@ -104,6 +114,12 @@
     margin-top: 4rem;
     padding-block: 1rem;
     border-top: 1px solid var(--border);
+}
+
+@media (max-width: 767px) {
+    .desiderio-ai-notice {
+        margin-top: 2rem;
+    }
 }
 
 .desiderio-ai-notice + .desiderio-footer {

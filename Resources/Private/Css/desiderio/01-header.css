@@ -174,7 +174,7 @@
 }
 
 .desiderio-header__subnav-chevron {
-    transition: transform 0.2s ease;
+    transition: transform 0.2s var(--d-ease, ease-out);
 }
 
 .desiderio-header__nav-item.is-open > .desiderio-header__nav-trigger .desiderio-header__subnav-chevron {
@@ -210,7 +210,7 @@
 
 @media (prefers-reduced-motion: no-preference) {
     .desiderio-header__nav-item.is-open > .desiderio-header__subnav {
-        animation: desiderio-subnav-in 0.15s ease;
+        animation: desiderio-subnav-in 0.15s var(--d-ease, ease-out);
     }
 
     @keyframes desiderio-subnav-in {
@@ -471,7 +471,7 @@
     justify-content: center;
     flex: 0 0 auto;
     color: var(--muted-foreground);
-    transition: transform 150ms ease;
+    transition: transform 150ms var(--d-ease, ease-out);
 }
 
 .desiderio-header__lang[open] .desiderio-header__lang-chevron {

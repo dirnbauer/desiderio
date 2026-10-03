@@ -36,6 +36,9 @@ article[itemtype="https://schema.org/BlogPosting"] [itemprop="articleBody"] .ce-
 .ce-fsc-shortcut,
 .ce-fsc-menu {
     display: grid;
+    /* minmax(0, 1fr), not the implicit auto track: a long line in a <pre>
+       or a long URL widened the whole element past the screen on phones. */
+    grid-template-columns: minmax(0, 1fr);
     gap: 1rem;
 }
 

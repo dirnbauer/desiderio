@@ -15,7 +15,12 @@
 <f:variable name="openLabel">{f:if(condition: label, then: label, else: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:lightbox.open\', default: \'Show image in full size\')}')}</f:variable>
 <f:variable name="dismissLabel">{f:if(condition: closeLabel, then: closeLabel, else: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:lightbox.close\', default: \'Close image\')}')}</f:variable>
 
-<button type="button" class="d-lightbox {class -> f:format.trim()}" data-slot="lightbox" data-d-lightbox data-d-lightbox-src="{src}" data-d-lightbox-close="{dismissLabel -> f:format.trim()}" aria-label="{openLabel -> f:format.trim()}">
+<f:comment>
+    No aria-label on the button: it would replace the image's own alt text.
+    The button's name is the image's description plus the action.
+</f:comment>
+<button type="button" class="d-lightbox {class -> f:format.trim()}" data-slot="lightbox" data-d-lightbox data-d-lightbox-src="{src}" data-d-lightbox-close="{dismissLabel -> f:format.trim()}">
     <f:slot />
+    <span class="sr-only">{openLabel -> f:format.trim()}</span>
 </button>
 </html>

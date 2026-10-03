@@ -31,14 +31,39 @@
 /* ------------------------------------------------------------------ */
 
 :root {
-    /* Display sizes are fluid; the hero elements read these tokens. */
-    --d-text-4xl: clamp(2rem, 1.45rem + 1.8vw, 2.75rem);
-    --d-text-5xl: clamp(2.5rem, 1.6rem + 3vw, 4rem);
-    --d-text-6xl: clamp(3rem, 1.8rem + 4vw, 5rem);
     --d-leading-tight: 1.1;
     --d-tracking-display: -0.03em;
     --d-motion: 220ms;
-    --d-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+    --d-motion-fast: 160ms;
+    /* Strong ease-out: movement starts at once and settles softly. In-out
+       for things that travel on screen. Never ease-in for interface motion. */
+    --d-ease: cubic-bezier(0.23, 1, 0.32, 1);
+    --d-ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+    color-scheme: light;
+}
+
+/* Scrollbars, form controls and the autofill tint follow the theme. */
+.dark {
+    color-scheme: dark;
+}
+
+/* The font aliases are declared on :root, where they freeze at the default
+   faces. Presets set their fonts on body, so the aliases are taken up again
+   there: a preset's heading face now reaches every heading. */
+body {
+    --font-sans: var(--d-font-sans);
+    --font-heading: var(--d-font-heading);
+    --font-mono: var(--d-font-mono);
+}
+
+/* Display sizes are fluid; the hero elements read these tokens. They sit on
+   body, next to the fixed sizes in shadcn-theme.css they replace (on :root
+   they never reached an element). The upper ends are those fixed sizes, so
+   wide screens look as before and phone headlines no longer run at 48px. */
+body {
+    --d-text-4xl: clamp(1.875rem, 1.5rem + 1.6vw, 2.25rem);
+    --d-text-5xl: clamp(2.25rem, 1.6rem + 2.4vw, 3rem);
+    --d-text-6xl: clamp(2.5rem, 1.75rem + 3vw, 3.75rem);
 }
 
 .typography--h1 {
@@ -225,7 +250,7 @@ body {
 }
 
 .desiderio-main > :is(.desiderio-breadcrumb, .desiderio-page-title-container),
-:is(.desiderio-main > .desiderio-section, .desiderio-main > * > .desiderio-section):first-of-type {
+:is(.desiderio-main > .desiderio-section, .desiderio-main > * > .desiderio-section, .desiderio-corporate-template__content > .desiderio-section):first-of-type {
     --muted-foreground: color-mix(in oklch, var(--d-muted-ink) 80%, var(--foreground));
     /* The theme resolves its --d-* aliases once on <body>; re-point the one
        the elements read for lead copy (the hero subheadline among them). */
@@ -613,12 +638,33 @@ body[data-section-seam="none"] {
     transition: transform var(--d-motion) var(--d-ease), box-shadow var(--d-motion) var(--d-ease);
 }
 
-.desiderio-section [data-slot="card"]:has(a[href]):hover {
-    transform: translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+    /* Only a card that leads somewhere as a whole lifts: a plan card whose
+       one link is its button stays put. */
+    .desiderio-section [data-slot="card"]:has(a[href]:not([data-slot="button"])):hover {
+        transform: translateY(-2px);
+        box-shadow:
+            0 0 0 1px color-mix(in oklch, var(--primary) 32%, transparent),
+            var(--shadow-md, 0 8px 24px -12px rgb(0 0 0 / 0.25)),
+            inset 0 1px 0 color-mix(in oklch, var(--card-foreground) 5%, transparent);
+    }
+}
+
+/* Every button variant transitions the properties that change, quickly,
+   instead of the atom's transition-all. */
+[data-slot="button"] {
+    transition-property: color, background-color, border-color, box-shadow, transform, opacity;
+    transition-duration: var(--d-motion-fast);
+    transition-timing-function: var(--d-ease);
+}
+
+/* A card whose link is focused by keyboard shows the ring around the whole
+   card. Tailwind's ring lives in box-shadow, which the card rule above
+   replaces, so the ring joins the card's own shadow here. */
+.desiderio-section [data-slot="card"][class*="has-[a:focus-visible]:ring"]:has(a:focus-visible) {
     box-shadow:
-        0 0 0 1px color-mix(in oklch, var(--primary) 32%, transparent),
-        var(--shadow-md, 0 8px 24px -12px rgb(0 0 0 / 0.25)),
-        inset 0 1px 0 color-mix(in oklch, var(--card-foreground) 5%, transparent);
+        0 0 0 2px var(--ring),
+        var(--d-surface-shadow, 0 0 #0000);
 }
 
 /* Buttons: a pressed-metal highlight on the primary fill, a one-pixel lift
@@ -631,12 +677,14 @@ body[data-section-seam="none"] {
     transition: transform var(--d-motion) var(--d-ease), box-shadow var(--d-motion) var(--d-ease), background-color 150ms ease, color 150ms ease;
 }
 
-[data-slot="button"][data-variant="default"]:not(:disabled):hover,
-.btn--default:not(:disabled):hover {
-    transform: translateY(-1px);
-    box-shadow:
-        var(--shadow-sm, 0 2px 6px rgb(0 0 0 / 0.08)),
-        inset 0 1px 0 color-mix(in oklch, var(--primary-foreground) 18%, transparent);
+@media (hover: hover) and (pointer: fine) {
+    [data-slot="button"][data-variant="default"]:not(:disabled):hover,
+    .btn--default:not(:disabled):hover {
+        transform: translateY(-1px);
+        box-shadow:
+            var(--shadow-sm, 0 2px 6px rgb(0 0 0 / 0.08)),
+            inset 0 1px 0 color-mix(in oklch, var(--primary-foreground) 18%, transparent);
+    }
 }
 
 [data-slot="button"][data-variant="default"]:not(:disabled):active,
@@ -670,6 +718,13 @@ body[data-section-seam="none"] {
     to { opacity: 1; transform: none; }
 }
 
+/* Media only moves: the hero image is usually the largest paint, and an
+   opacity fade would hold it back. */
+@keyframes d-enter-media {
+    from { transform: translateY(14px); }
+    to { transform: none; }
+}
+
 @keyframes d-rise {
     from { opacity: 0.001; transform: translateY(22px); }
     to { opacity: 1; transform: none; }
@@ -679,24 +734,35 @@ body[data-section-seam="none"] {
     /* The opening section's parts arrive one after the other: the badge,
        the headline, the lead, the actions, the media. Inner pages open with
        the page title. */
-    :is(.desiderio-main > .desiderio-section, .desiderio-main > * > .desiderio-section):first-of-type > .desiderio-container > * > *,
+    :is(.desiderio-main > .desiderio-section, .desiderio-main > * > .desiderio-section, .desiderio-corporate-template__content > .desiderio-section):first-of-type > .desiderio-container > * > *,
     .desiderio-main > .desiderio-page-title-container > * > * {
-        animation: d-enter 640ms var(--d-ease) both;
-        animation-delay: calc(var(--d-i, 0) * 80ms);
+        animation: d-enter 420ms var(--d-ease) both;
+        animation-delay: calc(var(--d-i, 0) * 60ms);
     }
 
-    :is(.desiderio-main > .desiderio-section, .desiderio-main > * > .desiderio-section):first-of-type > .desiderio-container > * > :nth-child(2),
+    :is(.desiderio-main > .desiderio-section, .desiderio-main > * > .desiderio-section, .desiderio-corporate-template__content > .desiderio-section):first-of-type > .desiderio-container > * > :has(img, picture, video) {
+        animation-name: d-enter-media;
+    }
+
+    /* The opening headline only moves too: it is usually the largest text on
+       screen, and a fade would hold back the page's largest paint. */
+    :is(.desiderio-main > .desiderio-section, .desiderio-main > * > .desiderio-section, .desiderio-corporate-template__content > .desiderio-section):first-of-type > .desiderio-container > * > :is(h1, h2, [class*="__headline"]),
+    :is(.desiderio-main > .desiderio-section, .desiderio-main > * > .desiderio-section, .desiderio-corporate-template__content > .desiderio-section):first-of-type > .desiderio-container > * > :has(> :is(h1, h2, [class*="__headline"])) {
+        animation-name: d-enter-media;
+    }
+
+    :is(.desiderio-main > .desiderio-section, .desiderio-main > * > .desiderio-section, .desiderio-corporate-template__content > .desiderio-section):first-of-type > .desiderio-container > * > :nth-child(2),
     .desiderio-main > .desiderio-page-title-container > * > :nth-child(2) { --d-i: 1; }
-    :is(.desiderio-main > .desiderio-section, .desiderio-main > * > .desiderio-section):first-of-type > .desiderio-container > * > :nth-child(3) { --d-i: 2; }
-    :is(.desiderio-main > .desiderio-section, .desiderio-main > * > .desiderio-section):first-of-type > .desiderio-container > * > :nth-child(4) { --d-i: 3; }
-    :is(.desiderio-main > .desiderio-section, .desiderio-main > * > .desiderio-section):first-of-type > .desiderio-container > * > :nth-child(5) { --d-i: 4; }
-    :is(.desiderio-main > .desiderio-section, .desiderio-main > * > .desiderio-section):first-of-type > .desiderio-container > * > :nth-child(6) { --d-i: 5; }
-    :is(.desiderio-main > .desiderio-section, .desiderio-main > * > .desiderio-section):first-of-type > .desiderio-container > * > :nth-child(n + 7) { --d-i: 6; }
+    :is(.desiderio-main > .desiderio-section, .desiderio-main > * > .desiderio-section, .desiderio-corporate-template__content > .desiderio-section):first-of-type > .desiderio-container > * > :nth-child(3) { --d-i: 2; }
+    :is(.desiderio-main > .desiderio-section, .desiderio-main > * > .desiderio-section, .desiderio-corporate-template__content > .desiderio-section):first-of-type > .desiderio-container > * > :nth-child(4) { --d-i: 3; }
+    :is(.desiderio-main > .desiderio-section, .desiderio-main > * > .desiderio-section, .desiderio-corporate-template__content > .desiderio-section):first-of-type > .desiderio-container > * > :nth-child(5) { --d-i: 4; }
+    :is(.desiderio-main > .desiderio-section, .desiderio-main > * > .desiderio-section, .desiderio-corporate-template__content > .desiderio-section):first-of-type > .desiderio-container > * > :nth-child(6) { --d-i: 5; }
+    :is(.desiderio-main > .desiderio-section, .desiderio-main > * > .desiderio-section, .desiderio-corporate-template__content > .desiderio-section):first-of-type > .desiderio-container > * > :nth-child(n + 7) { --d-i: 6; }
 
     /* Later sections rise as they enter the viewport. Pure CSS, so the
        element library previews (one section, always first) never animate. */
     @supports (animation-timeline: view()) {
-        :is(.desiderio-main > .desiderio-section, .desiderio-main > * > .desiderio-section):not(:first-of-type) > .desiderio-container {
+        :is(.desiderio-main > .desiderio-section, .desiderio-main > * > .desiderio-section, .desiderio-corporate-template__content > .desiderio-section):not(:first-of-type, :has([data-astro-reveal], [data-d-animate])) > .desiderio-container {
             animation: d-rise linear both;
             animation-timeline: view();
             animation-range: entry 0% entry 28%;
@@ -877,6 +943,46 @@ body {
         grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
+    /* Five cards: three on top, two wider ones below, no stranded cell. */
+    :is(.article-grid__grid, .benefit-cards__grid--cols-3, .blog-teasers__grid--cols-3,
+        .case-study-grid__items--cols-3, .category-cards__grid--cols-3, .company-culture__grid,
+        .company-perks__grid, .company-values__grid, .content-columns__grid--cols-3,
+        .counter__grid--cols-3, .directions__list, .feature-cards__grid, .feature-grid-3__grid,
+        .feature-icons__grid--cols-3, .feature-numbered__grid, .features__grid--cols-3,
+        .kpi-cards__grid--cols-3, .logo-cloud__grid--cols-3, .logo-grid__items--cols-3,
+        .pricing-three-tier__grid, .pricing__grid--cols-3, .product-grid__items--cols-3,
+        .resource-library__grid, .sitemap-grid__grid--cols-3, .stat-cards__grid--cols-3,
+        .stats-counter__grid--cols-3, .stats__grid--cols-3, .testimonial-grid__items--cols-3,
+        .use-case-grid__grid, .ce-fsc-menu__grid):has(> :nth-child(5):last-child) {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+
+    :is(.article-grid__grid, .benefit-cards__grid--cols-3, .blog-teasers__grid--cols-3,
+        .case-study-grid__items--cols-3, .category-cards__grid--cols-3, .company-culture__grid,
+        .company-perks__grid, .company-values__grid, .content-columns__grid--cols-3,
+        .counter__grid--cols-3, .directions__list, .feature-cards__grid, .feature-grid-3__grid,
+        .feature-icons__grid--cols-3, .feature-numbered__grid, .features__grid--cols-3,
+        .kpi-cards__grid--cols-3, .logo-cloud__grid--cols-3, .logo-grid__items--cols-3,
+        .pricing-three-tier__grid, .pricing__grid--cols-3, .product-grid__items--cols-3,
+        .resource-library__grid, .sitemap-grid__grid--cols-3, .stat-cards__grid--cols-3,
+        .stats-counter__grid--cols-3, .stats__grid--cols-3, .testimonial-grid__items--cols-3,
+        .use-case-grid__grid, .ce-fsc-menu__grid):has(> :nth-child(5):last-child) > * {
+        grid-column: span 2;
+    }
+
+    :is(.article-grid__grid, .benefit-cards__grid--cols-3, .blog-teasers__grid--cols-3,
+        .case-study-grid__items--cols-3, .category-cards__grid--cols-3, .company-culture__grid,
+        .company-perks__grid, .company-values__grid, .content-columns__grid--cols-3,
+        .counter__grid--cols-3, .directions__list, .feature-cards__grid, .feature-grid-3__grid,
+        .feature-icons__grid--cols-3, .feature-numbered__grid, .features__grid--cols-3,
+        .kpi-cards__grid--cols-3, .logo-cloud__grid--cols-3, .logo-grid__items--cols-3,
+        .pricing-three-tier__grid, .pricing__grid--cols-3, .product-grid__items--cols-3,
+        .resource-library__grid, .sitemap-grid__grid--cols-3, .stat-cards__grid--cols-3,
+        .stats-counter__grid--cols-3, .stats__grid--cols-3, .testimonial-grid__items--cols-3,
+        .use-case-grid__grid, .ce-fsc-menu__grid):has(> :nth-child(5):last-child) > :nth-child(n + 4) {
+        grid-column: span 3;
+    }
+
     :is(.awards__grid, .category-cards__grid--cols-4, .company-milestones__grid,
         .counter__grid--cols-4, .feature-grid-4__grid, .feature-icons__grid--cols-4,
         .features__grid--cols-4, .kpi-cards__grid--cols-4, .logo-cloud__grid--cols-4,
@@ -896,4 +1002,48 @@ body {
         .stats__grid--cols-4):has(> :nth-child(3):last-child, > :nth-child(5):last-child, > :nth-child(6):last-child) {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
+}
+
+/* ------------------------------------------------------------------ */
+/*  8. Details: line breaks, figures, anchors                          */
+/* ------------------------------------------------------------------ */
+
+/* Headings never end on one lonely word; running text avoids a short last
+   line. :where() keeps this at zero specificity, so an element's own rule
+   still wins. */
+:where(.desiderio-main) :where(h1, h2, h3, h4, [class*="__headline"], [class*="__title"]) {
+    text-wrap: balance;
+}
+
+:where(.desiderio-main) :where(p, li, dd, figcaption, blockquote, [class*="__description"], [class*="__lead"]) {
+    text-wrap: pretty;
+}
+
+/* Prices, values and counts line up when they sit next to each other. */
+:where(.desiderio-main) :where([class*="__price"], [class*="__amount"], [class*="__value"], [class*="__number"], [class*="__count"], [class*="__stat-value"], [class*="__metric"]) {
+    font-variant-numeric: tabular-nums;
+}
+
+/* An anchor target or a focused field never hides under the sticky header. */
+html {
+    scroll-padding-top: calc(var(--d-header-height, 4rem) + 1rem);
+}
+
+/* An outline button sits on the page background, so it takes the page's
+   text colour. Without one it inherited the surface around it and turned
+   white on white inside primary bands. In the components layer, so the
+   button's own hover utilities still win. */
+@layer components {
+    [data-slot="button"][data-variant="outline"] {
+        color: var(--foreground);
+    }
+}
+
+/* Visual Editor: edit mode wraps editable fields in ve-editable-* elements.
+   A whole-card link stretches its ::after over the card, which would catch
+   the click meant for the text under it, so in edit mode the overlay lets
+   clicks through. Outside the editor nothing changes. */
+.desiderio-section:has(ve-editable-text, ve-editable-rich-text) a::before,
+.desiderio-section:has(ve-editable-text, ve-editable-rich-text) a::after {
+    pointer-events: none;
 }

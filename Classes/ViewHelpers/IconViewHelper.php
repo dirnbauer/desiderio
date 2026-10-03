@@ -30,7 +30,6 @@ final class IconViewHelper extends AbstractViewHelper
         $class = is_string($this->arguments['class'] ?? null) ? $this->arguments['class'] : '';
         $sizeClass = $this->sizeClass($size);
         $classAttribute = trim('d-icon shrink-0 ' . $sizeClass . ' ' . $class);
-        $label = IconRegistry::icon($key)['label'];
         $output = '';
 
         foreach (IconRegistry::supportedLibraries() as $library) {
@@ -53,14 +52,16 @@ final class IconViewHelper extends AbstractViewHelper
             );
         }
 
-        return $output !== ''
-            ? $output
-            : '<span class="d-sr-only">' . htmlspecialchars($label, ENT_QUOTES | ENT_HTML5) . '</span>';
+        // Icons are decorative (the SVG is aria-hidden); a key without artwork
+        // renders nothing rather than reading its name aloud.
+        return $output;
     }
 
     private function sizeClass(string $size): string
     {
         return match ($size) {
+            // h-N w-N, not size-N: a button sizes the icons inside it only
+            // when they carry no size- class ([&_svg:not([class*='size-'])]).
             'xs' => 'h-3 w-3',
             'sm' => 'h-4 w-4',
             'lg' => 'h-6 w-6',

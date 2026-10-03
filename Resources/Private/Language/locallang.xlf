@@ -88,7 +88,7 @@
     </unit>
     <unit id="blog.posts.count">
       <segment>
-        <source>{count, plural, one {one post} other {# posts}}</source>
+        <source>{count, plural, one {# post} other {# posts}}</source>
       </segment>
     </unit>
     <unit id="blog.list.aria">

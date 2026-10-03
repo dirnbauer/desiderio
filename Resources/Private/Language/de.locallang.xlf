@@ -105,8 +105,8 @@
     </unit>
     <unit id="blog.posts.count">
       <segment>
-        <source>{count, plural, one {one post} other {# posts}}</source>
-        <target>{count, plural, one {ein Beitrag} other {# Beiträge}}</target>
+        <source>{count, plural, one {# post} other {# posts}}</source>
+        <target>{count, plural, one {# Beitrag} other {# Beiträge}}</target>
       </segment>
     </unit>
     <unit id="blog.list.aria">

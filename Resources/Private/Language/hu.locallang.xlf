@@ -100,13 +100,13 @@
     <unit id="news.entries.count">
       <segment state="final">
         <source>{count, plural, one {one entry} other {# entries}}</source>
-        <target>{count, plural, one {egy bejegyzés} other {# bejegyzés}}</target>
+        <target>{count, plural, one {# bejegyzés} other {# bejegyzés}}</target>
       </segment>
     </unit>
     <unit id="blog.posts.count">
       <segment state="final">
-        <source>{count, plural, one {one post} other {# posts}}</source>
-        <target>{count, plural, one {egy bejegyzés} other {# bejegyzés}}</target>
+        <source>{count, plural, one {# post} other {# posts}}</source>
+        <target>{count, plural, one {# bejegyzés} other {# bejegyzés}}</target>
       </segment>
     </unit>
     <unit id="blog.list.aria">

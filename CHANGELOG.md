@@ -6,6 +6,30 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.18.0] — 2026-10-03
+
+### Added
+
+- **The product film has music, narration and captions.** One narration
+  line per scene, in an ElevenLabs library voice, over an instrumental
+  film-score cue from ElevenLabs Music; both are generated through fal.ai by
+  `Build/Scripts/generate-film-audio.mjs` (needs `FAL_KEY`). The render
+  places each line at its scene, ducks the music under the voice and
+  normalises the mix to -16 LUFS. The lines are captions in the picture, so
+  the same film serves every language. `render-film.mjs --remix` scores the
+  current picture again. The homepage says to turn the sound on.
+- Showcase blocks can link another site anywhere in a field:
+  `{{site:<identifier>}}` for its root page and `{{site:<identifier>/<slug>}}`
+  for a page in it.
+
+### Fixed
+
+- **Links in translations open the page in the reader's language.** Fourteen
+  showcase links were plain paths, which never get a language prefix: from
+  /de/, /zh/ and /hu/ they opened the English page. They are page and site
+  placeholders now, resolved to `t3://page` links that DataHandler's
+  localize copies into every translation.
+
 ## [4.17.2] — 2026-10-03
 
 ### Fixed

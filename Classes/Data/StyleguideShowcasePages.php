@@ -113,7 +113,7 @@ final class StyleguideShowcasePages
             ShowcaseBlocks::productFilm(
                 'Product film',
                 'Desiderio in 26 seconds',
-                '15 presets, light and dark mode, four languages and the tools your editors use, in one short film without sound.',
+                '15 presets, light and dark mode, four languages and the tools your editors use, in one short film. Turn the sound on for music and narration; the captions are in the picture.',
             ),
 
             // ------------------------------------------------- the problem

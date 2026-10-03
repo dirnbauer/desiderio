@@ -56,6 +56,9 @@ body { font-family: var(--font); color: var(--ink); -webkit-font-smoothing: anti
 .caption h2 { font-size: 54px; font-weight: 640; letter-spacing: -0.035em; line-height: 1.04; text-wrap: balance; }
 .caption p { font-size: 25px; color: var(--muted); letter-spacing: -0.005em; }
 .caption h2 span { display: inline-block; }
+/* The narration, as captions in the picture: the film autoplays muted, and
+   the same file serves every language of the site. */
+.subtitle { position: absolute; inset-inline: 0; bottom: 20px; margin-inline: auto; width: max-content; max-width: min(1380px, calc(100% - 80px)); padding: 7px 20px 8px; border-radius: 14px; background: rgba(9, 9, 11, 0.8); color: #fafafa; font-size: 26px; font-weight: 520; line-height: 1.32; letter-spacing: -0.006em; text-align: center; text-wrap: balance; opacity: 0; z-index: 50; }
 
 /* Browser frame */
 .frame { position: absolute; left: 280px; top: 176px; width: 1040px; height: 690px; border-radius: 16px; background: var(--frame); border: 1px solid var(--line); overflow: hidden; box-shadow: 0 40px 120px -40px rgb(0 0 0 / 0.75), 0 0 0 1px rgb(0 0 0 / 0.4); }
@@ -333,7 +336,24 @@ window.seek = (t) => {
   for (const animation of document.getAnimations()) animation.currentTime = t;
   for (const update of custom) update(t);
 };
+// One caption per narration line, shown while the line is spoken. The lines
+// and their real lengths come from Build/Scripts/generate-film-audio.mjs.
+async function subtitles() {
+  let lines = [];
+  try { lines = (await (await fetch('audio/narration.json')).json()).lines ?? []; } catch { lines = []; }
+  const stage = $('end').parentElement;
+  for (const line of lines) {
+    const el = document.createElement('div');
+    el.className = 'subtitle';
+    el.textContent = line.show;
+    stage.append(el);
+    const t0 = Math.max(0, line.at - 60);
+    const t1 = Math.min(FILM.duration, line.at + line.duration + 220);
+    track(el, [[t0, { opacity: 0 }, OUT], [t0 + 180, { opacity: 1 }], [t1 - 180, { opacity: 1 }, INOUT], [t1, { opacity: 0 }]]);
+  }
+}
 window.ready = (async () => {
+  await subtitles();
   try { COLORS = await (await fetch('assets/preset-colors.json')).json(); } catch { COLORS = {}; }
   await document.fonts.ready;
   await Promise.all([...document.images].map((img) => img.decode().catch(() => {})));

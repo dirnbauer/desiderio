@@ -6,6 +6,24 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.19.0] — 2026-10-03
+
+### Added
+
+- **"Turn sound on" on a film that plays by itself.** Browsers start a
+  video by itself only without sound until the visitor has clicked or typed
+  on the page. A visitor who has gets the film with sound, played once;
+  everyone else sees it muted in a loop with a button, translated into all
+  six languages, that unmutes it and starts it again from the top.
+
+### Fixed
+
+- **The film's voice is in front and the music softer.** The music sits
+  15 LU below the narration and rises by only 10 % between lines; one
+  measured gain brings the film to -16 LUFS. Before, a compressor and a
+  single-pass loudness normaliser let the music surge above the voice in
+  every pause.
+
 ## [4.18.0] — 2026-10-03
 
 ### Added

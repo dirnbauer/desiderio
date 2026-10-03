@@ -9,20 +9,26 @@
 }
 .kpi-cards__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: var(--d-tracking-wide); color: var(--d-link, var(--primary)); font-weight: var(--d-weight-semibold); }
 .kpi-cards__description { color: var(--muted-foreground); }
-.kpi-cards__grid { display: grid; gap: var(--d-spacing-lg); grid-template-columns: 1fr; }
+/* Phones: two figures side by side instead of one card per screen; an odd
+   last card is centred by the shared lone-card balancing. */
+.kpi-cards__grid { display: grid; gap: var(--d-spacing-md); grid-template-columns: repeat(2, minmax(0, 1fr)); }
 @media (min-width: 640px) {
-    .kpi-cards__grid--cols-2 { grid-template-columns: repeat(2, 1fr); }
-    .kpi-cards__grid--cols-3 { grid-template-columns: repeat(2, 1fr); }
-    .kpi-cards__grid--cols-4 { grid-template-columns: repeat(2, 1fr); }
+    .kpi-cards__grid { gap: var(--d-spacing-lg); }
+    .kpi-cards__grid--cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .kpi-cards__grid--cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .kpi-cards__grid--cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (min-width: 1024px) {
-    .kpi-cards__grid--cols-3 { grid-template-columns: repeat(3, 1fr); }
-    .kpi-cards__grid--cols-4 { grid-template-columns: repeat(4, 1fr); }
+    .kpi-cards__grid--cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .kpi-cards__grid--cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 .kpi-cards__item {
     text-align: center; padding: var(--d-spacing-lg);
     border: 1px solid var(--border); border-radius: var(--radius);
     background: var(--card);
+}
+@media (max-width: 639px) {
+    .kpi-cards__item { padding: var(--d-spacing-md); }
 }
 .kpi-cards__value {
     display: inline-flex;
@@ -37,5 +43,9 @@
 .kpi-cards__item--positive .kpi-cards__value { color: var(--d-success-text); }
 .kpi-cards__item--neutral .kpi-cards__value { color: var(--muted-foreground); }
 .kpi-cards__item--caution .kpi-cards__value { color: var(--d-warning-text); }
+/* Caution is a warning, not an error: the shared stat molecule paints every
+   downward trend in --destructive, which turned a "watch this" figure red
+   next to its amber value. */
+.kpi-cards__item--caution .d-stat[data-trend] .kpi-cards__trend { color: var(--d-warning); }
 .kpi-cards__label { font-size: var(--d-text-base); font-weight: var(--d-weight-semibold); margin-block-start: var(--d-spacing-xs); color: var(--foreground); }
 .kpi-cards__detail { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); }

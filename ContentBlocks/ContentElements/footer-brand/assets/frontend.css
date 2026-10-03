@@ -23,7 +23,23 @@
 .footer-brand__tagline { font-size: var(--d-text-sm); color: var(--muted-foreground); }
 .footer-brand__links { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: var(--d-spacing-md); }
 .footer-brand__link { font-size: var(--d-text-sm); color: var(--muted-foreground); text-decoration: none; border-radius: var(--radius); }
-.footer-brand__link:hover { color: var(--foreground); }
-.footer-brand__link:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; color: var(--foreground); }
+/* A quiet underline fades in on hover and focus, so the target never relies
+   on a colour shift alone. */
+a.footer-brand__link {
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: transparent;
+    text-underline-offset: 0.22em;
+    transition: color var(--d-motion-fast) var(--d-ease), text-decoration-color var(--d-motion-fast) var(--d-ease);
+}
+@media (hover: hover) and (pointer: fine) {
+    a.footer-brand__link:hover { color: var(--foreground); text-decoration-color: currentColor; }
+}
+.footer-brand__link:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; color: var(--foreground); text-decoration-color: currentColor; }
 .footer-brand__bottom { margin-block-start: var(--d-spacing-lg); padding-block-start: var(--d-spacing-md); border-top: 1px solid var(--border); text-align: center; }
 .footer-brand__copyright { font-size: var(--d-text-xs); color: var(--muted-foreground); }
+/* Touch: every link becomes a 44px row; the rows themselves are the gap. */
+@media (max-width: 640px), (pointer: coarse) {
+    .footer-brand__links { row-gap: 0; }
+    .footer-brand__link { display: inline-flex; align-items: center; min-block-size: 2.75rem; }
+}

@@ -21,12 +21,7 @@
                 </div>
             </f:if>
 
-            <blockquote class="testimonial__quote">
-                <f:if condition="{data.variant} == 'large'">
-                    <span class="testimonial__quote-mark" aria-hidden="true">&ldquo;</span>
-                </f:if>
-                {data -> f:render.text(field: 'quote')}
-            </blockquote>
+            <blockquote class="testimonial__quote"><f:if condition="{data.variant} == 'large'"><span class="testimonial__quote-mark" aria-hidden="true">&ldquo;</span></f:if>{data -> f:render.text(field: 'quote')}</blockquote>
 
             <div class="testimonial__author">
                 <f:if condition="{data.author_image}">
@@ -38,7 +33,7 @@
                     </div>
                 </f:if>
                 <div class="testimonial__author-info">
-                    <cite class="testimonial__author-name">{data -> f:render.text(field: 'author_name')}</cite>
+                    <span class="testimonial__author-name">{data -> f:render.text(field: 'author_name')}</span>
                     <f:if condition="{data.author_title} || {data.author_company}">
                         <span class="testimonial__author-role">
                             {data -> f:render.text(field: 'author_title')}<f:if condition="{data.author_title} && {data.author_company}">, </f:if>{data -> f:render.text(field: 'author_company')}

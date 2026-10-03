@@ -11,11 +11,15 @@
     border-top: 1px solid var(--border);
 }
 .definition-list__term {
+    min-width: 0;
+    overflow-wrap: break-word;
     font-weight: var(--d-weight-semibold);
     line-height: var(--d-leading-normal);
     margin-block-end: var(--d-spacing-xs);
 }
 .definition-list__definition {
+    min-width: 0;
+    overflow-wrap: break-word;
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
     line-height: var(--d-leading-relaxed);
@@ -29,7 +33,7 @@
 }
 .definition-list--inline .definition-list__entry {
     display: grid;
-    grid-template-columns: 12rem 1fr;
+    grid-template-columns: 12rem minmax(0, 1fr);
     gap: var(--d-spacing-md) var(--d-spacing-xl);
     align-items: baseline;
     padding: var(--d-spacing-sm) var(--d-spacing-md);
@@ -48,7 +52,7 @@
 /* Grid: each pair becomes its own bordered card. */
 .definition-list--grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--d-spacing-md);
     max-width: 56rem;
 }
@@ -61,6 +65,6 @@
 }
 
 @media (max-width: 768px) {
-    .definition-list--inline .definition-list__entry { grid-template-columns: 1fr; gap: var(--d-spacing-xs); }
-    .definition-list--grid { grid-template-columns: 1fr; }
+    .definition-list--inline .definition-list__entry { grid-template-columns: minmax(0, 1fr); gap: var(--d-spacing-xs); }
+    .definition-list--grid { grid-template-columns: minmax(0, 1fr); }
 }

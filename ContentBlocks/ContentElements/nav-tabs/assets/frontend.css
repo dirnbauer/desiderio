@@ -11,8 +11,12 @@
 .nav-tabs__inner::-webkit-scrollbar {
     display: none;
 }
+/* The baseline is an inset shadow, not a border: the strip is a scroller
+   and clips at its padding box, so a tab's indicator could never overlap a
+   border (it showed one primary pixel above a grey one). Tabs paint over
+   their parent's shadow, so the full 2px indicator now sits on the line. */
 .nav-tabs--underline .nav-tabs__inner {
-    border-bottom: 1px solid var(--d-border);
+    box-shadow: inset 0 -1px 0 var(--d-border);
 }
 .nav-tabs--pill .nav-tabs__inner {
     background: var(--d-muted);
@@ -33,15 +37,20 @@
     text-decoration: none;
     white-space: nowrap;
     border-radius: var(--d-radius-md);
-    transition: color 0.15s, background-color 0.15s;
+    transition:
+        color var(--d-motion-fast) var(--d-ease),
+        background-color var(--d-motion-fast) var(--d-ease),
+        border-color var(--d-motion-fast) var(--d-ease);
 }
 @media (max-width: 640px) {
     .nav-tabs__tab {
         padding-inline: var(--d-spacing-3);
     }
 }
-.nav-tabs__tab:hover {
-    color: var(--d-foreground);
+@media (hover: hover) and (pointer: fine) {
+    .nav-tabs__tab:hover {
+        color: var(--d-foreground);
+    }
 }
 .nav-tabs__tab:focus-visible {
     outline: 2px solid var(--d-ring);
@@ -50,7 +59,6 @@
 .nav-tabs--underline .nav-tabs__tab {
     border-bottom: 2px solid transparent;
     border-radius: 0;
-    margin-bottom: -1px;
 }
 .nav-tabs--underline .nav-tabs__tab--active {
     color: var(--d-foreground);
@@ -61,6 +69,19 @@
     background: var(--d-background);
     color: var(--d-foreground);
     box-shadow: var(--d-shadow-sm);
+}
+/* The current tab opens in view when the strip has to scroll (browsers
+   with scroll-initial-target; elsewhere the strip starts at its first tab).
+   The strip is always the scroll container, so the page itself never
+   jumps. */
+.nav-tabs__tab[aria-current="page"] {
+    scroll-initial-target: nearest;
+}
+/* Touch: every tab is a 44px target. */
+@media (pointer: coarse) {
+    .nav-tabs__tab {
+        padding-block: var(--d-spacing-3);
+    }
 }
 @media (prefers-reduced-motion: reduce) {
     .nav-tabs__tab {

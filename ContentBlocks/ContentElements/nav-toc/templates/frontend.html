@@ -7,28 +7,31 @@
 
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="nav-toc">
     <f:variable name="tocTitleId" value="nav-toc-title-{data.uid}"/>
-    <aside class="nav-toc__panel">
-        <f:if condition="{data.header}">
-            <p class="nav-toc__title" id="{tocTitleId}">{data -> f:render.text(field: 'header')}</p>
-        </f:if>
-        <f:variable name="tocLabel"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:nav_toc.aria" default="Table of contents"/></f:variable>
-        <nav class="nav-toc__nav" aria-labelledby="{f:if(condition: data.header, then: tocTitleId)}" aria-label="{f:if(condition: data.header, else: tocLabel)}">
-            <ul class="nav-toc__list">
-                <f:for each="{data.items}" as="item">
-                    <li class="nav-toc__item nav-toc__item--{item.level -> f:or(alternative: 'h2')}">
-                        <f:if condition="{item.anchor}">
-                            <f:then>
-                                <a href="#{item.anchor -> f:format.htmlspecialchars()}" class="nav-toc__link">{item -> f:render.text(field: 'label')}</a>
-                            </f:then>
-                            <f:else>
-                                <span class="nav-toc__link nav-toc__link--static">{item -> f:render.text(field: 'label')}</span>
-                            </f:else>
-                        </f:if>
-                    </li>
-                </f:for>
-            </ul>
-        </nav>
-    </aside>
+    <f:comment>The container gives the panel the same side gutter as every other element when it runs full width; in a sidebar column it only adds the gutter.</f:comment>
+    <d:layout.container>
+        <aside class="nav-toc__panel">
+            <f:if condition="{data.header}">
+                <p class="nav-toc__title" id="{tocTitleId}">{data -> f:render.text(field: 'header')}</p>
+            </f:if>
+            <f:variable name="tocLabel"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:nav_toc.aria" default="Table of contents"/></f:variable>
+            <nav class="nav-toc__nav" aria-labelledby="{f:if(condition: data.header, then: tocTitleId)}" aria-label="{f:if(condition: data.header, else: tocLabel)}">
+                <ul class="nav-toc__list" role="list">
+                    <f:for each="{data.items}" as="item">
+                        <li class="nav-toc__item nav-toc__item--{item.level -> f:or(alternative: 'h2')}">
+                            <f:if condition="{item.anchor}">
+                                <f:then>
+                                    <a href="#{item.anchor -> f:format.htmlspecialchars()}" class="nav-toc__link">{item -> f:render.text(field: 'label')}</a>
+                                </f:then>
+                                <f:else>
+                                    <span class="nav-toc__link nav-toc__link--static">{item -> f:render.text(field: 'label')}</span>
+                                </f:else>
+                            </f:if>
+                        </li>
+                    </f:for>
+                </ul>
+            </nav>
+        </aside>
+    </d:layout.container>
 </d:layout.section>
 
 </html>

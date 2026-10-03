@@ -1,9 +1,14 @@
+/* A rail, not a card: the shared surface for *__panel classes (tint and
+   shadow) drew a shadowed box across the whole section. The sticky offset
+   clears the sticky site header, like the page's own scroll padding. */
 .nav-toc__panel {
     --nav-toc-indent: var(--d-spacing-6);
     position: sticky;
-    top: var(--d-spacing-6);
+    top: calc(var(--d-header-height, 4rem) + var(--d-spacing-4));
     padding: var(--d-spacing-4);
     border-left: 2px solid var(--d-border);
+    background-color: transparent;
+    box-shadow: none;
 }
 .nav-toc__title {
     font-size: var(--d-text-sm);
@@ -13,6 +18,8 @@
     color: var(--d-foreground);
     margin-bottom: var(--d-spacing-3);
 }
+/* role="list" in the template: list-style none drops the list semantics in
+   Safari. */
 .nav-toc__list {
     list-style: none;
     margin: 0;
@@ -28,13 +35,15 @@
     color: var(--d-muted-foreground);
     text-decoration: none;
     border-radius: var(--d-radius-sm);
-    transition: color 0.15s;
+    transition: color var(--d-motion-fast) var(--d-ease);
 }
-a.nav-toc__link:hover {
-    color: var(--d-foreground);
-    text-decoration: underline;
-    text-decoration-color: color-mix(in oklab, var(--d-foreground) 45%, transparent);
-    text-underline-offset: 0.2em;
+@media (hover: hover) and (pointer: fine) {
+    a.nav-toc__link:hover {
+        color: var(--d-foreground);
+        text-decoration: underline;
+        text-decoration-color: color-mix(in oklab, var(--d-foreground) 45%, transparent);
+        text-underline-offset: 0.2em;
+    }
 }
 .nav-toc__link:focus-visible {
     outline: 2px solid var(--d-ring);
@@ -46,6 +55,14 @@ a.nav-toc__link:hover {
 .nav-toc__item--h3 .nav-toc__link {
     padding-inline-start: var(--nav-toc-indent, var(--d-spacing-6));
     font-size: var(--d-text-xs);
+}
+/* Touch: each entry, the smaller h3 ones included, is a 44px target. */
+@media (pointer: coarse) {
+    .nav-toc__link {
+        display: flex;
+        align-items: center;
+        min-height: 2.75rem;
+    }
 }
 @media (prefers-reduced-motion: reduce) {
     .nav-toc__link {

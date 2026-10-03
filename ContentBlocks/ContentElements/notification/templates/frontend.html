@@ -23,9 +23,9 @@
             <d:atom.typography tag="h2" variant="h2" class="notification__title">{data -> f:render.text(field: 'header')}</d:atom.typography>
         </f:if>
         <div class="notification__message d-richtext">{data -> f:render.text(field: 'content')}</div>
-        <f:if condition="{data.action_text}">
+        <f:if condition="{data.action_text} && {data.action_link.url}">
             <d:molecule.actionGroup class="notification__actions">
-                <d:atom.link href="{f:uri.typolink(parameter: data.action_link.url)}" target="{data.action_link.target}" variant="muted" class="notification__action">{data -> f:render.text(field: 'action_text')}</d:atom.link>
+                <d:atom.link href="{f:uri.typolink(parameter: data.action_link.url)}" target="{data.action_link.target}" variant="muted" class="notification__action">{data -> f:render.text(field: 'action_text')}</d:atom.link>{data -> f:render.link(field: 'action_link')}
             </d:molecule.actionGroup>
         </f:if>
     </div>

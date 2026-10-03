@@ -8,7 +8,7 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="use-case-grid">
     <d:layout.container>
         <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
-            <d:molecule.sectionIntro prefix="use-case-grid" class="use-case-grid__intro">
+            <d:molecule.sectionIntro prefix="use-case-grid" align="center" class="use-case-grid__intro">
                 <f:fragment name="eyebrow"><f:if condition="{data.eyebrow}">{data -> f:render.text(field: 'eyebrow')}</f:if></f:fragment>
                 <f:fragment name="heading"><f:if condition="{data.header}">{data -> f:render.text(field: 'header')}</f:if></f:fragment>
                 <f:fragment name="lead"><f:if condition="{data.subheadline}">{data -> f:render.text(field: 'subheadline')}</f:if></f:fragment>
@@ -16,14 +16,18 @@
         </f:if>
         <div class="use-case-grid__grid" role="list">
             <f:for each="{data.items}" as="item">
-                <d:molecule.card class="use-case-grid__item" attributes="{role: 'listitem'}">
-                    <d:atom.typography tag="h3" variant="h3" class="use-case-grid__title">
-                        <f:if condition="{item.link.url}">
-                            <f:then><d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="use-case-grid__link">{item -> f:render.text(field: 'title')}</d:atom.link></f:then>
-                            <f:else>{item -> f:render.text(field: 'title')}</f:else>
+                <d:molecule.card class="use-case-grid__item relative has-[a:focus-visible]:ring-2 has-[a:focus-visible]:ring-ring" attributes="{role: 'listitem'}">
+                    <div class="use-case-grid__body flex min-w-0 flex-col gap-1.5">
+                        <d:atom.typography tag="h3" variant="h3" class="use-case-grid__title">
+                            <f:if condition="{item.link.url}">
+                                <f:then><d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="use-case-grid__link after:absolute after:inset-0 after:content-['']">{item -> f:render.text(field: 'title')}</d:atom.link></f:then>
+                                <f:else>{item -> f:render.text(field: 'title')}</f:else>
+                            </f:if>
+                        </d:atom.typography>
+                        <f:if condition="{item.description}">
+                            <div class="use-case-grid__description d-richtext">{item -> f:render.text(field: 'description')}</div>
                         </f:if>
-                    </d:atom.typography>
-                    <div class="use-case-grid__description d-richtext">{item -> f:render.text(field: 'description')}</div>
+                    </div>
                 </d:molecule.card>
             </f:for>
         </div>

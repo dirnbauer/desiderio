@@ -26,8 +26,12 @@
             </div>
             <div class="card-interactive__footer">
                 <f:if condition="{data.link}">
+                    <f:comment>The link's own title names it; without one it reads "Learn more", completed by the card title for screen readers (it used to say "View automation guide" wherever it led).</f:comment>
                     <d:atom.link href="{f:uri.typolink(parameter: data.link.url)}" target="{data.link.target}" variant="muted" class="card-interactive__link">
-                        {f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:card.viewGuide', default: 'View automation guide')}
+                        <f:if condition="{data.link.title}">
+                            <f:then>{data.link.title}</f:then>
+                            <f:else><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:learn_more"/><f:if condition="{data.header}"><span class="sr-only">: {data.header}</span></f:if></f:else>
+                        </f:if>
                         <span class="card-interactive__link-icon" aria-hidden="true">
                             <d:atom.icon name="arrow-right" size="sm"/>
                         </span>

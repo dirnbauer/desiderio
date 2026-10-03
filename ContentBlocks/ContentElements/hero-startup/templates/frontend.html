@@ -20,7 +20,7 @@
                     <f:if condition="{data.avatars}">
                         <div class="hero-startup__avatars" aria-hidden="true">
                             <f:for each="{data.avatars}" as="avatar">
-                                <f:image image="{avatar}" width="32" height="32" class="hero-startup__avatar" alt="{avatar.alternative}" additionalAttributes="{srcset: '{f:uri.image(image: avatar, width: \'32\', height: \'32\')} 1x, {f:uri.image(image: avatar, width: \'64\', height: \'64\')} 2x'}" loading="lazy" decoding="async"/>
+                                <f:image image="{avatar}" width="32c" height="32c" class="hero-startup__avatar" alt="{avatar.alternative}" additionalAttributes="{srcset: '{f:uri.image(image: avatar, width: \'32c\', height: \'32c\')} 1x, {f:uri.image(image: avatar, width: \'64c\', height: \'64c\')} 2x'}" loading="lazy" decoding="async"/>
                             </f:for>
                         </div>
                     </f:if>

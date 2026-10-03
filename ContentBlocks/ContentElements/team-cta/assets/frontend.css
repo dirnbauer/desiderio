@@ -26,6 +26,7 @@
 }
 .team-cta__count {
     margin: 0 0 var(--d-spacing-sm);
+    font-variant-numeric: tabular-nums;
 }
 .team-cta__description {
     margin-block-start: var(--d-spacing-sm);

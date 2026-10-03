@@ -132,7 +132,7 @@
     border-radius: calc(var(--radius) - 2px);
     background: color-mix(in oklch, var(--muted) 55%, transparent);
     padding: var(--d-spacing-2xs) var(--d-spacing-xs);
-    transition: background-color 0.15s ease, border-color 0.15s ease;
+    transition: background-color var(--d-motion-fast) var(--d-ease), border-color var(--d-motion-fast) var(--d-ease);
 }
 /* Swatch dot ties each legend entry to the plotted series colour. */
 .chart-radar__legend-item::before {
@@ -144,8 +144,14 @@
     border-radius: var(--d-radius-full);
     background: var(--chart-color, var(--chart-1));
 }
-/* Clear hover/focus feedback so the legend entry being read stands out from its neighbours. */
-.chart-radar__legend-item:hover,
+/* Clear hover/focus feedback so the legend entry being read stands out from its neighbours.
+   Hover only where a pointer really hovers: on touch screens a tap left the chip stuck. */
+@media (hover: hover) and (pointer: fine) {
+    .chart-radar__legend-item:hover {
+        background: color-mix(in oklch, var(--muted) 90%, transparent);
+        border-color: var(--border);
+    }
+}
 .chart-radar__legend-item:focus-within {
     background: color-mix(in oklch, var(--muted) 90%, transparent);
     border-color: var(--border);

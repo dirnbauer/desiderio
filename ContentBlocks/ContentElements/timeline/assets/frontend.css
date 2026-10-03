@@ -145,24 +145,26 @@
     color: var(--secondary-foreground);
     font-size: var(--d-text-sm);
     font-weight: var(--d-weight-semibold);
-    margin-block-end: var(--d-spacing-md);
+    font-variant-numeric: tabular-nums;
 }
 .timeline__title {
     font-size: var(--d-text-base);
     font-weight: var(--d-weight-semibold);
     line-height: var(--d-leading-normal);
-    margin-block-end: var(--d-spacing-xs);
 }
 .timeline__text {
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
     line-height: var(--d-leading-relaxed);
+    overflow-wrap: break-word;
 }
 .timeline__text p {
     margin: 0;
 }
+/* Step label, then title and text as one group (timeline__body), then the
+   link: the card gap spaces the three, the body keeps title and text close. */
 .timeline__actions {
-    margin-block-start: var(--d-spacing-md);
+    margin-block-start: 0;
 }
 .timeline__link {
     font-weight: var(--d-weight-medium);
@@ -229,4 +231,34 @@
 .timeline__intro > p,
 .timeline__intro :where(p) {
     margin-inline: auto;
+}
+
+/* Text from the RTE (d-richtext), scoped to this element: consecutive
+   paragraphs no longer sit flush, lists show their markers, links show. */
+.timeline__text.d-richtext > * { margin-block: 0; }
+.timeline__text.d-richtext > * + * { margin-block-start: var(--d-spacing-sm); }
+.timeline__text.d-richtext :is(ul, ol) { padding-inline-start: var(--d-spacing-lg); }
+.timeline__text.d-richtext ul { list-style: disc; }
+.timeline__text.d-richtext ol { list-style: decimal; }
+.timeline__text.d-richtext li + li { margin-block-start: var(--d-spacing-2xs); }
+.timeline__text.d-richtext :is(h2, h3, h4, h5, h6) {
+    color: var(--foreground);
+    font-size: var(--d-text-sm);
+    font-weight: var(--d-weight-semibold);
+    line-height: var(--d-leading-snug);
+}
+.timeline__text.d-richtext a {
+    color: var(--d-link-on-muted, var(--d-link, var(--primary)));
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: color-mix(in oklch, currentColor 45%, transparent);
+    text-underline-offset: 0.22em;
+    border-radius: var(--d-radius-sm);
+}
+.timeline__text.d-richtext a:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+@media (hover: hover) and (pointer: fine) {
+    .timeline__text.d-richtext a:hover { text-decoration-color: currentColor; }
 }

@@ -15,7 +15,7 @@
                 "source": "https://github.com/dirnbauer/desiderio"
             },
             "button_text": "See the editor",
-            "button_link": "t3://page?uid=1"
+            "button_link": "{{page:features/visual-editor}}"
         },
         {
             "title": "Publish a consistent design",
@@ -29,7 +29,7 @@
                 "source": "https://github.com/dirnbauer/desiderio"
             },
             "button_text": "See all elements",
-            "button_link": "t3://page?uid=1"
+            "button_link": "{{page:content-types}}"
         },
         {
             "title": "Dark mode included",
@@ -43,7 +43,7 @@
                 "source": "https://github.com/dirnbauer/desiderio"
             },
             "button_text": "Get started free",
-            "button_link": "t3://page?uid=1"
+            "button_link": "{{page:pricing}}"
         }
     ]
 }

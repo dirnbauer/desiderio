@@ -1,26 +1,105 @@
 .gdpr-banner {
     position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
     padding: var(--d-spacing-lg) 0; background: var(--card);
+    padding-block-end: calc(var(--d-spacing-lg) + env(safe-area-inset-bottom, 0px));
     border-top: 1px solid var(--border);
     box-shadow: 0 -4px 20px color-mix(in oklch, var(--foreground) 10%, transparent);
+    /* Never taller than most of the screen: on a small phone or at 200% zoom
+       the categories and the buttons stay reachable by scrolling the banner. */
+    max-height: 85vh;
+    max-height: 85dvh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
 }
+
+/* Arrival: a short rise from the bottom edge. The resting state is the plain
+   banner, so without motion it simply is there. */
+@keyframes d-gdpr-banner-rise {
+    from { opacity: 0; translate: 0 0.75rem; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .gdpr-banner:not([hidden]) { animation: d-gdpr-banner-rise var(--d-motion) var(--d-ease) both; }
+}
+
 .gdpr-banner__inner { display: flex; flex-direction: column; gap: var(--d-spacing-md); }
+.gdpr-banner__content { min-width: 0; }
 .gdpr-banner__title { font-size: var(--d-text-base); font-weight: var(--d-weight-semibold); margin: 0 0 var(--d-spacing-2xs); color: var(--foreground); }
-.gdpr-banner__message { font-size: var(--d-text-sm); color: var(--muted-foreground); line-height: var(--d-leading-normal); }
+.gdpr-banner__message { max-width: 75ch; font-size: var(--d-text-sm); color: var(--muted-foreground); line-height: var(--d-leading-normal); }
 .gdpr-banner__message > *:first-child { margin-top: 0; }
 .gdpr-banner__message > *:last-child { margin-bottom: 0; }
-.gdpr-banner__privacy-link { display: inline-block; margin-block-start: var(--d-spacing-xs); font-size: var(--d-text-sm); color: var(--d-link, var(--primary)); text-decoration: underline; text-underline-offset: 3px; border-radius: var(--d-radius-sm); }
-.gdpr-banner__privacy-link:hover { text-decoration: none; }
+.gdpr-banner__message a { overflow-wrap: anywhere; }
+.gdpr-banner__privacy-link { position: relative; display: inline-block; margin-block-start: var(--d-spacing-xs); font-size: var(--d-text-sm); color: var(--d-link, var(--primary)); text-decoration: underline; text-underline-offset: 3px; border-radius: var(--d-radius-sm); }
+.gdpr-banner__privacy-link::after { content: ""; position: absolute; inset: -0.75rem -0.25rem; }
+@media (hover: hover) and (pointer: fine) {
+    .gdpr-banner__privacy-link:hover { text-decoration: none; }
+}
 .gdpr-banner__privacy-link:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
-.gdpr-banner__categories { display: flex; flex-wrap: wrap; gap: var(--d-spacing-sm); margin: 0; padding: 0; border: 0; }
-.gdpr-banner__category { display: flex; align-items: flex-start; gap: var(--d-spacing-xs); font-size: var(--d-text-sm); cursor: pointer; padding: var(--d-spacing-xs) var(--d-spacing-sm); border: 1px solid var(--border); border-radius: var(--radius); }
+
+/* Categories share one width, whatever their text: a grid instead of a
+   wrapping row, so three cards never end up three different sizes. */
+.gdpr-banner__categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+    gap: var(--d-spacing-sm);
+    margin: 0; padding: 0; border: 0;
+    min-width: 0;
+}
+.gdpr-banner__category {
+    display: flex; align-items: flex-start; gap: var(--d-spacing-xs);
+    font-size: var(--d-text-sm); cursor: pointer;
+    padding: var(--d-spacing-xs) var(--d-spacing-sm);
+    border: 1px solid var(--border); border-radius: var(--radius);
+    transition: border-color var(--d-motion-fast) var(--d-ease), background-color var(--d-motion-fast) var(--d-ease);
+}
+/* A chosen category carries a quiet primary edge, so the state reads at a
+   glance and not only from the small box. */
+.gdpr-banner__category:has(:checked) {
+    border-color: color-mix(in oklch, var(--primary) 45%, var(--border));
+    background: color-mix(in oklch, var(--primary) 4%, transparent);
+}
+.gdpr-banner__category:has(:disabled) { cursor: default; }
+@media (hover: hover) and (pointer: fine) {
+    .gdpr-banner__category:not(:has(:disabled)):hover { border-color: color-mix(in oklch, var(--foreground) 30%, var(--border)); }
+}
 .gdpr-banner__category:focus-within { border-color: var(--ring); box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 18%, transparent); }
-.gdpr-banner__checkbox { margin-top: var(--d-spacing-0-5); accent-color: var(--primary); }
-.gdpr-banner__cat-text { display: flex; flex-direction: column; gap: var(--d-spacing-0-5); }
+/* The shadcn box sits on the first text line. */
+.gdpr-banner__control { margin-top: var(--d-spacing-0-5); }
+.gdpr-banner__checkbox { margin-top: 0; accent-color: var(--primary); }
+.gdpr-banner__cat-text { display: flex; flex-direction: column; gap: var(--d-spacing-0-5); min-width: 0; }
 .gdpr-banner__cat-name { font-weight: var(--d-weight-medium); color: var(--foreground); }
 .gdpr-banner__cat-desc { display: block; font-size: var(--d-text-xs); color: var(--muted-foreground); }
+
 .gdpr-banner__actions { display: flex; flex-wrap: wrap; gap: var(--d-spacing-xs); }
-@media (min-width: 768px) {
-    .gdpr-banner__inner { flex-direction: row; align-items: center; justify-content: space-between; }
-    .gdpr-banner__actions { flex-shrink: 0; }
+/* The small buttons keep their look; the hit area grows to 44px tall. */
+.gdpr-banner__action { position: relative; }
+.gdpr-banner__action::after { content: ""; position: absolute; inset: -0.5rem 0; }
+
+/* Wide screens: the message runs across the top, the categories form one
+   row underneath and the buttons close that row on the right — the visual
+   order stays the reading and tab order. */
+@media (min-width: 1024px) {
+    .gdpr-banner__inner {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-areas:
+            "content content"
+            "categories actions";
+        align-items: end;
+        gap: var(--d-spacing-md) var(--d-spacing-xl);
+    }
+    .gdpr-banner__content { grid-area: content; }
+    .gdpr-banner__categories { grid-area: categories; }
+    .gdpr-banner__category { gap: var(--d-spacing-sm); padding: var(--d-spacing-sm); }
+    .gdpr-banner__actions { grid-area: actions; flex-shrink: 0; }
 }
+
+/* d-richtext (generated by scripts/convert-textarea-to-rte.php) */
+.d-richtext > :first-child { margin-block-start: 0; }
+.d-richtext > :last-child { margin-block-end: 0; }
+.d-richtext p { margin-block: 0 var(--d-spacing-sm); }
+.d-richtext ul, .d-richtext ol { margin-block: var(--d-spacing-sm) 0; padding-inline-start: var(--d-spacing-lg); }
+.d-richtext ul { list-style: disc; }
+.d-richtext ol { list-style: decimal; }
+.d-richtext li { margin-block-end: var(--d-spacing-2xs); }
+.d-richtext a { color: var(--d-link, var(--primary)); text-decoration: underline; text-underline-offset: 2px; }

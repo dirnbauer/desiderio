@@ -29,9 +29,7 @@
 }
 .mega-menu__brand-name {
     color: var(--d-foreground, var(--foreground));
-}
-.mega-menu__brand-link:hover .mega-menu__brand-name {
-    color: var(--d-link, var(--primary));
+    transition: color var(--d-motion-fast) var(--d-ease);
 }
 .mega-menu__brand-link:focus-visible {
     outline: 2px solid var(--d-ring, var(--ring));
@@ -45,22 +43,23 @@
 }
 .mega-menu__cta-icon {
     display: inline-flex;
-    transition: transform 0.15s ease;
-}
-.mega-menu__cta:hover .mega-menu__cta-icon {
-    transform: translateX(2px);
+    transition: transform var(--d-motion-fast) var(--d-ease);
 }
 .mega-menu__rule {
     margin-block: var(--d-spacing-2, 0.5rem) 0;
 }
+/* The panel is the menu's body, not a card: the shared surface for
+   *__panel classes (tint, shadow) drew a stray half-frame below the rule. */
 .mega-menu__panel {
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
     gap: var(--d-spacing-6, 1.5rem);
     padding-block: var(--d-spacing-6, 1.5rem);
+    background-color: transparent;
+    box-shadow: none;
 }
 .mega-menu--two-columns .mega-menu__panel {
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
 }
 .mega-menu__intro {
     padding: var(--d-spacing-4, 1rem);
@@ -75,13 +74,36 @@
 .mega-menu__intro-text {
     color: var(--d-muted-foreground, var(--muted-foreground));
 }
+/* 11rem columns: four groups share one row beside the intro on a desktop
+   (with 200px tracks the fourth group sat alone in a second row). min()
+   keeps a single track from overflowing a narrow column. */
 .mega-menu__groups {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(11rem, 100%), 1fr));
     gap: var(--d-spacing-6, 1.5rem);
 }
 .mega-menu--two-columns .mega-menu__groups {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+/* Each group spans three rows of the groups grid (title, description,
+   links) through a subgrid, so the link lists of one row start at the same
+   height even when one description wraps to a second line. Fixed row
+   lines keep a group without description aligned too. */
+.mega-menu__group {
+    display: grid;
+    grid-row: span 3;
+    grid-template-rows: subgrid;
+    row-gap: 0;
+    align-content: start;
+}
+.mega-menu__group > .mega-menu__group-title {
+    grid-row: 1;
+}
+.mega-menu__group > .mega-menu__group-desc {
+    grid-row: 2;
+}
+.mega-menu__group > .mega-menu__links {
+    grid-row: 3;
 }
 .mega-menu__group-title {
     color: var(--d-muted-foreground, var(--muted-foreground));
@@ -92,6 +114,8 @@
 .mega-menu__group-desc {
     margin-block-end: var(--d-spacing-3, 0.75rem);
 }
+/* role="list" in the template: list-style none drops the list semantics in
+   Safari. */
 .mega-menu__links {
     list-style: none;
     margin: 0;
@@ -108,11 +132,7 @@
     border-radius: var(--d-radius-md, 0.5rem);
     color: var(--d-foreground, var(--foreground));
     text-decoration: none;
-    transition: background-color 0.15s ease, color 0.15s ease;
-}
-.mega-menu__link:hover {
-    background: var(--d-accent, var(--accent));
-    color: var(--d-accent-foreground, var(--accent-foreground));
+    transition: background-color var(--d-motion-fast) var(--d-ease), color var(--d-motion-fast) var(--d-ease);
 }
 .mega-menu__link:focus-visible {
     outline: 2px solid var(--d-ring, var(--ring));
@@ -122,21 +142,39 @@
     color: var(--d-muted-foreground, var(--muted-foreground));
 }
 .mega-menu__link-label {
+    min-width: 0;
     font-size: var(--d-text-sm, 0.875rem);
     font-weight: var(--d-weight-medium);
     color: inherit;
 }
+/* The arrow shows by default; only a fine pointer hides it until the row is
+   hovered or focused (a touch screen of any width has no hover to reveal
+   it). It slides in from the label side, it never pops from nothing. */
 .mega-menu__link-arrow {
     margin-inline-start: auto;
-    opacity: 0;
-    transform: translateX(-0.25rem);
-    transition: opacity 0.15s ease, transform 0.15s ease;
     color: inherit;
+    transition: opacity var(--d-motion-fast) var(--d-ease), transform var(--d-motion-fast) var(--d-ease);
 }
-.mega-menu__link:hover .mega-menu__link-arrow,
-.mega-menu__link:focus-visible .mega-menu__link-arrow {
-    opacity: 1;
-    transform: translateX(0);
+@media (hover: hover) and (pointer: fine) {
+    .mega-menu__brand-link:hover .mega-menu__brand-name {
+        color: var(--d-link, var(--primary));
+    }
+    .mega-menu__cta:hover .mega-menu__cta-icon {
+        transform: translateX(2px);
+    }
+    .mega-menu__link:hover {
+        background: var(--d-accent, var(--accent));
+        color: var(--d-accent-foreground, var(--accent-foreground));
+    }
+    .mega-menu__link-arrow {
+        opacity: 0;
+        transform: translateX(calc(-1 * var(--d-spacing-1)));
+    }
+    .mega-menu__link:hover .mega-menu__link-arrow,
+    .mega-menu__link:focus-visible .mega-menu__link-arrow {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 .mega-menu__sr-only {
     position: absolute;
@@ -149,32 +187,45 @@
     white-space: nowrap;
     border: 0;
 }
+/* Touch: every link row is a 44px target. */
+@media (pointer: coarse) {
+    .mega-menu__link {
+        min-height: 2.75rem;
+    }
+}
 
 @media (max-width: 1024px) {
     .mega-menu__panel,
     .mega-menu--two-columns .mega-menu__panel {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
     }
 }
 
+/* Tablets keep two group columns, so four groups read as a 2 x 2 block
+   instead of one long list; phones stack them. */
 @media (max-width: 768px) {
     .mega-menu__panel,
     .mega-menu--two-columns .mega-menu__panel {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         gap: var(--d-spacing-4, 1rem);
     }
     .mega-menu__groups,
     .mega-menu--two-columns .mega-menu__groups {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-    .mega-menu__link-arrow {
-        opacity: 1;
-        transform: translateX(0);
+}
+
+@media (max-width: 480px) {
+    .mega-menu__groups,
+    .mega-menu--two-columns .mega-menu__groups {
+        grid-template-columns: minmax(0, 1fr);
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .mega-menu__brand-name,
     .mega-menu__cta-icon,
+    .mega-menu__link,
     .mega-menu__link-arrow {
         transition: none;
     }

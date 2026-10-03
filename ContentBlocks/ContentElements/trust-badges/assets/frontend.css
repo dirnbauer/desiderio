@@ -22,8 +22,27 @@
 }
 .trust-badges__icon { display: flex; align-items: center; justify-content: center; width: 7.5rem; aspect-ratio: 3 / 2; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius); background: var(--muted); box-shadow: var(--shadow-xs); }
 .trust-badges__icon-img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: saturate(0.9) contrast(1.02); }
-.trust-badges__label { font-weight: var(--d-weight-semibold); font-size: var(--d-text-base); }
-.trust-badges__desc { font-size: var(--d-text-sm); color: var(--muted-foreground); line-height: var(--d-leading-normal); }
+.trust-badges__label { min-width: 0; font-weight: var(--d-weight-semibold); font-size: var(--d-text-base); overflow-wrap: anywhere; }
+.trust-badges__desc { min-width: 0; font-size: var(--d-text-sm); color: var(--muted-foreground); line-height: var(--d-leading-normal); }
+
+/* Phones: each check reads as one line of a list, the seal beside its label
+   and text, instead of five centred blocks stacked into a long column. */
+@media (max-width: 640px) {
+    .trust-badges__row { grid-template-columns: minmax(0, 1fr); gap: var(--d-spacing-md); }
+    .trust-badges__item {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        column-gap: var(--d-spacing-md);
+        row-gap: var(--d-spacing-2xs);
+        align-items: start;
+        text-align: start;
+    }
+    .trust-badges__seal,
+    .trust-badges__icon { grid-row: span 2; margin-block-end: 0; }
+    .trust-badges__seal { width: 2.75rem; height: 2.75rem; }
+    .trust-badges__icon { width: 4.5rem; }
+    .trust-badges__item:not(:has(.trust-badges__desc)) .trust-badges__label { grid-row: span 2; align-self: center; }
+}
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */
 .trust-badges__intro {

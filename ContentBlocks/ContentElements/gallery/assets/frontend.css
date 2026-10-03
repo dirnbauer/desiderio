@@ -2,9 +2,13 @@
     text-align: center;
     margin-block-end: var(--d-spacing-xl);
 }
+/* Capped and centred: at full container width the 16:10 featured image grew
+   to 760px tall and pushed the thumbnails below the fold. */
 .gallery__browser {
     display: grid;
     gap: var(--d-spacing-md);
+    max-width: 64rem;
+    margin-inline: auto;
 }
 .gallery__featured {
     margin: 0;
@@ -57,7 +61,9 @@
     text-decoration: none;
     border-radius: var(--d-radius-sm);
 }
-.gallery__featured-link:hover { text-decoration: underline; }
+@media (hover: hover) and (pointer: fine) {
+    .gallery__featured-link:hover { text-decoration: underline; }
+}
 .gallery__featured-link:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
 .gallery__featured-link[hidden] { display: none; }
 .gallery__thumbs {
@@ -67,6 +73,11 @@
 }
 .gallery__thumbs--cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .gallery__thumbs--cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.gallery__thumbs:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: var(--d-radius-md);
+}
 .gallery__thumb {
     display: grid;
     gap: var(--d-spacing-xs);
@@ -78,20 +89,36 @@
     color: var(--foreground);
     text-align: start;
     cursor: pointer;
-    transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+    transition:
+        border-color var(--d-motion-fast) var(--d-ease),
+        box-shadow var(--d-motion-fast) var(--d-ease),
+        transform var(--d-motion-fast) var(--d-ease);
 }
-.gallery__thumb:hover,
-.gallery__thumb:focus-visible {
-    border-color: var(--ring);
-    box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 18%, transparent);
-    outline: none;
-}
-.gallery__thumb:hover {
-    transform: translateY(-1px);
-}
+/* The selected thumbnail (aria-current, kept in step by desiderio.js) keeps
+   a ring-coloured edge and a darker label; focus adds the soft halo on top
+   instead of replacing the selection. */
 .gallery__thumb[aria-current="true"] {
-    border-color: var(--border);
-    box-shadow: none;
+    border-color: var(--ring);
+    box-shadow: 0 0 0 1px var(--ring);
+}
+.gallery__thumb[aria-current="true"] .gallery__thumb-label {
+    color: var(--foreground);
+}
+.gallery__thumb:focus-visible {
+    outline: none;
+    border-color: var(--ring);
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 40%, transparent);
+}
+.gallery__thumb[aria-current="true"]:focus-visible {
+    box-shadow:
+        0 0 0 1px var(--ring),
+        0 0 0 4px color-mix(in oklch, var(--ring) 30%, transparent);
+}
+@media (hover: hover) and (pointer: fine) {
+    .gallery__thumb:not([aria-current="true"]):hover {
+        border-color: color-mix(in oklch, var(--ring) 55%, var(--border));
+        transform: translateY(-1px);
+    }
 }
 .gallery__thumb-image {
     width: 100%;
@@ -106,25 +133,55 @@
     font-size: var(--d-text-xs);
     font-weight: var(--d-weight-medium);
     line-height: var(--d-leading-snug);
+    transition: color var(--d-motion-fast) var(--d-ease);
 }
-@media (max-width: 768px) {
-    .gallery__thumbs,
-    .gallery__thumbs--cols-4 {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+/* No stranded cell: four or five thumbnails fill one row, two columns
+   holding three become three, four columns holding six become 3 + 3. */
+@media (min-width: 769px) {
+    .gallery__thumbs:not(.gallery__thumbs--cols-2):has(> :nth-child(5):last-child) {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+    .gallery__thumbs:not(.gallery__thumbs--cols-2, .gallery__thumbs--cols-4):has(> :nth-child(4):last-child) {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    .gallery__thumbs--cols-2:has(> :nth-child(3):last-child) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .gallery__thumbs--cols-4:has(> :nth-child(6):last-child) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 }
-@media (max-width: 480px) {
+
+/* Phones and small tablets: the thumbnails become one swipeable strip under
+   the featured image instead of a stack of full-width cards. */
+@media (max-width: 768px) {
     .gallery__thumbs,
     .gallery__thumbs--cols-2,
     .gallery__thumbs--cols-4 {
-        grid-template-columns: 1fr;
+        grid-template-columns: none;
+        grid-auto-flow: column;
+        grid-auto-columns: 42%;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+        scroll-padding-inline: var(--d-spacing-1);
+        /* Room for the selection ring and the focus halo, which the
+           scroller would otherwise clip. */
+        padding: var(--d-spacing-1) var(--d-spacing-1) var(--d-spacing-sm);
+        margin-inline: calc(var(--d-spacing-1) * -1);
+        scrollbar-width: thin;
+        scrollbar-color: var(--border) transparent;
+    }
+    .gallery__thumb {
+        scroll-snap-align: start;
     }
 }
 @media (prefers-reduced-motion: reduce) {
     .gallery__thumb {
         transition: none;
     }
-    .gallery__thumb:hover {
+    .gallery__thumb:not([aria-current="true"]):hover {
         transform: none;
     }
 }

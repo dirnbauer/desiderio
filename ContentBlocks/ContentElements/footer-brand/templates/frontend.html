@@ -13,7 +13,9 @@
                     <f:if condition="{data.logo}">
                         <div class="footer-brand__logo">
                             <f:for each="{data.logo}" as="file">
-                                <f:image image="{file}" alt="{data.brand}" width="72" additionalAttributes="{srcset: '{f:uri.image(image: file, width: \'72\')} 1x, {f:uri.image(image: file, width: \'144\')} 2x'}" loading="lazy" decoding="async"/>
+                                <f:comment>The brand name is printed right beside the mark, so the mark only speaks when the editor gave it its own alternative text; without a visible name it falls back to the reference or the element title.</f:comment>
+                                <f:variable name="logoAltFallback" value="{f:if(condition: file.alternative, then: file.alternative, else: data.header)}" />
+                                <f:image image="{file}" alt="{f:if(condition: data.brand, then: file.alternative, else: logoAltFallback)}" width="72" additionalAttributes="{srcset: '{f:uri.image(image: file, width: \'72\')} 1x, {f:uri.image(image: file, width: \'144\')} 2x'}" loading="lazy" decoding="async"/>
                             </f:for>
                         </div>
                     </f:if>
@@ -27,7 +29,7 @@
             </div>
             <f:if condition="{data.link_items}">
                 <nav class="footer-brand__nav" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:footer.links.aria', default: 'Footer links')}">
-                    <ul class="footer-brand__links">
+                    <ul class="footer-brand__links" role="list">
                         <f:for each="{data.link_items}" as="item">
                             <li>
                                 <f:if condition="{item.link}">

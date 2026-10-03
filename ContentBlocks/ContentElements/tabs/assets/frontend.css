@@ -9,10 +9,25 @@
     line-height: var(--d-leading-relaxed);
 }
 
+/* A trigger is never narrower than its label. The shared reset gives every
+   button min-width: 0, and with the triggers' flex: 1 the fit-content list
+   split its width evenly: "Editor experience" was cut off at every width.
+   On a phone the list scrolls sideways instead (overflow-x on the list). */
+.tabs-section [data-slot="tabs-trigger"] {
+    min-width: max-content;
+}
+
 /* Panel fills the tabs flex container; focus handled on the triggers. */
 .tabs-section .tabs__content {
     flex: 1;
     outline: none;
+}
+
+/* The panel itself is focusable (tabindex="0"), so it shows where focus is. */
+.tabs-section .tabs__content:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 4px;
+    border-radius: var(--radius);
 }
 
 /* Visible focus ring for keyboard navigation on tab triggers. */
@@ -28,7 +43,7 @@
     opacity: 0;
     transform: scaleX(0);
     transform-origin: center;
-    transition: transform 0.2s ease, opacity 0.2s ease;
+    transition: transform var(--d-motion) var(--d-ease), opacity var(--d-motion) var(--d-ease);
 }
 .tabs-section [data-d-tabs-list][data-variant="line"] [data-d-tabs-trigger][data-state="active"]::after {
     opacity: 1;
@@ -45,4 +60,38 @@
     display: inline-flex;
     align-items: center;
     transform: translateY(0.5px);
+}
+
+/* Panel text from the RTE (d-richtext), scoped to this element: spacing
+   between siblings, list markers, heading sizes and a visible link. */
+.tabs-section .tabs__content.d-richtext > * { margin-block: 0; }
+.tabs-section .tabs__content.d-richtext > * + * { margin-block-start: var(--d-spacing-sm); }
+.tabs-section .tabs__content.d-richtext > * + :is(h2, h3, h4, h5, h6) { margin-block-start: var(--d-spacing-lg); }
+.tabs-section .tabs__content.d-richtext :is(ul, ol) { padding-inline-start: var(--d-spacing-lg); }
+.tabs-section .tabs__content.d-richtext ul { list-style: disc; }
+.tabs-section .tabs__content.d-richtext ol { list-style: decimal; }
+.tabs-section .tabs__content.d-richtext li + li { margin-block-start: var(--d-spacing-2xs); }
+.tabs-section .tabs__content.d-richtext :is(h2, h3, h4, h5, h6) {
+    color: var(--foreground);
+    font-weight: var(--d-weight-semibold);
+    line-height: var(--d-leading-snug);
+}
+.tabs-section .tabs__content.d-richtext h2 { font-size: var(--d-text-xl); }
+.tabs-section .tabs__content.d-richtext h3 { font-size: var(--d-text-lg); }
+.tabs-section .tabs__content.d-richtext :is(h4, h5, h6) { font-size: var(--d-text-base); }
+.tabs-section .tabs__content.d-richtext a {
+    color: var(--d-link, var(--primary));
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: color-mix(in oklch, currentColor 45%, transparent);
+    text-underline-offset: 0.22em;
+    border-radius: var(--d-radius-sm);
+    transition: text-decoration-color var(--d-motion-fast) var(--d-ease);
+}
+.tabs-section .tabs__content.d-richtext a:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+@media (hover: hover) and (pointer: fine) {
+    .tabs-section .tabs__content.d-richtext a:hover { text-decoration-color: currentColor; }
 }

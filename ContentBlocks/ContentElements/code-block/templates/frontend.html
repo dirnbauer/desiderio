@@ -12,9 +12,10 @@
         </f:if>
 
         <div class="code-block">
-            <f:if condition="{data.filename}">
+            <f:if condition="{data.filename} || {data.language}">
                 <div class="code-block__header">
-                    <span class="code-block__filename">{data -> f:render.text(field: 'filename')}</span>
+                    <f:if condition="{data.filename}"><span class="code-block__filename">{data -> f:render.text(field: 'filename')}</span></f:if>
+                    <f:if condition="{data.language}"><span class="code-block__language">{data -> f:render.text(field: 'language')}</span></f:if>
                 </div>
             </f:if>
             <f:comment><!--

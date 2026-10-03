@@ -7,15 +7,18 @@
     border: 1px solid var(--border);
     border-radius: var(--radius);
     background: var(--card);
-    transition: border-color 150ms ease, box-shadow 150ms ease;
+    transition: border-color var(--d-motion-fast) var(--d-ease), box-shadow var(--d-motion-fast) var(--d-ease);
 }
-.cta-inline__bar:hover {
-    border-color: color-mix(in oklab, var(--ring) 45%, transparent);
-    box-shadow: var(--d-shadow-sm);
+@media (hover: hover) and (pointer: fine) {
+    .cta-inline__bar:hover {
+        border-color: color-mix(in oklab, var(--ring) 45%, transparent);
+        box-shadow: var(--d-shadow-sm);
+    }
 }
 .cta-inline__text {
     display: grid;
     gap: var(--d-spacing-2xs);
+    min-width: 0;
 }
 .cta-inline__headline {
     font-weight: var(--d-weight-semibold);
@@ -24,24 +27,17 @@
 .cta-inline__description {
     font-size: var(--d-text-sm);
     color: var(--muted-foreground);
+    max-width: 65ch;
 }
-.cta-inline__action {
-    transition: transform 150ms ease;
-}
-.cta-inline__action:hover {
-    transform: scale(1.03);
-}
+/* The button's hover lift and press come from the shared default-button
+   rule (22-modern-base.css); only the focus ring is added here. */
 .cta-inline__action:focus-visible {
     outline: 2px solid var(--ring);
     outline-offset: 2px;
 }
 @media (prefers-reduced-motion: reduce) {
-    .cta-inline__bar,
-    .cta-inline__action {
+    .cta-inline__bar {
         transition: none;
-    }
-    .cta-inline__action:hover {
-        transform: none;
     }
 }
 @media (max-width: 768px) {
@@ -49,5 +45,8 @@
         flex-direction: column;
         text-align: center;
         padding: var(--d-spacing-lg);
+    }
+    .cta-inline__description {
+        margin-inline: auto;
     }
 }

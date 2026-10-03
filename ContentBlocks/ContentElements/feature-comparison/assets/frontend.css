@@ -35,6 +35,18 @@
     text-align: center;
     white-space: nowrap;
 }
+/* On a phone the two option titles could not stay on one line: the table
+   grew wider than the card, which clips it, and the second option was cut
+   off. There the titles wrap and the cells take less side padding. */
+@media (max-width: 640px) {
+    .feature-comparison__feature-col,
+    .feature-comparison__check-col {
+        padding-inline: var(--d-spacing-xs);
+    }
+    .feature-comparison__check-col {
+        white-space: normal;
+    }
+}
 .feature-comparison__yes,
 .feature-comparison__no {
     display: inline-flex;

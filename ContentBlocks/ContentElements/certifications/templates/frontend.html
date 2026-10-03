@@ -27,7 +27,7 @@
                     <f:if condition="{cert.badge_image}">
                         <div class="certifications__media">
                             <f:for each="{cert.badge_image}" as="fileReference">
-                                <f:image image="{fileReference}" maxWidth="640" alt="{f:if(condition: fileReference.alternative, then: fileReference.alternative, else: '{cert.name} certification')}" loading="lazy" decoding="async" class="certifications__image"/>
+                                <f:image image="{fileReference}" maxWidth="640" alt="{fileReference.alternative}" loading="lazy" decoding="async" class="certifications__image"/>
                             </f:for>
                         </div>
                     </f:if>

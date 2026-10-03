@@ -7,11 +7,13 @@
 
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="callout-section">
     <d:layout.container>
+        <f:variable name="calloutIcon"><f:switch expression="{data.variant}"><f:case value="warning">alert-triangle</f:case><f:case value="success">check-circle</f:case><f:case value="danger">alert-circle</f:case><f:defaultCase>info</f:defaultCase></f:switch></f:variable>
         <div class="callout callout--{data.variant -> f:or(alternative: 'info')}" role="note">
+            <span class="callout__icon" aria-hidden="true"><d:atom.icon name="{calloutIcon -> f:format.trim()}" size="sm"/></span>
             <f:if condition="{data.header}">
                 <d:atom.typography tag="h2" variant="h4" class="callout__title">{data -> f:render.text(field: 'header')}</d:atom.typography>
             </f:if>
-            <div class="callout__content">
+            <div class="callout__content d-richtext">
                 {data -> f:render.text(field: 'content')}
             </div>
         </div>

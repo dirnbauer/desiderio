@@ -37,26 +37,46 @@
 .pricing__grid--cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .pricing__grid--cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 
+/* Plans in a row share three rows (header, feature list, footer) through
+   subgrid, so every feature list and every button starts on the same line
+   however long a name, price or description runs. */
 .pricing__item {
-    display: flex;
+    display: grid;
+    grid-row: span 3;
+    grid-template-rows: subgrid;
     min-width: 0;
 }
 
 .pricing__plan {
     position: relative;
-    flex: 1;
+    grid-row: span 3;
+    display: grid;
+    grid-template-rows: subgrid;
     min-width: 0;
-    height: 100%;
     overflow: visible;
 }
 
-.pricing__plan--featured,
-.pricing__plan--recommended {
+.pricing__header { grid-row: 1; }
+.pricing__content { grid-row: 2; }
+.pricing__footer { grid-row: 3; }
+
+.pricing__plan--featured {
     z-index: 1;
 }
 
-.pricing__plan--featured {
+/* Featured plan emphasis: a 2px primary ring composed with the card's
+   surface shadow. The [data-slot] qualifier lets it outrank the shared
+   card surface rule, which otherwise painted over the ring. */
+[data-slot="card"].pricing__plan--featured {
     box-shadow: 0 0 0 1px var(--primary), inset 0 0 0 1px var(--primary), var(--d-surface-shadow);
+}
+
+/* The shared card hover lifts the plan and swaps its ring for a faint one;
+   the featured plan keeps its primary ring while it lifts. */
+@media (hover: hover) and (pointer: fine) {
+    .desiderio-section [data-slot="card"].pricing__plan--featured:has(a[href]):hover {
+        box-shadow: 0 0 0 1px var(--primary), inset 0 0 0 1px var(--primary), var(--shadow-md, var(--d-surface-shadow));
+    }
 }
 
 .pricing__ribbon {
@@ -75,15 +95,10 @@
     margin-block-start: var(--d-spacing-sm);
 }
 
-.pricing__price,
 .pricing__plan-price {
     font-size: var(--d-text-3xl);
     font-weight: var(--d-weight-display);
     line-height: var(--d-leading-tight);
-}
-
-.pricing__content {
-    flex: 1 1 auto;
 }
 
 .pricing__features {
@@ -118,7 +133,7 @@
 }
 
 @media (max-width: 1024px) { .pricing__grid--cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 768px) { .pricing__grid, .pricing__grid--cols-2, .pricing__grid--cols-3, .pricing__grid--cols-4 { grid-template-columns: 1fr; } }
+@media (max-width: 768px) { .pricing__grid, .pricing__grid--cols-2, .pricing__grid--cols-3, .pricing__grid--cols-4 { grid-template-columns: minmax(0, 1fr); } }
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */
 .pricing__intro {
     display: grid;

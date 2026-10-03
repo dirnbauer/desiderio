@@ -24,7 +24,7 @@
         <div class="pricing-faq__list">
             <f:for each="{data.question_items}" as="item">
                 <details class="pricing-faq__item">
-                    <summary class="pricing-faq__question">{item -> f:render.text(field: 'question')}</summary>
+                    <summary class="pricing-faq__question"><span class="pricing-faq__question-text">{item -> f:render.text(field: 'question')}</span></summary>
                     <div class="pricing-faq__answer">
                         <div class="d-richtext">{item -> f:render.text(field: 'answer')}</div>
                     </div>

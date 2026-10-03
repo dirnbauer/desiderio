@@ -4,11 +4,11 @@
 }
 .feature-grid-3__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: var(--d-spacing-lg);
 }
 @media (max-width: 768px) {
-    .feature-grid-3__grid { grid-template-columns: 1fr; }
+    .feature-grid-3__grid { grid-template-columns: minmax(0, 1fr); }
 }
 .feature-grid-3__item {
     padding: var(--d-spacing-lg);
@@ -51,7 +51,35 @@
     padding-block-start: var(--d-spacing-0-5);
 }
 .feature-grid-3__title a { color: inherit; text-decoration: none; }
-.feature-grid-3__title a:hover { color: var(--d-link, var(--primary)); }
+@media (hover: hover) and (pointer: fine) {
+    .feature-grid-3__title a:hover { color: var(--d-link, var(--primary)); }
+}
+/* A linked title is stretched over the whole card (the feature molecule
+   renders the link, so the layer is drawn here), and the card is one hit
+   area. Links inside the description stay clickable above that layer. */
+.feature-grid-3__title a::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+}
+.feature-grid-3__title a:focus-visible {
+    outline: none;
+}
+.feature-grid-3__description a {
+    position: relative;
+    z-index: 1;
+}
+/* Keyboard focus rings the card. Drawn here because the card's box-shadow
+   comes from 22-modern-base.css, which is unlayered and so outranks the
+   ring utilities on the card. */
+.feature-grid-3__item:has(a:focus-visible) {
+    box-shadow: 0 0 0 2px var(--ring);
+}
+/* In the Visual Editor every element sits in a <ve-content-element>; there
+   the stretched layer would swallow the clicks meant for the inline editors. */
+ve-content-element .feature-grid-3__title a::after {
+    content: none;
+}
 .feature-grid-3__description {
     grid-area: description;
     color: var(--muted-foreground);

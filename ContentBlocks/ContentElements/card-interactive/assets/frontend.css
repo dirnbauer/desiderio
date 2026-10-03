@@ -1,20 +1,51 @@
 .card-interactive {
+    position: relative;
     display: grid;
     gap: var(--d-spacing-lg);
+    /* One card, not a banner: past ~48rem the copy (capped at 66ch) left
+       the right half of a full-width card empty. */
+    max-width: 48rem;
     padding: var(--d-spacing-lg);
     border: 1px solid var(--border);
     border-radius: var(--d-radius-lg);
     background: var(--card);
     color: var(--card-foreground);
     box-shadow: var(--shadow-sm);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: border-color var(--d-motion) var(--d-ease), box-shadow var(--d-motion) var(--d-ease), translate var(--d-motion) var(--d-ease);
 }
-.card-interactive:hover {
-    border-color: color-mix(in oklch, var(--ring) 45%, var(--border));
-    box-shadow: var(--shadow-md);
+/* The whole card is the hit area: the call to action's ::after covers it
+   (stretched link). Only a card that leads somewhere reacts to the pointer,
+   and only on devices that really hover. */
+.card-interactive__link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--d-radius-lg);
+}
+/* Links inside the description stay clickable above the stretched link. */
+.card-interactive__description a {
+    position: relative;
+    z-index: 1;
+}
+/* In the Visual Editor every element sits in a <ve-content-element>; there
+   the stretched layer would swallow the clicks meant for the inline editors. */
+ve-content-element .card-interactive__link::after {
+    content: none;
+}
+@media (hover: hover) and (pointer: fine) {
+    .card-interactive:has(.card-interactive__link:hover) {
+        border-color: color-mix(in oklch, var(--ring) 45%, var(--border));
+        box-shadow: var(--shadow-md);
+        translate: 0 -2px;
+    }
+    .card-interactive:has(.card-interactive__link:hover) .card-interactive__link-icon {
+        translate: 0.125rem 0;
+    }
 }
 @media (prefers-reduced-motion: reduce) {
     .card-interactive { transition: none; }
+    .card-interactive:has(.card-interactive__link:hover),
+    .card-interactive:has(.card-interactive__link:hover) .card-interactive__link-icon { translate: none; }
 }
 .card-interactive__header {
     display: flex;
@@ -89,8 +120,10 @@
     line-height: 1;
     text-decoration: none;
 }
-.card-interactive__link:hover {
-    background: color-mix(in oklch, var(--primary) 88%, var(--foreground));
+@media (hover: hover) and (pointer: fine) {
+    .card-interactive__link:hover {
+        background: color-mix(in oklch, var(--primary) 88%, var(--foreground));
+    }
 }
 .card-interactive__link:focus-visible {
     outline: none;
@@ -98,6 +131,7 @@
 }
 .card-interactive__link-icon {
     display: inline-flex;
+    transition: translate var(--d-motion-fast) var(--d-ease);
 }
 @media (max-width: 640px) {
     .card-interactive {

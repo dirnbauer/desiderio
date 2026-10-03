@@ -8,23 +8,27 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--d-spacing-lg);
+    gap: var(--d-spacing-lg) var(--d-spacing-2xl);
     flex-wrap: wrap;
 }
 .cta-banner__text {
     display: flex;
     flex-direction: column;
-    gap: var(--d-spacing-2xs);
+    gap: var(--d-spacing-sm);
+    flex: 1 1 28rem;
     min-width: 0;
+    max-width: 44rem;
 }
+/* The closing headline keeps the h2 size of the typography atom: a closer
+   set smaller than the section headings above it reads as a footnote. */
 .cta-banner__headline {
-    font-size: var(--d-text-xl);
     font-weight: var(--d-weight-bold);
 }
+/* Full ink, no opacity: the presets solve --primary-foreground on --primary
+   for 4.5:1 at full strength only, so a faded description can fail AA. */
 .cta-banner__description {
-    font-size: var(--d-text-sm);
-    opacity: 0.9;
-    max-width: 500px;
+    font-size: var(--d-text-base);
+    max-width: 60ch;
 }
 .cta-banner__action {
     display: flex;
@@ -32,8 +36,25 @@
     gap: var(--d-spacing-2xs);
     flex-shrink: 0;
 }
+/* On a painted band the page's link ink is the band colour itself (primary)
+   or too dark (dark): links in the description take the band's ink. Scoped
+   to the band, because every element stylesheet on the page redeclares the
+   bare .d-richtext a rule and the last one loaded would win. */
+.cta-banner--primary .d-richtext a { color: var(--primary-foreground); }
+.cta-banner--muted .d-richtext a { color: var(--d-link-on-muted, var(--primary)); }
+.cta-banner--dark .d-richtext a { color: var(--background); }
+/* --ring can equal --primary, which disappears on the primary band. */
+.cta-banner--primary :is(a, button):focus-visible {
+    outline: 2px solid var(--primary-foreground);
+    outline-offset: 2px;
+}
+.cta-banner--dark :is(a, button):focus-visible {
+    outline: 2px solid var(--background);
+    outline-offset: 2px;
+}
 @media (max-width: 768px) {
     .cta-banner__content { flex-direction: column; text-align: center; }
+    .cta-banner__text { flex-basis: auto; align-items: center; }
     .cta-banner__action { justify-content: center; }
 }
 

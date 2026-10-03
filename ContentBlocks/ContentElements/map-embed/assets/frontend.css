@@ -128,10 +128,15 @@
 }
 
 .map-embed__open svg {
-    transition: translate 150ms ease;
+    transition: translate var(--d-motion-fast) var(--d-ease);
 }
 
-.map-embed__open:hover svg,
+@media (hover: hover) and (pointer: fine) {
+    .map-embed__open:hover svg {
+        translate: 3px 0;
+    }
+}
+
 .map-embed__open:focus-visible svg {
     translate: 3px 0;
 }

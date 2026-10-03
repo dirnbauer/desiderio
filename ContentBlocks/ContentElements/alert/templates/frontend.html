@@ -17,7 +17,7 @@
         <f:if condition="{data.header}">
             <d:atom.typography tag="h2" variant="h2" class="alert__title">{data -> f:render.text(field: 'header')}</d:atom.typography>
         </f:if>
-        <div class="alert__description">
+        <div class="alert__description d-richtext">
             {data -> f:render.text(field: 'description')}
         </div>
     </div>

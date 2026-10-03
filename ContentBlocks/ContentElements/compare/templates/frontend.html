@@ -28,7 +28,7 @@
                     <div class="compare__panel-description d-richtext">{data -> f:render.text(field: 'left_description')}</div>
                 </f:if>
                 <f:if condition="{data.left_points}">
-                    <ul class="compare__points compare__points--con">
+                    <ul class="compare__points compare__points--con" role="list">
                         <f:for each="{data.left_points}" as="point">
                             <f:if condition="{point.text}">
                                 <li class="compare__point"><span class="sr-only"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:feature.notIncluded" default="Not included:"/> </span>{point -> f:render.text(field: 'text')}</li>
@@ -52,7 +52,7 @@
                     <div class="compare__panel-description d-richtext">{data -> f:render.text(field: 'right_description')}</div>
                 </f:if>
                 <f:if condition="{data.right_points}">
-                    <ul class="compare__points compare__points--pro">
+                    <ul class="compare__points compare__points--pro" role="list">
                         <f:for each="{data.right_points}" as="point">
                             <f:if condition="{point.text}">
                                 <li class="compare__point"><span class="sr-only"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:feature.included" default="Included:"/> </span>{point -> f:render.text(field: 'text')}</li>

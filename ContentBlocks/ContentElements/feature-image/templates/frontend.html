@@ -27,7 +27,7 @@
             <f:if condition="{data.image.0}">
                 <div class="feature-image__media">
                     <d:molecule.lightbox src="{f:uri.image(image: data.image.0, maxWidth: 1600)}">
-                        <f:image image="{data.image.0}" alt="{data.image.0.alternative -> f:or(alternative: data.header)}" maxWidth="800" loading="lazy" class="feature-image__img" decoding="async"/>
+                        <f:image image="{data.image.0}" alt="{data.image.0.alternative -> f:or(alternative: data.header)}" maxWidth="1280" loading="lazy" class="feature-image__img" decoding="async"/>
                     </d:molecule.lightbox>
                 </div>
             </f:if>

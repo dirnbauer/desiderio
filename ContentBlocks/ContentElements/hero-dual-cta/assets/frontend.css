@@ -11,36 +11,47 @@
 .hero-dual-cta__headline {
     margin-bottom: var(--d-spacing-4);
 }
+.hero-dual-cta__subheadline {
+    margin-inline: auto;
+}
 .hero-dual-cta__grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--d-spacing-6);
 }
 .hero-dual-cta__card {
     height: 100%;
 }
+/* The body fills the card, so both buttons sit on the card's bottom edge
+   whatever the length of the text above them. Its padding adds to the
+   card's own block padding: 24px on every side. */
 .hero-dual-cta__card-body {
     display: flex;
+    flex: 1 1 auto;
     flex-direction: column;
     align-items: flex-start;
-    height: 100%;
-    padding: var(--d-spacing-4);
+    min-width: 0;
+    padding: var(--d-spacing-2) var(--d-spacing-6);
     text-align: left;
 }
 .hero-dual-cta__card-title {
     margin-bottom: var(--d-spacing-2);
 }
+/* A hero card reads at body size, not the card's caption size. */
 .hero-dual-cta__card-desc {
+    font-size: var(--d-text-sm);
+    line-height: var(--d-leading-relaxed);
     color: var(--d-muted-foreground);
     margin-bottom: var(--d-spacing-6);
 }
-.hero-dual-cta__card-body > a {
+/* The button renders as a link or, without a target, as a <button>. */
+.hero-dual-cta__card-body > [data-slot="button"] {
     margin-top: auto;
 }
 
 @media (min-width: 48rem) {
     .hero-dual-cta__grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     }
 }
 

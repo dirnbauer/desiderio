@@ -70,10 +70,10 @@
                                     target="{tier.button_link.target}"
                                     variant="{f:if(condition: tier.featured, then: 'default', else: 'outline')}"
                                     class="pricing-two-tier__button"
+                                    attributes="{aria-describedby: 'pricing-two-tier-{data.uid}-{iter.cycle}'}"
                                 >
                                     <span>{tier -> f:render.text(field: 'button_text')}</span>
-                                    <span class="d-sr-only"> – {tier.title}</span>
-                                </d:atom.button>
+                                </d:atom.button>{tier -> f:render.link(field: 'button_link')}
                             </d:molecule.cardFooter>
                         </f:if>
                     </d:molecule.card>

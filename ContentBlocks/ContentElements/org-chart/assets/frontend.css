@@ -50,24 +50,32 @@
     max-inline-size: 100%;
     flex: 0 1 auto;
 }
+/* The cards show who sits where; they lead nowhere, so they do not lift
+   on hover (only cards that are links do, see 22-modern-base.css). */
 .org-chart__card {
     height: 100%;
     text-align: center;
-    box-shadow: var(--d-shadow-sm);
-    transition: box-shadow 0.15s ease, transform 0.15s ease;
 }
-.org-chart__card:hover {
-    box-shadow: var(--d-shadow-md);
-    transform: translateY(-2px);
+/* Name and role read as one block inside the card padding. */
+.org-chart__person-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--d-spacing-2xs);
+    min-width: 0;
 }
 .org-chart__name { font-weight: var(--d-weight-semibold); font-size: var(--d-text-sm); margin: 0; overflow-wrap: anywhere; }
-.org-chart__role { font-size: var(--d-text-xs); color: var(--muted-foreground); margin-block-start: var(--d-spacing-2xs); }
+.org-chart__role { font-size: var(--d-text-xs); color: var(--muted-foreground); margin: 0; }
 
-@media (prefers-reduced-motion: reduce) {
-    .org-chart__card {
-        transition: none;
+/* On a phone every level wraps into two whole cards per row, centred
+   under its label, so the connectors still meet the middle of each level.
+   No card is cut at the screen edge, nothing scrolls sideways, and the
+   chart no longer turns into one long column of narrow cards. */
+@media (max-width: 639px) {
+    .org-chart__row {
+        gap: var(--d-spacing-sm);
     }
-    .org-chart__card:hover {
-        transform: none;
+    .org-chart__person {
+        flex: 0 0 calc((100% - var(--d-spacing-sm)) / 2);
+        min-inline-size: 0;
     }
 }

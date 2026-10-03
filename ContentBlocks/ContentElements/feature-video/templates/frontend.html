@@ -10,7 +10,7 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="feature-video">
     <d:layout.container>
         <f:if condition="{data.eyebrow} || {data.header} || {data.description}">
-            <d:molecule.sectionIntro prefix="feature-video" class="feature-video__intro" leadClass="d-richtext" leadTag="div">
+            <d:molecule.sectionIntro prefix="feature-video" align="center" class="feature-video__intro" leadClass="d-richtext" leadTag="div">
                 <f:fragment name="eyebrow"><f:if condition="{data.eyebrow}">{data -> f:render.text(field: 'eyebrow')}</f:if></f:fragment>
                 <f:fragment name="heading"><f:if condition="{data.header}">{data -> f:render.text(field: 'header')}</f:if></f:fragment>
                 <f:fragment name="lead"><f:if condition="{data.description}">{data -> f:render.text(field: 'description')}</f:if></f:fragment>
@@ -28,7 +28,8 @@
                 <f:else>
                     <f:if condition="{data.video_file.0}">
                         <video class="feature-video__native" controls playsinline preload="metadata" aria-label="{videoTitle -> f:format.trim()}"
-                               {f:if(condition: data.poster.0, then: 'poster="{f:uri.image(image: data.poster.0, maxWidth: 1280)}"')}>
+                               {f:if(condition: data.poster.0, then: 'poster="{f:uri.image(image: data.poster.0, maxWidth: 1280)}"')}
+                               {f:if(condition: data.video_file.0.properties.autoplay, then: 'muted loop data-d-autoplay')}>
                             <source src="{data.video_file.0.publicUrl}" type="{data.video_file.0.mimeType}"/>
                             <f:if condition="{data.captions_file.0}">
                                 <track kind="captions" src="{data.captions_file.0.publicUrl}" srclang="en" label="English"/>

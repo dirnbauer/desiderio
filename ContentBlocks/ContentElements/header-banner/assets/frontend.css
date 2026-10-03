@@ -12,6 +12,10 @@
     background: var(--d-primary);
     color: var(--d-primary-foreground);
 }
+/* The banner opens the page, so its photo is the likely LCP image: eager
+   with high fetch priority in the template. The shared media frame for
+   section images (hairline border, shadow, muted fill) would draw a line
+   round the whole banner; a backdrop has no frame. */
 .header-banner__bg {
     position: absolute;
     inset: 0;
@@ -20,6 +24,10 @@
     object-fit: cover;
     opacity: 0.3;
     z-index: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background-color: transparent;
 }
 .header-banner__scrim {
     position: absolute;

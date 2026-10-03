@@ -12,7 +12,14 @@
                 <f:if condition="{data.type}">
                     <d:atom.badge variant="secondary" class="job-card__type">{data -> f:render.text(field: 'type')}</d:atom.badge>
                 </f:if>
-                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h3" class="job-card__title">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+                <f:if condition="{data.header}">
+                    <d:atom.typography tag="h2" variant="h3" class="job-card__title">
+                        <f:if condition="{data.apply_link.url}">
+                            <f:then><a href="{f:uri.typolink(parameter: data.apply_link.url)}" target="{data.apply_link.target}" rel="{f:if(condition: '{data.apply_link.target} == \'_blank\'', then: 'noopener noreferrer')}" class="job-card__link">{data -> f:render.text(field: 'header')}</a></f:then>
+                            <f:else>{data -> f:render.text(field: 'header')}</f:else>
+                        </f:if>
+                    </d:atom.typography>
+                </f:if>
                 <f:if condition="{data.department} || {data.location}">
                     <p class="job-card__meta">
                         <f:if condition="{data.department}"><span class="job-card__dept">{data -> f:render.text(field: 'department')}</span></f:if>

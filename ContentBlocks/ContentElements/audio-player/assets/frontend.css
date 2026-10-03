@@ -18,6 +18,7 @@
     border-radius: var(--d-radius-md);
 }
 .audio-player__download {
+    position: relative;
     display: inline-flex;
     align-items: center;
     gap: var(--d-spacing-2);
@@ -26,11 +27,19 @@
     font-weight: var(--d-weight-medium);
     color: var(--d-link, var(--primary));
     text-decoration: none;
+    text-underline-offset: 2px;
     border-radius: var(--d-radius-sm);
 }
-.audio-player__download:hover {
-    text-decoration: underline;
-    text-underline-offset: 2px;
+/* A 44px touch target around the 20px link, without changing its look. */
+.audio-player__download::after {
+    content: "";
+    position: absolute;
+    inset: calc(var(--d-spacing-sm) * -1) calc(var(--d-spacing-xs) * -1);
+}
+@media (hover: hover) and (pointer: fine) {
+    .audio-player__download:hover {
+        text-decoration: underline;
+    }
 }
 .audio-player__download:focus-visible {
     outline: 2px solid var(--d-ring);

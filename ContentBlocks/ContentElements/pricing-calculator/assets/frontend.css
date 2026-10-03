@@ -9,8 +9,15 @@
 .pricing-calculator__cell--end { text-align: right; }
 .pricing-calculator__body thead [data-slot="table-head"] { color: var(--card-foreground); }
 .pricing-calculator__body tbody tr:nth-child(even) { background-color: color-mix(in oklab, var(--muted) 40%, transparent); }
-.pricing-calculator__body tbody tr { transition: background-color 0.15s ease; }
+.pricing-calculator__body tbody tr { transition: background-color var(--d-motion-fast) var(--d-ease); }
 @media (prefers-reduced-motion: reduce) { .pricing-calculator__body tbody tr { transition: none; } }
+/* Phones: tier names and volumes wrap so the price column stays in view;
+   a price never breaks. */
+@media (max-width: 639px) {
+    .pricing-calculator__body [data-slot="table-head"],
+    .pricing-calculator__tier,
+    .pricing-calculator__cell--start { white-space: normal; }
+}
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */
 .pricing-calculator__intro {

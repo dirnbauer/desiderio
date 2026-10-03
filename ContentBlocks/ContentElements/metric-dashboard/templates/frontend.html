@@ -56,7 +56,9 @@
                  data-chart-unit="{chartUnit -> f:format.htmlspecialchars()}"
                  data-chart-id="metric-dash-{data.uid}">
                 <f:variable name="chartAriaSubject">{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:stats.aria\', default: \'Key statistics\')}')}</f:variable>
-                <svg class="metric-dashboard__sparkline" id="metric-dash-{data.uid}" role="img" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:metric.chart.aria', arguments: {0: chartAriaSubject}, default: '{chartAriaSubject} trend over time')}"></svg>
+                <div class="metric-dashboard__plot">
+                    <svg class="metric-dashboard__sparkline" id="metric-dash-{data.uid}" role="img" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:metric.chart.aria', arguments: {0: chartAriaSubject}, default: '{chartAriaSubject} trend over time')}"></svg>
+                </div>
                 <div class="metric-dashboard__legend" aria-hidden="true">
                     <span class="metric-dashboard__legend-marker"></span>
                     <span>{chartSeriesLabel}</span>

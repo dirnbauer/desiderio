@@ -7,11 +7,14 @@
 
 <f:variable name="headingId" value="d-cta-floating-heading-{data.uid}"/>
 <f:variable name="regionLabel"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/cta-floating/language/labels.xlf:region.label" default="Call to action"/></f:variable>
+<f:variable name="dismissLabel"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:aria.dismiss" default="Dismiss this notice"/></f:variable>
 
+<f:comment>data-d-dismissible + data-d-dismiss: the shared runtime (desiderio.js) removes the bar when its close button is pressed.</f:comment>
 <div class="cta-floating cta-floating--{data.position -> f:or(alternative: 'bottom')}"
      role="region"
      aria-labelledby="{f:if(condition: data.header, then: headingId)}"
-     aria-label="{f:if(condition: data.header, then: '', else: regionLabel)}">
+     aria-label="{f:if(condition: data.header, then: '', else: regionLabel)}"
+     data-d-dismissible>
     <d:layout.container>
         <div class="cta-floating__bar">
             <div class="cta-floating__text">
@@ -25,11 +28,14 @@
                     <d:atom.typography variant="muted" class="cta-floating__description">{data -> f:render.text(field: 'description_text')}</d:atom.typography>
                 </f:if>
             </div>
-            <f:if condition="{data.cta_text} && {data.cta_link.url}">
-                <d:atom.button href="{f:uri.typolink(parameter: data.cta_link.url)}" target="{data.cta_link.target}" size="lg" class="cta-floating__action shrink-0">
-                    {data -> f:render.text(field: 'cta_text')}<f:if condition="{data.cta_link.target} == '_blank'"><span class="sr-only"> <f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/cta-floating/language/labels.xlf:link.newTab" default="(opens in a new tab)"/></span></f:if>
-                </d:atom.button>{data -> f:render.link(field: 'cta_link')}
-            </f:if>
+            <div class="cta-floating__actions">
+                <f:if condition="{data.cta_text} && {data.cta_link.url}">
+                    <d:atom.button href="{f:uri.typolink(parameter: data.cta_link.url)}" target="{data.cta_link.target}" size="lg" class="cta-floating__action shrink-0">
+                        {data -> f:render.text(field: 'cta_text')}<f:if condition="{data.cta_link.target} == '_blank'"><span class="sr-only"> <f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/cta-floating/language/labels.xlf:link.newTab" default="(opens in a new tab)"/></span></f:if>
+                    </d:atom.button>{data -> f:render.link(field: 'cta_link')}
+                </f:if>
+                <d:atom.button variant="ghost" size="icon-sm" class="cta-floating__dismiss" attributes="{data-d-dismiss: '', aria-label: dismissLabel}"><d:atom.icon name="x" /></d:atom.button>
+            </div>
         </div>
     </d:layout.container>
 </div>

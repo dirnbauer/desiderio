@@ -3,35 +3,44 @@
 .stats-bar__headline { margin-block-start: var(--d-spacing-xs); }
 .stats-bar__description { color: var(--muted-foreground); margin-block-start: var(--d-spacing-sm); }
 .stats-bar__items { display: flex; flex-direction: column; gap: var(--d-spacing-lg); max-width: 48rem; margin: 0; }
-.stats-bar__item {
-    margin: 0;
-    animation: stats-bar-row-in 0.55s ease both;
-    animation-delay: var(--stats-bar-delay, 0ms);
+
+/* Wide screens: the intro on the left, the bars beside it, so the section
+   is filled instead of leaving its right half empty. */
+@media (min-width: 1024px) {
+    .stats-bar__layout:has(> .stats-bar__intro) {
+        display: grid;
+        grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+        column-gap: var(--d-spacing-2xl);
+        align-items: start;
+    }
+    .stats-bar__layout:has(> .stats-bar__intro) > .stats-bar__intro { margin-block-end: 0; }
+    .stats-bar__layout:has(> .stats-bar__intro) > .stats-bar__items { max-width: none; }
 }
-.stats-bar__item:nth-child(2) { --stats-bar-delay: 120ms; }
-.stats-bar__item:nth-child(3) { --stats-bar-delay: 240ms; }
-.stats-bar__item:nth-child(4) { --stats-bar-delay: 360ms; }
-.stats-bar__item:nth-child(5) { --stats-bar-delay: 480ms; }
-.stats-bar__item:nth-child(6) { --stats-bar-delay: 600ms; }
+
+.stats-bar__item { margin: 0; min-width: 0; }
+.stats-bar__item:nth-child(2) { --stats-bar-delay: 120ms; --d-i: 1; }
+.stats-bar__item:nth-child(3) { --stats-bar-delay: 240ms; --d-i: 2; }
+.stats-bar__item:nth-child(4) { --stats-bar-delay: 360ms; --d-i: 3; }
+.stats-bar__item:nth-child(5) { --stats-bar-delay: 480ms; --d-i: 4; }
+.stats-bar__item:nth-child(6) { --stats-bar-delay: 600ms; --d-i: 5; }
 .stats-bar__meta { display: flex; justify-content: space-between; align-items: baseline; gap: var(--d-spacing-md); margin-block-end: var(--d-spacing-xs); }
-.stats-bar__label { font-weight: var(--d-weight-medium); margin: 0; }
+.stats-bar__label { min-width: 0; font-weight: var(--d-weight-medium); margin: 0; }
 .stats-bar__value {
+    flex-shrink: 0;
     font-weight: var(--d-weight-bold);
     color: var(--d-link, var(--primary));
     margin: 0;
     font-variant-numeric: tabular-nums;
-    animation: stats-bar-value-in 0.45s ease both;
-    animation-delay: calc(var(--stats-bar-delay, 0ms) + 260ms);
 }
-.stats-bar__track { width: 100%; height: 0.5rem; background: var(--muted); border-radius: 9999px; overflow: hidden; }
+/* The empty part of the track is a tint of the ink, so it stays visible on
+   the page and on the tinted panel this section sits on. */
+.stats-bar__track { width: 100%; height: 0.5rem; background: color-mix(in oklch, var(--foreground) 9%, transparent); border-radius: 9999px; overflow: hidden; }
 .stats-bar__fill {
     position: relative;
     height: 100%;
     background: var(--primary);
     border-radius: 9999px;
     transform-origin: left center;
-    animation: stats-bar-fill-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
-    animation-delay: calc(var(--stats-bar-delay, 0ms) + 160ms);
 }
 .stats-bar__fill::after {
     position: absolute;
@@ -41,21 +50,28 @@
     background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--primary-foreground) 28%, transparent), transparent);
     opacity: 0;
     transform: translateX(-100%);
-    animation: stats-bar-sheen 1.15s ease-out both;
-    animation-delay: calc(var(--stats-bar-delay, 0ms) + 460ms);
 }
 
-.stats-bar__item[data-astro-reveal] { opacity: 0; transform: translateY(0.75rem); transition: opacity 0.5s ease, transform 0.5s ease; }
-.stats-bar__item[data-astro-reveal].is-visible { opacity: 1; transform: none; }
-
-@keyframes stats-bar-row-in {
-    from {
-        opacity: 0;
-        transform: translateY(0.5rem);
+/* The bars fill when the reader sees them. A row that is on screen when the
+   page opens animates at once (and without JavaScript it simply plays on
+   load); a row further down is armed by the shared reveal runtime and fills
+   when it scrolls in (.is-visible). The row itself fades in through the
+   shared [data-astro-reveal] rules; at rest every bar stands at its value. */
+@media (prefers-reduced-motion: no-preference) {
+    .stats-bar__item:not([data-astro-ready~="reveal"]) .stats-bar__fill,
+    .stats-bar__item.is-visible .stats-bar__fill {
+        animation: stats-bar-fill-in 0.8s var(--d-ease) both;
+        animation-delay: calc(var(--stats-bar-delay, 0ms) + 160ms);
     }
-    to {
-        opacity: 1;
-        transform: none;
+    .stats-bar__item:not([data-astro-ready~="reveal"]) .stats-bar__fill::after,
+    .stats-bar__item.is-visible .stats-bar__fill::after {
+        animation: stats-bar-sheen 1.15s var(--d-ease) both;
+        animation-delay: calc(var(--stats-bar-delay, 0ms) + 460ms);
+    }
+    .stats-bar__item:not([data-astro-ready~="reveal"]) .stats-bar__value,
+    .stats-bar__item.is-visible .stats-bar__value {
+        animation: stats-bar-value-in 0.3s var(--d-ease) both;
+        animation-delay: calc(var(--stats-bar-delay, 0ms) + 260ms);
     }
 }
 
@@ -87,16 +103,6 @@
         opacity: 0;
         transform: translateX(100%);
     }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .stats-bar__item,
-    .stats-bar__value,
-    .stats-bar__fill,
-    .stats-bar__fill::after {
-        animation: none;
-    }
-    .stats-bar__item[data-astro-reveal] { opacity: 1; transform: none; transition: none; }
 }
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */

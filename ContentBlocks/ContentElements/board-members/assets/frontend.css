@@ -45,6 +45,15 @@
     text-transform: uppercase;
 }
 
+/* One column on a phone: a square crop keeps face and shoulders and takes
+   a quarter less height than the tall portrait, three times over. */
+@media (max-width: 767px) {
+    .board-members__image,
+    .board-members__avatar--fallback {
+        aspect-ratio: 1;
+    }
+}
+
 .board-members__content {
     display: flex;
     flex-direction: column;

@@ -14,14 +14,22 @@
                     <f:else><span class="navbar-icon__brand-link">{data -> f:render.text(field: 'brand')}</span></f:else>
                 </f:if>
             </div>
-            <ul class="navbar-icon__nav">
+            <ul class="navbar-icon__nav" role="list">
                 <f:for each="{data.nav_items}" as="item">
                     <li>
                         <f:if condition="{item.link.url}">
-                            <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="navbar-icon__link">
-                                <span class="navbar-icon__icon" aria-hidden="true"><d:atom.icon name="{item.icon}" size="sm"/></span>
-                                <span class="navbar-icon__label">{item -> f:render.text(field: 'label')}</span>
-                            </d:atom.link>
+                            <f:then>
+                                <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="navbar-icon__link">
+                                    <span class="navbar-icon__icon" aria-hidden="true"><d:atom.icon name="{item.icon}" size="sm"/></span>
+                                    <span class="navbar-icon__label">{item -> f:render.text(field: 'label')}</span>
+                                </d:atom.link>
+                            </f:then>
+                            <f:else>
+                                <span class="navbar-icon__link navbar-icon__link--static">
+                                    <span class="navbar-icon__icon" aria-hidden="true"><d:atom.icon name="{item.icon}" size="sm"/></span>
+                                    <span class="navbar-icon__label">{item -> f:render.text(field: 'label')}</span>
+                                </span>
+                            </f:else>
                         </f:if>
                     </li>
                 </f:for>

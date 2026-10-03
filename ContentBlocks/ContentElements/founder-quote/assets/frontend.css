@@ -29,11 +29,25 @@
     font-size: var(--d-text-xl);
     font-style: italic;
     line-height: var(--d-leading-normal);
+    text-wrap: pretty;
     border: none;
     padding: 0;
     margin: 0;
 }
-.founder-quote__author { margin-block-start: var(--d-spacing-lg); }
+/* The words are the founder's own, so they sit between real quotation
+   marks. open-quote and close-quote follow the page language (“…” in
+   English, „…“ in German), and an empty quote shows no stray pair. */
+.founder-quote__text::before { content: open-quote; }
+.founder-quote__text::after { content: close-quote; }
+.founder-quote__text:empty::before,
+.founder-quote__text:empty::after { content: none; }
+.founder-quote__author {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--d-spacing-0-5);
+    margin-block-start: var(--d-spacing-lg);
+}
 .founder-quote__name {
     display: block;
     font-weight: var(--d-weight-semibold);

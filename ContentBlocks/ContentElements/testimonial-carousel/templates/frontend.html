@@ -10,6 +10,8 @@
 <f:variable name="nextLabel"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.next"/></f:variable>
 <f:variable name="dotLabel"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.goto"/></f:variable>
 <f:variable name="slideLabel"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.slide"/></f:variable>
+<f:variable name="pauseLabel"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.pause"/></f:variable>
+<f:variable name="playLabel"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.play"/></f:variable>
 
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="testimonial-carousel">
     <d:layout.container>
@@ -26,7 +28,7 @@
              aria-label="{carouselLabel}"
              data-astro-carousel
              data-astro-carousel-autoplay="{f:if(condition: data.autoplay, then: 'true', else: 'false')}"
-             data-astro-carousel-labels="{prevLabel}|{nextLabel}|{dotLabel}">
+             data-astro-carousel-labels="{prevLabel}|{nextLabel}|{dotLabel}|{pauseLabel}|{playLabel}">
             <f:for each="{data.testimonials}" as="item" iteration="iter">
                 <article class="testimonial-carousel__slide{f:if(condition: iter.isFirst, then: ' hero-carousel__slide--active')}"
                          data-astro-carousel-slide
@@ -49,7 +51,7 @@
                             </f:for>
                         </f:if>
                         <div class="testimonial-carousel__meta">
-                            <cite class="testimonial-carousel__name">{item -> f:render.text(field: 'author_name')}</cite>
+                            <span class="testimonial-carousel__name">{item -> f:render.text(field: 'author_name')}</span>
                             <f:if condition="{item.author_title}">
                                 <span class="testimonial-carousel__role">{item -> f:render.text(field: 'author_title')}</span>
                             </f:if>
@@ -57,7 +59,7 @@
                     </div>
                 </article>
             </f:for>
-            <p class="sr-only" aria-live="polite" data-astro-carousel-status></p>
+            <p class="sr-only" aria-live="polite" data-astro-carousel-status data-astro-status-pattern="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.status')}"></p>
         </div>
     </d:layout.container>
 </d:layout.section>

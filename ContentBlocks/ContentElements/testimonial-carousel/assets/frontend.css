@@ -8,16 +8,33 @@
     margin-inline: auto;
 }
 
+/* The slide wears the surface of d:molecule.card (22-modern-base.css): the
+   shared radius, a hairline ring and the preset's surface shadow. */
 .testimonial-carousel__slide {
     text-align: center;
     padding: var(--d-spacing-xl);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
+    border-radius: calc(var(--radius, 0.625rem) * 1.5);
     background: var(--card);
     color: var(--card-foreground);
+    box-shadow:
+        0 0 0 1px color-mix(in oklch, var(--foreground) 9%, transparent),
+        var(--d-surface-shadow, 0 0 transparent),
+        inset 0 1px 0 color-mix(in oklch, var(--card-foreground) 5%, transparent);
 }
 /* Only the active slide is shown; non-active slides carry aria-hidden="true". */
 .testimonial-carousel__slide[aria-hidden="true"] { display: none; }
+
+/* The slide that comes in settles into place: short, ease-out, and only
+   for people who did not ask for less motion. @starting-style runs when a
+   slide leaves display: none, so nothing waits for JavaScript. */
+@media (prefers-reduced-motion: no-preference) {
+    .testimonial-carousel__slide {
+        transition: opacity var(--d-motion) var(--d-ease), transform var(--d-motion) var(--d-ease);
+    }
+    @starting-style {
+        .testimonial-carousel__slide { opacity: 0; transform: translateY(0.25rem); }
+    }
+}
 
 .testimonial-carousel__rating {
     display: inline-flex;
@@ -27,12 +44,20 @@
 .testimonial-carousel__star { color: var(--muted-foreground); }
 .testimonial-carousel__star--filled { color: var(--primary); }
 
+/* Typographic quotation marks in the page language (open-quote follows the
+   lang attribute); balanced lines, because the quote is centred. */
 .testimonial-carousel__quote {
     margin: 0;
     font-size: var(--d-text-xl);
     line-height: var(--d-leading-relaxed);
     font-style: italic;
+    text-wrap: balance;
 }
+.testimonial-carousel__quote::before { content: open-quote; }
+.testimonial-carousel__quote::after { content: close-quote; }
+/* While the Visual Editor edits the quote the marks step aside. */
+.testimonial-carousel__quote:has(> ve-editable-text)::before,
+.testimonial-carousel__quote:has(> ve-editable-text)::after { content: none; }
 
 .testimonial-carousel__author {
     display: flex;
@@ -43,6 +68,7 @@
 }
 .testimonial-carousel__avatar {
     display: block;
+    flex-shrink: 0;
     width: 3rem;
     height: 3rem;
     aspect-ratio: 1;
@@ -52,7 +78,7 @@
     object-fit: cover;
     object-position: center center;
 }
-.testimonial-carousel__meta { text-align: start; }
+.testimonial-carousel__meta { min-width: 0; text-align: start; }
 .testimonial-carousel__name { font-weight: var(--d-weight-semibold); font-style: normal; display: block; }
 .testimonial-carousel__role { font-size: var(--d-text-sm); color: var(--muted-foreground); }
 
@@ -77,9 +103,11 @@
     background: var(--background);
     color: var(--foreground);
     cursor: pointer;
-    transition: background-color 0.15s ease, color 0.15s ease;
+    transition: background-color var(--d-motion-fast) var(--d-ease), color var(--d-motion-fast) var(--d-ease), transform var(--d-motion-fast) var(--d-ease);
 }
-.testimonial-carousel__track .hero-carousel__nav:hover { background: var(--muted); }
+.testimonial-carousel__track .hero-carousel__nav:active { transform: scale(0.96); }
+/* Pause/play, added by the runtime when the editor turned autoplay on. */
+.testimonial-carousel__track .hero-carousel__toggle svg { display: block; }
 .testimonial-carousel__track .hero-carousel__nav:focus-visible {
     outline: 2px solid var(--ring);
     outline-offset: 2px;
@@ -100,13 +128,15 @@
     background: transparent;
     cursor: pointer;
 }
+/* The resting dots are a tint of the muted ink: --border alone vanished on
+   the tinted panel this section sits on. */
 .testimonial-carousel__track .hero-carousel__dot::before {
     content: "";
     width: 0.625rem;
     height: 0.625rem;
     border-radius: inherit;
-    background: var(--border);
-    transition: background-color 0.15s ease;
+    background: color-mix(in oklch, var(--muted-foreground) 45%, transparent);
+    transition: background-color var(--d-motion-fast) var(--d-ease), transform var(--d-motion-fast) var(--d-ease);
 }
 .testimonial-carousel__track .hero-carousel__dot[aria-selected="true"]::before { background: var(--primary); }
 .testimonial-carousel__track .hero-carousel__dot:focus-visible {
@@ -114,9 +144,19 @@
     outline-offset: 2px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .testimonial-carousel__track .hero-carousel__nav,
-    .testimonial-carousel__track .hero-carousel__dot { transition: none; }
+@media (hover: hover) and (pointer: fine) {
+    .testimonial-carousel__track .hero-carousel__nav:hover { background: var(--muted); }
+    .testimonial-carousel__track .hero-carousel__dot:hover::before { transform: scale(1.2); }
+}
+
+/* Phones: 44px touch targets around the small controls, without changing
+   how they look; the dots move apart so the targets do not overlap. */
+@media (max-width: 640px) {
+    .testimonial-carousel__track .hero-carousel__dots { gap: var(--d-spacing-md); }
+    .testimonial-carousel__track .hero-carousel__dot,
+    .testimonial-carousel__track .hero-carousel__nav { position: relative; }
+    .testimonial-carousel__track .hero-carousel__dot::after { content: ""; position: absolute; inset: -0.5rem; }
+    .testimonial-carousel__track .hero-carousel__nav::after { content: ""; position: absolute; inset: -0.125rem; }
 }
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */

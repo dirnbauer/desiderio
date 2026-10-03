@@ -10,6 +10,11 @@
     align-items: flex-start;
     gap: var(--d-spacing-6);
 }
+/* The profile header opens the page: the portrait loads eagerly (template)
+   and keeps a fixed 96px box, so nothing moves when it arrives. */
+.header-profile__avatar {
+    flex-shrink: 0;
+}
 .header-profile__avatar-img {
     width: 6rem;
     height: 6rem;

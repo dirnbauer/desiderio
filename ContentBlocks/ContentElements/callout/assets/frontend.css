@@ -1,24 +1,50 @@
+/* shadcn Alert anatomy: a small icon column, then title and text. The icon
+   names the variant in shape as well as colour (warning and note looked the
+   same in presets with grey chart colours). */
 .callout {
+    display: grid;
+    grid-template-columns: 1rem minmax(0, 1fr);
+    column-gap: var(--d-spacing-sm);
+    align-items: start;
     border-radius: var(--d-radius-lg);
     padding: var(--d-spacing-lg);
     border-inline-start: 4px solid var(--border);
+}
+.callout > :not(.callout__icon) {
+    grid-column: 2;
+}
+.callout__icon {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    display: flex;
+    align-items: center;
+    /* The height of the title's first line, so the icon sits on its axis. */
+    block-size: 1.75rem;
+    color: var(--muted-foreground);
+}
+.callout:not(:has(.callout__title)) .callout__icon {
+    block-size: calc(var(--d-text-sm) * var(--d-leading-relaxed));
 }
 .callout--info {
     background: var(--d-info-muted);
     border-inline-start-color: var(--d-info);
 }
+.callout--info .callout__icon { color: var(--d-info-text); }
 .callout--warning {
     background: var(--d-warning-muted);
     border-inline-start-color: var(--d-warning);
 }
+.callout--warning .callout__icon { color: var(--d-warning-text); }
 .callout--success {
     background: var(--d-success-muted);
     border-inline-start-color: var(--d-success);
 }
+.callout--success .callout__icon { color: var(--d-success-text); }
 .callout--danger {
     background: var(--d-danger-muted);
     border-inline-start-color: var(--d-danger);
 }
+.callout--danger .callout__icon { color: var(--d-danger-text); }
 .callout--note {
     background: var(--muted);
     border-inline-start-color: var(--border);
@@ -29,6 +55,38 @@
 }
 .callout__content {
     font-size: var(--d-text-sm);
+    overflow-wrap: break-word;
 }
 .callout__content > *:first-child { margin-top: 0; }
 .callout__content > *:last-child { margin-bottom: 0; }
+
+/* Text from the RTE (d-richtext), scoped to this element: spacing between
+   siblings, list markers and a visible link. Links take the ink solved for
+   tinted surfaces: the page link colour can fall below 4.5:1 on the tints. */
+.callout__content.d-richtext > * { margin-block: 0; }
+.callout__content.d-richtext > * + * { margin-block-start: var(--d-spacing-sm); }
+.callout__content.d-richtext :is(ul, ol) { padding-inline-start: var(--d-spacing-lg); }
+.callout__content.d-richtext ul { list-style: disc; }
+.callout__content.d-richtext ol { list-style: decimal; }
+.callout__content.d-richtext li + li { margin-block-start: var(--d-spacing-2xs); }
+.callout__content.d-richtext :is(h2, h3, h4, h5, h6) {
+    font-size: var(--d-text-sm);
+    font-weight: var(--d-weight-semibold);
+    line-height: var(--d-leading-snug);
+}
+.callout__content.d-richtext a {
+    color: var(--d-link-on-muted, var(--d-link, var(--primary)));
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: color-mix(in oklch, currentColor 45%, transparent);
+    text-underline-offset: 0.22em;
+    border-radius: var(--d-radius-sm);
+    transition: text-decoration-color var(--d-motion-fast) var(--d-ease);
+}
+.callout__content.d-richtext a:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+@media (hover: hover) and (pointer: fine) {
+    .callout__content.d-richtext a:hover { text-decoration-color: currentColor; }
+}

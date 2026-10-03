@@ -1,6 +1,8 @@
 .testimonial-video__heading { text-align: center; margin-block-end: var(--d-spacing-xl); }
-.testimonial-video__layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--d-spacing-xl); align-items: center; margin: 0; }
-@media (max-width: 768px) { .testimonial-video__layout { grid-template-columns: 1fr; } }
+.testimonial-video__layout { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: var(--d-spacing-xl); align-items: center; margin: 0; }
+@media (max-width: 768px) { .testimonial-video__layout { grid-template-columns: minmax(0, 1fr); } }
+.testimonial-video__player,
+.testimonial-video__content { min-width: 0; }
 .testimonial-video__embed { position: relative; padding-block-end: 56.25%; height: 0; overflow: hidden; border-radius: var(--d-radius-lg); background: var(--muted); }
 .testimonial-video__poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .testimonial-video__embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; z-index: 2; }
@@ -34,7 +36,14 @@
     pointer-events: none;
 }
 .testimonial-video__quote { margin: 0 0 var(--d-spacing-lg); padding: var(--d-spacing-md) var(--d-spacing-lg); background: var(--muted); border-inline-start: 3px solid var(--primary); border-radius: 0 var(--d-radius-md) var(--d-radius-md) 0; font-size: var(--d-text-xl); font-style: italic; line-height: var(--d-leading-relaxed); color: var(--foreground); }
-.testimonial-video__quote p { margin: 0; }
+/* Typographic quotation marks in the page language (open-quote follows the
+   lang attribute). */
+.testimonial-video__quote p { margin: 0; text-wrap: pretty; }
+.testimonial-video__quote p::before { content: open-quote; }
+.testimonial-video__quote p::after { content: close-quote; }
+/* While the Visual Editor edits the quote the marks step aside. */
+.testimonial-video__quote p:has(> ve-editable-text)::before,
+.testimonial-video__quote p:has(> ve-editable-text)::after { content: none; }
 .testimonial-video__author { border-block-start: 1px solid var(--border); padding-block-start: var(--d-spacing-md); }
 .testimonial-video__name { font-weight: var(--d-weight-semibold); font-style: normal; display: block; font-size: var(--d-text-base); }
 .testimonial-video__role { font-size: var(--d-text-sm); color: var(--muted-foreground); }

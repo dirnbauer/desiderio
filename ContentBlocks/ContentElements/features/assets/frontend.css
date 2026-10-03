@@ -10,26 +10,76 @@
     display: grid;
     gap: var(--d-spacing-lg);
 }
-.features__grid--cols-2 { grid-template-columns: repeat(2, 1fr); }
-.features__grid--cols-3 { grid-template-columns: repeat(3, 1fr); }
-.features__grid--cols-4 { grid-template-columns: repeat(4, 1fr); }
+.features__grid--cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.features__grid--cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.features__grid--cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 @media (max-width: 1024px) {
-    .features__grid--cols-4 { grid-template-columns: repeat(2, 1fr); }
+    .features__grid--cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 768px) {
-    .features__grid { grid-template-columns: 1fr; }
+    .features__grid { grid-template-columns: minmax(0, 1fr); }
+}
+/* Five or more cards would stack into a tall wall on a phone, so they
+   become one row that snaps card by card, with the next card peeking in.
+   The row runs to the screen edge (it takes back the container's 1rem
+   gutter). The template makes the grid a focusable, labelled region then. */
+@media (max-width: 640px) {
+    .features__grid--card:has(> :nth-child(5)) {
+        grid-template-columns: none;
+        grid-auto-flow: column;
+        grid-auto-columns: 85%;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+        /* Room for the cards' focus ring, which the scroller would clip. */
+        padding: var(--d-spacing-xs) var(--d-spacing-md) var(--d-spacing-md);
+        margin-inline: calc(var(--d-spacing-md) * -1);
+        scroll-padding-inline: var(--d-spacing-md);
+        scrollbar-width: thin;
+    }
+    .features__grid--card:has(> :nth-child(5)) > * {
+        scroll-snap-align: start;
+    }
+    .features__grid--card:has(> :nth-child(5)):focus-visible {
+        outline-offset: -2px;
+    }
+}
+.features__grid:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: var(--d-radius-md);
+}
+/* Icon, then title and text: one gap between them in every style (the icon
+   touched the title in the icon-top style). */
+.features__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--d-spacing-md);
+    min-width: 0;
 }
 .features__item--card {
     border: 1px solid var(--border);
     border-radius: var(--d-radius-lg);
     padding: var(--d-spacing-lg);
+    transition: border-color var(--d-motion) var(--d-ease);
+}
+/* A linked card answers the pointer with a primary hairline, like the
+   shared card lift in 22-modern-base.css. */
+@media (hover: hover) and (pointer: fine) {
+    .features__item--card:has(a[href]):hover {
+        border-color: color-mix(in oklch, var(--primary) 32%, var(--border));
+    }
 }
 .features__grid--icon-left .features__item {
     display: flex;
+    flex-direction: row;
     gap: var(--d-spacing-md);
     align-items: flex-start;
 }
+/* Flex, so the icon box is as tall as the icon (an inline SVG added the
+   line's descender space below it). */
 .features__icon {
+    display: flex;
     flex-shrink: 0;
     color: var(--primary);
 }
@@ -37,9 +87,9 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    align-self: flex-start;
     width: 3rem;
     height: 3rem;
-    margin-block-end: var(--d-spacing-md);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     background: var(--secondary);
@@ -49,21 +99,54 @@
     width: 1.5rem;
     height: 1.5rem;
 }
-.features__grid--card .features__content {
+.features__content {
     display: flex;
     flex-direction: column;
     gap: var(--d-spacing-xs);
+    min-width: 0;
 }
 .features__title {
     font-weight: var(--d-weight-semibold);
     margin: 0;
     line-height: var(--d-leading-snug);
 }
+/* A linked title reads as a title (the muted link ink made it look
+   disabled) and takes the link colour while the item is hovered. */
+.features__title a {
+    color: inherit;
+    text-decoration: none;
+}
+@media (hover: hover) and (pointer: fine) {
+    .features__title a:hover {
+        color: var(--d-link, var(--primary));
+    }
+}
 .features__description {
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
     line-height: var(--d-leading-relaxed);
     margin: 0;
+}
+
+/* The title link is stretched over the whole item (after:inset-0), so the
+   item is one hit area; links inside the description stay clickable above
+   that layer. Keyboard focus rings the item instead of the title text. */
+.features__description a {
+    position: relative;
+    z-index: 1;
+}
+.features__link:focus-visible {
+    outline: none;
+}
+.features__item:has(.features__link:focus-visible) {
+    outline: 2px solid var(--ring);
+    outline-offset: 4px;
+    border-radius: var(--d-radius-lg);
+}
+/* In the Visual Editor every element sits in a <ve-content-element>; there
+   the stretched layer would swallow the clicks meant for the inline editors. */
+ve-content-element .features__link::after {
+    content: none;
 }
 
 /* d-richtext (generated by scripts/convert-textarea-to-rte.php) */

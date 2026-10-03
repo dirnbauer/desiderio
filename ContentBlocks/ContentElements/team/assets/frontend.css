@@ -88,7 +88,14 @@
 }
 .team__minimal-name {
     font-weight: var(--d-weight-semibold);
-    margin-block-start: var(--d-spacing-md);
+}
+/* Two people per row on a phone: a minimal grid of avatars should not turn
+   into one long column. */
+@media (max-width: 767px) {
+    .team__minimal {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: var(--d-spacing-md);
+    }
 }
 
 /* List variant */

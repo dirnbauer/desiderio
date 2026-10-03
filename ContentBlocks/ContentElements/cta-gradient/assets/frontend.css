@@ -10,7 +10,13 @@
     border-radius: var(--radius);
     padding: var(--d-spacing-3xl) var(--d-spacing-2xl);
 }
+/* One centred column: headline, text and button share a gap, and the
+   button sits on the same midline as the copy. */
 .cta-gradient__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--d-spacing-sm);
     text-align: center;
     max-width: 640px;
     margin-inline: auto;
@@ -18,12 +24,12 @@
 .cta-gradient__headline {
     font-size: var(--d-text-3xl);
     font-weight: var(--d-weight-bold);
-    margin-block-end: var(--d-spacing-sm);
 }
+/* Full ink, no opacity: the gradient's light sheen already lowers the
+   contrast of --primary-foreground in the top-left corner. */
 .cta-gradient__description {
     font-size: var(--d-text-base);
-    opacity: 0.9;
-    margin-block-end: var(--d-spacing-lg);
+    margin-block-end: var(--d-spacing-sm);
 }
 /* Links inside the rich-text description sit on the primary gradient, where
    the default var(--primary) link color would vanish. */

@@ -1,14 +1,29 @@
 .sitemap-grid__title { margin-block-end: var(--d-spacing-xl); }
 .sitemap-grid__grid { display: grid; gap: var(--d-spacing-xl); }
-.sitemap-grid__grid--cols-3 { grid-template-columns: repeat(3, 1fr); }
-.sitemap-grid__grid--cols-4 { grid-template-columns: repeat(4, 1fr); }
-@media (max-width: 768px) { .sitemap-grid__grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 480px) { .sitemap-grid__grid { grid-template-columns: 1fr; } }
+.sitemap-grid__grid--cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.sitemap-grid__grid--cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 768px) { .sitemap-grid__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) { .sitemap-grid__grid { grid-template-columns: minmax(0, 1fr); } }
+.sitemap-grid__group { min-width: 0; }
 .sitemap-grid__group-title { text-transform: uppercase; letter-spacing: var(--d-tracking-wide); color: var(--muted-foreground); margin-block-end: var(--d-spacing-sm); line-height: var(--d-leading-normal); border-inline-start: 2px solid var(--primary); padding-inline-start: var(--d-spacing-sm); }
 .sitemap-grid__links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--d-spacing-xs); }
 .sitemap-grid__item { margin: 0; }
-.sitemap-grid__link { display: inline-block; font-size: var(--d-text-sm); color: var(--muted-foreground); text-decoration: none; border-radius: var(--d-radius-sm); transition: color 0.15s ease; text-underline-offset: 3px; }
-.sitemap-grid__link:hover { color: var(--foreground); text-decoration: underline; text-decoration-color: color-mix(in oklab, var(--foreground) 40%, transparent); }
-.sitemap-grid__link:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; color: var(--foreground); }
+.sitemap-grid__link { display: inline-block; font-size: var(--d-text-sm); color: var(--muted-foreground); text-decoration: none; border-radius: var(--d-radius-sm); transition: color var(--d-motion-fast) var(--d-ease); text-underline-offset: 3px; }
+/* The underline fades in (at 40% ink) instead of popping on. */
+a.sitemap-grid__link {
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: transparent;
+    transition: color var(--d-motion-fast) var(--d-ease), text-decoration-color var(--d-motion-fast) var(--d-ease);
+}
+@media (hover: hover) and (pointer: fine) {
+    a.sitemap-grid__link:hover { color: var(--foreground); text-decoration-color: color-mix(in oklab, var(--foreground) 40%, transparent); }
+}
+.sitemap-grid__link:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; color: var(--foreground); text-decoration-color: currentColor; }
 .sitemap-grid__link--static { color: var(--muted-foreground); }
+/* Touch: every link becomes a 44px row; the rows themselves are the gap. */
+@media (max-width: 640px), (pointer: coarse) {
+    .sitemap-grid__links { gap: 0; }
+    .sitemap-grid__link { display: inline-flex; align-items: center; min-block-size: 2.75rem; }
+}
 @media (prefers-reduced-motion: reduce) { .sitemap-grid__link { transition: none; } }

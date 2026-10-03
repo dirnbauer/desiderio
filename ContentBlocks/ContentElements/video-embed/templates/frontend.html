@@ -23,7 +23,7 @@
                 </f:then>
                 <f:else>
                     <f:if condition="{data.video_file.0}">
-                        <video class="video-embed__native video-embed__native--{data.aspect_ratio -> f:or(alternative: '16-9')}" controls preload="metadata"
+                        <video class="video-embed__native video-embed__native--{data.aspect_ratio -> f:or(alternative: '16-9')}" controls playsinline preload="metadata"
                                aria-label="{videoTitle -> f:format.trim()}">
                             <source src="{data.video_file.0.publicUrl}" type="{data.video_file.0.mimeType}"/>
                             <a href="{data.video_file.0.publicUrl}" class="video-embed__fallback">{videoTitle -> f:format.trim()}</a>

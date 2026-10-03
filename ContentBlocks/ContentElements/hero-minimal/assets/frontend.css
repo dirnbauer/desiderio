@@ -25,6 +25,12 @@
     display: flex;
     justify-content: center;
 }
+/* Phones: the call to action takes the full row. */
+@media (max-width: 639px) {
+    .hero-minimal__actions > [data-slot="button"] {
+        flex: 1 1 0;
+    }
+}
 @media (min-width: 768px) {
     .hero-minimal .hero-minimal__headline {
         font-size: var(--d-text-5xl);

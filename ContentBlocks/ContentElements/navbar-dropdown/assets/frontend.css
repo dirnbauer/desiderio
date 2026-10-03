@@ -1,3 +1,11 @@
+/* A navigation bar is a bar: no section rhythm above and below it (the
+   split, stacked, tabbed and transparent bars sit flush the same way). The
+   z-index lifts the open submenus above the next section, which would
+   otherwise paint its background over them. */
+.navbar-dropdown {
+    padding-block: 0;
+    z-index: 2;
+}
 .navbar-dropdown__inner {
     display: flex;
     align-items: center;
@@ -16,6 +24,8 @@
     outline: 2px solid var(--d-ring);
     outline-offset: 2px;
 }
+/* role="list" in the template: list-style none drops the list semantics in
+   Safari. */
 .navbar-dropdown__nav {
     display: flex;
     align-items: center;
@@ -28,6 +38,14 @@
 .navbar-dropdown__item {
     position: relative;
 }
+/* Link and chevron button form one trigger; the link keeps its own target,
+   the button owns the submenu. The muted ink is set here, not on the
+   button, so the ghost button's own hover and expanded states still win. */
+.navbar-dropdown__trigger {
+    display: inline-flex;
+    align-items: center;
+    color: var(--d-muted-foreground);
+}
 .navbar-dropdown__link {
     display: inline-block;
     padding: var(--d-spacing-2) var(--d-spacing-3);
@@ -35,24 +53,28 @@
     color: var(--d-muted-foreground);
     text-decoration: none;
     border-radius: var(--d-radius-md);
-    transition: color 0.15s;
+    transition: color var(--d-motion-fast) var(--d-ease);
 }
-.navbar-dropdown__link:hover {
+.navbar-dropdown__item--parent .navbar-dropdown__link {
+    padding-inline-end: var(--d-spacing-1);
+}
+@media (hover: hover) and (pointer: fine) {
+    a.navbar-dropdown__link:hover {
+        color: var(--d-foreground);
+    }
+}
+.navbar-dropdown__item.is-open .navbar-dropdown__link {
     color: var(--d-foreground);
 }
-.navbar-dropdown__item:has(.navbar-dropdown__submenu) .navbar-dropdown__link::after {
-    content: "";
-    display: inline-block;
-    width: 0.4em;
-    height: 0.4em;
-    margin-inline-start: var(--d-spacing-1);
-    border-inline-end: 1.5px solid currentColor;
-    border-block-end: 1.5px solid currentColor;
-    transform: translateY(-25%) rotate(45deg);
-    transition: transform 0.15s;
+.navbar-dropdown__toggle {
+    position: relative;
 }
-.navbar-dropdown__item:has(.navbar-dropdown__submenu):is(:hover, :focus-within) .navbar-dropdown__link::after {
-    transform: translateY(5%) rotate(225deg);
+/* The chevron turns to point at the open menu. */
+.navbar-dropdown__chevron {
+    transition: transform var(--d-motion-fast) var(--d-ease);
+}
+.navbar-dropdown__item.is-open .navbar-dropdown__chevron {
+    transform: rotate(180deg);
 }
 .navbar-dropdown__link:focus-visible,
 .navbar-dropdown__sublink:focus-visible {
@@ -60,29 +82,45 @@
     outline-offset: 2px;
     color: var(--d-foreground);
 }
+/* role="list" in the template, as above. The menu grows out of its
+   trigger (top start corner), never from nothing. */
 .navbar-dropdown__submenu {
     display: none;
     min-width: 12rem;
     margin: var(--d-spacing-1) 0 0;
     background: var(--d-popover);
+    color: var(--popover-foreground);
     border: 1px solid var(--d-border);
     border-radius: var(--d-radius-lg);
     padding: var(--d-spacing-1);
     list-style: none;
+    transform-origin: top left;
 }
-.navbar-dropdown__item:hover .navbar-dropdown__submenu,
-.navbar-dropdown__item:focus-within .navbar-dropdown__submenu {
+.navbar-dropdown__submenu:dir(rtl) {
+    transform-origin: top right;
+}
+/* Open: the runtime sets .is-open on the item (and aria-expanded on its
+   button). Until it has marked the nav ready, hover and keyboard focus open
+   the menu, so it works without JavaScript too. Closing is instant: an
+   exit is always quicker than an entrance. */
+.navbar-dropdown__item.is-open > .navbar-dropdown__submenu,
+.navbar-dropdown__inner:not([data-d-nav-ready]) .navbar-dropdown__item:is(:hover, :focus-within) > .navbar-dropdown__submenu {
     display: block;
-    animation: navbar-dropdown-slide 0.18s ease-out;
+}
+@media (prefers-reduced-motion: no-preference) {
+    .navbar-dropdown__item.is-open > .navbar-dropdown__submenu,
+    .navbar-dropdown__inner:not([data-d-nav-ready]) .navbar-dropdown__item:is(:hover, :focus-within) > .navbar-dropdown__submenu {
+        animation: navbar-dropdown-slide var(--d-motion-fast) var(--d-ease);
+    }
 }
 @keyframes navbar-dropdown-slide {
     from {
         opacity: 0;
-        translate: 0 calc(-1 * var(--d-spacing-1));
+        transform: translateY(calc(-1 * var(--d-spacing-1))) scale(0.97);
     }
     to {
         opacity: 1;
-        translate: 0 0;
+        transform: none;
     }
 }
 .navbar-dropdown__sublink {
@@ -92,11 +130,25 @@
     color: var(--d-muted-foreground);
     text-decoration: none;
     border-radius: var(--d-radius-md);
-    transition: background-color 0.15s, color 0.15s;
+    transition: background-color var(--d-motion-fast) var(--d-ease), color var(--d-motion-fast) var(--d-ease);
 }
-.navbar-dropdown__sublink:hover {
-    background: var(--d-accent);
-    color: var(--d-foreground);
+@media (hover: hover) and (pointer: fine) {
+    a.navbar-dropdown__sublink:hover {
+        background: var(--d-accent);
+        color: var(--d-foreground);
+    }
+}
+/* Phones: the submenu opens in the flow like an accordion. The open item
+   takes the whole row, so its links sit under their trigger and the next
+   items continue below instead of floating beside the panel. */
+@media (max-width: 47.9375rem) {
+    .navbar-dropdown__nav {
+        align-items: flex-start;
+    }
+    .navbar-dropdown__item.is-open,
+    .navbar-dropdown__inner:not([data-d-nav-ready]) .navbar-dropdown__item--parent:is(:hover, :focus-within) {
+        flex-basis: 100%;
+    }
 }
 @media (min-width: 48rem) {
     .navbar-dropdown__inner {
@@ -108,20 +160,29 @@
     .navbar-dropdown__submenu {
         position: absolute;
         top: 100%;
-        left: 0;
+        inset-inline-start: 0;
         margin-top: 0;
         box-shadow: var(--d-shadow-md);
         z-index: 50;
     }
 }
+/* Touch: 44px rows for the links; the 24px chevron button gets a taller
+   invisible hit area that stays clear of the link beside it. */
+@media (pointer: coarse) {
+    .navbar-dropdown__link,
+    .navbar-dropdown__sublink {
+        padding-block: var(--d-spacing-3);
+    }
+    .navbar-dropdown__toggle::after {
+        content: "";
+        position: absolute;
+        inset: calc(-1 * var(--d-spacing-2) - var(--d-spacing-0-5)) calc(-1 * var(--d-spacing-1));
+    }
+}
 @media (prefers-reduced-motion: reduce) {
     .navbar-dropdown__link,
     .navbar-dropdown__sublink,
-    .navbar-dropdown__link::after {
+    .navbar-dropdown__chevron {
         transition: none;
-    }
-    .navbar-dropdown__item:hover .navbar-dropdown__submenu,
-    .navbar-dropdown__item:focus-within .navbar-dropdown__submenu {
-        animation: none;
     }
 }

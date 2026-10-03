@@ -21,9 +21,9 @@
             </d:molecule.cardHeader>
 
             <d:molecule.cardContent class="bundle-pricing__content">
-                <div class="bundle-pricing__items">
+                <ul class="bundle-pricing__items" role="list">
                     <f:for each="{data.items}" as="item">
-                        <div class="bundle-pricing__item">
+                        <li class="bundle-pricing__item">
                             <div class="bundle-pricing__item-info">
                                 <d:atom.typography tag="span" variant="small" class="bundle-pricing__item-name">{item -> f:render.text(field: 'name')}</d:atom.typography>
                                 <f:if condition="{item.description_text}">
@@ -31,11 +31,12 @@
                                 </f:if>
                             </div>
                             <f:if condition="{item.individual_price}">
-                                <d:atom.typography variant="muted" class="bundle-pricing__item-price">{item -> f:render.text(field: 'individual_price')}</d:atom.typography>
+                                <f:comment>The struck-through figure is the price on its own; a screen reader hears that before the number, since the line-through is not announced.</f:comment>
+                                <d:atom.typography variant="muted" class="bundle-pricing__item-price"><span class="d-sr-only"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:price.regular" default="Regular price:"/> </span>{item -> f:render.text(field: 'individual_price')}</d:atom.typography>
                             </f:if>
-                        </div>
+                        </li>
                     </f:for>
-                </div>
+                </ul>
             </d:molecule.cardContent>
 
             <d:molecule.cardFooter class="bundle-pricing__footer">

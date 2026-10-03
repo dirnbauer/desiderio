@@ -6,6 +6,8 @@
     border-radius: var(--radius);
     background: var(--card);
     color: var(--card-foreground);
+    /* Same lift as the area, bar and pie chart cards next to it. */
+    box-shadow: var(--d-shadow-sm);
     overflow: hidden;
 }
 .chart-line__header {
@@ -35,6 +37,10 @@
     max-width: calc(var(--d-chart-plot-height) * 64 / 30);
     margin-inline: auto;
     color: var(--muted-foreground);
+    /* The y-axis labels are right-aligned left of the plot and a long unit
+       ("4,000 minutes") reaches past the viewBox: the default hidden
+       overflow cut their first digits off. */
+    overflow: visible;
 }
 .chart-line .chart__axis-label {
     fill: currentColor;
@@ -88,6 +94,26 @@
 }
 .chart-line__legend-unit {
     color: var(--muted-foreground);
+}
+
+/* Phones: the plot keeps a readable 36rem width and scrolls sideways, like
+   the area and bar charts, instead of shrinking its axis labels to 5px. The
+   start padding is the gutter the overflowing y-axis labels need. */
+@media (max-width: 640px) {
+    .chart-line__content {
+        overflow-x: auto;
+        scrollbar-gutter: stable;
+        padding-inline: calc(var(--d-spacing-xl) + var(--d-spacing-sm)) var(--d-spacing-md);
+    }
+    .chart-line__canvas {
+        min-width: 36rem;
+    }
+    .chart-line__header {
+        padding-inline: var(--d-spacing-md);
+    }
+    .chart-line__legend {
+        padding-inline: var(--d-spacing-md);
+    }
 }
 
 /* Single-series stroke colour, sourced from the shadcn chart palette only. */

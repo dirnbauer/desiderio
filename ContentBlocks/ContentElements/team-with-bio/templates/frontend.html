@@ -23,7 +23,7 @@
                             <f:if condition="{member.image}">
                                 <f:then>
                                     <f:for each="{member.image}" as="fileReference">
-                                        <d:molecule.figure image="{fileReference}" maxImageWidth="320" caption="{fileReference.description}" imageClass="team-with-bio__image" captionClass="team-with-bio__credit" />
+                                        <d:molecule.figure image="{fileReference}" alt="{fileReference.alternative}" maxImageWidth="320" caption="{fileReference.description}" imageClass="team-with-bio__image" captionClass="team-with-bio__credit" />
                                     </f:for>
                                 </f:then>
                                 <f:else>

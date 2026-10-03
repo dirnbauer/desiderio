@@ -20,14 +20,17 @@
                 </div>
             </header>
 
-            <div class="a11y-statement__content">
+            <div class="a11y-statement__content d-richtext">
                 {data -> f:render.text(field: 'content')}
             </div>
 
             <f:if condition="{data.contact_email}">
                 <div class="a11y-statement__contact">
-                    <d:atom.typography variant="small" class="a11y-statement__contact-label"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:a11y.reportBarrier" default="Report an accessibility barrier"/></d:atom.typography>
-                    <p><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:a11y.contactIntro" default="Email"/> <a href="mailto:{data.contact_email}">{data -> f:render.text(field: 'contact_email')}</a>.</p>
+                    <span class="a11y-statement__contact-icon" aria-hidden="true"><d:atom.icon name="accessibility" size="sm" /></span>
+                    <div class="a11y-statement__contact-body">
+                        <d:atom.typography variant="small" class="a11y-statement__contact-label"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:a11y.reportBarrier" default="Report an accessibility barrier"/></d:atom.typography>
+                        <p><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:a11y.contactIntro" default="Email"/> <a class="a11y-statement__email" href="mailto:{data.contact_email}">{data -> f:render.text(field: 'contact_email')}</a>.</p>
+                    </div>
                 </div>
             </f:if>
         </div>

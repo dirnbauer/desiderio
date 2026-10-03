@@ -1,8 +1,24 @@
 .press-mentions__intro { text-align: center; margin-block-end: var(--d-spacing-xl); }
 .press-mentions__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: var(--d-tracking-wide); color: var(--d-link, var(--primary)); font-weight: var(--d-weight-semibold); }
 .press-mentions__headline { margin-block-start: var(--d-spacing-xs); }
-.press-mentions__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); gap: var(--d-spacing-lg); }
-.press-mentions__item { padding: var(--d-spacing-lg); border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); display: flex; flex-direction: column; gap: var(--d-spacing-md); }
+.press-mentions__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr)); gap: var(--d-spacing-lg); }
+/* The card wears the surface of d:molecule.card (22-modern-base.css): the
+   shared radius, a hairline ring and the preset's surface shadow. */
+.press-mentions__item {
+    position: relative;
+    min-width: 0;
+    padding: var(--d-spacing-lg);
+    border-radius: calc(var(--radius, 0.625rem) * 1.5);
+    background: var(--card);
+    box-shadow:
+        0 0 0 1px color-mix(in oklch, var(--foreground) 9%, transparent),
+        var(--d-surface-shadow, 0 0 transparent),
+        inset 0 1px 0 color-mix(in oklch, var(--card-foreground) 5%, transparent);
+    display: flex;
+    flex-direction: column;
+    gap: var(--d-spacing-md);
+    transition: transform var(--d-motion) var(--d-ease), box-shadow var(--d-motion) var(--d-ease);
+}
 /* Fixed-height logo bar — intrinsic aspect ratio preserved, transparent
    background, no letterboxing. */
 .press-mentions__logo {
@@ -23,9 +39,8 @@
        focus. */
     filter: grayscale(1);
     opacity: 0.7;
-    transition: filter 0.2s ease, opacity 0.2s ease;
+    transition: filter var(--d-motion) var(--d-ease), opacity var(--d-motion) var(--d-ease);
 }
-.press-mentions__item:hover .press-mentions__logo-img,
 .press-mentions__item:focus-within .press-mentions__logo-img {
     filter: none;
     opacity: 1;
@@ -55,10 +70,31 @@
 .press-mentions__quote p { margin: 0; }
 .press-mentions__quote p + p { margin-block-start: var(--d-spacing-xs); }
 .press-mentions__meta { display: flex; justify-content: space-between; align-items: baseline; gap: var(--d-spacing-sm); }
-.press-mentions__publication { font-weight: var(--d-weight-medium); font-size: var(--d-text-sm); color: var(--muted-foreground); }
-.press-mentions__date { font-size: var(--d-text-xs); color: var(--muted-foreground); }
-.press-mentions__link { font-size: var(--d-text-sm); font-weight: var(--d-weight-medium); color: var(--d-link, var(--primary)); text-decoration: none; }
-.press-mentions__link:hover { text-decoration: underline; }
+.press-mentions__publication { min-width: 0; font-weight: var(--d-weight-medium); font-size: var(--d-text-sm); color: var(--muted-foreground); }
+.press-mentions__date { flex-shrink: 0; font-size: var(--d-text-xs); color: var(--muted-foreground); font-variant-numeric: tabular-nums; }
+.press-mentions__link { align-self: flex-start; font-size: var(--d-text-sm); font-weight: var(--d-weight-medium); color: var(--d-link, var(--primary)); text-decoration: none; }
+/* The link makes the whole card the hit area. While the Visual Editor edits
+   the card, its fields stay clickable. */
+.press-mentions__link::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.press-mentions__item:has(ve-editable-text, ve-editable-rich-text) .press-mentions__link::after { content: none; }
+
+@media (hover: hover) and (pointer: fine) {
+    .press-mentions__item:hover .press-mentions__logo-img {
+        filter: none;
+        opacity: 1;
+    }
+    .press-mentions__item:has(.press-mentions__link):hover {
+        box-shadow:
+            0 0 0 1px color-mix(in oklch, var(--primary) 32%, transparent),
+            var(--d-shadow-md),
+            inset 0 1px 0 color-mix(in oklch, var(--card-foreground) 5%, transparent);
+    }
+    .press-mentions__item:hover .press-mentions__link { text-decoration: underline; }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .press-mentions__item:has(.press-mentions__link):hover { transform: translateY(-2px); }
+}
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */
 .press-mentions__intro {
@@ -70,9 +106,7 @@
    around a transparent file) and use light ink on dark themes. */
 .press-mentions__logo-img[src*=".svg"] { background: none; border: 0; border-radius: 0; box-shadow: none; }
 .dark .press-mentions__logo-img[src*=".svg"] { filter: grayscale(1) invert(1); }
-.dark .press-mentions__item:hover .press-mentions__logo-img[src*=".svg"],
 .dark .press-mentions__item:focus-within .press-mentions__logo-img[src*=".svg"] { filter: invert(1) hue-rotate(180deg); }
-
-@media (prefers-reduced-motion: reduce) {
-    .press-mentions__logo-img { transition: none; }
+@media (hover: hover) and (pointer: fine) {
+    .dark .press-mentions__item:hover .press-mentions__logo-img[src*=".svg"] { filter: invert(1) hue-rotate(180deg); }
 }

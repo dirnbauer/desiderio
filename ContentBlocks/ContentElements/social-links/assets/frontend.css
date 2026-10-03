@@ -1,5 +1,7 @@
 .social-links__content { text-align: center; }
-.social-links__description { margin-block-start: var(--d-spacing-sm); }
+/* The shared 75ch measure caps the paragraph's box; centre the box too, or
+   the centred lines hang off a block that hugs the start edge. */
+.social-links__description { margin-block-start: var(--d-spacing-sm); margin-inline: auto; max-width: 60ch; }
 .social-links__list {
     list-style: none;
     padding: 0;
@@ -11,6 +13,7 @@
 }
 .social-links__entry { margin: 0; }
 .social-links__item {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -22,25 +25,37 @@
     font-weight: var(--d-weight-medium);
     text-decoration: none;
     color: var(--foreground);
-    transition: background 0.15s, border-color 0.15s;
+    transition: background-color var(--d-motion-fast) var(--d-ease), border-color var(--d-motion-fast) var(--d-ease);
+}
+/* A 38px pill with a 46px hit area: four pixels more above and below. */
+.social-links__item::after {
+    content: "";
+    position: absolute;
+    inset: calc(-1 * var(--d-spacing-1)) 0;
 }
 .social-links__icon {
     display: inline-flex;
     align-items: center;
     color: var(--muted-foreground);
+    transition: color var(--d-motion-fast) var(--d-ease);
 }
-.social-links__item:hover .social-links__icon,
 .social-links__item:focus-visible .social-links__icon {
     color: currentColor;
 }
-.social-links__item:hover {
-    background: var(--muted);
-    border-color: var(--ring);
+@media (hover: hover) and (pointer: fine) {
+    .social-links__item:hover .social-links__icon {
+        color: currentColor;
+    }
+    .social-links__item:hover {
+        background: var(--muted);
+        border-color: var(--ring);
+    }
 }
 .social-links__item:focus-visible {
     outline: 2px solid var(--ring);
     outline-offset: 2px;
 }
 @media (prefers-reduced-motion: reduce) {
-    .social-links__item { transition: none; }
+    .social-links__item,
+    .social-links__icon { transition: none; }
 }

@@ -6,29 +6,35 @@
 .logo-grid__items--cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .logo-grid__items--cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 @media (max-width: 1024px) { .logo-grid__items { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 480px) { .logo-grid__items { grid-template-columns: 1fr; } }
-.logo-grid__item { display: flex; align-items: center; justify-content: center; }
+/* Phones keep two logos a row: a logo is a small mark, and one tile per row
+   only made the list long. The tiles get a little tighter instead. */
+@media (max-width: 480px) { .logo-grid__items { gap: var(--d-spacing-sm, 0.75rem); } }
+.logo-grid__item { display: flex; min-width: 0; align-items: center; justify-content: center; }
+/* The tile wears the surface of d:molecule.card (22-modern-base.css): the
+   shared radius, a hairline ring and the preset's surface shadow. */
 .logo-grid__link {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: var(--d-spacing-md, 1rem);
+    min-width: 0;
     min-height: 10rem;
     padding: var(--d-spacing-lg, 1.5rem);
-    border: 1px solid var(--border);
-    border-radius: var(--radius, 0.625rem);
+    border-radius: calc(var(--radius, 0.625rem) * 1.5);
     background: var(--card);
     color: var(--card-foreground);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    box-shadow:
+        0 0 0 1px color-mix(in oklch, var(--foreground) 9%, transparent),
+        var(--d-surface-shadow, 0 0 transparent),
+        inset 0 1px 0 color-mix(in oklch, var(--card-foreground) 5%, transparent);
+    transition: box-shadow var(--d-motion) var(--d-ease), transform var(--d-motion) var(--d-ease);
     text-decoration: none;
     width: 100%;
     height: 100%;
 }
-.logo-grid__link:hover {
-    border-color: var(--ring);
-    box-shadow: var(--d-shadow-md);
-    transform: translateY(-0.125rem);
+@media (max-width: 480px) {
+    .logo-grid__link { min-height: 8rem; padding: var(--d-spacing-md, 1rem); gap: var(--d-spacing-sm, 0.75rem); }
 }
 .logo-grid__link:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
 /* The logos are full-colour files shown as a quiet greyscale set. Hover or
@@ -36,6 +42,7 @@
 .logo-grid__image {
     width: 5rem;
     height: 5rem;
+    max-width: 100%;
     max-height: none;
     padding: var(--d-spacing-sm, 0.75rem);
     border: 1px solid var(--border);
@@ -44,9 +51,8 @@
     object-fit: contain;
     filter: grayscale(1);
     opacity: 0.6;
-    transition: filter 0.2s ease, opacity 0.2s ease;
+    transition: filter var(--d-motion) var(--d-ease), opacity var(--d-motion) var(--d-ease);
 }
-.logo-grid__link:hover .logo-grid__image,
 .logo-grid__link:focus-visible .logo-grid__image,
 .logo-grid__item:focus-within .logo-grid__image {
     filter: none;
@@ -54,7 +60,25 @@
 }
 /* The caption is quieter than the logo: muted ink (contrast-audited on page and
    card backgrounds, so it is not faded further), small, regular weight. */
-.logo-grid__name { font-size: var(--d-text-sm, 0.875rem); color: var(--muted-foreground); font-weight: var(--d-weight-normal); text-align: center; }
+.logo-grid__name { min-width: 0; font-size: var(--d-text-sm, 0.875rem); color: var(--muted-foreground); font-weight: var(--d-weight-normal); text-align: center; overflow-wrap: anywhere; }
+
+/* Only a tile that links somewhere answers the pointer. */
+@media (hover: hover) and (pointer: fine) {
+    a.logo-grid__link:hover {
+        box-shadow:
+            0 0 0 1px color-mix(in oklch, var(--primary) 32%, transparent),
+            var(--d-shadow-md),
+            inset 0 1px 0 color-mix(in oklch, var(--card-foreground) 5%, transparent);
+    }
+    .logo-grid__link:hover .logo-grid__image {
+        filter: none;
+        opacity: 1;
+    }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    a.logo-grid__link:hover { transform: translateY(-0.125rem); }
+}
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */
 .logo-grid__intro {
@@ -69,12 +93,8 @@
 /* The 5rem tile is sized for square icons; a wordmark needs its width. */
 .logo-grid__image[src*=".svg"] { width: auto; max-width: 100%; height: 2.5rem; padding: 0; background: none; border: 0; border-radius: 0; box-shadow: none; }
 .dark .logo-grid__image[src*=".svg"] { filter: grayscale(1) invert(1); opacity: 0.7; }
-.dark .logo-grid__link:hover .logo-grid__image[src*=".svg"],
 .dark .logo-grid__link:focus-visible .logo-grid__image[src*=".svg"],
 .dark .logo-grid__item:focus-within .logo-grid__image[src*=".svg"] { filter: invert(1) hue-rotate(180deg); opacity: 1; }
-
-@media (prefers-reduced-motion: reduce) {
-    .logo-grid__link,
-    .logo-grid__image { transition: none; }
-    .logo-grid__link:hover { transform: none; }
+@media (hover: hover) and (pointer: fine) {
+    .dark .logo-grid__link:hover .logo-grid__image[src*=".svg"] { filter: invert(1) hue-rotate(180deg); opacity: 1; }
 }

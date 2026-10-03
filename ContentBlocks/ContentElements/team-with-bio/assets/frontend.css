@@ -14,9 +14,13 @@
     letter-spacing: var(--d-tracking-wide);
     color: var(--d-link, var(--primary));
 }
+/* The list is one reading column under the centred intro: it takes a
+   measure and sits on the same axis, instead of leaving the right third
+   of the section empty. */
 .team-with-bio__list {
     list-style: none;
-    margin: 0;
+    max-width: 56rem;
+    margin: 0 auto;
     padding: 0;
     display: flex;
     flex-direction: column;
@@ -24,14 +28,19 @@
 }
 .team-with-bio__member {
     display: grid;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 200px minmax(0, 1fr);
     gap: var(--d-spacing-lg);
     align-items: start;
 }
 @media (max-width: 768px) {
-    .team-with-bio__member { grid-template-columns: 1fr; }
+    .team-with-bio__member { grid-template-columns: minmax(0, 1fr); }
 }
 .team-with-bio__image-wrapper { width: 100%; }
+/* Stacked on a phone, a portrait the full width of the screen pushed each
+   bio a whole screen down; a smaller one keeps name and bio in view. */
+@media (max-width: 768px) {
+    .team-with-bio__image-wrapper { max-width: 12rem; }
+}
 .team-with-bio__image {
     display: block;
     width: 100%;
@@ -72,6 +81,7 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
+    min-width: 0;
 }
 /* A quiet outline action: one per person, so a filled primary button in
    every row outweighed the names and bios. */
@@ -91,12 +101,14 @@
     line-height: 1;
     text-decoration: none;
     box-shadow: none;
-    transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+    transition: background-color var(--d-motion-fast) var(--d-ease), border-color var(--d-motion-fast) var(--d-ease), transform var(--d-motion-fast) var(--d-ease);
 }
-.team-with-bio__link[data-slot="button"]:hover {
-    background: var(--muted);
-    border-color: color-mix(in oklch, var(--foreground) 20%, var(--border));
-    color: var(--foreground);
+@media (hover: hover) and (pointer: fine) {
+    .team-with-bio__link[data-slot="button"]:hover {
+        background: var(--muted);
+        border-color: color-mix(in oklch, var(--foreground) 20%, var(--border));
+        color: var(--foreground);
+    }
 }
 .team-with-bio__link[data-slot="button"]:active {
     transform: translateY(1px);
@@ -109,10 +121,12 @@
 }
 .team-with-bio__link-icon {
     display: inline-flex;
-    transition: transform 0.15s ease;
+    transition: transform var(--d-motion-fast) var(--d-ease);
 }
-.team-with-bio__link[data-slot="button"]:hover .team-with-bio__link-icon {
-    transform: translateX(2px);
+@media (hover: hover) and (pointer: fine) {
+    .team-with-bio__link[data-slot="button"]:hover .team-with-bio__link-icon {
+        transform: translateX(2px);
+    }
 }
 @media (prefers-reduced-motion: reduce) {
     .team-with-bio__link[data-slot="button"],

@@ -35,6 +35,11 @@
     min-width: 0;
     overflow-x: auto;
     scrollbar-gutter: stable;
+    /* charts.js sets the y-axis labels right-aligned left of the plot, so a
+       long unit ("1,800 workspaces") reaches past the viewBox. Inside this
+       scroller anything left of the edge is cut off and cannot be scrolled
+       to, so the labels get their own gutter. */
+    padding-inline-start: calc(var(--d-spacing-xl) + var(--d-spacing-sm));
 }
 .chart-area__canvas {
     display: block;
@@ -85,15 +90,20 @@
 }
 .chart-area__stat-value {
     display: flex;
+    flex-wrap: wrap;
     align-items: baseline;
-    gap: var(--d-spacing-1);
+    gap: 0 var(--d-spacing-1);
     margin: 0;
     font-size: var(--d-text-lg);
     font-weight: var(--d-weight-semibold);
     color: var(--foreground);
     font-variant-numeric: tabular-nums;
-    overflow-wrap: anywhere;
+    /* break-word, not anywhere: "anywhere" lowers the min-content width to
+       one letter, so a narrow column split "elements" and "v2.6" mid-word. */
+    overflow-wrap: break-word;
 }
+/* The net change keeps its arrow on the line of its number. */
+.chart-area__stat--trend .chart-area__stat-value { flex-wrap: nowrap; }
 .chart-area__stat-meta {
     font-size: var(--d-text-xs);
     font-weight: var(--d-weight-medium);
@@ -122,8 +132,11 @@
     .chart-area__content {
         padding: var(--d-spacing-md);
     }
-    .chart-area__canvas {
-        aspect-ratio: 4 / 3;
+    /* The canvas keeps the 64:30 box of the 640x300 viewBox it draws into;
+       a taller 4:3 box only letterboxed the drawing with 160px of blank
+       space. Phones scroll the plot sideways at its readable 36rem width. */
+    .chart-area__stat-value {
+        font-size: var(--d-text-base);
     }
 }
 

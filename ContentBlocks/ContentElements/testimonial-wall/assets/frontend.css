@@ -5,14 +5,34 @@
 .testimonial-wall__masonry { columns: 3; column-gap: var(--d-spacing-lg); }
 @media (max-width: 1024px) { .testimonial-wall__masonry { columns: 2; } }
 @media (max-width: 640px) { .testimonial-wall__masonry { columns: 1; } }
-.testimonial-wall__card { break-inside: avoid; border: 1px solid var(--border); border-radius: var(--d-radius-lg); background: var(--card); color: var(--card-foreground); padding: var(--d-spacing-lg); margin: 0; }
+/* The card wears the surface of d:molecule.card (22-modern-base.css): the
+   shared radius, a hairline ring and the preset's surface shadow. */
+.testimonial-wall__card {
+    break-inside: avoid;
+    border-radius: calc(var(--radius, 0.625rem) * 1.5);
+    background: var(--card);
+    color: var(--card-foreground);
+    box-shadow:
+        0 0 0 1px color-mix(in oklch, var(--foreground) 9%, transparent),
+        var(--d-surface-shadow, 0 0 transparent),
+        inset 0 1px 0 color-mix(in oklch, var(--card-foreground) 5%, transparent);
+    padding: var(--d-spacing-lg);
+    margin: 0;
+}
 /* The gap between cards in a column sits ABOVE a card: the browser truncates
    a top margin at a column break, so every column starts flush, and no card
    leaves a margin below the wall (a bottom margin survived in some column
    counts and not in others). */
 .testimonial-wall__card + .testimonial-wall__card { margin-block-start: var(--d-spacing-lg); }
 .testimonial-wall__quote { margin: 0 0 var(--d-spacing-md); font-style: italic; line-height: var(--d-leading-relaxed); }
-.testimonial-wall__quote p { margin: 0; }
+/* Typographic quotation marks in the page language (open-quote follows the
+   lang attribute). */
+.testimonial-wall__quote p { margin: 0; text-wrap: pretty; }
+.testimonial-wall__quote p::before { content: open-quote; }
+.testimonial-wall__quote p::after { content: close-quote; }
+/* While the Visual Editor edits the quote the marks step aside. */
+.testimonial-wall__quote p:has(> ve-editable-text)::before,
+.testimonial-wall__quote p:has(> ve-editable-text)::after { content: none; }
 .testimonial-wall__author { display: flex; align-items: center; gap: var(--d-spacing-sm); }
 .testimonial-wall__avatar { display: block; width: 2.5rem; height: 2.5rem; border-radius: 9999px; object-fit: cover; object-position: center; flex-shrink: 0; }
 .testimonial-wall__author-meta { display: block; min-width: 0; }

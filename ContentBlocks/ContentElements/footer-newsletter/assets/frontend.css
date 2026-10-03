@@ -1,8 +1,12 @@
 .footer-newsletter { padding-block: var(--d-spacing-xl); border-top: 1px solid var(--border); }
 .footer-newsletter__inner { display: flex; justify-content: space-between; align-items: center; gap: var(--d-spacing-xl); flex-wrap: wrap; }
+/* Copy left, form right where there is room: without a basis the copy took
+   its max-content width and always pushed the form onto a second row. */
+.footer-newsletter__content { flex: 1 1 22rem; min-width: 0; }
 .footer-newsletter__title { font-size: var(--d-text-lg); font-weight: var(--d-weight-bold); }
 .footer-newsletter__description { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); }
 .footer-newsletter__form-wrapper {
+    flex: 0 1 32rem;
     width: min(100%, 32rem);
 }
 .footer-newsletter__form-wrapper form {
@@ -91,13 +95,18 @@
     font-weight: var(--d-weight-medium);
     padding: 0 var(--d-spacing-lg);
 }
-.footer-newsletter__form-wrapper .btn-primary:hover { opacity: 0.92; }
-.footer-newsletter__privacy { font-size: var(--d-text-xs); color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); }
+@media (hover: hover) and (pointer: fine) {
+    .footer-newsletter__form-wrapper .btn-primary:hover { opacity: 0.92; }
+}
+.footer-newsletter__privacy { display: flex; align-items: flex-start; gap: var(--d-spacing-xs); font-size: var(--d-text-xs); color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); }
+.footer-newsletter__privacy-icon { margin-block-start: calc((1lh - 0.75rem) / 2); }
+.footer-newsletter__privacy > span { min-width: 0; }
+.footer-newsletter__description a { overflow-wrap: anywhere; }
 .footer-newsletter__bottom { margin-block-start: var(--d-spacing-lg); padding-block-start: var(--d-spacing-md); border-top: 1px solid var(--border); }
 .footer-newsletter__copyright { font-size: var(--d-text-xs); color: var(--muted-foreground); }
 @media (max-width: 640px) {
     .footer-newsletter__inner { align-items: stretch; }
-    .footer-newsletter__form-wrapper form { grid-template-columns: 1fr; }
+    .footer-newsletter__form-wrapper form { grid-template-columns: minmax(0, 1fr); }
     .footer-newsletter__form-wrapper .btn-primary { width: 100%; }
     .footer-newsletter__form-wrapper .form-element-email,
     .footer-newsletter__form-wrapper .actions,

@@ -36,7 +36,7 @@
                         </f:if>
 
                         <d:molecule.cardHeader class="pricing-four-tier__header">
-                            <d:atom.typography tag="h3" variant="h4" class="pricing-four-tier__title">{tier -> f:render.text(field: 'title')}</d:atom.typography>
+                            <d:atom.typography tag="h3" variant="h4" class="pricing-four-tier__title" attributes="{id: 'pricing-four-tier-{data.uid}-title-{iter.cycle}'}">{tier -> f:render.text(field: 'title')}</d:atom.typography>
                             <p class="pricing-four-tier__price">{tier -> f:render.text(field: 'price')}</p>
                             <f:if condition="{tier.description}">
                                 <d:atom.typography tag="div" variant="muted" class="pricing-four-tier__plan-desc d-richtext">{tier -> f:render.text(field: 'description')}</d:atom.typography>
@@ -64,10 +64,10 @@
                                     target="{tier.button_link.target}"
                                     variant="{f:if(condition: tier.featured, then: 'default', else: 'outline')}"
                                     class="pricing-four-tier__button"
+                                    attributes="{aria-describedby: 'pricing-four-tier-{data.uid}-title-{iter.cycle}'}"
                                 >
                                     <span>{tier -> f:render.text(field: 'button_text')}</span>
-                                    <span class="d-sr-only"> – {tier.title}</span>
-                                </d:atom.button>
+                                </d:atom.button>{tier -> f:render.link(field: 'button_link')}
                             </d:molecule.cardFooter>
                         </f:if>
                     </d:molecule.card>

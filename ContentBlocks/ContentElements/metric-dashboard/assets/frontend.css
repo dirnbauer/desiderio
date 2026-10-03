@@ -1,14 +1,25 @@
 .metric-dashboard__intro { margin-block-end: var(--d-spacing-xl, 2rem); }
 .metric-dashboard__headline { font-size: var(--d-text-xl, 1.25rem); font-weight: var(--d-weight-bold); }
 .metric-dashboard__description { font-size: var(--d-text-sm, 0.875rem); color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs, 0.5rem); max-width: 42rem; }
-.metric-dashboard__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--d-spacing-md, 1rem); margin: 0; }
-@media (max-width: 768px) { .metric-dashboard__grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 480px) { .metric-dashboard__grid { grid-template-columns: 1fr; } }
+.metric-dashboard__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--d-spacing-md, 1rem); margin: 0; }
+@media (max-width: 768px) { .metric-dashboard__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .metric-dashboard__card {
     padding: var(--d-spacing-lg, 1.5rem);
     border: 1px solid var(--border); border-radius: var(--radius, 0.625rem);
     background: var(--card);
     color: var(--card-foreground);
+}
+/* Label, value and change line up across a row of tiles: each tile spans
+   three rows of the board and shares them (subgrid), so a label that wraps
+   to two lines no longer pushes its value below its neighbours'. */
+@supports (grid-template-rows: subgrid) {
+    .metric-dashboard__card {
+        display: grid;
+        grid-row: span 3;
+        grid-template-rows: subgrid;
+        row-gap: 0;
+        align-content: start;
+    }
 }
 .metric-dashboard__label { font-size: var(--d-text-sm, 0.875rem); color: var(--muted-foreground); margin: 0; }
 .metric-dashboard__value { font-size: var(--d-text-2xl, 1.5rem); font-weight: var(--d-weight-bold); margin: var(--d-spacing-xs, 0.5rem) 0 0; line-height: var(--d-leading-tight); }
@@ -23,11 +34,26 @@
     border: 1px solid var(--border); border-radius: var(--radius, 0.625rem);
     background: var(--card); padding: var(--d-spacing-lg, 1.5rem);
 }
-.metric-dashboard__sparkline { display: block; width: 100%; height: 260px; color: var(--muted-foreground); }
+/* charts.js draws into a 640x230 viewBox. The box follows that ratio and
+   stops at the size the old fixed 260px height produced, so the drawing is
+   never letterboxed: on phones the fixed height left 80px blank bands above
+   and below a 4px-type chart. */
+.metric-dashboard__plot { min-width: 0; }
+.metric-dashboard__sparkline {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 64 / 23;
+    max-width: calc(16.25rem * 64 / 23);
+    margin-inline: auto;
+    color: var(--muted-foreground);
+    overflow: visible;
+}
 .metric-dashboard .chart__axis-label,
-.metric-dashboard .chart__tick-label { fill: currentColor; font-size: 0.625rem; font-weight: var(--d-weight-semibold); }
+.metric-dashboard .chart__tick-label { fill: currentColor; font-size: 0.625rem; font-weight: var(--d-weight-semibold); font-variant-numeric: tabular-nums; }
 .metric-dashboard__legend {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     gap: var(--d-spacing-xs, 0.5rem);
@@ -39,10 +65,31 @@
 .metric-dashboard__legend-marker {
     width: 0.625rem;
     height: 0.625rem;
-    border-radius: 999px;
+    border-radius: var(--d-radius-full);
     background: var(--primary);
 }
-.metric-dashboard__legend-unit { color: var(--foreground); }
+/* The unit reads as a qualifier of the series ("Content elements per
+   release · elements"), the way the line chart's legend sets it. */
+.metric-dashboard__legend-unit { color: var(--muted-foreground); font-weight: var(--d-weight-normal); }
+.metric-dashboard__legend-unit::before { content: "·"; margin-inline-end: var(--d-spacing-xs); }
+
+/* Phones: the four tiles stay a 2 x 2 board instead of four full-width
+   cards, and the plot keeps a readable 36rem width and scrolls sideways like
+   the other charts (its start padding is the y-axis labels' gutter). */
+@media (max-width: 480px) {
+    .metric-dashboard__grid { gap: var(--d-spacing-sm); }
+    .metric-dashboard__card { padding: var(--d-spacing-md); }
+    .metric-dashboard__value { font-size: var(--d-text-xl); }
+    .metric-dashboard__chart { padding: var(--d-spacing-md); }
+    .metric-dashboard__plot {
+        overflow-x: auto;
+        scrollbar-gutter: stable;
+        padding-inline-start: var(--d-spacing-lg);
+    }
+    .metric-dashboard__sparkline { min-width: 36rem; }
+    .metric-dashboard .chart__axis-label,
+    .metric-dashboard .chart__tick-label { font-size: 0.75rem; }
+}
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */
 .metric-dashboard__intro {

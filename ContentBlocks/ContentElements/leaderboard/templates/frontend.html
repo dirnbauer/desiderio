@@ -18,7 +18,7 @@
                     </f:if>
                 </div>
             </f:if>
-            <ol class="leaderboard__list">
+            <ol class="leaderboard__list" role="list">
                 <f:for each="{data.items}" as="item" iteration="iter">
                     <li class="leaderboard__item">
                         <f:if condition="{data.show_rank}">
@@ -27,17 +27,17 @@
                         <div class="leaderboard__avatar">
                             <f:if condition="{item.avatar_url}">
                                 <f:then>
-                                    <img src="{item.avatar_url}" alt="" loading="lazy" decoding="async"/>
+                                    <img src="{item.avatar_url}" alt="" width="56" height="56" loading="lazy" decoding="async"/>
                                 </f:then>
                                 <f:else>
                                     <f:if condition="{item.image}">
                                         <f:then>
                                             <f:for each="{item.image}" as="file">
-                                                <f:image image="{file}" alt="{file.alternative}" width="96" height="96" loading="lazy" decoding="async" additionalAttributes="{srcset: '{f:uri.image(image: file, width: \'96\', height: \'96\')} 1x, {f:uri.image(image: file, width: \'192\', height: \'192\')} 2x'}"/>
+                                                <f:image image="{file}" alt="{file.alternative}" width="96c" height="96c" loading="lazy" decoding="async" additionalAttributes="{srcset: '{f:uri.image(image: file, width: \'96c\', height: \'96c\')} 1x, {f:uri.image(image: file, width: \'192c\', height: \'192c\')} 2x'}"/>
                                             </f:for>
                                         </f:then>
                                         <f:else>
-                                            <span class="leaderboard__avatar-fallback" aria-hidden="true">{item.name -> f:format.crop(maxCharacters: 1)}</span>
+                                            <span class="leaderboard__avatar-fallback" aria-hidden="true">{item.name -> f:format.crop(maxCharacters: 1, append: '', respectWordBoundaries: 0, respectHtml: 0)}</span>
                                         </f:else>
                                     </f:if>
                                 </f:else>

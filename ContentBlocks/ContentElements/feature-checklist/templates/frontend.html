@@ -7,30 +7,32 @@
 
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="feature-checklist">
     <d:layout.container>
-        <f:if condition="{data.eyebrow} || {data.header}">
-            <d:molecule.sectionIntro prefix="feature-checklist" class="feature-checklist__intro">
-                <f:fragment name="eyebrow"><f:if condition="{data.eyebrow}">{data -> f:render.text(field: 'eyebrow')}</f:if></f:fragment>
-                <f:fragment name="heading"><f:if condition="{data.header}">{data -> f:render.text(field: 'header')}</f:if></f:fragment>
-            </d:molecule.sectionIntro>
-        </f:if>
-        <div class="feature-checklist__body">
-            <d:molecule.card class="feature-checklist__list">
-                <ul class="feature-checklist__items" role="list">
-                    <f:for each="{data.items}" as="item">
-                        <li class="feature-checklist__item">
-                            <span class="feature-checklist__marker" aria-hidden="true">
-                                <d:atom.icon name="check" size="sm"/>
-                            </span>
-                            <div class="feature-checklist__text">
-                                <d:atom.typography tag="h3" variant="large" class="feature-checklist__title">{item -> f:render.text(field: 'title')}</d:atom.typography>
-                                <f:if condition="{item.description_text}">
-                                    <p class="feature-checklist__description">{item -> f:render.text(field: 'description_text')}</p>
-                                </f:if>
-                            </div>
-                        </li>
-                    </f:for>
-                </ul>
-            </d:molecule.card>
+        <div class="feature-checklist__layout lg:grid lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:items-start lg:gap-12">
+            <f:if condition="{data.eyebrow} || {data.header}">
+                <d:molecule.sectionIntro prefix="feature-checklist" class="feature-checklist__intro">
+                    <f:fragment name="eyebrow"><f:if condition="{data.eyebrow}">{data -> f:render.text(field: 'eyebrow')}</f:if></f:fragment>
+                    <f:fragment name="heading"><f:if condition="{data.header}">{data -> f:render.text(field: 'header')}</f:if></f:fragment>
+                </d:molecule.sectionIntro>
+            </f:if>
+            <div class="feature-checklist__body">
+                <d:molecule.card class="feature-checklist__list">
+                    <ul class="feature-checklist__items" role="list">
+                        <f:for each="{data.items}" as="item">
+                            <li class="feature-checklist__item">
+                                <span class="feature-checklist__marker" aria-hidden="true">
+                                    <d:atom.icon name="check" size="sm"/>
+                                </span>
+                                <div class="feature-checklist__text flex min-w-0 flex-col gap-1.5">
+                                    <d:atom.typography tag="h3" variant="large" class="feature-checklist__title">{item -> f:render.text(field: 'title')}</d:atom.typography>
+                                    <f:if condition="{item.description_text}">
+                                        <p class="feature-checklist__description">{item -> f:render.text(field: 'description_text')}</p>
+                                    </f:if>
+                                </div>
+                            </li>
+                        </f:for>
+                    </ul>
+                </d:molecule.card>
+            </div>
         </div>
     </d:layout.container>
 </d:layout.section>

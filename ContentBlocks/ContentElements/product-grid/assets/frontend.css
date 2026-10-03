@@ -2,27 +2,69 @@
 .product-grid__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: var(--d-tracking-wide); color: var(--d-link, var(--primary)); font-weight: var(--d-weight-semibold); }
 .product-grid__headline { margin-block-start: var(--d-spacing-xs); }
 .product-grid__items { display: grid; gap: var(--d-spacing-lg); }
-.product-grid__items--cols-2 { grid-template-columns: repeat(2, 1fr); }
-.product-grid__items--cols-3 { grid-template-columns: repeat(3, 1fr); }
-.product-grid__items--cols-4 { grid-template-columns: repeat(4, 1fr); }
-@media (max-width: 768px) { .product-grid__items { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 480px) { .product-grid__items { grid-template-columns: 1fr; } }
-.product-grid__card { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: border-color 0.2s; display: flex; flex-direction: column; }
-.product-grid__card:hover { border-color: var(--primary); }
+.product-grid__items--cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.product-grid__items--cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.product-grid__items--cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 768px) { .product-grid__items { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) { .product-grid__items { grid-template-columns: minmax(0, 1fr); } }
+
+/* The surface takes the card radius and elevation of d:molecule.card; its
+   colours stay. */
+.product-grid__card { position: relative; min-width: 0; border: 1px solid var(--border); border-radius: calc(var(--radius) * 1.5); overflow: hidden; background: var(--card); color: var(--card-foreground); box-shadow: var(--d-surface-shadow); transition: border-color var(--d-motion) var(--d-ease), box-shadow var(--d-motion) var(--d-ease); display: flex; flex-direction: column; }
 .product-grid__media { aspect-ratio: 16 / 10; overflow: hidden; background: var(--muted); flex-shrink: 0; }
-.product-grid__image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
-.product-grid__card:hover .product-grid__image { transform: scale(1.05); }
+.product-grid__image { width: 100%; height: 100%; object-fit: cover; transition: transform var(--d-motion) var(--d-ease); }
 .product-grid__body { padding: var(--d-spacing-md); display: flex; flex-direction: column; flex: 1 1 auto; align-items: flex-start; }
 .product-grid__name { font-weight: var(--d-weight-semibold); }
 .product-grid__price { font-weight: var(--d-weight-bold); color: var(--d-link, var(--primary)); display: block; margin-block-start: var(--d-spacing-1); }
 .product-grid__desc { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); }
 .product-grid__link { font-size: var(--d-text-sm); font-weight: var(--d-weight-medium); color: var(--d-link, var(--primary)); text-decoration: none; display: inline-flex; align-items: center; gap: var(--d-spacing-1); margin-block-start: auto; padding-block-start: var(--d-spacing-sm); border-radius: var(--radius); }
-.product-grid__link:hover { text-decoration: underline; }
-.product-grid__link:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+/* The product link is the card's one destination, so the whole card is its
+   hit area, and keyboard focus rings the card. */
+.product-grid__link::after { content: ""; position: absolute; inset: 0; border-radius: calc(var(--radius) * 1.5); }
+.product-grid__link:focus-visible { outline: none; }
+/* In the Visual Editor every element sits in a <ve-content-element>; there
+   the stretched layer would swallow the clicks meant for the inline editors. */
+ve-content-element .product-grid__link::after { content: none; }
+.product-grid__card:has(.product-grid__link:focus-visible) { outline: 2px solid var(--ring); outline-offset: 2px; }
+.product-grid__arrow { transition: transform var(--d-motion-fast) var(--d-ease); }
+@media (hover: hover) and (pointer: fine) {
+    .product-grid__card:has(.product-grid__link:hover) { border-color: var(--primary); }
+    .product-grid__card:has(.product-grid__link:hover) .product-grid__image { transform: scale(1.05); }
+    .product-grid__link:hover { text-decoration: underline; }
+    .product-grid__link:hover .product-grid__arrow { transform: translateX(2px); }
+}
 @media (prefers-reduced-motion: reduce) {
   .product-grid__card,
-  .product-grid__image { transition: none; }
-  .product-grid__card:hover .product-grid__image { transform: none; }
+  .product-grid__image,
+  .product-grid__arrow { transition: none; }
+  .product-grid__card:has(.product-grid__link:hover) .product-grid__image,
+  .product-grid__link:hover .product-grid__arrow { transform: none; }
+}
+
+/* Phones: five or more products make one swipeable row instead of a stack
+   several screens tall. The next card peeks in at the edge, so the row
+   reads as one that scrolls. */
+@media (max-width: 639px) {
+    .product-grid__scroller {
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: thin;
+        /* The row runs to the screen edges while the first card lines up
+           with the text (the container gutter is 1rem below 640px); the
+           block padding leaves room for the cards' shadow and focus ring. */
+        margin: calc(var(--d-spacing-xs) * -1) calc(var(--d-spacing-md) * -1);
+        padding: var(--d-spacing-xs) var(--d-spacing-md);
+        scroll-padding-inline: var(--d-spacing-md);
+    }
+    .product-grid__scroller > .product-grid__items {
+        grid-template-columns: none;
+        grid-auto-flow: column;
+        grid-auto-columns: 85%;
+        gap: var(--d-spacing-md);
+    }
+    .product-grid__scroller .product-grid__card { scroll-snap-align: start; }
+    .product-grid__scroller:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: var(--radius); }
 }
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */

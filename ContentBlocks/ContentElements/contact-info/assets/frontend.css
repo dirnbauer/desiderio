@@ -4,7 +4,7 @@
 }
 .contact-info__grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--d-spacing-lg);
 }
 @media (min-width: 640px) {
@@ -13,13 +13,11 @@
 @media (min-width: 1024px) {
     .contact-info__grid { grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
 }
+/* Cards with a link lift on hover through the shared card rule
+   (22-modern-base.css, pointer devices only); a card without one stays put. */
 .contact-info__item {
-    gap: var(--d-spacing-2xs);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.contact-info__item:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--d-shadow-md, none);
+    position: relative;
+    gap: var(--d-spacing-sm);
 }
 .contact-info__icon {
     display: inline-flex;
@@ -27,14 +25,22 @@
     justify-content: center;
     width: 2.75rem;
     height: 2.75rem;
-    margin-block-end: var(--d-spacing-sm);
+    flex-shrink: 0;
     border-radius: var(--radius);
-    background: color-mix(in oklch, var(--primary) 12%, var(--card));
+    /* Mixed in oklab: in oklch the card's hue (0 for a neutral white)
+       pulled the primary tint toward pink. */
+    background: color-mix(in oklab, var(--primary) 12%, var(--card));
     color: var(--primary);
 }
 .contact-info__icon svg {
     width: 1.375rem;
     height: 1.375rem;
+}
+.contact-info__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--d-spacing-2xs);
+    min-width: 0;
 }
 .contact-info__label {
     font-weight: var(--d-weight-semibold);
@@ -46,6 +52,7 @@
     color: var(--muted-foreground);
     margin: 0;
     overflow-wrap: anywhere;
+    font-variant-numeric: tabular-nums;
 }
 .contact-info__value--link {
     color: var(--d-link, var(--primary));
@@ -53,12 +60,35 @@
     text-decoration: none;
     border-radius: calc(var(--radius) * 0.6);
 }
-.contact-info__value--link:hover {
-    text-decoration: underline;
+/* The whole card is the link's hit area: a phone number or an address is
+   one tap, not a 20px line of text. */
+.contact-info__value--link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+}
+@media (hover: hover) and (pointer: fine) {
+    .contact-info__value--link:hover {
+        text-decoration: underline;
+        text-underline-offset: 2px;
+    }
 }
 .contact-info__value--link:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 2px var(--card), 0 0 0 4px var(--ring);
+    box-shadow: none;
+}
+.contact-info__item:has(.contact-info__value--link:focus-visible) {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+
+/* Phones: icon beside the text, so four channels fit on one screen. */
+@media (max-width: 639px) {
+    .contact-info__item {
+        flex-direction: row;
+        align-items: center;
+        gap: var(--d-spacing-md);
+    }
 }
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */

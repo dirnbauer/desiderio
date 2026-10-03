@@ -26,7 +26,7 @@
                 <f:for each="{data.column_items}" as="col">
                     <nav class="footer-mega__col" aria-label="{col.title}">
                         <d:atom.typography tag="h3" variant="h3" class="footer-mega__col-title">{col -> f:render.text(field: 'title')}</d:atom.typography>
-                        <ul class="footer-mega__links">
+                        <ul class="footer-mega__links" role="list">
                             <f:if condition="{col.link_1_label}"><li><f:if condition="{col.link_1.url}"><f:then><d:atom.link href="{f:uri.typolink(parameter: col.link_1.url)}" target="{col.link_1.target}" variant="muted" class="footer-mega__link">{col -> f:render.text(field: 'link_1_label')}</d:atom.link></f:then><f:else><span class="footer-mega__link">{col -> f:render.text(field: 'link_1_label')}</span></f:else></f:if></li></f:if>
                             <f:if condition="{col.link_2_label}"><li><f:if condition="{col.link_2.url}"><f:then><d:atom.link href="{f:uri.typolink(parameter: col.link_2.url)}" target="{col.link_2.target}" variant="muted" class="footer-mega__link">{col -> f:render.text(field: 'link_2_label')}</d:atom.link></f:then><f:else><span class="footer-mega__link">{col -> f:render.text(field: 'link_2_label')}</span></f:else></f:if></li></f:if>
                             <f:if condition="{col.link_3_label}"><li><f:if condition="{col.link_3.url}"><f:then><d:atom.link href="{f:uri.typolink(parameter: col.link_3.url)}" target="{col.link_3.target}" variant="muted" class="footer-mega__link">{col -> f:render.text(field: 'link_3_label')}</d:atom.link></f:then><f:else><span class="footer-mega__link">{col -> f:render.text(field: 'link_3_label')}</span></f:else></f:if></li></f:if>

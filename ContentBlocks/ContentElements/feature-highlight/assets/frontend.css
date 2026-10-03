@@ -7,12 +7,12 @@
 }
 .feature-highlight__grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: var(--d-spacing-xl);
     align-items: center;
 }
 .feature-highlight__grid--single {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     max-width: 42rem;
     margin-inline: auto;
     text-align: center;
@@ -21,7 +21,7 @@
     margin-inline: auto;
 }
 @media (max-width: 768px) {
-    .feature-highlight__grid { grid-template-columns: 1fr; }
+    .feature-highlight__grid { grid-template-columns: minmax(0, 1fr); }
 }
 .feature-highlight__eyebrow {
     font-size: var(--d-text-sm);
@@ -32,8 +32,17 @@
     display: block;
     margin-block-end: var(--d-spacing-sm);
 }
-.feature-highlight--primary .feature-highlight__eyebrow {
+/* On the primary band the shared eyebrow ink (22-modern-base.css, three
+   classes strong) would be the band colour itself: the doubled class wins
+   the label and its dot back, and links in the text take the copy's ink. */
+.feature-highlight.feature-highlight--primary .feature-highlight__eyebrow {
     color: var(--primary-foreground);
+}
+.feature-highlight.feature-highlight--primary .feature-highlight__eyebrow::before {
+    background: currentColor;
+}
+.feature-highlight.feature-highlight--primary .d-richtext a {
+    color: inherit;
 }
 .feature-highlight__description {
     margin-block: var(--d-spacing-md);
@@ -58,4 +67,7 @@
 .d-richtext ul { list-style: disc; }
 .d-richtext ol { list-style: decimal; }
 .d-richtext li { margin-block-end: var(--d-spacing-2xs); }
-.d-richtext a { color: var(--d-link-on-muted, var(--primary)); text-decoration: underline; text-underline-offset: 2px; }
+.d-richtext a { color: var(--d-link, var(--primary)); text-decoration: underline; text-underline-offset: 2px; }
+/* The band is tinted: its own links take the ink solved for tinted
+   surfaces (scoped, so other elements' rich text keeps --d-link). */
+.feature-highlight .d-richtext a { color: var(--d-link-on-muted, var(--primary)); }

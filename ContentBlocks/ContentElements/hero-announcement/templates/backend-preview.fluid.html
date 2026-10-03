@@ -18,6 +18,12 @@
         <f:if condition="{data.header}">
             <h3 class="d-ce-preview__title">{data.header -> f:format.stripTags() -> f:format.htmlspecialchars()}</h3>
         </f:if>
+        <f:if condition="{data.announcement_text}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Announcement Text</span>
+                <span class="d-ce-preview__value">{data.announcement_text -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
+            </div>
+        </f:if>
         <f:if condition="{data.subheadline}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Subheadline</span>
@@ -34,12 +40,6 @@
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Secondary Button Text</span>
                 <span class="d-ce-preview__value">{data.secondary_button_text -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
-            </div>
-        </f:if>
-        <f:if condition="{data.announcement_text}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Announcement Text</span>
-                <span class="d-ce-preview__value">{data.announcement_text -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
     </div>

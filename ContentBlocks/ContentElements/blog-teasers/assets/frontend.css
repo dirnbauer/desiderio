@@ -5,6 +5,8 @@
     text-align: center;
 }
 .blog-teasers__subheadline { margin-block-start: var(--d-spacing-sm); }
+/* The lead is capped (65ch): centre the capped box under the centred heading. */
+.blog-teasers__intro .d-section-intro__lead { margin-inline: auto; }
 
 .blog-teasers__grid {
     display: grid;
@@ -13,14 +15,18 @@
     padding: 0;
     list-style: none;
 }
-.blog-teasers__grid--cols-2 { grid-template-columns: repeat(2, 1fr); }
-.blog-teasers__grid--cols-3 { grid-template-columns: repeat(3, 1fr); }
-@media (max-width: 768px) {
-    .blog-teasers__grid { grid-template-columns: 1fr; }
+.blog-teasers__grid--cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.blog-teasers__grid--cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+/* Tablets: three columns left a 190px text column per card. */
+@media (min-width: 769px) and (max-width: 1023px) {
+    .blog-teasers__grid--cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 .blog-teasers__cell { display: flex; }
 
+/* The whole card is the link: the title's ::after covers it (stretched
+   link), so the card that lifts on hover is also what a click opens. */
 .blog-teasers__item {
+    position: relative;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -29,15 +35,32 @@
     color: var(--card-foreground);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    transition: box-shadow var(--d-motion) var(--d-ease), transform var(--d-motion) var(--d-ease);
 }
-.blog-teasers__item:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
+.blog-teasers__title-link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+}
+/* Links inside the excerpt stay clickable above the stretched link. */
+.blog-teasers__excerpt a {
+    position: relative;
+    z-index: 1;
+}
+.blog-teasers__item:has(.blog-teasers__title-link:focus-visible) {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+@media (hover: hover) and (pointer: fine) {
+    .blog-teasers__item:has(a[href]):hover {
+        box-shadow: var(--shadow-md);
+        transform: translateY(-2px);
+    }
+    .blog-teasers__item:hover .blog-teasers__title a { color: var(--d-link, var(--primary)); }
 }
 @media (prefers-reduced-motion: reduce) {
     .blog-teasers__item { transition: none; }
-    .blog-teasers__item:hover { transform: none; }
+    .blog-teasers__item:has(a[href]):hover { transform: none; }
 }
 
 .blog-teasers__image-wrapper {
@@ -51,7 +74,8 @@
     height: 100%;
     max-width: 100%;
     object-fit: cover;
-    object-position: center;
+    /* Screenshots start top left: keep that corner instead of a centre crop. */
+    object-position: top left;
 }
 
 .blog-teasers__body {
@@ -60,18 +84,35 @@
     flex: 1 1 auto;
     padding: var(--d-spacing-lg);
 }
+/* One line, always: a wrapped meta row pushed the title of one card below
+   the titles of its neighbours. The meta text gives way first. */
 .blog-teasers__meta-row {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
     gap: var(--d-spacing-sm);
+    min-width: 0;
     font-size: var(--d-text-xs);
     text-transform: uppercase;
     letter-spacing: var(--d-tracking-wide);
     margin-block-end: var(--d-spacing-sm);
 }
-.blog-teasers__category { font-weight: var(--d-weight-bold); color: var(--d-link, var(--primary)); }
-.blog-teasers__meta { color: var(--muted-foreground); }
+.blog-teasers__category {
+    flex: none;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: var(--d-weight-bold);
+    color: var(--d-link, var(--primary));
+}
+.blog-teasers__meta {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--muted-foreground);
+}
 
 .blog-teasers__title {
     line-height: var(--d-leading-snug);
@@ -79,15 +120,53 @@
     margin-block-end: var(--d-spacing-xs);
 }
 .blog-teasers__title-link { border-radius: var(--d-radius-sm); }
-.blog-teasers__title a { color: inherit; text-decoration: none; }
-.blog-teasers__title a:hover { color: var(--d-link, var(--primary)); }
+.blog-teasers__title a {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--d-motion-fast) var(--d-ease);
+}
 
 .blog-teasers__excerpt {
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
     line-height: var(--d-leading-relaxed);
-    margin-block-start: auto;
     padding-block-start: var(--d-spacing-xs);
+}
+
+/* Phones and small tablets: one swipeable row instead of a stack (13
+   teasers on /features made a 9,000px column). The cards snap to the start
+   edge and the next one peeks in. */
+.blog-teasers__scroller:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: var(--radius);
+}
+@media (max-width: 768px) {
+    .blog-teasers__scroller {
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+        scroll-padding-inline: var(--d-spacing-1);
+        /* Room for the focus outline, which the scroller would clip. */
+        padding: var(--d-spacing-1) var(--d-spacing-1) var(--d-spacing-sm);
+        margin-inline: calc(var(--d-spacing-1) * -1);
+        scrollbar-width: thin;
+        scrollbar-color: var(--border) transparent;
+    }
+    .blog-teasers__grid,
+    .blog-teasers__grid--cols-2,
+    .blog-teasers__grid--cols-3 {
+        grid-template-columns: none;
+        grid-auto-flow: column;
+        grid-auto-columns: min(85%, 22rem);
+        gap: var(--d-spacing-md);
+    }
+    .blog-teasers__grid:has(> :only-child) {
+        grid-auto-columns: 100%;
+    }
+    .blog-teasers__cell {
+        scroll-snap-align: start;
+    }
 }
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */

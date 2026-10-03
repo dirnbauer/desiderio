@@ -2,16 +2,25 @@
     overflow: hidden;
 }
 
+/* A wide card with a section headline gets the roomier card spacing from
+   tablet width up; the image below uses the same value, so text and
+   image keep one inset at every width. */
+@media (min-width: 768px) {
+    .pricing-enterprise__card {
+        --card-spacing: var(--d-spacing-lg);
+    }
+}
+
 .pricing-enterprise__layout {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--d-spacing-xl);
     min-width: 0;
 }
 
 @media (min-width: 768px) {
     .pricing-enterprise__layout {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
         align-items: center;
     }
 }
@@ -70,12 +79,12 @@
     min-width: 0;
     display: flex;
     align-items: center;
-    padding: 0 var(--d-spacing-lg) var(--d-spacing-lg);
+    padding: 0 var(--card-spacing, var(--d-spacing-md)) var(--card-spacing, var(--d-spacing-md));
 }
 
 @media (min-width: 768px) {
     .pricing-enterprise__media {
-        padding: var(--d-spacing-lg) var(--d-spacing-lg) var(--d-spacing-lg) 0;
+        padding: var(--card-spacing, var(--d-spacing-lg)) var(--card-spacing, var(--d-spacing-lg)) var(--card-spacing, var(--d-spacing-lg)) 0;
     }
 }
 

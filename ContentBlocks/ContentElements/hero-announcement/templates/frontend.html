@@ -10,7 +10,7 @@
                 <div class="hero-announcement__banner">
                     <f:if condition="{data.announcement_link.url}">
                         <f:then>
-                            <d:atom.link href="{f:uri.typolink(parameter: data.announcement_link.url)}" target="{data.announcement_link.target}" variant="muted" class="hero-announcement__banner-link">{data -> f:render.text(field: 'announcement_text')}</d:atom.link>
+                            <d:atom.link href="{f:uri.typolink(parameter: data.announcement_link.url)}" target="{data.announcement_link.target}" variant="muted" class="hero-announcement__banner-link"><span class="hero-announcement__banner-text">{data -> f:render.text(field: 'announcement_text')}</span><d:atom.icon name="arrow-right" size="sm" class="hero-announcement__banner-icon" /></d:atom.link>{data -> f:render.link(field: 'announcement_link')}
                         </f:then>
                         <f:else><span>{data -> f:render.text(field: 'announcement_text')}</span></f:else>
                     </f:if>
@@ -19,7 +19,7 @@
             <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h1" class="hero-announcement__headline">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
             <f:if condition="{data.subheadline}"><d:atom.typography variant="lead" class="hero-announcement__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
             <f:if condition="{data.primary_button_text} || {data.secondary_button_text}">
-                <d:molecule.actionGroup class="hero-announcement__actions">
+                <d:molecule.actionGroup class="hero-announcement__actions" align="center">
                     <f:if condition="{data.primary_button_text} && {data.primary_button_link.url}">
                         <d:atom.button href="{f:uri.typolink(parameter: data.primary_button_link.url)}" target="{data.primary_button_link.target}" size="lg">{data -> f:render.text(field: 'primary_button_text')}</d:atom.button>{data -> f:render.link(field: 'primary_button_link')}
                     </f:if>

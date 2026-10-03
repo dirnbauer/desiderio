@@ -24,18 +24,35 @@
     margin-inline-end: calc(-1 * var(--d-spacing-2));
 }
 .utility-bar__link {
+    position: relative;
     color: var(--d-muted-foreground);
     text-decoration: none;
     padding: var(--d-spacing-1) var(--d-spacing-2);
     border-radius: var(--d-radius-sm);
-    transition: color 0.15s, background-color 0.15s;
+    transition: color var(--d-motion-fast) var(--d-ease), background-color var(--d-motion-fast) var(--d-ease);
 }
-.utility-bar__link:hover {
-    color: var(--d-foreground);
-    background: color-mix(in oklab, var(--d-foreground) 6%, transparent);
+@media (hover: hover) and (pointer: fine) {
+    .utility-bar__link:hover {
+        color: var(--d-foreground);
+        background: color-mix(in oklab, var(--d-foreground) 6%, transparent);
+    }
 }
 .utility-bar__link:focus-visible {
     outline: 2px solid var(--d-ring);
     outline-offset: 2px;
     color: var(--d-foreground);
+}
+/* Touch: the bar stays slim, each link gets a 44px tall hit area that
+   reaches into the bar's own padding and stops short of its neighbours. */
+@media (pointer: coarse) {
+    .utility-bar__link::after {
+        content: "";
+        position: absolute;
+        inset: calc(-1 * (var(--d-spacing-2) + var(--d-spacing-0-5))) calc(-1 * var(--d-spacing-1));
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .utility-bar__link {
+        transition: none;
+    }
 }

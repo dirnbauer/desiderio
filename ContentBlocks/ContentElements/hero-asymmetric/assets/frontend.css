@@ -4,14 +4,21 @@
 }
 .hero-asymmetric__grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--d-spacing-8);
     align-items: center;
+}
+/* The copy column is the narrow one (2 of 5 parts), so the headline sizes
+   itself to the column, not to the viewport: a fixed 48px set five short
+   lines at 1024px. */
+.hero-asymmetric__content {
+    container-type: inline-size;
 }
 .hero-asymmetric__badge {
     margin-bottom: var(--d-spacing-4);
 }
 .hero-asymmetric__headline {
+    font-size: clamp(var(--d-text-4xl), 9cqi, var(--d-text-5xl));
     margin-bottom: var(--d-spacing-4);
 }
 .hero-asymmetric__subheadline {
@@ -23,11 +30,19 @@
     flex-wrap: wrap;
     gap: var(--d-spacing-3);
 }
+/* Phones: the buttons share the row in equal parts. */
+@media (max-width: 639px) {
+    .hero-asymmetric__actions > [data-slot="button"] {
+        flex: 1 1 0;
+    }
+}
 .hero-asymmetric__reassurance {
     margin-top: var(--d-spacing-3);
     font-size: var(--d-text-sm);
     color: var(--d-muted-foreground);
 }
+/* The 16:10 box is reserved before the photo loads; the inset hairline gives
+   a light screenshot an edge against the page. */
 .hero-asymmetric__image {
     display: block;
     width: 100%;
@@ -35,11 +50,13 @@
     height: auto;
     object-fit: cover;
     border-radius: var(--d-radius-lg);
+    outline: 1px solid color-mix(in oklch, var(--d-foreground) 8%, transparent);
+    outline-offset: -1px;
 }
 
 @media (min-width: 48rem) {
     .hero-asymmetric__grid {
-        grid-template-columns: 2fr 3fr;
+        grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
         gap: var(--d-spacing-12);
     }
 }

@@ -4,7 +4,7 @@
 
 .content-sidebar__grid {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
     gap: var(--d-spacing-xl);
     align-items: start;
 }
@@ -14,15 +14,15 @@
 }
 
 .content-sidebar--left .content-sidebar__grid {
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
 }
 
 @media (max-width: 768px) {
     .content-sidebar__grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
     }
     .content-sidebar--left .content-sidebar__grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
     }
     .content-sidebar--left .content-sidebar__aside {
         order: 0;
@@ -31,15 +31,18 @@
 
 .content-sidebar__main {
     line-height: var(--d-leading-relaxed);
+    min-width: 0;
+    overflow-wrap: break-word;
 }
 
 .content-sidebar__main > *:first-child { margin-top: 0; }
 .content-sidebar__main > *:last-child { margin-bottom: 0; }
 
+/* Sticky below the sticky site header, not under it. */
 @media (min-width: 769px) {
     .content-sidebar__aside {
         position: sticky;
-        top: var(--d-spacing-xl);
+        top: calc(var(--d-header-height, 4rem) + var(--d-spacing-md));
     }
 }
 
@@ -49,3 +52,42 @@
 
 .content-sidebar__sidebar-card > *:first-child { margin-top: 0; }
 .content-sidebar__sidebar-card > *:last-child { margin-bottom: 0; }
+
+/* Text from the RTE (d-richtext) in both columns, scoped to this element:
+   paragraphs no longer sit flush, lists show their markers, headings get a
+   size and links are visible (the GitHub link in the sidebar was not). */
+.content-sidebar :is(.content-sidebar__main, .content-sidebar__sidebar-body).d-richtext > * { margin-block: 0; }
+.content-sidebar :is(.content-sidebar__main, .content-sidebar__sidebar-body).d-richtext > * + * { margin-block-start: var(--d-spacing-sm); }
+.content-sidebar .content-sidebar__main.d-richtext > * + * { margin-block-start: var(--d-spacing-md); }
+.content-sidebar :is(.content-sidebar__main, .content-sidebar__sidebar-body).d-richtext > * + :is(h2, h3, h4, h5, h6) { margin-block-start: var(--d-spacing-lg); }
+.content-sidebar :is(.content-sidebar__main, .content-sidebar__sidebar-body).d-richtext :is(ul, ol) { padding-inline-start: var(--d-spacing-lg); }
+.content-sidebar :is(.content-sidebar__main, .content-sidebar__sidebar-body).d-richtext ul { list-style: disc; }
+.content-sidebar :is(.content-sidebar__main, .content-sidebar__sidebar-body).d-richtext ol { list-style: decimal; }
+.content-sidebar :is(.content-sidebar__main, .content-sidebar__sidebar-body).d-richtext li + li { margin-block-start: var(--d-spacing-2xs); }
+.content-sidebar :is(.content-sidebar__main, .content-sidebar__sidebar-body).d-richtext :is(h2, h3, h4, h5, h6) {
+    color: var(--foreground);
+    font-weight: var(--d-weight-semibold);
+    line-height: var(--d-leading-snug);
+}
+.content-sidebar__main.d-richtext h2 { font-size: var(--d-text-xl); }
+.content-sidebar__main.d-richtext h3 { font-size: var(--d-text-lg); }
+.content-sidebar__main.d-richtext :is(h4, h5, h6),
+.content-sidebar__sidebar-body.d-richtext :is(h2, h3, h4, h5, h6) { font-size: var(--d-text-base); }
+.content-sidebar :is(.content-sidebar__main, .content-sidebar__sidebar-body).d-richtext a {
+    color: var(--d-link, var(--primary));
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: color-mix(in oklch, currentColor 45%, transparent);
+    text-underline-offset: 0.22em;
+    border-radius: var(--d-radius-sm);
+    transition: text-decoration-color var(--d-motion-fast) var(--d-ease);
+}
+.content-sidebar :is(.content-sidebar__main, .content-sidebar__sidebar-body).d-richtext a:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+@media (hover: hover) and (pointer: fine) {
+    .content-sidebar :is(.content-sidebar__main, .content-sidebar__sidebar-body).d-richtext a:hover {
+        text-decoration-color: currentColor;
+    }
+}

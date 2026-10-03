@@ -23,9 +23,7 @@
 
         <div class="pricing-calculator__body">
             <d:molecule.table>
-                <caption class="sr-only">
-                    <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:calc.price_per"/>
-                </caption>
+                <caption class="sr-only">{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:calc.price_per\')}')}</caption>
                 <d:molecule.tableHeader>
                     <d:molecule.tableRow>
                         <d:molecule.tableCell header="{true}" class="pricing-calculator__cell pricing-calculator__cell--start"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:calc.tier"/></d:molecule.tableCell>

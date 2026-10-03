@@ -13,7 +13,7 @@
             <f:if condition="{data.subheadline}">
                 <d:atom.typography variant="lead" class="hero-stacked__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
             </f:if>
-            <d:molecule.actionGroup class="hero-stacked__actions">
+            <d:molecule.actionGroup class="hero-stacked__actions" align="center">
                 <f:if condition="{data.primary_button_text} && {data.primary_button_link.url}">
                     <d:atom.button href="{f:uri.typolink(parameter: data.primary_button_link.url)}" target="{data.primary_button_link.target}" size="lg">{data -> f:render.text(field: 'primary_button_text')}</d:atom.button>{data -> f:render.link(field: 'primary_button_link')}
                 </f:if>
@@ -25,7 +25,7 @@
         <f:if condition="{data.hero_image}">
             <div class="hero-stacked__media">
                 <f:for each="{data.hero_image}" as="image">
-                    <f:image image="{image}" class="hero-stacked__image" alt="{f:if(condition: image.alternative, then: image.alternative, else: data.header)}" loading="eager" fetchpriority="high" decoding="async"/>
+                    <f:image image="{image}" class="hero-stacked__image" alt="{f:if(condition: image.alternative, then: image.alternative, else: data.header)}" maxWidth="2048" loading="eager" fetchpriority="high" decoding="async"/>
                 </f:for>
             </div>
         </f:if>

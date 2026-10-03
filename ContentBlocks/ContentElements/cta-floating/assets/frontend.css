@@ -45,6 +45,7 @@
     flex-direction: column;
     gap: var(--d-spacing-0-5);
     min-inline-size: 0;
+    flex: 1 1 20rem;
 }
 .cta-floating__eyebrow {
     color: var(--d-link, var(--primary));
@@ -61,12 +62,79 @@
 .cta-floating__description {
     margin: 0;
     font-size: var(--d-text-sm);
-    max-inline-size: 60ch;
+    max-inline-size: 72ch;
+}
+.cta-floating__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--d-spacing-xs);
+    flex-shrink: 0;
 }
 .cta-floating__action {
     white-space: nowrap;
 }
+/* A 28px icon button, with a hit area of 44px around it. */
+.cta-floating__dismiss {
+    position: relative;
+}
+.cta-floating__dismiss::after {
+    content: "";
+    position: absolute;
+    inset: calc(-1 * var(--d-spacing-xs));
+}
+
+/* The bar is fixed, so it would hide the end of the page (the footer runs
+   out under it) and any control that scrolls behind it. The page keeps a
+   strip clear at that edge, and scrolling to a focused control or an anchor
+   stops short of the bar (WCAG 2.4.11 Focus Not Obscured). Both go away with
+   the bar when a visitor dismisses it: :has() stops matching. */
+:root {
+    --cta-floating-reserve: 6.5rem;
+}
+:root:has(.cta-floating--bottom) {
+    scroll-padding-block-end: var(--cta-floating-reserve);
+}
+body:has(.cta-floating--bottom) {
+    padding-block-end: var(--cta-floating-reserve);
+}
+:root:has(.cta-floating--top) {
+    scroll-padding-block-start: calc(var(--d-header-height, 4rem) + var(--cta-floating-reserve) + var(--d-spacing-md));
+}
+body:has(.cta-floating--top) .desiderio-main {
+    padding-block-start: var(--cta-floating-reserve);
+}
+/* Docked to the top, the bar sits under the sticky header instead of
+   behind it (the header stacks above it). Browsers without anchor
+   positioning keep the bar at the top edge. */
+@supports (anchor-name: --a) {
+    body:has(.cta-floating--top) .desiderio-header {
+        anchor-name: --d-cta-floating-header;
+    }
+    .cta-floating--top {
+        top: max(0px, anchor(--d-cta-floating-header bottom, 0px));
+    }
+}
+
+/* It slides in from its edge once, after the page has painted. */
+@media (prefers-reduced-motion: no-preference) {
+    .cta-floating {
+        animation: cta-floating-enter var(--d-motion) var(--d-ease) 300ms both;
+    }
+}
+@keyframes cta-floating-enter {
+    from {
+        opacity: 0;
+        transform: translateY(var(--cta-floating-enter-from, 100%));
+    }
+}
+.cta-floating--top {
+    --cta-floating-enter-from: -100%;
+}
+
 @media (max-width: 768px) {
+    :root {
+        --cta-floating-reserve: 10rem;
+    }
     .cta-floating__bar {
         flex-direction: column;
         align-items: stretch;
@@ -74,9 +142,21 @@
         gap: var(--d-spacing-sm);
     }
     .cta-floating__text {
+        flex-basis: auto;
         align-items: center;
+        /* Room for the close button in the corner. */
+        padding-inline: var(--d-spacing-xl);
+    }
+    .cta-floating__actions {
+        inline-size: 100%;
     }
     .cta-floating__action {
+        flex: 1 1 auto;
         inline-size: 100%;
+    }
+    .cta-floating__dismiss {
+        position: absolute;
+        inset-block-start: var(--d-spacing-xs);
+        inset-inline-end: 0;
     }
 }

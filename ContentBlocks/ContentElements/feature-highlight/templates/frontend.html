@@ -15,14 +15,14 @@
                     <d:atom.typography tag="div" class="feature-highlight__description d-richtext">{data -> f:render.text(field: 'description')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.link.url} && {data.link_text}">
-                    <d:molecule.actionGroup class="feature-highlight__actions">
+                    <d:molecule.actionGroup align="{f:if(condition: data.image.0, then: 'start', else: 'center')}" class="feature-highlight__actions">
                         <d:atom.button href="{f:uri.typolink(parameter: data.link.url)}" target="{data.link.target}" size="lg" variant="{f:if(condition: '{data.variant} == \'primary\'', then: 'secondary', else: 'default')}">{data -> f:render.text(field: 'link_text')}</d:atom.button>
                     </d:molecule.actionGroup>
                 </f:if>
             </div>
             <f:if condition="{data.image.0}">
                 <div class="feature-highlight__media">
-                    <f:image image="{data.image.0}" alt="{data.image.0.alternative -> f:or(alternative: '{data.header}')}" maxWidth="640" class="feature-highlight__image" loading="lazy" decoding="async"/>
+                    <f:image image="{data.image.0}" alt="{data.image.0.alternative -> f:or(alternative: '{data.header}')}" maxWidth="1280" class="feature-highlight__image" loading="lazy" decoding="async"/>
                 </div>
             </f:if>
         </div>

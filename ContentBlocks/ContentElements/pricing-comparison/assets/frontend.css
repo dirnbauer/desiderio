@@ -1,8 +1,10 @@
 .pricing-comparison__intro { text-align: center; margin-block-end: var(--d-spacing-xl); }
 .pricing-comparison__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: var(--d-tracking-wide); color: var(--d-link, var(--primary)); font-weight: var(--d-weight-semibold); }
 .pricing-comparison__headline { margin-block-start: var(--d-spacing-xs); }
-.pricing-comparison__table tbody tr { border-block-start: 1px solid var(--border); transition: background-color 0.15s ease; }
-.pricing-comparison__table tbody tr:hover { background-color: color-mix(in oklab, var(--muted) 40%, transparent); }
+.pricing-comparison__table tbody tr { border-block-start: 1px solid var(--border); transition: background-color var(--d-motion-fast) var(--d-ease); }
+@media (hover: hover) and (pointer: fine) {
+    .pricing-comparison__table tbody tr:hover { background-color: color-mix(in oklab, var(--muted) 40%, transparent); }
+}
 @media (prefers-reduced-motion: reduce) { .pricing-comparison__table tbody tr { transition: none; } }
 /* Shared header-cell chrome (was Tailwind utilities on the raw <th> nodes). */
 .pricing-comparison__feature-col,
@@ -20,6 +22,75 @@
 .pricing-comparison__cell { text-align: center; font-variant-numeric: tabular-nums; }
 .pricing-comparison__plan-name { display: block; font-weight: var(--d-weight-bold); font-size: var(--d-text-base); }
 .pricing-comparison__plan-price { display: block; font-size: var(--d-text-sm); color: var(--muted-foreground); font-weight: var(--d-weight-normal); margin-block-start: var(--d-spacing-2xs); padding-block-start: var(--d-spacing-2xs); border-block-start: 1px solid var(--border); font-variant-numeric: tabular-nums; }
+
+/* The scroller is this element's own focusable region; the shared table
+   container inside it hands the scrolling over, so the sticky feature
+   column below has one scroll box to stick to. */
+.pricing-comparison__scroller { overflow-x: auto; overscroll-behavior-x: contain; border-radius: var(--radius); }
+.pricing-comparison__scroller > [data-slot="table-container"] { overflow: visible; }
+.pricing-comparison__scroller:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+/* Wide screens: fixed columns, the features take 28% and the plans share
+   the rest evenly, so every header rule is the same length. */
+@media (min-width: 1024px) {
+    .pricing-comparison__table { table-layout: fixed; }
+    .pricing-comparison__feature-col { width: 28%; }
+    /* A fixed column wraps a long value instead of running past its edge. */
+    .pricing-comparison__cell { white-space: normal; overflow-wrap: break-word; }
+}
+
+/* The hint that the table scrolls shows on phones only. */
+.pricing-comparison__hint { display: none; }
+
+/* Below the fixed desktop layout the table may scroll sideways: the feature
+   column stays put while the plans scroll under it. The sticky cells paint
+   the section's own surface so the scrolled values never show through. */
+@media (max-width: 1023px) {
+    .pricing-comparison { --pricing-comparison-surface: var(--background); }
+    .pricing-comparison.bg-card { --pricing-comparison-surface: var(--card); }
+    .pricing-comparison.bg-primary { --pricing-comparison-surface: var(--primary); }
+    .pricing-comparison.bg-secondary { --pricing-comparison-surface: var(--secondary); }
+    .pricing-comparison.bg-accent { --pricing-comparison-surface: var(--accent); }
+
+    .pricing-comparison__feature-col,
+    .pricing-comparison__feature-name {
+        position: sticky;
+        inset-inline-start: 0;
+        z-index: 1;
+        background: var(--pricing-comparison-surface);
+        box-shadow: inset -1px 0 0 var(--border);
+    }
+}
+@media (max-width: 1023px) and (hover: hover) and (pointer: fine) {
+    .pricing-comparison__table tbody tr:hover > .pricing-comparison__feature-name {
+        background: color-mix(in oklab, var(--muted) 40%, var(--pricing-comparison-surface));
+    }
+}
+
+/* Phones: only the feature column and one plan fit, so the feature column
+   narrows, the plan columns snap into place beside it and a muted hint
+   says that the table scrolls. */
+@media (max-width: 639px) {
+    .pricing-comparison__hint {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: var(--d-spacing-1);
+        margin: 0 0 var(--d-spacing-xs);
+        font-size: var(--d-text-xs);
+        color: var(--muted-foreground);
+    }
+    .pricing-comparison__scroller {
+        scroll-snap-type: x proximity;
+        scroll-padding-inline-start: 8.5rem;
+    }
+    .pricing-comparison__feature-col,
+    .pricing-comparison__feature-name {
+        width: 8.5rem;
+        min-width: 8.5rem;
+    }
+    .pricing-comparison__plan-col { scroll-snap-align: start; }
+}
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */
 .pricing-comparison__intro {

@@ -5,6 +5,8 @@
 
 <f:asset.css identifier="d-footer-app-links" href="{cb:assetPath()}/frontend.css"/>
 
+<f:variable name="qrAltFallback">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:footer.qr.alt', default: 'Scan the QR code to download the app')}</f:variable>
+
 <footer class="footer-app-links" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:footer.aria\', default: \'Footer\')}')}">
     <d:layout.container>
         <div class="footer-app-links__inner">
@@ -33,7 +35,7 @@
             <f:if condition="{data.qr_image}">
                 <div class="footer-app-links__qr">
                     <f:for each="{data.qr_image}" as="file">
-                        <f:image image="{file}" alt="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:footer.qr.alt', default: 'Scan the QR code to download the app')}" width="120" additionalAttributes="{srcset: '{f:uri.image(image: file, width: \'120\')} 1x, {f:uri.image(image: file, width: \'240\')} 2x'}" loading="lazy" decoding="async"/>
+                        <f:image image="{file}" alt="{f:if(condition: file.alternative, then: file.alternative, else: qrAltFallback)}" width="120" additionalAttributes="{srcset: '{f:uri.image(image: file, width: \'120\')} 1x, {f:uri.image(image: file, width: \'240\')} 2x'}" loading="lazy" decoding="async"/>
                     </f:for>
                 </div>
             </f:if>

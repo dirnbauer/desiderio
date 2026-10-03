@@ -37,6 +37,9 @@
 .header-page--center .header-page__description {
     margin-inline: auto;
 }
+/* The action sits a clear step below the intro (it closes the header, it
+   is not part of the paragraph) and follows the alignment: centred copy
+   gets a centred button via the action group's align argument. */
 .header-page__actions {
-    margin-top: var(--d-spacing-3);
+    margin-top: var(--d-spacing-6);
 }

@@ -8,13 +8,17 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="nav-pagination">
     <d:layout.container>
         <nav class="nav-pagination__inner" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:pagination.aria\', default: \'Pagination\')}')}">
+            <f:comment>
+                Previous and next follow shadcn's pager: chevrons, and on phones
+                the words stay for screen readers only, so the pager keeps one row.
+            </f:comment>
             <f:if condition="{data.previous_link.url}">
                 <d:atom.link href="{f:uri.typolink(parameter: data.previous_link.url)}" target="{data.previous_link.target}" variant="muted" class="nav-pagination__prev nav-pagination__edge">
-                    <span aria-hidden="true">&#8592;</span>
-                    <span><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:pagination.previous" default="Previous"/></span>
+                    <span class="nav-pagination__edge-icon" aria-hidden="true"><d:atom.icon name="chevron-left" size="sm"/></span>
+                    <span class="max-sm:sr-only"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:pagination.previous" default="Previous"/></span>
                 </d:atom.link>
             </f:if>
-            <ul class="nav-pagination__list">
+            <ul class="nav-pagination__list" role="list">
                 <f:for each="{data.items}" as="item">
                     <li>
                         <f:if condition="{item.active}">
@@ -32,8 +36,8 @@
             </ul>
             <f:if condition="{data.next_link.url}">
                 <d:atom.link href="{f:uri.typolink(parameter: data.next_link.url)}" target="{data.next_link.target}" variant="muted" class="nav-pagination__next nav-pagination__edge">
-                    <span><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:pagination.next" default="Next"/></span>
-                    <span aria-hidden="true">&#8594;</span>
+                    <span class="max-sm:sr-only"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:pagination.next" default="Next"/></span>
+                    <span class="nav-pagination__edge-icon" aria-hidden="true"><d:atom.icon name="chevron-right" size="sm"/></span>
                 </d:atom.link>
             </f:if>
         </nav>

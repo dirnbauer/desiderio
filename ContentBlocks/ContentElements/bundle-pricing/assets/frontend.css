@@ -4,6 +4,14 @@
     margin-inline: auto;
 }
 
+/* One inset for header, items and footer: the card spacing, roomier once
+   there is space for it. */
+@media (min-width: 640px) {
+    .bundle-pricing__card {
+        --card-spacing: var(--d-spacing-lg);
+    }
+}
+
 .bundle-pricing__header {
     display: grid;
     gap: var(--d-spacing-xs);
@@ -27,6 +35,9 @@
 }
 
 .bundle-pricing__items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     border-block-start: 1px solid var(--border);
 }
 
@@ -36,8 +47,14 @@
     justify-content: space-between;
     gap: var(--d-spacing-md);
     min-width: 0;
-    padding: var(--d-spacing-md) var(--d-spacing-lg);
+    padding: var(--d-spacing-md) var(--card-spacing, var(--d-spacing-lg));
     border-block-end: 1px solid var(--border);
+}
+
+/* The footer brings its own top rule; a second one under the last item
+   drew a double line with a gap between. */
+.bundle-pricing__item:last-child {
+    border-block-end: 0;
 }
 
 .bundle-pricing__item-info {
@@ -60,6 +77,7 @@
     flex-shrink: 0;
     text-decoration: line-through;
     text-align: end;
+    font-variant-numeric: tabular-nums;
 }
 
 .bundle-pricing__footer {
@@ -82,6 +100,7 @@
     font-size: var(--d-text-3xl);
     font-weight: var(--d-weight-display);
     line-height: var(--d-leading-tight);
+    font-variant-numeric: tabular-nums;
 }
 
 .bundle-pricing__button {

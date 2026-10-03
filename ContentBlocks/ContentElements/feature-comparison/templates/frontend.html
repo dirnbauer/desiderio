@@ -8,9 +8,9 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="feature-comparison">
     <d:layout.container size="md">
         <f:if condition="{data.header}">
-            <header class="feature-comparison__intro">
-                <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
-            </header>
+            <d:molecule.sectionIntro prefix="feature-comparison" align="center" class="feature-comparison__intro">
+                <f:fragment name="heading">{data -> f:render.text(field: 'header')}</f:fragment>
+            </d:molecule.sectionIntro>
         </f:if>
 
         <d:molecule.card class="feature-comparison__table">

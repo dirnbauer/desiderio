@@ -22,12 +22,14 @@
                     </div>
                     <d:molecule.card class="timeline__content">
                         <div class="timeline__step">{item -> f:render.text(field: 'step')}</div>
-                        <d:atom.typography tag="h3" variant="h3" class="timeline__title">{item -> f:render.text(field: 'title')}</d:atom.typography>
-                        <f:if condition="{item.content}">
-                            <div class="timeline__text">
-                                {item -> f:render.text(field: 'content')}
-                            </div>
-                        </f:if>
+                        <div class="timeline__body flex min-w-0 flex-col gap-1.5">
+                            <d:atom.typography tag="h3" variant="h3" class="timeline__title">{item -> f:render.text(field: 'title')}</d:atom.typography>
+                            <f:if condition="{item.content}">
+                                <div class="timeline__text d-richtext">
+                                    {item -> f:render.text(field: 'content')}
+                                </div>
+                            </f:if>
+                        </div>
                         <f:if condition="{item.link.url} && {item.link_text}">
                             <d:molecule.actionGroup class="timeline__actions">
                                 <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="timeline__link">{item -> f:render.text(field: 'link_text')}</d:atom.link>

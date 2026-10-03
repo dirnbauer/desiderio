@@ -8,7 +8,17 @@
     margin-block-start: var(--d-spacing-sm);
 }
 .team-grid-minimal__member {
+    min-width: 0;
     text-align: center;
+    overflow-wrap: break-word;
+}
+/* Two people per row on a phone: a large team in one column is a lot of
+   scrolling for one name and one role each. */
+@media (max-width: 767px) {
+    .team-grid-minimal__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: var(--d-spacing-md);
+    }
 }
 .team-grid-minimal__avatar {
     margin-inline: auto;

@@ -24,16 +24,16 @@
                 <span class="d-ce-preview__value">{data.subheadline -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
+        <f:if condition="{data.left_title}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Left Title</span>
+                <span class="d-ce-preview__value">{data.left_title -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
+            </div>
+        </f:if>
         <f:if condition="{data.left_description}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Left Description</span>
                 <span class="d-ce-preview__value">{data.left_description -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span>
-            </div>
-        </f:if>
-        <f:if condition="{data.right_description}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Right Description</span>
-                <span class="d-ce-preview__value">{data.right_description -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.left_button_text}">
@@ -42,16 +42,22 @@
                 <span class="d-ce-preview__value">{data.left_button_text -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
+        <f:if condition="{data.right_title}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Right Title</span>
+                <span class="d-ce-preview__value">{data.right_title -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.right_description}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Right Description</span>
+                <span class="d-ce-preview__value">{data.right_description -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span>
+            </div>
+        </f:if>
         <f:if condition="{data.right_button_text}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Right Button Text</span>
                 <span class="d-ce-preview__value">{data.right_button_text -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
-            </div>
-        </f:if>
-        <f:if condition="{data.left_title}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Left Title</span>
-                <span class="d-ce-preview__value">{data.left_title -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
     </div>

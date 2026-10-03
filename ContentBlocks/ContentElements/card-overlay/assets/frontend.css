@@ -8,7 +8,7 @@
     isolation: isolate;
     background: var(--muted);
     box-shadow: var(--d-shadow-sm);
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    transition: box-shadow var(--d-motion) var(--d-ease), transform var(--d-motion) var(--d-ease);
 }
 
 @media (min-width: 768px) {
@@ -79,7 +79,7 @@
 
 .card-overlay__cta-text { text-decoration: underline; text-underline-offset: 0.25em; text-decoration-thickness: 1px; }
 .card-overlay__cta:hover .card-overlay__cta-text { text-decoration-thickness: 2px; }
-.card-overlay__cta-arrow { transition: transform 0.2s ease; }
+.card-overlay__cta-arrow { transition: transform var(--d-motion-fast) var(--d-ease); }
 .card-overlay:hover .card-overlay__cta-arrow { transform: translateX(0.25rem); }
 
 .card-overlay__cta:focus-visible { outline: none; }

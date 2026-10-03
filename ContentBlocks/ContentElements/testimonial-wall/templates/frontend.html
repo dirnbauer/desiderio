@@ -34,7 +34,7 @@
                             </f:for>
                         </f:if>
                         <span class="testimonial-wall__author-meta">
-                            <cite class="testimonial-wall__name">{item -> f:render.text(field: 'author_name')}</cite>
+                            <span class="testimonial-wall__name">{item -> f:render.text(field: 'author_name')}</span>
                             <f:if condition="{item.author_title}">
                                 <span class="testimonial-wall__role">{item -> f:render.text(field: 'author_title')}</span>
                             </f:if>

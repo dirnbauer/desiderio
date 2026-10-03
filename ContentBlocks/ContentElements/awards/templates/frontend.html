@@ -27,7 +27,7 @@
                     <f:if condition="{award.image}">
                         <div class="awards__media">
                             <f:for each="{award.image}" as="fileReference">
-                                <f:image image="{fileReference}" maxWidth="640" alt="{award.title}" class="awards__media-image" loading="lazy" decoding="async"/>
+                                <f:image image="{fileReference}" maxWidth="640" alt="{fileReference.alternative}" class="awards__media-image" loading="lazy" decoding="async"/>
                             </f:for>
                         </div>
                     </f:if>

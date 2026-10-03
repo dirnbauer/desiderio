@@ -32,7 +32,7 @@
         <f:if condition="{data.cover_image.0}">
             <div class="article-hero__media">
                 <d:molecule.lightbox src="{f:uri.image(image: data.cover_image.0, maxWidth: 2400)}">
-                    <f:image image="{data.cover_image.0}" alt="{f:if(condition: data.cover_image.0.alternative, then: data.cover_image.0.alternative, else: data.header)}" maxWidth="1200" class="article-hero__image" loading="lazy" decoding="async"/>
+                    <f:image image="{data.cover_image.0}" alt="{f:if(condition: data.cover_image.0.alternative, then: data.cover_image.0.alternative, else: data.header)}" maxWidth="1200" class="article-hero__image" loading="eager" fetchpriority="high" decoding="async"/>
                 </d:molecule.lightbox>
             </div>
         </f:if>

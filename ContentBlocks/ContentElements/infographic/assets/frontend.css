@@ -125,11 +125,17 @@
     }
 
     .infographic__steps--horizontal {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    /* Stacked on a phone, four 4:3 visuals made the steps a 1,900px scroll;
+       a wider frame keeps the picture and drops a quarter of the height. */
+    .infographic__visual {
+        aspect-ratio: 16 / 9;
     }
 
     .infographic__steps--vertical .infographic__step {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
     }
 
     .infographic__steps--horizontal .infographic__body,

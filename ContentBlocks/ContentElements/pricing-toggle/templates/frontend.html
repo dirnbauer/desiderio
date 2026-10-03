@@ -50,9 +50,11 @@
                             </ul>
                         </f:if>
                         <f:if condition="{plan.button_text} && {plan.button_link.url}">
-                            <d:atom.button href="{f:uri.typolink(parameter: plan.button_link.url)}" class="pricing-toggle__button" target="{plan.button_link.target}">
-                                {plan -> f:render.text(field: 'button_text')}
-                            </d:atom.button>
+                            <div class="pricing-toggle__action">
+                                <d:atom.button href="{f:uri.typolink(parameter: plan.button_link.url)}" class="pricing-toggle__button" target="{plan.button_link.target}" attributes="{aria-describedby: 'pricing-toggle-{data.uid}-{iter.cycle}'}">
+                                    {plan -> f:render.text(field: 'button_text')}
+                                </d:atom.button>{plan -> f:render.link(field: 'button_link')}
+                            </div>
                         </f:if>
                     </article>
                 </li>

@@ -15,14 +15,19 @@
             </d:molecule.sectionIntro>
         </f:if>
 
-        <ul class="career-listing__jobs">
+        <ul class="career-listing__jobs" role="list">
             <f:for each="{data.jobs}" as="job">
                 <li class="career-listing__job">
                     <div class="career-listing__info">
-                        <d:atom.typography tag="h3" variant="h3" class="career-listing__title">{job -> f:render.text(field: 'title')}</d:atom.typography>
+                        <d:atom.typography tag="h3" variant="h3" class="career-listing__title">
+                            <f:if condition="{job.apply_link.url}">
+                                <f:then><a href="{f:uri.typolink(parameter: job.apply_link.url)}" target="{job.apply_link.target}" rel="{f:if(condition: '{job.apply_link.target} == \'_blank\'', then: 'noopener noreferrer')}" class="career-listing__link">{job -> f:render.text(field: 'title')}</a></f:then>
+                                <f:else>{job -> f:render.text(field: 'title')}</f:else>
+                            </f:if>
+                        </d:atom.typography>
                         <div class="career-listing__meta">
-                            <f:if condition="{job.department}"><span class="career-listing__dept">{job -> f:render.text(field: 'department')}</span></f:if>
-                            <f:if condition="{job.location}"><span class="career-listing__location">{job -> f:render.text(field: 'location')}</span></f:if>
+                            <f:if condition="{job.department}"><span class="career-listing__dept"><d:atom.icon name="briefcase" size="sm"/><span class="min-w-0">{job -> f:render.text(field: 'department')}</span></span></f:if>
+                            <f:if condition="{job.location}"><span class="career-listing__location"><d:atom.icon name="map-pin" size="sm"/><span class="min-w-0">{job -> f:render.text(field: 'location')}</span></span></f:if>
                             <f:if condition="{job.type}"><d:atom.badge variant="secondary" class="career-listing__type">{job -> f:render.text(field: 'type')}</d:atom.badge></f:if>
                         </div>
                     </div>

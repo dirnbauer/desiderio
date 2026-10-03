@@ -1,35 +1,48 @@
+/* Two equal outer tracks keep the brand on the centre line; minmax(0, …)
+   lets a long link group wrap inside its track instead of pushing the
+   brand off centre. */
 .navbar-split__inner {
     display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     align-items: center;
     gap: var(--d-spacing-4);
     padding-block: var(--d-spacing-3);
 }
+/* role="list" in the template: list-style none drops the list semantics in
+   Safari. */
 .navbar-split__left,
 .navbar-split__right-nav {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: var(--d-spacing-1);
     list-style: none;
     margin: 0;
     padding: 0;
 }
+.navbar-split__right-nav {
+    justify-content: flex-end;
+}
 .navbar-split__brand {
     text-align: center;
 }
+/* Focus rings are box-shadows here; the transparent outline is what
+   Windows high-contrast mode paints instead (it drops box-shadows). */
 .navbar-split__brand-link {
     font-weight: var(--d-weight-bold);
     font-size: var(--d-text-xl);
     color: var(--d-foreground);
     text-decoration: none;
     border-radius: var(--d-radius-sm);
-    outline: none;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
 }
 .navbar-split__right {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: var(--d-spacing-4);
+    min-width: 0;
 }
 .navbar-split__link {
     padding: var(--d-spacing-2) var(--d-spacing-3);
@@ -37,11 +50,14 @@
     color: var(--d-muted-foreground);
     text-decoration: none;
     border-radius: var(--d-radius-md);
-    outline: none;
-    transition: color 0.15s;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    transition: color var(--d-motion-fast) var(--d-ease);
 }
-.navbar-split__link:hover {
-    color: var(--d-foreground);
+@media (hover: hover) and (pointer: fine) {
+    a.navbar-split__link:hover {
+        color: var(--d-foreground);
+    }
 }
 .navbar-split__link:focus-visible,
 .navbar-split__brand-link:focus-visible {
@@ -51,7 +67,7 @@
 
 @media (max-width: 768px) {
     .navbar-split__inner {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         justify-items: center;
         gap: var(--d-spacing-2);
         text-align: center;
@@ -64,6 +80,15 @@
     }
     .navbar-split__brand {
         order: -1;
+    }
+}
+
+/* Touch: every link is a 44px target. Inline-block, so the padding takes
+   room in the row and wrapped rows do not overlap their hit areas. */
+@media (pointer: coarse) {
+    .navbar-split__link {
+        display: inline-block;
+        padding-block: var(--d-spacing-3);
     }
 }
 

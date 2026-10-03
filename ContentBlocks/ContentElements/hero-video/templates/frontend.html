@@ -14,7 +14,7 @@
                     <p class="hero-video__eyebrow">{data -> f:render.text(field: 'eyebrow')}</p>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <d:atom.typography tag="h2" variant="h1" class="hero-video__headline" attributes="{itemprop: ''}">
+                    <d:atom.typography tag="h2" variant="h1" class="hero-video__headline">
                         <span id="hero-video-title-{data.uid}">{data -> f:render.text(field: 'header')}</span>
                     </d:atom.typography>
                 </f:if>
@@ -39,8 +39,9 @@
                                     allowfullscreen></iframe>
                         </f:then>
                         <f:else>
-                            <span class="hero-video__play" aria-hidden="true">
-                                <d:atom.icon name="play" size="default" class="hero-video__play-icon" />
+                            <f:comment>No video yet: a quiet placeholder, not a play button that does nothing.</f:comment>
+                            <span class="hero-video__placeholder" aria-hidden="true">
+                                <d:atom.icon name="play" size="default" class="hero-video__placeholder-icon" />
                             </span>
                         </f:else>
                     </f:if>

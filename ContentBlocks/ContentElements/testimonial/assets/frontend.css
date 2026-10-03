@@ -1,14 +1,37 @@
 .testimonial__heading { margin-block-end: var(--d-spacing-lg); }
-.testimonial__card--bordered { border: 1px solid var(--border); border-radius: var(--radius); padding: var(--d-spacing-lg); }
+/* The card wears the surface of d:molecule.card (22-modern-base.css): the
+   shared radius, a hairline ring and the preset's surface shadow. It hugs
+   its quote instead of stretching a short line across the whole page. */
+.testimonial__card--bordered {
+    width: fit-content;
+    max-width: 100%;
+    border-radius: calc(var(--radius, 0.625rem) * 1.5);
+    padding: var(--d-spacing-lg);
+}
 /* The generic ".desiderio-section :where(.card, …, .testimonial__card)" rule in
    desiderio-tailwind.css gives every card a shadow-sm; on the testimonial that
-   shadow's bottom edge reads as a stray horizontal line. The testimonial only
-   ever wants a border (on the card variant), never a shadow - so drop it. */
+   shadow's bottom edge reads as a stray horizontal line. The plain and large
+   variants never want a shadow - so drop it; the card variant gets the card
+   ring below. */
 .testimonial .testimonial__card { box-shadow: none; }
+.testimonial .testimonial__card--bordered {
+    box-shadow:
+        0 0 0 1px color-mix(in oklch, var(--foreground) 9%, transparent),
+        var(--d-surface-shadow, 0 0 transparent),
+        inset 0 1px 0 color-mix(in oklch, var(--card-foreground) 5%, transparent);
+}
 .testimonial__rating { display: flex; gap: var(--d-spacing-1); margin-block-end: var(--d-spacing-sm); }
 .testimonial__star { color: var(--muted-foreground); }
 .testimonial__star--filled { color: var(--primary); }
 .testimonial__quote { font-size: var(--d-text-lg); line-height: var(--d-leading-relaxed); margin-block-end: var(--d-spacing-md); font-style: italic; }
+/* Plain and card variants: a readable measure, and typographic quotation
+   marks in the page language (open-quote follows the lang attribute). */
+.testimonial:not(.testimonial--large) .testimonial__quote { max-width: 65ch; }
+.testimonial:not(.testimonial--large) .testimonial__quote::before { content: open-quote; }
+.testimonial:not(.testimonial--large) .testimonial__quote::after { content: close-quote; }
+/* While the Visual Editor edits the quote the marks step aside. */
+.testimonial:not(.testimonial--large) .testimonial__quote:has(> ve-editable-text)::before,
+.testimonial:not(.testimonial--large) .testimonial__quote:has(> ve-editable-text)::after { content: none; }
 /* Large variant: generous big-quote layout with a decorative mark anchored
    behind the first line — never a bare line above the text. */
 .testimonial--large .testimonial__quote {
@@ -21,8 +44,11 @@
     padding-block-start: var(--d-spacing-lg);
     margin-block-end: var(--d-spacing-lg);
 }
+/* z-index -1 puts the mark behind the words it overlaps (the section is the
+   stacking context, so it still paints above the section's own surface). */
 .testimonial__quote-mark {
     position: absolute;
+    z-index: -1;
     inset-block-start: -0.5rem;
     inset-inline-start: -0.5rem;
     font-size: 6rem;
@@ -35,6 +61,7 @@
 .testimonial__author { display: flex; align-items: center; gap: var(--d-spacing-sm); }
 .testimonial__avatar { flex-shrink: 0; }
 .testimonial__avatar-image { display: block; width: 3rem; height: 3rem; border-radius: 9999px; object-fit: cover; object-position: center; }
+.testimonial__author-info { min-width: 0; }
 .testimonial__author-name { font-weight: var(--d-weight-semibold); font-style: normal; display: block; }
 .testimonial__author-role { font-size: var(--d-text-sm); color: var(--muted-foreground); }
 

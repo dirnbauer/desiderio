@@ -11,7 +11,7 @@
 }
 @media (max-width: 768px) {
     .hero-stats__grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         gap: var(--d-spacing-xl);
     }
 }
@@ -38,6 +38,12 @@
     display: flex;
     flex-wrap: wrap;
     gap: var(--d-spacing-3);
+}
+/* Phones: the call to action takes the full row. */
+@media (max-width: 639px) {
+    .hero-stats__actions > [data-slot="button"] {
+        flex: 1 1 0;
+    }
 }
 .hero-stats__cards {
     display: grid;
@@ -87,6 +93,6 @@
 }
 @media (max-width: 480px) {
     .hero-stats__cards {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
     }
 }

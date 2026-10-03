@@ -14,19 +14,21 @@
         <d:layout.grid cols="{data.columns -> f:or(alternative: '2')}" gap="lg">
             <f:for each="{data.items}" as="item">
                 <d:molecule.card class="content-grid__item">
-                    <f:if condition="{item.title}">
-                        <d:atom.typography tag="h3" variant="h3" class="content-grid__title">
-                            <f:if condition="{item.link.url}">
-                                <f:then>
-                                    <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="content-grid__title-link">{item -> f:render.text(field: 'title')}</d:atom.link>
-                                </f:then>
-                                <f:else>{item -> f:render.text(field: 'title')}</f:else>
-                            </f:if>
-                        </d:atom.typography>
-                    </f:if>
-                    <f:if condition="{item.content}">
-                        <div class="content-grid__content">{item -> f:render.text(field: 'content')}</div>
-                    </f:if>
+                    <div class="content-grid__body flex min-w-0 flex-col gap-1.5">
+                        <f:if condition="{item.title}">
+                            <d:atom.typography tag="h3" variant="h3" class="content-grid__title">
+                                <f:if condition="{item.link.url}">
+                                    <f:then>
+                                        <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="content-grid__title-link">{item -> f:render.text(field: 'title')}</d:atom.link>
+                                    </f:then>
+                                    <f:else>{item -> f:render.text(field: 'title')}</f:else>
+                                </f:if>
+                            </d:atom.typography>
+                        </f:if>
+                        <f:if condition="{item.content}">
+                            <div class="content-grid__content d-richtext">{item -> f:render.text(field: 'content')}</div>
+                        </f:if>
+                    </div>
                     <f:if condition="{item.link.url}">
                         <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="content-grid__link">
                             <f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/content-grid/language/labels.xlf:read_more" default="Read more"/>

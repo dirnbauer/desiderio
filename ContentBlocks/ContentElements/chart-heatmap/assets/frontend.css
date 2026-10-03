@@ -11,7 +11,10 @@
     overflow: hidden;
 }
 .chart-heatmap__header {
-    padding: var(--d-spacing-lg) var(--d-spacing-lg) 0;
+    /* The plot below paints a graph-paper grid from its top edge; the
+       header keeps its own bottom padding so the description never sits on
+       those lines. */
+    padding: var(--d-spacing-lg) var(--d-spacing-lg) var(--d-spacing-sm);
 }
 .chart-heatmap__title {
     font-size: var(--d-text-lg);
@@ -48,6 +51,11 @@
     gap: var(--d-spacing-1);
     align-items: center;
     min-width: min-content;
+    /* A heatmap reads as a grid of tiles, not as stretched bars: three
+       columns no longer run 320px wide across a full-width card. Wide
+       grids (hours, days) still grow past this to their min-content. */
+    max-width: 48rem;
+    margin-inline: auto;
     font-size: var(--d-text-xs);
 }
 .chart-heatmap__corner {
@@ -77,13 +85,15 @@
     font-weight: var(--d-weight-semibold);
     background: var(--muted);
     color: var(--muted-foreground);
-    transition: box-shadow 0.15s ease;
+    transition: box-shadow var(--d-motion-fast) var(--d-ease);
 }
-.chart-heatmap__cell:hover {
-    z-index: 1;
-    box-shadow:
-        0 0 0 1px var(--ring),
-        0 0 0.625rem color-mix(in oklab, var(--ring) 45%, transparent);
+@media (hover: hover) and (pointer: fine) {
+    .chart-heatmap__cell:hover {
+        z-index: 1;
+        box-shadow:
+            0 0 0 1px var(--ring),
+            0 0 0.625rem color-mix(in oklab, var(--ring) 45%, transparent);
+    }
 }
 
 /* Sequential intensity ramp keyed to the shared chart palette (--chart-1 low … --chart-5 high).
@@ -121,6 +131,19 @@
     }
     .chart-heatmap__plot {
         padding: var(--d-spacing-md);
+    }
+    /* Narrow columns: long row labels wrap onto two lines instead of eating
+       the cells' width, and a column name too long for its track breaks
+       inside the word rather than running into its neighbour. */
+    .chart-heatmap__rowhead {
+        max-width: 6.5rem;
+        white-space: normal;
+        overflow-wrap: break-word;
+    }
+    .chart-heatmap__colhead {
+        min-width: 0;
+        overflow-wrap: anywhere;
+        hyphens: auto;
     }
 }
 

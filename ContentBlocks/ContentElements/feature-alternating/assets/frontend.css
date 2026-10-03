@@ -14,7 +14,7 @@
 }
 .feature-alternating__row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: var(--d-spacing-xl);
     align-items: center;
 }
@@ -22,15 +22,19 @@
     order: 2;
 }
 @media (max-width: 768px) {
-    .feature-alternating__row { grid-template-columns: 1fr; }
+    .feature-alternating__row { grid-template-columns: minmax(0, 1fr); }
     .feature-alternating__row--reverse .feature-alternating__copy { order: 0; }
 }
-.feature-alternating__title {
-    margin-block-end: var(--d-spacing-sm);
+/* Title, text and link share one column rhythm instead of three margins. */
+.feature-alternating__copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--d-spacing-sm);
+    min-width: 0;
 }
 .feature-alternating__description {
     color: var(--muted-foreground);
-    margin-block-end: var(--d-spacing-md);
 }
 .feature-alternating__link {
     display: inline-flex;
@@ -41,17 +45,22 @@
     text-decoration: none;
     border-radius: var(--d-radius-sm);
 }
-.feature-alternating__link:hover { text-decoration: underline; }
 .feature-alternating__link:focus-visible {
     outline: 2px solid var(--ring);
     outline-offset: 2px;
 }
 .feature-alternating__arrow {
-    transition: transform 0.2s ease;
+    transition: transform var(--d-motion) var(--d-ease);
 }
-.feature-alternating__link:hover .feature-alternating__arrow {
-    transform: translateX(0.2rem);
+@media (hover: hover) and (pointer: fine) {
+    .feature-alternating__link:hover { text-decoration: underline; }
+    .feature-alternating__link:hover .feature-alternating__arrow {
+        transform: translateX(0.2rem);
+    }
 }
+/* Product screenshots: crop from the top-left corner, where an interface
+   keeps its navigation and headings, never from the middle. The hairline
+   gives a light screenshot an edge on a light page. */
 .feature-alternating__image {
     display: block;
     border-radius: var(--d-radius-lg);
@@ -59,6 +68,8 @@
     aspect-ratio: 16 / 10;
     height: auto;
     object-fit: cover;
+    object-position: top left;
+    box-shadow: 0 0 0 1px color-mix(in oklch, var(--foreground) 9%, transparent);
 }
 @media (prefers-reduced-motion: reduce) {
     .feature-alternating__arrow { transition: none; }

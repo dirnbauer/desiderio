@@ -31,6 +31,7 @@
                                 </f:case>
                                 <f:defaultCase>
                                     <span class="sr-only">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:trend.neutral')} </span>
+                                    <d:atom.icon name="minus" size="xs" class="stat-cards__arrow" />
                                 </f:defaultCase>
                             </f:switch>
                             {item -> f:render.text(field: 'change')}

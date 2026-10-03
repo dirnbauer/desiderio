@@ -1,6 +1,8 @@
 .breadcrumb__nav {
     font-size: var(--d-text-sm);
 }
+/* role="list" in the template: list-style none drops the list semantics in
+   Safari. */
 .breadcrumb__list {
     display: flex;
     align-items: center;
@@ -21,10 +23,12 @@
     color: var(--d-muted-foreground);
     text-decoration: none;
     border-radius: var(--d-radius-sm);
-    transition: color 0.15s ease;
+    transition: color var(--d-motion-fast) var(--d-ease);
 }
-.breadcrumb__link:hover {
-    color: var(--d-foreground);
+@media (hover: hover) and (pointer: fine) {
+    .breadcrumb__link:hover {
+        color: var(--d-foreground);
+    }
 }
 .breadcrumb__current {
     color: var(--d-foreground);
@@ -39,12 +43,15 @@
     height: 0.875rem;
 }
 
+/* shadcn's sm:gap-2.5. The ramp has no 2.5 step: the old
+   var(--d-spacing-2-5) was undefined, so from 640px up the gap collapsed to
+   zero and the trail read "Home/Docs/Theming". */
 @media (min-width: 640px) {
     .breadcrumb__list {
-        gap: var(--d-spacing-2-5);
+        gap: calc(var(--d-spacing-2) + var(--d-spacing-0-5));
     }
     .breadcrumb__item {
-        gap: var(--d-spacing-2-5);
+        gap: calc(var(--d-spacing-2) + var(--d-spacing-0-5));
     }
 }
 
@@ -57,5 +64,21 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         vertical-align: bottom;
+    }
+}
+
+/* Touch: a 44px tall hit area per crumb. Padding, not a pseudo-element —
+   the truncated crumbs clip their overflow; the negative margin keeps the
+   trail's line height. */
+@media (pointer: coarse) {
+    .breadcrumb__link {
+        padding-block: var(--d-spacing-3);
+        margin-block: calc(-1 * var(--d-spacing-3));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .breadcrumb__link {
+        transition: none;
     }
 }

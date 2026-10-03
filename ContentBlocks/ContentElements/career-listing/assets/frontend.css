@@ -21,6 +21,7 @@
     border-top: 1px solid var(--border);
 }
 .career-listing__job {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -28,19 +29,65 @@
     padding: var(--d-spacing-md) 0;
     border-bottom: 1px solid var(--border);
 }
-.career-listing__title { font-size: var(--d-text-base); font-weight: var(--d-weight-semibold); }
+.career-listing__info {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+.career-listing__title { font-size: var(--d-text-base); font-weight: var(--d-weight-semibold); overflow-wrap: break-word; }
+
+/* Each row leads to one job, so the whole row is the hit area: the title
+   link stretches over it, and the Apply button stays clickable above. */
+.career-listing__link {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--d-motion-fast) var(--d-ease);
+}
+.career-listing__link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+}
+.career-listing__link:focus-visible {
+    outline: none;
+}
+.career-listing__job:has(.career-listing__link:focus-visible) {
+    outline: 2px solid var(--ring);
+    outline-offset: 4px;
+    border-radius: var(--d-radius-sm);
+}
+@media (hover: hover) and (pointer: fine) {
+    .career-listing__job:hover .career-listing__link {
+        color: var(--d-link, var(--primary));
+    }
+}
+
+/* Department and location as muted inline items, each with its icon, that
+   wrap as whole items on a narrow screen. */
 .career-listing__meta {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: var(--d-spacing-sm);
+    gap: var(--d-spacing-2xs) var(--d-spacing-md);
     margin-block-start: var(--d-spacing-2xs);
     font-size: var(--d-text-sm);
     color: var(--muted-foreground);
+    font-variant-numeric: tabular-nums;
 }
-.career-listing__apply { flex-shrink: 0; }
+.career-listing__dept,
+.career-listing__location {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--d-spacing-2xs);
+    min-width: 0;
+}
+.career-listing__apply {
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+}
 @media (max-width: 768px) {
     .career-listing__job { flex-direction: column; align-items: flex-start; gap: var(--d-spacing-sm); }
+    .career-listing__info { flex: 0 1 auto; width: 100%; }
 }
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */

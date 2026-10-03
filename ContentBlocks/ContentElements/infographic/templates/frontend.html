@@ -20,7 +20,7 @@
             </header>
         </f:if>
 
-        <ol class="infographic__steps infographic__steps--{data.shadcn_layout -> f:or(alternative: 'horizontal')}">
+        <ol class="infographic__steps infographic__steps--{data.shadcn_layout -> f:or(alternative: 'horizontal')}" role="list">
             <f:for each="{data.items}" as="item" iteration="iter">
                 <li class="infographic__step">
                     <figure class="infographic__visual">

@@ -48,13 +48,13 @@ fields:
     type: Textarea
     rows: 1
     label: 'Accept All Text'
-    default: 'Accept All'
+    default: 'Accept all'
   -
     identifier: save_text
     type: Textarea
     rows: 1
     label: 'Save Preferences Text'
-    default: 'Save Preferences'
+    default: 'Save preferences'
   -
     identifier: privacy_link
     type: Link

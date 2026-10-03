@@ -6,26 +6,35 @@
 }
 .office-locations__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
     gap: var(--d-spacing-lg);
     margin: 0;
     padding: 0;
     list-style: none;
 }
 .office-locations__item { height: 100%; }
-.office-locations__details { flex: 1 1 auto; }
+/* City and details are one block: the city sits closer to its own lines
+   than to the card edge, and the block grows so the directions button
+   lines up at the foot of every card in the row. */
+.office-locations__body {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--d-spacing-sm);
+    min-width: 0;
+}
 .office-locations__map { margin-block-start: auto; align-self: flex-start; }
 .office-locations__city {
     font-weight: var(--d-weight-semibold);
     font-size: var(--d-text-lg);
-    margin-block-end: var(--d-spacing-sm);
+    overflow-wrap: break-word;
 }
 .office-locations__details {
     font-style: normal;
     display: flex;
     flex-direction: column;
     gap: var(--d-spacing-xs);
-    margin-block-end: var(--d-spacing-md);
+    font-variant-numeric: tabular-nums;
 }
 .office-locations__address,
 .office-locations__line {
@@ -41,12 +50,32 @@
     color: var(--primary);
     margin-block-start: var(--d-spacing-0-5);
 }
-.office-locations__lines { line-height: var(--d-leading-normal); }
+/* Long street names and e-mail addresses wrap inside the card instead of
+   pushing it wider than a phone. */
+.office-locations__lines {
+    min-width: 0;
+    line-height: var(--d-leading-normal);
+    overflow-wrap: break-word;
+}
 .office-locations__link {
+    position: relative;
+    min-width: 0;
     color: var(--muted-foreground);
     text-decoration: none;
+    overflow-wrap: anywhere;
+    transition: color var(--d-motion-fast) var(--d-ease);
 }
-.office-locations__link:hover { color: var(--foreground); text-decoration: underline; }
+/* Phone and e-mail are what people tap on a phone: the hit area grows by
+   a few pixels around the text without moving it, and stays clear of the
+   neighbouring line. */
+.office-locations__link::after {
+    content: "";
+    position: absolute;
+    inset: calc(var(--d-spacing-2xs) * -1) calc(var(--d-spacing-xs) * -1);
+}
+@media (hover: hover) and (pointer: fine) {
+    .office-locations__link:hover { color: var(--foreground); text-decoration: underline; }
+}
 .office-locations__map-icon { display: inline-flex; }
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */

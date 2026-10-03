@@ -1,3 +1,9 @@
+/* A navigation bar is a bar: no section rhythm above and below it (the
+   split, stacked, tabbed and transparent bars sit flush the same way);
+   the inner row carries its own padding. */
+.navbar-icon {
+    padding-block: 0;
+}
 .navbar-icon__inner {
     display: flex;
     align-items: center;
@@ -16,6 +22,8 @@
     outline: 2px solid var(--d-ring);
     outline-offset: 2px;
 }
+/* role="list" in the template: list-style none drops the list semantics in
+   Safari. */
 .navbar-icon__nav {
     display: flex;
     align-items: center;
@@ -25,6 +33,7 @@
     margin: 0;
     padding: 0;
 }
+/* Icon over label: each item is a 48px tall target already. */
 .navbar-icon__link {
     display: flex;
     flex-direction: column;
@@ -35,11 +44,13 @@
     color: var(--d-muted-foreground);
     text-decoration: none;
     border-radius: var(--d-radius-md);
-    transition: color 0.15s, background-color 0.15s;
+    transition: color var(--d-motion-fast) var(--d-ease), background-color var(--d-motion-fast) var(--d-ease);
 }
-.navbar-icon__link:hover {
-    color: var(--d-foreground);
-    background: var(--d-accent);
+@media (hover: hover) and (pointer: fine) {
+    a.navbar-icon__link:hover {
+        color: var(--d-foreground);
+        background: var(--d-accent);
+    }
 }
 .navbar-icon__link:focus-visible {
     outline: 2px solid var(--d-ring);

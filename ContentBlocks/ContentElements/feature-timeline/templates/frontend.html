@@ -8,7 +8,7 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="feature-timeline">
     <d:layout.container size="md">
         <f:if condition="{data.header} || {data.subheadline}">
-            <d:molecule.sectionIntro prefix="feature-timeline" class="feature-timeline__intro" leadVariant="lead">
+            <d:molecule.sectionIntro prefix="feature-timeline" align="center" class="feature-timeline__intro" leadVariant="lead">
                 <f:fragment name="heading"><f:if condition="{data.header}">{data -> f:render.text(field: 'header')}</f:if></f:fragment>
                 <f:fragment name="lead"><f:if condition="{data.subheadline}">{data -> f:render.text(field: 'subheadline')}</f:if></f:fragment>
             </d:molecule.sectionIntro>

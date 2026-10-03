@@ -35,6 +35,10 @@
     min-width: 0;
     overflow-x: auto;
     scrollbar-gutter: stable;
+    /* The first category label is centred under its bar and reaches past the
+       viewBox's left edge; inside this scroller that part would be cut off
+       and could not be scrolled to, so the axis gets its own gutter. */
+    padding-inline-start: calc(var(--d-spacing-xl) + var(--d-spacing-sm));
 }
 .chart-bar__canvas {
     display: block;
@@ -70,14 +74,18 @@
 }
 .chart-bar__stat-value {
     display: flex;
+    flex-wrap: wrap;
     align-items: baseline;
-    gap: var(--d-spacing-1);
+    gap: 0 var(--d-spacing-1);
     margin: 0;
     font-size: var(--d-text-lg);
     font-weight: var(--d-weight-semibold);
     color: var(--foreground);
     font-variant-numeric: tabular-nums;
-    overflow-wrap: anywhere;
+    /* break-word, not anywhere: "anywhere" lowers the min-content width to
+       one letter, so a narrow column split "elements" mid-word. The category
+       name now moves under the number instead. */
+    overflow-wrap: break-word;
 }
 .chart-bar__stat-meta {
     font-size: var(--d-text-xs);
@@ -110,8 +118,11 @@
     .chart-bar__content {
         padding: var(--d-spacing-md);
     }
-    .chart-bar__canvas {
-        aspect-ratio: 4 / 3;
+    /* The canvas keeps the 64:30 box of the 640x300 viewBox it draws into;
+       a taller 4:3 box only letterboxed the drawing with 160px of blank
+       space. Phones scroll the plot sideways at its readable 36rem width. */
+    .chart-bar__stat-value {
+        font-size: var(--d-text-base);
     }
 }
 

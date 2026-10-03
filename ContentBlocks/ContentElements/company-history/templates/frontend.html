@@ -14,7 +14,7 @@
             </d:molecule.sectionIntro>
         </f:if>
 
-        <ol class="company-history__timeline">
+        <ol class="company-history__timeline" role="list">
             <f:for each="{data.events}" as="event">
                 <li class="company-history__event">
                     <span class="company-history__year">{event -> f:render.text(field: 'year')}</span>

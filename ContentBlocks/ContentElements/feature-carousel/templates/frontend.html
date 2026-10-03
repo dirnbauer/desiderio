@@ -9,28 +9,30 @@
     <d:layout.container>
         <div class="feature-carousel__viewport" data-d-feature-carousel role="region" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.region\', default: \'Highlights carousel\')}')}">
             <f:if condition="{data.header}">
-                <header class="feature-carousel__intro">
-                    <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
-                    <f:if condition="{data.subheadline}"><d:atom.typography variant="lead" class="feature-carousel__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
-                </header>
+                <d:molecule.sectionIntro prefix="feature-carousel" align="center" leadVariant="lead" class="feature-carousel__intro" leadClass="feature-carousel__subheadline">
+                    <f:fragment name="heading">{data -> f:render.text(field: 'header')}</f:fragment>
+                    <f:fragment name="lead"><f:if condition="{data.subheadline}">{data -> f:render.text(field: 'subheadline')}</f:if></f:fragment>
+                </d:molecule.sectionIntro>
             </f:if>
 
             <ul class="feature-carousel__track" tabindex="0" role="group" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.aria.featureSlides', default: 'Feature slides, scrollable')}">
                 <f:for each="{data.items}" as="item">
                     <li class="feature-carousel__cell">
-                        <d:molecule.card class="feature-carousel__slide">
+                        <d:molecule.card class="feature-carousel__slide relative has-[a:focus-visible]:ring-2 has-[a:focus-visible]:ring-ring">
                             <f:if condition="{item.icon}">
                                 <span class="feature-carousel__icon" aria-hidden="true"><d:atom.icon name="{item.icon}" size="lg"/></span>
                             </f:if>
-                            <d:atom.typography tag="h3" variant="large" class="feature-carousel__title">
-                                <f:if condition="{item.link.url}">
-                                    <f:then><d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted">{item -> f:render.text(field: 'title')}</d:atom.link></f:then>
-                                    <f:else>{item -> f:render.text(field: 'title')}</f:else>
+                            <div class="feature-carousel__body flex min-w-0 flex-col gap-1.5">
+                                <d:atom.typography tag="h3" variant="large" class="feature-carousel__title">
+                                    <f:if condition="{item.link.url}">
+                                        <f:then><d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="feature-carousel__link after:absolute after:inset-0 after:content-['']">{item -> f:render.text(field: 'title')}</d:atom.link></f:then>
+                                        <f:else>{item -> f:render.text(field: 'title')}</f:else>
+                                    </f:if>
+                                </d:atom.typography>
+                                <f:if condition="{item.description}">
+                                    <div class="feature-carousel__description d-richtext">{item -> f:render.text(field: 'description')}</div>
                                 </f:if>
-                            </d:atom.typography>
-                            <f:if condition="{item.description}">
-                                <div class="feature-carousel__description d-richtext">{item -> f:render.text(field: 'description')}</div>
-                            </f:if>
+                            </div>
                         </d:molecule.card>
                     </li>
                 </f:for>

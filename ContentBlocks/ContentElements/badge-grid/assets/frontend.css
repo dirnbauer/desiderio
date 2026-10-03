@@ -12,6 +12,22 @@
 .badge-grid__cell { display: inline-flex; }
 .badge-grid__link { display: inline-flex; }
 
+/* A linked chip answers the pointer: it lifts a pixel and gains a hairline.
+   The badge's own [a]:hover tint only fires when the badge IS the anchor;
+   here the anchor wraps it, so the feedback is given from the link. */
+.badge-grid__link .badge-grid__badge[data-slot="badge"] {
+    transition: translate var(--d-motion-fast) var(--d-ease), box-shadow var(--d-motion-fast) var(--d-ease);
+}
+@media (hover: hover) and (pointer: fine) {
+    .badge-grid__link:hover .badge-grid__badge[data-slot="badge"] {
+        translate: 0 -1px;
+        box-shadow: 0 0 0 1px color-mix(in oklch, var(--foreground) 16%, transparent), 0 2px 6px -2px color-mix(in oklch, var(--foreground) 22%, transparent);
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .badge-grid__link:hover .badge-grid__badge[data-slot="badge"] { translate: none; }
+}
+
 /* Chip sizing: relaxes the atom's compact defaults (h-5 px-2 py-0.5 text-xs).
    Scoped via [data-slot=badge] so it wins over the atom's single utility classes. */
 .badge-grid__badge[data-slot="badge"] {

@@ -8,28 +8,52 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="navbar-dropdown">
     <d:layout.container>
         <f:variable name="navLabel">{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:navbar.dropdown.aria\', default: \'Dropdown navigation\')}')}</f:variable>
-        <nav class="navbar-dropdown__inner" aria-label="{navLabel}">
+        <f:comment>
+            Disclosure navigation, the pattern of the site header: an item with
+            sub-pages keeps its own link and gets a chevron button that owns the
+            submenu (aria-expanded, aria-controls). data-d-primary-nav hands the
+            buttons to the shared runtime (desiderio.js 6b): Escape, outside
+            click and hover for mouse users. Before the runtime is ready, hover
+            and keyboard focus open the submenu in CSS.
+        </f:comment>
+        <nav class="navbar-dropdown__inner" aria-label="{navLabel}" data-d-primary-nav="">
             <div class="navbar-dropdown__brand">
                 <f:if condition="{data.brand_link.url}">
                     <f:then><d:atom.link href="{f:uri.typolink(parameter: data.brand_link.url)}" target="{data.brand_link.target}" variant="default" class="navbar-dropdown__brand-link">{data -> f:render.text(field: 'brand')}</d:atom.link></f:then>
                     <f:else><span class="navbar-dropdown__brand-link">{data -> f:render.text(field: 'brand')}</span></f:else>
                 </f:if>
             </div>
-            <ul class="navbar-dropdown__nav">
-                <f:for each="{data.nav_items}" as="item">
-                    <li class="navbar-dropdown__item">
-                        <f:if condition="{item.link.url}">
-                            <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="navbar-dropdown__link">{item -> f:render.text(field: 'label')}</d:atom.link>
-                        </f:if>
-                        <f:if condition="{item.child_1_label} || {item.child_2_label} || {item.child_3_label} || {item.child_4_label}">
-                            <ul class="navbar-dropdown__submenu">
-                                <f:if condition="{item.child_1_label}"><li><f:if condition="{item.child_1_link.url}"><f:then><d:atom.link href="{f:uri.typolink(parameter: item.child_1_link.url)}" target="{item.child_1_link.target}" variant="muted" class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_1_label')}</d:atom.link></f:then><f:else><span class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_1_label')}</span></f:else></f:if></li></f:if>
-                                <f:if condition="{item.child_2_label}"><li><f:if condition="{item.child_2_link.url}"><f:then><d:atom.link href="{f:uri.typolink(parameter: item.child_2_link.url)}" target="{item.child_2_link.target}" variant="muted" class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_2_label')}</d:atom.link></f:then><f:else><span class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_2_label')}</span></f:else></f:if></li></f:if>
-                                <f:if condition="{item.child_3_label}"><li><f:if condition="{item.child_3_link.url}"><f:then><d:atom.link href="{f:uri.typolink(parameter: item.child_3_link.url)}" target="{item.child_3_link.target}" variant="muted" class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_3_label')}</d:atom.link></f:then><f:else><span class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_3_label')}</span></f:else></f:if></li></f:if>
-                                <f:if condition="{item.child_4_label}"><li><f:if condition="{item.child_4_link.url}"><f:then><d:atom.link href="{f:uri.typolink(parameter: item.child_4_link.url)}" target="{item.child_4_link.target}" variant="muted" class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_4_label')}</d:atom.link></f:then><f:else><span class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_4_label')}</span></f:else></f:if></li></f:if>
-                            </ul>
-                        </f:if>
-                    </li>
+            <ul class="navbar-dropdown__nav" role="list">
+                <f:for each="{data.nav_items}" as="item" iteration="navIteration">
+                    <f:if condition="{item.child_1_label} || {item.child_2_label} || {item.child_3_label} || {item.child_4_label}">
+                        <f:then>
+                            <f:variable name="submenuId" value="navbar-dropdown-{data.uid}-{navIteration.cycle}"/>
+                            <f:variable name="toggleLabel" value="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/locallang.xlf:a11y.nav.submenu', arguments: {title: item.label}, default: 'Submenu')}"/>
+                            <li class="navbar-dropdown__item navbar-dropdown__item--parent" data-d-nav-sub="">
+                                <span class="navbar-dropdown__trigger">
+                                    <f:if condition="{item.link.url}">
+                                        <f:then><d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="navbar-dropdown__link">{item -> f:render.text(field: 'label')}</d:atom.link></f:then>
+                                        <f:else><span class="navbar-dropdown__link">{item -> f:render.text(field: 'label')}</span></f:else>
+                                    </f:if>
+                                    <d:atom.button variant="ghost" size="icon-xs" class="navbar-dropdown__toggle" attributes="{data-d-subnav-toggle: '', aria-expanded: 'false', aria-controls: submenuId, aria-label: toggleLabel}"><d:atom.icon name="chevron-down" class="navbar-dropdown__chevron"/></d:atom.button>
+                                </span>
+                                <ul id="{submenuId}" class="navbar-dropdown__submenu" role="list">
+                                    <f:if condition="{item.child_1_label}"><li><f:if condition="{item.child_1_link.url}"><f:then><d:atom.link href="{f:uri.typolink(parameter: item.child_1_link.url)}" target="{item.child_1_link.target}" variant="muted" class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_1_label')}</d:atom.link></f:then><f:else><span class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_1_label')}</span></f:else></f:if></li></f:if>
+                                    <f:if condition="{item.child_2_label}"><li><f:if condition="{item.child_2_link.url}"><f:then><d:atom.link href="{f:uri.typolink(parameter: item.child_2_link.url)}" target="{item.child_2_link.target}" variant="muted" class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_2_label')}</d:atom.link></f:then><f:else><span class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_2_label')}</span></f:else></f:if></li></f:if>
+                                    <f:if condition="{item.child_3_label}"><li><f:if condition="{item.child_3_link.url}"><f:then><d:atom.link href="{f:uri.typolink(parameter: item.child_3_link.url)}" target="{item.child_3_link.target}" variant="muted" class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_3_label')}</d:atom.link></f:then><f:else><span class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_3_label')}</span></f:else></f:if></li></f:if>
+                                    <f:if condition="{item.child_4_label}"><li><f:if condition="{item.child_4_link.url}"><f:then><d:atom.link href="{f:uri.typolink(parameter: item.child_4_link.url)}" target="{item.child_4_link.target}" variant="muted" class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_4_label')}</d:atom.link></f:then><f:else><span class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_4_label')}</span></f:else></f:if></li></f:if>
+                                </ul>
+                            </li>
+                        </f:then>
+                        <f:else>
+                            <li class="navbar-dropdown__item">
+                                <f:if condition="{item.link.url}">
+                                    <f:then><d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="navbar-dropdown__link">{item -> f:render.text(field: 'label')}</d:atom.link></f:then>
+                                    <f:else><span class="navbar-dropdown__link">{item -> f:render.text(field: 'label')}</span></f:else>
+                                </f:if>
+                            </li>
+                        </f:else>
+                    </f:if>
                 </f:for>
             </ul>
             <f:if condition="{data.button_text} && {data.button_link.url}">

@@ -21,6 +21,10 @@
     overflow-wrap: anywhere;
     text-wrap: balance;
 }
+/* Without a badge above it the headline starts flush with the content. */
+.hero-product__content > .hero-product__title:first-child {
+    margin-top: 0;
+}
 .hero-product__description {
     margin-bottom: var(--d-spacing-6);
     overflow-wrap: anywhere;
@@ -40,6 +44,9 @@
     font-size: var(--d-text-sm);
     color: var(--d-foreground);
 }
+.hero-product__feature > span {
+    min-width: 0;
+}
 .hero-product__feature-icon {
     flex-shrink: 0;
     margin-top: var(--d-spacing-0-5);
@@ -52,6 +59,12 @@
     align-items: center;
     flex-wrap: wrap;
     gap: var(--d-spacing-4);
+}
+/* Phones: the button takes the rest of the row beside the price. */
+@media (max-width: 639px) {
+    .hero-product__cta > [data-slot="button"] {
+        flex: 1 1 auto;
+    }
 }
 .hero-product__price {
     font-size: var(--d-text-3xl);
@@ -66,6 +79,8 @@
     height: auto;
     object-fit: cover;
     border-radius: var(--d-radius-lg);
+    outline: 1px solid color-mix(in oklch, var(--d-foreground) 8%, transparent);
+    outline-offset: -1px;
 }
 @media (max-width: 640px) {
     .hero-product__title {

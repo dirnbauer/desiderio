@@ -4,26 +4,37 @@
 }
 .cta-split__grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--d-spacing-lg);
 }
 @media (max-width: 768px) {
-    .cta-split__grid { grid-template-columns: 1fr; }
+    .cta-split__grid { grid-template-columns: minmax(0, 1fr); }
 }
 .cta-split__side {
     text-align: center;
     padding: var(--d-spacing-xl);
 }
+/* Title and text form one block, closer to each other than to the card edge. */
+.cta-split__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--d-spacing-xs);
+    min-width: 0;
+}
 .cta-split__title {
     font-weight: var(--d-weight-semibold);
     font-size: var(--d-text-lg);
-    margin-block-end: var(--d-spacing-xs);
+    margin: 0;
 }
 .cta-split__description {
     font-size: var(--d-text-sm);
     color: var(--muted-foreground);
 }
-.cta-split__actions { margin-block-start: auto; padding-block-start: var(--d-spacing-lg); }
+/* Pinned to the card's foot, so both buttons share one baseline. */
+.cta-split__actions { margin-block-start: auto; padding-block-start: var(--d-spacing-sm); }
+@media (max-width: 639px) {
+    .cta-split__side { padding: var(--d-spacing-lg) var(--d-spacing-md); }
+}
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */
 .cta-split__intro {

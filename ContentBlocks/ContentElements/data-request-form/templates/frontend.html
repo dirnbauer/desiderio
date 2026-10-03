@@ -8,16 +8,23 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="data-request-form-section">
     <d:layout.container>
         <div class="data-request-form">
-            <f:if condition="{data.header}">
-                <d:atom.typography tag="h2" variant="h2" class="data-request-form__title">{data -> f:render.text(field: 'header')}</d:atom.typography>
-            </f:if>
-            <f:if condition="{data.description}">
-                <div class="data-request-form__description d-richtext">{data -> f:render.text(field: 'description')}</div>
+            <f:if condition="{data.header} || {data.description}">
+                <header class="data-request-form__head">
+                    <f:if condition="{data.header}">
+                        <d:atom.typography tag="h2" variant="h2" class="data-request-form__title">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                    </f:if>
+                    <f:if condition="{data.description}">
+                        <div class="data-request-form__description d-richtext">{data -> f:render.text(field: 'description')}</div>
+                    </f:if>
+                </header>
             </f:if>
 
             <d:molecule.formRenderer persistenceIdentifier="EXT:desiderio/Resources/Private/Forms/DesiderioDataRequest.form.yaml" class="data-request-form__form"/>
             <f:if condition="{data.privacy_text}">
-                <p class="data-request-form__privacy">{data -> f:render.text(field: 'privacy_text')}</p>
+                <p class="data-request-form__privacy">
+                    <d:atom.icon name="lock" size="xs" class="data-request-form__privacy-icon" />
+                    <span>{data -> f:render.text(field: 'privacy_text')}</span>
+                </p>
             </f:if>
         </div>
     </d:layout.container>

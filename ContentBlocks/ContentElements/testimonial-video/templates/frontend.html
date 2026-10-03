@@ -32,7 +32,7 @@
                     </blockquote>
                 </f:if>
                 <div class="testimonial-video__author">
-                    <cite class="testimonial-video__name">{data -> f:render.text(field: 'author_name')}</cite>
+                    <span class="testimonial-video__name">{data -> f:render.text(field: 'author_name')}</span>
                     <f:if condition="{data.author_title} || {data.author_company}">
                         <span class="testimonial-video__role">
                             <f:if condition="{data.author_title}">{data -> f:render.text(field: 'author_title')}</f:if><f:if condition="{data.author_title} && {data.author_company}">, </f:if><f:if condition="{data.author_company}">{data -> f:render.text(field: 'author_company')}</f:if>

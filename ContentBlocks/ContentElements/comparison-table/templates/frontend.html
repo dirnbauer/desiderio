@@ -20,7 +20,12 @@
         <div class="comparison-table__wrapper" role="region" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:table.aria.comparison\', default: \'Comparison table\')}')}" tabindex="0">
             <table class="comparison-table__table">
                 <f:if condition="{data.description}">
-                    <caption class="sr-only">{data -> f:render.text(field: 'description')}</caption>
+                    <f:then>
+                        <caption class="sr-only">{data -> f:render.text(field: 'description')}</caption>
+                    </f:then>
+                    <f:else if="{data.header}">
+                        <caption class="sr-only">{data.header}</caption>
+                    </f:else>
                 </f:if>
                 <thead>
                     <tr>
@@ -37,8 +42,9 @@
                     <f:for each="{data.comparison_feature_items}" as="feature">
                         <tr>
                             <th scope="row" class="comparison-table__feature-name">{feature -> f:render.text(field: 'name')}</th>
-                            <f:for each="{feature.tier_values}" as="value">
-                                <td class="comparison-table__cell">{value -> f:render.text(field: 'value')}</td>
+                            <f:for each="{feature.tier_values}" as="value" iteration="valueIter">
+                                <f:variable name="columnHighlighted" value="{data.column_items.{valueIter.index}.highlighted}"/>
+                                <td class="comparison-table__cell{f:if(condition: columnHighlighted, then: ' comparison-table__cell--highlighted')}">{value -> f:render.text(field: 'value')}</td>
                             </f:for>
                         </tr>
                     </f:for>

@@ -21,13 +21,13 @@
             </header>
         </f:if>
 
-        <ul class="client-list__items" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:clients.aria\', default: \'Clients\')}')}">
+        <ul class="client-list__items" role="list" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:clients.aria\', default: \'Clients\')}')}">
             <f:for each="{data.clients}" as="client">
                 <li class="client-list__item">
                     <f:if condition="{client.logo}">
                         <div class="client-list__media">
                             <f:for each="{client.logo}" as="fileReference">
-                                <f:image image="{fileReference}" maxWidth="240" alt="{f:if(condition: fileReference.alternative, then: fileReference.alternative, else: '{client.name} partner image')}" class="client-list__image" loading="lazy" decoding="async"/>
+                                <f:image image="{fileReference}" maxWidth="240" alt="{fileReference.alternative}" class="client-list__image" loading="lazy" decoding="async"/>
                             </f:for>
                         </div>
                     </f:if>

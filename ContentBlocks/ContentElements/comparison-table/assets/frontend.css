@@ -12,8 +12,13 @@
 }
 .comparison-table__table {
     width: 100%;
-    border-collapse: collapse;
+    /* separate + 0 spacing looks the same as collapse, but keeps each cell's
+       border on the cell: with collapse a sticky first column scrolls away
+       from its own row lines. */
+    border-collapse: separate;
+    border-spacing: 0;
     font-size: var(--d-text-sm);
+    font-variant-numeric: tabular-nums;
     min-width: 36rem;
 }
 .comparison-table__table th,
@@ -29,8 +34,10 @@
     font-weight: var(--d-weight-semibold);
     background: color-mix(in oklch, var(--muted) 35%, transparent);
 }
-.comparison-table__feature-col,
-.comparison-table__feature-name {
+/* Two classes deep: the centring rule above (class + element) outranked the
+   single feature-column class, so the feature names sat centred. */
+.comparison-table__table .comparison-table__feature-col,
+.comparison-table__table .comparison-table__feature-name {
     text-align: left;
     font-weight: var(--d-weight-semibold);
     white-space: nowrap;
@@ -43,9 +50,45 @@
     color: var(--d-link-on-muted, var(--primary));
     box-shadow: inset 0 2px 0 0 var(--primary);
 }
-.comparison-table__table tbody tr:hover td,
-.comparison-table__table tbody tr:hover th {
-    background: color-mix(in oklch, var(--muted) 20%, transparent);
+/* The recommended column stays marked all the way down, not only in its
+   header, so a row can be read across against it. */
+.comparison-table__cell--highlighted {
+    background: color-mix(in oklch, var(--primary) 4%, transparent);
+    font-weight: var(--d-weight-medium);
+    color: var(--foreground);
+}
+@media (hover: hover) and (pointer: fine) {
+    .comparison-table__table tbody tr:hover td,
+    .comparison-table__table tbody tr:hover th {
+        background: color-mix(in oklch, var(--muted) 20%, transparent);
+    }
+}
+
+/* Phones: the feature column stays in view while the plan columns scroll
+   under it, and it wraps instead of claiming the whole screen width (the
+   longest feature name used to fill the phone, leaving every value
+   off-screen). Sticky cells need an opaque surface, so the tints are mixed
+   into the page colour here. */
+@media (max-width: 640px) {
+    .comparison-table__table .comparison-table__feature-col,
+    .comparison-table__table .comparison-table__feature-name {
+        position: sticky;
+        inset-inline-start: 0;
+        z-index: 1;
+        min-width: 8.5rem;
+        max-width: 11rem;
+        white-space: normal;
+        background-color: var(--background);
+        box-shadow: inset -1px 0 0 var(--border);
+    }
+    .comparison-table__table thead .comparison-table__feature-col {
+        background-color: color-mix(in oklch, var(--muted) 35%, var(--background));
+    }
+}
+@media (max-width: 640px) and (hover: hover) and (pointer: fine) {
+    .comparison-table__table tbody tr:hover .comparison-table__feature-name {
+        background-color: color-mix(in oklch, var(--muted) 20%, var(--background));
+    }
 }
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */

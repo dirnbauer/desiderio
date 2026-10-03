@@ -71,9 +71,12 @@
 }
 @media (max-width: 640px) {
     .waitlist-signup__form form {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
     }
+    /* The button sits in .actions > nav.form-navigation: every level has
+       to take the full width, or the button keeps its label width. */
     .waitlist-signup__form .actions,
+    .waitlist-signup__form .form-navigation,
     .waitlist-signup__form .actions .btn {
         width: 100%;
     }

@@ -17,7 +17,12 @@
 <f:variable name="donutTitle">{f:if(condition: data.header, then: '{data.header}', else: '{f:translate(key: \'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-donut/language/labels.xlf:aria.fallback\')}')}</f:variable>
 <f:variable name="centreValue">{data.center_value -> f:or(alternative: '') -> f:format.stripTags() -> f:format.trim()}</f:variable>
 <f:variable name="centreLabel">{data.center_label -> f:or(alternative: '') -> f:format.stripTags() -> f:format.trim()}</f:variable>
-<f:variable name="chartData"><f:spaceless>[<f:for each="{data.segments}" as="segment" iteration="seg">{"label":"{segment.label -> f:or(alternative: '') -> f:format.stripTags() -> f:format.trim()}","value":{segment.value -> f:or(alternative: '0') -> f:format.trim()}}<f:if condition="!{seg.isLast}">,</f:if></f:for>]</f:spaceless></f:variable>
+<f:comment>
+  JSON values go through f:format.json tags (as chart-contribution does): Fluid does not parse an
+  inline ViewHelper chain inside a quoted JSON string, so the old builder shipped the literal
+  expression text, charts.js could not parse it and the ring was never drawn.
+</f:comment>
+<f:variable name="chartData"><f:spaceless>[<f:for each="{data.segments}" as="segment" iteration="seg">{"label":<f:format.json value="{segment.label -> f:format.stripTags() -> f:format.trim()}"/>,"value":<f:format.json value="{segment.value}"/>}<f:if condition="!{seg.isLast}">,</f:if></f:for>]</f:spaceless></f:variable>
 
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="chart-donut-section">
     <d:layout.container size="md">

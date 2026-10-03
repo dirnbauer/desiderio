@@ -8,9 +8,9 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="feature-icons">
     <d:layout.container>
         <f:if condition="{data.header}">
-            <header class="feature-icons__intro">
-                <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
-            </header>
+            <d:molecule.sectionIntro prefix="feature-icons" align="center" class="feature-icons__intro">
+                <f:fragment name="heading">{data -> f:render.text(field: 'header')}</f:fragment>
+            </d:molecule.sectionIntro>
         </f:if>
 
         <div class="feature-icons__grid feature-icons__grid--cols-{data.columns -> f:or(alternative: '4')}">

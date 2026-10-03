@@ -9,7 +9,7 @@
             "icon": "zap",
             "title": "Demo site in one command",
             "description": "<p><strong>desiderio:styleguide:seed</strong> builds a complete demo site. It is safe to rerun and works in workspaces, so you can show a client the same day.</p>",
-            "link": "t3://page?uid=1"
+            "link": "{{page:content-types}}"
         },
         {
             "icon": "shield-check",
@@ -26,7 +26,7 @@
         {
             "icon": "users",
             "title": "Fewer tickets for developers",
-            "description": "<p><strong>Backend previews</strong> for every element and guided forms let people who don't code publish landing pages on their own.</p>",
+            "description": "<p><strong>Backend previews</strong> for every element and guided forms let people who don’t code publish landing pages on their own.</p>",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {

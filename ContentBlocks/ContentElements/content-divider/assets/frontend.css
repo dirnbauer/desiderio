@@ -2,6 +2,11 @@
 .content-divider--spacing-default { padding-block: var(--d-spacing-xl); }
 .content-divider--spacing-lg { padding-block: var(--d-spacing-2xl); }
 
+/* The ink of the rule. The colour variants below change only this. */
+.content-divider {
+    --d-divider-ink: var(--border);
+}
+
 .content-divider__line--full {
     width: 100%;
 }
@@ -14,18 +19,38 @@
 
 .content-divider__line {
     flex: 1;
+    min-width: var(--d-spacing-8);
     height: 1px;
-    background: var(--border);
+    background: var(--d-divider-ink);
+}
+
+/* Hairlines fade out towards their open ends, like the seams between
+   sections (22-modern-base.css), instead of stopping hard at the edge. */
+.content-divider__rule > .content-divider__line:first-child {
+    background: linear-gradient(to left, var(--d-divider-ink), transparent);
+}
+.content-divider__rule > .content-divider__line:last-child {
+    background: linear-gradient(to right, var(--d-divider-ink), transparent);
 }
 
 .content-divider__label {
-    flex: 0 0 auto;
+    flex: 0 1 auto;
+    min-width: 0;
     font-size: var(--d-text-sm);
     font-weight: var(--d-weight-medium);
     line-height: var(--d-leading-tight);
     color: var(--muted-foreground);
     white-space: nowrap;
     letter-spacing: var(--d-tracking-normal);
+}
+
+/* A long label wraps on a phone instead of running off the screen. */
+@media (max-width: 640px) {
+    .content-divider__label {
+        white-space: normal;
+        text-align: center;
+        text-wrap: balance;
+    }
 }
 
 .content-divider__rule--decorative .content-divider__line {
@@ -37,22 +62,28 @@
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 9999px;
-    background: var(--border);
+    background: var(--d-divider-ink);
 }
 
 /* Colour variants. The full-width line reuses the shadcn separator atom
    (data-slot="separator"); the higher-specificity selector overrides its
    default bg-border so the colour choice wins reliably. */
-.content-divider--color-muted .content-divider__line,
-.content-divider--color-muted .content-divider__dot,
-.content-divider--color-muted [data-slot="separator"].content-divider__line--full {
-    background: var(--muted);
+.content-divider--color-muted {
+    --d-divider-ink: var(--muted);
 }
 
-.content-divider--color-primary .content-divider__line,
-.content-divider--color-primary .content-divider__dot,
-.content-divider--color-primary [data-slot="separator"].content-divider__line--full {
-    background: var(--primary);
+.content-divider--color-primary {
+    --d-divider-ink: var(--primary);
+}
+
+.content-divider [data-slot="separator"].content-divider__line--full {
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--d-divider-ink) 12%,
+        var(--d-divider-ink) 88%,
+        transparent
+    );
 }
 
 .content-divider--color-primary .content-divider__label {

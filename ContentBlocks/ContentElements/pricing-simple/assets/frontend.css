@@ -4,6 +4,14 @@
     text-align: center;
 }
 
+/* A single plan with a section headline: the roomier card spacing once
+   there is space for it, so the headline does not sit on the card edge. */
+@media (min-width: 640px) {
+    .pricing-simple__card {
+        --card-spacing: var(--d-spacing-lg);
+    }
+}
+
 .pricing-simple__header {
     text-align: center;
 }

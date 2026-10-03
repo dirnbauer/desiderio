@@ -5,13 +5,13 @@
 }
 .hero-testimonial__grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: var(--d-spacing-2xl);
     align-items: center;
 }
 @media (max-width: 768px) {
     .hero-testimonial__grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         gap: var(--d-spacing-xl);
     }
 }
@@ -26,12 +26,26 @@
     flex-wrap: wrap;
     gap: var(--d-spacing-3);
 }
+/* Phones: the call to action takes the full row. */
+@media (max-width: 639px) {
+    .hero-testimonial__actions > [data-slot="button"] {
+        flex: 1 1 0;
+    }
+}
 .hero-testimonial__quote-card {
     margin: 0;
     padding: var(--d-spacing-8);
     background: var(--d-card);
     border: 1px solid var(--d-border);
     border-radius: var(--d-radius-lg);
+}
+/* A quiet opening mark in the preset's primary ink: decorative, so the
+   icon atom renders it aria-hidden. No display here: the icon library
+   switch shows one of the five SVGs the atom renders. */
+.hero-testimonial__quote-icon {
+    margin-bottom: var(--d-spacing-4);
+    color: var(--d-primary);
+    opacity: 0.7;
 }
 .hero-testimonial__quote {
     margin: 0 0 var(--d-spacing-6);
@@ -63,6 +77,7 @@
 .hero-testimonial__author-info {
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
 .hero-testimonial__author-name {
     font-weight: var(--d-weight-semibold);
@@ -73,4 +88,9 @@
 .hero-testimonial__author-role {
     font-size: var(--d-text-xs);
     color: var(--d-muted-foreground);
+}
+@media (max-width: 639px) {
+    .hero-testimonial__quote-card {
+        padding: var(--d-spacing-6);
+    }
 }

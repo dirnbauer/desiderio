@@ -5,6 +5,35 @@
 
 <f:asset.css identifier="d-product-grid" href="{cb:assetPath()}/frontend.css"/>
 
+<f:section name="products">
+    <div class="product-grid__items product-grid__items--cols-{data.columns -> f:or(alternative: '3')}">
+        <f:for each="{data.products}" as="product">
+            <article class="product-grid__card">
+                <f:if condition="{product.image}">
+                    <div class="product-grid__media">
+                        <f:for each="{product.image}" as="fileReference">
+                            <f:image image="{fileReference}" maxWidth="400" alt="{fileReference.alternative -> f:or(alternative: product.name)}" class="product-grid__image" loading="lazy" decoding="async"/>
+                        </f:for>
+                    </div>
+                </f:if>
+                <div class="product-grid__body">
+                    <d:atom.typography tag="h3" variant="large" class="product-grid__name">{product -> f:render.text(field: 'name')}</d:atom.typography>
+                    <span class="product-grid__price">{product -> f:render.text(field: 'price')}</span>
+                    <f:if condition="{product.description_text}">
+                        <p class="product-grid__desc">{product -> f:render.text(field: 'description_text')}</p>
+                    </f:if>
+                    <f:if condition="{product.link.url}">
+                        <d:atom.link href="{f:uri.typolink(parameter: product.link.url)}" target="{product.link.target}" variant="muted" class="product-grid__link">
+                            <span><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:view_product" default="View product"/><span class="sr-only"> – {product.name}</span></span>
+                            <span class="product-grid__arrow" aria-hidden="true">&rarr;</span>
+                        </d:atom.link>
+                    </f:if>
+                </div>
+            </article>
+        </f:for>
+    </div>
+</f:section>
+
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="product-grid">
     <d:layout.container>
         <f:if condition="{data.eyebrow} || {data.header}">
@@ -18,32 +47,21 @@
             </header>
         </f:if>
 
-        <div class="product-grid__items product-grid__items--cols-{data.columns -> f:or(alternative: '3')}">
-            <f:for each="{data.products}" as="product">
-                <article class="product-grid__card">
-                    <f:if condition="{product.image}">
-                        <div class="product-grid__media">
-                            <f:for each="{product.image}" as="fileReference">
-                                <f:image image="{fileReference}" maxWidth="400" alt="{product.name}" class="product-grid__image" loading="lazy" decoding="async"/>
-                            </f:for>
-                        </div>
-                    </f:if>
-                    <div class="product-grid__body">
-                        <d:atom.typography tag="h3" variant="large" class="product-grid__name">{product -> f:render.text(field: 'name')}</d:atom.typography>
-                        <span class="product-grid__price">{product -> f:render.text(field: 'price')}</span>
-                        <f:if condition="{product.description_text}">
-                            <p class="product-grid__desc">{product -> f:render.text(field: 'description_text')}</p>
-                        </f:if>
-                        <f:if condition="{product.link.url}">
-                            <d:atom.link href="{f:uri.typolink(parameter: product.link.url)}" target="{product.link.target}" variant="muted" class="product-grid__link">
-                                <span><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:view_product" default="View product"/><span class="sr-only"> – {product.name}</span></span>
-                                <span aria-hidden="true">&rarr;</span>
-                            </d:atom.link>
-                        </f:if>
-                    </div>
-                </article>
-            </f:for>
-        </div>
+        <f:comment>
+            Five or more products become one swipeable row on phones instead
+            of a stack several screens tall; the row is a focusable, labelled
+            region so the keyboard can scroll it too.
+        </f:comment>
+        <f:if condition="{data.products -> f:count()} > 4">
+            <f:then>
+                <div class="product-grid__scroller" tabindex="0" role="region" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/ContentBlocks/ContentElements/product-grid/language/labels.xlf:region.label\', default: \'Products\')}')}">
+                    <f:render section="products" arguments="{data: data}"/>
+                </div>
+            </f:then>
+            <f:else>
+                <f:render section="products" arguments="{data: data}"/>
+            </f:else>
+        </f:if>
     </d:layout.container>
 </d:layout.section>
 </html>

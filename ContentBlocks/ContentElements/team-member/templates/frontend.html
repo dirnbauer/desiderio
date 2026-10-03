@@ -19,7 +19,7 @@
                 <div class="team-member__body">
                     <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
                     <f:if condition="{data.role}"><p class="team-member__role">{data -> f:render.text(field: 'role')}</p></f:if>
-                    <f:if condition="{data.bio}"><div class="team-member__bio d-richtext">{data -> f:render.text(field: 'bio')}</div></f:if>
+                    <f:if condition="{data.bio}"><div class="team-member__bio d-richtext max-w-prose">{data -> f:render.text(field: 'bio')}</div></f:if>
                     <f:if condition="{data.email} || {data.phone}">
                         <ul class="team-member__actions" role="list">
                             <f:if condition="{data.email}">
@@ -45,7 +45,7 @@
                             <f:for each="{data.social_links}" as="item">
                                 <f:if condition="{item.url.url}">
                                     <li>
-                                        <d:atom.link href="{f:uri.typolink(parameter: item.url.url)}" target="{item.url.target}" variant="muted" class="team-member__social-link">{item -> f:render.text(field: 'platform')}</d:atom.link>
+                                        <d:atom.link href="{f:uri.typolink(parameter: item.url.url)}" target="{item.url.target}" variant="muted" class="team-member__social-link">{item -> f:render.text(field: 'platform')}<f:if condition="{item.url.target} == '_blank'"><span class="sr-only"> {f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:social.newTab', default: '(opens in a new tab)')}</span></f:if></d:atom.link>
                                     </li>
                                 </f:if>
                             </f:for>

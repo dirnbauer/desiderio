@@ -14,6 +14,8 @@
     border-bottom: 1px solid var(--d-border);
     color: var(--d-foreground);
 }
+/* Centred bar: a message that wraps on a phone stays centred too, instead
+   of starting flush left under a centred link. */
 .announcement-bar__inner {
     display: flex;
     flex-wrap: wrap;
@@ -22,6 +24,7 @@
     row-gap: var(--d-spacing-xs);
     column-gap: var(--d-spacing-md);
     font-size: var(--d-text-sm);
+    text-align: center;
 }
 .announcement-bar__message {
     margin: 0;
@@ -46,17 +49,46 @@
     color: var(--d-muted-foreground);
 }
 .announcement-bar__link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--d-spacing-1);
     font-weight: var(--d-weight-medium);
     text-decoration: underline;
     text-underline-offset: 2px;
     color: inherit;
     border-radius: var(--d-radius-sm);
-    transition: text-decoration-thickness 0.15s ease;
+    transition: text-decoration-thickness var(--d-motion-fast) var(--d-ease);
 }
-.announcement-bar__link:hover {
-    text-decoration-thickness: 2px;
+/* The arrow points at the destination and moves a step towards it on
+   hover — feedback for a pointer, nothing that plays on its own. */
+.announcement-bar__link-icon {
+    display: inline-flex;
+    transition: transform var(--d-motion-fast) var(--d-ease);
+}
+@media (hover: hover) and (pointer: fine) {
+    .announcement-bar__link:hover {
+        text-decoration-thickness: 2px;
+    }
+    .announcement-bar__link:hover .announcement-bar__link-icon {
+        transform: translateX(2px);
+    }
 }
 .announcement-bar__link:focus-visible {
     outline: 2px solid var(--d-ring);
     outline-offset: 2px;
+}
+/* Touch: the slim bar keeps its height, the link gets a 44px hit area. */
+@media (pointer: coarse) {
+    .announcement-bar__link::after {
+        content: "";
+        position: absolute;
+        inset: calc(-1 * var(--d-spacing-3)) calc(-1 * var(--d-spacing-2));
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .announcement-bar__link,
+    .announcement-bar__link-icon {
+        transition: none;
+    }
 }

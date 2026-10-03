@@ -33,22 +33,43 @@
     align-items: stretch;
 }
 
+/* Plans in a row share three rows (header, feature list, footer) through
+   subgrid, so every feature list and every button starts on the same line
+   however long a name or a price runs. */
 .pricing-annual-monthly__item {
-    display: flex;
+    display: grid;
+    grid-row: span 3;
+    grid-template-rows: subgrid;
     min-width: 0;
 }
 
 .pricing-annual-monthly__plan {
     position: relative;
-    flex: 1;
+    grid-row: span 3;
+    display: grid;
+    grid-template-rows: subgrid;
     min-width: 0;
-    height: 100%;
     overflow: visible;
 }
 
-.pricing-annual-monthly__plan--featured {
+.pricing-annual-monthly__header { grid-row: 1; }
+.pricing-annual-monthly__content { grid-row: 2; }
+.pricing-annual-monthly__footer { grid-row: 3; }
+
+/* Featured plan emphasis: a 2px primary ring composed with the card's
+   surface shadow. The [data-slot] qualifier lets it outrank the shared
+   card surface rule, which otherwise painted over the ring. */
+[data-slot="card"].pricing-annual-monthly__plan--featured {
     z-index: 1;
     box-shadow: 0 0 0 1px var(--primary), inset 0 0 0 1px var(--primary), var(--d-surface-shadow);
+}
+
+/* The shared card hover lifts the plan and swaps its ring for a faint one;
+   the featured plan keeps its primary ring while it lifts. */
+@media (hover: hover) and (pointer: fine) {
+    .desiderio-section [data-slot="card"].pricing-annual-monthly__plan--featured:has(a[href]):hover {
+        box-shadow: 0 0 0 1px var(--primary), inset 0 0 0 1px var(--primary), var(--shadow-md, var(--d-surface-shadow));
+    }
 }
 
 .pricing-annual-monthly__ribbon {
@@ -89,6 +110,8 @@
     gap: var(--d-spacing-sm);
     flex-wrap: wrap;
     margin: 0;
+    /* The yearly price sits under the monthly one: same figure widths. */
+    font-variant-numeric: tabular-nums;
 }
 
 .pricing-annual-monthly__annual-period {
@@ -97,10 +120,6 @@
 
 .pricing-annual-monthly__savings {
     display: inline-flex;
-}
-
-.pricing-annual-monthly__content {
-    flex: 1 1 auto;
 }
 
 .pricing-annual-monthly__features {

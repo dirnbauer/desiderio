@@ -1,4 +1,7 @@
+/* Same 42rem column as the quote, so heading and quote share a start edge. */
 .quote-section__headline {
+    max-width: 42rem;
+    margin-inline: auto;
     margin-block-end: var(--d-spacing-lg);
 }
 .quote {
@@ -8,9 +11,16 @@
 
 /* Quote glyph: a small, tasteful shadcn-style icon — never an oversized
    decorative character. Hidden for the plain blockquote, shown as a subtle
-   accent above the text on the featured and card variants. */
-.quote__mark {
+   accent above the text on the featured and card variants. It is hidden on
+   its wrapper: the icon library switch (body[data-icon-library] .d-icon)
+   outranks any class on the svg, so the bordered quote showed it anyway. */
+.quote__mark-box {
+    display: block;
+}
+.quote--bordered .quote__mark-box {
     display: none;
+}
+.quote__mark {
     width: 2rem;
     height: 2rem;
     margin-block-end: var(--d-spacing-sm);

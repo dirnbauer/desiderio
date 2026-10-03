@@ -8,9 +8,9 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="navbar-split" spacing="none">
     <d:layout.container>
         <nav class="navbar-split__inner" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:navbar.split.aria\', default: \'Split navigation\')}')}">
-            <ul class="navbar-split__left">
+            <ul class="navbar-split__left" role="list">
                 <f:for each="{data.left_items}" as="item">
-                    <li><f:if condition="{item.link.url}"><d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="navbar-split__link">{item -> f:render.text(field: 'label')}</d:atom.link></f:if></li>
+                    <li><f:if condition="{item.link.url}"><f:then><d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="navbar-split__link">{item -> f:render.text(field: 'label')}</d:atom.link></f:then><f:else><span class="navbar-split__link navbar-split__link--static">{item -> f:render.text(field: 'label')}</span></f:else></f:if></li>
                 </f:for>
             </ul>
             <div class="navbar-split__brand">
@@ -20,9 +20,9 @@
                 </f:if>
             </div>
             <div class="navbar-split__right">
-                <ul class="navbar-split__right-nav">
+                <ul class="navbar-split__right-nav" role="list">
                     <f:for each="{data.right_items}" as="item">
-                        <li><f:if condition="{item.link.url}"><d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="navbar-split__link">{item -> f:render.text(field: 'label')}</d:atom.link></f:if></li>
+                        <li><f:if condition="{item.link.url}"><f:then><d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="navbar-split__link">{item -> f:render.text(field: 'label')}</d:atom.link></f:then><f:else><span class="navbar-split__link navbar-split__link--static">{item -> f:render.text(field: 'label')}</span></f:else></f:if></li>
                     </f:for>
                 </ul>
                 <f:if condition="{data.button_text} && {data.button_link.url}">

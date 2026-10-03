@@ -1,12 +1,12 @@
 .feature-image__grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: var(--d-spacing-2xl);
     align-items: center;
 }
 .feature-image--left .feature-image__copy { order: 2; }
 @media (max-width: 768px) {
-    .feature-image__grid { grid-template-columns: 1fr; }
+    .feature-image__grid { grid-template-columns: minmax(0, 1fr); }
     .feature-image--left .feature-image__copy { order: 0; }
 }
 .feature-image__eyebrow {

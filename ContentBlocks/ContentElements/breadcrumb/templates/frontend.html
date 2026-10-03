@@ -10,7 +10,7 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="breadcrumb" spacing="sm">
     <d:layout.container>
         <nav class="breadcrumb__nav" aria-label="{navLabel -> f:format.stripTags() -> f:format.trim()}" data-slot="breadcrumb">
-            <ol class="breadcrumb__list" data-slot="breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
+            <ol class="breadcrumb__list" role="list" data-slot="breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
                 <f:for each="{data.items}" as="item" iteration="iterator">
                     <li class="breadcrumb__item" data-slot="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
                         <f:if condition="{iterator.isLast}">

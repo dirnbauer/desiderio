@@ -87,7 +87,7 @@
                             <d:molecule.card class="team__member">
                             <f:if condition="{member.image}">
                                 <f:for each="{member.image}" as="fileReference">
-                                    <d:molecule.figure image="{fileReference}" maxImageWidth="640" caption="{fileReference.description}" class="team__figure" imageClass="team__image" captionClass="team__credit" />
+                                    <d:molecule.figure image="{fileReference}" alt="{fileReference.alternative}" maxImageWidth="640" caption="{fileReference.description}" class="team__figure" imageClass="team__image" captionClass="team__credit" />
                                 </f:for>
                             </f:if>
                             <d:molecule.cardHeader>

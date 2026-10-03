@@ -17,10 +17,10 @@
             <div class="hero-pricing__card" data-slot="card">
                 <p class="hero-pricing__price-row">
                     <span class="hero-pricing__price">{data -> f:render.text(field: 'price')}</span>
-                    <f:if condition="{data.price_period}"><span class="hero-pricing__period">/{data -> f:render.text(field: 'price_period')}</span></f:if>
+                    <f:if condition="{data.price_period}"><span class="hero-pricing__period">{data -> f:render.text(field: 'price_period')}</span></f:if>
                 </p>
                 <f:if condition="{data.feature_items}">
-                    <ul class="hero-pricing__features">
+                    <ul class="hero-pricing__features" role="list">
                         <f:for each="{data.feature_items}" as="feature">
                             <li class="hero-pricing__feature">
                                 <d:atom.icon name="check" class="hero-pricing__feature-icon" />

@@ -8,8 +8,12 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="callback-request">
     <d:layout.container>
         <d:molecule.card class="callback-request__card">
-            <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-            <f:if condition="{data.description}"><d:atom.typography tag="div" variant="muted" class="d-richtext">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
+            <f:if condition="{data.header} || {data.description}">
+                <div class="callback-request__intro">
+                    <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+                    <f:if condition="{data.description}"><d:atom.typography tag="div" variant="muted" class="d-richtext">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
+                </div>
+            </f:if>
 
             <d:molecule.formRenderer persistenceIdentifier="EXT:desiderio/Resources/Private/Forms/DesiderioCallback.form.yaml" class="callback-request__form"/>
         </d:molecule.card>

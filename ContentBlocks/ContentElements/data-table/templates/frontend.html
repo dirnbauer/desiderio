@@ -11,10 +11,15 @@
             <d:atom.typography tag="h2" variant="h2" class="data-table__header">{data -> f:render.text(field: 'header')}</d:atom.typography>
         </f:if>
 
-        <div class="data-table__region" role="region" tabindex="0" aria-label="{f:if(condition: data.header, then: '{data.header}', else: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:table.aria.region\', default: \'Data table\')}')}">
+        <div class="data-table__region tabular-nums" role="region" tabindex="0" aria-label="{f:if(condition: data.header, then: '{data.header}', else: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:table.aria.region\', default: \'Data table\')}')}">
         <d:molecule.table>
             <f:if condition="{data.show_caption} && {data.caption_text}">
-                <caption class="data-table__caption">{data -> f:render.text(field: 'caption_text')}</caption>
+                <f:then>
+                    <caption class="data-table__caption">{data -> f:render.text(field: 'caption_text')}</caption>
+                </f:then>
+                <f:else if="{data.header}">
+                    <caption class="sr-only">{data.header}</caption>
+                </f:else>
             </f:if>
             <f:if condition="{data.show_header_row} && {data.column_definitions}">
                 <d:molecule.tableHeader>

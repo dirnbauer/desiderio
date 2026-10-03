@@ -13,5 +13,11 @@
         <target>Eine barrierefreie Vergleichstabelle, die zwei bis vier Tarife als Spalten — Tarifname und optionaler Preis im Kopf — Funktionszeilen gegenüberstellt, deren Zellen Freitextwerte wie Unbegrenzt, 10 GB oder ein Häkchen enthalten. Nutzen Sie es für: Matrizen zur Funktionsverfügbarkeit, Was-ist-enthalten-Tabellen, Limits je Tarif unterhalb eines Preisbereichs. Bevorzugen Sie kartenbasierte Elemente wie 'Pricing Section' zum Verkaufen von Tarifen; 'Feature Comparison Table' vergleicht zwei Optionen, 'Comparison Table' dient Vergleichen außerhalb der Preise.</target>
       </segment>
     </unit>
+    <unit id="scroll.hint">
+      <segment state="final">
+        <source>Swipe to see all plans</source>
+        <target>Wischen Sie, um alle Tarife zu sehen</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

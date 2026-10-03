@@ -50,7 +50,7 @@
     color: color-mix(in oklch, var(--secondary-foreground), var(--foreground) 35%);
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
-    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+    transition: color var(--d-motion) var(--d-ease), border-color var(--d-motion) var(--d-ease), background-color var(--d-motion) var(--d-ease);
 }
 /* Announce the trend badge with a gentle entrance so a changed trend direction is noticed;
    colour/border transitions above cover in-place trend swaps (e.g. visual-editor edits). */
@@ -60,7 +60,8 @@
 }
 @media (prefers-reduced-motion: no-preference) {
     .chart-sparkline__badge {
-        animation: chart-sparkline-badge-in 480ms cubic-bezier(0.16, 1, 0.3, 1) both;
+        /* Interface timing: under 300ms, strong ease-out. */
+        animation: chart-sparkline-badge-in var(--d-motion) var(--d-ease) both;
     }
 }
 .chart-sparkline__badge-icon {
@@ -111,13 +112,15 @@
    the area fill deepens while the pointer is over the plot. */
 .chart-sparkline__svg polyline,
 .chart-sparkline__svg polygon {
-    transition: stroke-width 0.2s ease, opacity 0.2s ease;
+    transition: stroke-width var(--d-motion) var(--d-ease), opacity var(--d-motion) var(--d-ease);
 }
-.chart-sparkline__plot:hover .chart-sparkline__svg polyline {
-    stroke-width: 3;
-}
-.chart-sparkline__plot:hover .chart-sparkline__svg polygon {
-    opacity: 0.2;
+@media (hover: hover) and (pointer: fine) {
+    .chart-sparkline__plot:hover .chart-sparkline__svg polyline {
+        stroke-width: 3;
+    }
+    .chart-sparkline__plot:hover .chart-sparkline__svg polygon {
+        opacity: 0.2;
+    }
 }
 
 /* Single-series sparkline colour, sourced from the shadcn chart palette only. The editor's
@@ -125,6 +128,20 @@
 .chart-sparkline--primary { --chart-color: var(--chart-1); }
 .chart-sparkline--blue { --chart-color: var(--chart-2); }
 .chart-sparkline--green { --chart-color: var(--chart-3); }
+
+/* Phones: the plot keeps a readable 36rem width and scrolls sideways, like
+   the area and bar charts, instead of shrinking its axis labels to 5px. The
+   start padding is the gutter the overflowing y-axis labels need. */
+@media (max-width: 640px) {
+    .chart-sparkline__plot {
+        overflow-x: auto;
+        scrollbar-gutter: stable;
+        padding-inline-start: calc(var(--d-spacing-xl) + var(--d-spacing-sm));
+    }
+    .chart-sparkline__svg {
+        min-width: 36rem;
+    }
+}
 
 @media (max-width: 480px) {
     .chart-sparkline__card {

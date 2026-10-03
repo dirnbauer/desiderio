@@ -7,30 +7,68 @@
     margin-inline: auto;
 }
 .hero-announcement__banner {
+    position: relative;
     display: inline-flex;
     align-items: center;
+    max-width: 100%;
     padding: var(--d-spacing-1) var(--d-spacing-4);
     background: var(--d-muted);
     border: 1px solid var(--d-border);
     border-radius: var(--d-radius-full);
     font-size: var(--d-text-sm);
     margin-bottom: var(--d-spacing-6);
+    transition: border-color var(--d-motion-fast) var(--d-ease);
 }
 .hero-announcement__banner-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--d-spacing-2);
     color: var(--d-foreground);
     text-decoration: none;
     font-weight: var(--d-weight-medium);
 }
-.hero-announcement__banner-link:hover {
-    text-decoration: underline;
+/* The whole pill is the hit area, not only the words. */
+.hero-announcement__banner-link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--d-radius-full);
 }
 .hero-announcement__banner-link:focus-visible {
+    outline: none;
+}
+.hero-announcement__banner-link:focus-visible::after {
     outline: 2px solid var(--d-ring);
     outline-offset: 2px;
-    border-radius: var(--d-radius-sm);
 }
+.hero-announcement__banner-icon {
+    width: 1em;
+    height: 1em;
+    color: var(--d-muted-foreground);
+    transition: transform var(--d-motion-fast) var(--d-ease), color var(--d-motion-fast) var(--d-ease);
+}
+/* Touch: the pill is a 44px target. */
+@media (pointer: coarse) {
+    .hero-announcement__banner {
+        min-height: 2.75rem;
+    }
+}
+@media (hover: hover) and (pointer: fine) {
+    .hero-announcement__banner:has(.hero-announcement__banner-link:hover) {
+        border-color: color-mix(in oklch, var(--d-foreground) 22%, transparent);
+    }
+    .hero-announcement__banner-link:hover .hero-announcement__banner-text {
+        text-decoration: underline;
+        text-underline-offset: 0.2em;
+    }
+    .hero-announcement__banner-link:hover .hero-announcement__banner-icon {
+        color: var(--d-foreground);
+        transform: translateX(var(--d-spacing-0-5));
+    }
+}
+/* One step smaller on phones, like the other heroes. */
 .hero-announcement__headline {
-    font-size: var(--d-text-5xl);
+    font-size: var(--d-text-4xl);
     font-weight: var(--d-weight-bold);
     line-height: var(--d-leading-tight);
     margin-bottom: var(--d-spacing-4);
@@ -45,4 +83,15 @@
     flex-wrap: wrap;
     gap: var(--d-spacing-3);
     justify-content: center;
+}
+/* Phones: the buttons share the row in equal parts. */
+@media (max-width: 639px) {
+    .hero-announcement__actions > [data-slot="button"] {
+        flex: 1 1 0;
+    }
+}
+@media (min-width: 768px) {
+    .hero-announcement__headline {
+        font-size: var(--d-text-5xl);
+    }
 }

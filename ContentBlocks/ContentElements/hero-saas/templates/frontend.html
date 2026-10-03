@@ -13,7 +13,7 @@
             <f:if condition="{data.subheadline}">
                 <d:atom.typography variant="lead" class="hero-saas__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
             </f:if>
-            <d:molecule.actionGroup class="hero-saas__actions">
+            <d:molecule.actionGroup class="hero-saas__actions" align="center">
                 <f:if condition="{data.primary_button_text} && {data.primary_button_link.url}">
                     <d:atom.button href="{f:uri.typolink(parameter: data.primary_button_link.url)}" target="{data.primary_button_link.target}" size="lg">{data -> f:render.text(field: 'primary_button_text')}</d:atom.button>{data -> f:render.link(field: 'primary_button_link')}
                 </f:if>
@@ -25,14 +25,14 @@
         <f:if condition="{data.dashboard_image}">
             <div class="hero-saas__preview">
                 <f:for each="{data.dashboard_image}" as="image">
-                    <f:image image="{image}" class="hero-saas__dashboard" alt="{f:if(condition: image.alternative, then: image.alternative, else: data.header)}" loading="eager" fetchpriority="high" decoding="async"/>
+                    <f:image image="{image}" class="hero-saas__dashboard" alt="{f:if(condition: image.alternative, then: image.alternative, else: data.header)}" maxWidth="2400" loading="eager" fetchpriority="high" decoding="async"/>
                 </f:for>
             </div>
         </f:if>
         <f:if condition="{data.logo_items}">
             <div class="hero-saas__trust">
                 <p class="hero-saas__trust-label" id="hero-saas-trust-{data.uid}">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:trust.label', default: 'Trusted by teams at')}</p>
-                <ul class="hero-saas__logos" aria-labelledby="hero-saas-trust-{data.uid}">
+                <ul class="hero-saas__logos" role="list" aria-labelledby="hero-saas-trust-{data.uid}">
                     <f:for each="{data.logo_items}" as="logo">
                         <li class="hero-saas__logo">{logo -> f:render.text(field: 'name')}</li>
                     </f:for>

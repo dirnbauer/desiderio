@@ -20,7 +20,10 @@
 
                 <d:molecule.formRenderer persistenceIdentifier="EXT:desiderio/Resources/Private/Forms/DesiderioNewsletter.form.yaml" class="footer-newsletter__form"/>
                 <f:if condition="{data.privacy_notice}">
-                    <p class="footer-newsletter__privacy">{data -> f:render.text(field: 'privacy_notice')}</p>
+                    <p class="footer-newsletter__privacy">
+                        <d:atom.icon name="lock" size="xs" class="footer-newsletter__privacy-icon" />
+                        <span>{data -> f:render.text(field: 'privacy_notice')}</span>
+                    </p>
                 </f:if>
             </div>
         </div>

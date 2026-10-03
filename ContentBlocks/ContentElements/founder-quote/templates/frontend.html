@@ -13,20 +13,22 @@
             </header>
         </f:if>
 
-        <div class="founder-quote__card">
+        <figure class="founder-quote__card">
             <f:if condition="{data.image}">
                 <div class="founder-quote__image-wrapper">
                     <f:for each="{data.image}" as="fileReference">
-                        <f:image image="{fileReference}" width="120" height="120" alt="{fileReference.alternative -> f:or(alternative: data.name)}" loading="lazy" decoding="async" class="founder-quote__image" additionalAttributes="{srcset: '{f:uri.image(image: fileReference, width: \'120\', height: \'120\')} 1x, {f:uri.image(image: fileReference, width: \'240\', height: \'240\')} 2x'}"/>
+                        <f:image image="{fileReference}" width="120c" height="120c" alt="{fileReference.alternative -> f:or(alternative: data.name)}" loading="lazy" decoding="async" class="founder-quote__image" additionalAttributes="{srcset: '{f:uri.image(image: fileReference, width: \'120c\', height: \'120c\')} 1x, {f:uri.image(image: fileReference, width: \'240c\', height: \'240c\')} 2x'}"/>
                     </f:for>
                 </div>
             </f:if>
             <blockquote class="founder-quote__text">{data -> f:render.text(field: 'quote')}</blockquote>
-            <footer class="founder-quote__author">
-                <f:if condition="{data.name}"><cite class="founder-quote__name">{data -> f:render.text(field: 'name')}</cite></f:if>
-                <f:if condition="{data.title}"><span class="founder-quote__title">{data -> f:render.text(field: 'title')}</span></f:if>
-            </footer>
-        </div>
+            <f:if condition="{data.name} || {data.title}">
+                <figcaption class="founder-quote__author">
+                    <f:if condition="{data.name}"><cite class="founder-quote__name">{data -> f:render.text(field: 'name')}</cite></f:if>
+                    <f:if condition="{data.title}"><span class="founder-quote__title">{data -> f:render.text(field: 'title')}</span></f:if>
+                </figcaption>
+            </f:if>
+        </figure>
     </d:layout.container>
 </d:layout.section>
 

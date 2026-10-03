@@ -12,7 +12,7 @@
         </f:if>
 
         <figure class="quote quote--{data.variant -> f:or(alternative: 'bordered')}">
-            <d:atom.icon name="quote" size="default" class="quote__mark" />
+            <span class="quote__mark-box" aria-hidden="true"><d:atom.icon name="quote" size="default" class="quote__mark" /></span>
             <blockquote class="quote__text">
                 <p>{data -> f:render.text(field: 'quote_text')}</p>
             </blockquote>

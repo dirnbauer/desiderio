@@ -15,7 +15,7 @@
             <f:for each="{data.groups}" as="group" iteration="groupIter">
                 <div class="sitemap-grid__group">
                     <d:atom.typography tag="h3" variant="small" class="sitemap-grid__group-title" attributes="{id: 'sitemap-grid-{data.uid}-{groupIter.cycle}'}">{group -> f:render.text(field: 'title')}</d:atom.typography>
-                    <ul class="sitemap-grid__links" aria-labelledby="sitemap-grid-{data.uid}-{groupIter.cycle}">
+                    <ul class="sitemap-grid__links" role="list" aria-labelledby="sitemap-grid-{data.uid}-{groupIter.cycle}">
                         <f:for each="{group.pages}" as="page">
                             <f:if condition="{page.label}">
                                 <li class="sitemap-grid__item">

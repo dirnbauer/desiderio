@@ -26,11 +26,11 @@
                         <figcaption class="testimonial-grid__author">
                             <f:if condition="{item.author_image}">
                                 <f:for each="{item.author_image}" as="fileReference">
-                                    <f:image image="{fileReference}" width="48" height="48" alt="{fileReference.alternative}" loading="lazy" decoding="async" class="testimonial-grid__avatar" additionalAttributes="{srcset: '{f:uri.image(image: fileReference, width: \'48\', height: \'48\')} 1x, {f:uri.image(image: fileReference, width: \'96\', height: \'96\')} 2x'}"/>
+                                    <f:image image="{fileReference}" width="48c" height="48c" alt="{fileReference.alternative}" loading="lazy" decoding="async" class="testimonial-grid__avatar" additionalAttributes="{srcset: '{f:uri.image(image: fileReference, width: \'48c\', height: \'48c\')} 1x, {f:uri.image(image: fileReference, width: \'96c\', height: \'96c\')} 2x'}"/>
                                 </f:for>
                             </f:if>
                             <div class="testimonial-grid__meta">
-                                <cite class="testimonial-grid__name">{item -> f:render.text(field: 'author_name')}</cite>
+                                <span class="testimonial-grid__name">{item -> f:render.text(field: 'author_name')}</span>
                                 <f:if condition="{item.author_title}">
                                     <span class="testimonial-grid__role">{item -> f:render.text(field: 'author_title')}</span>
                                 </f:if>

@@ -11,6 +11,7 @@
     margin-bottom: var(--d-spacing-3);
 }
 .hero-search__subheadline {
+    margin-inline: auto;
     margin-bottom: var(--d-spacing-8);
 }
 .hero-search__form {
@@ -24,6 +25,7 @@
 }
 .hero-search__input {
     flex: 1 1 12rem;
+    min-width: 0;
     height: var(--hero-search-control-height);
     padding: 0 var(--d-spacing-4);
     color: var(--d-foreground);
@@ -32,7 +34,7 @@
     font-size: var(--d-text-base);
     background: var(--d-background);
     box-shadow: var(--d-shadow-xs);
-    transition: border-color 0.15s ease;
+    transition: border-color var(--d-motion-fast) var(--d-ease);
 }
 .hero-search__form [data-slot="button"][type="submit"] {
     height: var(--hero-search-control-height);
@@ -40,9 +42,6 @@
 }
 .hero-search__input::placeholder {
     color: var(--d-muted-foreground);
-}
-.hero-search__input:hover {
-    border-color: color-mix(in oklab, var(--d-ring) 45%, transparent);
 }
 .hero-search__input:focus-visible {
     outline: var(--d-ring-width, 2px) solid var(--d-ring);
@@ -56,6 +55,7 @@
     flex-wrap: wrap;
 }
 .hero-search__category {
+    position: relative;
     padding: var(--d-spacing-1) var(--d-spacing-3);
     font-size: var(--d-text-sm);
     color: var(--d-muted-foreground);
@@ -63,15 +63,33 @@
     border: 1px solid var(--d-border);
     border-radius: var(--d-radius-full);
     text-decoration: none;
-    transition: border-color 0.15s, color 0.15s;
+    transition: border-color var(--d-motion-fast) var(--d-ease), color var(--d-motion-fast) var(--d-ease);
 }
-.hero-search__category:hover {
-    border-color: var(--d-primary);
-    color: var(--d-foreground);
+@media (hover: hover) and (pointer: fine) {
+    .hero-search__input:hover {
+        border-color: color-mix(in oklab, var(--d-ring) 45%, transparent);
+    }
+    .hero-search__category:hover {
+        border-color: var(--d-primary);
+        color: var(--d-foreground);
+    }
 }
 .hero-search__category:focus-visible {
     outline: 2px solid var(--d-ring);
     outline-offset: 2px;
+}
+/* Touch: a taller pill plus a hit area that reaches into half of the gap on
+   each side, 44px in all, without the areas of neighbours overlapping. */
+@media (pointer: coarse) {
+    .hero-search__category {
+        padding-block: var(--d-spacing-2);
+    }
+    .hero-search__category::after {
+        content: "";
+        position: absolute;
+        inset: calc(var(--d-spacing-1) * -1);
+        border-radius: inherit;
+    }
 }
 @media (prefers-reduced-motion: reduce) {
     .hero-search__category,

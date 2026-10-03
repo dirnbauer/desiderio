@@ -14,6 +14,10 @@
     overflow-wrap: anywhere;
     text-wrap: balance;
 }
+/* Without a badge above it the headline starts flush with the content. */
+.hero-saas__content > .hero-saas__headline:first-child {
+    margin-top: 0;
+}
 .hero-saas__subheadline {
     margin-bottom: var(--d-spacing-6);
     overflow-wrap: anywhere;
@@ -23,6 +27,12 @@
     gap: var(--d-spacing-3);
     justify-content: center;
     flex-wrap: wrap;
+}
+/* Phones: the buttons share the row in equal parts. */
+@media (max-width: 639px) {
+    .hero-saas__actions > [data-slot="button"] {
+        flex: 1 1 0;
+    }
 }
 .hero-saas__preview {
     margin-bottom: var(--d-spacing-10);

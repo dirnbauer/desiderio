@@ -10,7 +10,12 @@
     margin-top: var(--d-spacing-4);
     margin-bottom: var(--d-spacing-4);
 }
+/* Without a badge above it the headline starts flush with the content. */
+.hero-startup__content > .hero-startup__headline:first-child {
+    margin-top: 0;
+}
 .hero-startup__subheadline {
+    margin-inline: auto;
     margin-bottom: var(--d-spacing-8);
 }
 .hero-startup__input-group {
@@ -44,15 +49,22 @@
 .hero-startup__form .form-control {
     width: 100%;
 }
+/* Field and button share one height, taken from the preset's control
+   height, so the inline row reads as one control. */
+.hero-startup__form .form-control,
+.hero-startup__form .actions .btn-primary {
+    height: calc(var(--d-control-h, 2.25rem) + var(--d-spacing-2));
+    min-height: 0;
+}
+.hero-startup__form .form-control {
+    padding-block: 0;
+}
 .hero-startup__form .actions,
 .hero-startup__form .form-navigation {
     grid-column: 2;
     grid-row: 1;
     align-self: end;
     margin: 0;
-}
-.hero-startup__form .btn-primary {
-    min-height: var(--d-control-height, 2.5rem);
 }
 .hero-startup__form form > .frc-captcha,
 .hero-startup__form form > .form-element:has(.frc-captcha),
@@ -93,13 +105,16 @@
 .hero-startup__avatar:first-child {
     margin-inline-start: 0;
 }
+/* A one-line claim: when it has to wrap, both lines get a fair share
+   instead of one word on its own. */
 .hero-startup__proof-text {
     font-size: var(--d-text-sm);
     color: var(--d-muted-foreground);
+    text-wrap: balance;
 }
 @media (max-width: 640px) {
     .hero-startup__form form {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         align-items: stretch;
     }
     .hero-startup__form .form-element-email,
@@ -110,6 +125,10 @@
     .hero-startup__form form > div:not(.form-element):has(> .frc-captcha) {
         grid-column: 1;
         grid-row: auto;
+    }
+    /* The navigation fills the actions row, so the button can fill it. */
+    .hero-startup__form .actions > .form-navigation {
+        flex: 1 1 auto;
     }
     .hero-startup__form .btn-primary {
         width: 100%;

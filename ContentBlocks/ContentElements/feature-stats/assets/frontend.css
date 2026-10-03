@@ -1,42 +1,49 @@
+/* The copy is a heading and a line or two: a narrower column, centred on the
+   figures, instead of a half-width column that left an empty panel below it. */
 .feature-stats__layout {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
     gap: var(--d-spacing-2xl);
-    align-items: start;
+    align-items: center;
 }
 @media (max-width: 768px) {
-    .feature-stats__layout { grid-template-columns: 1fr; }
+    .feature-stats__layout { grid-template-columns: minmax(0, 1fr); }
 }
 .feature-stats__layout--full {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
 }
-.feature-stats__description {
-    margin-top: var(--d-spacing-md);
+/* The intro sits in the side column: no bottom margin, and the heading keeps
+   its 1rem distance to the line below it. */
+.feature-stats__copy {
+    gap: var(--d-spacing-md);
+    margin-block-end: 0;
 }
 .feature-stats__grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--d-spacing-lg);
     margin: 0;
 }
 .feature-stats__layout--full .feature-stats__grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 @media (min-width: 768px) {
     .feature-stats__layout--full .feature-stats__grid {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 }
+/* Each figure spans three rows of the grid and puts its value, label and
+   detail on them (subgrid): a label that wraps to two lines moves every
+   detail of that row down together, so the details still line up. The
+   figure is not a link, so it has no hover state. */
 .feature-stats__item {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-row: span 3;
+    grid-template-rows: subgrid;
+    row-gap: var(--d-spacing-xs);
     margin: 0;
     padding-inline-start: var(--d-spacing-md);
     border-inline-start: 2px solid var(--border);
-    transition: border-color 0.2s ease;
-}
-.feature-stats__item:hover {
-    border-inline-start-color: var(--primary);
 }
 /* dt precedes dd in the DOM for valid description-list semantics;
    visually the value stays on top. */
@@ -61,11 +68,17 @@
     font-size: var(--d-text-sm);
     font-weight: var(--d-weight-semibold);
     color: var(--foreground);
-    margin: var(--d-spacing-xs) 0 0;
+    margin: 0;
 }
 .feature-stats__detail {
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
     line-height: var(--d-leading-normal);
-    margin: var(--d-spacing-xs) 0 0;
+    margin: 0;
 }
+/* The figures arrive one after another: the shared reveal (04-astro.css)
+   delays each item by --d-i x 50ms, and only without reduced motion. */
+.feature-stats__item:nth-child(1) { --d-i: 0; }
+.feature-stats__item:nth-child(2) { --d-i: 1; }
+.feature-stats__item:nth-child(3) { --d-i: 2; }
+.feature-stats__item:nth-child(4) { --d-i: 3; }

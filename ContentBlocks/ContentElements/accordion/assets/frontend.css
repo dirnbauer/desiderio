@@ -35,11 +35,23 @@
     line-height: var(--d-leading-normal);
     min-width: 0;
     overflow-wrap: anywhere;
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 1px;
+}
+/* The shadcn trigger underlines its label on hover; only for a real pointer
+   here, so a tapped question does not stay underlined on a phone. */
+.accordion-section .accordion__trigger:hover {
+    text-decoration: none;
+}
+@media (hover: hover) and (pointer: fine) {
+    .accordion-section .accordion__trigger:hover .accordion__title {
+        text-decoration-line: underline;
+    }
 }
 .accordion__icon {
     flex-shrink: 0;
     color: var(--muted-foreground);
-    transition: transform 0.2s ease;
+    transition: transform var(--d-motion) var(--d-ease);
 }
 @media (prefers-reduced-motion: reduce) {
     .accordion__icon { transition: none; }
@@ -55,6 +67,64 @@ details[open] > .accordion__trigger > .accordion__icon {
     min-width: 0;
     overflow-wrap: anywhere;
 }
-.accordion__content > *:first-child { margin-top: 0; }
-.accordion__content > *:last-child { margin-bottom: 0; }
-.accordion__content a { color: var(--d-link, var(--primary)); text-decoration: underline; text-underline-offset: 2px; }
+/* components-03-elements.css styles a script-driven accordion with the same
+   class names and caps .accordion__content at 500px with overflow hidden.
+   This element is native <details>: a long answer must never be cut off. */
+.accordion-section .accordion__content {
+    max-height: none;
+    overflow: visible;
+    opacity: 1;
+    transition: none;
+}
+
+/* Opening slides the answer down, closing is a little quicker. Native
+   <details> keeps working without it: browsers without ::details-content
+   or interpolate-size simply open at once. */
+@media (prefers-reduced-motion: no-preference) {
+    .accordion {
+        interpolate-size: allow-keywords;
+    }
+    .accordion__item::details-content {
+        block-size: 0;
+        overflow-y: clip;
+        transition:
+            block-size var(--d-motion-fast) var(--d-ease),
+            content-visibility var(--d-motion-fast) allow-discrete;
+    }
+    .accordion__item[open]::details-content {
+        block-size: auto;
+        transition-duration: var(--d-motion);
+    }
+}
+
+/* Answers from the RTE (d-richtext), scoped to this element: spacing between
+   siblings, list markers, heading sizes and a visible link. */
+.accordion__content.d-richtext > * { margin-block: 0; }
+.accordion__content.d-richtext > * + * { margin-block-start: var(--d-spacing-sm); }
+.accordion__content.d-richtext > * + :is(h2, h3, h4, h5, h6) { margin-block-start: var(--d-spacing-md); }
+.accordion__content.d-richtext :is(ul, ol) { padding-inline-start: var(--d-spacing-lg); }
+.accordion__content.d-richtext ul { list-style: disc; }
+.accordion__content.d-richtext ol { list-style: decimal; }
+.accordion__content.d-richtext li + li { margin-block-start: var(--d-spacing-2xs); }
+.accordion__content.d-richtext :is(h2, h3, h4, h5, h6) {
+    color: var(--foreground);
+    font-size: var(--d-text-base);
+    font-weight: var(--d-weight-semibold);
+    line-height: var(--d-leading-snug);
+}
+.accordion__content.d-richtext a {
+    color: var(--d-link, var(--primary));
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: color-mix(in oklch, currentColor 45%, transparent);
+    text-underline-offset: 0.22em;
+    border-radius: var(--d-radius-sm);
+    transition: text-decoration-color var(--d-motion-fast) var(--d-ease);
+}
+.accordion__content.d-richtext a:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+@media (hover: hover) and (pointer: fine) {
+    .accordion__content.d-richtext a:hover { text-decoration-color: currentColor; }
+}

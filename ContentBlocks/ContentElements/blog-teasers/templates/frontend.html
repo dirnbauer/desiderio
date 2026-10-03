@@ -14,34 +14,36 @@
             </d:molecule.sectionIntro>
         </f:if>
 
-        <ul class="blog-teasers__grid blog-teasers__grid--cols-{data.columns -> f:or(alternative: '3')}" role="list">
-            <f:for each="{data.posts}" as="post">
-                <li class="blog-teasers__cell">
-                    <article class="blog-teasers__item">
-                        <f:if condition="{post.image.0}">
-                            <div class="blog-teasers__image-wrapper">
-                                <f:image image="{post.image.0}" alt="{post.image.0.alternative}" maxWidth="960" class="blog-teasers__image" loading="lazy" decoding="async"/>
-                            </div>
-                        </f:if>
-                        <div class="blog-teasers__body">
-                            <div class="blog-teasers__meta-row">
-                                <f:if condition="{post.category}"><span class="blog-teasers__category">{post -> f:render.text(field: 'category')}</span></f:if>
-                                <f:if condition="{post.meta}"><span class="blog-teasers__meta">{post -> f:render.text(field: 'meta')}</span></f:if>
-                            </div>
-                            <d:atom.typography tag="h3" variant="large" class="blog-teasers__title">
-                                <f:if condition="{post.link.url}">
-                                    <f:then><d:atom.link href="{f:uri.typolink(parameter: post.link.url)}" target="{post.link.target}" variant="muted" class="blog-teasers__title-link focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/30">{post -> f:render.text(field: 'title')}</d:atom.link></f:then>
-                                    <f:else>{post -> f:render.text(field: 'title')}</f:else>
-                                </f:if>
-                            </d:atom.typography>
-                            <f:if condition="{post.excerpt}">
-                                <div class="blog-teasers__excerpt d-richtext">{post -> f:render.text(field: 'excerpt')}</div>
+        <div class="blog-teasers__scroller" role="region" tabindex="0" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.aria.collection\', default: \'Content collection\')}')}">
+            <ul class="blog-teasers__grid blog-teasers__grid--cols-{data.columns -> f:or(alternative: '3')}" role="list">
+                <f:for each="{data.posts}" as="post">
+                    <li class="blog-teasers__cell">
+                        <article class="blog-teasers__item">
+                            <f:if condition="{post.image.0}">
+                                <div class="blog-teasers__image-wrapper">
+                                    <f:image image="{post.image.0}" alt="{post.image.0.alternative}" maxWidth="960" class="blog-teasers__image" loading="lazy" decoding="async"/>
+                                </div>
                             </f:if>
-                        </div>
-                    </article>
-                </li>
-            </f:for>
-        </ul>
+                            <div class="blog-teasers__body">
+                                <div class="blog-teasers__meta-row">
+                                    <f:if condition="{post.category}"><span class="blog-teasers__category">{post -> f:render.text(field: 'category')}</span></f:if>
+                                    <f:if condition="{post.meta}"><span class="blog-teasers__meta" title="{post.meta}">{post -> f:render.text(field: 'meta')}</span></f:if>
+                                </div>
+                                <d:atom.typography tag="h3" variant="large" class="blog-teasers__title">
+                                    <f:if condition="{post.link.url}">
+                                        <f:then><d:atom.link href="{f:uri.typolink(parameter: post.link.url)}" target="{post.link.target}" variant="muted" class="blog-teasers__title-link focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/30">{post -> f:render.text(field: 'title')}</d:atom.link></f:then>
+                                        <f:else>{post -> f:render.text(field: 'title')}</f:else>
+                                    </f:if>
+                                </d:atom.typography>
+                                <f:if condition="{post.excerpt}">
+                                    <div class="blog-teasers__excerpt d-richtext">{post -> f:render.text(field: 'excerpt')}</div>
+                                </f:if>
+                            </div>
+                        </article>
+                    </li>
+                </f:for>
+            </ul>
+        </div>
     </d:layout.container>
 </d:layout.section>
 

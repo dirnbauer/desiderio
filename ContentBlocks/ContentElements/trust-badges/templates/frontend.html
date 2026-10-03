@@ -18,7 +18,7 @@
             </header>
         </f:if>
 
-        <ul class="trust-badges__row">
+        <ul class="trust-badges__row" role="list">
             <f:for each="{data.badge_items}" as="badge">
                 <li class="trust-badges__item">
                     <f:if condition="{badge.icon_name} && {badge.icon_name} != 'none'">
@@ -29,7 +29,7 @@
                             <f:if condition="{badge.image}">
                                 <span class="trust-badges__icon">
                                     <f:for each="{badge.image}" as="fileReference">
-                                        <f:image image="{fileReference}" width="240" height="160" alt="{fileReference.alternative}" class="trust-badges__icon-img" additionalAttributes="{srcset: '{f:uri.image(image: fileReference, width: \'240\', height: \'160\')} 1x, {f:uri.image(image: fileReference, width: \'480\', height: \'320\')} 2x'}" loading="lazy" decoding="async"/>
+                                        <f:image image="{fileReference}" width="240m" height="160m" alt="{fileReference.alternative}" class="trust-badges__icon-img" additionalAttributes="{srcset: '{f:uri.image(image: fileReference, width: \'240m\', height: \'160m\')} 1x, {f:uri.image(image: fileReference, width: \'480m\', height: \'320m\')} 2x'}" loading="lazy" decoding="async"/>
                                     </f:for>
                                 </span>
                             </f:if>

@@ -9,7 +9,7 @@
         {
             "slide_title": "Edit content directly on the page",
             "slide_description": "<p>With the <strong>Visual Editor</strong>, editors click any Desiderio element on the page and change it there. They see the result before they save.</p>",
-            "slide_link": "t3://page?uid=1",
+            "slide_link": "{{page:features/visual-editor}}",
             "slide_image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-visual-editor-460d5038.png",
                 "title": "Editing in the Desiderio Visual Editor",
@@ -21,7 +21,7 @@
         {
             "slide_title": "A finished frontend after installation",
             "slide_description": "<p>This is the seeded demo site on the <strong>Lagoon preset</strong>. It is a real TYPO3 frontend, ready minutes after <a href=\"https://packagist.org\">composer</a> require.</p>",
-            "slide_link": "t3://page?uid=1",
+            "slide_link": "{{page:content-types}}",
             "slide_image": {
                 "file": "Resources/Public/Styleguide/Frontend/frontend-hero-lagoon-e69362e6.png",
                 "title": "Desiderio frontend on the Lagoon preset",
@@ -33,7 +33,7 @@
         {
             "slide_title": "Dark mode on every preset",
             "slide_description": "<p><strong>Colour tokens</strong> give each of the 15 presets a dark mode with checked contrast. This is the pricing page on Midnight, with no overrides.</p>",
-            "slide_link": "t3://page?uid=1",
+            "slide_link": "{{page:themes}}",
             "slide_image": {
                 "file": "Resources/Public/Styleguide/Frontend/frontend-pricing-midnight-dark-87c4160e.png",
                 "title": "Desiderio pricing page in dark Midnight preset",

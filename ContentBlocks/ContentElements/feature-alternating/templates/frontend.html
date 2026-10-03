@@ -8,10 +8,10 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="feature-alternating">
     <d:layout.container>
         <f:if condition="{data.header}">
-            <header class="feature-alternating__intro">
-                <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
-                <f:if condition="{data.subheadline}"><d:atom.typography variant="lead" class="feature-alternating__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
-            </header>
+            <d:molecule.sectionIntro prefix="feature-alternating" align="center" leadVariant="lead" class="feature-alternating__intro" leadClass="feature-alternating__subheadline">
+                <f:fragment name="heading">{data -> f:render.text(field: 'header')}</f:fragment>
+                <f:fragment name="lead"><f:if condition="{data.subheadline}">{data -> f:render.text(field: 'subheadline')}</f:if></f:fragment>
+            </d:molecule.sectionIntro>
         </f:if>
 
         <div class="feature-alternating__rows">
@@ -23,14 +23,14 @@
                             <div class="feature-alternating__description d-richtext">{item -> f:render.text(field: 'description')}</div>
                         </f:if>
                         <f:if condition="{item.link.url}">
-                            <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="feature-alternating__link">
+                            <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="feature-alternating__link min-h-11">
                                 <span>{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:learn_more', default: 'Learn more')}</span><span class="sr-only">: {item -> f:render.text(field: 'title')}</span><span class="feature-alternating__arrow" aria-hidden="true">&rarr;</span>
                             </d:atom.link>
                         </f:if>
                     </div>
                     <f:if condition="{item.image.0}">
                         <div class="feature-alternating__media">
-                            <f:image image="{item.image.0}" alt="{item.image.0.alternative}" maxWidth="640" class="feature-alternating__image" loading="lazy" decoding="async"/>
+                            <f:image image="{item.image.0}" alt="{item.image.0.alternative}" maxWidth="1280" class="feature-alternating__image" loading="lazy" decoding="async"/>
                         </div>
                     </f:if>
                 </div>

@@ -24,9 +24,72 @@
 }
 .content-highlight__body {
     font-size: 1.0625rem;
+    overflow-wrap: break-word;
 }
 .content-highlight__body > *:first-child { margin-top: 0; }
 .content-highlight__body > *:last-child { margin-bottom: 0; }
 .content-highlight__actions {
     margin-top: var(--d-spacing-lg);
+}
+
+/* Rich text from the RTE (d-richtext). Tailwind's preflight strips paragraph
+   spacing, list markers, heading sizes and the link underline; they come back
+   here, scoped to this element. Consecutive paragraphs no longer sit flush. */
+.content-highlight__body.d-richtext > * { margin-block: 0; }
+.content-highlight__body.d-richtext > * + * { margin-block-start: var(--d-spacing-sm); }
+.content-highlight__body.d-richtext > * + :is(h2, h3, h4, h5, h6) { margin-block-start: var(--d-spacing-lg); }
+.content-highlight__body.d-richtext :is(ul, ol) { padding-inline-start: var(--d-spacing-lg); }
+.content-highlight__body.d-richtext ul { list-style: disc; }
+.content-highlight__body.d-richtext ol { list-style: decimal; }
+.content-highlight__body.d-richtext li + li { margin-block-start: var(--d-spacing-2xs); }
+.content-highlight__body.d-richtext :is(h2, h3, h4, h5, h6) {
+    color: var(--foreground);
+    font-weight: var(--d-weight-semibold);
+    line-height: var(--d-leading-snug);
+}
+.content-highlight__body.d-richtext h2 { font-size: var(--d-text-xl); }
+.content-highlight__body.d-richtext h3 { font-size: var(--d-text-lg); }
+.content-highlight__body.d-richtext :is(h4, h5, h6) { font-size: var(--d-text-base); }
+.content-highlight__body.d-richtext a {
+    color: var(--d-link, var(--primary));
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: color-mix(in oklch, currentColor 45%, transparent);
+    text-underline-offset: 0.22em;
+    border-radius: var(--d-radius-sm);
+    transition: text-decoration-color var(--d-motion-fast) var(--d-ease);
+}
+.content-highlight__body.d-richtext a:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+@media (hover: hover) and (pointer: fine) {
+    .content-highlight__body.d-richtext a:hover { text-decoration-color: currentColor; }
+}
+
+/* Links on the muted surface take the ink solved for tinted boxes; on the
+   element's own primary surface they take the surface's ink, since the
+   page's link colour is the surface colour there. */
+.content-highlight--muted .content-highlight__body.d-richtext a {
+    color: var(--d-link-on-muted, var(--d-link, var(--primary)));
+}
+.content-highlight--primary .content-highlight__body.d-richtext a {
+    color: inherit;
+}
+.content-highlight--primary .content-highlight__body.d-richtext :is(h2, h3, h4, h5, h6) {
+    color: var(--primary-foreground);
+}
+.content-highlight--primary .content-highlight__body.d-richtext a:focus-visible {
+    outline-color: currentColor;
+}
+
+/* Centred: the capped paragraphs (75ch, 18-section-anatomy.css) ride the
+   midline instead of hugging the start edge, and a list keeps its bullets
+   aligned while its box sits in the middle. */
+.content-highlight--center .content-highlight__body.d-richtext > :is(p, ul, ol, dl) {
+    margin-inline: auto;
+}
+.content-highlight--center .content-highlight__body.d-richtext > :is(ul, ol) {
+    width: fit-content;
+    text-align: start;
 }

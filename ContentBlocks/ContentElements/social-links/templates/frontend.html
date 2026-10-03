@@ -11,7 +11,7 @@
             <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
             <f:if condition="{data.description_text}"><d:atom.typography variant="muted" class="social-links__description">{data -> f:render.text(field: 'description_text')}</d:atom.typography></f:if>
             <nav class="social-links__nav" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:social_links.aria')}">
-                <ul class="social-links__list">
+                <ul class="social-links__list" role="list">
                     <f:for each="{data.link_items}" as="item">
                         <f:if condition="{item.url.url}">
                             <li class="social-links__entry">

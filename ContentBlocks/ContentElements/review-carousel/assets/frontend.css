@@ -8,15 +8,32 @@
     margin-inline: auto;
 }
 
+/* The slide wears the surface of d:molecule.card (22-modern-base.css): the
+   shared radius, a hairline ring and the preset's surface shadow. */
 .review-carousel__slide {
     padding: var(--d-spacing-lg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
+    border-radius: calc(var(--radius, 0.625rem) * 1.5);
     background: var(--card);
     color: var(--card-foreground);
+    box-shadow:
+        0 0 0 1px color-mix(in oklch, var(--foreground) 9%, transparent),
+        var(--d-surface-shadow, 0 0 transparent),
+        inset 0 1px 0 color-mix(in oklch, var(--card-foreground) 5%, transparent);
 }
 /* Only the active slide is shown; non-active slides carry aria-hidden="true". */
 .review-carousel__slide[aria-hidden="true"] { display: none; }
+
+/* The slide that comes in settles into place: short, ease-out, and only
+   for people who did not ask for less motion. @starting-style runs when a
+   slide leaves display: none, so nothing waits for JavaScript. */
+@media (prefers-reduced-motion: no-preference) {
+    .review-carousel__slide {
+        transition: opacity var(--d-motion) var(--d-ease), transform var(--d-motion) var(--d-ease);
+    }
+    @starting-style {
+        .review-carousel__slide { opacity: 0; transform: translateY(0.25rem); }
+    }
+}
 
 .review-carousel__stars { display: flex; gap: var(--d-spacing-0-5); margin-block-end: var(--d-spacing-sm); }
 .review-carousel__star { color: var(--muted-foreground); }
@@ -37,6 +54,7 @@
     border-block-start: 1px solid var(--border);
 }
 .review-carousel__avatar {
+    flex-shrink: 0;
     width: 3rem;
     height: 3rem;
     border-radius: 9999px;
@@ -45,7 +63,7 @@
     border: 2px solid var(--background);
     box-shadow: 0 0 0 1px var(--border);
 }
-.review-carousel__meta { display: flex; flex-direction: column; }
+.review-carousel__meta { display: flex; min-width: 0; flex-direction: column; }
 .review-carousel__name { font-weight: var(--d-weight-semibold); }
 .review-carousel__date { font-size: var(--d-text-xs); color: var(--muted-foreground); }
 
@@ -70,9 +88,9 @@
     background: var(--background);
     color: var(--foreground);
     cursor: pointer;
-    transition: background-color 0.15s ease, color 0.15s ease;
+    transition: background-color var(--d-motion-fast) var(--d-ease), color var(--d-motion-fast) var(--d-ease), transform var(--d-motion-fast) var(--d-ease);
 }
-.review-carousel__track .hero-carousel__nav:hover { background: var(--muted); }
+.review-carousel__track .hero-carousel__nav:active { transform: scale(0.96); }
 .review-carousel__track .hero-carousel__nav:focus-visible {
     outline: 2px solid var(--ring);
     outline-offset: 2px;
@@ -82,25 +100,45 @@
     align-items: center;
     gap: var(--d-spacing-xs);
 }
+/* A 1.75rem hit area around a 0.625rem dot. */
 .review-carousel__track .hero-carousel__dot {
-    width: 0.625rem;
-    height: 0.625rem;
+    display: inline-grid;
+    place-items: center;
+    width: 1.75rem;
+    height: 1.75rem;
     padding: 0;
     border: 0;
     border-radius: 9999px;
-    background: var(--border);
+    background: transparent;
     cursor: pointer;
-    transition: background-color 0.15s ease;
 }
-.review-carousel__track .hero-carousel__dot[aria-selected="true"] { background: var(--primary); }
+.review-carousel__track .hero-carousel__dot::before {
+    content: "";
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: inherit;
+    background: color-mix(in oklch, var(--muted-foreground) 45%, transparent);
+    transition: background-color var(--d-motion-fast) var(--d-ease), transform var(--d-motion-fast) var(--d-ease);
+}
+.review-carousel__track .hero-carousel__dot[aria-selected="true"]::before { background: var(--primary); }
 .review-carousel__track .hero-carousel__dot:focus-visible {
     outline: 2px solid var(--ring);
     outline-offset: 2px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .review-carousel__track .hero-carousel__nav,
-    .review-carousel__track .hero-carousel__dot { transition: none; }
+@media (hover: hover) and (pointer: fine) {
+    .review-carousel__track .hero-carousel__nav:hover { background: var(--muted); }
+    .review-carousel__track .hero-carousel__dot:hover::before { transform: scale(1.2); }
+}
+
+/* Phones: 44px touch targets around the small controls, without changing
+   how they look; the dots move apart so the targets do not overlap. */
+@media (max-width: 640px) {
+    .review-carousel__track .hero-carousel__dots { gap: var(--d-spacing-md); }
+    .review-carousel__track .hero-carousel__dot,
+    .review-carousel__track .hero-carousel__nav { position: relative; }
+    .review-carousel__track .hero-carousel__dot::after { content: ""; position: absolute; inset: -0.5rem; }
+    .review-carousel__track .hero-carousel__nav::after { content: ""; position: absolute; inset: -0.125rem; }
 }
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */

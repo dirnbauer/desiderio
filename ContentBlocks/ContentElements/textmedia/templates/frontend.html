@@ -8,10 +8,21 @@
 <f:section name="media">
     <f:if condition="{data.media.0}">
         <div class="textmedia__media-wrapper">
-            <d:molecule.lightbox src="{f:uri.image(image: data.media.0, maxWidth: 1920)}">
-                <f:image image="{data.media.0}" alt="{data.media.0.alternative}" maxWidth="{maxWidth}"
-                         class="textmedia__media {f:if(condition: data.media_rounded, then: 'textmedia__media--rounded')}" loading="lazy" decoding="async"/>
-            </d:molecule.lightbox>
+            <f:comment>The media field takes videos too; f:image would throw on one.</f:comment>
+            <f:if condition="{f:contains(value: 'video/', subject: data.media.0.mimeType)}">
+                <f:then>
+                    <video class="textmedia__media {f:if(condition: data.media_rounded, then: 'textmedia__media--rounded')}" controls playsinline preload="metadata"
+                           aria-label="{f:if(condition: data.media.0.alternative, then: data.media.0.alternative, else: data.header)}">
+                        <source src="{data.media.0.publicUrl}" type="{data.media.0.mimeType}"/>
+                    </video>
+                </f:then>
+                <f:else>
+                    <d:molecule.lightbox src="{f:uri.image(image: data.media.0, maxWidth: 1920)}">
+                        <f:image image="{data.media.0}" alt="{f:if(condition: data.media.0.alternative, then: data.media.0.alternative, else: data.header)}" maxWidth="{maxWidth}"
+                                 class="textmedia__media {f:if(condition: data.media_rounded, then: 'textmedia__media--rounded')}" loading="lazy" decoding="async"/>
+                    </d:molecule.lightbox>
+                </f:else>
+            </f:if>
         </div>
     </f:if>
 </f:section>
@@ -21,7 +32,7 @@
         <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
         <f:if condition="{data.subheadline}"><d:atom.typography variant="lead">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
         <f:if condition="{data.content}">
-            <div class="textmedia__richtext">{data -> f:render.text(field: 'content')}</div>
+            <div class="textmedia__richtext d-richtext">{data -> f:render.text(field: 'content')}</div>
         </f:if>
         <f:if condition="{data.button_text} && {data.button_link.url}">
             <d:molecule.actionGroup class="textmedia__actions">

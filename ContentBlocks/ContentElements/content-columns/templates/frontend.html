@@ -13,7 +13,7 @@
 
         <div class="content-columns__grid content-columns__grid--cols-{data.columns -> f:or(alternative: '2')}">
             <f:for each="{data.items}" as="item">
-                <div class="content-columns__col">
+                <div class="content-columns__col d-richtext">
                     {item -> f:render.text(field: 'content')}
                 </div>
             </f:for>

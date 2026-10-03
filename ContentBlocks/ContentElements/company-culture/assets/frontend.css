@@ -11,15 +11,15 @@
 }
 .company-culture__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: var(--d-spacing-lg);
 }
 @media (max-width: 1024px) {
-    .company-culture__grid { grid-template-columns: repeat(2, 1fr); }
+    .company-culture__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 640px) {
     /* Single column: a taller row gap keeps the stacked image+text cards from visually merging. */
-    .company-culture__grid { grid-template-columns: 1fr; gap: var(--d-spacing-xl); }
+    .company-culture__grid { grid-template-columns: minmax(0, 1fr); gap: var(--d-spacing-xl); }
 }
 .company-culture__image-wrapper {
     overflow: hidden;

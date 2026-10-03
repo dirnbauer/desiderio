@@ -8,19 +8,18 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="features">
     <d:layout.container>
         <f:if condition="{data.header} || {data.subheadline}">
-            <header class="features__header">
-                <f:if condition="{data.header}">
-                    <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
-                </f:if>
-                <f:if condition="{data.subheadline}">
-                    <d:atom.typography variant="muted" class="features__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
-                </f:if>
-            </header>
+            <d:molecule.sectionIntro prefix="features" align="center" class="features__header" leadClass="features__subheadline">
+                <f:fragment name="heading"><f:if condition="{data.header}">{data -> f:render.text(field: 'header')}</f:if></f:fragment>
+                <f:fragment name="lead"><f:if condition="{data.subheadline}">{data -> f:render.text(field: 'subheadline')}</f:if></f:fragment>
+            </d:molecule.sectionIntro>
         </f:if>
 
-        <div class="features__grid features__grid--cols-{data.columns -> f:or(alternative: '3')} features__grid--{data.variant -> f:or(alternative: 'icon-top')}">
+        <f:comment>Five or more cards (card style) become a swipeable row on phones (frontend.css), so the grid is then a focusable, labelled scroll region.</f:comment>
+        <f:variable name="itemCount">{data.feature_items -> f:count()}</f:variable>
+        <f:variable name="gridLabel" value="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features\', default: \'Features\')}')}" />
+        <div class="features__grid features__grid--cols-{data.columns -> f:or(alternative: '3')} features__grid--{data.variant -> f:or(alternative: 'icon-top')}" {f:if(condition: '{data.variant} == \'card\' && {itemCount} > 4', then: 'tabindex="0" role="region" aria-label="{gridLabel}"')}>
             <f:for each="{data.feature_items}" as="feature">
-                <div class="features__item {f:if(condition: '{data.variant} == \'card\'', then: 'features__item--card')}">
+                <div class="features__item relative {f:if(condition: '{data.variant} == \'card\'', then: 'features__item--card')}">
                     <div class="features__icon" aria-hidden="true">
                         <d:atom.icon name="{feature.icon_name}" size="lg"/>
                     </div>
@@ -28,7 +27,7 @@
                         <d:atom.typography tag="h3" variant="large" class="features__title">
                             <f:if condition="{feature.link.url}">
                                 <f:then>
-                                    <d:atom.link href="{f:uri.typolink(parameter: feature.link.url)}" target="{feature.link.target}" variant="muted">{feature -> f:render.text(field: 'title')}</d:atom.link>
+                                    <d:atom.link href="{f:uri.typolink(parameter: feature.link.url)}" target="{feature.link.target}" variant="muted" class="features__link after:absolute after:inset-0 after:content-['']">{feature -> f:render.text(field: 'title')}</d:atom.link>
                                 </f:then>
                                 <f:else>
                                     {feature -> f:render.text(field: 'title')}

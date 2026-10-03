@@ -36,7 +36,7 @@
                         </f:if>
 
                         <d:molecule.cardHeader class="pricing-three-tier__header">
-                            <d:atom.typography tag="h3" variant="h4" class="pricing-three-tier__name">{tier -> f:render.text(field: 'name')}</d:atom.typography>
+                            <d:atom.typography tag="h3" variant="h4" class="pricing-three-tier__name" attributes="{id: 'pricing-three-tier-{data.uid}-name-{iter.cycle}'}">{tier -> f:render.text(field: 'name')}</d:atom.typography>
                             <p class="pricing-three-tier__price-row">
                                 <span class="pricing-three-tier__price">{tier -> f:render.text(field: 'price')}</span>
                                 <f:if condition="{tier.billing_period}">
@@ -69,9 +69,9 @@
                                     target="{tier.button_link.target}"
                                     variant="{f:if(condition: tier.is_recommended, then: 'default', else: 'outline')}"
                                     class="pricing-three-tier__button"
+                                    attributes="{aria-describedby: 'pricing-three-tier-{data.uid}-name-{iter.cycle}'}"
                                 >
                                     <span>{tier -> f:render.text(field: 'button_text')}</span>
-                                    <span class="d-sr-only"> – {tier.name}</span>
                                 </d:atom.button>{tier -> f:render.link(field: 'button_link')}
                             </d:molecule.cardFooter>
                         </f:if>

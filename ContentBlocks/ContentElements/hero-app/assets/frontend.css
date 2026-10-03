@@ -5,13 +5,14 @@
 }
 .hero-app__grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--d-spacing-8);
     align-items: center;
 }
 @media (min-width: 768px) {
     .hero-app__grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: var(--d-spacing-12);
     }
 }
 .hero-app__headline {
@@ -20,6 +21,10 @@
     line-height: var(--d-leading-tight);
     margin-top: var(--d-spacing-3);
     margin-bottom: var(--d-spacing-4);
+}
+/* Without a badge above it the headline starts flush with the content. */
+.hero-app__content > .hero-app__headline:first-child {
+    margin-top: 0;
 }
 .hero-app__subheadline {
     font-size: var(--d-text-lg);
@@ -31,17 +36,28 @@
     flex-wrap: wrap;
     gap: var(--d-spacing-3);
 }
+/* Phones: the buttons share the row in equal parts. */
+@media (max-width: 639px) {
+    .hero-app__actions > [data-slot="button"] {
+        flex: 1 1 0;
+    }
+}
 .hero-app__device {
     display: flex;
     justify-content: center;
 }
+/* A device bezel: the screenshot sits inset in a muted frame, its corners
+   following the frame's, and the frame lifts off the page. The aspect box is
+   reserved before the screenshot loads. */
 .hero-app__phone-frame {
     width: 100%;
     max-width: 30rem;
-    border: 3px solid var(--d-border);
+    padding: var(--d-spacing-2);
+    border: 1px solid var(--d-border);
     border-radius: var(--d-radius-xl, 1rem);
     overflow: hidden;
     background: var(--d-muted);
+    box-shadow: var(--d-shadow-lg);
     aspect-ratio: 16 / 10;
 }
 .hero-app__screenshot {
@@ -50,4 +66,7 @@
     height: 100%;
     object-fit: cover;
     object-position: top left;
+    border-radius: max(0px, calc(var(--d-radius-xl, 1rem) - var(--d-spacing-2)));
+    outline: 1px solid color-mix(in oklch, var(--d-foreground) 8%, transparent);
+    outline-offset: -1px;
 }

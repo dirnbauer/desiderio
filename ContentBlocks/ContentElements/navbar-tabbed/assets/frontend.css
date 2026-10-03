@@ -11,6 +11,9 @@
     font-size: var(--d-text-lg);
     color: var(--d-foreground);
 }
+/* role="list" in the template: list-style none drops the list semantics in
+   Safari. The strip scrolls sideways when it runs out of room; its
+   scrollbar stays hidden like the tab strips elsewhere. */
 .navbar-tabbed__tabs {
     display: flex;
     gap: 0;
@@ -20,7 +23,14 @@
     min-width: 0;
     overflow-x: auto;
     scroll-snap-type: x proximity;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: none;
 }
+.navbar-tabbed__tabs::-webkit-scrollbar {
+    display: none;
+}
+/* Focus rings are box-shadows here; the transparent outline is what
+   Windows high-contrast mode paints instead (it drops box-shadows). */
 .navbar-tabbed__tab {
     display: inline-block;
     padding: var(--d-spacing-2) var(--d-spacing-4);
@@ -29,21 +39,28 @@
     text-decoration: none;
     white-space: nowrap;
     border-bottom: 2px solid transparent;
-    outline: none;
-    transition: color 0.15s, border-color 0.15s;
+    outline: 2px solid transparent;
+    outline-offset: -2px;
+    transition: color var(--d-motion-fast) var(--d-ease), border-color var(--d-motion-fast) var(--d-ease);
 }
-.navbar-tabbed__tab:hover {
-    color: var(--d-foreground);
+@media (hover: hover) and (pointer: fine) {
+    .navbar-tabbed__tab:hover {
+        color: var(--d-foreground);
+    }
 }
 .navbar-tabbed__tab:focus-visible {
     color: var(--d-foreground);
     border-radius: var(--d-radius-sm);
-    box-shadow: 0 0 0 2px var(--d-ring);
+    box-shadow: inset 0 0 0 2px var(--d-ring);
 }
+/* The current tab: underline and weight, not colour alone. It opens in
+   view when the strip has to scroll (browsers with scroll-initial-target);
+   the strip is always the scroll container, so the page never jumps. */
 .navbar-tabbed__tab--active {
     color: var(--d-foreground);
     border-bottom-color: var(--d-primary);
     font-weight: var(--d-weight-medium);
+    scroll-initial-target: nearest;
 }
 
 @media (max-width: 768px) {
@@ -54,6 +71,13 @@
     .navbar-tabbed__tabs {
         order: 3;
         width: 100%;
+    }
+}
+
+/* Touch: every tab is a 44px target. */
+@media (pointer: coarse) {
+    .navbar-tabbed__tab {
+        padding-block: var(--d-spacing-3);
     }
 }
 

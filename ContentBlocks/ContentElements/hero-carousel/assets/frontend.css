@@ -1,8 +1,13 @@
-/* The hero rhythm (--d-hero-y), like every other hero. */
-.hero-carousel {
+/* The hero rhythm (--d-hero-y), like every other hero. Bound to the section:
+   the review carousel's track carries the hero-carousel class for the shared
+   runtime and must not take a hero's padding when both share a page. */
+.desiderio-section.hero-carousel {
     padding-block: var(--d-hero-y);
 }
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
 .hero-carousel__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
     max-width: 42rem;
     margin-bottom: var(--d-spacing-10);
 }
@@ -16,7 +21,7 @@
 /* No-JS / progressive baseline: every slide is visible and stacked. */
 .hero-carousel__slide {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--d-spacing-8);
     align-items: center;
 }
@@ -26,15 +31,29 @@
     border-top: 1px solid var(--d-border);
 }
 
-/* JS enhanced: only the active slide shows, controls drive the rest. */
+/* JS enhanced: the slides share one grid cell, so the track keeps the height
+   of its tallest slide and the controls never jump; the active slide fades
+   in, the one leaving fades out faster. */
+.hero-carousel__track[data-astro-carousel-ready] {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+}
 .hero-carousel__track[data-astro-carousel-ready] .hero-carousel__slide {
-    display: none;
+    grid-area: 1 / 1;
     margin-top: 0;
     padding-top: 0;
     border-top: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--d-motion-fast) var(--d-ease), visibility 0s linear var(--d-motion-fast);
 }
 .hero-carousel__track[data-astro-carousel-ready] .hero-carousel__slide--active {
-    display: grid;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity var(--d-motion) var(--d-ease), visibility 0s;
+}
+.hero-carousel__track[data-astro-carousel-ready] .hero-carousel__controls {
+    grid-row: 2;
 }
 
 .hero-carousel__title {
@@ -62,14 +81,18 @@
     object-fit: cover;
 }
 
-.hero-carousel__controls {
+/* Controls injected by Resources/Public/Js/astro.js. Scoped to this
+   element's track: the testimonial and review carousels get the same class
+   names from the shared runtime and style them themselves. */
+.hero-carousel__track .hero-carousel__controls {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: var(--d-spacing-4);
     margin-top: var(--d-spacing-8);
 }
-.hero-carousel__nav {
+.hero-carousel__track .hero-carousel__nav {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -82,21 +105,24 @@
     background: var(--d-background);
     color: var(--d-foreground);
     cursor: pointer;
-    transition: background-color 0.15s ease, color 0.15s ease;
+    transition: background-color var(--d-motion-fast) var(--d-ease), color var(--d-motion-fast) var(--d-ease);
 }
-.hero-carousel__nav:hover {
-    background: var(--d-muted);
+@media (hover: hover) and (pointer: fine) {
+    .hero-carousel__track .hero-carousel__nav:hover {
+        background: var(--d-muted);
+    }
 }
-.hero-carousel__nav:focus-visible {
+.hero-carousel__track .hero-carousel__nav:focus-visible {
     outline: 2px solid var(--d-ring);
     outline-offset: 2px;
 }
-.hero-carousel__dots {
+.hero-carousel__track .hero-carousel__dots {
     display: flex;
     align-items: center;
     gap: var(--d-spacing-2);
 }
-.hero-carousel__dot {
+.hero-carousel__track .hero-carousel__dot {
+    position: relative;
     display: inline-grid;
     place-items: center;
     width: 1.75rem;
@@ -107,33 +133,52 @@
     background: transparent;
     cursor: pointer;
 }
-.hero-carousel__dot::before {
+.hero-carousel__track .hero-carousel__dot::before {
     content: "";
     width: 0.625rem;
     height: 0.625rem;
     border-radius: inherit;
     background: var(--d-border);
-    transition: background-color 0.15s ease;
+    transition: background-color var(--d-motion-fast) var(--d-ease);
 }
-.hero-carousel__dot[aria-selected="true"]::before {
+.hero-carousel__track .hero-carousel__dot[aria-selected="true"]::before {
     background: var(--d-primary);
 }
-.hero-carousel__dot:focus-visible {
+.hero-carousel__track .hero-carousel__dot:focus-visible {
     outline: 2px solid var(--d-ring);
     outline-offset: 2px;
 }
 
-@media (min-width: 48rem) {
-    .hero-carousel__slide {
-        grid-template-columns: 1fr 1fr;
-        gap: var(--d-spacing-12);
+/* Touch: every control answers a 44px tap without changing its look. The
+   dots move apart so their hit areas meet instead of overlapping. */
+@media (pointer: coarse) {
+    .hero-carousel__track .hero-carousel__dots {
+        gap: var(--d-spacing-4);
+    }
+    .hero-carousel__track .hero-carousel__nav::after,
+    .hero-carousel__track .hero-carousel__dot::after {
+        content: "";
+        position: absolute;
+        inset: calc(var(--d-spacing-0-5) * -1);
+    }
+    .hero-carousel__track .hero-carousel__dot::after {
+        inset: calc(var(--d-spacing-2) * -1);
     }
 }
 
-/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
-.hero-carousel__intro {
-    display: grid;
-    gap: var(--d-spacing-sm);
+@media (prefers-reduced-motion: reduce) {
+    .hero-carousel__track[data-astro-carousel-ready] .hero-carousel__slide,
+    .hero-carousel__track .hero-carousel__nav,
+    .hero-carousel__track .hero-carousel__dot::before {
+        transition: none;
+    }
+}
+
+@media (min-width: 48rem) {
+    .hero-carousel__slide {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: var(--d-spacing-12);
+    }
 }
 
 /* d-richtext (generated by scripts/convert-textarea-to-rte.php) */

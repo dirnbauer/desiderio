@@ -1,8 +1,36 @@
+/* The card leads to one job, so the whole card is the hit area: the title
+   link stretches over it, and the Apply button stays clickable above. */
+.job-card__card {
+    position: relative;
+}
 .job-card__type {
     align-self: flex-start;
     margin-block-end: var(--d-spacing-xs);
 }
-.job-card__title { line-height: var(--d-leading-snug); }
+.job-card__title { line-height: var(--d-leading-snug); overflow-wrap: break-word; }
+.job-card__link {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--d-motion-fast) var(--d-ease);
+}
+.job-card__link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+}
+.job-card__link:focus-visible {
+    outline: none;
+}
+.job-card__card:has(.job-card__link:focus-visible) {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+@media (hover: hover) and (pointer: fine) {
+    .job-card__card:hover .job-card__link {
+        color: var(--d-link, var(--primary));
+    }
+}
 .job-card__meta {
     display: flex;
     flex-wrap: wrap;
@@ -11,15 +39,28 @@
     margin-block-start: var(--d-spacing-xs);
     font-size: var(--d-text-sm);
     color: var(--muted-foreground);
+    font-variant-numeric: tabular-nums;
 }
 .job-card__dept { font-weight: var(--d-weight-medium); color: var(--foreground); }
 .job-card__sep { color: var(--muted-foreground); }
+/* The posting is running text: body size, not the card's compact caption
+   size, so it reads as easily as the page around it. */
 .job-card__description {
+    font-size: var(--d-text-base);
     color: var(--muted-foreground);
     line-height: var(--d-leading-relaxed);
 }
+/* Links in the posting stay clickable above the stretched title link. */
+.job-card__description a {
+    position: relative;
+    z-index: 1;
+}
 .job-card__footer { padding-block-start: var(--d-spacing-xs); }
-.job-card__apply { width: 100%; }
+.job-card__apply {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
 @media (min-width: 640px) {
     .job-card__apply { width: auto; }
 }

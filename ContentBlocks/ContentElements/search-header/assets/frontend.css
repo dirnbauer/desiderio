@@ -51,6 +51,12 @@
     font-size: var(--d-text-base, 1rem);
     background: var(--background);
     color: var(--foreground);
+    transition: border-color var(--d-motion-fast) var(--d-ease);
+}
+@media (prefers-reduced-motion: reduce) {
+    .search-header__input {
+        transition: none;
+    }
 }
 .search-header__input::placeholder {
     color: var(--muted-foreground);

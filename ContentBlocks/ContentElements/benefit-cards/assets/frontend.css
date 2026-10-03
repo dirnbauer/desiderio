@@ -21,11 +21,13 @@
     padding: 0;
     list-style: none;
 }
-.benefit-cards__grid--cols-2 { grid-template-columns: repeat(2, 1fr); }
-.benefit-cards__grid--cols-3 { grid-template-columns: repeat(3, 1fr); }
+.benefit-cards__grid--cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.benefit-cards__grid--cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 @media (max-width: 768px) {
-    .benefit-cards__grid { grid-template-columns: 1fr; }
+    .benefit-cards__grid { grid-template-columns: minmax(0, 1fr); }
 }
+/* The cell is a flex row and the card grows into it (flex-1), so every card
+   of a row is as wide and as tall as its cell, however short its text. */
 .benefit-cards__cell { display: flex; }
 .benefit-cards__item { height: 100%; }
 
@@ -38,18 +40,51 @@
     border-radius: var(--radius);
     background-color: var(--d-info-muted);
     color: var(--primary);
-    margin-block-end: var(--d-spacing-sm);
-}
-.benefit-cards__title {
-    margin-block-end: var(--d-spacing-xs);
 }
 .benefit-cards__title-link { border-radius: var(--d-radius-sm); }
 .benefit-cards__title a { color: inherit; text-decoration: none; }
-.benefit-cards__title a:hover { color: var(--d-link, var(--primary)); }
+@media (hover: hover) and (pointer: fine) {
+    .benefit-cards__title a:hover { color: var(--d-link, var(--primary)); }
+}
 .benefit-cards__description {
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
     line-height: var(--d-leading-relaxed);
+}
+
+/* The title link is stretched over the whole card (after:inset-0), so the
+   card is one hit area. Links inside the description stay clickable above
+   that layer. */
+.benefit-cards__description a {
+    position: relative;
+    z-index: 1;
+}
+/* Keyboard focus rings the card. Drawn here because the card's box-shadow
+   comes from 22-modern-base.css, which is unlayered and so outranks the
+   ring utilities on the card. */
+.benefit-cards__item:has(a:focus-visible) {
+    box-shadow: 0 0 0 2px var(--ring);
+}
+/* In the Visual Editor every element sits in a <ve-content-element>; there
+   the stretched layer would swallow the clicks meant for the inline editors. */
+ve-content-element .benefit-cards__title-link::after {
+    content: none;
+}
+
+/* Single column (phones, small tablets): the icon sits beside the text
+   instead of above it, so a card is one compact row and six benefits stay a
+   short list. */
+@media (max-width: 768px) {
+    .benefit-cards__item:has(> .benefit-cards__icon) {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        align-items: start;
+        column-gap: var(--d-spacing-md);
+    }
+    /* Centres the title's first line on the 2.75rem icon. */
+    .benefit-cards__item:has(> .benefit-cards__icon) .benefit-cards__body {
+        padding-block-start: var(--d-spacing-xs);
+    }
 }
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */

@@ -41,6 +41,7 @@
 .code-block__header {
     display: flex;
     align-items: center;
+    gap: var(--d-spacing-sm);
     min-height: 3rem;
     padding: 0.625rem var(--d-spacing-sm) 0.625rem var(--d-spacing-md);
     border-bottom: 1px solid var(--border);
@@ -53,6 +54,19 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+/* The language label the editor set, quiet at the end of the header. */
+.code-block__language {
+    flex: none;
+    margin-inline-start: auto;
+    padding-inline: var(--d-spacing-xs);
+    border-radius: var(--d-radius-sm);
+    background: color-mix(in oklch, var(--muted) 70%, transparent);
+    color: var(--muted-foreground);
+    font-family: var(--font-mono, var(--d-font-mono));
+    font-size: var(--d-text-xs);
+    font-weight: var(--d-weight-medium);
+    line-height: var(--d-leading-normal);
 }
 .code-block__pre {
     margin: 0;

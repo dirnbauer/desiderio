@@ -15,7 +15,7 @@
 }
 .feature-tabs__content {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: clamp(var(--d-spacing-lg), 4vw, var(--d-spacing-2xl));
     align-items: center;
     text-align: start;

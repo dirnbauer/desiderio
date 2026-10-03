@@ -16,17 +16,23 @@
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--d-spacing-lg);
 }
 @media (min-width: 640px) {
-    .resource-library__grid { grid-template-columns: repeat(2, 1fr); }
+    .resource-library__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (min-width: 1024px) {
-    .resource-library__grid { grid-template-columns: repeat(3, 1fr); }
+    .resource-library__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 .resource-library__cell { display: flex; }
-.resource-library__item { flex: 1; gap: var(--d-spacing-sm); }
+/* The card is one hit area: the resource link's ::after covers it
+   (stretched link), so the card that lifts on hover is what a click opens. */
+.resource-library__item {
+    position: relative;
+    flex: 1;
+    gap: var(--d-spacing-sm);
+}
 .resource-library__type { align-self: flex-start; }
 .resource-library__title {
     font-size: var(--d-text-lg);
@@ -37,6 +43,11 @@
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
     line-height: var(--d-leading-normal);
+    overflow-wrap: break-word;
+}
+.resource-library__description a {
+    position: relative;
+    z-index: 1;
 }
 .resource-library__link {
     margin-block-start: auto;
@@ -44,12 +55,29 @@
     font-weight: var(--d-weight-medium);
     color: var(--d-link, var(--primary));
     text-decoration: none;
+    text-underline-offset: 2px;
     border-radius: var(--radius);
 }
-.resource-library__link:hover { text-decoration: underline; }
+.resource-library__link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+}
 .resource-library__link:focus-visible {
     outline: 2px solid var(--ring);
     outline-offset: 2px;
+}
+@supports selector(:has(*)) {
+    .resource-library__link:focus-visible {
+        outline: none;
+    }
+    .resource-library__item:has(.resource-library__link:focus-visible) {
+        outline: 2px solid var(--ring);
+        outline-offset: 2px;
+    }
+}
+@media (hover: hover) and (pointer: fine) {
+    .resource-library__item:hover .resource-library__link { text-decoration: underline; }
 }
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */

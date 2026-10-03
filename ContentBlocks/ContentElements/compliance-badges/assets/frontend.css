@@ -5,8 +5,15 @@
 .compliance-badges__list { display: flex; flex-wrap: wrap; gap: var(--d-spacing-sm); margin: 0; padding: 0; list-style: none; align-items: center; }
 .compliance-badges--center .compliance-badges__list { justify-content: center; }
 .compliance-badges--right .compliance-badges__list { justify-content: flex-end; }
-.compliance-badges__item { display: inline-flex; }
-.compliance-badges__link { display: inline-flex; text-decoration: none; color: inherit; border-radius: calc(var(--radius) * 0.8); }
+.compliance-badges__item { display: inline-flex; min-width: 0; }
+.compliance-badges__link { position: relative; display: inline-flex; text-decoration: none; color: inherit; border-radius: calc(var(--radius) * 0.8); }
+/* A 44px hit area on touch without changing the badge; the list gap keeps
+   neighbouring areas apart. */
+.compliance-badges__link::after {
+    content: "";
+    position: absolute;
+    inset: -0.375rem;
+}
 .compliance-badges__link:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring); }
 .compliance-badges__badge {
     min-height: var(--d-control-h);
@@ -15,13 +22,15 @@
     font-size: var(--d-text-sm);
     color: var(--foreground);
     background: var(--card);
-    transition: transform 150ms ease, background-color 150ms ease;
+    transition: translate var(--d-motion-fast) var(--d-ease), background-color var(--d-motion-fast) var(--d-ease);
 }
-.compliance-badges__item:hover .compliance-badges__badge {
-    transform: scale(1.04);
-}
-.compliance-badges__link:hover .compliance-badges__badge {
-    background: var(--muted);
+/* Only a badge that links somewhere answers the pointer: a plain label that
+   grows under the cursor promises a click it cannot keep. */
+@media (hover: hover) and (pointer: fine) {
+    .compliance-badges__link:hover .compliance-badges__badge {
+        translate: 0 -1px;
+        background: var(--muted);
+    }
 }
 .compliance-badges__icon {
     width: 1rem;
@@ -31,5 +40,5 @@
 }
 @media (prefers-reduced-motion: reduce) {
     .compliance-badges__badge { transition: none; }
-    .compliance-badges__item:hover .compliance-badges__badge { transform: none; }
+    .compliance-badges__link:hover .compliance-badges__badge { translate: none; }
 }

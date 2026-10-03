@@ -5,6 +5,33 @@
 
 <f:asset.css identifier="d-pricing-usage" href="{cb:assetPath()}/frontend.css"/>
 
+<f:section name="rates">
+    <ul class="pricing-usage__grid" role="list">
+        <f:for each="{data.items}" as="item" iteration="iter">
+            <li class="pricing-usage__item">
+                <article class="pricing-usage__card" aria-labelledby="pricing-usage-{data.uid}-{iter.cycle}">
+                    <d:atom.typography tag="h3" variant="h3" class="pricing-usage__title" attributes="{id: 'pricing-usage-{data.uid}-{iter.cycle}'}">{item -> f:render.text(field: 'title')}</d:atom.typography>
+                    <p class="pricing-usage__rate-row">
+                        <span class="pricing-usage__rate">{item -> f:render.text(field: 'rate')}</span>
+                        <f:if condition="{item.unit}">
+                            <span class="pricing-usage__unit">/ {item -> f:render.text(field: 'unit')}</span>
+                        </f:if>
+                    </p>
+                    <f:if condition="{item.description}">
+                        <div class="pricing-usage__card-desc d-richtext">{item -> f:render.text(field: 'description')}</div>
+                    </f:if>
+                    <f:if condition="{item.link.url}">
+                        <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="pricing-usage__link">
+                            <span><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:view_details" default="View details"/><span class="sr-only"> – {item.title}</span></span>
+                            <d:atom.icon name="arrow-right" size="sm" class="pricing-usage__arrow" />
+                        </d:atom.link>
+                    </f:if>
+                </article>
+            </li>
+        </f:for>
+    </ul>
+</f:section>
+
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="pricing-usage">
     <d:layout.container>
         <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
@@ -21,28 +48,21 @@
             </header>
         </f:if>
 
-        <ul class="pricing-usage__grid" role="list">
-            <f:for each="{data.items}" as="item" iteration="iter">
-                <li class="pricing-usage__item">
-                    <article class="pricing-usage__card" aria-labelledby="pricing-usage-{data.uid}-{iter.cycle}">
-                        <d:atom.typography tag="h3" variant="h3" class="pricing-usage__title" attributes="{id: 'pricing-usage-{data.uid}-{iter.cycle}'}">{item -> f:render.text(field: 'title')}</d:atom.typography>
-                        <p class="pricing-usage__rate-row">
-                            <span class="pricing-usage__rate">{item -> f:render.text(field: 'rate')}</span>
-                            <span class="pricing-usage__unit">/ {item -> f:render.text(field: 'unit')}</span>
-                        </p>
-                        <f:if condition="{item.description}">
-                            <div class="pricing-usage__card-desc d-richtext">{item -> f:render.text(field: 'description')}</div>
-                        </f:if>
-                        <f:if condition="{item.link.url}">
-                            <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="pricing-usage__link">
-                                <span><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:view_details" default="View details"/><span class="sr-only"> – {item.title}</span></span>
-                                <d:atom.icon name="arrow-right" size="sm" class="pricing-usage__arrow" />
-                            </d:atom.link>
-                        </f:if>
-                    </article>
-                </li>
-            </f:for>
-        </ul>
+        <f:comment>
+            Five or more rate cards become one swipeable row on phones instead
+            of a stack two screens tall; the row is a focusable, labelled
+            region so the keyboard can scroll it too.
+        </f:comment>
+        <f:if condition="{data.items -> f:count()} > 4">
+            <f:then>
+                <div class="pricing-usage__scroller" tabindex="0" role="region" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/ContentBlocks/ContentElements/pricing-usage/language/labels.xlf:region.label\', default: \'Price list\')}')}">
+                    <f:render section="rates" arguments="{data: data}"/>
+                </div>
+            </f:then>
+            <f:else>
+                <f:render section="rates" arguments="{data: data}"/>
+            </f:else>
+        </f:if>
     </d:layout.container>
 </d:layout.section>
 </html>

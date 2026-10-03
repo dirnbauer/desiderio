@@ -18,11 +18,14 @@
             aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:stats.aria')}">
             <f:for each="{data.counters}" as="counter">
                 <div class="social-proof-counter__item" data-astro-reveal="slide-up">
-                    <f:if condition="{counter.icon_name} != 'none'">
-                        <span class="social-proof-counter__icon" aria-hidden="true"><d:atom.icon name="{counter.icon_name}" size="xl"/></span>
-                    </f:if>
                     <dt class="social-proof-counter__label">{counter -> f:render.text(field: 'label')}</dt>
-                    <dd class="social-proof-counter__value" data-astro-counter data-astro-duration="2800">{counter -> f:render.text(field: 'value')}</dd>
+                    <f:comment>The icon sits inside the dd: a dl group may only hold dt and dd. The counter runs on its own span, because it replaces its element's children.</f:comment>
+                    <dd class="social-proof-counter__value">
+                        <f:if condition="{counter.icon_name} != 'none'">
+                            <span class="social-proof-counter__icon" aria-hidden="true"><d:atom.icon name="{counter.icon_name}" size="xl"/></span>
+                        </f:if>
+                        <span class="social-proof-counter__number" data-astro-counter data-astro-duration="2800">{counter -> f:render.text(field: 'value')}</span>
+                    </dd>
                 </div>
             </f:for>
         </dl>

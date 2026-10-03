@@ -8,16 +8,16 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="feature-numbered">
     <d:layout.container>
         <f:if condition="{data.header}">
-            <header class="feature-numbered__intro">
-                <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
-                <f:if condition="{data.subheadline}"><d:atom.typography variant="lead" class="feature-numbered__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
-            </header>
+            <d:molecule.sectionIntro prefix="feature-numbered" align="center" leadVariant="lead" class="feature-numbered__intro" leadClass="feature-numbered__subheadline">
+                <f:fragment name="heading">{data -> f:render.text(field: 'header')}</f:fragment>
+                <f:fragment name="lead"><f:if condition="{data.subheadline}">{data -> f:render.text(field: 'subheadline')}</f:if></f:fragment>
+            </d:molecule.sectionIntro>
         </f:if>
 
         <ol class="feature-numbered__grid">
             <f:for each="{data.items}" as="item" iteration="iter">
                 <li class="feature-numbered__item">
-                    <span class="feature-numbered__number" aria-hidden="true">{f:format.padding(padLength: 2, padString: '0')}{iter.cycle}</span>
+                    <span class="feature-numbered__number" aria-hidden="true">{iter.cycle -> f:format.padding(padLength: 2, padString: '0', padType: 'left')}</span>
                     <d:atom.typography tag="h3" variant="large" class="feature-numbered__title">{item -> f:render.text(field: 'title')}</d:atom.typography>
                     <f:if condition="{item.description}">
                         <d:atom.typography tag="div" variant="muted" class="feature-numbered__description d-richtext">{item -> f:render.text(field: 'description')}</d:atom.typography>

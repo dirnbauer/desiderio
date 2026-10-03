@@ -4,6 +4,11 @@
     max-width: 42rem;
     margin-inline: auto;
 }
+/* The lead is capped (65ch): centre the capped box under the centred heading
+   instead of leaving it at the start edge. */
+.faq__intro .d-section-intro__lead {
+    margin-inline: auto;
+}
 .faq__list {
     max-width: 42rem;
     margin-inline: auto;
@@ -21,10 +26,13 @@
     cursor: pointer;
     list-style: none;
     border-radius: var(--d-radius-md);
+    transition: background-color var(--d-motion-fast) var(--d-ease);
 }
 .faq__question::-webkit-details-marker { display: none; }
-.faq__question:hover {
-    background: var(--muted);
+@media (hover: hover) and (pointer: fine) {
+    .faq__question:hover {
+        background: var(--muted);
+    }
 }
 .faq__question:focus-visible {
     outline: none;
@@ -35,12 +43,14 @@
     font-size: var(--d-text-base);
     font-weight: var(--d-weight-semibold);
     line-height: var(--d-leading-normal);
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 .faq__chevron {
     display: inline-flex;
     flex-shrink: 0;
     color: var(--muted-foreground);
-    transition: transform 0.2s ease;
+    transition: transform var(--d-motion) var(--d-ease);
 }
 details[open] > .faq__question > .faq__chevron {
     transform: rotate(180deg);
@@ -50,13 +60,67 @@ details[open] > .faq__question > .faq__chevron {
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
     line-height: var(--d-leading-relaxed);
+    overflow-wrap: break-word;
 }
 .faq__answer > div > :first-child { margin-block-start: 0; }
 .faq__answer > div > :last-child { margin-block-end: 0; }
 @media (prefers-reduced-motion: reduce) {
+    .faq__question,
     .faq__chevron {
         transition: none;
     }
+}
+
+/* Opening slides the answer down, closing is a little quicker. Native
+   <details> keeps working without it: browsers without ::details-content
+   or interpolate-size simply open at once. */
+@media (prefers-reduced-motion: no-preference) {
+    .faq__list {
+        interpolate-size: allow-keywords;
+    }
+    .faq__item::details-content {
+        block-size: 0;
+        overflow-y: clip;
+        transition:
+            block-size var(--d-motion-fast) var(--d-ease),
+            content-visibility var(--d-motion-fast) allow-discrete;
+    }
+    .faq__item[open]::details-content {
+        block-size: auto;
+        transition-duration: var(--d-motion);
+    }
+}
+
+/* Answers from the RTE (d-richtext), scoped to this element: spacing between
+   siblings, list markers, heading sizes and a visible link. */
+.faq__answer-text.d-richtext > * { margin-block: 0; }
+.faq__answer-text.d-richtext > * + * { margin-block-start: var(--d-spacing-sm); }
+.faq__answer-text.d-richtext > * + :is(h2, h3, h4, h5, h6) { margin-block-start: var(--d-spacing-md); }
+.faq__answer-text.d-richtext :is(ul, ol) { padding-inline-start: var(--d-spacing-lg); }
+.faq__answer-text.d-richtext ul { list-style: disc; }
+.faq__answer-text.d-richtext ol { list-style: decimal; }
+.faq__answer-text.d-richtext li + li { margin-block-start: var(--d-spacing-2xs); }
+.faq__answer-text.d-richtext :is(h2, h3, h4, h5, h6) {
+    color: var(--foreground);
+    font-size: var(--d-text-base);
+    font-weight: var(--d-weight-semibold);
+    line-height: var(--d-leading-snug);
+}
+.faq__answer-text.d-richtext a {
+    color: var(--d-link, var(--primary));
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: color-mix(in oklch, currentColor 45%, transparent);
+    text-underline-offset: 0.22em;
+    border-radius: var(--d-radius-sm);
+    transition: text-decoration-color var(--d-motion-fast) var(--d-ease);
+}
+.faq__answer-text.d-richtext a:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+@media (hover: hover) and (pointer: fine) {
+    .faq__answer-text.d-richtext a:hover { text-decoration-color: currentColor; }
 }
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */

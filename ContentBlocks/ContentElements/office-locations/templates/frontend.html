@@ -18,27 +18,29 @@
             <f:for each="{data.location_items}" as="loc">
                 <li>
                     <d:molecule.card class="office-locations__item">
-                        <d:atom.typography tag="h3" variant="h3" class="office-locations__city">{loc -> f:render.text(field: 'city')}</d:atom.typography>
-                        <address class="office-locations__details">
-                            <f:if condition="{loc.address}">
-                                <p class="office-locations__address">
-                                    <span class="office-locations__icon" aria-hidden="true"><d:atom.icon name="map-pin" size="sm"/></span>
-                                    <span class="office-locations__lines">{loc -> f:render.text(field: 'address')}</span>
-                                </p>
-                            </f:if>
-                            <f:if condition="{loc.phone}">
-                                <p class="office-locations__line">
-                                    <span class="office-locations__icon" aria-hidden="true"><d:atom.icon name="phone" size="sm"/></span>
-                                    <a class="office-locations__link" href="tel:{loc.phone -> f:replace(search: ' ', replace: '')}">{loc -> f:render.text(field: 'phone')}</a>
-                                </p>
-                            </f:if>
-                            <f:if condition="{loc.email}">
-                                <p class="office-locations__line">
-                                    <span class="office-locations__icon" aria-hidden="true"><d:atom.icon name="mail" size="sm"/></span>
-                                    <a class="office-locations__link" href="mailto:{loc.email}">{loc -> f:render.text(field: 'email')}</a>
-                                </p>
-                            </f:if>
-                        </address>
+                        <div class="office-locations__body">
+                            <d:atom.typography tag="h3" variant="h3" class="office-locations__city">{loc -> f:render.text(field: 'city')}</d:atom.typography>
+                            <address class="office-locations__details">
+                                <f:if condition="{loc.address}">
+                                    <p class="office-locations__address">
+                                        <span class="office-locations__icon" aria-hidden="true"><d:atom.icon name="map-pin" size="sm"/></span>
+                                        <span class="office-locations__lines">{loc -> f:render.text(field: 'address')}</span>
+                                    </p>
+                                </f:if>
+                                <f:if condition="{loc.phone}">
+                                    <p class="office-locations__line">
+                                        <span class="office-locations__icon" aria-hidden="true"><d:atom.icon name="phone" size="sm"/></span>
+                                        <a class="office-locations__link" href="tel:{loc.phone -> f:replace(search: ' ', replace: '')}">{loc -> f:render.text(field: 'phone')}</a>
+                                    </p>
+                                </f:if>
+                                <f:if condition="{loc.email}">
+                                    <p class="office-locations__line">
+                                        <span class="office-locations__icon" aria-hidden="true"><d:atom.icon name="mail" size="sm"/></span>
+                                        <a class="office-locations__link" href="mailto:{loc.email}">{loc -> f:render.text(field: 'email')}</a>
+                                    </p>
+                                </f:if>
+                            </address>
+                        </div>
                         <f:if condition="{loc.map_link.url}">
                             <d:atom.button href="{f:uri.typolink(parameter: loc.map_link.url)}" target="{loc.map_link.target}" variant="outline" size="sm" class="office-locations__map">
                                 <span class="office-locations__map-icon" aria-hidden="true"><d:atom.icon name="map-pin" size="sm"/></span>

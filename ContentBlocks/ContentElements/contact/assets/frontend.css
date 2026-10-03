@@ -11,28 +11,68 @@
 }
 .contact__grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--d-spacing-xl);
 }
 @media (max-width: 768px) {
-    .contact__grid { grid-template-columns: 1fr; }
+    .contact__grid { grid-template-columns: minmax(0, 1fr); }
 }
-.contact__info-title { font-weight: var(--d-weight-semibold); margin-block-end: var(--d-spacing-sm); }
-.contact__info-text { font-size: var(--d-text-sm); color: var(--muted-foreground); }
-.contact__list { padding: 0; margin: var(--d-spacing-md) 0 0; }
-.contact__list-item { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--d-spacing-sm); padding: var(--d-spacing-xs) 0; border-bottom: 1px solid var(--border); }
+/* Title and text form one block, closer to each other than to the card edge. */
+.contact__info-head {
+    display: flex;
+    flex-direction: column;
+    gap: var(--d-spacing-xs);
+}
+.contact__info-title { font-weight: var(--d-weight-semibold); margin: 0; }
+.contact__info-text { font-size: var(--d-text-sm); color: var(--muted-foreground); margin: 0; }
+.contact__list { padding: 0; margin: 0; }
+.contact__list-item {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--d-spacing-2xs) var(--d-spacing-sm);
+    padding: var(--d-spacing-xs) 0;
+    border-bottom: 1px solid var(--border);
+}
 .contact__list-item:last-child { border-bottom: 0; }
 .contact__list-label { font-size: var(--d-text-sm); color: var(--muted-foreground); }
-.contact__list-value-wrap { margin: 0; text-align: right; }
-.contact__list-value { font-size: var(--d-text-sm); font-weight: var(--d-weight-medium); text-decoration: none; color: inherit; overflow-wrap: anywhere; }
-a.contact__list-value { transition: color 150ms ease; border-radius: calc(var(--radius) * 0.6); }
-a.contact__list-value:hover { color: var(--foreground); text-decoration: underline; text-underline-offset: 2px; }
+/* An address that does not fit moves to its own line and stays at the end. */
+.contact__list-value-wrap { margin-block: 0; margin-inline: auto 0; text-align: end; min-width: 0; }
+.contact__list-value {
+    font-size: var(--d-text-sm);
+    font-weight: var(--d-weight-medium);
+    text-decoration: none;
+    color: inherit;
+    overflow-wrap: anywhere;
+    font-variant-numeric: tabular-nums;
+}
+a.contact__list-value { transition: color var(--d-motion-fast) var(--d-ease); border-radius: calc(var(--radius) * 0.6); }
+/* The whole row is the link's hit area (tel:, mailto:, the map). */
+a.contact__list-value::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+}
+@media (hover: hover) and (pointer: fine) {
+    a.contact__list-value:hover { color: var(--foreground); text-decoration: underline; text-underline-offset: 2px; }
+}
 a.contact__list-value:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--card), 0 0 0 4px var(--ring); }
-.contact__form-title { font-weight: var(--d-weight-semibold); margin-block-end: var(--d-spacing-md); }
+/* Phones: every linked row is at least a 44px tap target. */
+@media (max-width: 639px) {
+    .contact__list-item { min-height: 2.75rem; }
+}
+.contact__form-title { font-weight: var(--d-weight-semibold); margin: 0; }
 
 /* Form fields delegate to the shared TYPO3 Form Framework bridge
    (.desiderio-form in Resources/Private/Css/desiderio/components-02-controls.css), which is token-driven
-   (--input, --radius, --ring); no element-level control styling here. */
+   (--input, --radius, --ring); no element-level control styling here.
+   The form's leading wrapper of hidden inputs renders nothing, so it must
+   not open an empty grid row (and a gap) above the first field. */
+.contact__form form > div:first-child:not([class]) {
+    display: contents;
+}
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */
 .contact__intro {

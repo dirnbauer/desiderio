@@ -4,7 +4,7 @@
 .content-columns__grid {
     display: grid;
     gap: var(--d-spacing-xl);
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
 }
 @media (min-width: 640px) {
     .content-columns__grid--cols-2,
@@ -38,3 +38,32 @@
 .content-columns__col li { margin-block: var(--d-spacing-1); }
 .content-columns__col h3,
 .content-columns__col h4 { color: var(--foreground); }
+
+/* Rich text (d-richtext): Tailwind's preflight strips paragraph spacing,
+   list markers and heading sizes. Spacing sits between siblings, so a
+   paragraph after a list keeps its distance too; the underline is the quiet
+   one of running text and fills on hover. */
+.content-columns__col.d-richtext > * { margin-block: 0; }
+.content-columns__col.d-richtext > * + * { margin-block-start: var(--d-spacing-sm); }
+.content-columns__col.d-richtext > * + :is(h2, h3, h4, h5, h6) { margin-block-start: var(--d-spacing-lg); }
+.content-columns__col.d-richtext ul { list-style: disc; }
+.content-columns__col.d-richtext ol { list-style: decimal; }
+.content-columns__col.d-richtext li { margin-block: 0; }
+.content-columns__col.d-richtext li + li { margin-block-start: var(--d-spacing-1); }
+.content-columns__col.d-richtext :is(h2, h3, h4, h5, h6) {
+    color: var(--foreground);
+    font-weight: var(--d-weight-semibold);
+    line-height: var(--d-leading-snug);
+}
+.content-columns__col.d-richtext h2 { font-size: var(--d-text-lg); }
+.content-columns__col.d-richtext :is(h3, h4, h5, h6) { font-size: var(--d-text-base); }
+.content-columns__col.d-richtext a {
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: color-mix(in oklch, currentColor 45%, transparent);
+    text-underline-offset: 0.22em;
+    transition: text-decoration-color var(--d-motion-fast) var(--d-ease);
+}
+@media (hover: hover) and (pointer: fine) {
+    .content-columns__col.d-richtext a:hover { text-decoration-color: currentColor; }
+}

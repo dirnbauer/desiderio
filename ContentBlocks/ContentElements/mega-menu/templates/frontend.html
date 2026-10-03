@@ -56,7 +56,7 @@
                             <f:if condition="{group.description}">
                                 <d:atom.typography tag="div" variant="muted" class="mega-menu__group-desc d-richtext">{group -> f:render.text(field: 'description')}</d:atom.typography>
                             </f:if>
-                            <ul class="mega-menu__links" aria-labelledby="mega-menu-{data.uid}-{groupIter.cycle}">
+                            <ul class="mega-menu__links" role="list" aria-labelledby="mega-menu-{data.uid}-{groupIter.cycle}">
                                 <f:if condition="{group.link_1_label}">
                                     <li class="mega-menu__link-item">
                                         <f:if condition="{group.link_1.url}">

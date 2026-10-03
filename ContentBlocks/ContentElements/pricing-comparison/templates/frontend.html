@@ -14,31 +14,44 @@
             </d:molecule.sectionIntro>
         </f:if>
 
-        <d:molecule.table class="pricing-comparison__table">
-            <d:molecule.tableHeader>
-                <d:molecule.tableRow>
-                    <th scope="col" data-slot="table-head" class="pricing-comparison__feature-col"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:feature"/></th>
-                    <f:for each="{data.plans}" as="plan">
-                        <th scope="col" data-slot="table-head" class="pricing-comparison__plan-col">
-                            <span class="pricing-comparison__plan-name">{plan -> f:render.text(field: 'name')}</span>
-                            <f:if condition="{plan.price}">
-                                <span class="pricing-comparison__plan-price">{plan -> f:render.text(field: 'price')}</span>
-                            </f:if>
-                        </th>
-                    </f:for>
-                </d:molecule.tableRow>
-            </d:molecule.tableHeader>
-            <tbody>
-                <f:for each="{data.pricing_feature_items}" as="row">
+        <f:comment>
+            On a phone only the feature column and one plan fit, so the table
+            scrolls sideways under a sticky feature column: the scroller is a
+            focusable region named by the table caption, and a muted hint
+            (phones only, hidden from screen readers) says that it scrolls.
+        </f:comment>
+        <p class="pricing-comparison__hint" aria-hidden="true">
+            <span><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/pricing-comparison/language/labels.xlf:scroll.hint" default="Swipe to see all plans"/></span>
+            <d:atom.icon name="arrow-right" size="xs" class="pricing-comparison__hint-icon"/>
+        </p>
+        <div class="pricing-comparison__scroller" tabindex="0" role="region" aria-labelledby="pricing-comparison-{data.uid}-caption">
+            <d:molecule.table class="pricing-comparison__table">
+                <caption id="pricing-comparison-{data.uid}-caption" class="d-sr-only">{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:table.aria.comparison\', default: \'Comparison table\')}')}</caption>
+                <d:molecule.tableHeader>
                     <d:molecule.tableRow>
-                        <th scope="row" data-slot="table-head" class="pricing-comparison__feature-name">{row -> f:render.text(field: 'feature_name')}</th>
-                        <f:for each="{row.tier_values}" as="val">
-                            <d:molecule.tableCell class="pricing-comparison__cell">{val -> f:render.text(field: 'value')}</d:molecule.tableCell>
+                        <th scope="col" data-slot="table-head" class="pricing-comparison__feature-col"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:feature"/></th>
+                        <f:for each="{data.plans}" as="plan">
+                            <th scope="col" data-slot="table-head" class="pricing-comparison__plan-col">
+                                <span class="pricing-comparison__plan-name">{plan -> f:render.text(field: 'name')}</span>
+                                <f:if condition="{plan.price}">
+                                    <span class="pricing-comparison__plan-price">{plan -> f:render.text(field: 'price')}</span>
+                                </f:if>
+                            </th>
                         </f:for>
                     </d:molecule.tableRow>
-                </f:for>
-            </tbody>
-        </d:molecule.table>
+                </d:molecule.tableHeader>
+                <tbody>
+                    <f:for each="{data.pricing_feature_items}" as="row">
+                        <d:molecule.tableRow>
+                            <th scope="row" data-slot="table-head" class="pricing-comparison__feature-name">{row -> f:render.text(field: 'feature_name')}</th>
+                            <f:for each="{row.tier_values}" as="val">
+                                <d:molecule.tableCell class="pricing-comparison__cell">{val -> f:render.text(field: 'value')}</d:molecule.tableCell>
+                            </f:for>
+                        </d:molecule.tableRow>
+                    </f:for>
+                </tbody>
+            </d:molecule.table>
+        </div>
     </d:layout.container>
 </d:layout.section>
 </html>

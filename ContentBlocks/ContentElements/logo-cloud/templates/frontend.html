@@ -21,7 +21,7 @@
             </header>
         </f:if>
 
-        <ul class="logo-cloud__grid logo-cloud__grid--cols-{data.columns -> f:or(alternative: '5')}" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:logoCloud.aria\', default: \'Trusted by leading teams\')}')}">
+        <ul class="logo-cloud__grid logo-cloud__grid--cols-{data.columns -> f:or(alternative: '5')}" role="list" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:logoCloud.aria\', default: \'Trusted by leading teams\')}')}">
             <f:for each="{data.logo_items}" as="logo">
                 <li class="logo-cloud__item">
                     <f:if condition="{logo.link.url}">
@@ -29,7 +29,7 @@
                             <d:atom.link href="{f:uri.typolink(parameter: logo.link.url)}" target="{logo.link.target}" variant="muted" class="logo-cloud__link">
                                 <div class="logo-cloud__media">
                                     <f:for each="{logo.image}" as="fileReference">
-                                        <f:image image="{fileReference}" maxWidth="520" alt="{logo.name}" class="logo-cloud__image logo-cloud__image--{fileReference.originalFile.nameWithoutExtension -> f:format.case(mode: 'lower')}" loading="lazy" decoding="async"/>
+                                        <f:image image="{fileReference}" maxWidth="520" alt="{fileReference.alternative}" class="logo-cloud__image logo-cloud__image--{fileReference.originalFile.nameWithoutExtension -> f:format.case(mode: 'lower')}" loading="lazy" decoding="async"/>
                                     </f:for>
                                 </div>
                                 <span class="logo-cloud__name">{logo -> f:render.text(field: 'name')}</span>
@@ -39,7 +39,7 @@
                             <div class="logo-cloud__link">
                                 <div class="logo-cloud__media">
                                     <f:for each="{logo.image}" as="fileReference">
-                                        <f:image image="{fileReference}" maxWidth="520" alt="{logo.name}" class="logo-cloud__image logo-cloud__image--{fileReference.originalFile.nameWithoutExtension -> f:format.case(mode: 'lower')}" loading="lazy" decoding="async"/>
+                                        <f:image image="{fileReference}" maxWidth="520" alt="{fileReference.alternative}" class="logo-cloud__image logo-cloud__image--{fileReference.originalFile.nameWithoutExtension -> f:format.case(mode: 'lower')}" loading="lazy" decoding="async"/>
                                     </f:for>
                                 </div>
                                 <span class="logo-cloud__name">{logo -> f:render.text(field: 'name')}</span>

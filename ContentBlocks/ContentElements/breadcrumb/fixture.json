@@ -4,15 +4,15 @@
     "items": [
         {
             "label": "Home",
-            "link": "t3://page?uid=1"
+            "link": "{{page:home}}"
         },
         {
-            "label": "Docs",
-            "link": "t3://page?uid=12"
+            "label": "Product",
+            "link": "{{page:product}}"
         },
         {
-            "label": "Theming",
-            "link": "t3://page?uid=24"
+            "label": "Themes",
+            "link": "{{page:themes}}"
         },
         {
             "label": "Per-page presets",

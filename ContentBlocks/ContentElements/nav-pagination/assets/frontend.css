@@ -5,6 +5,8 @@
     justify-content: center;
     gap: var(--d-spacing-2);
 }
+/* role="list" in the template: list-style none drops the list semantics in
+   Safari. */
 .nav-pagination__list {
     display: flex;
     flex-wrap: wrap;
@@ -15,6 +17,8 @@
     margin: 0;
     padding: 0;
 }
+/* Page numbers keep one width per digit, so "1" and "4" make the same
+   square and the row does not shift between pages. */
 .nav-pagination__page,
 .nav-pagination__prev,
 .nav-pagination__next {
@@ -26,26 +30,43 @@
     height: 2.25rem;
     padding: var(--d-spacing-1) var(--d-spacing-2);
     font-size: var(--d-text-sm);
+    font-variant-numeric: tabular-nums;
     color: var(--d-foreground);
     text-decoration: none;
     border: 1px solid var(--d-border);
     border-radius: var(--d-radius-md);
-    transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+    transition:
+        background-color var(--d-motion-fast) var(--d-ease),
+        color var(--d-motion-fast) var(--d-ease),
+        border-color var(--d-motion-fast) var(--d-ease);
 }
 .nav-pagination__edge {
     gap: var(--d-spacing-2);
     padding-inline: var(--d-spacing-3);
     color: var(--d-muted-foreground);
 }
-.nav-pagination__edge:hover {
-    color: var(--d-accent-foreground);
-    border-color: color-mix(in oklab, var(--d-ring) 40%, var(--d-border));
+.nav-pagination__edge-icon {
+    display: inline-flex;
+    transition: transform var(--d-motion-fast) var(--d-ease);
 }
-.nav-pagination__page:hover,
-.nav-pagination__prev:hover,
-.nav-pagination__next:hover {
-    background: var(--d-accent);
-    color: var(--d-accent-foreground);
+@media (hover: hover) and (pointer: fine) {
+    .nav-pagination__edge:hover {
+        color: var(--d-accent-foreground);
+        border-color: color-mix(in oklab, var(--d-ring) 40%, var(--d-border));
+    }
+    .nav-pagination__page:hover,
+    .nav-pagination__prev:hover,
+    .nav-pagination__next:hover {
+        background: var(--d-accent);
+        color: var(--d-accent-foreground);
+    }
+    /* The chevron leans one step the way the link goes. */
+    .nav-pagination__prev:hover .nav-pagination__edge-icon {
+        transform: translateX(-2px);
+    }
+    .nav-pagination__next:hover .nav-pagination__edge-icon {
+        transform: translateX(2px);
+    }
 }
 .nav-pagination__page:focus-visible,
 .nav-pagination__prev:focus-visible,
@@ -57,11 +78,27 @@
     background: var(--d-primary);
     color: var(--d-primary-foreground);
     border-color: var(--d-primary);
+    font-weight: var(--d-weight-medium);
+}
+/* Phones: 44px squares. The previous/next words are screen-reader-only
+   below sm (max-sm:sr-only), so chevron, five pages and chevron share one
+   row on a 390px screen. */
+@media (max-width: 639px) {
+    .nav-pagination__page,
+    .nav-pagination__prev,
+    .nav-pagination__next {
+        min-width: 2.75rem;
+        height: 2.75rem;
+    }
+    .nav-pagination__edge {
+        padding-inline: var(--d-spacing-2);
+    }
 }
 @media (prefers-reduced-motion: reduce) {
     .nav-pagination__page,
     .nav-pagination__prev,
-    .nav-pagination__next {
+    .nav-pagination__next,
+    .nav-pagination__edge-icon {
         transition: none;
     }
 }

@@ -10,9 +10,9 @@
         <aside class="legal-disclaimer legal-disclaimer--{data.variant -> f:or(alternative: 'default')}"
                aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:disclaimer.aria\')}')}">
             <f:if condition="{data.header}">
-                <d:atom.typography tag="h2" variant="large" class="legal-disclaimer__title">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                <d:atom.typography tag="h2" variant="large" class="legal-disclaimer__title"><d:atom.icon name="scale" size="sm" class="legal-disclaimer__icon" /><span>{data -> f:render.text(field: 'header')}</span></d:atom.typography>
             </f:if>
-            <div class="legal-disclaimer__content">
+            <div class="legal-disclaimer__content d-richtext">
                 {data -> f:render.text(field: 'content')}
             </div>
         </aside>

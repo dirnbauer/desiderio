@@ -28,14 +28,14 @@
                             <span class="gallery__title" data-d-gallery-title<f:if condition="{item.title}"><f:else> hidden</f:else></f:if>>{item -> f:render.text(field: 'title')}</span>
                             <span class="gallery__description" data-d-gallery-description<f:if condition="{item.description}"><f:else> hidden</f:else></f:if>>{item -> f:render.text(field: 'description')}</span>
                             <span class="gallery__credit" data-d-gallery-credit<f:if condition="{featuredCredit}"><f:else> hidden</f:else></f:if>>{featuredCredit}</span>
-                            <f:variable name="viewLabel">{f:translate(key: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/gallery/language/labels.xlf:view_image', default: 'View image')}</f:variable>
+                            <f:variable name="viewLabel">{f:translate(key: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/gallery/language/labels.xlf:view_image', default: 'Open page')}</f:variable>
                             <a class="gallery__featured-link" data-d-gallery-link href="{f:uri.typolink(parameter: item.link.url)}"<f:if condition="{item.link.url}"><f:else> hidden</f:else></f:if>>{viewLabel}</a>
                         </figcaption>
                     </f:if>
                 </f:for>
             </figure>
 
-            <div class="gallery__thumbs gallery__thumbs--cols-{data.columns -> f:or(alternative: '3')}">
+            <div class="gallery__thumbs gallery__thumbs--cols-{data.columns -> f:or(alternative: '3')}" role="region" tabindex="0" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.aria.choose\', default: \'Choose slide to display\')}')}">
                 <f:for each="{data.items}" as="item" iteration="galleryIteration">
                     <f:for each="{item.image}" as="fileReference">
                         <button type="button"
@@ -49,7 +49,7 @@
                                 data-thumb-alt="{fileReference.alternative -> f:or(alternative: item.title)}"
                                 data-thumb-link="{f:uri.typolink(parameter: item.link.url)}"
                                 aria-current="{f:if(condition: galleryIteration.isFirst, then: 'true', else: 'false')}">
-                            <f:image image="{fileReference}" maxWidth="480" alt="{fileReference.alternative -> f:or(alternative: item.title)}" loading="lazy" decoding="async" class="gallery__thumb-image"/>
+                            <f:image image="{fileReference}" maxWidth="480" alt="{f:if(condition: item.title, then: fileReference.alternative, else: '{fileReference.alternative -> f:or(alternative: fileReference.title)}')}" loading="lazy" decoding="async" class="gallery__thumb-image"/>
                             <f:if condition="{item.title}">
                                 <span class="gallery__thumb-label">{item -> f:render.text(field: 'title')}</span>
                             </f:if>

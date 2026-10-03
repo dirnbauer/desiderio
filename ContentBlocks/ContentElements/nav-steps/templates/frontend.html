@@ -8,13 +8,13 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="nav-steps nav-steps--{data.variant -> f:or(alternative: 'numbered')}">
     <d:layout.container>
         <nav class="nav-steps__inner" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:nav_steps.aria\', default: \'Progress steps\')}')}">
-            <ol class="nav-steps__list">
+            <ol class="nav-steps__list" role="list">
                 <f:for each="{data.step_items}" as="step" iteration="iterator">
                     <f:variable name="stepStatus">{step.status -> f:or(alternative: 'pending')}</f:variable>
                     <li class="nav-steps__item nav-steps__item--{stepStatus}"<f:if condition="{stepStatus} == 'current'"> aria-current="step"</f:if>>
                         <span class="nav-steps__indicator" aria-hidden="true">
                             <f:if condition="{stepStatus} == 'completed'">
-                                <f:then>&#10003;</f:then>
+                                <f:then><d:atom.icon name="check" size="sm"/></f:then>
                                 <f:else>{iterator.cycle}</f:else>
                             </f:if>
                         </span>

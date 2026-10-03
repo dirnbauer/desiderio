@@ -1,6 +1,6 @@
 .product-gallery__layout {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--d-spacing-xl);
     align-items: start;
     max-width: 64rem;
@@ -35,12 +35,12 @@
     display: grid;
     gap: var(--d-spacing-sm);
 }
-.product-gallery__thumbnails--cols-4 { grid-template-columns: repeat(4, 1fr); }
-.product-gallery__thumbnails--cols-5 { grid-template-columns: repeat(5, 1fr); }
-.product-gallery__thumbnails--cols-6 { grid-template-columns: repeat(6, 1fr); }
+.product-gallery__thumbnails--cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.product-gallery__thumbnails--cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.product-gallery__thumbnails--cols-6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
 @media (max-width: 480px) {
     .product-gallery__thumbnails--cols-5,
-    .product-gallery__thumbnails--cols-6 { grid-template-columns: repeat(4, 1fr); }
+    .product-gallery__thumbnails--cols-6 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 .product-gallery__thumb-item {
     min-width: 0;
@@ -55,13 +55,15 @@
     background: var(--muted);
     cursor: pointer;
     transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease,
-        transform 0.2s ease;
+        border-color var(--d-motion-fast) var(--d-ease),
+        box-shadow var(--d-motion-fast) var(--d-ease),
+        transform var(--d-motion-fast) var(--d-ease);
 }
-.product-gallery__thumb:hover {
-    border-color: var(--primary);
-    transform: translateY(-1px);
+@media (hover: hover) and (pointer: fine) {
+    .product-gallery__thumb:hover {
+        border-color: var(--primary);
+        transform: translateY(-1px);
+    }
 }
 .product-gallery__thumb:focus-visible {
     outline: none;
@@ -81,8 +83,9 @@
     display: block;
 }
 
-/* Decision panel */
-.product-gallery__panel { position: sticky; top: var(--d-spacing-lg); align-self: start; }
+/* Decision panel: it stays in view beside a tall gallery, below the
+   sticky site header rather than under it. */
+.product-gallery__panel { position: sticky; top: calc(var(--d-header-height, 4rem) + var(--d-spacing-lg)); align-self: start; }
 .product-gallery__panel-header { gap: var(--d-spacing-2xs); }
 .product-gallery__save { letter-spacing: var(--d-tracking-wide); text-transform: uppercase; }
 .product-gallery__title { margin: 0; }
@@ -159,9 +162,11 @@
     text-decoration: none;
     background: var(--primary);
     color: var(--primary-foreground);
-    transition: opacity 0.2s ease;
+    transition: opacity var(--d-motion-fast) var(--d-ease);
 }
-.product-gallery__cta:hover { opacity: 0.9; }
+@media (hover: hover) and (pointer: fine) {
+    .product-gallery__cta:hover { opacity: 0.9; }
+}
 .product-gallery__cta:focus-visible {
     outline: 2px solid var(--ring);
     outline-offset: 2px;

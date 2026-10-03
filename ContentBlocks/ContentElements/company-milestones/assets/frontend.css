@@ -30,6 +30,7 @@
     font-weight: var(--d-weight-bold);
     line-height: var(--d-leading-tight);
     letter-spacing: var(--d-tracking-tight);
+    font-variant-numeric: tabular-nums;
     color: var(--primary);
     margin-block-end: var(--d-spacing-xs);
 }

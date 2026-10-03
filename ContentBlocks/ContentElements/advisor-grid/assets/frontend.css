@@ -7,10 +7,13 @@
     flex-direction: column;
     gap: var(--d-spacing-sm);
 }
+/* The portrait sits at the top of the card, level with the name: with
+   centring, every avatar in a row rode a different height as soon as one
+   expertise line wrapped. */
 .advisor-grid__card {
     display: flex;
     gap: var(--d-spacing-md);
-    align-items: center;
+    align-items: flex-start;
     height: 100%;
     padding: var(--d-spacing-lg);
     border: 1px solid var(--border);
@@ -34,8 +37,16 @@
     font-weight: var(--d-weight-semibold);
     font-size: var(--d-text-lg);
 }
-.advisor-grid__body { min-width: 0; }
+/* Name, expertise, company and credit read as one block: tight gaps
+   inside, the card padding outside. */
+.advisor-grid__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--d-spacing-0-5);
+    min-width: 0;
+    overflow-wrap: break-word;
+}
 .advisor-grid__name { font-weight: var(--d-weight-semibold); font-size: var(--d-text-base); line-height: var(--d-leading-normal); }
-.advisor-grid__expertise { font-size: var(--d-text-sm); color: var(--d-link, var(--primary)); margin-block-start: var(--d-spacing-0-5); }
+.advisor-grid__expertise { font-size: var(--d-text-sm); color: var(--d-link, var(--primary)); }
 .advisor-grid__company { font-size: var(--d-text-sm); color: var(--muted-foreground); }
 .advisor-grid__credit { font-size: var(--d-text-xs); color: var(--muted-foreground); margin-block-start: var(--d-spacing-2xs); }

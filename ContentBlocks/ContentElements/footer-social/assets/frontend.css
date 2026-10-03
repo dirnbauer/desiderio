@@ -3,10 +3,16 @@
 .footer-social__brand { font-size: var(--d-text-lg); font-weight: var(--d-weight-bold); }
 .footer-social__icons { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--d-spacing-md); }
 .footer-social__icon {
+    position: relative;
     width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
     border-radius: 50%; border: 1px solid var(--border);
-    color: var(--muted-foreground); transition: color 0.15s, border-color 0.15s;
+    color: var(--muted-foreground);
+    transition: color var(--d-motion-fast) var(--d-ease), border-color var(--d-motion-fast) var(--d-ease);
 }
-.footer-social__icon:hover { color: var(--foreground); border-color: var(--foreground); }
+/* The circle stays 40px; the hit area is 48px, within the row gap. */
+.footer-social__icon::after { content: ""; position: absolute; inset: -0.25rem; border-radius: inherit; }
+@media (hover: hover) and (pointer: fine) {
+    .footer-social__icon:hover { color: var(--foreground); border-color: var(--foreground); }
+}
 .footer-social__icon:focus-visible { outline: 2px solid var(--d-ring); outline-offset: 2px; color: var(--foreground); border-color: var(--foreground); }
 .footer-social__copyright { font-size: var(--d-text-xs); color: var(--muted-foreground); }

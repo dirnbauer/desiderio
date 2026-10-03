@@ -2,9 +2,27 @@
 .certifications__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: var(--d-tracking-wide); color: var(--d-link, var(--primary)); font-weight: var(--d-weight-semibold); margin: 0; }
 .certifications__headline { margin-block-start: var(--d-spacing-xs); }
 .certifications__description { color: var(--muted-foreground); max-width: 40rem; margin-inline: auto; margin-block-start: var(--d-spacing-sm); }
-.certifications__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: var(--d-spacing-lg); }
-.certifications__item { text-align: center; padding: var(--d-spacing-md); border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); color: var(--card-foreground); display: flex; flex-direction: column; align-items: stretch; gap: var(--d-spacing-sm); transition: border-color 0.2s ease, box-shadow 0.2s ease; }
-.certifications__item:hover { border-color: var(--d-link, var(--primary)); box-shadow: var(--d-shadow-sm); }
+.certifications__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr)); gap: var(--d-spacing-lg); }
+/* The card wears the surface of d:molecule.card (22-modern-base.css): the
+   shared radius, a hairline ring and the preset's surface shadow. */
+.certifications__item {
+    position: relative;
+    min-width: 0;
+    text-align: center;
+    padding: var(--d-spacing-md);
+    border-radius: calc(var(--radius, 0.625rem) * 1.5);
+    background: var(--card);
+    color: var(--card-foreground);
+    box-shadow:
+        0 0 0 1px color-mix(in oklch, var(--foreground) 9%, transparent),
+        var(--d-surface-shadow, 0 0 transparent),
+        inset 0 1px 0 color-mix(in oklch, var(--card-foreground) 5%, transparent);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--d-spacing-sm);
+    transition: transform var(--d-motion) var(--d-ease), box-shadow var(--d-motion) var(--d-ease);
+}
 .certifications__media {
     position: relative;
     overflow: hidden;
@@ -20,19 +38,39 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
+    transition: transform var(--d-motion) var(--d-ease);
 }
 .certifications__name { font-weight: var(--d-weight-semibold); font-size: var(--d-text-base); }
+/* The issuer belongs to the name: it sits closer to it than to the text. */
 .certifications__issuer { font-size: var(--d-text-sm); color: var(--muted-foreground); margin: 0; }
+.certifications__name + .certifications__issuer { margin-block-start: calc(var(--d-spacing-2xs) - var(--d-spacing-sm)); }
 .certifications__cert-description { font-size: var(--d-text-sm); color: var(--muted-foreground); line-height: var(--d-leading-normal); margin: 0; }
-.certifications__link { display: inline-flex; align-items: center; gap: var(--d-spacing-xs); margin-block-start: auto; padding-block-start: var(--d-spacing-xs); font-size: var(--d-text-sm); font-weight: var(--d-weight-medium); color: var(--d-link, var(--primary)); text-decoration: none; border-radius: var(--radius); }
-.certifications__link:hover { text-decoration: underline; }
-.certifications__link-arrow { transition: transform 0.2s ease; }
-.certifications__link:hover .certifications__link-arrow { transform: translateX(0.125rem); }
-.certifications__link:focus-visible { outline: none; box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 50%, transparent); }
-@media (prefers-reduced-motion: reduce) {
-    .certifications__item,
-    .certifications__link-arrow { transition: none; }
-    .certifications__link:hover .certifications__link-arrow { transform: none; }
+/* Centred card text, centred action. */
+.certifications__link { display: inline-flex; align-self: center; align-items: center; gap: var(--d-spacing-xs); margin-block-start: auto; padding-block-start: var(--d-spacing-xs); font-size: var(--d-text-sm); font-weight: var(--d-weight-medium); color: var(--d-link, var(--primary)); text-decoration: none; border-radius: var(--radius); }
+.certifications__link-arrow { transition: transform var(--d-motion) var(--d-ease); }
+/* The link makes the whole card the hit area; links inside the description
+   stay clickable above it, and the card shows the keyboard focus. While the
+   Visual Editor edits the card, its fields stay clickable. */
+.certifications__link::after { content: ""; position: absolute; inset: 0; }
+.certifications__cert-description a { position: relative; z-index: 1; }
+.certifications__item:has(ve-editable-text, ve-editable-rich-text) .certifications__link::after { content: none; }
+.certifications__link:focus-visible { outline: none; }
+.certifications__item:has(.certifications__link:focus-visible) { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+@media (hover: hover) and (pointer: fine) {
+    .certifications__item:has(.certifications__link):hover {
+        box-shadow:
+            0 0 0 1px color-mix(in oklch, var(--primary) 32%, transparent),
+            var(--d-shadow-md),
+            inset 0 1px 0 color-mix(in oklch, var(--card-foreground) 5%, transparent);
+    }
+    .certifications__item:hover .certifications__link { text-decoration: underline; }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .certifications__item:has(.certifications__link):hover { transform: translateY(-2px); }
+    .certifications__item:has(.certifications__link):hover .certifications__image { transform: scale(1.03); }
+    .certifications__item:hover .certifications__link-arrow { transform: translateX(0.125rem); }
 }
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */

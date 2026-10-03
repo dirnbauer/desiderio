@@ -2,9 +2,13 @@
     text-align: center;
     margin-block-end: var(--d-spacing-xl);
 }
+/* The timeline is one reading column under a centred intro: it takes a
+   measure of its own and sits on the same axis, instead of running down
+   the left edge with an empty half page beside it. */
 .company-history__timeline {
     list-style: none;
-    margin: 0;
+    max-width: 44rem;
+    margin: 0 auto;
     padding: 0;
     display: flex;
     flex-direction: column;
@@ -52,6 +56,7 @@
     font-weight: var(--d-weight-semibold);
     line-height: 1;
     letter-spacing: var(--d-tracking-wide);
+    font-variant-numeric: tabular-nums;
     color: var(--d-primary-text);
 }
 .company-history__title {

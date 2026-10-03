@@ -11,6 +11,10 @@
     margin-top: var(--d-spacing-4);
     margin-bottom: var(--d-spacing-4);
 }
+/* Without a badge above it the headline starts flush with the content. */
+.hero-stacked__content > .hero-stacked__headline:first-child {
+    margin-top: 0;
+}
 .hero-stacked__subheadline {
     margin-bottom: var(--d-spacing-6);
 }
@@ -19,6 +23,12 @@
     gap: var(--d-spacing-3);
     justify-content: center;
     flex-wrap: wrap;
+}
+/* Phones: the buttons share the row in equal parts. */
+@media (max-width: 639px) {
+    .hero-stacked__actions > [data-slot="button"] {
+        flex: 1 1 0;
+    }
 }
 .hero-stacked__media {
     max-width: 64rem;

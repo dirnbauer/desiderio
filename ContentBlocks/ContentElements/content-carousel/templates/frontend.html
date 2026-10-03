@@ -19,15 +19,16 @@
             <f:then>
                 <div class="content-carousel__viewport content-carousel__viewport--cards"
                      role="region"
+                     tabindex="0"
                      aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.aria.collection\', default: \'Content collection\')}')}">
-                    <div class="content-carousel__track" role="list">
+                    <div class="content-carousel__track content-carousel__grid" role="list">
                         <f:for each="{data.items}" as="item">
                             <d:molecule.card class="content-carousel__slide card" size="sm" attributes="{role: 'listitem'}">
                                 <f:if condition="{item.slide_image}">
                                     <div class="card__image-wrapper">
                                         <f:for each="{item.slide_image}" as="image">
                                             <d:molecule.lightbox src="{f:uri.image(image: image, maxWidth: 1280)}">
-                                                <f:image image="{image}" alt="{item.slide_title}" maxWidth="640" class="card__image" loading="lazy" decoding="async"/>
+                                                <f:image image="{image}" alt="{f:if(condition: image.alternative, then: image.alternative, else: item.slide_title)}" maxWidth="640" class="card__image" loading="lazy" decoding="async"/>
                                             </d:molecule.lightbox>
                                         </f:for>
                                     </div>
@@ -66,7 +67,7 @@
                                     <div class="content-carousel__image-wrapper">
                                         <f:for each="{item.slide_image}" as="image">
                                             <d:molecule.lightbox src="{f:uri.image(image: image, maxWidth: 1920)}">
-                                                <f:image image="{image}" alt="{item.slide_title}" maxWidth="960" class="content-carousel__image" loading="lazy" decoding="async"/>
+                                                <f:image image="{image}" alt="{f:if(condition: image.alternative, then: image.alternative, else: item.slide_title)}" maxWidth="960" class="content-carousel__image" loading="lazy" decoding="async"/>
                                             </d:molecule.lightbox>
                                         </f:for>
                                     </div>
@@ -131,7 +132,7 @@
                         </div>
                     </f:if>
 
-                    <p class="content-carousel__status" aria-live="polite" data-astro-content-carousel-status>
+                    <p class="content-carousel__status" aria-live="polite" data-astro-content-carousel-status data-astro-status-pattern="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.status')}">
                         {f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.status', arguments: {0: 1, 1: slideCount}, default: 'Slide 1 of {slideCount}')}
                     </p>
                 </div>

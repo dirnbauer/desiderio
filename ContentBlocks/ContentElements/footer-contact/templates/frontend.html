@@ -11,7 +11,7 @@
             <f:if condition="{data.header}">
                 <d:atom.typography tag="h2" variant="h2" class="footer-contact__title">{data -> f:render.text(field: 'header')}</d:atom.typography>
             </f:if>
-            <div class="footer-contact__grid">
+            <address class="footer-contact__grid">
                 <f:if condition="{data.address}">
                     <div class="footer-contact__item">
                         <d:atom.icon name="map-pin" size="default" />
@@ -36,7 +36,7 @@
                         <span class="footer-contact__text">{data -> f:render.text(field: 'hours')}</span>
                     </div>
                 </f:if>
-            </div>
+            </address>
         </div>
         <f:if condition="{data.copyright}">
             <div class="footer-contact__bottom">

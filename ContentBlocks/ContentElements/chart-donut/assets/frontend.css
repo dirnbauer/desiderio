@@ -38,7 +38,9 @@
     align-items: center;
     justify-content: center;
     flex: 0 0 auto;
-    width: min(100%, 11.25rem);
+    /* Large enough that the centre caption, drawn in viewBox units of a
+       360-wide ring, still reads at ~11px on screen. */
+    width: min(100%, 14rem);
     aspect-ratio: 1;
     min-width: 0;
     color: var(--foreground);
@@ -49,15 +51,20 @@
     height: auto;
 }
 
-/* SVG centre text inherits theme tokens for light/dark. */
+/* SVG centre text inherits theme tokens for light/dark. Sizes are viewBox
+   units (the ring is drawn 360 wide), so they are set for the rendered box:
+   2.5rem/1.125rem land at ~25px and ~11px in a 14rem ring. */
 .chart-donut__svg .chart-donut__center-value {
     fill: var(--foreground);
-    font-size: 1.75rem;
+    font-size: 2.5rem;
     font-weight: var(--d-weight-bold);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: var(--d-tracking-tight);
 }
 .chart-donut__svg .chart-donut__center-label {
     fill: var(--muted-foreground);
-    font-size: var(--d-text-sm);
+    font-size: 1.125rem;
+    font-weight: var(--d-weight-medium);
 }
 
 .chart-donut__canvas:has(.chart-donut__svg) .chart-donut__center-fallback {
@@ -141,7 +148,7 @@
     }
     .chart-donut__canvas {
         align-self: center;
-        width: min(100%, 10rem);
+        width: min(100%, 13rem);
     }
     .chart-donut__legend {
         width: 100%;

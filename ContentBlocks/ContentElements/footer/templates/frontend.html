@@ -17,7 +17,7 @@
 
             <f:if condition="{data.footer_links}">
                 <nav class="footer__nav" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:footer.nav.aria', default: 'Footer navigation')}">
-                    <ul class="footer__links">
+                    <ul class="footer__links" role="list">
                         <f:for each="{data.footer_links}" as="item">
                             <li>
                                 <f:if condition="{item.link}">
@@ -36,7 +36,7 @@
 
             <f:if condition="{data.utility_links}">
                 <nav class="footer__utilities" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:footer.utility.aria', default: 'Legal and utility links')}">
-                    <ul class="footer__links">
+                    <ul class="footer__links" role="list">
                         <f:for each="{data.utility_links}" as="item">
                             <li>
                                 <f:if condition="{item.link}">

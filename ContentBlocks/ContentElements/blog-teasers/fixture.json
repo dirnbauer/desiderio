@@ -9,7 +9,7 @@
             "meta": "8 min read",
             "title": "How one setting restyles all 244 elements",
             "excerpt": "<p>Colour tokens and semantic CSS variables let <strong>one site setting</strong> restyle every Desiderio element. A redesign can then be a settings change instead of a project.</p>",
-            "link": "t3://page?uid=1",
+            "link": "{{page:resources}}",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-site-settings-theme.png",
                 "title": "Desiderio site settings theme category",
@@ -23,7 +23,7 @@
             "meta": "5 min read",
             "title": "A backend preview for every element",
             "excerpt": "<p>All 244 Desiderio content elements show a <strong>real preview</strong> in the page module. Editors recognise each element at a glance and need less help to get started.</p>",
-            "link": "t3://page?uid=1",
+            "link": "{{page:resources}}",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-page-module-hero-e23618aa.png",
                 "title": "Desiderio page module previews",
@@ -37,7 +37,7 @@
             "meta": "6 min read",
             "title": "A full demo site from one command",
             "excerpt": "<p>The command desiderio:styleguide:seed builds the whole styleguide. It is <strong>safe in workspaces</strong> and can run again without creating duplicates.</p>",
-            "link": "t3://page?uid=1",
+            "link": "{{page:resources}}",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-content-wizard.png",
                 "title": "Desiderio new content element wizard",

@@ -1,10 +1,17 @@
+/* The section opens with the hero rhythm (--d-hero-y) as its padding, so
+   copy taller than 80% of the screen never touches the photo's edges. */
 .hero-parallax {
     position: relative;
     min-height: 80vh;
     min-height: 80svh;
+    padding-block: var(--d-hero-y);
     display: flex;
     align-items: center;
+    /* clip, not hidden: a hidden overflow makes the section a scroll
+       container, and the parallax timeline below would follow the section's
+       own (never moving) scroll instead of the page's. */
     overflow: hidden;
+    overflow: clip;
     color: var(--background);
 }
 .hero-parallax__bg-wrap {
@@ -43,6 +50,10 @@
     margin-top: var(--d-spacing-4);
     margin-bottom: var(--d-spacing-4);
 }
+/* Without a badge above it the headline starts flush with the content. */
+.hero-parallax__content > .hero-parallax__headline:first-child {
+    margin-top: 0;
+}
 .hero-parallax__subheadline {
     font-size: var(--d-text-lg);
     line-height: var(--d-leading-relaxed);
@@ -56,12 +67,40 @@
     justify-content: center;
     gap: var(--d-spacing-3);
 }
+/* Phones: the call to action takes the full row. */
+@media (max-width: 639px) {
+    .hero-parallax__actions > [data-slot="button"] {
+        flex: 1 1 0;
+    }
+}
 @media (min-width: 768px) {
     .hero-parallax .hero-parallax__headline {
         font-size: var(--d-text-5xl);
     }
     .hero-parallax__subheadline {
         font-size: var(--d-text-xl);
+    }
+}
+
+/* The parallax: while the section crosses the viewport the photo drifts the
+   other way, so it seems to scroll slower than the page. Pure CSS on the
+   scroll timeline (off the main thread), inside the 10% overhang of its
+   wrapper plus the 8% scale, so no edge ever shows. Without support for
+   scroll-driven animations, or with reduced motion, the photo stands still. */
+@keyframes hero-parallax-drift {
+    from {
+        transform: translateY(-9%) scale(1.08);
+    }
+    to {
+        transform: translateY(9%) scale(1.08);
+    }
+}
+@media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+        .hero-parallax__bg {
+            animation: hero-parallax-drift linear both;
+            animation-timeline: view();
+        }
     }
 }
 @media (prefers-reduced-motion: reduce) {

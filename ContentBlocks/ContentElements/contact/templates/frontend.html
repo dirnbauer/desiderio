@@ -17,8 +17,12 @@
 
         <div class="contact__grid">
             <d:molecule.card class="contact__info">
-                <f:if condition="{data.info_title}"><d:atom.typography tag="h3" variant="large" class="contact__info-title">{data -> f:render.text(field: 'info_title')}</d:atom.typography></f:if>
-                <f:if condition="{data.info_text}"><p class="contact__info-text">{data -> f:render.text(field: 'info_text')}</p></f:if>
+                <f:if condition="{data.info_title} || {data.info_text}">
+                    <div class="contact__info-head">
+                        <f:if condition="{data.info_title}"><d:atom.typography tag="h3" variant="large" class="contact__info-title">{data -> f:render.text(field: 'info_title')}</d:atom.typography></f:if>
+                        <f:if condition="{data.info_text}"><p class="contact__info-text">{data -> f:render.text(field: 'info_text')}</p></f:if>
+                    </div>
+                </f:if>
                 <f:if condition="{data.contact_items}">
                     <dl class="contact__list">
                         <f:for each="{data.contact_items}" as="item">

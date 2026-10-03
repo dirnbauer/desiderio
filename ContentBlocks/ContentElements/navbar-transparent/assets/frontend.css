@@ -20,16 +20,21 @@
     color: var(--d-foreground);
     text-decoration: none;
 }
+/* Focus rings are box-shadows here; the transparent outline is what
+   Windows high-contrast mode paints instead (it drops box-shadows). */
 .navbar-transparent__brand--link {
     border-radius: var(--d-radius-md);
-    transition: color 0.15s ease;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    transition: color var(--d-motion-fast) var(--d-ease);
 }
-.navbar-transparent__brand--link:hover {
-    color: var(--d-foreground);
-    text-decoration: none;
+@media (hover: hover) and (pointer: fine) {
+    .navbar-transparent__brand--link:hover {
+        color: var(--d-foreground);
+        text-decoration: none;
+    }
 }
 .navbar-transparent__brand--link:focus-visible {
-    outline: none;
     box-shadow: 0 0 0 2px var(--d-background), 0 0 0 4px var(--d-ring);
 }
 .navbar-transparent__nav {
@@ -54,16 +59,19 @@
     color: var(--d-muted-foreground);
     text-decoration: none;
     border-radius: var(--d-radius-md);
-    transition: color 0.15s ease, background-color 0.15s ease;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    transition: color var(--d-motion-fast) var(--d-ease), background-color var(--d-motion-fast) var(--d-ease);
 }
-.navbar-transparent__link:hover {
-    color: var(--d-accent-foreground);
-    background-color: var(--d-accent);
+@media (hover: hover) and (pointer: fine) {
+    .navbar-transparent__link:hover {
+        color: var(--d-accent-foreground);
+        background-color: var(--d-accent);
+    }
 }
 .navbar-transparent__link:focus-visible {
     color: var(--d-accent-foreground);
     background-color: var(--d-accent);
-    outline: none;
     box-shadow: 0 0 0 2px var(--d-background), 0 0 0 4px var(--d-ring);
 }
 .navbar-transparent__cta {
@@ -86,6 +94,13 @@
     }
     .navbar-transparent__link {
         padding-block: var(--d-spacing-2);
+    }
+}
+
+/* Touch: every link is a 44px target. */
+@media (pointer: coarse) {
+    .navbar-transparent__link {
+        min-height: 2.75rem;
     }
 }
 

@@ -8,10 +8,10 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="feature-bento">
     <d:layout.container>
         <f:if condition="{data.header}">
-            <header class="feature-bento__intro">
-                <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
-                <f:if condition="{data.subheadline}"><d:atom.typography variant="lead" class="feature-bento__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
-            </header>
+            <d:molecule.sectionIntro prefix="feature-bento" align="center" leadVariant="lead" class="feature-bento__intro" leadClass="feature-bento__subheadline">
+                <f:fragment name="heading">{data -> f:render.text(field: 'header')}</f:fragment>
+                <f:fragment name="lead"><f:if condition="{data.subheadline}">{data -> f:render.text(field: 'subheadline')}</f:if></f:fragment>
+            </d:molecule.sectionIntro>
         </f:if>
 
         <div class="feature-bento__grid">
@@ -24,7 +24,7 @@
                             <f:image image="{item.image.0}" alt="{item.image.0.alternative}" maxWidth="800" class="feature-bento__bg-image" loading="lazy" decoding="async"/>
                         </div>
                     </f:if>
-                    <div class="feature-bento__content">
+                    <div class="feature-bento__content gap-1.5">
                         <d:atom.typography tag="h3" variant="large" class="feature-bento__title">{item -> f:render.text(field: 'title')}</d:atom.typography>
                         <f:if condition="{item.description}">
                             <div class="feature-bento__description d-richtext">{item -> f:render.text(field: 'description')}</div>

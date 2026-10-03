@@ -8,15 +8,15 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="feature-grid-3">
     <d:layout.container>
         <f:if condition="{data.header}">
-            <header class="feature-grid-3__intro">
-                <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
-                <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
-            </header>
+            <d:molecule.sectionIntro prefix="feature-grid-3" align="center" class="feature-grid-3__intro">
+                <f:fragment name="heading">{data -> f:render.text(field: 'header')}</f:fragment>
+                <f:fragment name="lead"><f:if condition="{data.subheadline}">{data -> f:render.text(field: 'subheadline')}</f:if></f:fragment>
+            </d:molecule.sectionIntro>
         </f:if>
 
         <div class="feature-grid-3__grid">
             <f:for each="{data.items}" as="item">
-                <d:molecule.card class="feature-grid-3__item">
+                <d:molecule.card class="feature-grid-3__item relative has-[a:focus-visible]:ring-2 has-[a:focus-visible]:ring-ring">
                     <d:molecule.featureItem prefix="feature-grid-3" class="feature-grid-3__feature" icon="{item.icon}" iconSize="lg" link="{item.link.url}" target="{item.link.target}" textClass="d-richtext">
                         <f:fragment name="title">{item -> f:render.text(field: 'title')}</f:fragment>
                         <f:fragment name="text"><f:if condition="{item.description}">{item -> f:render.text(field: 'description')}</f:if></f:fragment>

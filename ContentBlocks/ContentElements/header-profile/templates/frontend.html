@@ -11,7 +11,7 @@
             <f:if condition="{data.avatar}">
                 <div class="header-profile__avatar">
                     <f:for each="{data.avatar}" as="image">
-                        <f:image image="{image}" width="96" height="96" class="header-profile__avatar-img" alt="{f:if(condition: image.alternative, then: image.alternative, else: data.header)}" additionalAttributes="{srcset: '{f:uri.image(image: image, width: \'96\', height: \'96\')} 1x, {f:uri.image(image: image, width: \'192\', height: \'192\')} 2x'}" loading="lazy" decoding="async"/>
+                        <f:image image="{image}" width="96c" height="96c" class="header-profile__avatar-img" alt="{f:if(condition: image.alternative, then: image.alternative, else: data.header)}" additionalAttributes="{srcset: '{f:uri.image(image: image, width: \'96c\', height: \'96c\')} 1x, {f:uri.image(image: image, width: \'192c\', height: \'192c\')} 2x'}" loading="eager" decoding="async"/>
                     </f:for>
                 </div>
             </f:if>

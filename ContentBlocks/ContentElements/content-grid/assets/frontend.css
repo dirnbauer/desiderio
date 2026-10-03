@@ -2,7 +2,11 @@
     margin-block-end: var(--d-spacing-lg);
 }
 
+/* A linked card is one hit area: the title link's ::after covers the card
+   (stretched link), so the card that lifts on hover is what a click opens.
+   Other links inside keep their own target above it. */
 .content-grid__item {
+    position: relative;
     height: 100%;
 }
 
@@ -10,17 +14,19 @@
     font-size: var(--d-text-lg);
     font-weight: var(--d-weight-semibold);
     line-height: var(--d-leading-snug);
-    margin-block-end: var(--d-spacing-sm);
 }
 
 .content-grid__title-link {
     color: inherit;
     text-decoration: none;
     border-radius: var(--d-radius-sm);
+    transition: color var(--d-motion-fast) var(--d-ease);
 }
 
-.content-grid__title-link:hover {
-    color: var(--d-link, var(--primary));
+.content-grid__title-link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
 }
 
 .content-grid__title-link:focus-visible {
@@ -28,14 +34,32 @@
     outline-offset: 2px;
 }
 
+/* Keyboard focus outlines the whole card, the thing the link stands for. */
+@supports selector(:has(*)) {
+    .content-grid__title-link:focus-visible {
+        outline: none;
+    }
+    .content-grid__item:has(.content-grid__title-link:focus-visible) {
+        outline: 2px solid var(--ring);
+        outline-offset: 2px;
+    }
+}
+
 .content-grid__content {
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
     line-height: var(--d-leading-relaxed);
+    overflow-wrap: break-word;
 }
 
 .content-grid__content > *:first-child { margin-top: 0; }
 .content-grid__content > *:last-child { margin-bottom: 0; }
+
+.content-grid__content a,
+.content-grid__link {
+    position: relative;
+    z-index: 1;
+}
 
 .content-grid__link {
     display: inline-flex;
@@ -48,23 +72,57 @@
     font-weight: var(--d-weight-medium);
     color: var(--d-link, var(--primary));
     text-decoration: none;
-}
-
-.content-grid__item:hover .content-grid__link {
-    text-decoration: underline;
     text-underline-offset: 2px;
 }
 
 .content-grid__link-arrow {
-    transition: transform 0.2s ease;
+    transition: transform var(--d-motion) var(--d-ease);
 }
 
-.content-grid__item:hover .content-grid__link-arrow {
-    transform: translateX(2px);
+@media (hover: hover) and (pointer: fine) {
+    .content-grid__item:hover .content-grid__title-link {
+        color: var(--d-link, var(--primary));
+    }
+    .content-grid__item:hover .content-grid__link {
+        text-decoration: underline;
+    }
+    .content-grid__item:hover .content-grid__link-arrow {
+        transform: translateX(2px);
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
     .content-grid__link-arrow {
         transition: none;
     }
+}
+
+/* Text from the RTE (d-richtext), scoped to this element: spacing between
+   siblings, list markers, heading sizes and a visible link. */
+.content-grid__content.d-richtext > * { margin-block: 0; }
+.content-grid__content.d-richtext > * + * { margin-block-start: var(--d-spacing-sm); }
+.content-grid__content.d-richtext :is(ul, ol) { padding-inline-start: var(--d-spacing-lg); }
+.content-grid__content.d-richtext ul { list-style: disc; }
+.content-grid__content.d-richtext ol { list-style: decimal; }
+.content-grid__content.d-richtext li + li { margin-block-start: var(--d-spacing-2xs); }
+.content-grid__content.d-richtext :is(h2, h3, h4, h5, h6) {
+    color: var(--foreground);
+    font-size: var(--d-text-base);
+    font-weight: var(--d-weight-semibold);
+    line-height: var(--d-leading-snug);
+}
+.content-grid__content.d-richtext a {
+    color: var(--d-link, var(--primary));
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: color-mix(in oklch, currentColor 45%, transparent);
+    text-underline-offset: 0.22em;
+    border-radius: var(--d-radius-sm);
+}
+.content-grid__content.d-richtext a:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+@media (hover: hover) and (pointer: fine) {
+    .content-grid__content.d-richtext a:hover { text-decoration-color: currentColor; }
 }

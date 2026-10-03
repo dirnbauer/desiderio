@@ -9,7 +9,7 @@
     <d:layout.container>
         <nav class="navbar-tabbed__inner" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:navbar.tabbed.aria\', default: \'Tabbed navigation\')}')}">
             <span class="navbar-tabbed__brand">{data -> f:render.text(field: 'brand')}</span>
-            <ul class="navbar-tabbed__tabs">
+            <ul class="navbar-tabbed__tabs" role="list">
                 <f:for each="{data.tabs}" as="tab">
                     <f:if condition="{tab.link.url}">
                         <li>

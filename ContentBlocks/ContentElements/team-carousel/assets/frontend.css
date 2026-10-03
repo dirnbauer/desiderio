@@ -7,15 +7,18 @@
 .team-carousel__subheadline {
     margin-block-start: var(--d-spacing-sm);
 }
+/* A few pixels of padding (pulled back with a negative margin, so the
+   cards still line up with the content edge) keep the cards' hairline ring
+   from being clipped by the scroller on its outer sides. */
 .team-carousel__track {
     display: flex;
     gap: var(--d-spacing-lg);
     overflow-x: auto;
     scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--d-spacing-2xs);
     -webkit-overflow-scrolling: touch;
-    margin: 0;
-    padding: 0;
-    padding-block-end: var(--d-spacing-sm);
+    margin: 0 calc(var(--d-spacing-2xs) * -1);
+    padding: var(--d-spacing-2xs) var(--d-spacing-2xs) var(--d-spacing-sm);
     list-style: none;
     scroll-behavior: smooth;
     scrollbar-width: thin;
@@ -56,11 +59,16 @@
         flex-basis: calc((100% - 3 * var(--d-spacing-lg)) / 4);
     }
 }
+/* The shadcn card already draws its own hairline ring; a second CSS border
+   on top of it made these cards heavier than every other card on the page. */
 .team-carousel__card {
     height: 100%;
     overflow: hidden;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
+}
+/* The portrait opens the card flush with its top edge (the card component
+   does this for a bare <img>, not for the media wrapper). */
+.team-carousel__card:has(> .team-carousel__media:first-child) {
+    padding-block-start: 0;
 }
 .team-carousel__media {
     aspect-ratio: 1 / 1;

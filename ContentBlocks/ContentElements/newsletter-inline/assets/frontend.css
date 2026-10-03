@@ -46,8 +46,10 @@
 .newsletter-inline__form .btn-primary {
     min-height: 2.5rem;
 }
-.newsletter-inline__form input:hover {
-    border-color: color-mix(in oklab, var(--d-ring) 45%, transparent);
+@media (hover: hover) and (pointer: fine) {
+    .newsletter-inline__form input:hover {
+        border-color: color-mix(in oklab, var(--d-ring) 45%, transparent);
+    }
 }
 .newsletter-inline__form input:focus-visible {
     outline: var(--d-ring-width, 2px) solid var(--d-ring);
@@ -69,13 +71,16 @@
 }
 @media (max-width: 768px) {
     .newsletter-inline__bar {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         gap: var(--d-spacing-lg);
         text-align: center;
     }
+    /* The copy above is centred; the field keeps its label over its
+       start edge, where the input text begins. */
     .newsletter-inline__form {
         width: 100%;
         justify-self: stretch;
+        text-align: start;
     }
 }
 @media (max-width: 480px) {
@@ -83,7 +88,7 @@
         padding: var(--d-spacing-lg);
     }
     .newsletter-inline__form form {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
     }
     .newsletter-inline__form .actions,
     .newsletter-inline__form .form-navigation,

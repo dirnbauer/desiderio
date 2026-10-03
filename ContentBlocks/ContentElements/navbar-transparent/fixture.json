@@ -2,25 +2,25 @@
     "_type": "nav",
     "header": "Primary",
     "brand": "Desiderio",
-    "brand_link": "t3://page?uid=1",
+    "brand_link": "{{page:home}}",
     "nav_items": [
         {
             "label": "Components",
-            "link": "t3://page?uid=1"
+            "link": "{{page:content-types}}"
         },
         {
             "label": "Themes",
-            "link": "t3://page?uid=1"
+            "link": "{{page:themes}}"
         },
         {
             "label": "Pricing",
-            "link": "t3://page?uid=1"
+            "link": "{{page:pricing}}"
         },
         {
             "label": "Docs",
-            "link": "https://ui.shadcn.com/docs"
+            "link": "{{page:technical-features}}"
         }
     ],
     "button_text": "Get started free",
-    "button_link": "t3://page?uid=1"
+    "button_link": "{{page:pricing}}"
 }

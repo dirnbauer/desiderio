@@ -4,19 +4,22 @@
 }
 .feature-grid-4__grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: var(--d-spacing-lg);
 }
 @media (max-width: 1024px) {
-    .feature-grid-4__grid { grid-template-columns: repeat(2, 1fr); }
+    .feature-grid-4__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 640px) {
-    .feature-grid-4__grid { grid-template-columns: 1fr; }
+    .feature-grid-4__grid { grid-template-columns: minmax(0, 1fr); }
 }
+/* Title and line sit closer to each other (one gap) than to the icon (gap
+   plus the icon's margin). */
 .feature-grid-4__item {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: var(--d-spacing-xs);
     min-width: 0;
     /* No bottom padding: the item paints nothing, so it would only add space
        below the last row. Rows are separated by the grid gap. */
@@ -29,7 +32,7 @@
     justify-content: center;
     width: 3.25rem;
     height: 3.25rem;
-    margin: 0 auto var(--d-spacing-md);
+    margin: 0 auto var(--d-spacing-xs);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     background: var(--secondary);
@@ -50,7 +53,7 @@
     color: var(--muted-foreground);
     font-size: var(--d-text-xs);
     line-height: var(--d-leading-normal);
-    margin: var(--d-spacing-xs) auto 0;
+    margin: 0 auto;
     max-width: 26ch;
 }
 

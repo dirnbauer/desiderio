@@ -1,27 +1,44 @@
 .rating-display__intro { text-align: center; margin-block-end: var(--d-spacing-xl); }
 .rating-display__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: var(--d-tracking-wide); color: var(--d-link, var(--primary)); font-weight: var(--d-weight-semibold); }
 .rating-display__headline { margin-block-start: var(--d-spacing-xs); }
+/* auto-fit, not auto-fill: three ratings share the row instead of leaving
+   an empty fourth column at its end. */
 .rating-display__grid {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
     gap: var(--d-spacing-lg);
 }
-.rating-display__item { display: flex; }
+/* Phones: two scores a row, the cards are small. */
+@media (max-width: 480px) {
+    .rating-display__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--d-spacing-sm); }
+}
+.rating-display__item { display: flex; min-width: 0; }
+/* The card wears the surface of d:molecule.card (22-modern-base.css): the
+   shared radius, a hairline ring and the preset's surface shadow. */
 .rating-display__card {
+    position: relative;
     flex: 1;
+    min-width: 0;
     text-align: center;
     padding: var(--d-spacing-lg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
+    border-radius: calc(var(--radius, 0.625rem) * 1.5);
     background: var(--card);
     color: var(--card-foreground);
+    box-shadow:
+        0 0 0 1px color-mix(in oklch, var(--foreground) 9%, transparent),
+        var(--d-surface-shadow, 0 0 transparent),
+        inset 0 1px 0 color-mix(in oklch, var(--card-foreground) 5%, transparent);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--d-spacing-xs);
+    transition: transform var(--d-motion) var(--d-ease), box-shadow var(--d-motion) var(--d-ease);
+}
+@media (max-width: 480px) {
+    .rating-display__card { padding: var(--d-spacing-md); }
 }
 .rating-display__logo {
     width: min(11rem, 100%);
@@ -41,17 +58,16 @@
     object-fit: contain;
     filter: grayscale(1);
     opacity: 0.6;
-    transition: filter 0.2s ease, opacity 0.2s ease;
+    transition: filter var(--d-motion) var(--d-ease), opacity var(--d-motion) var(--d-ease);
 }
-.rating-display__card:hover .rating-display__logo-img,
 .rating-display__card:focus-within .rating-display__logo-img {
     filter: none;
     opacity: 1;
 }
 .rating-display__score { margin: 0; font-size: var(--d-text-3xl); font-weight: var(--d-weight-display); color: var(--foreground); line-height: var(--d-leading-tight); font-variant-numeric: tabular-nums; }
 .rating-display__stars { display: flex; gap: var(--d-spacing-0-5); color: var(--primary); }
-.rating-display__platform { margin: 0; font-size: var(--d-text-sm); font-weight: var(--d-weight-semibold); }
-.rating-display__count { font-size: var(--d-text-sm); color: var(--muted-foreground); }
+.rating-display__platform { margin: 0; font-size: var(--d-text-sm); font-weight: var(--d-weight-semibold); overflow-wrap: anywhere; }
+.rating-display__count { font-size: var(--d-text-sm); color: var(--muted-foreground); font-variant-numeric: tabular-nums; }
 .rating-display__link {
     font-size: var(--d-text-xs);
     color: var(--d-link, var(--primary));
@@ -60,10 +76,32 @@
     padding-block-start: var(--d-spacing-xs);
     border-radius: var(--radius);
 }
-.rating-display__link:hover { text-decoration: underline; }
-.rating-display__link:focus-visible {
+/* The link makes the whole card the hit area; the card shows the keyboard
+   focus. While the Visual Editor edits the card, its fields stay clickable. */
+.rating-display__link::after { content: ""; position: absolute; inset: 0; }
+.rating-display__card:has(ve-editable-text, ve-editable-rich-text) .rating-display__link::after { content: none; }
+.rating-display__link:focus-visible { outline: none; }
+.rating-display__card:has(.rating-display__link:focus-visible) {
     outline: 2px solid var(--ring);
     outline-offset: 2px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .rating-display__card:hover .rating-display__logo-img {
+        filter: none;
+        opacity: 1;
+    }
+    .rating-display__card:has(.rating-display__link):hover {
+        box-shadow:
+            0 0 0 1px color-mix(in oklch, var(--primary) 32%, transparent),
+            var(--d-shadow-md),
+            inset 0 1px 0 color-mix(in oklch, var(--card-foreground) 5%, transparent);
+    }
+    .rating-display__card:hover .rating-display__link { text-decoration: underline; }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .rating-display__card:has(.rating-display__link):hover { transform: translateY(-2px); }
 }
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */
@@ -81,9 +119,7 @@
    marks keep their colours and the wordmark stays light. */
 .rating-display__logo-img[src*=".svg"] { background: none; border: 0; border-radius: 0; box-shadow: none; }
 .dark .rating-display__logo-img[src*=".svg"] { filter: grayscale(1) invert(1); opacity: 0.7; }
-.dark .rating-display__card:hover .rating-display__logo-img[src*=".svg"],
 .dark .rating-display__card:focus-within .rating-display__logo-img[src*=".svg"] { filter: invert(1) hue-rotate(180deg); opacity: 1; }
-
-@media (prefers-reduced-motion: reduce) {
-    .rating-display__logo-img { transition: none; }
+@media (hover: hover) and (pointer: fine) {
+    .dark .rating-display__card:hover .rating-display__logo-img[src*=".svg"] { filter: invert(1) hue-rotate(180deg); opacity: 1; }
 }

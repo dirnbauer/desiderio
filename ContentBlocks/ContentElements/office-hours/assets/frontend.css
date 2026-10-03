@@ -4,13 +4,15 @@
     align-items: center;
     gap: var(--d-spacing-sm);
 }
-.office-hours__icon { display: inline-flex; color: var(--primary); }
+.office-hours__icon { display: inline-flex; flex-shrink: 0; color: var(--primary); }
 .office-hours__title { margin: 0; }
+/* The card's gap already separates the list from the text above. */
 .office-hours__list {
-    margin-block-start: var(--d-spacing-lg);
+    margin-block: var(--d-spacing-xs) 0;
 }
 .office-hours__row {
     display: flex;
+    align-items: baseline;
     justify-content: space-between;
     gap: var(--d-spacing-md);
     padding: var(--d-spacing-xs) 0;
@@ -18,11 +20,15 @@
 }
 .office-hours__row:last-child { border-bottom: none; }
 .office-hours__day {
+    min-width: 0;
     font-weight: var(--d-weight-medium);
     font-size: var(--d-text-sm);
 }
+/* Hours line up digit for digit from row to row. */
 .office-hours__time {
     font-size: var(--d-text-sm);
     color: var(--muted-foreground);
     margin: 0;
+    text-align: end;
+    font-variant-numeric: tabular-nums;
 }

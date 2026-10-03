@@ -96,7 +96,7 @@
     color: var(--card-foreground);
     padding: var(--d-spacing-lg);
     box-shadow: var(--d-surface-shadow, var(--d-shadow-sm, none));
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: border-color var(--d-motion) var(--d-ease), box-shadow var(--d-motion) var(--d-ease);
 }
 /* Offsets count from the padding box, 1px inside the card's border: the
    chevron's centre lands on the card's outer edge, level with the dot's
@@ -113,7 +113,7 @@
     background: var(--card);
     transform: translateY(-50%) rotate(45deg);
     z-index: 2;
-    transition: border-color 0.2s ease;
+    transition: border-color var(--d-motion) var(--d-ease);
 }
 /* Focus-visible ring: keyboard focus on anything inside an item (richtext
    links) rings its card and highlights the step marker. */

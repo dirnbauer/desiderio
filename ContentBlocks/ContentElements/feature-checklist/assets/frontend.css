@@ -13,6 +13,24 @@
     max-width: 40rem;
     margin-inline: auto;
 }
+/* From 64rem the intro and the list sit side by side (lg:grid on the
+   layout), so the card uses the width instead of floating in gutters. */
+@media (min-width: 1024px) {
+    .feature-checklist__intro {
+        text-align: start;
+        margin-block-end: 0;
+    }
+    .feature-checklist__list {
+        max-width: none;
+    }
+    /* Without an intro the list keeps its centred single column. */
+    .feature-checklist__body:only-child {
+        grid-column: 1 / -1;
+    }
+    .feature-checklist__body:only-child .feature-checklist__list {
+        max-width: 40rem;
+    }
+}
 .feature-checklist__items {
     list-style: none;
     margin: 0;
@@ -27,10 +45,22 @@
 .feature-checklist__item + .feature-checklist__item {
     border-top: 1px solid var(--border);
 }
+/* A soft primary disc behind the check; 1.5rem high with the 2px offset it
+   centres on the title's first line. */
 .feature-checklist__marker {
+    display: inline-flex;
     flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: var(--d-radius-full);
+    background: color-mix(in oklch, var(--primary) 12%, transparent);
     color: var(--primary);
     margin-top: var(--d-spacing-0-5);
+}
+.feature-checklist__text {
+    min-width: 0;
 }
 .feature-checklist__title {
     font-weight: var(--d-weight-semibold);
@@ -38,7 +68,6 @@
 .feature-checklist__description {
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
-    margin-top: var(--d-spacing-xs);
 }
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */

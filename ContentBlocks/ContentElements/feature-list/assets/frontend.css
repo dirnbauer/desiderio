@@ -13,26 +13,35 @@
     gap: var(--d-spacing-md);
 }
 .feature-list--two-columns .feature-list__items {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 @media (max-width: 768px) {
     .feature-list--two-columns .feature-list__items {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
     }
 }
+/* Icon beside the text: the card is a flex column by default (shadcn), so
+   the row is set here; it left a lone small icon on a line of its own. */
 .feature-list__item {
     display: flex;
+    flex-direction: row;
     gap: var(--d-spacing-md);
     align-items: flex-start;
 }
+/* A soft primary disc as tall as the title's first line. */
 .feature-list__icon {
+    display: inline-flex;
     flex-shrink: 0;
-    font-size: var(--d-text-xl);
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: var(--d-radius-full);
+    background: color-mix(in oklch, var(--primary) 12%, transparent);
     color: var(--primary);
 }
 .feature-list__title {
     font-weight: var(--d-weight-semibold);
-    margin-block-end: var(--d-spacing-xs);
 }
 .feature-list__description {
     color: var(--muted-foreground);

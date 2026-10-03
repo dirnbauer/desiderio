@@ -58,7 +58,7 @@
     align-items: center;
     gap: var(--d-spacing-xs);
     border: 1px solid var(--border);
-    border-radius: 999px;
+    border-radius: var(--d-radius-full);
     background: var(--secondary);
     color: var(--secondary-foreground);
     padding: var(--d-spacing-1) var(--d-spacing-sm);
@@ -75,7 +75,7 @@
 .chart-stacked-bar__swatch {
     width: 0.7rem;
     height: 0.7rem;
-    border-radius: 999px;
+    border-radius: var(--d-radius-full);
     flex: none;
     background: var(--stacked-color-1);
     box-shadow: 0 0 0 2px var(--card), 0 0 0 3px var(--border);
@@ -175,8 +175,17 @@
     .chart-stacked-bar__legend {
         padding-inline: var(--d-spacing-md);
     }
+    /* The plot keeps a readable width and scrolls sideways, like the other
+       charts: drawn into a 720-wide viewBox at 100% of a phone, its axis
+       type shrank to 5px. 40rem here is the scale 36rem gives the
+       640-wide charts. */
     .chart-stacked-bar__plot {
         padding: var(--d-spacing-sm) var(--d-spacing-md) var(--d-spacing-md);
+        overflow-x: auto;
+        scrollbar-gutter: stable;
+    }
+    .chart-stacked-bar__svg {
+        min-width: 40rem;
     }
 }
 

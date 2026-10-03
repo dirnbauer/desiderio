@@ -18,26 +18,29 @@
 @media (max-width: 1024px) {
     .partner-grid__items { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-@media (max-width: 640px) {
-    .partner-grid__items { grid-template-columns: minmax(0, 1fr); }
-}
 .partner-grid__item {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     gap: var(--d-spacing-xs);
     height: 100%;
+    min-width: 0;
     padding: var(--d-spacing-lg) var(--d-spacing-md);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     background: var(--card);
     color: var(--card-foreground);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: border-color var(--d-motion) var(--d-ease), box-shadow var(--d-motion) var(--d-ease);
 }
-.partner-grid__item:hover {
-    border-color: var(--primary);
-    box-shadow: var(--d-shadow-sm);
+/* Only a partner with a link answers the pointer: the card is that link's
+   hit area (see .partner-grid__link::after). */
+@media (hover: hover) and (pointer: fine) {
+    .partner-grid__item:has(.partner-grid__link):hover {
+        border-color: var(--primary);
+        box-shadow: var(--d-shadow-sm);
+    }
 }
 .partner-grid__logo-wrap {
     width: 100%;
@@ -48,8 +51,15 @@
     margin-block-end: var(--d-spacing-md);
     padding-inline: 0;
 }
-/* Logos are full-colour files shown greyscale and muted at rest; hovering the
-   card or focusing its link brings the logo back to its own colours. */
+/* Two logos per row on a phone as well: a logo wall reads as a wall, not
+   as a column of tall cards. */
+@media (max-width: 640px) {
+    .partner-grid__items { gap: var(--d-spacing-sm); }
+    .partner-grid__item { padding: var(--d-spacing-md) var(--d-spacing-sm); }
+    .partner-grid__logo-wrap { height: 64px; margin-block-end: var(--d-spacing-xs); }
+}
+/* Logos are full-colour files shown greyscale and muted at rest; pointing
+   at the card or focusing its link brings the logo back to its own colours. */
 .partner-grid__logo {
     display: block;
     max-height: 64px;
@@ -58,12 +68,17 @@
     object-fit: contain;
     filter: grayscale(1);
     opacity: 0.6;
-    transition: filter 0.2s ease, opacity 0.2s ease;
+    transition: filter var(--d-motion) var(--d-ease), opacity var(--d-motion) var(--d-ease);
 }
-.partner-grid__item:hover .partner-grid__logo,
 .partner-grid__item:focus-within .partner-grid__logo {
     filter: none;
     opacity: 1;
+}
+@media (hover: hover) and (pointer: fine) {
+    .partner-grid__item:hover .partner-grid__logo {
+        filter: none;
+        opacity: 1;
+    }
 }
 .partner-grid__logo-fallback {
     display: inline-flex;
@@ -82,8 +97,11 @@
     font-size: var(--d-text-base);
     line-height: var(--d-leading-normal);
     margin: 0;
+    max-width: 100%;
+    overflow-wrap: break-word;
 }
 .partner-grid__kind {
+    max-width: 100%;
     margin-block-start: var(--d-spacing-xs);
 }
 .partner-grid__link {
@@ -98,13 +116,22 @@
     text-decoration: none;
     border-radius: var(--d-radius-sm);
 }
-.partner-grid__link:hover { text-decoration: underline; }
+/* The card leads to one place, so the whole card is the link's hit area. */
+.partner-grid__link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius);
+}
 .partner-grid__link:focus-visible {
     outline: none;
     box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 50%, transparent);
 }
-.partner-grid__link-arrow { transition: transform 0.2s ease; }
-.partner-grid__link:hover .partner-grid__link-arrow { transform: translateX(0.125rem); }
+.partner-grid__link-arrow { transition: transform var(--d-motion-fast) var(--d-ease); }
+@media (hover: hover) and (pointer: fine) {
+    .partner-grid__link:hover { text-decoration: underline; }
+    .partner-grid__link:hover .partner-grid__link-arrow { transform: translateX(0.125rem); }
+}
 @media (prefers-reduced-motion: reduce) {
     .partner-grid__item,
     .partner-grid__logo,
@@ -118,5 +145,7 @@
    marks keep their colours and the wordmark stays light. */
 .partner-grid__logo[src*=".svg"] { background: none; border: 0; border-radius: 0; box-shadow: none; }
 .dark .partner-grid__logo[src*=".svg"] { filter: grayscale(1) invert(1); opacity: 0.7; }
-.dark .partner-grid__item:hover .partner-grid__logo[src*=".svg"],
 .dark .partner-grid__item:focus-within .partner-grid__logo[src*=".svg"] { filter: invert(1) hue-rotate(180deg); opacity: 1; }
+@media (hover: hover) and (pointer: fine) {
+    .dark .partner-grid__item:hover .partner-grid__logo[src*=".svg"] { filter: invert(1) hue-rotate(180deg); opacity: 1; }
+}

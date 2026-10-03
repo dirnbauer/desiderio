@@ -6,19 +6,19 @@
         {
             "title": "Feldextraktion",
             "rate": "0,012 €",
-            "unit": "pro Seite",
+            "unit": "Seite",
             "description": "<p>Rechnungen, Lieferscheine und Formulare kommen als typisiertes JSON zurück, mit einem Konfidenzwert für jedes Feld.</p>"
         },
         {
             "title": "Dokumentklassifizierung",
             "rate": "0,004 €",
-            "unit": "pro Seite",
+            "unit": "Seite",
             "description": "<p>Sortiert einen gemischten Posteingang vor der Extraktion in 40 mitgelieferte Dokumenttypen oder in Ihre eigenen Labels.</p>"
         },
         {
             "title": "Schwärzung personenbezogener Daten",
             "rate": "0,006 €",
-            "unit": "pro Seite",
+            "unit": "Seite",
             "description": "<p>Namen, IBANs und Kartennummern werden in der gespeicherten Datei maskiert. Je Dokument entsteht ein Protokolleintrag.</p>"
         }
     ]

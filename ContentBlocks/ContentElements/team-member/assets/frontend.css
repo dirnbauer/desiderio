@@ -1,14 +1,17 @@
 .team-member__layout {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--d-spacing-lg);
     align-items: start;
 }
 @media (min-width: 768px) {
     .team-member__layout {
-        grid-template-columns: 18rem 1fr;
+        grid-template-columns: 18rem minmax(0, 1fr);
         gap: var(--d-spacing-xl);
     }
+}
+.team-member__body {
+    min-width: 0;
 }
 .team-member__image {
     width: 100%;
@@ -43,10 +46,15 @@
     padding: 0;
     list-style: none;
 }
+.team-member__actions > li {
+    min-width: 0;
+    max-width: 100%;
+}
 .team-member__action {
     display: inline-flex;
     align-items: center;
     gap: var(--d-spacing-xs);
+    max-width: 100%;
     min-height: 2.5rem;
     padding-inline: var(--d-spacing-md);
     border: 1px solid var(--border);
@@ -55,16 +63,20 @@
     color: var(--foreground);
     font-size: var(--d-text-sm);
     font-weight: var(--d-weight-medium);
+    font-variant-numeric: tabular-nums;
     text-decoration: none;
-    transition: background-color 0.15s ease, border-color 0.15s ease;
+    overflow-wrap: anywhere;
+    transition: background-color var(--d-motion-fast) var(--d-ease), border-color var(--d-motion-fast) var(--d-ease);
 }
 .team-member__action svg {
     flex-shrink: 0;
     color: var(--d-link, var(--primary));
 }
-.team-member__action:hover {
-    background: var(--muted);
-    border-color: color-mix(in oklch, var(--foreground) 20%, var(--border));
+@media (hover: hover) and (pointer: fine) {
+    .team-member__action:hover {
+        background: var(--muted);
+        border-color: color-mix(in oklch, var(--foreground) 20%, var(--border));
+    }
 }
 .team-member__action:focus-visible {
     outline: 2px solid var(--ring);
@@ -87,9 +99,11 @@
     text-decoration-color: color-mix(in oklch, var(--muted-foreground) 40%, transparent);
     text-underline-offset: 3px;
 }
-.team-member__social-link:hover {
-    color: var(--d-link, var(--primary));
-    text-decoration-color: currentColor;
+@media (hover: hover) and (pointer: fine) {
+    .team-member__social-link:hover {
+        color: var(--d-link, var(--primary));
+        text-decoration-color: currentColor;
+    }
 }
 .team-member__social-link:focus-visible {
     outline: 2px solid var(--ring);

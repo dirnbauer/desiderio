@@ -27,7 +27,7 @@
                     <div class="product-feature__description d-richtext">{data -> f:render.text(field: 'description')}</div>
                 </f:if>
                 <f:if condition="{data.features}">
-                    <ul class="product-feature__list">
+                    <ul class="product-feature__list" role="list">
                         <f:for each="{data.features}" as="feature">
                             <f:if condition="{feature.text}">
                                 <d:molecule.checkedListItem class="product-feature__item">

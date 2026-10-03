@@ -22,10 +22,10 @@
                     <f:for each="{data.sections}" as="section">
                         <details class="privacy-notice__section">
                             <summary class="privacy-notice__section-title">
-                                <span>{section -> f:render.text(field: 'title')}</span>
+                                <span class="privacy-notice__section-label">{section -> f:render.text(field: 'title')}</span>
                                 <d:atom.icon name="chevron-down" size="default" class="privacy-notice__icon" />
                             </summary>
-                            <div class="privacy-notice__section-content">
+                            <div class="privacy-notice__section-content d-richtext">
                                 {section -> f:render.text(field: 'content')}
                             </div>
                         </details>

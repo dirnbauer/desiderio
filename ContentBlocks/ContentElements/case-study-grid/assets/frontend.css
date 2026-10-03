@@ -2,25 +2,57 @@
 .case-study-grid__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: var(--d-tracking-wide); color: var(--d-link, var(--primary)); font-weight: var(--d-weight-semibold); margin: 0; }
 .case-study-grid__headline { margin-block-start: var(--d-spacing-xs); text-wrap: balance; }
 .case-study-grid__items { display: grid; gap: var(--d-spacing-lg); }
-.case-study-grid__items--cols-2 { grid-template-columns: repeat(2, 1fr); }
-.case-study-grid__items--cols-3 { grid-template-columns: repeat(3, 1fr); }
-@media (max-width: 768px) { .case-study-grid__items { grid-template-columns: 1fr; } }
-@media (min-width: 769px) and (max-width: 1024px) { .case-study-grid__items--cols-3 { grid-template-columns: repeat(2, 1fr); } }
-.case-study-grid__card { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; background: var(--card); }
+.case-study-grid__items--cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.case-study-grid__items--cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 768px) { .case-study-grid__items { grid-template-columns: minmax(0, 1fr); } }
+@media (min-width: 769px) and (max-width: 1024px) { .case-study-grid__items--cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* The card wears the surface of d:molecule.card (22-modern-base.css): the
+   shared radius, a hairline ring and the preset's surface shadow. */
+.case-study-grid__card {
+    position: relative;
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: calc(var(--radius, 0.625rem) * 1.5);
+    background: var(--card);
+    box-shadow:
+        0 0 0 1px color-mix(in oklch, var(--foreground) 9%, transparent),
+        var(--d-surface-shadow, 0 0 transparent),
+        inset 0 1px 0 color-mix(in oklch, var(--card-foreground) 5%, transparent);
+    transition: transform var(--d-motion) var(--d-ease), box-shadow var(--d-motion) var(--d-ease);
+}
 .case-study-grid__media { aspect-ratio: 16/10; overflow: hidden; }
-.case-study-grid__image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
-.case-study-grid__card:hover .case-study-grid__image { transform: scale(1.03); }
+.case-study-grid__image { width: 100%; height: 100%; object-fit: cover; transition: transform var(--d-motion) var(--d-ease); }
 .case-study-grid__body { padding: var(--d-spacing-lg); flex: 1; display: flex; flex-direction: column; }
 .case-study-grid__client { font-size: var(--d-text-lg); font-weight: var(--d-weight-bold); line-height: var(--d-leading-snug); }
 .case-study-grid__summary { color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); flex: 1; line-height: var(--d-leading-relaxed); }
-.case-study-grid__result { display: inline-block; font-weight: var(--d-weight-bold); color: var(--d-link, var(--primary)); margin: var(--d-spacing-sm) 0 0; }
-.case-study-grid__link { display: inline-block; font-weight: var(--d-weight-medium); color: var(--d-link, var(--primary)); text-decoration: none; margin-block-start: var(--d-spacing-sm); border-radius: var(--radius); }
-.case-study-grid__link:hover { text-decoration: underline; }
-.case-study-grid__link:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+.case-study-grid__result { display: inline-block; font-weight: var(--d-weight-bold); color: var(--d-link, var(--primary)); margin: var(--d-spacing-sm) 0 0; font-variant-numeric: tabular-nums; }
+.case-study-grid__link { display: inline-block; align-self: flex-start; font-weight: var(--d-weight-medium); color: var(--d-link, var(--primary)); text-decoration: none; margin-block-start: var(--d-spacing-sm); border-radius: var(--radius); }
+.case-study-grid__link-arrow { display: inline-block; margin-inline-start: 0.25em; transition: transform var(--d-motion) var(--d-ease); }
+/* The link makes the whole card the hit area; links inside the summary stay
+   clickable above it, and the card shows the keyboard focus. While the
+   Visual Editor edits the card, its fields stay clickable. */
+.case-study-grid__link::after { content: ""; position: absolute; inset: 0; }
+.case-study-grid__summary a { position: relative; z-index: 1; }
+.case-study-grid__card:has(ve-editable-text, ve-editable-rich-text) .case-study-grid__link::after { content: none; }
+.case-study-grid__link:focus-visible { outline: none; }
+.case-study-grid__card:has(.case-study-grid__link:focus-visible) { outline: 2px solid var(--ring); outline-offset: 2px; }
 
-@media (prefers-reduced-motion: reduce) {
-    .case-study-grid__image { transition: none; }
-    .case-study-grid__card:hover .case-study-grid__image { transform: none; }
+@media (hover: hover) and (pointer: fine) {
+    .case-study-grid__card:has(.case-study-grid__link):hover {
+        box-shadow:
+            0 0 0 1px color-mix(in oklch, var(--primary) 32%, transparent),
+            var(--d-shadow-md),
+            inset 0 1px 0 color-mix(in oklch, var(--card-foreground) 5%, transparent);
+    }
+    .case-study-grid__card:hover .case-study-grid__link { text-decoration: underline; }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .case-study-grid__card:has(.case-study-grid__link):hover { transform: translateY(-2px); }
+    .case-study-grid__card:hover .case-study-grid__image { transform: scale(1.03); }
+    .case-study-grid__card:hover .case-study-grid__link-arrow { transform: translateX(0.25rem); }
 }
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */

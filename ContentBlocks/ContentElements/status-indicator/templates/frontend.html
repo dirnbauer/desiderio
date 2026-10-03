@@ -24,7 +24,7 @@
                     </span>
                 </p>
             </div>
-            <ul class="status-indicator__list">
+            <ul class="status-indicator__list" role="list">
                 <f:for each="{data.items}" as="item">
                     <f:variable name="itemStatus" value="{item.status -> f:or(alternative: 'operational')}" />
                     <li class="status-indicator__item status-indicator__dot--{itemStatus}">

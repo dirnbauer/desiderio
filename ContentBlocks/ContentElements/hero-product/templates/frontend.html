@@ -15,7 +15,7 @@
                     <d:atom.typography variant="lead" class="hero-product__description">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.feature_items}">
-                    <ul class="hero-product__features">
+                    <ul class="hero-product__features" role="list">
                         <f:for each="{data.feature_items}" as="feature">
                             <li class="hero-product__feature">
                                 <d:atom.icon name="check" class="hero-product__feature-icon" />

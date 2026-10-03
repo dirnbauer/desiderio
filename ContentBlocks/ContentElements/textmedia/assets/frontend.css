@@ -1,6 +1,6 @@
 .textmedia__grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: var(--d-spacing-xl);
     align-items: center;
 }
@@ -8,7 +8,11 @@
     margin-block-start: var(--d-spacing-sm);
 }
 @media (max-width: 768px) {
-    .textmedia__grid { grid-template-columns: 1fr; }
+    .textmedia__grid { grid-template-columns: minmax(0, 1fr); }
+    /* One column: the copy always leads. With media on the left the picture
+       came first, so two screenshots of neighbouring sections met at the
+       seam with no text between them. */
+    .textmedia--media-left .textmedia__media-wrapper { order: 1; }
 }
 .textmedia__media-wrapper {
     width: 100%;
@@ -29,16 +33,45 @@
     margin-block: var(--d-spacing-md);
     color: var(--muted-foreground);
     line-height: var(--d-leading-relaxed);
+    overflow-wrap: break-word;
 }
-.textmedia__richtext > :first-child { margin-block-start: 0; }
-.textmedia__richtext > :last-child { margin-block-end: 0; }
-.textmedia__richtext p { margin-block: 0 var(--d-spacing-sm); }
-.textmedia__richtext ul {
-    margin-block: var(--d-spacing-sm) 0;
-    padding-inline-start: var(--d-spacing-lg);
-    list-style: disc;
+
+/* Rich text from the RTE (d-richtext). Tailwind's preflight strips paragraph
+   spacing, list markers, heading sizes and the link underline; they come back
+   here, scoped to this element so no neighbour changes. Spacing sits between
+   siblings, so a paragraph after a list keeps its distance too. */
+.textmedia__richtext.d-richtext > * { margin-block: 0; }
+.textmedia__richtext.d-richtext > * + * { margin-block-start: var(--d-spacing-sm); }
+.textmedia__richtext.d-richtext > * + :is(h2, h3, h4, h5, h6) { margin-block-start: var(--d-spacing-lg); }
+.textmedia__richtext.d-richtext :is(ul, ol) { padding-inline-start: var(--d-spacing-lg); }
+.textmedia__richtext.d-richtext ul { list-style: disc; }
+.textmedia__richtext.d-richtext ol { list-style: decimal; }
+.textmedia__richtext.d-richtext li + li { margin-block-start: var(--d-spacing-2xs); }
+.textmedia__richtext.d-richtext :is(h2, h3, h4, h5, h6) {
+    color: var(--foreground);
+    font-weight: var(--d-weight-semibold);
+    line-height: var(--d-leading-snug);
 }
-.textmedia__richtext li { margin-block-end: var(--d-spacing-2xs); }
+.textmedia__richtext.d-richtext h2 { font-size: var(--d-text-xl); }
+.textmedia__richtext.d-richtext h3 { font-size: var(--d-text-lg); }
+.textmedia__richtext.d-richtext :is(h4, h5, h6) { font-size: var(--d-text-base); }
+.textmedia__richtext.d-richtext a {
+    color: var(--d-link, var(--primary));
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: color-mix(in oklch, currentColor 45%, transparent);
+    text-underline-offset: 0.22em;
+    border-radius: var(--d-radius-sm);
+    transition: text-decoration-color var(--d-motion-fast) var(--d-ease);
+}
+.textmedia__richtext.d-richtext a:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+@media (hover: hover) and (pointer: fine) {
+    .textmedia__richtext.d-richtext a:hover { text-decoration-color: currentColor; }
+}
+
 .textmedia__actions {
     margin-block-start: var(--d-spacing-lg);
 }

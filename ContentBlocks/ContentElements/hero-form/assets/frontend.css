@@ -13,6 +13,7 @@
     margin-bottom: var(--d-spacing-4);
 }
 .hero-form__subheadline {
+    margin-inline: auto;
     margin-bottom: var(--d-spacing-8);
 }
 .hero-form__form {
@@ -49,6 +50,17 @@
     justify-self: start;
     margin: 0;
 }
+/* Field and button share one height, taken from the preset's control
+   height, so the inline row reads as one control instead of a tall field
+   beside a short button. */
+.hero-form__form .form-control,
+.hero-form__form .actions .btn-primary {
+    height: calc(var(--d-control-h, 2.25rem) + var(--d-spacing-2));
+    min-height: 0;
+}
+.hero-form__form .form-control {
+    padding-block: 0;
+}
 .hero-form__form .actions,
 .hero-form__form .form-navigation {
     grid-column: 2;
@@ -69,14 +81,18 @@
 .hero-form__form form > div:not(.form-element):has(> .frc-captcha) > label {
     display: none;
 }
+/* Centred under the card: the shared 75ch measure made this short line a
+   box at the start edge. */
 .hero-form__privacy {
     margin-top: var(--d-spacing-4);
+    margin-inline: auto;
     font-size: var(--d-text-sm);
     color: var(--d-muted-foreground);
+    text-wrap: balance;
 }
 @media (max-width: 640px) {
     .hero-form__form form {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         align-items: stretch;
     }
     .hero-form__form .form-element-email,
@@ -87,6 +103,10 @@
     .hero-form__form form > div:not(.form-element):has(> .frc-captcha) {
         grid-column: 1;
         grid-row: auto;
+    }
+    /* The navigation fills the actions row, so the button can fill it. */
+    .hero-form__form .actions > .form-navigation {
+        flex: 1 1 auto;
     }
     .hero-form__form .btn-primary {
         width: 100%;

@@ -14,11 +14,14 @@
             </d:molecule.sectionIntro>
         </f:if>
 
-        <ol class="company-milestones__grid">
+        <ol class="company-milestones__grid" role="list">
             <f:for each="{data.milestones}" as="ms" iteration="i">
                 <li class="company-milestones__item">
+                    <f:comment>Fluid 5 renders nothing for the then-branch of an f:if that has an f:else but no f:then, so the year needs its own f:then.</f:comment>
                     <f:if condition="{ms.year}">
-                        <span class="company-milestones__year">{ms -> f:render.text(field: 'year')}</span>
+                        <f:then>
+                            <span class="company-milestones__year">{ms -> f:render.text(field: 'year')}</span>
+                        </f:then>
                         <f:else>
                             <span class="company-milestones__year" aria-hidden="true">{i.cycle}</span>
                         </f:else>

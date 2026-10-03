@@ -8,44 +8,66 @@
     letter-spacing: var(--d-tracking-wide);
     color: var(--d-link, var(--primary));
 }
+/* One column on phones, two on tablets (three columns left 190px of text
+   per card there), three from 1024px. */
 .article-grid__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--d-spacing-lg);
 }
-@media (max-width: 768px) {
-    .article-grid__grid { grid-template-columns: 1fr; }
+@media (min-width: 640px) {
+    .article-grid__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 1024px) {
+    .article-grid__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 .article-grid__category {
     font-size: var(--d-text-xs);
     font-weight: var(--d-weight-semibold);
     color: var(--d-link, var(--primary));
-    margin-block-end: var(--d-spacing-xs);
 }
 .article-grid__title {
     font-weight: var(--d-weight-semibold);
     font-size: var(--d-text-lg);
-    margin-block-end: var(--d-spacing-xs);
 }
 .article-grid__title-link {
     color: inherit;
     text-decoration: none;
     border-radius: var(--d-radius-sm);
+    transition: color var(--d-motion-fast) var(--d-ease);
 }
-.article-grid__title-link:hover {
-    color: var(--d-link, var(--primary));
+/* The card is one hit area: the title link's ::after covers it (stretched
+   link). "Read article" and links in the teaser stay clickable above it. */
+.article-grid__title-link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
 }
 .article-grid__title-link:focus-visible {
     outline: 2px solid var(--d-ring);
     outline-offset: 3px;
 }
+@supports selector(:has(*)) {
+    .article-grid__title-link:focus-visible {
+        outline: none;
+    }
+    .article-grid__item:has(.article-grid__title-link:focus-visible) {
+        outline: 2px solid var(--ring);
+        outline-offset: 2px;
+    }
+}
 .article-grid__description {
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
-    margin-block-end: var(--d-spacing-sm);
     overflow-wrap: break-word;
 }
+.article-grid__description a,
+.article-grid__link {
+    position: relative;
+    z-index: 1;
+}
 .article-grid__item {
+    position: relative;
     height: 100%;
 }
 .article-grid__link {
@@ -58,16 +80,21 @@
     font-weight: var(--d-weight-medium);
     color: var(--d-link, var(--primary));
     text-decoration: none;
-}
-.article-grid__link:hover {
-    text-decoration: underline;
     text-underline-offset: 2px;
 }
 .article-grid__link-arrow {
-    transition: transform 0.15s ease;
+    transition: transform var(--d-motion) var(--d-ease);
 }
-.article-grid__item:hover .article-grid__link-arrow {
-    transform: translateX(2px);
+@media (hover: hover) and (pointer: fine) {
+    .article-grid__item:hover .article-grid__title-link {
+        color: var(--d-link, var(--primary));
+    }
+    .article-grid__item:hover .article-grid__link {
+        text-decoration: underline;
+    }
+    .article-grid__item:hover .article-grid__link-arrow {
+        transform: translateX(2px);
+    }
 }
 @media (prefers-reduced-motion: reduce) {
     .article-grid__link-arrow { transition: none; }

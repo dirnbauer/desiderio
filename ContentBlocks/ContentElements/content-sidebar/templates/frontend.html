@@ -12,13 +12,13 @@
         </f:if>
 
         <div class="content-sidebar__grid">
-            <div class="content-sidebar__main">
+            <div class="content-sidebar__main d-richtext">
                 {data -> f:render.text(field: 'content')}
             </div>
             <f:if condition="{data.sidebar_content}">
                 <aside class="content-sidebar__aside" aria-label="{f:translate(key: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/content-sidebar/language/labels.xlf:sidebar_label', default: 'Related information')}">
                     <d:molecule.card class="content-sidebar__sidebar-card">
-                        {data -> f:render.text(field: 'sidebar_content')}
+                        <div class="content-sidebar__sidebar-body d-richtext">{data -> f:render.text(field: 'sidebar_content')}</div>
                     </d:molecule.card>
                 </aside>
             </f:if>

@@ -8,19 +8,24 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="feature-cards">
     <d:layout.container>
         <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
-            <header class="feature-cards__intro">
-                <f:if condition="{data.eyebrow}"><p class="feature-cards__eyebrow">{data -> f:render.text(field: 'eyebrow')}</p></f:if>
-                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-                <f:if condition="{data.subheadline}"><d:atom.typography variant="lead" class="feature-cards__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
-            </header>
+            <d:molecule.sectionIntro prefix="feature-cards" align="center" leadVariant="lead" class="feature-cards__intro" leadClass="feature-cards__subheadline">
+                <f:fragment name="eyebrow"><f:if condition="{data.eyebrow}">{data -> f:render.text(field: 'eyebrow')}</f:if></f:fragment>
+                <f:fragment name="heading"><f:if condition="{data.header}">{data -> f:render.text(field: 'header')}</f:if></f:fragment>
+                <f:fragment name="lead"><f:if condition="{data.subheadline}">{data -> f:render.text(field: 'subheadline')}</f:if></f:fragment>
+            </d:molecule.sectionIntro>
         </f:if>
-        <div class="feature-cards__grid">
+        <f:comment>Five or more cards become a swipeable row on phones (frontend.css), so the grid is then a focusable, labelled scroll region.</f:comment>
+        <f:variable name="cardCount">{data.items -> f:count()}</f:variable>
+        <f:variable name="gridLabel" value="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features\', default: \'Features\')}')}" />
+        <div class="feature-cards__grid" {f:if(condition: '{cardCount} > 4', then: 'tabindex="0" role="region" aria-label="{gridLabel}"')}>
             <f:for each="{data.items}" as="item">
                 <d:molecule.card class="feature-cards__item">
-                    <d:atom.typography tag="h3" variant="large" class="feature-cards__title">{item -> f:render.text(field: 'title')}</d:atom.typography>
-                    <f:if condition="{item.description}">
-                        <div class="feature-cards__description d-richtext">{item -> f:render.text(field: 'description')}</div>
-                    </f:if>
+                    <div class="feature-cards__body flex min-w-0 flex-col gap-1.5">
+                        <d:atom.typography tag="h3" variant="large" class="feature-cards__title">{item -> f:render.text(field: 'title')}</d:atom.typography>
+                        <f:if condition="{item.description}">
+                            <div class="feature-cards__description d-richtext">{item -> f:render.text(field: 'description')}</div>
+                        </f:if>
+                    </div>
                 </d:molecule.card>
             </f:for>
         </div>

@@ -9,8 +9,12 @@
     <d:layout.container>
         <div class="feature-accordion__grid">
             <div class="feature-accordion__copy">
-                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-                <f:if condition="{data.subheadline}"><d:atom.typography variant="muted" class="feature-accordion__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+                <f:if condition="{data.header} || {data.subheadline}">
+                    <d:molecule.sectionIntro prefix="feature-accordion" class="feature-accordion__intro" leadClass="feature-accordion__subheadline">
+                        <f:fragment name="heading"><f:if condition="{data.header}">{data -> f:render.text(field: 'header')}</f:if></f:fragment>
+                        <f:fragment name="lead"><f:if condition="{data.subheadline}">{data -> f:render.text(field: 'subheadline')}</f:if></f:fragment>
+                    </d:molecule.sectionIntro>
+                </f:if>
 
                 <div class="feature-accordion__list">
                     <f:for each="{data.items}" as="item" iteration="iter">
@@ -21,7 +25,7 @@
                                     <d:atom.icon name="chevron-down" size="sm" />
                                 </span>
                             </summary>
-                            <div class="feature-accordion__content">
+                            <div class="feature-accordion__content d-richtext">
                                 {item -> f:render.text(field: 'content')}
                             </div>
                         </details>
@@ -30,7 +34,7 @@
             </div>
             <f:if condition="{data.image.0}">
                 <div class="feature-accordion__media">
-                    <f:image image="{data.image.0}" alt="{data.image.0.alternative}" maxWidth="640" class="feature-accordion__image" loading="lazy" decoding="async"/>
+                    <f:image image="{data.image.0}" alt="{data.image.0.alternative}" maxWidth="1280" class="feature-accordion__image" loading="lazy" decoding="async"/>
                 </div>
             </f:if>
         </div>

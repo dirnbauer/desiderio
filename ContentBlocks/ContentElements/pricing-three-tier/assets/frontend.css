@@ -34,29 +34,45 @@
 }
 
 
+/* Plans in a row share three rows (header, feature list, footer) through
+   subgrid, so every feature list and every button starts on the same line
+   however long a name, price or description runs. */
 .pricing-three-tier__item {
-    display: flex;
+    display: grid;
+    grid-row: span 3;
+    grid-template-rows: subgrid;
     min-width: 0;
 }
 
 .pricing-three-tier__plan {
     position: relative;
-    flex: 1;
+    grid-row: span 3;
+    display: grid;
+    grid-template-rows: subgrid;
     min-width: 0;
-    height: 100%;
     overflow: visible;
 }
 
-.pricing-three-tier__plan--featured,
+.pricing-three-tier__header { grid-row: 1; }
+.pricing-three-tier__content { grid-row: 2; }
+.pricing-three-tier__footer { grid-row: 3; }
+
 .pricing-three-tier__plan--recommended {
     z-index: 1;
 }
 
 /* Recommended plan emphasis: 2px primary ring composed with the card's
    surface shadow (replaces the tw ring-2/ring-primary utilities). */
-[data-slot="card"].pricing-three-tier__plan--featured,
 [data-slot="card"].pricing-three-tier__plan--recommended {
     box-shadow: 0 0 0 1px var(--primary), inset 0 0 0 1px var(--primary), var(--d-surface-shadow);
+}
+
+/* The shared card hover lifts the plan and swaps its ring for a faint one;
+   the recommended plan keeps its primary ring while it lifts. */
+@media (hover: hover) and (pointer: fine) {
+    .desiderio-section [data-slot="card"].pricing-three-tier__plan--recommended:has(a[href]):hover {
+        box-shadow: 0 0 0 1px var(--primary), inset 0 0 0 1px var(--primary), var(--shadow-md, var(--d-surface-shadow));
+    }
 }
 
 .pricing-three-tier__ribbon {
@@ -75,15 +91,10 @@
     margin-block-start: var(--d-spacing-sm);
 }
 
-.pricing-three-tier__price,
-.pricing-three-tier__plan-price {
+.pricing-three-tier__price {
     font-size: var(--d-text-3xl);
     font-weight: var(--d-weight-display);
     line-height: var(--d-leading-tight);
-}
-
-.pricing-three-tier__content {
-    flex: 1 1 auto;
 }
 
 .pricing-three-tier__features {
@@ -117,7 +128,7 @@
     width: 100%;
 }
 
-@media (max-width: 768px) { .pricing-three-tier__grid { grid-template-columns: 1fr; max-width: 24rem; margin-inline: auto; } }
+@media (max-width: 768px) { .pricing-three-tier__grid { grid-template-columns: minmax(0, 1fr); max-width: 24rem; margin-inline: auto; } }
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */
 .pricing-three-tier__intro {
     display: grid;

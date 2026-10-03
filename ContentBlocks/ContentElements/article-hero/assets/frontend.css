@@ -37,8 +37,11 @@
     display: inline-flex;
     align-items: center;
 }
+/* The middle dot is decoration: the empty alternative text keeps screen
+   readers from announcing it between topic, date and reading time. */
 .article-hero__meta-item + .article-hero__meta-item::before {
     content: '\00b7';
+    content: '\00b7' / '';
     margin-inline-end: var(--d-spacing-md);
 }
 .article-hero__author {

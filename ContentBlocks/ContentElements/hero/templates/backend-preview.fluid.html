@@ -18,6 +18,12 @@
         <f:if condition="{data.header}">
             <h3 class="d-ce-preview__title">{data.header -> f:format.stripTags() -> f:format.htmlspecialchars()}</h3>
         </f:if>
+        <f:if condition="{data.variant}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Variant</span>
+                <span class="d-ce-preview__value">{data.variant -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
+            </div>
+        </f:if>
         <f:if condition="{data.badge_text}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Badge Text</span>
@@ -40,12 +46,6 @@
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Secondary Button Text</span>
                 <span class="d-ce-preview__value">{data.secondary_button_text -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
-            </div>
-        </f:if>
-        <f:if condition="{data.variant}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Variant</span>
-                <span class="d-ce-preview__value">{data.variant -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.primary_button_variant}">

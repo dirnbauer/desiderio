@@ -8,7 +8,7 @@
 <nav class="legal-links legal-links--{data.separator -> f:or(alternative: 'dot')}"
      aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:legal_links.aria\')}')}">
     <d:layout.container>
-        <ul class="legal-links__list">
+        <ul class="legal-links__list" role="list">
             <f:for each="{data.link_items}" as="item">
                 <li class="legal-links__item">
                     <f:if condition="{item.link}">

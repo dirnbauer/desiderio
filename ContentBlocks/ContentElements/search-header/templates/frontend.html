@@ -22,7 +22,7 @@
                 <label id="{inputId}-label" class="sr-only" for="{inputId}">{labelText}</label>
                 <div class="search-header__field">
                     <d:atom.icon name="search" size="default" class="search-header__icon" />
-                    <input class="search-header__input" id="{inputId}" type="search" name="q" placeholder="{data.placeholder -> f:or(alternative: labelText)}" autocomplete="off"/>
+                    <input class="search-header__input" id="{inputId}" type="search" name="q" placeholder="{data.placeholder -> f:or(alternative: labelText)}" autocomplete="off" enterkeyhint="search"/>
                 </div>
                 <d:atom.button type="submit" size="lg" class="search-header__submit"><f:if condition="{data.button_text}"><f:then>{data -> f:render.text(field: 'button_text')}</f:then><f:else><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:solr.search.label"/></f:else></f:if></d:atom.button>
             </form>

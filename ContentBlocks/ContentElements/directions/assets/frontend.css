@@ -4,7 +4,7 @@
 }
 .directions__list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: var(--d-spacing-lg);
     list-style: none;
     margin: 0;
@@ -12,19 +12,24 @@
 }
 .directions__item {
     display: flex;
+    min-width: 0;
 }
+/* The mode sits close to its directions: a tighter gap than the card's
+   default spacing, no extra margin on the heading. */
 .directions__route {
     width: 100%;
+    gap: var(--d-spacing-sm);
 }
 .directions__mode {
     display: flex;
     align-items: center;
     gap: var(--d-spacing-xs);
     font-weight: var(--d-weight-semibold);
-    margin-block-end: var(--d-spacing-xs);
+    margin: 0;
 }
 .directions__icon {
     display: inline-flex;
+    flex-shrink: 0;
     color: var(--primary);
 }
 .directions__description {
@@ -34,7 +39,7 @@
     margin: 0;
 }
 @media (max-width: 768px) {
-    .directions__list { grid-template-columns: 1fr; }
+    .directions__list { grid-template-columns: minmax(0, 1fr); }
 }
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */

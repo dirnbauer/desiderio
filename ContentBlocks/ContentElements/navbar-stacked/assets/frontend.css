@@ -6,13 +6,20 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: var(--d-spacing-sm);
     padding-block: var(--d-spacing-4);
     border-bottom: 1px solid var(--d-border);
 }
+/* The tagline wraps as one piece: when brand and tagline do not fit on a
+   line, the whole tagline moves under the brand instead of breaking beside
+   it ("… for TYPO3" / "v14"). */
 .navbar-stacked__brand {
     display: flex;
+    flex-wrap: wrap;
     align-items: baseline;
-    gap: var(--d-spacing-sm);
+    column-gap: var(--d-spacing-sm);
+    row-gap: var(--d-spacing-1);
+    min-width: 0;
 }
 .navbar-stacked__brand-link {
     font-weight: var(--d-weight-bold);
@@ -24,6 +31,8 @@
 .navbar-stacked__bottom {
     padding-block: var(--d-spacing-2);
 }
+/* role="list" in the template: list-style none drops the list semantics in
+   Safari. */
 .navbar-stacked__nav {
     display: flex;
     align-items: center;
@@ -38,11 +47,13 @@
     color: var(--d-muted-foreground);
     text-decoration: none;
     border-radius: var(--d-radius-md);
-    transition: color 0.15s, background-color 0.15s;
+    transition: color var(--d-motion-fast) var(--d-ease), background-color var(--d-motion-fast) var(--d-ease);
 }
-.navbar-stacked__link:hover {
-    color: var(--d-foreground);
-    background: var(--d-accent);
+@media (hover: hover) and (pointer: fine) {
+    a.navbar-stacked__link:hover {
+        color: var(--d-foreground);
+        background: var(--d-accent);
+    }
 }
 /* One shared focus ring for brand link and nav items. */
 .navbar-stacked__brand-link:focus-visible,
@@ -62,6 +73,15 @@
     }
     .navbar-stacked__nav {
         flex-wrap: wrap;
+    }
+}
+
+/* Touch: every link is a 44px target. Inline-block, so the padding takes
+   room in the row and wrapped rows do not overlap their hit areas. */
+@media (pointer: coarse) {
+    .navbar-stacked__link {
+        display: inline-block;
+        padding-block: var(--d-spacing-3);
     }
 }
 

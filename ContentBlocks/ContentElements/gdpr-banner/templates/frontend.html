@@ -7,6 +7,8 @@
 
 <f:variable name="ariaLabelFallback">{f:translate(key: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/gdpr-banner/language/labels.xlf:aria_label', default: 'Cookie consent')}</f:variable>
 <f:variable name="privacyLinkText">{f:translate(key: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/gdpr-banner/language/labels.xlf:privacy_link_text', default: 'Privacy policy')}</f:variable>
+<f:variable name="checkboxInputClass"><d:atom.controlClass slot="checkboxInput" /></f:variable>
+<f:variable name="checkboxIconClass"><d:atom.controlClass slot="checkboxIcon" /></f:variable>
 
 <div class="gdpr-banner" hidden role="region" aria-label="{data.header -> f:or(alternative: '{ariaLabelFallback}')}" data-gdpr-banner="true">
     <d:layout.container>
@@ -15,7 +17,7 @@
                 <f:if condition="{data.header}">
                     <d:atom.typography tag="h2" variant="h2" class="gdpr-banner__title">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
-                <div class="gdpr-banner__message">
+                <div class="gdpr-banner__message d-richtext">
                     {data -> f:render.text(field: 'content')}
                 </div>
                 <f:if condition="{data.privacy_link}">
@@ -27,11 +29,14 @@
                     <legend class="sr-only"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:consent.categories" default="Cookie categories"/></legend>
                     <f:for each="{data.cookie_categories}" as="cat" iteration="catIteration">
                         <label class="gdpr-banner__category" for="gdpr-cat-{data.uid}-{catIteration.index}">
-                            <input type="checkbox"
-                                   id="gdpr-cat-{data.uid}-{catIteration.index}"
-                                   class="gdpr-banner__checkbox"
-                                   data-d-consent-category="{catIteration.index}"
-                                   {f:if(condition: cat.required, then: 'checked disabled')}/>
+                            <d:molecule.checkboxControl class="gdpr-banner__control">
+                                <input type="checkbox"
+                                       id="gdpr-cat-{data.uid}-{catIteration.index}"
+                                       class="gdpr-banner__checkbox {checkboxInputClass -> f:format.trim()}"
+                                       data-d-consent-category="{catIteration.index}"
+                                       {f:if(condition: cat.required, then: 'checked disabled')}/>
+                                <d:atom.icon name="check" size="sm" class="{checkboxIconClass -> f:format.trim()}" />
+                            </d:molecule.checkboxControl>
                             <span class="gdpr-banner__cat-text">
                                 <span class="gdpr-banner__cat-name">{cat -> f:render.text(field: 'name')}</span>
                                 <f:if condition="{cat.description_text}">

@@ -1,7 +1,7 @@
 {
     "_type": "form",
     "header": "Your privacy choices",
-    "content": "This styleguide example stores the categories you select in the browser. Before go-live, connect its consent-change event to your consent manager. Optional scripts then stay blocked until they are allowed.",
+    "content": "This styleguide example stores the categories you select in the browser. Before go-live, connect its consent-change event to your consent manager. Optional scripts then stay blocked until you allow them.",
     "cookie_categories": [
         {
             "name": "Essential",

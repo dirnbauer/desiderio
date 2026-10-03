@@ -2,6 +2,9 @@
    keyboard-focusable horizontal scroll region around the table. */
 .data-table__region {
     overflow-x: auto;
+    /* A query container, so the caption can be held to the visible width
+       (100cqi) while the table itself scrolls wider. */
+    container-type: inline-size;
 }
 .data-table__region:focus-visible {
     outline: 2px solid var(--ring);
@@ -20,6 +23,9 @@
     text-align: left;
     font-size: var(--d-text-sm);
     color: var(--muted-foreground);
+    /* A caption is as wide as its table; on a phone the table scrolls and
+       the note under it ran off-screen, cut mid-sentence. */
+    max-width: 100cqi;
 }
 /* Row header cells mirror the shared table-cell primitive's look. */
 .data-table__row-head {
@@ -29,4 +35,22 @@
     white-space: nowrap;
     font-weight: var(--d-weight-medium);
     color: var(--foreground);
+}
+
+/* Phones: the first column (the row labels) stays put while the figures
+   scroll under it. Sticky cells need an opaque surface, so the row hover
+   tint is mixed into the page colour here. */
+@media (max-width: 640px) {
+    .data-table__region tr > :first-child {
+        position: sticky;
+        inset-inline-start: 0;
+        z-index: 1;
+        background-color: var(--background);
+        box-shadow: inset -1px 0 0 var(--border);
+    }
+}
+@media (max-width: 640px) and (hover: hover) and (pointer: fine) {
+    .data-table__region [data-slot="table-row"]:hover > :first-child {
+        background-color: color-mix(in oklch, var(--muted) 50%, var(--background));
+    }
 }

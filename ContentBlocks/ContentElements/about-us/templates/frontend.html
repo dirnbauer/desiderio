@@ -8,7 +8,7 @@
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="about-us">
     <d:layout.container>
         <div class="about-us__layout">
-            <div class="about-us__content">
+            <div class="about-us__content min-w-0">
                 <f:if condition="{data.eyebrow}">
                     <d:atom.badge variant="secondary" class="about-us__eyebrow">{data -> f:render.text(field: 'eyebrow')}</d:atom.badge>
                 </f:if>

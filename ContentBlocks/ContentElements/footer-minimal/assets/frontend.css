@@ -3,5 +3,21 @@
 .footer-minimal__copyright { font-size: var(--d-text-xs); color: var(--muted-foreground); }
 .footer-minimal__links { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: var(--d-spacing-sm) var(--d-spacing-md); }
 .footer-minimal__link { font-size: var(--d-text-xs); color: var(--muted-foreground); text-decoration: none; border-radius: var(--d-radius-sm); }
-.footer-minimal__link:hover { color: var(--foreground); }
-.footer-minimal__link:focus-visible { outline: 2px solid var(--d-ring); outline-offset: 2px; color: var(--foreground); }
+/* A quiet underline fades in on hover and focus, so the target never relies
+   on a colour shift alone. */
+a.footer-minimal__link {
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: transparent;
+    text-underline-offset: 0.22em;
+    transition: color var(--d-motion-fast) var(--d-ease), text-decoration-color var(--d-motion-fast) var(--d-ease);
+}
+@media (hover: hover) and (pointer: fine) {
+    a.footer-minimal__link:hover { color: var(--foreground); text-decoration-color: currentColor; }
+}
+.footer-minimal__link:focus-visible { outline: 2px solid var(--d-ring); outline-offset: 2px; color: var(--foreground); text-decoration-color: currentColor; }
+/* Touch: every link becomes a 44px row; the rows themselves are the gap. */
+@media (max-width: 640px), (pointer: coarse) {
+    .footer-minimal__links { row-gap: 0; }
+    .footer-minimal__link { display: inline-flex; align-items: center; min-block-size: 2.75rem; }
+}

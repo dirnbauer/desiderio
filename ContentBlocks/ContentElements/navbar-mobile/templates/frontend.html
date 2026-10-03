@@ -23,11 +23,16 @@
                 <span class="navbar-mobile__toggle-bar" aria-hidden="true"></span>
             </button>
             <div class="navbar-mobile__menu is-hidden" id="{menuId}">
-                <ul class="navbar-mobile__nav">
+                <ul class="navbar-mobile__nav" role="list">
                     <f:for each="{data.nav_items}" as="item">
                         <li>
                             <f:if condition="{item.link.url}">
-                                <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="navbar-mobile__link">{item -> f:render.text(field: 'label')}</d:atom.link>
+                                <f:then>
+                                    <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="navbar-mobile__link">{item -> f:render.text(field: 'label')}</d:atom.link>
+                                </f:then>
+                                <f:else>
+                                    <span class="navbar-mobile__link navbar-mobile__link--static">{item -> f:render.text(field: 'label')}</span>
+                                </f:else>
                             </f:if>
                         </li>
                     </f:for>

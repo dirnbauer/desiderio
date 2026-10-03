@@ -5,7 +5,7 @@
 }
 .hero-illustration__grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--d-spacing-8);
     align-items: center;
 }
@@ -28,6 +28,12 @@
     flex-wrap: wrap;
     gap: var(--d-spacing-3);
 }
+/* Phones: the buttons share the row in equal parts. */
+@media (max-width: 639px) {
+    .hero-illustration__actions > [data-slot="button"] {
+        flex: 1 1 0;
+    }
+}
 .hero-illustration__image {
     width: 100%;
     height: auto;
@@ -37,7 +43,7 @@
 }
 @media (min-width: 768px) {
     .hero-illustration__grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     }
     .hero-illustration--image-left .hero-illustration__media {
         order: -1;

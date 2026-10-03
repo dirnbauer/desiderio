@@ -1,14 +1,28 @@
 .counter__headline { text-align: center; margin-block-end: var(--d-spacing-xl); }
 .counter__grid { display: grid; gap: var(--d-spacing-lg); margin: 0; }
-.counter__grid--cols-2 { grid-template-columns: repeat(2, 1fr); }
-.counter__grid--cols-3 { grid-template-columns: repeat(3, 1fr); }
-.counter__grid--cols-4 { grid-template-columns: repeat(4, 1fr); }
-@media (max-width: 768px) { .counter__grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 480px) { .counter__grid { grid-template-columns: 1fr; } }
+.counter__grid--cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.counter__grid--cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.counter__grid--cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 768px) { .counter__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) { .counter__grid { grid-template-columns: minmax(0, 1fr); } }
 /* No bottom padding: the item paints nothing, so it would only add space
    below the last row. Rows are separated by the grid gap. */
 .counter__item { text-align: center; padding: var(--d-spacing-lg) var(--d-spacing-lg) 0; }
-.counter__value { font-size: var(--d-text-3xl); font-weight: var(--d-weight-bold); line-height: var(--d-leading-tight); color: var(--primary); }
+/* A flex row: the template's line breaks between prefix, number and suffix
+   no longer render as spaces ("100 %", "15 +"); the parts sit on one
+   baseline. */
+.counter__value {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+    font-size: var(--d-text-3xl);
+    font-weight: var(--d-weight-bold);
+    line-height: var(--d-leading-tight);
+    color: var(--primary);
+}
 .counter__prefix,
 .counter__suffix { font-size: var(--d-text-2xl); }
-.counter__label { font-size: var(--d-text-sm); color: var(--muted-foreground); margin: var(--d-spacing-xs) 0 0; }
+/* Short centred labels break into even lines instead of leaving one word
+   ("or-later") alone. */
+.counter__label { font-size: var(--d-text-sm); color: var(--muted-foreground); margin: var(--d-spacing-xs) 0 0; text-wrap: balance; }

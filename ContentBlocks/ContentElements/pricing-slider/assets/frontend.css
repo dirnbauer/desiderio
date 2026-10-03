@@ -9,6 +9,8 @@
     border: 1px solid var(--border);
     border-radius: calc(var(--radius) * 1.5);
     background: var(--card);
+    /* The elevation of d:molecule.card, so the estimator reads as one. */
+    box-shadow: var(--d-surface-shadow);
 }
 
 /* Slider: one step per tier, the tier volumes as tick labels under it. */
@@ -37,6 +39,7 @@
     gap: var(--d-spacing-xs);
 }
 .pricing-slider__tick {
+    position: relative;
     min-width: 2.5rem;
     padding: var(--d-spacing-2xs) var(--d-spacing-xs);
     border: 0;
@@ -47,9 +50,19 @@
     font-size: var(--d-text-sm);
     font-variant-numeric: tabular-nums;
     cursor: pointer;
+    transition: color var(--d-motion-fast) var(--d-ease);
 }
-.pricing-slider__tick:hover {
-    color: var(--foreground);
+/* A 44px tall hit area on touch screens; the label keeps its size. */
+.pricing-slider__tick::after {
+    content: "";
+    position: absolute;
+    inset-block: calc(var(--d-spacing-xs) * -1);
+    inset-inline: 0;
+}
+@media (hover: hover) and (pointer: fine) {
+    .pricing-slider__tick:hover {
+        color: var(--foreground);
+    }
 }
 .pricing-slider__tick--active {
     color: var(--foreground);
@@ -179,6 +192,7 @@
     color: var(--muted-foreground);
 }
 .pricing-slider__dialog-close {
+    position: relative;
     display: inline-grid;
     place-items: center;
     flex-shrink: 0;
@@ -189,10 +203,19 @@
     background: none;
     color: var(--muted-foreground);
     cursor: pointer;
+    transition: background-color var(--d-motion-fast) var(--d-ease), color var(--d-motion-fast) var(--d-ease);
 }
-.pricing-slider__dialog-close:hover {
-    background: var(--muted);
-    color: var(--foreground);
+/* 36px to look at, 44px to hit. */
+.pricing-slider__dialog-close::after {
+    content: "";
+    position: absolute;
+    inset: calc(var(--d-spacing-1) * -1);
+}
+@media (hover: hover) and (pointer: fine) {
+    .pricing-slider__dialog-close:hover {
+        background: var(--muted);
+        color: var(--foreground);
+    }
 }
 .pricing-slider__dialog-close:focus-visible {
     outline: 2px solid var(--ring);

@@ -34,6 +34,12 @@
     display: flex;
     justify-content: center;
 }
+/* Phones: the call to action takes the full row. */
+@media (max-width: 639px) {
+    .hero-logo-cloud__actions > [data-slot="button"] {
+        flex: 1 1 0;
+    }
+}
 .hero-logo-cloud__logos {
     display: flex;
     align-items: center;
@@ -52,11 +58,13 @@
     background: var(--muted);
     border: 1px solid transparent;
     border-radius: var(--d-radius-full);
-    transition: color 0.15s ease, border-color 0.15s ease;
+    transition: color var(--d-motion-fast) var(--d-ease), border-color var(--d-motion-fast) var(--d-ease);
 }
-.hero-logo-cloud__logo:hover {
-    color: var(--foreground);
-    border-color: var(--border);
+@media (hover: hover) and (pointer: fine) {
+    .hero-logo-cloud__logo:hover {
+        color: var(--foreground);
+        border-color: var(--border);
+    }
 }
 @media (min-width: 768px) {
     .hero-logo-cloud .hero-logo-cloud__headline {

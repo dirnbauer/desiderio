@@ -13,14 +13,27 @@
     margin-bottom: var(--d-spacing-4);
 }
 .hero-countdown__subheadline {
+    margin-inline: auto;
     margin-bottom: var(--d-spacing-8);
 }
 .hero-countdown__timer {
     margin-bottom: var(--d-spacing-8);
 }
+/* Centred as a row of its own: the shared 75ch measure made this short line
+   a box at the start edge, so it sat left of the units below it. */
 .hero-countdown__deadline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--d-spacing-1) var(--d-spacing-2);
+    max-width: none;
+    margin-inline: auto;
     margin-bottom: var(--d-spacing-4);
     font-size: var(--d-text-sm);
+    color: var(--d-muted-foreground);
+}
+.hero-countdown__deadline-icon {
     color: var(--d-muted-foreground);
 }
 .hero-countdown__deadline-label {
@@ -62,6 +75,12 @@
 .hero-countdown__actions {
     display: flex;
     justify-content: center;
+}
+/* Phones: the call to action takes the full row. */
+@media (max-width: 639px) {
+    .hero-countdown__actions > [data-slot="button"] {
+        flex: 1 1 0;
+    }
 }
 
 @media (min-width: 40rem) {

@@ -3,15 +3,65 @@
 
 .card { position: relative; }
 
+/* One chrome, not two. components-03-elements.css still styles the legacy
+   BEM .card (a 1px border) and pads .card__header, __content and __footer by
+   1.5rem each. Inside d:molecule.card that stacked on the molecule's own ring
+   and --card-spacing: a 2px edge, text inset 40px from the edge and 48px
+   between a heading and its text. The card owns the inset and the rhythm;
+   the parts only group. */
+.card-section .card[data-slot="card"] {
+    border: 0;
+    gap: var(--d-spacing-sm);
+    padding: var(--d-spacing-lg);
+}
+.card-section .card :is(.card__header, .card__content, .card__footer) { padding: 0; }
+.card-section .card__header { gap: var(--d-spacing-xs); }
+/* The heading sits closer to its text than to the card edge: the parts'
+   gap is the only space between them. */
+.card-section .card :is(.card__content, .card__body) > .card__description { margin-block-start: 0; }
+.card-section .card--with-image .card__image { margin-block-end: var(--d-spacing-xs); }
+
+/* A single card is a unit, not a banner: past ~48rem the text sat in the
+   left half of an empty full-width box. Horizontal and overlay keep the full
+   width their media needs. */
+.card-section .card:is(.card--default, .card--with-image) { max-width: 48rem; }
+
 /* Shared media */
 .card__image img { width: 100%; height: auto; object-fit: cover; display: block; border-radius: var(--radius); }
 .card__title { text-wrap: balance; }
 .card__title a { color: inherit; text-decoration: none; }
-.card__title a:hover { text-decoration: underline; }
+@media (hover: hover) and (pointer: fine) {
+    .card__title a:hover { text-decoration: underline; }
+}
 .card__title a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: var(--radius); }
 .card__description { margin-block-start: var(--d-spacing-xs); }
 .card__actions, .card__footer { margin-block-start: var(--d-spacing-sm); }
 .card__badge { width: fit-content; }
+
+/* The heading link opens the whole card: its ::after covers the card (the
+   card is position: relative), so the card that lifts on hover is also what
+   a click opens. Links in the text and the button stay on top of that layer
+   and keep their own targets; keyboard focus rings the whole card. */
+.card-section .card__title a::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+.card-section .card :is(.card__description a, .card__actions a, .card__footer a) {
+    position: relative;
+    z-index: 2;
+}
+.card-section .card:has(.card__title a:focus-visible) {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+.card-section .card__title a:focus-visible { outline: none; }
+/* In the Visual Editor every element sits in a <ve-content-element>; there
+   the stretched layer would swallow the clicks meant for the inline editors. */
+ve-content-element .card-section .card__title a::after {
+    content: none;
+}
 
 /* Horizontal: media beside body */
 .card--horizontal .card__grid { display: flex; flex-direction: column; gap: var(--d-spacing-md); align-items: stretch; }
@@ -19,8 +69,10 @@
 .card--horizontal .card__image img { height: 100%; }
 .card--horizontal .card__body { display: flex; flex-direction: column; gap: var(--d-spacing-sm); }
 @media (min-width: 640px) {
-    .card--horizontal .card__grid { flex-direction: row; }
+    .card--horizontal .card__grid { flex-direction: row; gap: var(--d-spacing-lg); }
     .card--image-right .card__grid { flex-direction: row-reverse; }
+    /* Short text centres against the image instead of hugging its top edge. */
+    .card--horizontal .card__body { justify-content: center; min-width: 0; }
 }
 
 /* Overlay: text sits on top of the media */

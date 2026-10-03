@@ -11,7 +11,7 @@
             <p class="footer-minimal__copyright">{data -> f:render.text(field: 'copyright')}</p>
             <f:if condition="{data.link_items}">
                 <nav aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:footer.links.aria', default: 'Footer links')}">
-                    <ul class="footer-minimal__links">
+                    <ul class="footer-minimal__links" role="list">
                         <f:for each="{data.link_items}" as="item">
                             <li>
                                 <f:if condition="{item.link}">

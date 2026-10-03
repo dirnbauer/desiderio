@@ -15,15 +15,15 @@
 /* Split */
 .cta__split {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--d-spacing-2xl);
     align-items: center;
 }
 @media (min-width: 768px) {
-    .cta__split { grid-template-columns: 1fr 1fr; }
+    .cta__split { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 .cta__media { overflow: hidden; border-radius: var(--radius); }
-.cta__image { width: 100%; height: auto; object-fit: cover; }
+.cta__image { display: block; width: 100%; height: auto; object-fit: cover; }
 
 /* Banner: primary-filled panel inside a neutral section */
 .cta__banner {
@@ -41,9 +41,16 @@
 .cta__ghost--on-primary {
     color: var(--primary-foreground);
 }
-.cta__ghost--on-primary:hover {
-    background: color-mix(in oklab, var(--primary-foreground) 12%, transparent);
-    color: var(--primary-foreground);
+@media (hover: hover) and (pointer: fine) {
+    .cta__ghost--on-primary:hover {
+        background: color-mix(in oklab, var(--primary-foreground) 12%, transparent);
+        color: var(--primary-foreground);
+    }
+}
+/* --ring can equal --primary, which would vanish on the primary panel. */
+.cta__banner :is(a, button):focus-visible {
+    outline: 2px solid var(--primary-foreground);
+    outline-offset: 2px;
 }
 
 /* Minimal: headline left, action right */

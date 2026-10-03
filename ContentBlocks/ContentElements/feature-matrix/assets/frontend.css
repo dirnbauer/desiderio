@@ -13,6 +13,13 @@
 .feature-matrix__value {
     text-align: center;
 }
+/* On a phone a value that cannot wrap pushed the second plan out of the
+   card, behind a horizontal scroll nobody sees: there the values wrap. */
+@media (max-width: 640px) {
+    .feature-matrix__value {
+        white-space: normal;
+    }
+}
 /* Header cells mirror the shared table-head primitive's look. */
 .feature-matrix__head {
     height: 2.5rem;
@@ -30,10 +37,12 @@
     padding-block: var(--d-spacing-sm);
 }
 .feature-matrix__table tbody tr {
-    transition: background-color 0.15s ease;
+    transition: background-color var(--d-motion-fast) var(--d-ease);
 }
-.feature-matrix__table tbody tr:hover {
-    background-color: color-mix(in oklab, var(--muted) 60%, transparent);
+@media (hover: hover) and (pointer: fine) {
+    .feature-matrix__table tbody tr:hover {
+        background-color: color-mix(in oklab, var(--muted) 60%, transparent);
+    }
 }
 @media (prefers-reduced-motion: reduce) {
     .feature-matrix__table tbody tr {

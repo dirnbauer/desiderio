@@ -2,7 +2,7 @@
       xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
       data-namespace-typo3-fluid="true">
 
-<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="card-overlay-section">
     <d:layout.container>
         <article class="group relative flex min-h-[22rem] items-end overflow-hidden rounded-xl bg-muted shadow-[var(--d-surface-shadow)] ring-1 ring-foreground/10 md:min-h-[30rem]">
             <f:if condition="{data.image.0}">
@@ -21,12 +21,12 @@
                     <d:atom.typography tag="h2" variant="h2" class="max-w-xl text-background">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.description}">
-                    <d:atom.typography tag="div" variant="p" class="max-w-xl text-base/7 text-background/90 [&_a]:text-inherit [&_a]:underline [&_a]:underline-offset-2 [&_p]:m-0 [&_strong]:font-semibold">{data -> f:render.text(field: 'description')}</d:atom.typography>
+                    <d:atom.typography tag="div" variant="p" class="max-w-xl text-base/7 text-background/90 [&_a]:text-inherit [&_a]:underline [&_a]:underline-offset-2 [&_p]:m-0 [&_strong]:font-semibold [&_p+p]:mt-3 [&_ul]:list-disc [&_ul]:ps-5 [&_ol]:list-decimal [&_ol]:ps-5">{data -> f:render.text(field: 'description')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.link.url}">
-                    <d:atom.button href="{f:uri.typolink(parameter: data.link.url)}" target="{data.link.target}" size="lg" class="mt-2">
+                    <d:atom.button href="{f:uri.typolink(parameter: data.link.url)}" target="{data.link.target}" size="lg" class="mt-2 w-fit">
                         <span>{data -> f:render.text(field: 'link_text')}</span>
-                        <span aria-hidden="true">&rarr;</span>
+                        <span class="transition-transform duration-(--d-motion-fast) ease-(--d-ease) group-hover/button:translate-x-0.5 motion-reduce:transition-none" aria-hidden="true">&rarr;</span>
                     </d:atom.button>
                 </f:if>
             </d:layout.stack>

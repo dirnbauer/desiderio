@@ -8,7 +8,7 @@
         <div class="hero-testimonial__grid">
             <div class="hero-testimonial__content">
                 <f:if condition="{data.header}">
-                    <d:atom.typography tag="h2" variant="h1" class="hero-testimonial__headline" attributes="{itemprop: ''}">
+                    <d:atom.typography tag="h2" variant="h1" class="hero-testimonial__headline">
                         <span id="hero-testimonial-title-{data.uid}">{data -> f:render.text(field: 'header')}</span>
                     </d:atom.typography>
                 </f:if>
@@ -23,6 +23,7 @@
             </div>
             <f:if condition="{data.quote}">
                 <figure class="hero-testimonial__quote-card">
+                    <d:atom.icon name="quote" size="lg" class="hero-testimonial__quote-icon" />
                     <blockquote class="hero-testimonial__quote">
                         <p>{data -> f:render.text(field: 'quote')}</p>
                     </blockquote>
@@ -30,7 +31,7 @@
                         <f:if condition="{data.author_image}">
                             <span class="hero-testimonial__avatar">
                                 <f:for each="{data.author_image}" as="image">
-                                    <f:image image="{image}" width="48" height="48" class="hero-testimonial__avatar-image" alt="{image.alternative}" additionalAttributes="{srcset: '{f:uri.image(image: image, width: \'48\', height: \'48\')} 1x, {f:uri.image(image: image, width: \'96\', height: \'96\')} 2x'}" loading="lazy" decoding="async"/>
+                                    <f:image image="{image}" width="48c" height="48c" class="hero-testimonial__avatar-image" alt="{image.alternative}" additionalAttributes="{srcset: '{f:uri.image(image: image, width: \'48c\', height: \'48c\')} 1x, {f:uri.image(image: image, width: \'96c\', height: \'96c\')} 2x'}" loading="lazy" decoding="async"/>
                                 </f:for>
                             </span>
                         </f:if>

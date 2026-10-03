@@ -7,12 +7,14 @@
 
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="feature-matrix">
     <d:layout.container>
-        <header class="feature-matrix__intro">
-            <f:if condition="{data.eyebrow}">
-                <d:atom.badge variant="secondary" class="feature-matrix__eyebrow">{data -> f:render.text(field: 'eyebrow')}</d:atom.badge>
-            </f:if>
-            <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-        </header>
+        <f:if condition="{data.eyebrow} || {data.header}">
+            <header class="feature-matrix__intro">
+                <f:if condition="{data.eyebrow}">
+                    <d:atom.badge variant="secondary" class="feature-matrix__eyebrow">{data -> f:render.text(field: 'eyebrow')}</d:atom.badge>
+                </f:if>
+                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+            </header>
+        </f:if>
         <d:molecule.card class="feature-matrix__card">
             <d:molecule.table class="feature-matrix__table">
                 <d:molecule.tableHeader>

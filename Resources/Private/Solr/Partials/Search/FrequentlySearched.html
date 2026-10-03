@@ -1,25 +1,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
     data-namespace-typo3-fluid="true"
 >
 
 <f:argument name="frequentSearches" type="iterable" optional="true"/>
 
+<f:comment>
+    The terms as outline badges that wrap, the way shadcn sets tags: a
+    full-width row per term made eight words take a whole screen of the
+    sidebar. The list is short on purpose (frequentSearches.limit in the
+    SolrDefaults set), and a long term is cut with an ellipsis rather than
+    widening the sidebar.
+</f:comment>
 <f:section name="FrequentlySearched">
     <s:frequentlySearched>
         <f:if condition="{frequentSearches}">
-            <section id="tx-solr-frequent-searches" class="d-solr-suggest d-solr-suggest--facet" aria-labelledby="tx-solr-frequent-searches-label">
-                <h2 class="d-solr-suggest__group" id="tx-solr-frequent-searches-label">
+            <section id="tx-solr-frequent-searches" class="d-solr-frequent" aria-labelledby="tx-solr-frequent-searches-label">
+                <h2 class="d-solr-frequent__heading" id="tx-solr-frequent-searches-label">
                     <f:translate key="solr.frequentSearches" domain="desiderio.labels">Frequent searches</f:translate>
                 </h2>
 
-                <ul role="list" class="d-solr-facet__list">
+                <ul role="list" class="d-solr-frequent__list">
                     <f:for each="{frequentSearches}" as="searchedForInfo">
-                        <li>
-                            <a href="{s:uri.search.startNewSearch(queryString: searchedForInfo.q)}" class="solr-ajaxified d-solr-suggest__option">
-                                <span class="d-solr-suggest__term"><f:format.htmlentities>{searchedForInfo.q}</f:format.htmlentities></span>
-                            </a>
+                        <li class="d-solr-frequent__item">
+                            <d:atom.badge variant="outline" href="{s:uri.search.startNewSearch(queryString: searchedForInfo.q)}" class="solr-ajaxified d-solr-frequent__term">
+                                <span class="d-solr-frequent__label">{searchedForInfo.q}</span>
+                            </d:atom.badge>
                         </li>
                     </f:for>
                 </ul>

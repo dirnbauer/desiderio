@@ -173,3 +173,48 @@
     cursor: progress;
     opacity: 0.7;
 }
+
+/*
+ * Frequent searches (Partials/Search/FrequentlySearched.html): a heading set
+ * like the facet legends above it and the terms as outline badges that wrap.
+ * One full-width row per term made the list the tallest thing in the
+ * sidebar. A long term ends in an ellipsis instead of widening the column.
+ */
+.d-solr-frequent {
+    display: grid;
+    gap: var(--d-spacing-xs, 0.375rem);
+    min-width: 0;
+}
+
+.d-solr-frequent__heading {
+    margin: 0;
+    font-size: var(--d-text-sm, 0.875rem);
+    font-weight: var(--d-weight-semibold, 600);
+    line-height: 1.5;
+    color: var(--foreground);
+}
+
+.d-solr-frequent__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.d-solr-frequent__item {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.d-solr-frequent__term {
+    max-width: 100%;
+}
+
+.d-solr-frequent__label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+

@@ -336,9 +336,12 @@ final class ShadcnThemeTest extends TestCase
         self::assertStringContainsString('tx-solr-facet-hidden', $facetTemplate);
         self::assertStringContainsString('tx-solr-facet-show-all', $facetTemplate);
 
-        self::assertStringContainsString('d-solr-suggest d-solr-suggest--facet', $frequentlySearchedTemplate);
-        self::assertStringContainsString('d-solr-facet__list', $frequentlySearchedTemplate);
-        self::assertStringContainsString('d-solr-suggest__option', $frequentlySearchedTemplate);
+        // Frequent searches are outline badges that wrap, not full-width rows.
+        self::assertStringContainsString('class="d-solr-frequent"', $frequentlySearchedTemplate);
+        self::assertStringContainsString('class="d-solr-frequent__list"', $frequentlySearchedTemplate);
+        self::assertStringContainsString('<d:atom.badge variant="outline"', $frequentlySearchedTemplate);
+        self::assertStringNotContainsString('d-solr-suggest__option', $frequentlySearchedTemplate);
+        self::assertStringContainsString('.d-solr-frequent__list', $desiderioCss);
         self::assertStringContainsString('.d-solr-suggest--facet', $desiderioCss);
         self::assertStringContainsString('.d-solr-facet__list', $desiderioCss);
         self::assertStringContainsString('.d-facet-option', $desiderioCss);

@@ -82,8 +82,13 @@ final class SolrFacetTemplateTest extends TestCase
             );
             self::assertStringContainsString('operator = OR', $match['body'], sprintf('The %s facet must use OR semantics', $facet));
             self::assertStringContainsString('keepAllOptionsOnSelection = 1', $match['body'], sprintf('The %s facet must keep every option selectable', $facet));
-            self::assertStringContainsString('minimumCount = 0', $match['body'], sprintf('The %s facet must keep zero-count options visible', $facet));
+            // The sites share their cores: at 0, Solr lists every value of the
+            // field in the core, other sites' types and categories included.
+            self::assertStringContainsString('minimumCount = 1', $match['body'], sprintf('The %s facet must only list values this site has', $facet));
         }
+        // Skills are nr_llm records indexed by EXT:skillflow: their type is tx_nrllm_skill.
+        self::assertStringContainsString('tx_nrllm_skill.data = LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:solr.contentType.skills', $setup);
+        self::assertStringContainsString('manualSortOrder = pages,tx_news_domain_model_news,tx_nrllm_skill', $setup);
         // category_stringM is filled by the imported IndexQueueNews configuration.
         self::assertStringContainsString('field = category_stringM', $setup);
         self::assertStringContainsString("@import 'EXT:solr/Configuration/TypoScript/Examples/IndexQueueNews/setup.typoscript'", $setup);

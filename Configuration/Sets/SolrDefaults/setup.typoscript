@@ -29,8 +29,14 @@ plugin.tx_solr.index.queue.news.fields {
   url.default.typolink.parameter.data = siteSettings:news.pages.detail // site:rootPageId
 }
 
+# The sites of one installation share their Solr cores. Facet options are
+# counted per query, but with minimumCount = 0 Solr also returns every value
+# the field has anywhere in the core: the content type and category facets of
+# one site listed other sites' values at 0 (the blog's "News" category, a
+# retired skill type of the corporate starter). minimumCount = 1 keeps a facet
+# to the values this site's results actually have.
 plugin.tx_solr.search.faceting {
-  minimumCount = 0
+  minimumCount = 1
   keepAllFacetsOnSelection = 1
 
   facets {
@@ -40,13 +46,13 @@ plugin.tx_solr.search.faceting {
       label.data = LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:solr.facet.type
       field = type
       partialName = Options
-      minimumCount = 0
+      minimumCount = 1
       # Multi-select semantics: ticking a second type WIDENS the result set
       # (pages OR news), and every option keeps the count it would have on its
       # own — which is what makes a checkbox group behave as visitors expect.
       operator = OR
       keepAllOptionsOnSelection = 1
-      manualSortOrder = pages,tx_news_domain_model_news,tx_skillflow_skill
+      manualSortOrder = pages,tx_news_domain_model_news,tx_nrllm_skill
       renderingInstruction = CASE
       renderingInstruction {
         key.field = optionValue
@@ -60,8 +66,14 @@ plugin.tx_solr.search.faceting {
         tx_news_domain_model_news = TEXT
         tx_news_domain_model_news.data = LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:solr.contentType.news
 
-        tx_skillflow_skill = TEXT
-        tx_skillflow_skill.data = LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:solr.contentType.skills
+        # EXT:skillflow indexes the skill records of nr_llm, so a skill
+        # document's type is their table, tx_nrllm_skill. Without this entry
+        # the facet printed the raw table name.
+        tx_nrllm_skill = TEXT
+        tx_nrllm_skill.data = LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:solr.contentType.skills
+
+        # Older skillflow versions indexed their own table.
+        tx_skillflow_skill < .tx_nrllm_skill
       }
     }
 
@@ -76,12 +88,20 @@ plugin.tx_solr.search.faceting {
       label.data = LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:solr.facet.category
       field = category_stringM
       partialName = Options
-      minimumCount = 0
+      minimumCount = 1
       operator = OR
       keepAllOptionsOnSelection = 1
       sortBy = count
     }
   }
+}
+
+# Frequent searches (EverythingOn turns them on): a short list of the terms
+# searched most often, not EXT:solr's twenty-term cloud, and never the bare
+# wildcard, which only says that someone pressed search on an empty field.
+plugin.tx_solr.search.frequentSearches {
+  limit = 8
+  select.ADD_WHERE = AND num_found != 0 AND keywords <> '*'
 }
 
 # EXT:solr 12+ ships jQuery-free vanilla controllers; only the facet

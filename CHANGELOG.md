@@ -6,6 +6,17 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.16.1] — 2026-10-03
+
+### Added
+
+- **The other sites of the installation, on the showcase homepage.** A
+  card grid after the integrations names each site of this TYPO3 with a
+  tag, one line on what it shows and a link to its root page. Showcase
+  blocks can link `{{site:<identifier>}}`: the seeder resolves it to the
+  site's root page through the site configuration and leaves out the cards
+  (and the block) for sites an installation does not have.
+
 ## [4.16.0] — 2026-10-03
 
 ### Added

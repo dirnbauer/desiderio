@@ -6,6 +6,138 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.16.0] — 2026-10-03
+
+### Added
+
+- **A product film.** "Desiderio in 26 seconds" opens the showcase homepage
+  after the hero: one page in all 15 presets, light and dark mode, the 244
+  elements, the demo in four languages and the editor tools. It is rendered
+  from code over real screens of the seeded site: `Build/Film/film.html` is
+  the editable source (one paused Web Animations timeline),
+  `Build/Scripts/capture-film-assets.mjs` takes the screens and
+  `Build/Scripts/render-film.mjs` steps the timeline frame by frame in
+  headless Chromium and encodes MP4 and a poster with ffmpeg.
+- **Videos that play by themselves.** The Video Feature Section reads the
+  file reference's autoplay flag: such a video plays muted while a third of
+  it is on screen, never for visitors who ask for reduced motion, and stays
+  paused once someone pauses it. Its controls remain.
+- `ShowcaseBlocks::productFilm()`, and an `autoplay` key for seeded media.
+- **The testimonial carousel's autoplay works.** The editor checkbox was
+  there, but the runtime never read it. Now the slides advance every six
+  seconds behind a pause/play button (WCAG 2.2.2), hold while the carousel
+  is hovered, focused, off screen or in a background tab, stop for good once
+  the visitor picks a slide, and never move for visitors who ask for reduced
+  motion. While it plays, the status region stays silent.
+
+### Changed
+
+- **Every element template, one by one.** All 244 Content Block elements
+  went through a design pass in ten groups. Their shadcn/ui classes,
+  `data-slot` attributes, component calls and icons stay as they were; the
+  work is in layout, spacing, states and the markup around them:
+  - Grid tracks are `minmax(0, 1fr)`, so a long word no longer widens its
+    column, and card rows share subgrid rows, so titles, lists and buttons
+    line up across a row (pricing plans, feature cards, the mega menu).
+  - A card that leads somewhere is clickable as a whole, with the focus
+    ring on the card. Links in its text stay clickable, and in the Visual
+    Editor the overlay lets clicks through to the text.
+  - Hover effects only where a pointer hovers, transitions on the motion
+    tokens, 44 px touch targets on phones, and swipe rows instead of long
+    stacks when a phone gets five or more cards.
+  - Images take their alternative text from the file reference instead of
+    repeating the headline, fixed-size images crop instead of stretching,
+    and processed images match the size they are shown at.
+  - Lists are lists (`role="list"`), quotation marks follow the page
+    language, struck prices are announced as the regular price, and rich
+    text gets visible links, list markers and paragraph spacing.
+  - Fixed on the way: a white-on-white outline button and a grey lead on the
+    dark scrim in the background hero, an invisible eyebrow on the primary
+    feature highlight, step 1 of the steps bar cut off on phones, the second
+    column of feature comparisons cut off at 390 px, numbered features
+    reading "001", a breadcrumb whose undefined spacing token ran the crumbs
+    together, stats bars that hid every row without JavaScript, a parallax
+    hero that never moved, a logo cloud 3,676 px tall on phones (now
+    1,315 px), a donut chart that never drew its ring, and a leaderboard
+    initial that read "N…".
+  - Charts keep readable labels on phones: line, sparkline, contribution,
+    stacked-bar and dashboard charts scroll sideways at their drawing size
+    instead of shrinking their axis labels to about 5 px.
+- **Tailwind sees the element templates.** The `@source` glob for the
+  Content Block templates matched no files, so a utility class that only an
+  element template used never reached the CSS. It does now: elements such
+  as the card overlay render with the padding they were written with.
+- **Motion.** A stronger ease-out (`--d-ease`), a fast step
+  (`--d-motion-fast`) and an in-out curve. The opening section arrives in
+  420 ms instead of 640 ms, and images only move, so the hero photo is never
+  held back by a fade. Inner pages get the entrance and the scroll rise too;
+  a section with its own reveal no longer animates twice. Hover lifts on
+  cards and buttons only happen where a pointer hovers. Buttons transition
+  named properties instead of `all`.
+- **Details.** Headings balance their lines, running text avoids a lonely
+  last word, prices and values use tabular figures, anchors stop below the
+  sticky header, and `color-scheme` follows the theme.
+- **Grids of five cards** in three columns show three on top and two wider
+  ones below instead of leaving an empty cell.
+- **Inner pages** have one side gutter: the corporate content template no
+  longer wraps every section in a second container, so full-width bands are
+  full width again. A page that opens with a hero leads with it: the seeder
+  makes its page title screen-reader only (`tx_desiderio_h1_sronly`, now the
+  same in every language).
+- **Header.** Navigation links use the theme's muted text colour instead of
+  an opacity that dropped below 4.5:1; on phones the header is about 24 px
+  lower.
+- **Reveal, counters, marquee, tilt.** Content is hidden for a reveal only
+  after the runtime armed it below the fold, so nothing stays invisible
+  without JavaScript. Counters keep their real value for screen readers and
+  find-in-page, and values under ten no longer count up. The marquee's copy
+  is inert and the marquee pauses on keyboard focus. Tilt needs a fine
+  pointer.
+- **Copy.** The showcase pages say what is true: Desiderio installs from
+  GitHub (it is not on Packagist), needs TYPO3 v14.3.6 and PHP 8.4 or 8.5,
+  and a custom preset goes into shadcn-theme.css. Plans add guaranteed answer
+  times; only Partner gets passed-on enquiries. Page titles no longer repeat
+  the site name. Typographic apostrophes throughout.
+- The lightbox keeps the image's own description as its name, and its dialog
+  eases in. Decorative icons without artwork render nothing. The footer
+  tagline keeps its capitals, and an internal note no longer ships as an
+  HTML comment.
+- **Display sizes are fluid.** The hero and section headline sizes
+  (`--d-text-4xl` to `--d-text-6xl`) now scale with the screen up to the
+  sizes they had before: a hero headline on a phone is 36 px instead of
+  48 px. The fluid values sat on `:root`, below the fixed ones on `body`, so
+  they never applied.
+- Demo content links real pages: element fixtures pointed at page 1, which
+  rendered empty links on most installs; they now name seeded pages through
+  `{{page:<slug>}}` placeholders. The GDPR banner's default button labels
+  are in sentence case.
+
+### Fixed
+
+- Classic content elements (text, tables, menus) no longer grow wider than
+  a phone screen when they hold a long code line or URL.
+- Storage refused by the browser no longer stops the menu, search and
+  lightbox scripts. The phone menu closes on Escape (focus returns to its
+  toggle), on an outside click and when the window grows to the desktop
+  layout. A visitor who chose dark mode no longer sees a light flash.
+- Tab labels are no longer squeezed: tab triggers keep their width and the
+  tab list scrolls sideways, as its shadcn classes intend.
+- The card focus ring is visible (an unlayered card shadow hid it), a
+  centred section intro centres its lead, and an icon given `hidden` stays
+  hidden.
+- Carousels announce "Slide 2 of 5" in the page language instead of
+  English.
+- Text & Media plays a video file instead of failing on it.
+- Social proof counters are valid HTML (the icon moved into the `dd`), and
+  the navigation bar's two buttons have the same height.
+- The interactive card's link is named by the link title, or "Learn more"
+  plus the card title, instead of "View automation guide" wherever it led;
+  a notification without a link target no longer renders an empty link.
+- The table of contents and the sidebar navigation keep the page's side
+  gutter when they run full width.
+- A focused element no longer loses focus to the top of the page when a
+  notice or the consent banner closes around it.
+
 ## [4.15.0] — 2026-09-28
 
 ### Added

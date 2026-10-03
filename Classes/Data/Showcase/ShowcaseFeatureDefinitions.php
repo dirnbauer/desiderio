@@ -11,10 +11,17 @@ namespace Webconsulting\Desiderio\Data\Showcase;
  * Build/Scripts/capture-feature-screenshots.mjs (Build/Data/feature-screenshots.json);
  * its --rewrite option keeps the file names below current.
  *
+ * A feature that presents other people's work credits them: the names as the
+ * installed package states them (composer.json authors, ext_emconf.php, the
+ * README or third-party notices it ships), the project and its upstream
+ * repository. The page then thanks them below its main content. Our own
+ * extensions have no credits.
+ *
  * @phpstan-import-type ShowcaseMedia from ShowcaseBlocks
+ * @phpstan-import-type ShowcaseCredits from ShowcaseBlocks
  * @phpstan-type FeatureButton array{text: string, link: string}
  * @phpstan-type FeatureShot array{tab: string, title: string, description: string, image: ShowcaseMedia}
- * @phpstan-type FeatureDefinition array{slug: string, product: string, badge: string, title: string, navTitle: string, description: string, abstract: string, hero: array{header: string, subheadline: string, primaryButton: FeatureButton, secondaryButton: FeatureButton, image: ShowcaseMedia}, problem: array{header: string, content: string}, tour: array{header: string, subheadline: string, shots: list<FeatureShot>}, benefits: array{header: string, items: list<array{icon: string, title: string, description: string}>}, faq: array{header: string, subheadline: string, items: list<array{question: string, answer: string}>}, install: array{header: string, code: string}|null, cta: array{header: string, description: string, text: string, link: string}}
+ * @phpstan-type FeatureDefinition array{slug: string, product: string, badge: string, title: string, navTitle: string, description: string, abstract: string, hero: array{header: string, subheadline: string, primaryButton: FeatureButton, secondaryButton: FeatureButton, image: ShowcaseMedia}, problem: array{header: string, content: string}, tour: array{header: string, subheadline: string, shots: list<FeatureShot>}, benefits: array{header: string, items: list<array{icon: string, title: string, description: string}>}, faq: array{header: string, subheadline: string, items: list<array{question: string, answer: string}>}, install: array{header: string, code: string}|null, credits?: ShowcaseCredits, cta: array{header: string, description: string, text: string, link: string}}
  * @phpstan-type FeatureCategory array{label: string, header: string, subheadline: string, features: list<FeatureDefinition>}
  * @phpstan-type FeatureHub array{title: string, navTitle: string, seoTitle: string, description: string, abstract: string, badge: string, header: string, subheadline: string, primaryButton: FeatureButton, secondaryButton: FeatureButton, image: ShowcaseMedia, cta: array{header: string, description: string, text: string, link: string}}
  */
@@ -251,6 +258,8 @@ final class ShowcaseFeatureDefinitions
                 ],
             ],
             'install' => ['header' => 'Install Astryx for TYPO3', 'code' => implode("\n", ['# astryx-typo3 and the packages it builds on are not on Packagist', 'composer config repositories.astryx-typo3 vcs https://github.com/dirnbauer/astryx-typo3.git', 'composer config repositories.desiderio vcs https://github.com/dirnbauer/desiderio.git', 'composer config repositories.visual-editor-enhancements vcs https://github.com/dirnbauer/typo3-visual-editor-enhancements.git', 'composer require webconsulting/astryx-typo3', '', '# extension:setup cannot add the tt_content columns once the table is this wide:', '# dry run first, then --apply (the script expects the DDEV docroot /var/www/html)', 'ddev exec php vendor/webconsulting/astryx-typo3/Build/Scripts/apply-schema.php', 'ddev exec php vendor/webconsulting/astryx-typo3/Build/Scripts/apply-schema.php --apply', '', '# Add webconsulting/astryx-typo3 and webconsulting/astryx-typo3-content-elements', '# to config/sites/<site>/config.yaml, then seed the showcase:', 'ddev exec vendor/bin/typo3 astryx-typo3:site:seed --content'])],
+            // packages/astryx_typo3/THIRD_PARTY_NOTICES.md: Astryx is MIT, © Meta Platforms, Inc.
+            'credits' => ['names' => ['Meta’s Astryx team'], 'project' => 'Astryx', 'link' => 'https://github.com/facebook/astryx'],
             'cta' => ['header' => 'See all 250 elements on the live site', 'description' => 'Browse the ten chapters and the 25 theme pages of the Astryx lab site. Then install it from GitHub.', 'text' => 'See the elements', 'link' => '/astryx-typo3/components'],
         ];
     }
@@ -326,7 +335,9 @@ final class ShowcaseFeatureDefinitions
                 ],
             ],
             'install' => ['header' => 'Install TYPO3 Blog', 'code' => implode("\n", ['composer require t3g/blog', '', '# Desiderio and the Visual Editor enhancements it requires are not on Packagist', 'composer config repositories.desiderio vcs https://github.com/dirnbauer/desiderio.git', 'composer config repositories.visual-editor-enhancements vcs https://github.com/dirnbauer/typo3-visual-editor-enhancements.git', 'composer require webconsulting/desiderio', 'vendor/bin/typo3 extension:setup', '', '# In config/sites/<site>/config.yaml add blog/integration and webconsulting/desiderio-blog', '# (or webconsulting/desiderio-blog-standalone for a site that is only a blog), then:', 'vendor/bin/typo3 desiderio:blog:seed-pages --root=<blog-root-uid> --dry-run', 'vendor/bin/typo3 cache:flush'])],
-            'cta' => ['header' => 'Start a blog your editors can run', 'description' => 'Install the Blog extension and Desiderio, add the blog sets and publish your first post from the page tree. Thank you to TYPO3 GmbH for the extension.', 'text' => 'Get the extension', 'link' => 'https://github.com/TYPO3GmbH/blog'],
+            // vendor/t3g/blog/composer.json and ext_emconf.php
+            'credits' => ['names' => ['TYPO3 GmbH'], 'project' => 'The Blog extension', 'link' => 'https://github.com/TYPO3GmbH/blog'],
+            'cta' => ['header' => 'Start a blog your editors can run', 'description' => 'Install the Blog extension and Desiderio, add the blog sets and publish your first post from the page tree.', 'text' => 'Get the extension', 'link' => 'https://github.com/TYPO3GmbH/blog'],
         ];
     }
 
@@ -401,6 +412,9 @@ final class ShowcaseFeatureDefinitions
                 ],
             ],
             'install' => ['header' => 'Install Visual Editor Enhancements', 'code' => implode("\n", ['# Not on Packagist: add the Git repository first', 'composer config repositories.visual-editor-enhancements vcs https://github.com/dirnbauer/typo3-visual-editor-enhancements.git', 'composer require webconsulting/visual-editor-enhancements', 'vendor/bin/typo3 cache:flush'])],
+            // The add-on extends the Visual Editor: vendor/friendsoftypo3/visual-editor/ext_emconf.php
+            // names Matthis Vogel, its README.md credits anders und sehr
+            'credits' => ['names' => ['Matthis Vogel', 'anders und sehr'], 'project' => 'The Visual Editor', 'link' => 'https://github.com/FriendsOfTYPO3/visual_editor'],
             'cta' => ['header' => 'Give editors more to do on the page', 'description' => 'Install the extension and flush the caches. The field settings and link buttons appear in Content > Editor straight away.', 'text' => 'Get the extension', 'link' => 'https://github.com/dirnbauer/typo3-visual-editor-enhancements'],
         ];
     }
@@ -764,6 +778,8 @@ final class ShowcaseFeatureDefinitions
                 ],
             ],
             'install' => ['header' => 'Install Apache Solr for TYPO3', 'code' => implode("\n", ['composer config repositories.desiderio vcs https://github.com/dirnbauer/desiderio.git', 'composer config repositories.solr-numbered-pagination vcs https://github.com/dirnbauer/solr_numbered_pagination.git', 'composer require apache-solr-for-typo3/solr:^14.0 webconsulting/desiderio studiomitte/solr-numbered-pagination:dev-main', 'vendor/bin/typo3 extension:setup', '# In config/sites/<site>/config.yaml: add webconsulting/solr-defaults to dependencies,', '# add the Solr connection (solr_host_read, solr_core_read, ...) and set', '# desiderio.search.targetPageId to your results page. Then fill the index queue.'])],
+            // vendor/apache-solr-for-typo3/solr/composer.json
+            'credits' => ['names' => ['dkd Internet Service GmbH'], 'project' => 'Apache Solr for TYPO3', 'link' => 'https://github.com/TYPO3-Solr/ext-solr'],
             'cta' => ['header' => 'Make search part of your design', 'description' => 'Install Apache Solr for TYPO3 and Desiderio, add the Solr set to your site and index your pages. Results, filters and page numbers arrive styled.', 'text' => 'Get the templates', 'link' => 'https://github.com/dirnbauer/desiderio'],
         ];
     }
@@ -839,6 +855,9 @@ final class ShowcaseFeatureDefinitions
                 ],
             ],
             'install' => ['header' => 'Install Powermail', 'code' => implode("\n", ['composer config repositories.powermail vcs https://github.com/dirnbauer/powermail.git', 'composer config repositories.friendlycaptcha vcs https://github.com/dirnbauer/friendlycaptcha-typo3.git', 'composer require "in2code/powermail:~14.0.3.3" "studiomitte/friendlycaptcha:~2.3.0.1"', 'vendor/bin/typo3 extension:setup', '# Then add webconsulting/desiderio-powermail to dependencies in config/sites/<site>/config.yaml'])],
+            // The fork ports in2code's Powermail: vendor/in2code/powermail/composer.json
+            // (authors at in2code) and Readme.md (upstream in2code-de/powermail)
+            'credits' => ['names' => ['in2code'], 'project' => 'Powermail', 'link' => 'https://github.com/in2code-de/powermail'],
             'cta' => ['header' => 'Start from six working demo forms', 'description' => 'Contact, newsletter, callback, appointment, support and a four-step project request are ready to try. Each one has spam protection and its own thank-you page.', 'text' => 'Try the forms', 'link' => '/desiderio-powermail-lab'],
         ];
     }
@@ -1202,6 +1221,8 @@ final class ShowcaseFeatureDefinitions
                 ],
             ],
             'install' => ['header' => 'Install nr-llm', 'code' => implode("\n", ['composer require netresearch/nr-llm', 'vendor/bin/typo3 extension:setup', 'vendor/bin/typo3 vault:init   # first install only: creates the nr-vault master key', '# Then open AI > Setup > Setup Wizard, add your provider and store its key in nr-vault.'])],
+            // vendor/netresearch/nr-llm/composer.json and ext_emconf.php name the company only
+            'credits' => ['names' => ['Netresearch DTT GmbH'], 'project' => 'nr-llm', 'link' => 'https://github.com/netresearch/t3x-nr-llm'],
             'cta' => ['header' => 'Give every AI feature one foundation', 'description' => 'Install nr-llm, run the Setup Wizard and name your configurations. Keys stay encrypted, and costs stay visible.', 'text' => 'Get nr-llm', 'link' => 'https://github.com/netresearch/t3x-nr-llm'],
         ];
     }
@@ -1403,6 +1424,9 @@ final class ShowcaseFeatureDefinitions
                 ],
             ],
             'install' => ['header' => 'Install MCP Server', 'code' => implode("\n", ['composer config repositories.typo3-mcp-server vcs https://github.com/dirnbauer/typo3-mcp-server.git', 'composer config repositories.typo3-abilities vcs https://github.com/dirnbauer/typo3-abilities.git', 'composer require hn/typo3-mcp-server:^0.9', 'vendor/bin/typo3 extension:setup', '# Then open User > MCP Server in the backend.'])],
+            // The fork's upstream: vendor/hn/typo3-mcp-server/composer.json (Marco Pfeiffer)
+            // and README.md (a fork of hauptsacheNet/typo3-mcp-server, thanks to hauptsacheNet)
+            'credits' => ['names' => ['Marco Pfeiffer', 'hauptsacheNet'], 'project' => 'The original TYPO3 MCP Server', 'link' => 'https://github.com/hauptsacheNet/typo3-mcp-server'],
             'cta' => ['header' => 'Connect your AI assistant to TYPO3', 'description' => 'Install the fork, open User > MCP Server and follow the steps for Claude, Cursor or Codex. On production, writes stay in workspaces.', 'text' => 'Get the extension', 'link' => 'https://github.com/dirnbauer/typo3-mcp-server'],
         ];
     }
@@ -1541,6 +1565,8 @@ final class ShowcaseFeatureDefinitions
                 ],
             ],
             'install' => ['header' => 'Install sg_apicore', 'code' => implode("\n", ['composer require sgalinski/sg-apicore', 'vendor/bin/typo3 extension:setup --extension=sg_apicore', '# Swagger UI of the public API: /api/public/v1/docs/ui'])],
+            // vendor/sgalinski/sg-apicore/composer.json and ext_emconf.php
+            'credits' => ['names' => ['Stefan Galinski'], 'project' => 'sg_apicore', 'link' => 'https://gitlab.sgalinski.de/typo3/sg_apicore'],
             'cta' => ['header' => 'Open your content to apps and partners', 'description' => 'Install sg_apicore, register an API and share the Swagger link. Scopes, rate limits and request IDs are already in place.', 'text' => 'Get sg_apicore', 'link' => 'https://gitlab.sgalinski.de/typo3/sg_apicore'],
         ];
     }

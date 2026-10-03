@@ -6,6 +6,27 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- **A thank-you on the pages that present other people's extensions.** A
+  feature definition can carry `credits`: the names as the installed
+  package states them (composer.json, ext_emconf.php, its README or
+  third-party notices), the project and its upstream repository. The page
+  then thanks them in a bordered content highlight below its main content
+  and above the closing call to action, never first. Eight feature pages
+  have one: Astryx (Meta's Astryx team), the Blog extension (TYPO3 GmbH),
+  the Visual Editor (Matthis Vogel and anders und sehr), Apache Solr for
+  TYPO3 (dkd Internet Service GmbH), Powermail (in2code), sg_apicore
+  (Stefan Galinski), nr-llm (Netresearch DTT GmbH) and the original TYPO3
+  MCP Server (Marco Pfeiffer and hauptsacheNet). The /news page thanks
+  Georg Ringer below the news list. `ShowcaseBlocks::thankYou()` builds the
+  block; our own extensions have no credits.
+
+### Changed
+
+- The blog page's closing call to action no longer repeats the thanks to
+  TYPO3 GmbH; the thank-you right above it says it.
+
 ## [4.16.1] — 2026-10-03
 
 ### Added

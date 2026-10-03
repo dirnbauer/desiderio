@@ -15,6 +15,7 @@ namespace Webconsulting\Desiderio\Data\Showcase;
  * @phpstan-type ShowcaseMedia array{file: string, title: string, alternative: string, description: string, source: string, autoplay?: bool}
  * @phpstan-type ShowcaseBlogMeta array{publishDate: string, categories: list<string>, tags: list<string>}
  * @phpstan-type ShowcasePage array{title: string, navTitle: string, slug: string, abstract: string, description: string, parentSlug: string|null, seoTitle?: string, subtitle?: string, pageTsConfig?: string, backendLayout?: string, blogList?: bool, blog?: ShowcaseBlogMeta, hideInNav?: bool, formerSlugs?: list<string>, content: array<int, ShowcaseBlock>}
+ * @phpstan-type ShowcaseCredits array{names: non-empty-list<string>, project: string, link: string}
  */
 final class ShowcaseBlocks
 {
@@ -76,6 +77,45 @@ final class ShowcaseBlocks
             'image_position' => 'right',
             'overlay_opacity' => '0.5',
         ]);
+    }
+
+    /**
+     * The thank-you to the people behind a third-party extension that a page
+     * presents: a bordered, centred highlight that names them in its heading
+     * and links the project in its text. Pages put it below their main
+     * content, never first. The names come from the extension's own
+     * composer.json or ext_emconf.php; webconsulting never thanks itself.
+     *
+     * @param ShowcaseCredits $credits
+     * @return ShowcaseBlock
+     */
+    public static function thankYou(array $credits): array
+    {
+        return self::block('desiderio_contenthighlight', [
+            'header' => 'Thank you, ' . self::listing($credits['names']),
+            'content' => sprintf(
+                '<p><a href="%s">%s</a> is the work of %s. Thank you so much for building and maintaining it.</p>',
+                htmlspecialchars($credits['link']),
+                htmlspecialchars($credits['project']),
+                htmlspecialchars(self::listing([...$credits['names'], 'its contributors'])),
+            ),
+            'variant' => 'bordered',
+            'alignment' => 'center',
+            'link' => '',
+            'link_text' => '',
+        ]);
+    }
+
+    /**
+     * "A", "A and B", "A, B and C": the copy uses no serial comma.
+     *
+     * @param non-empty-list<string> $items
+     */
+    private static function listing(array $items): string
+    {
+        $last = array_pop($items);
+
+        return $items === [] ? $last : implode(', ', $items) . ' and ' . $last;
     }
 
     /**

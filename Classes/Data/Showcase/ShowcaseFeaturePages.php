@@ -6,7 +6,7 @@ namespace Webconsulting\Desiderio\Data\Showcase;
 
 /**
  * The /features and /ai sections: two hubs that list the features built in
- * the lab, by category, and one page per feature. Every feature page has the same seven
+ * the lab, by category, and one page per feature. Every feature page has the same
  * blocks, so the pages read alike and a new one is a definition, not a layout:
  *
  *  1. hero with the product badge, the outcome, two buttons and the best screenshot
@@ -15,7 +15,8 @@ namespace Webconsulting\Desiderio\Data\Showcase;
  *  4. four benefits
  *  5. the questions people ask before they install
  *  6. the install commands
- *  7. a call to action
+ *  7. for an extension by other people, a thank-you to them (the definition's credits)
+ *  8. a call to action
  *
  * The copy and the screenshots live in ShowcaseFeatureDefinitions.
  *
@@ -230,6 +231,11 @@ final class ShowcaseFeaturePages
                 'filename' => 'terminal',
                 'code' => $feature['install']['code'],
             ]);
+        }
+        // Below the main content and above the closing call to action: the
+        // page presents other people's work, so it thanks them.
+        if (isset($feature['credits'])) {
+            $content[] = ShowcaseBlocks::thankYou($feature['credits']);
         }
         $content[] = ShowcaseBlocks::block('desiderio_ctabanner', [
             'header' => $feature['cta']['header'],

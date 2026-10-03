@@ -7,6 +7,7 @@ namespace Webconsulting\Desiderio\Command;
 use Doctrine\DBAL\ParameterType;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use Webconsulting\Desiderio\Data\Showcase\ShowcaseBlocks;
 use Webconsulting\Desiderio\Seeding\CollectionCleanupService;
 use Webconsulting\Desiderio\Seeding\ContentBlockCollectionMap;
 use Webconsulting\Desiderio\Seeding\ContentElementSeeder;
@@ -22,6 +23,7 @@ use Webconsulting\Desiderio\Seeding\StarterContentBuilder;
  * page whose paginated news_pi1 plugin serves both views — the route enhancer maps
  * article URLs to News::detail inside the tx_news_pi1 namespace, so detail
  * pages need no extra subpage and URLs stay short (/news/<article-slug>).
+ * Below the list, the page thanks the people behind EXT:news.
  *
  * Like PowermailDemoSeeder, this class avoids hard references to news PHP
  * classes so Desiderio stays installable without georgringer/news. When the
@@ -35,6 +37,12 @@ final class NewsDemoSeeder
     private const string IMPORT_SOURCE = 'desiderio_styleguide_seed';
     private const string NEWS_TABLE = 'tx_news_domain_model_news';
     private const string REPO_URL = 'https://github.com/dirnbauer/desiderio';
+
+    /**
+     * The /news page presents EXT:news, so it thanks the people who build it,
+     * as vendor/georgringer/news/composer.json and ext_emconf.php name them.
+     */
+    private const array CREDITS = ['names' => ['Georg Ringer'], 'project' => 'EXT:news', 'link' => 'https://github.com/georgringer/news'];
 
     private ?DesiderioContentCleaner $contentCleaner = null;
 
@@ -278,17 +286,33 @@ final class NewsDemoSeeder
             );
         }
 
-        $this->insertHeaderSection(
-            $listUid,
-            'Desiderio news (demo)',
-            '22 demo articles, each with a lead and a body made of content elements. The list, the detail view and the pagination follow the active theme preset.',
-            256,
-            $now,
-            $contentColumns
-        );
-        $this->insertNewsPlugin($listUid, 'news_pi1', 'News', $storageUid, $listUid, $listUid, 512, $now, $contentColumns);
+        foreach ($this->listPageRows($listUid, $storageUid, $now) as $row) {
+            $this->insertRow('tt_content', $row, $contentColumns);
+        }
 
         return ['pages' => 2, 'records' => $records, 'contentElements' => $contentElements, 'skipped' => false];
+    }
+
+    /**
+     * The /news page from top to bottom: the header, the paginated list (the
+     * same plugin renders each article) and, below it, the thank-you to the
+     * people behind EXT:news. The thank-you never comes first.
+     *
+     * @return list<array<string, mixed>>
+     */
+    private function listPageRows(int $listUid, int $storageUid, int $now): array
+    {
+        return [
+            $this->headerSectionRow(
+                $listUid,
+                'Desiderio news (demo)',
+                '22 demo articles, each with a lead and a body made of content elements. The list, the detail view and the pagination follow the active theme preset.',
+                256,
+                $now
+            ),
+            $this->newsPluginRow($listUid, 'news_pi1', 'News', $storageUid, $listUid, $listUid, 512, $now),
+            $this->blockRow($listUid, ShowcaseBlocks::thankYou(self::CREDITS), 768, $now),
+        ];
     }
 
     /**
@@ -484,11 +508,11 @@ final class NewsDemoSeeder
     }
 
     /**
-     * @param array<string, true> $columns
+     * @return array<string, mixed>
      */
-    private function insertHeaderSection(int $pid, string $header, string $subheadline, int $sorting, int $now, array $columns): void
+    private function headerSectionRow(int $pid, string $header, string $subheadline, int $sorting, int $now): array
     {
-        $this->insertRow('tt_content', [
+        return [
             'pid' => $pid,
             'CType' => 'desiderio_headersection',
             'header' => $header,
@@ -500,13 +524,13 @@ final class NewsDemoSeeder
             'sys_language_uid' => 0,
             'crdate' => $now,
             'tstamp' => $now,
-        ], $columns);
+        ];
     }
 
     /**
-     * @param array<string, true> $columns
+     * @return array<string, mixed>
      */
-    private function insertNewsPlugin(
+    private function newsPluginRow(
         int $pid,
         string $ctype,
         string $header,
@@ -515,9 +539,8 @@ final class NewsDemoSeeder
         int $detailUid,
         int $sorting,
         int $now,
-        array $columns,
-    ): void {
-        $this->insertRow('tt_content', [
+    ): array {
+        return [
             'pid' => $pid,
             'CType' => $ctype,
             'header' => $header,
@@ -529,7 +552,29 @@ final class NewsDemoSeeder
             'sys_language_uid' => 0,
             'crdate' => $now,
             'tstamp' => $now,
-        ], $columns);
+        ];
+    }
+
+    /**
+     * A Desiderio element whose fields are all plain tt_content columns, with
+     * no collections and no files, such as the thank-you.
+     *
+     * @param ArticleBlock $block
+     * @return array<string, mixed>
+     */
+    private function blockRow(int $pid, array $block, int $sorting, int $now): array
+    {
+        return [
+            ...$block['fields'],
+            'pid' => $pid,
+            'CType' => $block['ctype'],
+            'colPos' => $block['colPos'],
+            'sorting' => $sorting,
+            'hidden' => 0,
+            'sys_language_uid' => 0,
+            'crdate' => $now,
+            'tstamp' => $now,
+        ];
     }
 
     private function buildNewsFlexform(int $storageUid, int $listUid, int $detailUid): string

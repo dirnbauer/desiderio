@@ -82,12 +82,25 @@ final class ShowcaseFeaturePagesTest extends TestCase
 
     public function testEveryFeaturePageFollowsTheSameOutline(): void
     {
+        $credited = [];
+        foreach (['features' => ShowcaseFeatureDefinitions::categories(), 'ai' => ShowcaseFeatureDefinitions::aiCategories()] as $section => $categories) {
+            foreach ($categories as $category) {
+                foreach ($category['features'] as $feature) {
+                    $credited['/' . $section . '/' . $feature['slug']] = isset($feature['credits']);
+                }
+            }
+        }
+
         $featurePages = [...array_slice(ShowcaseFeaturePages::websitePages(), 1), ...array_slice(ShowcaseFeaturePages::aiPages(), 1)];
         foreach ($featurePages as $page) {
             $ctypes = array_map(static fn(array $block): string => $block['ctype'], $page['content']);
             $expected = ['desiderio_herosaas', 'desiderio_contenthighlight', 'desiderio_gallery', 'desiderio_benefitcards', 'desiderio_faq'];
             if (in_array('desiderio_codeblock', $ctypes, true)) {
                 $expected[] = 'desiderio_codeblock';
+            }
+            if ($credited[$page['slug']] ?? false) {
+                // The thank-you to the people behind a third-party extension.
+                $expected[] = 'desiderio_contenthighlight';
             }
             $expected[] = 'desiderio_ctabanner';
 

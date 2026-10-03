@@ -276,6 +276,27 @@ final class StyleguideShowcasePages
                 ],
             ]),
 
+            // ----------------------------------------------------- the lab
+            // One card per other site of the installation. The seeder links
+            // {{site:<identifier>}} to that site's root page and leaves out
+            // the cards (and the block) for sites an installation lacks.
+            ShowcaseBlocks::block('desiderio_categorycards', [
+                'eyebrow' => 'This lab',
+                'header' => 'More sites on this TYPO3 installation',
+                'subheadline' => 'The same TYPO3 v14 installation runs these sites too, each with another theme, extension or language setup.',
+                'columns' => '4',
+                'items' => [
+                    ['title' => 'Astryx', 'count' => 'Second theme', 'description' => 'Meta’s Astryx design system for TYPO3: 250 server-rendered elements and 25 themes, without React.', 'link' => '{{site:astryx-typo3}}'],
+                    ['title' => 'Agent Nexus', 'count' => 'AI agents', 'description' => 'Agent protocols in TYPO3: A2UI, AG-UI, A2A, UCP and AP2, each with a demo, plus a playground.', 'link' => '{{site:agent-nexus}}'],
+                    ['title' => 'Northstar Advisory Group', 'count' => 'Starter site', 'description' => 'A complete company website from Desiderio’s corporate starter, seeded with one command.', 'link' => '{{site:desiderio-corporate-starter}}'],
+                    ['title' => 'TYPO3 Camp München 2026', 'count' => 'Event site', 'description' => 'A barcamp site in German, English, Chinese and Hungarian, with Solr search.', 'link' => '{{site:mtug-camp-munich-2026}}'],
+                    ['title' => 'The TYPO3 blog', 'count' => 'Blog', 'description' => 'Practical posts about TYPO3 in Desiderio’s Classic blog template.', 'link' => '{{site:typo3-blog}}'],
+                    ['title' => 'TYPO3 v14 blog', 'count' => 'Blog', 'description' => 'A demo blog in the Modern template, with an archive by category, tag, author and month.', 'link' => '{{site:14lts}}'],
+                    ['title' => 'Blog classico', 'count' => 'Blog in German', 'description' => 'A German lifestyle blog in the Classic template, about spring, Easter and family days.', 'link' => '{{site:blog}}'],
+                    ['title' => 'Camino', 'count' => 'Own site package', 'description' => 'A guide to the Way of St James, built with the Camino site package and its own content elements.', 'link' => '{{site:camino}}'],
+                ],
+            ]),
+
             // ----------------------------------------------------- get started
             ShowcaseBlocks::block('desiderio_howtosteps', [
                 'header' => 'Set up a themed site in four steps',

@@ -669,6 +669,7 @@ final class SeedStyleguidePagesCommand extends Command
             }
         }
 
+        $siteRoots = $this->siteRootPages();
         foreach ($showcaseBlocks as $pageUid => $blocks) {
             // Showcase subpages are fully seeder-owned: clear leftover core
             // demo content (e.g. legacy text/textmedia articles) as well. The
@@ -677,6 +678,10 @@ final class SeedStyleguidePagesCommand extends Command
             $additionalCTypes = $pageUid === $parentPid ? [] : self::SHOWCASE_ADDITIONAL_CLEANUP_CTYPES;
             $contentCleaner->softDeleteSeededContent($pageUid, $now, $additionalCTypes, true);
             foreach ($blocks as $blockIndex => $block) {
+                $block = $this->resolveSitePlaceholders($block, $siteRoots);
+                if ($block === null) {
+                    continue;
+                }
                 $block = $this->substituteLinkPlaceholders($block, $linkTargets);
                 $contentData = $this->getStarterContentBuilder()->buildContentInsert(
                     $pageUid,
@@ -1024,6 +1029,62 @@ final class SeedStyleguidePagesCommand extends Command
             'twitter_title' => $title,
             'twitter_description' => $description,
         ];
+    }
+
+    /**
+     * The root page of every site on this installation, by site identifier,
+     * for {{site:<identifier>}} links in showcase blocks.
+     *
+     * @return array<string, int>
+     */
+    private function siteRootPages(): array
+    {
+        $roots = [];
+        foreach (GeneralUtility::makeInstance(SiteFinder::class)->getAllSites() as $site) {
+            $roots[$site->getIdentifier()] = $site->getRootPageId();
+        }
+
+        return $roots;
+    }
+
+    /**
+     * Links {{site:<identifier>}} items to the root page of that site and
+     * leaves out the items whose site this installation does not have, so the
+     * showcase's cards for the other sites only name sites that exist. A block
+     * that named sites and has none left is left out as a whole (null).
+     *
+     * @param array{ctype: string, colPos: int, fields: array<string, mixed>} $block
+     * @param array<string, int> $siteRoots
+     * @return array{ctype: string, colPos: int, fields: array<string, mixed>}|null
+     */
+    private function resolveSitePlaceholders(array $block, array $siteRoots): ?array
+    {
+        $items = $block['fields']['items'] ?? null;
+        if (!is_array($items)) {
+            return $block;
+        }
+
+        $kept = [];
+        $namesSites = false;
+        foreach ($items as $item) {
+            $link = is_array($item) ? ($item['link'] ?? null) : null;
+            if (is_array($item) && is_string($link) && preg_match('/^\{\{site:([^}]+)\}\}$/', $link, $match) === 1) {
+                $namesSites = true;
+                $rootPageUid = $siteRoots[$match[1]] ?? null;
+                if ($rootPageUid === null) {
+                    continue;
+                }
+                $item['link'] = 't3://page?uid=' . $rootPageUid;
+            }
+            $kept[] = $item;
+        }
+
+        if ($namesSites && $kept === []) {
+            return null;
+        }
+        $block['fields']['items'] = $kept;
+
+        return $block;
     }
 
     /**

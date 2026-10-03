@@ -129,6 +129,62 @@ final class StyleguideSeedCommandTest extends AbstractStyleguideSeedingTestCase
         self::assertSame('https://github.com/dirnbauer/desiderio', $fields['fallback_link'] ?? null);
     }
 
+    public function testSitePlaceholdersLinkRootPagesAndDropMissingSites(): void
+    {
+        $block = [
+            'ctype' => 'desiderio_categorycards',
+            'colPos' => 0,
+            'fields' => [
+                'header' => 'More sites',
+                'items' => [
+                    ['title' => 'Astryx', 'link' => '{{site:astryx-typo3}}'],
+                    ['title' => 'Gone', 'link' => '{{site:not-here}}'],
+                    ['title' => 'Plain', 'link' => 'https://typo3.org'],
+                ],
+            ],
+        ];
+
+        $resolved = $this->invokeMethod($this->createCommand(), 'resolveSitePlaceholders', [$block, ['astryx-typo3' => 1290]]);
+
+        self::assertIsArray($resolved);
+        $fields = $resolved['fields'] ?? null;
+        self::assertIsArray($fields);
+        self::assertSame(
+            [
+                ['title' => 'Astryx', 'link' => 't3://page?uid=1290'],
+                ['title' => 'Plain', 'link' => 'https://typo3.org'],
+            ],
+            $fields['items'] ?? null
+        );
+    }
+
+    public function testABlockOfMissingSitesIsLeftOut(): void
+    {
+        $block = [
+            'ctype' => 'desiderio_categorycards',
+            'colPos' => 0,
+            'fields' => ['items' => [['title' => 'Gone', 'link' => '{{site:not-here}}']]],
+        ];
+
+        self::assertNull($this->invokeMethod($this->createCommand(), 'resolveSitePlaceholders', [$block, []]));
+    }
+
+    public function testEveryShowcaseSitePlaceholderNamesALabSite(): void
+    {
+        $known = [];
+        $configs = glob(__DIR__ . '/../../../../config/sites/*/config.yaml');
+        foreach (is_array($configs) ? $configs : [] as $config) {
+            $known[basename(dirname($config))] = true;
+        }
+        if ($known === []) {
+            self::markTestSkipped('Only meaningful inside the lab, which has config/sites.');
+        }
+
+        preg_match_all('/\{\{site:([a-z0-9_-]+)\}\}/', (string)file_get_contents(__DIR__ . '/../../Classes/Data/StyleguideShowcasePages.php'), $matches);
+        self::assertNotSame([], $matches[1]);
+        self::assertSame([], array_values(array_filter($matches[1], static fn(string $identifier): bool => !isset($known[$identifier]))));
+    }
+
     public function testEveryPagePlaceholderInAnElementFixtureNamesASeededPage(): void
     {
         $known = ['home' => true];

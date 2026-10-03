@@ -12,7 +12,7 @@ namespace Webconsulting\Desiderio\Data\Showcase;
  * pages built here feed straight into the page seeder without translation.
  *
  * @phpstan-type ShowcaseBlock array{ctype: string, colPos: int, fields: array<string, mixed>}
- * @phpstan-type ShowcaseMedia array{file: string, title: string, alternative: string, description: string, source: string}
+ * @phpstan-type ShowcaseMedia array{file: string, title: string, alternative: string, description: string, source: string, autoplay?: bool}
  * @phpstan-type ShowcaseBlogMeta array{publishDate: string, categories: list<string>, tags: list<string>}
  * @phpstan-type ShowcasePage array{title: string, navTitle: string, slug: string, abstract: string, description: string, parentSlug: string|null, seoTitle?: string, subtitle?: string, pageTsConfig?: string, backendLayout?: string, blogList?: bool, blog?: ShowcaseBlogMeta, hideInNav?: bool, formerSlugs?: list<string>, content: array<int, ShowcaseBlock>}
  */
@@ -75,6 +75,39 @@ final class ShowcaseBlocks
             'hero_image' => $image,
             'image_position' => 'right',
             'overlay_opacity' => '0.5',
+        ]);
+    }
+
+    /**
+     * The product film from Resources/Public/Styleguide/Video/, rendered by
+     * Build/Scripts/render-film.mjs from Build/Film/film.html, which also
+     * keeps the hashed file names below current. The reference's autoplay
+     * flag lets it play muted while it is on screen (desiderio.js), never for
+     * visitors who ask for reduced motion; its controls stay.
+     *
+     * @return ShowcaseBlock
+     */
+    public static function productFilm(string $eyebrow, string $header, string $description): array
+    {
+        return self::block('desiderio_featurevideo', [
+            'eyebrow' => $eyebrow,
+            'header' => $header,
+            'description' => $description,
+            'video_file' => [
+                'file' => 'Resources/Public/Styleguide/Video/desiderio-film-db360725.mp4',
+                'title' => 'Desiderio in 26 seconds',
+                'alternative' => 'A short film without sound: one page in 15 theme presets, light and dark mode, four languages and the editor tools.',
+                'description' => 'Rendered from code over screens of this site.',
+                'source' => '',
+                'autoplay' => true,
+            ],
+            'poster' => [
+                'file' => 'Resources/Public/Styleguide/Video/desiderio-film-poster-db360725.jpg',
+                'title' => 'Desiderio in 26 seconds',
+                'alternative' => 'The seed-runs chart in the Blossom preset, one of 15.',
+                'description' => '',
+                'source' => '',
+            ],
         ]);
     }
 

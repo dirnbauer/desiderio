@@ -38,6 +38,7 @@ use Webconsulting\Desiderio\Seeding\StyleguideFixtureResolver;
 
 /**
  * @phpstan-import-type ShowcasePage from ShowcaseBlocks
+ * @phpstan-import-type ShowcaseBlock from ShowcaseBlocks
  */
 #[AsCommand(
     name: 'desiderio:styleguide:seed',
@@ -516,6 +517,10 @@ final class SeedStyleguidePagesCommand extends Command
             if (isset($page['subtitle'])) {
                 $pageAttributes['subtitle'] = $page['subtitle'];
             }
+            // A page that opens with a hero leads with it: the hero's headline
+            // is what a visitor reads first, so the page title stays for
+            // screen readers only and the breadcrumb keeps the place.
+            $pageAttributes['tx_desiderio_h1_sronly'] = self::opensWithHero($page['content']) ? 1 : 0;
             if (isset($page['pageTsConfig'])) {
                 $pageAttributes['TSconfig'] = $page['pageTsConfig'];
             }
@@ -703,6 +708,9 @@ final class SeedStyleguidePagesCommand extends Command
                 $contentColumns
             ));
             $createdContentElements++;
+            if (in_array('tx_desiderio_h1_sronly', $pageColumns, true)) {
+                $this->connectionPool->getConnectionForTable('pages')->update('pages', ['tx_desiderio_h1_sronly' => 1], ['uid' => $adoptedUid]);
+            }
         }
 
         $newsSummary = ['pages' => 0, 'records' => 0, 'contentElements' => 0, 'skipped' => true];
@@ -962,6 +970,16 @@ final class SeedStyleguidePagesCommand extends Command
         }
 
         return $count;
+    }
+
+    /**
+     * @param array<int, ShowcaseBlock> $content
+     */
+    private static function opensWithHero(array $content): bool
+    {
+        $first = $content === [] ? null : $content[array_key_first($content)];
+
+        return $first !== null && str_starts_with($first['ctype'], 'desiderio_hero');
     }
 
     /**

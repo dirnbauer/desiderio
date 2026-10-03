@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Desiderio product film</title>
+<!--
+  The Desiderio product film, 26 seconds at 1600 × 900 (16:9, the ratio of
+  the Video Feature Section and of most players).
+
+  Every motion is one paused Web Animation, so `seek(ms)` puts the whole
+  film on an exact frame: Build/Scripts/render-film.mjs steps through it at
+  30 fps in headless Chromium and ffmpeg encodes the frames. Open the file in
+  a browser and add #play to watch it in real time.
+
+  The pictures are real: Build/Scripts/capture-film-assets.mjs takes them from
+  the seeded showcase (one chart in all 15 presets, dark mode, the homepage
+  in four languages, a wall of content elements) into Build/Film/assets/,
+  which git ignores. The editor screenshots are the committed styleguide ones.
+
+  Copy, timings and colours live in FILM below and in the :root tokens.
+-->
+<style>
+@font-face { font-family: "Inter Variable"; font-weight: 100 900; font-display: block; src: url(../../Resources/Public/Css/files/inter-latin-wght-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Inter Variable"; font-weight: 100 900; font-display: block; src: url(../../Resources/Public/Css/files/inter-latin-ext-wght-normal.woff2) format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+:root {
+  --stage: #09090b;
+  --stage-glow: #1d1d24;
+  --ink: #fafafa;
+  --muted: #a1a1aa;
+  --line: rgb(255 255 255 / 0.09);
+  --frame: #18181b;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --font: "Inter Variable", "PingFang SC", "Noto Sans SC", system-ui, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1600px; height: 900px; overflow: hidden; background: var(--stage); }
+body { font-family: var(--font); color: var(--ink); -webkit-font-smoothing: antialiased; font-feature-settings: "cv11", "ss01"; }
+.stage { position: relative; width: 1600px; height: 900px; overflow: hidden; background: radial-gradient(1100px 700px at 68% 38%, var(--stage-glow) 0%, var(--stage) 62%); }
+.layer { position: absolute; inset: 0; }
+
+/* Brand mark: the header's ring with its dot. */
+.mark { position: relative; display: inline-block; width: var(--size, 64px); height: var(--size, 64px); flex: none; }
+.mark svg { position: absolute; inset: 0; overflow: visible; }
+.mark circle { fill: none; stroke: var(--ink); stroke-width: 7; }
+.mark .dot { position: absolute; inset: 27%; border-radius: 999px; background: #7b51da; }
+
+/* Title */
+.title { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; }
+.title-row { display: flex; align-items: center; gap: 30px; }
+.wordmark { font-size: 136px; font-weight: 640; letter-spacing: -0.045em; line-height: 1; display: flex; }
+.wordmark span { display: inline-block; }
+.subline { font-size: 34px; font-weight: 450; color: var(--muted); letter-spacing: -0.01em; }
+
+/* Captions above the browser frame */
+.caption { position: absolute; left: 280px; top: 50px; width: 1040px; display: flex; flex-direction: column; gap: 10px; }
+.caption h2 { font-size: 54px; font-weight: 640; letter-spacing: -0.035em; line-height: 1.04; text-wrap: balance; }
+.caption p { font-size: 25px; color: var(--muted); letter-spacing: -0.005em; }
+.caption h2 span { display: inline-block; }
+
+/* Browser frame */
+.frame { position: absolute; left: 280px; top: 176px; width: 1040px; height: 690px; border-radius: 16px; background: var(--frame); border: 1px solid var(--line); overflow: hidden; box-shadow: 0 40px 120px -40px rgb(0 0 0 / 0.75), 0 0 0 1px rgb(0 0 0 / 0.4); }
+.frame-bar { height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 16px; border-bottom: 1px solid var(--line); }
+.frame-bar i { width: 11px; height: 11px; border-radius: 99px; background: rgb(255 255 255 / 0.16); }
+.frame-url { margin-left: 18px; height: 24px; padding: 0 12px; border-radius: 7px; background: rgb(255 255 255 / 0.06); color: var(--muted); font-size: 13px; display: flex; align-items: center; letter-spacing: 0; }
+.frame-view { position: absolute; left: 0; top: 40px; width: 1040px; height: 650px; overflow: hidden; background: #fff; }
+.frame-view img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+/* The chart screens: crop the side margins so the chart fills the frame. */
+.frame-view img.crop { inset: auto; left: -130px; top: 0; width: 1300px; height: 812.5px; object-fit: fill; }
+
+/* Preset pill under the frame */
+.pill { position: absolute; left: 280px; top: 884px; transform: translateY(-50%); display: flex; align-items: center; gap: 12px; font-size: 19px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.pill b { color: var(--ink); font-weight: 560; }
+.swatch { width: 14px; height: 14px; border-radius: 99px; box-shadow: 0 0 0 1px rgb(255 255 255 / 0.35); }
+
+/* Light / dark wipe edge */
+.wipe-edge { position: absolute; top: 40px; left: 0; width: 2px; height: 650px; background: linear-gradient(transparent, rgb(255 255 255 / 0.9), transparent); }
+
+/* Element wall */
+.wall-wrap { position: absolute; inset: 0; filter: brightness(0.42) saturate(1.15); perspective: 1700px; perspective-origin: 50% 30%; mask-image: radial-gradient(120% 90% at 50% 45%, #000 45%, transparent 85%); }
+.wall { position: absolute; left: -260px; top: -120px; width: 2200px; display: grid; grid-template-columns: repeat(8, 1fr); gap: 20px; transform-origin: 50% 0; }
+.wall img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; border-radius: 12px; outline: 1px solid rgb(255 255 255 / 0.08); }
+.count-veil { position: absolute; inset: 0; background: radial-gradient(640px 360px at 50% 52%, rgb(9 9 11 / 0.92) 0%, rgb(9 9 11 / 0.55) 60%, transparent 100%); }
+.count { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
+.count b { font-size: 210px; font-weight: 680; letter-spacing: -0.06em; line-height: 0.9; font-variant-numeric: tabular-nums; }
+.count span { font-size: 34px; color: var(--muted); letter-spacing: -0.01em; }
+
+/* Language chips */
+.chips { position: absolute; left: 280px; top: 884px; transform: translateY(-50%); display: flex; gap: 10px; }
+.chip { height: 34px; padding: 0 14px; border-radius: 9px; display: flex; align-items: center; font-size: 17px; font-weight: 520; color: var(--muted); border: 1px solid var(--line); }
+.chip.on { color: var(--stage); background: var(--ink); border-color: var(--ink); }
+
+/* Tool cards */
+.card { position: absolute; z-index: 2; width: 520px; height: 325px; border-radius: 14px; overflow: hidden; background: #fff; border: 1px solid var(--line); box-shadow: 0 30px 80px -30px rgb(0 0 0 / 0.8); }
+.card img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+
+/* End card */
+.end { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px; text-align: center; }
+.end-brand { display: flex; align-items: center; gap: 18px; font-size: 54px; font-weight: 640; letter-spacing: -0.04em; }
+.end h1 { font-size: 96px; font-weight: 680; letter-spacing: -0.045em; line-height: 1; }
+.end h1 span { display: inline-block; }
+.end p { font-size: 28px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+
+  <section class="layer title" id="title">
+    <div class="title-row">
+      <span class="mark" id="title-mark" style="--size:104px"><svg viewBox="0 0 100 100"><circle id="title-ring" cx="50" cy="50" r="46" pathLength="100" stroke-dasharray="100" /></svg><span class="dot" id="title-dot"></span></span>
+      <div class="wordmark" id="wordmark"></div>
+    </div>
+    <div class="subline" id="title-sub"></div>
+  </section>
+
+  <section class="layer" id="scene-frame">
+    <div class="caption" id="cap-presets"><h2></h2><p></p></div>
+    <div class="caption" id="cap-dark"><h2></h2><p></p></div>
+    <div class="caption" id="cap-lang"><h2></h2><p></p></div>
+    <div class="caption" id="cap-tools"><h2></h2><p></p></div>
+    <div class="frame" id="frame">
+      <div class="frame-bar"><i></i><i></i><i></i><span class="frame-url" id="frame-url">example.com</span></div>
+      <div class="frame-view" id="view"></div>
+      <div class="wipe-edge" id="wipe-edge"></div>
+    </div>
+    <div class="pill" id="pill"><span class="swatch" id="swatch"></span><b id="preset-name"></b><span id="preset-count"></span></div>
+    <div class="chips" id="chips"></div>
+    <div id="cards"></div>
+  </section>
+
+  <section class="layer" id="scene-wall">
+    <div class="wall-wrap"><div class="wall" id="wall"></div></div>
+    <div class="count-veil" id="veil"></div>
+    <div class="count" id="count"><b id="count-n">0</b><span id="count-sub"></span></div>
+  </section>
+
+  <section class="layer end" id="end">
+    <div class="end-brand" id="end-brand"><span class="mark" style="--size:58px"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" /></svg><span class="dot"></span></span>Desiderio</div>
+    <h1 id="end-head"></h1>
+    <p id="end-sub"></p>
+  </section>
+
+</div>
+<script>
+// ---------------------------------------------------------------------------
+// Copy and timing (milliseconds). Everything the film says is here.
+// ---------------------------------------------------------------------------
+const FILM = {
+  duration: 26000,
+  title: { word: 'Desiderio', sub: 'shadcn/ui for TYPO3 v14' },
+  presets: {
+    caption: '15 presets, one switch', sub: 'Every content element follows the theme you pick.',
+    order: ['b0', 'aurora', 'ember', 'forest', 'b3IWPgRwnI', 'bloom', 'gold', 'marine', 'b6G5977cw', 'blossom', 'lagoon', 'citrus', 'b4hb38Fyj', 'b27GcrRo', 'midnight'],
+    names: { b0: 'Default neutral', b4hb38Fyj: 'Olive product system', b3IWPgRwnI: 'Mist dashboard', b6G5977cw: 'Lyra mono olive', b27GcrRo: 'Rhea modern neutral', aurora: 'Aurora', marine: 'Marine', forest: 'Forest', ember: 'Ember', bloom: 'Bloom', lagoon: 'Lagoon', gold: 'Gold', midnight: 'Midnight', blossom: 'Blossom', citrus: 'Citrus' },
+  },
+  dark: { caption: 'Light and dark from the same tokens', sub: 'Dark mode comes with every preset.', preset: 'midnight' },
+  wall: { count: 244, sub: 'content elements, free under GPL-2.0' },
+  lang: {
+    caption: 'The demo site in four languages', sub: 'English, German, Chinese and Hungarian, translated in TYPO3.',
+    langs: [['en', 'EN'], ['de', 'DE'], ['zh', '中文'], ['hu', 'HU']],
+  },
+  tools: {
+    caption: 'Tools your editors already like', sub: 'Visual Editor, Powermail, the AI assistant and the content wizard.',
+    base: '../../Resources/Public/Styleguide/Backend/backend-visual-editor-460d5038.png',
+    cards: [
+      '../../Resources/Public/Styleguide/Frontend/frontend-feature-powermail-multistep-c566b100.webp',
+      '../../Resources/Public/Styleguide/Backend/feature-ai-assistant-answer-21458ce7.webp',
+      '../../Resources/Public/Styleguide/Backend/feature-desiderio-content-wizard-e6136a19.webp',
+    ],
+  },
+  end: { head: 'Free to use. Paid plans add support.', sub: 'Open source under GPL-2.0, for TYPO3 v14.' },
+};
+const OUT = 'var(--ease-out)'.replace('var(--ease-out)', 'cubic-bezier(0.23, 1, 0.32, 1)');
+const INOUT = 'cubic-bezier(0.77, 0, 0.175, 1)';
+const $ = (id) => document.getElementById(id);
+
+// One paused animation per element: [t, styles, easing to the next step].
+function track(el, steps) {
+  const t0 = steps[0][0];
+  const t1 = steps[steps.length - 1][0];
+  const span = Math.max(1, t1 - t0);
+  const frames = steps.map(([t, style, easing]) => ({ ...style, offset: (t - t0) / span, easing: easing ?? 'linear' }));
+  el.animate(frames, { duration: span, delay: t0, fill: 'both' }).pause();
+}
+const hidden = { opacity: 0 };
+const shown = { opacity: 1 };
+const custom = [];
+
+// Letters or words that rise in one after another.
+function splitInto(el, text, unit) {
+  el.textContent = '';
+  const parts = unit === 'word' ? text.split(' ') : [...text];
+  return parts.map((part, i) => {
+    const span = document.createElement('span');
+    span.textContent = part;
+    el.append(span);
+    if (unit === 'word' && i < parts.length - 1) el.append(' ');
+    return span;
+  });
+}
+function rise(spans, start, step, until, { y = '0.32em', blur = 8, duration = 640 } = {}) {
+  spans.forEach((span, i) => {
+    const t = start + i * step;
+    const steps = [[t, { opacity: 0, transform: `translateY(${y})`, filter: `blur(${blur}px)` }, OUT], [t + duration, { opacity: 1, transform: 'none', filter: 'blur(0px)' }]];
+    if (until) steps.push([until[0], { opacity: 1, transform: 'none', filter: 'blur(0px)' }, INOUT], [until[1], { opacity: 0, transform: 'translateY(-0.18em)', filter: `blur(${blur / 2}px)` }]);
+    track(span, steps);
+  });
+}
+function caption(id, data, tIn, tOut) {
+  const box = $(id);
+  const words = splitInto(box.querySelector('h2'), data.caption, 'word');
+  rise(words, tIn, 55, [tOut - 260, tOut], { y: '0.45em', blur: 6, duration: 560 });
+  const sub = box.querySelector('p');
+  sub.textContent = data.sub;
+  track(sub, [[tIn + 240, { opacity: 0, transform: 'translateY(10px)' }, OUT], [tIn + 760, { opacity: 1, transform: 'none' }], [tOut - 260, { opacity: 1, transform: 'none' }, INOUT], [tOut, { opacity: 0, transform: 'translateY(-6px)' }]]);
+}
+function picture(src, parent = $('view')) {
+  const img = document.createElement('img');
+  img.src = src;
+  img.alt = '';
+  img.decoding = 'sync';
+  parent.append(img);
+  return img;
+}
+
+// --- 1. Title (0 – 3.0 s) ----------------------------------------------------
+rise(splitInto($('wordmark'), FILM.title.word, 'letter'), 260, 46, [2650, 2980], { y: '0.36em', blur: 10, duration: 700 });
+track($('title-ring'), [[80, { strokeDashoffset: 100 }, OUT], [980, { strokeDashoffset: 0 }], [2650, { strokeDashoffset: 0 }, INOUT], [2980, { strokeDashoffset: -100 }]]);
+track($('title-dot'), [[520, { opacity: 0, transform: 'scale(0.55)' }, OUT], [1000, { opacity: 1, transform: 'scale(1)' }], [2650, shown, INOUT], [2980, hidden]]);
+$('title-sub').textContent = FILM.title.sub;
+track($('title-sub'), [[1050, { opacity: 0, transform: 'translateY(12px)' }, OUT], [1650, { opacity: 1, transform: 'none' }], [2650, shown, INOUT], [2980, { opacity: 0, transform: 'translateY(-8px)' }]]);
+
+// --- 2. Presets (2.9 – 8.7 s), 3. Dark (8.7 – 11.1 s) ----------------------------
+const P = FILM.presets;
+const frame = $('frame');
+track(frame, [[2950, { opacity: 0, transform: 'translateY(56px) scale(0.975)' }, OUT], [3650, { opacity: 1, transform: 'none' }], [10750, { opacity: 1, transform: 'none' }, INOUT], [11150, { opacity: 0, transform: 'translateY(-24px) scale(0.97)' }]]);
+caption('cap-presets', P, 3050, 8650);
+const slot = 4800 / P.order.length;
+P.order.forEach((preset, i) => {
+  const img = picture(`assets/charts/charts-10-light-${preset}.png`);
+  img.classList.add('crop');
+  const t = 3350 + i * slot;
+  // The first screen is there when the frame arrives; the others cut in on the beat.
+  track(img, i === 0 ? [[0, shown], [1, shown]] : [[t, hidden], [t + 70, shown]]);
+});
+track($('pill'), [[3500, { opacity: 0, transform: 'translateY(-50%) translateY(8px)' }, OUT], [3950, { opacity: 1, transform: 'translateY(-50%)' }], [8450, { opacity: 1, transform: 'translateY(-50%)' }, INOUT], [8700, { opacity: 0, transform: 'translateY(-50%)' }]]);
+custom.push((t) => {
+  const i = Math.max(0, Math.min(P.order.length - 1, Math.floor((t - 3350) / slot)));
+  const key = P.order[i];
+  $('preset-name').textContent = P.names[key];
+  $('preset-count').textContent = `${String(i + 1).padStart(2, '0')} / ${P.order.length}`;
+  $('swatch').style.background = COLORS[key] ?? '#71717a';
+  $('frame-url').textContent = t < 9150 ? `example.com/?preset=${key}` : `example.com/?preset=${FILM.dark.preset}&mode=dark`;
+});
+
+caption('cap-dark', FILM.dark, 8750, 10900);
+const dark = picture(`assets/charts/charts-10-dark-${FILM.dark.preset}.png`);
+dark.classList.add('crop');
+track(dark, [[9150, { clipPath: 'inset(0 100% 0 0)' }, INOUT], [10050, { clipPath: 'inset(0 0% 0 0)' }]]);
+track($('wipe-edge'), [[9150, { opacity: 0, transform: 'translateX(0px)' }, INOUT], [9200, { opacity: 1, transform: 'translateX(40px)' }, INOUT], [10050, { opacity: 1, transform: 'translateX(1040px)' }], [10120, { opacity: 0, transform: 'translateX(1040px)' }]]);
+
+// --- 4. Element wall (11.0 – 15.7 s) -------------------------------------------
+for (let i = 0; i < 48; i++) picture(`assets/wall/${String(i).padStart(2, '0')}.jpg`, $('wall'));
+track($('wall'), [[11000, { opacity: 0, transform: 'rotateX(24deg) rotateZ(-9deg) translateY(120px)' }, 'linear'], [11500, { opacity: 1, transform: 'rotateX(24deg) rotateZ(-9deg) translateY(60px)' }, 'linear'], [15300, { opacity: 1, transform: 'rotateX(24deg) rotateZ(-9deg) translateY(-400px)' }, 'linear'], [15700, { opacity: 0, transform: 'rotateX(24deg) rotateZ(-9deg) translateY(-450px)' }]]);
+track($('veil'), [[11300, hidden, OUT], [11900, shown], [15300, shown, INOUT], [15700, hidden]]);
+track($('count-n'), [[11450, { opacity: 0, transform: 'scale(0.92)', filter: 'blur(10px)' }, OUT], [12050, { opacity: 1, transform: 'none', filter: 'blur(0px)' }], [15250, { opacity: 1, transform: 'none', filter: 'blur(0px)' }, INOUT], [15650, { opacity: 0, transform: 'scale(1.04)', filter: 'blur(8px)' }]]);
+$('count-sub').textContent = FILM.wall.sub;
+track($('count-sub'), [[12150, { opacity: 0, transform: 'translateY(10px)' }, OUT], [12700, { opacity: 1, transform: 'none' }], [15250, shown, INOUT], [15650, hidden]]);
+custom.push((t) => {
+  const p = Math.max(0, Math.min(1, (t - 11500) / 1900));
+  const eased = 1 - Math.pow(1 - p, 4);
+  $('count-n').textContent = String(Math.round(FILM.wall.count * eased));
+});
+
+// --- 5. Languages (15.6 – 19.3 s) ------------------------------------------------
+const L = FILM.lang;
+const frame2 = frame.cloneNode(false);
+frame2.id = 'frame2';
+frame2.innerHTML = '<div class="frame-bar"><i></i><i></i><i></i><span class="frame-url">example.com</span></div><div class="frame-view" id="view2"></div>';
+$('scene-frame').append(frame2);
+track(frame2, [[15650, { opacity: 0, transform: 'translateY(56px) scale(0.975)' }, OUT], [16300, { opacity: 1, transform: 'none' }], [19050, { opacity: 1, transform: 'none' }, INOUT], [19400, { opacity: 0, transform: 'translateY(-24px) scale(0.97)' }]]);
+caption('cap-lang', L, 15750, 19300);
+L.langs.forEach(([code, label], i) => {
+  const t = 16000 + i * 800;
+  const img = picture(`assets/lang/home-${code}.png`, $('view2'));
+  track(img, i === 0 ? [[t, shown], [t + 1, shown]] : [[t, { opacity: 0, filter: 'blur(6px)' }, OUT], [t + 260, { opacity: 1, filter: 'blur(0px)' }]]);
+  const chip = document.createElement('span');
+  chip.className = 'chip';
+  chip.textContent = label;
+  chip.dataset.from = String(t);
+  $('chips').append(chip);
+});
+track($('chips'), [[16050, { opacity: 0, transform: 'translateY(-50%) translateY(8px)' }, OUT], [16500, { opacity: 1, transform: 'translateY(-50%)' }], [19050, { opacity: 1, transform: 'translateY(-50%)' }, INOUT], [19350, { opacity: 0, transform: 'translateY(-50%)' }]]);
+custom.push((t) => {
+  const chips = [...$('chips').children];
+  let active = 0;
+  chips.forEach((chip, i) => { if (t >= Number(chip.dataset.from)) active = i; });
+  chips.forEach((chip, i) => chip.classList.toggle('on', i === active));
+  const code = L.langs[active][0];
+  frame2.querySelector('.frame-url').textContent = code === 'en' ? 'example.com/' : `example.com/${code}/`;
+});
+
+// --- 6. Tools (19.2 – 22.9 s) -----------------------------------------------------
+const T = FILM.tools;
+const frame3 = frame.cloneNode(false);
+frame3.id = 'frame3';
+frame3.innerHTML = '<div class="frame-bar"><i></i><i></i><i></i><span class="frame-url">example.com/typo3</span></div><div class="frame-view" id="view3"></div>';
+$('scene-frame').append(frame3);
+picture(T.base, $('view3'));
+track(frame3, [[19300, { opacity: 0, transform: 'translateY(56px) scale(0.975)' }, OUT], [19950, { opacity: 1, transform: 'none' }], [22550, { opacity: 1, transform: 'none' }, INOUT], [22900, { opacity: 0, transform: 'translateY(-24px) scale(0.97)' }]]);
+caption('cap-tools', T, 19400, 22900);
+const places = [[900, 226, -4], [960, 396, 2.5], [870, 556, -1.5]];
+T.cards.forEach((src, i) => {
+  const card = document.createElement('div');
+  card.className = 'card';
+  const [x, y, r] = places[i];
+  card.style.left = `${x}px`;
+  card.style.top = `${y}px`;
+  picture(src, card);
+  $('scene-frame').append(card);
+  const t = 20250 + i * 140;
+  track(card, [[t, { opacity: 0, transform: `translateX(140px) rotate(${r + 6}deg) scale(0.96)` }, OUT], [t + 620, { opacity: 1, transform: `rotate(${r}deg)` }], [22550, { opacity: 1, transform: `rotate(${r}deg)` }, INOUT], [22900, { opacity: 0, transform: `translateY(-24px) rotate(${r}deg) scale(0.97)` }]]);
+});
+
+// --- 7. End card (22.8 – 26.0 s) ----------------------------------------------------
+track($('end-brand'), [[22850, { opacity: 0, transform: 'translateY(16px)' }, OUT], [23450, { opacity: 1, transform: 'none' }], [25550, shown, INOUT], [25950, hidden]]);
+rise(splitInto($('end-head'), FILM.end.head, 'word'), 23150, 90, [25550, 25950], { y: '0.42em', blur: 10, duration: 680 });
+$('end-sub').textContent = FILM.end.sub;
+track($('end-sub'), [[23900, { opacity: 0, transform: 'translateY(12px)' }, OUT], [24500, { opacity: 1, transform: 'none' }], [25550, shown, INOUT], [25950, hidden]]);
+
+// ---------------------------------------------------------------------------
+let COLORS = {};
+window.seek = (t) => {
+  for (const animation of document.getAnimations()) animation.currentTime = t;
+  for (const update of custom) update(t);
+};
+window.ready = (async () => {
+  try { COLORS = await (await fetch('assets/preset-colors.json')).json(); } catch { COLORS = {}; }
+  await document.fonts.ready;
+  await Promise.all([...document.images].map((img) => img.decode().catch(() => {})));
+  window.seek(0);
+  return FILM.duration;
+})();
+if (location.hash === '#play') {
+  window.ready.then((duration) => {
+    const start = performance.now();
+    const tick = () => { window.seek((performance.now() - start) % duration); requestAnimationFrame(tick); };
+    requestAnimationFrame(tick);
+  });
+}
+</script>
+</body>
+</html>

@@ -30,7 +30,7 @@ final class ExtensionFalSeeder
     ) {}
 
     /**
-     * @param array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>> $fileReferences
+     * @param array<string, list<array{file: string, title: string, alternative: string, description: string, source: string, autoplay?: bool}>> $fileReferences
      */
     public function seedFileReferences(string $table, int $uid, int $pid, int $now, array $fileReferences): void
     {
@@ -66,13 +66,15 @@ final class ExtensionFalSeeder
                     'alternative' => $reference['alternative'],
                     'description' => $reference['description'],
                     'link' => $reference['source'],
+                    // A video that plays by itself (muted, in view, never under reduced motion).
+                    'autoplay' => ($reference['autoplay'] ?? false) ? 1 : 0,
                 ], $columns));
             }
         }
     }
 
     /**
-     * @param array{file: string, title: string, alternative: string, description: string, source: string} $reference
+     * @param array{file: string, title: string, alternative: string, description: string, source: string, autoplay?: bool} $reference
      */
     public function ensureExtensionFile(array $reference): ?File
     {
@@ -143,7 +145,7 @@ final class ExtensionFalSeeder
     }
 
     /**
-     * @param array{file: string, title: string, alternative: string, description: string, source: string} $reference
+     * @param array{file: string, title: string, alternative: string, description: string, source: string, autoplay?: bool} $reference
      */
     private function upsertFileMetadata(File $file, array $reference): void
     {

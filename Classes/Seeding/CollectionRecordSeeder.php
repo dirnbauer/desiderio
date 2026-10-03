@@ -131,7 +131,7 @@ final readonly class CollectionRecordSeeder
     }
 
     /**
-     * @return array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>>
+     * @return array<string, list<array{file: string, title: string, alternative: string, description: string, source: string, autoplay?: bool}>>
      */
     public static function normalizeFileReferencePayloads(mixed $payload): array
     {

@@ -39,6 +39,8 @@ renderables:
         label: 'How would you rate your experience?'
         type: RadioButton
         properties:
+          # The question is the group's visible label, not screen-reader only.
+          legendVisuallyHidden: false
           options:
             1: '1 - I could not complete the task without help from someone on the team'
             2: '2 - Several steps were unclear and slowed me down while I tried to continue'

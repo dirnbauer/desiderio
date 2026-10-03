@@ -37,8 +37,9 @@ final class ShowcasePricingTest extends TestCase
         foreach ($rows as $row) {
             self::assertCount(count(ShowcasePricing::plans()), $row['values'], $row['feature']);
         }
-        self::assertSame('Price', $rows[0]['feature']);
-        self::assertSame(['€0', '€590 a year', '€1,990 a year', '€4,900 a year'], $rows[0]['values']);
+        // The column headers carry the prices; a price row would say them twice.
+        self::assertNotContains('Price', array_column($rows, 'feature'));
+        self::assertSame('Live sites', $rows[0]['feature']);
     }
 
     public function testTheLaunchPackAddsUpToItsParts(): void

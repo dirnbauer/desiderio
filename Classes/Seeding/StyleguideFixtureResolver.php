@@ -52,7 +52,7 @@ final class StyleguideFixtureResolver
     /**
      * @param array<string, mixed> $fixture
      * @param array<string, true> $columns
-     * @return array{row: array<string, mixed>, collections: array<string, array{table: string, column: string, items: list<array<string, mixed>>}>, fileReferences: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>>}
+     * @return array{row: array<string, mixed>, collections: array<string, array{table: string, column: string, items: list<array<string, mixed>>}>, fileReferences: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string, autoplay?: bool}>>}
      */
     public function buildContentInsert(
         int $pid,
@@ -97,7 +97,7 @@ final class StyleguideFixtureResolver
 
     /**
      * @param array<string, mixed> $fixture
-     * @return array{0: array<string, mixed>, 1: array<string, array{table: string, column: string, items: list<array<string, mixed>>}>, 2: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>>}
+     * @return array{0: array<string, mixed>, 1: array<string, array{table: string, column: string, items: list<array<string, mixed>>}>, 2: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string, autoplay?: bool}>>}
      */
     public function resolveFixtureFields(string $ctype, array $fixture, string $name = ''): array
     {
@@ -190,7 +190,7 @@ final class StyleguideFixtureResolver
      * @param array<string, mixed> $resolvedFields
      * @param array<string, array{table: string, column: string, items: list<array<string, mixed>>}> $collections
      * @param array<string, mixed> $fixture
-     * @return array{0: array<string, mixed>, 1: array<string, array{table: string, column: string, items: list<array<string, mixed>>}>, 2: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>>}
+     * @return array{0: array<string, mixed>, 1: array<string, array{table: string, column: string, items: list<array<string, mixed>>}>, 2: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string, autoplay?: bool}>>}
      */
     public function completeResolvedFixtureData(
         string $ctype,
@@ -272,9 +272,9 @@ final class StyleguideFixtureResolver
     }
 
     /**
-     * @param array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>> $fileReferences
+     * @param array<string, list<array{file: string, title: string, alternative: string, description: string, source: string, autoplay?: bool}>> $fileReferences
      * @param array<string, array<string, mixed>> $fieldDefinitions
-     * @return array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>>
+     * @return array<string, list<array{file: string, title: string, alternative: string, description: string, source: string, autoplay?: bool}>>
      */
     private function mapFileReferencesToStorageIdentifiers(array $fileReferences, array $fieldDefinitions): array
     {
@@ -415,7 +415,7 @@ final class StyleguideFixtureResolver
 
     /**
      * @param array<string, mixed> $fieldConfig
-     * @return list<array{file: string, title: string, alternative: string, description: string, source: string}>
+     * @return list<array{file: string, title: string, alternative: string, description: string, source: string, autoplay?: bool}>
      */
     public function buildFileReferenceFixtures(string $field, array $fieldConfig, int $index): array
     {
@@ -452,7 +452,7 @@ final class StyleguideFixtureResolver
 
     /**
      * @param array<string, mixed> $fieldConfig
-     * @return list<array{file: string, title: string, alternative: string, description: string, source: string}>
+     * @return list<array{file: string, title: string, alternative: string, description: string, source: string, autoplay?: bool}>
      */
     private function buildFileReferenceFixturesFromFixtureValue(mixed $value, array $fieldConfig): array
     {

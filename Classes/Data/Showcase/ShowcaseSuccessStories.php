@@ -90,7 +90,7 @@ final class ShowcaseSuccessStories
                     'header' => 'Example story: papers live in under an hour',
                     'shadcn_layout' => 'media-right',
                     'subheadline' => 'Why the lab chose TYPO3 and Desiderio',
-                    'content' => '<p><strong>Before:</strong> each paper page waited for a developer and a deployment. <strong>After:</strong> researchers publish it themselves in 57 minutes.</p><ul><li><strong>Ready elements.</strong> Article hero, FAQ and charts, checked in the preview.</li><li><strong>A theme per team.</strong> Lagoon for safety research, Midnight for products.</li><li><strong>Self-hosted.</strong> A GPL design system on the lab\'s own servers.</li></ul><p>The lab is invented. The features are real.</p>',
+                    'content' => '<p><strong>Before:</strong> each paper page waited for a developer and a deployment. <strong>After:</strong> researchers publish it themselves in 57 minutes.</p><ul><li><strong>Ready elements.</strong> Article hero, FAQ and charts, checked in the preview.</li><li><strong>A theme per team.</strong> Lagoon for safety research, Midnight for products.</li><li><strong>Self-hosted.</strong> A GPL design system on the lab’s own servers.</li></ul><p>The lab is invented. The features are real.</p>',
                     'media_rounded' => 1,
                     'button_text' => 'See the features',
                     'button_link' => '{{page:technical-features}}',
@@ -103,7 +103,7 @@ final class ShowcaseSuccessStories
                         ['value' => '57 min', 'label' => 'Paper to published page', 'description_text' => 'An invented median, built from existing elements.'],
                         ['value' => '3', 'label' => 'Brands, one installation', 'description_text' => 'Research, product and policy, each with its own preset.'],
                         ['value' => '0', 'label' => 'Deployments per paper', 'description_text' => 'The web team reviews design tokens, not tickets.'],
-                        ['value' => '100%', 'label' => 'Self-hosted', 'description_text' => 'Open-source CMS and design system on the lab\'s servers.'],
+                        ['value' => '100%', 'label' => 'Self-hosted', 'description_text' => 'Open-source CMS and design system on the lab’s servers.'],
                     ],
                 ]),
                 ShowcaseBlocks::block('desiderio_quote', [
@@ -313,7 +313,7 @@ final class ShowcaseSuccessStories
                     'header' => 'The example in figures',
                     'description' => 'These figures are part of the example. The features behind them are in the free package.',
                     'items' => [
-                        ['value' => '80', 'label' => 'Series pages, one installation', 'description_text' => 'Each with the show\'s own preset.'],
+                        ['value' => '80', 'label' => 'Series pages, one installation', 'description_text' => 'Each with the show’s own preset.'],
                         ['value' => '3 h', 'label' => 'Approval to teaser page', 'description_text' => 'Hero, trailer and countdown from existing elements.'],
                         ['value' => '0', 'label' => 'Rebuilds between premieres', 'description_text' => 'Presets switch at runtime.'],
                         ['value' => '2', 'label' => 'Colour modes included', 'description_text' => 'Light and dark, both checked for WCAG contrast.'],
@@ -538,7 +538,7 @@ final class ShowcaseSuccessStories
             'content' => [
                 ShowcaseBlocks::block('desiderio_contenthighlight', [
                     'header' => 'Example story: new prices live in 15 minutes',
-                    'content' => '<p><strong>Before:</strong> price changes needed a pull request and a deployment. <strong>After:</strong> the billing team edits prices in the backend.</p><ul><li><strong>Typed contracts.</strong> Every component declares <code>f:argument</code> types.</li><li><strong>Zero findings.</strong> A template audit on every commit, with PHPStan level 8.</li><li><strong>Self-hosted.</strong> Open source on the company\'s own infrastructure.</li></ul><p>The company is invented. The rigour is real, and the repository shows it.</p>',
+                    'content' => '<p><strong>Before:</strong> price changes needed a pull request and a deployment. <strong>After:</strong> the billing team edits prices in the backend.</p><ul><li><strong>Typed contracts.</strong> Every component declares <code>f:argument</code> types.</li><li><strong>Zero findings.</strong> A template audit on every commit, with PHPStan level 8.</li><li><strong>Self-hosted.</strong> Open source on the company’s own infrastructure.</li></ul><p>The company is invented. The rigour is real, and the repository shows it.</p>',
                     'variant' => 'muted',
                     'alignment' => 'start',
                     'link' => '{{page:technical-features}}',
@@ -632,7 +632,7 @@ final class ShowcaseSuccessStories
             'content' => [
                 ShowcaseBlocks::block('desiderio_contenthighlight', [
                     'header' => 'Example story: open source from top to bottom',
-                    'content' => '<p><strong>Before:</strong> campaign pages ran on a closed tool that volunteers could not inspect. <strong>After:</strong> a GPL component library runs on a GPL CMS, on the organisation\'s own servers.</p><ul><li><strong>Accessible appeals.</strong> Donation banners with strict contrast.</li><li><strong>Open templates.</strong> The community that edits the articles can review every template.</li><li><strong>Self-hosted.</strong> No vendor between the organisation and its readers.</li></ul><p>The encyclopedia is invented. The matching licences are real.</p>',
+                    'content' => '<p><strong>Before:</strong> campaign pages ran on a closed tool that volunteers could not inspect. <strong>After:</strong> a GPL component library runs on a GPL CMS, on the organisation’s own servers.</p><ul><li><strong>Accessible appeals.</strong> Donation banners with strict contrast.</li><li><strong>Open templates.</strong> The community that edits the articles can review every template.</li><li><strong>Self-hosted.</strong> No vendor between the organisation and its readers.</li></ul><p>The encyclopedia is invented. The matching licences are real.</p>',
                     'variant' => 'muted',
                     'alignment' => 'start',
                     'link' => '{{page:technical-features}}',

@@ -178,7 +178,7 @@ final readonly class LibraryElementUpserter
     /**
      * @param array{cType: string, name: string, hostExtension: string, fixture: array<string, mixed>, libraryFixture?: array<string, mixed>} $element
      * @param array<string, true> $columns
-     * @return array{row: array<string, mixed>, collections: array<string, array{table: string, column?: string, items: list<array<string, mixed>>}>, fileReferences: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>>}
+     * @return array{row: array<string, mixed>, collections: array<string, array{table: string, column?: string, items: list<array<string, mixed>>}>, fileReferences: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string, autoplay?: bool}>>}
      */
     private function buildContentData(int $pid, array $element, int $sorting, int $now, array $columns): array
     {
@@ -362,7 +362,7 @@ final readonly class LibraryElementUpserter
     }
 
     /**
-     * @param array{collections: array<string, array{table: string, column?: string, items: list<array<string, mixed>>}>, fileReferences: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>>} $contentData
+     * @param array{collections: array<string, array{table: string, column?: string, items: list<array<string, mixed>>}>, fileReferences: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string, autoplay?: bool}>>} $contentData
      */
     private function seedChildren(int $contentUid, int $pageUid, int $now, array $contentData): void
     {

@@ -184,7 +184,7 @@ final class FixtureFieldNormalizer
 
     /**
      * @param array<string, mixed> $fieldConfig
-     * @return list<array{file: string, title: string, alternative: string, description: string, source: string}>
+     * @return list<array{file: string, title: string, alternative: string, description: string, source: string, autoplay?: bool}>
      */
     public function buildFileReferenceFixturesFromFixtureValue(
         mixed $value,
@@ -241,13 +241,18 @@ final class FixtureFieldNormalizer
             }
             $source = $this->stringFromMixed($item['source'] ?? $item['link'] ?? '');
 
-            $references[] = [
+            $reference = [
                 'file' => $file,
                 'title' => $title,
                 'alternative' => $this->stringFromMixed($item['alternative'] ?? $item['alt'] ?? $title),
                 'description' => $this->stringFromMixed($item['description'] ?? $item['credit'] ?? $source),
                 'source' => $source,
             ];
+            // A video that plays by itself while it is on screen.
+            if (filter_var($item['autoplay'] ?? false, FILTER_VALIDATE_BOOL)) {
+                $reference['autoplay'] = true;
+            }
+            $references[] = $reference;
         }
 
         return $references;

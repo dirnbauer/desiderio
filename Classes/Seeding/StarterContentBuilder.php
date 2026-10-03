@@ -34,7 +34,7 @@ final readonly class StarterContentBuilder
     /**
      * @param array{ctype: string, colPos: int, fields: array<string, mixed>} $block
      * @param array<string, true> $columns
-     * @return array{row: array<string, mixed>, collections: array<string, array{table: string, column: string, items: list<array<string, mixed>>}>, fileReferences: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>>}
+     * @return array{row: array<string, mixed>, collections: array<string, array{table: string, column: string, items: list<array<string, mixed>>}>, fileReferences: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string, autoplay?: bool}>>}
      */
     public function buildContentInsert(int $pid, array $block, int $sorting, int $now, array $columns): array
     {
@@ -72,7 +72,7 @@ final readonly class StarterContentBuilder
 
     /**
      * @param array<string, mixed> $fixture
-     * @return array{0: array<string, mixed>, 1: array<string, array{table: string, column: string, items: list<array<string, mixed>>}>, 2: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>>}
+     * @return array{0: array<string, mixed>, 1: array<string, array{table: string, column: string, items: list<array<string, mixed>>}>, 2: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string, autoplay?: bool}>>}
      */
     private function resolveFixtureFields(string $ctype, array $fixture): array
     {

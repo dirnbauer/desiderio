@@ -30,11 +30,11 @@ final class ShowcaseFeatureDefinitions
         return [
             'title' => 'Features',
             'navTitle' => 'Features',
-            'seoTitle' => 'Desiderio features: website tools for TYPO3 v14',
+            'seoTitle' => 'Website tools for TYPO3 v14',
             'description' => '13 tools for TYPO3 v14 websites: design systems, editing and publishing, search and forms, sign-in, payments and a REST API, with live screenshots.',
             'abstract' => 'The website tools built in this lab, with live screenshots: design systems, editing and publishing, search and forms, sign-in, payments and APIs.',
             'badge' => '13 website tools',
-            'header' => 'Tools that save your editors clicks',
+            'header' => 'Ready-made tools for your client sites',
             'subheadline' => 'Design systems, editing, publishing, search, forms, sign-in and payments, each shown working in this TYPO3 v14 lab.',
             'primaryButton' => ['text' => 'Start with Desiderio', 'link' => '{{page:features/desiderio}}'],
             'secondaryButton' => ['text' => 'See AI tools', 'link' => '{{page:ai}}'],
@@ -101,7 +101,7 @@ final class ShowcaseFeatureDefinitions
         return [
             ['label' => 'AI for editors', 'header' => 'AI your editors can control', 'subheadline' => 'An assistant that asks before it writes, one model setup for every extension, and forms that understand what people write.', 'features' => [self::aiAssistant(), self::nrLlmManual(), self::jev()]],
             ['label' => 'Skills and safety', 'header' => 'Reusable skills, checked before they run', 'subheadline' => 'Agent skills your team shares, and security checks for every skill.', 'features' => [self::skillflow(), self::skillspector()]],
-            ['label' => 'Agents and the open web', 'header' => 'Open TYPO3 to agents, on your terms', 'subheadline' => 'MCP, a permission registry, agent protocols, visual feedback and llms.txt.', 'features' => [self::mcpServer(), self::typo3Abilities(), self::agentNexus(), self::agentation(), self::llmsTxt()]],
+            ['label' => 'Agents and the open web', 'header' => 'Open TYPO3 to agents, within limits you set', 'subheadline' => 'MCP, a permission registry, agent protocols, visual feedback and llms.txt.', 'features' => [self::mcpServer(), self::typo3Abilities(), self::agentNexus(), self::agentation(), self::llmsTxt()]],
         ];
     }
 
@@ -117,10 +117,10 @@ final class ShowcaseFeatureDefinitions
             'title' => 'Desiderio + Innesto: pages without template work',
             'navTitle' => 'Design system',
             'description' => '244 ready-made content elements for TYPO3 v14.3, 15 theme presets you switch in the site settings, and Innesto for new elements from shadcn registries.',
-            'abstract' => 'Desiderio gives editors 244 ready-made content elements in ten groups, themed from the site settings. Innesto turns shadcn registry components into new elements with one command.',
+            'abstract' => 'Desiderio gives editors 244 ready-made content elements in 10 groups, themed from the site settings. Innesto turns shadcn registry components into new elements with one command.',
             'hero' => [
                 'header' => 'Build finished TYPO3 pages from 244 elements',
-                'subheadline' => 'Editors pick heroes, pricing tables, charts and forms from ten groups. Change the theme in the site settings, and every page follows without a rebuild.',
+                'subheadline' => 'Editors pick heroes, pricing tables, charts and forms from 10 groups. Change the theme in the site settings, and every page follows without a rebuild.',
                 'primaryButton' => ['text' => 'Get Desiderio', 'link' => 'https://github.com/dirnbauer/desiderio'],
                 'secondaryButton' => ['text' => 'See every element', 'link' => '/content-types'],
                 'image' => ShowcaseBlocks::screenshot('frontend-feature-desiderio-home-hero-cad71b20.webp', 'The home page, built from its own elements', 'Desiderio home page with the headline 244 ready-made content elements for TYPO3 and a preview of theme preset cards.', 'Live screenshot from the TYPO3 v14 lab.'),
@@ -152,7 +152,7 @@ final class ShowcaseFeatureDefinitions
                         'tab' => 'Page module',
                         'title' => 'Preview cards in the page module',
                         'description' => 'Each element shows a <strong>preview card</strong> with its type, headline and key fields, so editors find content without opening forms.',
-                        'image' => ShowcaseBlocks::screenshot('feature-desiderio-page-module-77441b8c.webp', 'Preview cards in the page module', 'TYPO3 page module for Hero & Landing Intros with preview cards listing each hero element\'s type, headline and fields.', 'Live screenshot from the TYPO3 v14 lab.'),
+                        'image' => ShowcaseBlocks::screenshot('feature-desiderio-page-module-77441b8c.webp', 'Preview cards in the page module', 'TYPO3 page module for Hero & Landing Intros with preview cards listing each hero element’s type, headline and fields.', 'Live screenshot from the TYPO3 v14 lab.'),
                     ],
                 ],
             ],
@@ -191,14 +191,14 @@ final class ShowcaseFeatureDefinitions
             'badge' => 'Astryx for TYPO3',
             'title' => 'Astryx for TYPO3: 25 themes, one content set',
             'navTitle' => 'Astryx design system',
-            'description' => 'Meta\'s Astryx design system for TYPO3 v14: 250 server-rendered content elements and 25 themes you switch per site or per page, without React.',
-            'abstract' => 'Astryx for TYPO3 brings Meta\'s open-source design system to TYPO3 as 250 content elements and 25 themes. Fluid renders everything on the server, without React.',
+            'description' => 'Meta’s Astryx design system for TYPO3 v14: 250 server-rendered content elements and 25 themes you switch per site or per page, without React.',
+            'abstract' => 'Astryx for TYPO3 brings Meta’s open-source design system to TYPO3 as 250 content elements and 25 themes. Fluid renders everything on the server, without React.',
             'hero' => [
-                'header' => 'Run Meta\'s design system on TYPO3, without React',
+                'header' => 'Run Meta’s design system on TYPO3, without React',
                 'subheadline' => '250 content elements and 25 themes you switch per site or per page. Fluid renders everything on the server, with no build step after you save.',
                 'primaryButton' => ['text' => 'Get Astryx', 'link' => 'https://github.com/dirnbauer/astryx-typo3'],
                 'secondaryButton' => ['text' => 'See it live', 'link' => '/astryx-typo3/'],
-                'image' => ShowcaseBlocks::screenshot('frontend-feature-astryx-home-7eb2ba52.webp', 'The Astryx lab site, rendered by TYPO3', 'Astryx lab start page with a team photo beside the headline Meta\'s design system, rendered by TYPO3.', 'Live screenshot from the TYPO3 v14 lab.'),
+                'image' => ShowcaseBlocks::screenshot('frontend-feature-astryx-home-7eb2ba52.webp', 'The Astryx lab site, rendered by TYPO3', 'Astryx lab start page with a team photo beside the headline Meta’s design system, rendered by TYPO3.', 'Live screenshot from the TYPO3 v14 lab.'),
             ],
             'problem' => ['header' => 'Design systems usually come with a JavaScript stack', 'content' => '<p>Most current design systems ship as React components. Bringing one to TYPO3 means a Node build, a JavaScript runtime on every page and a rebuild whenever the look changes.</p>'],
             'tour' => [
@@ -234,8 +234,8 @@ final class ShowcaseFeatureDefinitions
             'benefits' => [
                 'header' => 'What you get with Astryx for TYPO3',
                 'items' => [
-                    ['icon' => 'layout-sidebar-right', 'title' => '250 elements in ten groups', 'description' => 'Heroes, pricing, data, team and footers: 25 elements per group, each with demo content in English and German and a backend preview.'],
-                    ['icon' => 'sparkles', 'title' => '25 themes, switched per page', 'description' => 'Seven themes come from Meta\'s release and 18 more follow the same tokens. Set one per site, or per page and its subpages.'],
+                    ['icon' => 'layout-sidebar-right', 'title' => '250 elements in 10 groups', 'description' => 'Heroes, pricing, data, team and footers: 25 elements per group, each with demo content in English and German and a backend preview.'],
+                    ['icon' => 'sparkles', 'title' => '25 themes, switched per page', 'description' => 'Seven themes come from Meta’s release and 18 more follow the same tokens. Set one per site, or per page and its subpages.'],
                     ['icon' => 'zap', 'title' => 'No React, no build step', 'description' => '189 Fluid components render every element on the server. Native HTML handles menus, dialogs and carousels, and one small script covers the rest.'],
                     ['icon' => 'shield-check', 'title' => 'Contrast checked in every theme', 'description' => 'A build gate measures 1,600 colour pairs against WCAG 2.2 AA, in light and dark. A palette change that fails it breaks the build.'],
                 ],
@@ -267,10 +267,10 @@ final class ShowcaseFeatureDefinitions
             'title' => 'TYPO3 Blog: blogging with the tools you know',
             'navTitle' => 'Blog',
             'description' => 'The TYPO3 Blog extension with Desiderio templates: posts are pages, 20 plugins, moderated comments, RSS feeds and a theme that follows your site.',
-            'abstract' => 'The TYPO3 Blog extension turns pages into posts, so editors write with the content elements they know. Desiderio\'s templates give lists, posts, widgets and comments your site\'s theme.',
+            'abstract' => 'The TYPO3 Blog extension turns pages into posts, so editors write with the content elements they know. Desiderio’s templates give lists, posts, widgets and comments your site’s theme.',
             'hero' => [
                 'header' => 'Run your blog with the pages you know',
-                'subheadline' => 'Posts are TYPO3 pages built from ordinary content elements. Desiderio\'s templates style lists, posts, widgets and comments in your theme, in light and dark mode.',
+                'subheadline' => 'Posts are TYPO3 pages built from ordinary content elements. Desiderio’s templates style lists, posts, widgets and comments in your theme, in light and dark mode.',
                 'primaryButton' => ['text' => 'Get the extension', 'link' => 'https://github.com/TYPO3GmbH/blog'],
                 'secondaryButton' => ['text' => 'See the blog', 'link' => '/14/'],
                 'image' => ShowcaseBlocks::screenshot('frontend-feature-blog-list-43957885.webp', 'Blog – Modern: newest post first, then cards', 'The TYPO3 v14 blog in Blog – Modern: topic tabs, the newest post as a large card and the next posts below.', 'Live screenshot from the TYPO3 v14 lab.'),
@@ -284,7 +284,7 @@ final class ShowcaseFeatureDefinitions
                         'tab' => 'Post',
                         'title' => 'Posts open with metadata and a featured image',
                         'description' => 'Blog – Classic opens a post with a <strong>date leaf</strong>, the title, the teaser and a byline with the reading time. Content elements follow.',
-                        'image' => ShowcaseBlocks::screenshot('frontend-feature-blog-post-6e34a9cb.webp', 'Posts open with metadata and a featured image', 'Blog post What\'s new for editors in TYPO3 v14 in Blog – Classic, with a date leaf, byline, laptop photo and a sidebar.', 'Live screenshot from the TYPO3 v14 lab.'),
+                        'image' => ShowcaseBlocks::screenshot('frontend-feature-blog-post-6e34a9cb.webp', 'Posts open with metadata and a featured image', 'Blog post What’s new for editors in TYPO3 v14 in Blog – Classic, with a date leaf, byline, laptop photo and a sidebar.', 'Live screenshot from the TYPO3 v14 lab.'),
                     ],
                     [
                         'tab' => 'Comments',
@@ -296,7 +296,7 @@ final class ShowcaseFeatureDefinitions
                         'tab' => 'Page module',
                         'title' => 'Posts are pages in the page module',
                         'description' => 'Editors write posts in the <strong>page module</strong>, with the same content elements as every other page.',
-                        'image' => ShowcaseBlocks::screenshot('feature-blog-page-module-7d57906f.webp', 'Posts are pages in the page module', 'TYPO3 page module showing the blog post What\'s new for editors in TYPO3 v14 with its text elements.', 'Live screenshot from the TYPO3 v14 lab.'),
+                        'image' => ShowcaseBlocks::screenshot('feature-blog-page-module-7d57906f.webp', 'Posts are pages in the page module', 'TYPO3 page module showing the blog post What’s new for editors in TYPO3 v14 with its text elements.', 'Live screenshot from the TYPO3 v14 lab.'),
                     ],
                     [
                         'tab' => 'Posts module',
@@ -364,20 +364,20 @@ final class ShowcaseFeatureDefinitions
                     [
                         'tab' => 'Field settings',
                         'title' => 'Change layout options without the backend form',
-                        'description' => 'The <strong>Field settings</strong> popover lists the element\'s choice fields in the form\'s tabs. Changes wait for the next save.',
+                        'description' => 'The <strong>Field settings</strong> popover lists the element’s choice fields in the form’s tabs. Changes wait for the next save.',
                         'image' => ShowcaseBlocks::screenshot('feature-visual-editor-field-chooser-9a6feecb.webp', 'Change layout options without the backend form', 'Visual Editor with the Field settings popover open on a hero, showing background and spacing options in tabs.', 'Live screenshot from the TYPO3 v14 lab.'),
                     ],
                     [
                         'tab' => 'Rich text',
                         'title' => 'A rich-text toolbar that stays on screen',
                         'description' => 'The toolbar sits in <strong>one row</strong> above the text; buttons that do not fit move into \'Show more items\'.',
-                        'image' => ShowcaseBlocks::screenshot('feature-visual-editor-rte-toolbar-78c188cd.webp', 'A rich-text toolbar that stays on screen', 'Visual Editor with a one-row text toolbar above a card\'s description and the Show more items menu open.', 'Live screenshot from the TYPO3 v14 lab.'),
+                        'image' => ShowcaseBlocks::screenshot('feature-visual-editor-rte-toolbar-78c188cd.webp', 'A rich-text toolbar that stays on screen', 'Visual Editor with a one-row text toolbar above a card’s description and the Show more items menu open.', 'Live screenshot from the TYPO3 v14 lab.'),
                     ],
                     [
                         'tab' => 'Links',
-                        'title' => 'Edit a button\'s link where it sits',
+                        'title' => 'Edit a button’s link where it sits',
                         'description' => 'Hover a button and a <strong>chain icon</strong> opens the TYPO3 link browser for its link field.',
-                        'image' => ShowcaseBlocks::screenshot('feature-visual-editor-link-helper-091fe426.webp', 'Edit a button\'s link where it sits', 'Hero section in the Visual Editor with a chain icon next to the Get started free button for editing its link.', 'Live screenshot from the TYPO3 v14 lab.'),
+                        'image' => ShowcaseBlocks::screenshot('feature-visual-editor-link-helper-091fe426.webp', 'Edit a button’s link where it sits', 'Hero section in the Visual Editor with a chain icon next to the Get started free button for editing its link.', 'Live screenshot from the TYPO3 v14 lab.'),
                     ],
                 ],
             ],
@@ -459,7 +459,7 @@ final class ShowcaseFeatureDefinitions
             'benefits' => [
                 'header' => 'What you get with Records List Types',
                 'items' => [
-                    ['icon' => 'monitor', 'title' => 'The right view for each table', 'description' => 'Photo cards for news, dense rows for long lists, teasers for articles. Each editor\'s choice is remembered for the next visit.'],
+                    ['icon' => 'monitor', 'title' => 'The right view for each table', 'description' => 'Photo cards for news, dense rows for long lists, teasers for articles. Each editor’s choice is remembered for the next visit.'],
                     ['icon' => 'settings', 'title' => 'New views without PHP', 'description' => 'Register a view in Page TSconfig, then reuse a built-in template or add your own Fluid template. Six example views show how.'],
                     ['icon' => 'search', 'title' => 'Filters editors can use', 'description' => 'Filter by title, date range, visibility, category or any select field. Every table gets defaults, and TSconfig adds your own.'],
                     ['icon' => 'history', 'title' => 'Drafts stay visible', 'description' => 'In a workspace, every view shows draft rows with state markers. Search and filters also find text that only exists in a draft.'],
@@ -472,7 +472,7 @@ final class ShowcaseFeatureDefinitions
                     ['question' => 'How much work is the installation?', 'answer' => 'Two Composer packages and an extension:setup run. The views appear in the View menu of the Records module straight away. TSconfig only changes the defaults, the allowed views and which fields become title, text and image.'],
                     ['question' => 'Which TYPO3 and PHP versions does it need?', 'answer' => 'TYPO3 v14.3.7 or newer on the v14 line, PHP 8.4 or 8.5 and a Composer installation. Install Records List Types and Records List Examples in the same release, because they ship together.'],
                     ['question' => 'What does it cost?', 'answer' => 'Nothing. Both packages are open source under GPL-2.0-or-later. Records List Types ships English and German labels, plus French, Spanish and Italian drafts.'],
-                    ['question' => 'Does it change records or permissions?', 'answer' => 'No. Every view reads through the same record pipeline as the core list, so permissions, translations, workspaces and record actions behave as before. It only stores each editor\'s view and filter settings.'],
+                    ['question' => 'Does it change records or permissions?', 'answer' => 'No. Every view reads through the same record pipeline as the core list, so permissions, translations, workspaces and record actions behave as before. It only stores each editor’s view and filter settings.'],
                 ],
             ],
             'install' => ['header' => 'Install Records List Types', 'code' => implode("\n", ['composer config repositories.records-list-types vcs https://github.com/dirnbauer/typo3-records-list-types.git', 'composer config repositories.records-list-examples vcs https://github.com/dirnbauer/typo3-records-list-examples.git', 'composer require webconsulting/records-list-types:^2.0 webconsulting/records-list-examples:^2.0', 'vendor/bin/typo3 extension:setup -e records_list_types', 'vendor/bin/typo3 extension:setup -e records_list_examples', 'vendor/bin/typo3 cache:flush'])],
@@ -534,9 +534,9 @@ final class ShowcaseFeatureDefinitions
             'benefits' => [
                 'header' => 'What you get with Easy Workspace',
                 'items' => [
-                    ['icon' => 'send', 'title' => 'Publish from where you work', 'description' => 'The dropdown sits in the backend\'s top bar. Editors review and publish the page they are on without opening the Workspaces module.'],
+                    ['icon' => 'send', 'title' => 'Publish from where you work', 'description' => 'The dropdown sits in the backend’s top bar. Editors review and publish the page they are on without opening the Workspaces module.'],
                     ['icon' => 'globe', 'title' => 'No translation left behind', 'description' => 'Changes the current language view hides are listed under their own language. They stay selected and publish with the rest.'],
-                    ['icon' => 'check-circle', 'title' => 'Choose what goes live', 'description' => 'Every change starts selected. Untick what isn\'t ready, check the diff and history, or discard one draft, then publish the rest.'],
+                    ['icon' => 'check-circle', 'title' => 'Choose what goes live', 'description' => 'Every change starts selected. Untick what isn’t ready, check the diff and history, or discard one draft, then publish the rest.'],
                     ['icon' => 'shield-check', 'title' => 'Runs on TYPO3 core', 'description' => 'The list comes from the same core code as the Workspaces module. Publishing and discarding go through the DataHandler.'],
                 ],
             ],
@@ -566,11 +566,11 @@ final class ShowcaseFeatureDefinitions
             'badge' => 'DOCX Editor',
             'title' => 'DOCX Editor: edit Word files inside TYPO3',
             'navTitle' => 'Word documents',
-            'description' => 'Edit .docx files from the TYPO3 v14 file list with Word\'s layout. Send whole pages to Word and back, with a review before anything is saved.',
+            'description' => 'Edit .docx files from the TYPO3 v14 file list with Word’s layout. Send whole pages to Word and back, with a review before anything is saved.',
             'abstract' => 'DOCX Editor opens Word files from the file list in a full-page editor and saves them back to the same file. It also turns a page into a Word document and imports the edits after a review.',
             'hero' => [
                 'header' => 'Edit Word documents without leaving TYPO3',
-                'subheadline' => 'Open a .docx from the file list, edit it with Word\'s layout and save it back. Or edit a whole page in Word and review each change before import.',
+                'subheadline' => 'Open a .docx from the file list, edit it with Word’s layout and save it back. Or edit a whole page in Word and review each change before import.',
                 'primaryButton' => ['text' => 'Get DOCX Editor', 'link' => 'https://github.com/dirnbauer/typo3-docx'],
                 'secondaryButton' => ['text' => 'See the manual', 'link' => 'https://github.com/dirnbauer/typo3-docx/tree/main/Documentation'],
                 'image' => ShowcaseBlocks::screenshot('feature-docx-editor-word-menu-8e5a83a1.webp', 'A Word menu on every page', 'TYPO3 page module with the Word menu open, offering Edit in Word, Download as Word document and import as subpages.', 'Live screenshot from the TYPO3 v14 lab.'),
@@ -601,7 +601,7 @@ final class ShowcaseFeatureDefinitions
                     [
                         'tab' => 'File editor',
                         'title' => 'Edit .docx files from the file list',
-                        'description' => '<strong>Edit DOCX</strong> opens the file full-page with Word\'s layout; Save writes it back to the same file.',
+                        'description' => '<strong>Edit DOCX</strong> opens the file full-page with Word’s layout; Save writes it back to the same file.',
                         'image' => ShowcaseBlocks::screenshot('feature-docx-editor-file-editor-d97eb528.webp', 'Edit .docx files from the file list', 'DOCX Editor showing a Word document with a ruler and heading buttons, opened from the TYPO3 file list.', 'Live screenshot from the TYPO3 v14 lab.'),
                     ],
                 ],
@@ -610,7 +610,7 @@ final class ShowcaseFeatureDefinitions
                 'header' => 'What you get with DOCX Editor',
                 'items' => [
                     ['icon' => 'file-word', 'title' => 'Edit .docx files where they live', 'description' => 'Open a Word file from the file list, edit it full-page and save it back. Save as makes a copy elsewhere.'],
-                    ['icon' => 'file-text', 'title' => 'Word\'s layout, kept intact', 'description' => 'Pages, headers, tables and images look as they do in Word. Tracked changes, comments and content controls survive a save, even when not shown.'],
+                    ['icon' => 'file-text', 'title' => 'Word’s layout, kept intact', 'description' => 'Pages, headers, tables and images look as they do in Word. Tracked changes, comments and content controls survive a save, even when not shown.'],
                     ['icon' => 'history', 'title' => 'Pages round-trip through Word', 'description' => 'Send a page to Word, edit it there or in the browser, and bring it back. A review lists every new, changed and conflicting element.'],
                     ['icon' => 'users', 'title' => 'No overwritten work', 'description' => 'A badge shows how many editors have the document open. If someone saved a newer version, your save stops and offers a reload instead.'],
                 ],
@@ -681,7 +681,7 @@ final class ShowcaseFeatureDefinitions
                     ['icon' => 'file-image', 'title' => 'Edit without leaving TYPO3', 'description' => 'Crop, rotate, adjust, filter, annotate and resize in a full-page editor opened from the file list. No download, no desktop tool, no re-upload.'],
                     ['icon' => 'shield-check', 'title' => 'The original stays safe', 'description' => 'Save as copy is the default and never replaces a file. Overwriting asks first and refreshes every thumbnail and crop of the image.'],
                     ['icon' => 'sparkles', 'title' => 'New images from a prompt', 'description' => 'Describe the image, pick a size the model supports, and a new PNG lands next to the source. Generation never overwrites a file.'],
-                    ['icon' => 'lock', 'title' => 'AI costs under central control', 'description' => 'nr-llm holds the API key, the model and each user\'s budget, and books each image to the user. Only the prompt leaves the server.'],
+                    ['icon' => 'lock', 'title' => 'AI costs under central control', 'description' => 'nr-llm holds the API key, the model and each user’s budget, and books each image to the user. Only the prompt leaves the server.'],
                 ],
             ],
             'faq' => [
@@ -711,15 +711,15 @@ final class ShowcaseFeatureDefinitions
             'title' => 'Apache Solr: search results in your design',
             'navTitle' => 'Site search',
             'description' => 'Apache Solr search for TYPO3 v14 with ready templates: results, filters, sorting and page numbers follow your theme in light and dark mode.',
-            'abstract' => 'Apache Solr finds your content fast, and Desiderio\'s templates make the results page match the rest of your site, from filters to page numbers.',
+            'abstract' => 'Apache Solr finds your content fast, and Desiderio’s templates make the results page match the rest of your site, from filters to page numbers.',
             'hero' => [
                 'header' => 'Search results that look like your site',
-                'subheadline' => 'Solr finds your pages and news. Desiderio\'s templates style results, filters and page numbers with your theme, so search needs no design work.',
+                'subheadline' => 'Solr finds your pages and news. Desiderio’s templates style results, filters and page numbers with your theme, so search needs no design work.',
                 'primaryButton' => ['text' => 'Get the templates', 'link' => 'https://github.com/dirnbauer/desiderio'],
                 'secondaryButton' => ['text' => 'Try a search', 'link' => '/search/?tx_solr%5Bq%5D=Desiderio'],
                 'image' => ShowcaseBlocks::screenshot('frontend-feature-solr-results-facets-38390880.webp', 'Results, filters and page numbers in your theme', 'Search results page for \'Desiderio\' with 53 results, content-type filters, sorting and numbered pagination.', 'Live screenshot from the TYPO3 v14 lab.'),
             ],
-            'problem' => ['header' => 'Good search, off-brand results', 'content' => '<p>Solr\'s default templates don\'t match your design. Someone restyles results, filters and pagination on every project, and again after each redesign. Until then, visitors land on a search page that looks like another site.</p>'],
+            'problem' => ['header' => 'Good search, off-brand results', 'content' => '<p>Solr’s default templates don’t match your design. Someone restyles results, filters and pagination on every project, and again after each redesign. Until then, visitors land on a search page that looks like another site.</p>'],
             'tour' => [
                 'header' => 'Search that looks like your site',
                 'subheadline' => 'Live screenshots from this TYPO3 v14 lab.',
@@ -855,7 +855,7 @@ final class ShowcaseFeatureDefinitions
             'title' => 'Jev: forms that understand what people write',
             'navTitle' => 'AI form logic',
             'description' => 'Jev reads what visitors type into TYPO3 Powermail forms, shows only the fields that apply and routes each message to the right team.',
-            'abstract' => 'Jev brings TypeSafe AI\'s typed decisions into TYPO3. Powermail forms show fields, hold back empty messages and route mail by what people write.',
+            'abstract' => 'Jev brings TypeSafe AI’s typed decisions into TYPO3. Powermail forms show fields, hold back empty messages and route mail by what people write.',
             'hero' => [
                 'header' => 'Forms that understand what people write',
                 'subheadline' => 'Jev reads a message as the visitor fills in the form. Your forms then show the right fields and send mail to the right team.',
@@ -863,16 +863,16 @@ final class ShowcaseFeatureDefinitions
                 'secondaryButton' => ['text' => 'Try the demo', 'link' => '/desiderio-powermail-jev/support-triage'],
                 'image' => ShowcaseBlocks::screenshot('frontend-feature-jev-support-triage-c0dd4571.webp', 'A bug report brings up the reproduction field', 'Support form where a described bug revealed the extra field \'How can we reproduce it?\'.', 'Live screenshot from the TYPO3 v14 lab.'),
             ],
-            'problem' => ['header' => 'Forms can\'t read, so people sort by hand', 'content' => '<p>A form reacts to what someone clicks or types, not to what they mean. Every message lands in one inbox, and a person forwards it to sales, support or accounting. Meanwhile visitors answer questions that don\'t apply to them.</p>'],
+            'problem' => ['header' => 'Forms can’t read, so people sort by hand', 'content' => '<p>A form reacts to what someone clicks or types, not to what they mean. Every message lands in one inbox, and a person forwards it to sales, support or accounting. Meanwhile visitors answer questions that don’t apply to them.</p>'],
             'tour' => [
                 'header' => 'Forms that read before they route',
                 'subheadline' => 'Live screenshots from this TYPO3 v14 lab.',
                 'shots' => [
                     [
                         'tab' => 'Spam gate',
-                        'title' => 'Messages with nothing to answer can\'t be sent',
+                        'title' => 'Messages with nothing to answer can’t be sent',
                         'description' => 'Noise hides the <strong>send button</strong> and shows a note. Borderline messages go through, because a false alarm costs a lead.',
-                        'image' => ShowcaseBlocks::screenshot('frontend-feature-jev-quality-gate-99e40dbb.webp', 'Messages with nothing to answer can\'t be sent', 'Contact form with the message \'asdf\', a note asking for more detail and no send button.', 'Live screenshot from the TYPO3 v14 lab.'),
+                        'image' => ShowcaseBlocks::screenshot('frontend-feature-jev-quality-gate-99e40dbb.webp', 'Messages with nothing to answer can’t be sent', 'Contact form with the message \'asdf\', a note asking for more detail and no send button.', 'Live screenshot from the TYPO3 v14 lab.'),
                     ],
                     [
                         'tab' => 'Playground',
@@ -889,7 +889,7 @@ final class ShowcaseFeatureDefinitions
                     [
                         'tab' => 'Routing',
                         'title' => 'Pick a decision, and mail finds its team',
-                        'description' => 'The <strong>Jev routing</strong> tab lets a decision choose the receiver. Unsure answers fall back to the form\'s own receiver.',
+                        'description' => 'The <strong>Jev routing</strong> tab lets a decision choose the receiver. Unsure answers fall back to the form’s own receiver.',
                         'image' => ShowcaseBlocks::screenshot('feature-jev-routing-tab-a497efed.webp', 'Pick a decision, and mail finds its team', 'Powermail form record in TYPO3 with the Jev routing tab: decision and deciding question selected.', 'Live screenshot from the TYPO3 v14 lab.'),
                     ],
                 ],
@@ -898,8 +898,8 @@ final class ShowcaseFeatureDefinitions
                 'header' => 'What you get with Jev',
                 'items' => [
                     ['icon' => 'sparkles', 'title' => 'Fields that follow the message', 'description' => 'Six new powermail_cond operators let a rule ask Jev, for example to request reproduction steps only when a message reports a bug.'],
-                    ['icon' => 'send', 'title' => 'Mail reaches the right team', 'description' => 'A Jev routing tab on each form picks the receiver from the message. Below the confidence threshold, the form\'s own receiver gets it.'],
-                    ['icon' => 'shield-check', 'title' => 'A form never breaks', 'description' => 'No token, an outage or an unsure answer: every case falls back to the decision\'s default and writes the reason to the run log.'],
+                    ['icon' => 'send', 'title' => 'Mail reaches the right team', 'description' => 'A Jev routing tab on each form picks the receiver from the message. Below the confidence threshold, the form’s own receiver gets it.'],
+                    ['icon' => 'shield-check', 'title' => 'A form never breaks', 'description' => 'No token, an outage or an unsure answer: every case falls back to the decision’s default and writes the reason to the run log.'],
                     ['icon' => 'chart', 'title' => 'Every call on record', 'description' => 'The run log lists each call with its answers, latency, tokens and cost, and the module counts fallbacks per decision.'],
                 ],
             ],
@@ -907,9 +907,9 @@ final class ShowcaseFeatureDefinitions
                 'header' => 'Questions before you install',
                 'subheadline' => 'Setup, requirements, licence and data.',
                 'items' => [
-                    ['question' => 'Does form data leave our server?', 'answer' => 'Yes, the values a decision reads go to the Jev API of TypeSafe. Each decision\'s state template sets which fields that is. The API token stays on the server in nr-vault and never reaches a browser.'],
+                    ['question' => 'Does form data leave our server?', 'answer' => 'Yes, the values a decision reads go to the Jev API of TypeSafe. Each decision’s state template sets which fields that is. The API token stays on the server in nr-vault and never reaches a browser.'],
                     ['question' => 'What does it cost?', 'answer' => 'The TYPO3 extension is free under GPL-2.0-or-later. Jev is a managed API, so you need a key from TypeSafe. In our lab, 133 calls cost about 0.002 US cents each on average.'],
-                    ['question' => 'What happens when Jev is unsure or offline?', 'answer' => 'The form keeps working. Below a decision\'s threshold, or when the API is unreachable, the default outcome applies. Fields stay as the editor built them, and mail goes to the form\'s own receiver. The run log says why.'],
+                    ['question' => 'What happens when Jev is unsure or offline?', 'answer' => 'The form keeps working. Below a decision’s threshold, or when the API is unreachable, the default outcome applies. Fields stay as the editor built them, and mail goes to the form’s own receiver. The run log says why.'],
                     ['question' => 'Which TYPO3 and PHP versions does it need?', 'answer' => 'TYPO3 v14.3 LTS and PHP 8.4 or newer, with netresearch/nr-vault for the token. The Powermail features need the TYPO3 v14 forks of powermail and powermail_cond.'],
                 ],
             ],
@@ -1007,7 +1007,7 @@ final class ShowcaseFeatureDefinitions
                 'secondaryButton' => ['text' => 'See the protocol', 'link' => 'https://www.x402.org'],
                 'image' => ShowcaseBlocks::screenshot('frontend-feature-x402-paywall-payment-page-7adf8223.webp', 'A paywall page that works with any wallet', 'x402 payment page: \'Payment required\', price 0.01 USDC on Base Sepolia and a Pay button.', 'Live screenshot from the TYPO3 v14 lab.'),
             ],
-            'problem' => ['header' => 'Small payments cost more than they earn', 'content' => '<p>Selling one article or one API call means accounts, card forms and fees that eat small amounts. AI agents can\'t fill in a checkout at all, so paid content stays out of their reach.</p>'],
+            'problem' => ['header' => 'Small payments cost more than they earn', 'content' => '<p>Selling one article or one API call means accounts, card forms and fees that eat small amounts. AI agents can’t fill in a checkout at all, so paid content stays out of their reach.</p>'],
             'tour' => [
                 'header' => 'From paywall to payment in one flow',
                 'subheadline' => 'Live screenshots from this TYPO3 v14 lab.',
@@ -1083,9 +1083,9 @@ final class ShowcaseFeatureDefinitions
                 'shots' => [
                     [
                         'tab' => 'Answer',
-                        'title' => 'Answers come from the site\'s own tools',
+                        'title' => 'Answers come from the site’s own tools',
                         'description' => 'The assistant called <strong>GetPageTree</strong> with your permissions, shows the result it got, then answers in plain words.',
-                        'image' => ShowcaseBlocks::screenshot('feature-ai-assistant-answer-21458ce7.webp', 'Answers come from the site\'s own tools', 'Chat with a question about the Features page tree, three read-only tool calls and the answer that lists every feature page.', 'Live screenshot from the TYPO3 v14 lab.'),
+                        'image' => ShowcaseBlocks::screenshot('feature-ai-assistant-answer-21458ce7.webp', 'Answers come from the site’s own tools', 'Chat with a question about the Features page tree, three read-only tool calls and the answer that lists every feature page.', 'Live screenshot from the TYPO3 v14 lab.'),
                     ],
                     [
                         'tab' => 'Approval',
@@ -1097,7 +1097,7 @@ final class ShowcaseFeatureDefinitions
                         'tab' => 'Changes',
                         'title' => 'See what changed, one click from the editor',
                         'description' => 'The approved change landed as a <strong>draft in the Staging workspace</strong> and is listed with the conversation, linked to the record editor.',
-                        'image' => ShowcaseBlocks::screenshot('feature-ai-assistant-changes-9a912e08.webp', 'See what changed, one click from the editor', 'Chat after approval: the WriteTable call, the assistant\'s confirmation with a preview link, and every call with its effect in the details column.', 'Live screenshot from the TYPO3 v14 lab.'),
+                        'image' => ShowcaseBlocks::screenshot('feature-ai-assistant-changes-9a912e08.webp', 'See what changed, one click from the editor', 'Chat after approval: the WriteTable call, the assistant’s confirmation with a preview link, and every call with its effect in the details column.', 'Live screenshot from the TYPO3 v14 lab.'),
                     ],
                     [
                         'tab' => 'Toolbar',
@@ -1110,7 +1110,7 @@ final class ShowcaseFeatureDefinitions
             'benefits' => [
                 'header' => 'What you get with AI Assistant',
                 'items' => [
-                    ['icon' => 'message-circle', 'title' => 'Answers from your own installation', 'description' => 'It reads page trees, records, redirects and the system log through the site\'s MCP tools, with the permissions of the signed-in user.'],
+                    ['icon' => 'message-circle', 'title' => 'Answers from your own installation', 'description' => 'It reads page trees, records, redirects and the system log through the site’s MCP tools, with the permissions of the signed-in user.'],
                     ['icon' => 'shield-check', 'title' => 'Every write waits for you', 'description' => 'A write pauses the turn and shows the tool and its arguments. Approve and it runs; deny and nothing changes.'],
                     ['icon' => 'history', 'title' => 'See what changed, then open it', 'description' => 'Every record the assistant wrote is listed with the conversation, one click away from the record editor.'],
                     ['icon' => 'panel-top', 'title' => 'Follows you through the backend', 'description' => 'The toolbar chat stays open across modules and sends the page and workspace you are on with each message.'],
@@ -1178,7 +1178,7 @@ final class ShowcaseFeatureDefinitions
                         'tab' => 'Test run',
                         'title' => 'Test a configuration before a task uses it',
                         'description' => 'One click sends a <strong>test prompt</strong> through the configuration and shows the answer, so you know it works before you assign it.',
-                        'image' => ShowcaseBlocks::screenshot('feature-nr-llm-manual-test-3e843393.webp', 'Test a configuration before a task uses it', 'Test Result card below the configuration list with a green success message and the model\'s short reply.', 'Live screenshot from the TYPO3 v14 lab.'),
+                        'image' => ShowcaseBlocks::screenshot('feature-nr-llm-manual-test-3e843393.webp', 'Test a configuration before a task uses it', 'Test Result card below the configuration list with a green success message and the model’s short reply.', 'Live screenshot from the TYPO3 v14 lab.'),
                     ],
                 ],
             ],
@@ -1226,7 +1226,7 @@ final class ShowcaseFeatureDefinitions
                 'secondaryButton' => ['text' => 'Browse the skills', 'link' => 't3://page?uid=1030'],
                 'image' => ShowcaseBlocks::screenshot('frontend-feature-skillflow-catalogue-8403a331.webp', 'Search your skill library with facets', 'Skill catalogue on a TYPO3 page: a search for security with 24 results and facet filters for source, tools and licence.', 'Live screenshot from the TYPO3 v14 lab.'),
             ],
-            'problem' => ['header' => 'Every reviewer checks something different', 'content' => '<p>Your SEO, accessibility and tone rules live in one person\'s head or an old wiki page. Drafts get whatever check the reviewer remembers that day. Prompts pasted into a chat window leave no record of what was checked.</p>'],
+            'problem' => ['header' => 'Every reviewer checks something different', 'content' => '<p>Your SEO, accessibility and tone rules live in one person’s head or an old wiki page. Drafts get whatever check the reviewer remembers that day. Prompts pasted into a chat window leave no record of what was checked.</p>'],
             'tour' => [
                 'header' => 'From skill catalogue to stored report',
                 'subheadline' => 'Live screenshots from this TYPO3 v14 lab.',
@@ -1265,7 +1265,7 @@ final class ShowcaseFeatureDefinitions
                 'subheadline' => 'Setup, requirements, licence and data.',
                 'items' => [
                     ['question' => 'What do I need to run it?', 'answer' => 'TYPO3 v14.3.7 or later with PHP 8.4, nr_llm 0.34 or 0.35 for skills and models, and EXT:solr 14.0.1 for the catalogue. Install it with Composer, run extension:setup and add a skill source in nr_llm.'],
-                    ['question' => 'Does our content leave the server?', 'answer' => 'Only when a skill runs: the page content goes to the model provider you configured. By default, skills run only in a local DDEV installation in Development context. API keys stay in nr_llm\'s vault or in environment variables.'],
+                    ['question' => 'Does our content leave the server?', 'answer' => 'Only when a skill runs: the page content goes to the model provider you configured. By default, skills run only in a local DDEV installation in Development context. API keys stay in nr_llm’s vault or in environment variables.'],
                     ['question' => 'Can a skill change our pages?', 'answer' => 'Skillflow stores reports and applies nothing itself. With the Claude Code runner, a skill may use only the tools and abilities it declares. Hidden, disabled and orphaned skills never run.'],
                     ['question' => 'How is it licensed?', 'answer' => 'Skillflow is GPL-2.0-or-later, like TYPO3. It is not on Packagist, so add the GitHub repository to Composer first. Imported skills keep their own licences, and the catalogue shows them.'],
                 ],
@@ -1328,7 +1328,7 @@ final class ShowcaseFeatureDefinitions
                 'subheadline' => 'Setup, requirements, licence and data.',
                 'items' => [
                     ['question' => 'What do I need?', 'answer' => 'TYPO3 v14.3 with PHP 8.4 and nr_llm 0.34 or 0.35, which stores the skills. The scheduler and the NVIDIA scanner are optional. Add the GitHub repository to Composer, require the package and run extension:setup.'],
-                    ['question' => 'Does skill content leave our server?', 'answer' => 'Not by default. The built-in checks run locally, and a check never fetches or runs referenced scripts. Only the optional semantic analysis sends skill content to nr_llm\'s default provider, and it is off by default.'],
+                    ['question' => 'Does skill content leave our server?', 'answer' => 'Not by default. The built-in checks run locally, and a check never fetches or runs referenced scripts. Only the optional semantic analysis sends skill content to nr_llm’s default provider, and it is off by default.'],
                     ['question' => 'Can it run on a schedule?', 'answer' => 'Yes. skillspector:check is a normal console command for cron or a scheduler task. It refreshes every report and can email action messages to the addresses you set.'],
                     ['question' => 'How is it licensed?', 'answer' => 'Skillspector is GPL-2.0-or-later, like TYPO3. NVIDIA SkillSpector is a separate program that you install yourself if you want its results.'],
                 ],
@@ -1388,7 +1388,7 @@ final class ShowcaseFeatureDefinitions
                 'items' => [
                     ['icon' => 'plug', 'title' => 'Works with the AI you use', 'description' => 'Claude signs in over OAuth with your backend login. Cursor and Codex start the server locally. The module shows the steps.'],
                     ['icon' => 'git-branch', 'title' => 'Drafts before live content', 'description' => 'On production, every record write lands in a TYPO3 workspace. Editors review and publish, and clients only see stable live IDs.'],
-                    ['icon' => 'list-checks', 'title' => 'Switch off what you don\'t need', 'description' => 'A YAML manifest lists what each tool may touch. Remove database:write, and every writing tool stops. Outbound HTTP defaults to your own site.'],
+                    ['icon' => 'list-checks', 'title' => 'Switch off what you don’t need', 'description' => 'A YAML manifest lists what each tool may touch. Remove database:write, and every writing tool stops. Outbound HTTP defaults to your own site.'],
                     ['icon' => 'terminal', 'title' => 'The same tools on the CLI', 'description' => 'Every tool also runs as a TYPO3 console command with JSON output, so scripts and CI pipelines use the same logic.'],
                 ],
             ],
@@ -1440,9 +1440,9 @@ final class ShowcaseFeatureDefinitions
                     ],
                     [
                         'tab' => 'Approval',
-                        'title' => 'Risky actions need a person\'s approval',
+                        'title' => 'Risky actions need a person’s approval',
                         'description' => 'The site policy marks <strong>high-risk</strong> abilities as review required. Here a person approves; tokens and agents never can.',
-                        'image' => ShowcaseBlocks::screenshot('feature-typo3-abilities-review-acc94ad6.webp', 'Risky actions need a person\'s approval', 'Run tab with the Delete page ability selected, its input form, the Approve review checkbox and the Execute button.', 'Live screenshot from the TYPO3 v14 lab.'),
+                        'image' => ShowcaseBlocks::screenshot('feature-typo3-abilities-review-acc94ad6.webp', 'Risky actions need a person’s approval', 'Run tab with the Delete page ability selected, its input form, the Approve review checkbox and the Execute button.', 'Live screenshot from the TYPO3 v14 lab.'),
                     ],
                     [
                         'tab' => 'Traces',
@@ -1456,7 +1456,7 @@ final class ShowcaseFeatureDefinitions
                 'header' => 'What you get with Abilities Registry',
                 'items' => [
                     ['icon' => 'shield-check', 'title' => 'One rulebook for every surface', 'description' => 'MCP, CLI, REST, webhooks and the backend call one executor: policy, input check, scopes, permissions, then an output check.'],
-                    ['icon' => 'user-check', 'title' => 'People approve the risky actions', 'description' => 'Mark high-risk abilities as review required. They run only after a person approves, never on a token\'s or an agent\'s word.'],
+                    ['icon' => 'user-check', 'title' => 'People approve the risky actions', 'description' => 'Mark high-risk abilities as review required. They run only after a person approves, never on a token’s or an agent’s word.'],
                     ['icon' => 'scroll-text', 'title' => 'A trace for every attempt', 'description' => 'Allowed, denied or failed, each run records the ability, surface, input, outcome, duration and backend user.'],
                     ['icon' => 'compass', 'title' => 'One catalogue agents can read', 'description' => 'Agents find abilities, MCP tools, skills, REST endpoints and console commands in one list, with how to call each.'],
                 ],
@@ -1504,7 +1504,7 @@ final class ShowcaseFeatureDefinitions
                     [
                         'tab' => 'Try it',
                         'title' => 'Try a request in the browser',
-                        'description' => 'A filtered <strong>GET /pages</strong> returns the lab\'s feature pages as JSON, with pagination and rate-limit headers.',
+                        'description' => 'A filtered <strong>GET /pages</strong> returns the lab’s feature pages as JSON, with pagination and rate-limit headers.',
                         'image' => ShowcaseBlocks::screenshot('frontend-feature-sg-apicore-try-it-6ae042bd.webp', 'Try a request in the browser', 'Swagger UI server response: HTTP 200 with a JSON list of five feature pages (uid, title, slug) and the response headers.', 'Live screenshot from the TYPO3 v14 lab.'),
                     ],
                     [
@@ -1586,7 +1586,7 @@ final class ShowcaseFeatureDefinitions
                         'tab' => 'UCP',
                         'title' => 'A shopping agent that waits for your OK',
                         'description' => 'The agent reads the shop profile and builds a priced cart from the <strong>real catalogue</strong>. Nothing is ordered until a person approves.',
-                        'image' => ShowcaseBlocks::screenshot('frontend-feature-agent-nexus-ucp-checkout-7716e2bb.webp', 'A shopping agent that waits for your OK', 'UCP checkout demo with the shopping agent\'s steps, a cart for a Pro licence and an Approve this order box.', 'Live screenshot from the TYPO3 v14 lab.'),
+                        'image' => ShowcaseBlocks::screenshot('frontend-feature-agent-nexus-ucp-checkout-7716e2bb.webp', 'A shopping agent that waits for your OK', 'UCP checkout demo with the shopping agent’s steps, a cart for a Pro licence and an Approve this order box.', 'Live screenshot from the TYPO3 v14 lab.'),
                     ],
                     [
                         'tab' => 'Traffic log',
@@ -1717,13 +1717,13 @@ final class ShowcaseFeatureDefinitions
                     [
                         'tab' => 'Per language',
                         'title' => 'One file for every language',
-                        'description' => 'Each language base serves its own llms.txt, with <strong>translated titles, descriptions and URLs</strong> from the site\'s router.',
+                        'description' => 'Each language base serves its own llms.txt, with <strong>translated titles, descriptions and URLs</strong> from the site’s router.',
                         'image' => ShowcaseBlocks::screenshot('frontend-feature-llms-txt-per-language-fc6c28f6.webp', 'One file for every language', 'German llms.txt of the lab site with a German summary, German section titles and links to /de/ pages.', 'Live screenshot from the TYPO3 v14 lab.'),
                     ],
                     [
                         'tab' => 'Page fields',
                         'title' => 'Editors steer it through page properties',
-                        'description' => 'The root page\'s <strong>description becomes the summary</strong>, and each page\'s title and description become its link. No extra fields to fill.',
+                        'description' => 'The root page’s <strong>description becomes the summary</strong>, and each page’s title and description become its link. No extra fields to fill.',
                         'image' => ShowcaseBlocks::screenshot('feature-llms-txt-source-fields-d15e6c67.webp', 'Editors steer it through page properties', 'TYPO3 page properties of the root page, SEO tab, with the description that llms.txt prints as its summary.', 'Live screenshot from the TYPO3 v14 lab.'),
                     ],
                 ],
@@ -1732,7 +1732,7 @@ final class ShowcaseFeatureDefinitions
                 'header' => 'What you get with llms.txt',
                 'items' => [
                     ['icon' => 'file-text', 'title' => 'Two files, no upkeep', 'description' => 'llms.txt lists your content, and agents.md explains your machine interfaces. Both are built on request from the page tree and site configuration.'],
-                    ['icon' => 'globe', 'title' => 'One file per site and language', 'description' => 'Every site and language base serves its own files, with URLs from the site\'s router. Hidden, timed-out and noindex pages stay out.'],
+                    ['icon' => 'globe', 'title' => 'One file per site and language', 'description' => 'Every site and language base serves its own files, with URLs from the site’s router. Hidden, timed-out and noindex pages stay out.'],
                     ['icon' => 'settings', 'title' => 'Lists only what you have', 'description' => 'agents.md names the MCP server, the abilities registry, the sitemap and paid content only when those extensions are installed.'],
                     ['icon' => 'search', 'title' => 'Agents find it from any page', 'description' => 'Every page of the site sends a Link header that points to its llms.txt, as the proposal recommends. Both files carry noindex.'],
                 ],

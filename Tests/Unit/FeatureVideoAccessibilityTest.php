@@ -32,18 +32,42 @@ final class FeatureVideoAccessibilityTest extends TestCase
         self::assertStringContainsString('src="{data.captions_file.0.publicUrl}"', $template);
         self::assertStringContainsString('srclang="en" label="English"', $template);
         self::assertStringContainsString('<a href="{data.video_file.0.publicUrl}">', $template);
-        self::assertSame(1, preg_match('/<video\b[^>]*>/s', $template, $videoTag));
-        self::assertStringNotContainsString('autoplay', $videoTag[0]);
+        // The opening tag runs to the first <source>: a Fluid "->" inside it ends a [^>]* match early.
+        self::assertSame(1, preg_match('/<video\b.*?(?=<source)/s', $template, $videoTag));
+        // No native autoplay attribute: it would ignore reduced motion. A
+        // reference flagged "autoplay" gets muted looping that desiderio.js
+        // starts in view, never under prefers-reduced-motion.
+        self::assertDoesNotMatchRegularExpression('/\sautoplay(?=[\s=>])/', $videoTag[0]);
+        self::assertStringContainsString("{f:if(condition: data.video_file.0.properties.autoplay, then: 'muted loop data-d-autoplay')}", $videoTag[0]);
     }
 
     /**
-     * The video content elements are editor features and stay; the extension
-     * ships no video files, and the render/verify scripts that produced the
-     * (never shipped) demo clips were removed with 4.1.0.
+     * The video content elements are editor features. The one video the
+     * extension ships is the product film (Build/Film, rendered by
+     * Build/Scripts/render-film.mjs): one MP4 and its poster, kept small, and
+     * named exactly as the showcase references them. The feature-video render
+     * scripts removed with 4.1.0 stay gone.
      */
-    public function testNoGeneratedVideoAssetsShip(): void
+    public function testOnlyTheProductFilmShips(): void
     {
-        self::assertDirectoryDoesNotExist(__DIR__ . '/../../Resources/Public/Styleguide/Video');
+        $directory = __DIR__ . '/../../Resources/Public/Styleguide/Video';
+        $files = glob($directory . '/*');
+        self::assertIsArray($files);
+        $names = array_map('basename', $files);
+        sort($names);
+
+        self::assertCount(2, $names);
+        self::assertMatchesRegularExpression('/^desiderio-film-[0-9a-f]{8}\.mp4$/', $names[0]);
+        self::assertMatchesRegularExpression('/^desiderio-film-poster-[0-9a-f]{8}\.jpg$/', $names[1]);
+        foreach ($files as $file) {
+            self::assertLessThan(4 * 1024 * 1024, (int)filesize($file), basename($file));
+        }
+
+        $blocks = (string)file_get_contents(__DIR__ . '/../../Classes/Data/Showcase/ShowcaseBlocks.php');
+        foreach ($names as $name) {
+            self::assertStringContainsString('Resources/Public/Styleguide/Video/' . $name, $blocks);
+        }
+
         self::assertFileDoesNotExist(__DIR__ . '/../../Build/Scripts/render-feature-videos.sh');
         self::assertFileDoesNotExist(__DIR__ . '/../../Build/Scripts/verify-feature-videos.sh');
     }

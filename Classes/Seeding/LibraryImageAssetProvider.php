@@ -54,7 +54,7 @@ final class LibraryImageAssetProvider
 
     /**
      * @param array<string, mixed> $fieldConfig
-     * @return list<array{file: string, title: string, alternative: string, description: string, source: string}>
+     * @return list<array{file: string, title: string, alternative: string, description: string, source: string, autoplay?: bool}>
      */
     public function references(string $field, array $fieldConfig, int $index, int $count): array
     {

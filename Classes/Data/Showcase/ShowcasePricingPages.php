@@ -37,15 +37,15 @@ final class ShowcasePricingPages
             'title' => 'Pricing',
             'navTitle' => 'Pricing',
             'slug' => '/pricing',
-            'seoTitle' => 'Desiderio pricing: plans and services for TYPO3 agencies',
-            'abstract' => 'Desiderio is free under GPL-2.0, with every release. The Studio, Agency and Partner support plans add guaranteed answers and the maintenance promise; services have fixed prices.',
-            'description' => 'Desiderio is free. Support plans: Studio €590, Agency €1,990, Partner €4,900 a year, with guaranteed answers; services at fixed prices.',
+            'seoTitle' => 'Prices for support plans and services',
+            'abstract' => 'Desiderio is free under GPL-2.0, with every release. The Studio, Agency and Partner support plans add guaranteed answer times and the maintenance promise; services have fixed prices.',
+            'description' => 'Desiderio is free. Support plans: Studio €590, Agency €1,990, Partner €4,900 a year, with guaranteed answer times; services at fixed prices.',
             'parentSlug' => null,
             'content' => [
                 ShowcaseBlocks::salesHero(
-                    'Free to use',
-                    'Free to use. Pay for certainty.',
-                    'Every element and every release is free and open source. Support plans add guaranteed answers, the maintenance promise and help from the people who wrote it.',
+                    'Plans and services',
+                    'Free to use. Paid plans add support.',
+                    'Every element and every release is free and open source. Support plans add guaranteed answer times, the maintenance promise and help from the people who wrote it.',
                     ['text' => 'Choose a plan', 'link' => ShowcasePricing::ORDER_LINK],
                     ['text' => 'Download the demo', 'link' => '{{page:downloads}}'],
                     ShowcaseHeroPhotos::for('pricing'),
@@ -96,8 +96,8 @@ final class ShowcasePricingPages
                 ]),
                 ShowcaseBlocks::block('desiderio_pricingusage', [
                     'eyebrow' => 'Services',
-                    'header' => 'Fixed prices for the work around it',
-                    'subheadline' => 'Written scope, fixed price, and delivered under your agency\'s name if you like.',
+                    'header' => 'Fixed-price services for your projects',
+                    'subheadline' => 'Written scope, fixed price, and delivered under your agency’s name if you like.',
                     'items' => array_map(
                         static fn(array $service): array => [
                             'title' => $service['title'],

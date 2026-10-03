@@ -103,23 +103,30 @@ final class StyleguideShowcasePages
             ShowcaseBlocks::salesHero(
                 'For TYPO3 agencies',
                 'Ship TYPO3 client sites in days, not weeks',
-                '244 finished content elements, 15 themes and the editor tools around them. Free and open source; support plans add guaranteed answers.',
+                '244 finished content elements and 15 theme presets, with backend previews and inline editing. Free and open source; support plans add guaranteed answer times.',
                 ['text' => 'Download the demo', 'link' => '{{page:downloads}}'],
                 ['text' => 'See pricing', 'link' => '{{page:pricing}}'],
                 ShowcaseHeroPhotos::for('home'),
+            ),
+
+            // ----------------------------------------------------- product film
+            ShowcaseBlocks::productFilm(
+                'Product film',
+                'Desiderio in 26 seconds',
+                '15 presets, light and dark mode, four languages and the tools your editors use, in one short film without sound.',
             ),
 
             // ------------------------------------------------- the problem
             ShowcaseBlocks::block('desiderio_featurecards', [
                 'eyebrow' => 'Common problems',
                 'header' => 'Six problems Desiderio solves',
-                'subheadline' => 'Each card names a problem that slows TYPO3 teams down, and what Desiderio does about it.',
+                'subheadline' => 'Each solution below is in the free package.',
                 'items' => [
                     ['title' => 'Layout changes need a developer', 'description' => 'Editors build pages from finished elements. Each element has a backend preview and can be edited inline in the Visual Editor.'],
                     ['title' => 'One edit breaks the layout', 'description' => 'Every element is built from typed Fluid components that share one set of design tokens. Spacing, colour and type stay consistent.'],
-                    ['title' => 'Too many plugins to maintain', 'description' => 'News, Solr, Blog, Powermail and the Form Framework use the same templates. You update one package instead of five.'],
-                    ['title' => 'A new design means a rebuild', 'description' => 'Themes are colour tokens that switch at runtime. Change the look of a site, or of one page tree, in the site settings.'],
-                    ['title' => 'Accessibility is now required', 'description' => 'The European Accessibility Act applies to many sites. The build checks WCAG 2.2 contrast for every preset, and the markup uses proper landmarks.'],
+                    ['title' => 'Every extension needs its own templates', 'description' => 'News, Solr, Blog, Powermail and the Form Framework get templates built from the same components. You maintain one package instead of five template sets.'],
+                    ['title' => 'A new design means a rebuild', 'description' => 'Theme presets switch colours, fonts, radius and density at runtime. Set one in the site settings, or per page tree in the page properties.'],
+                    ['title' => 'Accessibility is now required', 'description' => 'The European Accessibility Act applies to many sites. The build checks WCAG 2.2 AA contrast for every preset, and the markup uses proper landmarks.'],
                     ['title' => 'AI search skips your content', 'description' => 'Semantic HTML, FAQ and how-to elements and clean page metadata make your content easy for AI search to quote.'],
                 ],
             ]),
@@ -130,52 +137,25 @@ final class StyleguideShowcasePages
                 'subheadline' => 'Desiderio uses the same design tokens as shadcn/ui. A theme you design on the shadcn/ui create page works in TYPO3 as it is.',
                 'items' => [
                     [
-                        'title' => '1 · Design your theme',
-                        'description' => 'On the shadcn/ui create page you choose colours, fonts, corner radius and a style. The result is a short preset code.',
+                        'title' => 'Design your theme',
+                        'description' => 'On the shadcn/ui create page you choose colours, fonts, corner radius and a style. The page gives you the design tokens for that look.',
                         'image' => ShowcaseBlocks::screenshot('frontend-shadcn-create.png', 'The create page on ui.shadcn.com', 'The shadcn/ui create page with controls for colours, fonts and style.', 'Screenshot of the shadcn/ui create page, where Desiderio presets come from.'),
                         'link' => ShowcaseBlocks::CREATE_URL,
                     ],
                     [
-                        'title' => '2 · Paste the preset code',
-                        'description' => 'Paste the code into the site settings and the whole site changes. No rebuild and no deployment. 15 presets are included.',
+                        'title' => 'Add it as your custom preset',
+                        'description' => 'Paste the generated tokens into shadcn-theme.css, then choose Custom in the site settings. The 15 included presets need no file change.',
                         'image' => ShowcaseBlocks::screenshot('backend-page-properties-theme-12e5b64a.png', 'Theme preset in the page properties', 'TYPO3 page properties with the Desiderio theme preset field.'),
                         'link' => '{{page:technical-features}}',
                     ],
                     [
-                        'title' => '3 · Give each page tree its own look',
+                        'title' => 'Give each page tree its own look',
                         'description' => 'Any page can have its own preset, and its subpages inherit it. This site shows it: each chapter page uses a different theme.',
                         'image' => ShowcaseBlocks::screenshot('frontend-pricing-midnight-dark-87c4160e.png', 'Pricing page in the Midnight preset', 'A Desiderio pricing page in the dark Midnight theme preset.'),
                         'link' => '{{page:themes}}',
                     ],
                 ],
             ]),
-            ShowcaseBlocks::block('desiderio_howtosteps', [
-                'header' => 'Set up a themed site in four steps',
-                'description' => 'Install, seed, pick a theme, publish. There is no licence key and no setup wizard.',
-                'items' => [
-                    [
-                        'title' => 'composer require webconsulting/desiderio',
-                        'content' => 'Installs the elements, the components and the themes. Needs TYPO3 v14.3 and PHP 8.4 or newer.',
-                        'image' => ShowcaseBlocks::unsplash('desk-logan-weaver.jpg', 'Developer desk during installation', 'A tidy developer desk with a laptop.'),
-                    ],
-                    [
-                        'title' => 'vendor/bin/typo3 desiderio:styleguide:seed',
-                        'content' => 'Creates this demo site with all 244 elements, so you can test with real content.',
-                        'image' => ShowcaseBlocks::screenshot('backend-page-module-hero-e23618aa.png', 'Seeded page in the page module', 'The TYPO3 page module with a seeded Desiderio hero element and its preview.'),
-                    ],
-                    [
-                        'title' => 'Pick a theme preset',
-                        'content' => 'Choose one of 15 presets in the site settings, or paste your own preset code.',
-                        'image' => ShowcaseBlocks::screenshot('backend-site-settings-theme.png', 'Theme preset in the site settings', 'TYPO3 site settings with the Desiderio theme preset list open.'),
-                    ],
-                    [
-                        'title' => 'Publish',
-                        'content' => 'Editors build pages in the content wizard, check the backend preview and edit inline in the Visual Editor.',
-                        'image' => ShowcaseBlocks::screenshot('frontend-hero-lagoon-e69362e6.png', 'Published Desiderio site', 'The Desiderio demo site in the Lagoon theme preset.'),
-                    ],
-                ],
-            ]),
-
             // ----------------------------------------------------- atomic design
             ShowcaseBlocks::block('desiderio_featurecards', [
                 'eyebrow' => 'Architecture',
@@ -197,7 +177,7 @@ final class StyleguideShowcasePages
                 'items' => [
                     ['value' => '0', 'label' => 'Rebuilds for a new design', 'description_text' => 'Themes switch through CSS tokens at runtime. No Tailwind build and no deployment.'],
                     ['value' => '100%', 'label' => 'Static CSS, no JS framework', 'description_text' => 'No React or Vue in the frontend. Charts render on the server.'],
-                    ['value' => '1', 'label' => 'Command for the full demo site', 'description_text' => 'The seeder builds all 244 examples in seconds. You can run it as often as you like.'],
+                    ['value' => '1', 'label' => 'Command for the full demo site', 'description_text' => 'The seeder builds all 244 elements with their demo content. You can run it as often as you like.'],
                     ['value' => '30', 'label' => 'Minutes from install to themed site', 'description_text' => 'Install, seed, pick a preset, publish. Or book a Kickstart workshop for your team.'],
                 ],
             ]),
@@ -209,7 +189,7 @@ final class StyleguideShowcasePages
                 'subheadline' => 'Every element has a preview in the content wizard. The chapter pages of this site show all of them, each chapter in its own theme.',
                 'items' => [
                     ['title' => '21 heroes and page intros', 'description' => 'Split, animated, countdown, video and stats layouts for the first screen of a page.'],
-                    ['title' => '25 feature blocks', 'description' => 'Grids, bento layouts, comparisons, timelines and tabs to explain a product.'],
+                    ['title' => '25 feature elements', 'description' => 'Grids, bento layouts, comparisons, timelines and tabs to explain a product.'],
                     ['title' => '25 pricing elements', 'description' => 'Plan tables, calculators, sliders and order summaries.'],
                     ['title' => '29 data elements', 'description' => 'Nine chart types, KPI cards, changelogs and status boards, rendered on the server with accessible tables.'],
                     ['title' => '49 trust and team elements', 'description' => 'Testimonials, case studies, logo walls and team grids.'],
@@ -220,12 +200,12 @@ final class StyleguideShowcasePages
             // ------------------------------------------------------------ forms
             ShowcaseBlocks::block('desiderio_featurecards', [
                 'eyebrow' => 'Forms',
-                'header' => 'Forms that work out of the box',
-                'subheadline' => 'Contact, newsletter, demo and booking elements contain real TYPO3 Form Framework forms. Eight forms are ready to use.',
+                'header' => 'Eight forms, ready to use',
+                'subheadline' => 'Contact, newsletter, demo and booking elements contain real TYPO3 Form Framework forms.',
                 'items' => [
                     ['title' => 'They match your theme', 'description' => 'Every form follows the active theme preset. There is no extra styling and no third-party widget.'],
-                    ['title' => 'Leads go to your CRM', 'description' => 'Submissions reach Brevo through a built-in finisher. The newsletter uses double opt-in.'],
-                    ['title' => 'Ready for GDPR', 'description' => 'Friendly Captcha works without tracking cookies. A data-request form handles exports, deletions and corrections.'],
+                    ['title' => 'Leads go to Brevo', 'description' => 'Submissions reach Brevo through a built-in finisher. The newsletter uses double opt-in.'],
+                    ['title' => 'GDPR data requests built in', 'description' => 'Friendly Captcha works without tracking cookies. A data-request form handles exports, deletions and corrections.'],
                     ['title' => 'Standard Form Framework', 'description' => 'Validation, finishers, multi-step forms and file uploads come from TYPO3 core. There is nothing proprietary to learn.'],
                 ],
             ]),
@@ -233,7 +213,7 @@ final class StyleguideShowcasePages
             // ---------------------------------------------------------- gallery
             ShowcaseBlocks::block('desiderio_gallery', [
                 'header' => 'Five elements to start with',
-                'subheadline' => 'Screenshots from this site. Select one to open its chapter.',
+                'subheadline' => 'Screenshots from this site. Select one to show it large; its link opens the chapter.',
                 'columns' => '3',
                 'items' => [
                     ['title' => 'Parallax hero', 'description' => 'A hero that moves as you scroll. One of 21 hero layouts.', 'link' => '{{page:chapter-hero}}', 'image' => ShowcaseBlocks::screenshot('frontend-gallery-parallax-hero-6e758c41.png', 'Parallax hero element', 'The Desiderio parallax hero element in the Forest theme preset.')],
@@ -246,7 +226,7 @@ final class StyleguideShowcasePages
 
             // ----------------------------------------------------- target groups
             ShowcaseBlocks::block('desiderio_usecasegrid', [
-                'eyebrow' => 'Who it\'s for',
+                'eyebrow' => 'Who it’s for',
                 'header' => 'Built for three kinds of teams',
                 'subheadline' => 'Each group has its own page with details and a recommended plan.',
                 'items' => [
@@ -271,13 +251,13 @@ final class StyleguideShowcasePages
             // ----------------------------------------------------- advantages
             ShowcaseBlocks::block('desiderio_featurechecklist', [
                 'eyebrow' => 'Advantages',
-                'header' => 'Why teams choose Desiderio',
+                'header' => 'Five reasons to build on Desiderio',
                 'items' => [
                     ['title' => 'A new design without a rebuild', 'description_text' => '15 presets, or your own from the shadcn/ui create page. Switch them per site or per page tree.'],
-                    ['title' => 'Fewer tickets from editors', 'description_text' => 'Backend previews for all 244 elements, inline editing and a content wizard in ten groups.'],
-                    ['title' => 'Accessibility you can prove', 'description_text' => 'The build checks WCAG 2.2 contrast for every preset, in light and dark mode.'],
+                    ['title' => 'Fewer tickets from editors', 'description_text' => 'Backend previews for all 244 elements, inline editing and a content wizard in 10 groups.'],
+                    ['title' => 'Accessibility you can prove', 'description_text' => 'The build checks WCAG 2.2 AA contrast for every preset, in light and dark mode.'],
                     ['title' => 'Measured quality', 'description_text' => 'PHPStan at level 8, unit and functional tests on PHP 8.4 and 8.5, and a template audit with zero findings.'],
-                    ['title' => 'Free and open source', 'description_text' => 'GPL-2.0, with the full source on GitHub and every release free. Support plans add guaranteed answers and the maintenance promise.'],
+                    ['title' => 'Free and open source', 'description_text' => 'GPL-2.0, with the full source on GitHub and every release free. Support plans add guaranteed answer times and the maintenance promise.'],
                 ],
             ]),
 
@@ -296,11 +276,39 @@ final class StyleguideShowcasePages
                 ],
             ]),
 
+            // ----------------------------------------------------- get started
+            ShowcaseBlocks::block('desiderio_howtosteps', [
+                'header' => 'Set up a themed site in four steps',
+                'description' => 'Install, seed, pick a theme, publish. There is no licence key and no setup wizard.',
+                'items' => [
+                    [
+                        'title' => 'composer require webconsulting/desiderio',
+                        'content' => 'Add the GitHub repositories of Desiderio and Visual Editor Enhancements first, because neither is on Packagist. Needs TYPO3 v14.3.6 or newer and PHP 8.4 or 8.5.',
+                        'image' => ShowcaseBlocks::unsplash('desk-logan-weaver.jpg', 'Developer desk during installation', 'A tidy developer desk with a laptop.'),
+                    ],
+                    [
+                        'title' => 'vendor/bin/typo3 desiderio:styleguide:seed',
+                        'content' => 'Creates this demo site with all 244 elements, so you can test with real content.',
+                        'image' => ShowcaseBlocks::screenshot('backend-page-module-hero-e23618aa.png', 'Seeded page in the page module', 'The TYPO3 page module with a seeded Desiderio hero element and its preview.'),
+                    ],
+                    [
+                        'title' => 'Pick a theme preset',
+                        'content' => 'Choose one of 15 presets in the site settings, or add your own as the custom preset.',
+                        'image' => ShowcaseBlocks::screenshot('backend-site-settings-theme.png', 'Theme preset in the site settings', 'TYPO3 site settings with the Desiderio theme preset list open.'),
+                    ],
+                    [
+                        'title' => 'Publish',
+                        'content' => 'Editors build pages in the content wizard, check the backend preview and edit inline in the Visual Editor.',
+                        'image' => ShowcaseBlocks::screenshot('frontend-hero-lagoon-e69362e6.png', 'Published Desiderio site', 'The Desiderio demo site in the Lagoon theme preset.'),
+                    ],
+                ],
+            ]),
+
             // ----------------------------------------------------- pricing
             ShowcaseBlocks::block('desiderio_pricingthreetier', [
                 'eyebrow' => 'Pricing',
-                'header' => 'Free to use. Pay for certainty.',
-                'subheadline' => 'Desiderio is complete and free under GPL-2.0, every release. Support plans add guaranteed answers, the maintenance promise and onboarding.',
+                'header' => 'Free to use. Paid plans add support.',
+                'subheadline' => 'Desiderio is complete and free under GPL-2.0, every release. Support plans add guaranteed answer times and the maintenance promise; Agency and Partner add onboarding.',
                 'plans' => array_map(
                     static fn(array $plan): array => [
                         'name' => $plan['name'],
@@ -324,12 +332,12 @@ final class StyleguideShowcasePages
                 'testimonials' => [
                     ['quote' => 'We showed the client three themes in the kickoff by switching presets live.', 'author_name' => 'Hannah Vogel', 'author_title' => 'Lead integrator (example)'],
                     ['quote' => 'Our editors now build campaign pages themselves. The backend previews show them what they publish.', 'author_name' => 'Jonas Klein', 'author_title' => 'Head of digital (example)'],
-                    ['quote' => 'As a freelancer I can offer a full design system at a small studio\'s price.', 'author_name' => 'Lena Hoffmann', 'author_title' => 'Freelance developer (example)'],
+                    ['quote' => 'As a freelancer I can offer a full design system at a small studio’s price.', 'author_name' => 'Lena Hoffmann', 'author_title' => 'Freelance developer (example)'],
                 ],
             ]),
             ShowcaseBlocks::block('desiderio_ctabanner', [
                 'header' => 'Build your next TYPO3 site with Desiderio',
-                'description' => 'This demo site, with 10 themed chapters and 244 elements, was created with one command. Download it and run it on your own machine.',
+                'description' => 'One command built this demo site, with 10 themed chapters and 244 elements. Download it and run it on your own machine.',
                 'cta_text' => 'Download the demo',
                 'cta_link' => '{{page:downloads}}',
                 'bg_style' => 'primary',
@@ -458,7 +466,7 @@ final class StyleguideShowcasePages
                 ShowcaseBlocks::block('desiderio_headersection', [
                     'eyebrow' => 'More credits',
                     'header' => 'The tools and extensions we build on',
-                    'subheadline' => 'The toolchain and the integrations around Fluid and Content Blocks are other people\'s work too. Thank you to each of them.',
+                    'subheadline' => 'The toolchain and the integrations around Fluid and Content Blocks are other people’s work too. Thank you to each of them.',
                     'variant' => 'center',
                 ]),
                 ShowcaseBlocks::block('desiderio_benefitcards', [
@@ -518,16 +526,16 @@ final class StyleguideShowcasePages
                         ],
                         [
                             'title' => 'Security and platform requirements',
-                            'content' => '<p>Desiderio needs TYPO3 v14.3 and PHP 8.4 or newer.</p><ul><li><strong>Safe queries</strong>: strict types and QueryBuilder with named parameters.</li><li><strong>Ready for CSP</strong>: assets are rendered with nonces.</li><li><strong>Safe defaults</strong>: a middleware logs and blocks the captcha bypass in production. The seeder only writes columns that exist in the schema.</li></ul>',
+                            'content' => '<p>Desiderio needs TYPO3 v14.3.6 or newer and PHP 8.4 or 8.5.</p><ul><li><strong>Safe queries</strong>: strict types and QueryBuilder with named parameters.</li><li><strong>Ready for CSP</strong>: assets are rendered with nonces.</li><li><strong>Safe defaults</strong>: a middleware logs and blocks the captcha bypass in production. The seeder only writes columns that exist in the schema.</li></ul>',
                             'open_by_default' => 0,
                         ],
                     ],
                 ]),
                 ShowcaseBlocks::block('desiderio_codeblock', [
-                    'header' => 'Install in two commands',
+                    'header' => 'Install from GitHub',
                     'language' => 'Bash',
                     'filename' => 'install.sh',
-                    'code' => "composer require webconsulting/desiderio\nvendor/bin/typo3 desiderio:styleguide:seed\n# then pick a theme preset in the site settings",
+                    'code' => "# Desiderio and the Visual Editor enhancements it requires are not on Packagist\ncomposer config repositories.desiderio vcs https://github.com/dirnbauer/desiderio.git\ncomposer config repositories.visual-editor-enhancements vcs https://github.com/dirnbauer/typo3-visual-editor-enhancements.git\ncomposer require webconsulting/desiderio\nvendor/bin/typo3 extension:setup\nvendor/bin/typo3 desiderio:styleguide:seed\n# then pick a theme preset in the site settings",
                 ]),
                 ShowcaseBlocks::block('desiderio_definitionlist', [
                     'header' => 'Five Desiderio terms',
@@ -542,7 +550,7 @@ final class StyleguideShowcasePages
                 ]),
                 ShowcaseBlocks::block('desiderio_ctabanner', [
                     'header' => 'Install it yourself or book the setup',
-                    'description' => 'The package is free. A Kickstart workshop gets your team going for €1,490, and a Brand Theme turns a client\'s brand into a preset for €2,490.',
+                    'description' => 'The package is free. A Kickstart workshop gets your team going for €1,490, and a Brand Theme turns a client’s brand into a preset for €2,490.',
                     'cta_text' => 'Get started free',
                     'cta_link' => ShowcaseBlocks::REPO_URL,
                     'bg_style' => 'muted',

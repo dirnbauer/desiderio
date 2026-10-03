@@ -126,7 +126,7 @@ final class ShowcaseLegalPages
                 ]),
                 ShowcaseBlocks::block('desiderio_contenthighlight', [
                     'header' => 'How Desiderio builds in accessibility',
-                    'content' => '<p>Three mechanisms do most of the work. First, a <strong>WCAG 2.2 contrast solver</strong>. The theme generator sets the lightness of each accent hue to reach 4.5:1 for text and 3:1 for interface elements. It never writes failing CSS. A unit test checks the shipped bundle again for every preset, in light and dark mode. Second, <strong>translated assistive text</strong>. Screen-reader labels, carousel controls, dismiss buttons and pagination use XLIFF catalogues, so ARIA labels are in your visitor\'s language. Third, <strong>audits in CI</strong>. A zero-tolerance template audit and 170+ tests keep landmarks, focus states and heading order from regressing.</p>',
+                    'content' => '<p>Three mechanisms do most of the work. First, a <strong>WCAG 2.2 contrast solver</strong>. The theme generator sets the lightness of each accent hue to reach 4.5:1 for text and 3:1 for interface elements. It never writes failing CSS. A unit test checks the shipped bundle again for every preset, in light and dark mode. Second, <strong>translated assistive text</strong>. Screen-reader labels, carousel controls, dismiss buttons and pagination use XLIFF catalogues, so ARIA labels are in your visitor’s language. Third, <strong>audits in CI</strong>. A zero-tolerance template audit and 170+ tests keep landmarks, focus states and heading order from regressing.</p>',
                     'variant' => 'muted',
                     'alignment' => 'left',
                     'link' => '{{page:technical-features}}',

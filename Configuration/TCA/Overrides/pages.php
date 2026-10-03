@@ -60,6 +60,8 @@ ExtensionManagementUtility::addFieldsToPalette(
 // duplicate the heading.
 $GLOBALS['TCA']['pages']['columns']['tx_desiderio_h1_sronly'] = [
     'exclude' => true,
+    // Whether a hero leads the page is the same in every language.
+    'l10n_mode' => 'exclude',
     'label' => 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:pages.h1SrOnly',
     'description' => 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:pages.h1SrOnly.description',
     'config' => [

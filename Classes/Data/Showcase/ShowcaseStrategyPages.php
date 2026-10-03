@@ -78,7 +78,7 @@ final class ShowcaseStrategyPages
                         ],
                         [
                             'title' => 'AI Overviews change often',
-                            'content' => '<p><strong>AI Overviews change often.</strong> Which queries show one changes all the time, and analyses such as Lily Ray\'s show large swings within weeks.</p><ul><li><strong>Build for the long term</strong>: invest in pages that are easy to extract, not in single snapshots.</li></ul>',
+                            'content' => '<p><strong>AI Overviews change often.</strong> Which queries show one changes all the time, and analyses such as Lily Ray’s show large swings within weeks.</p><ul><li><strong>Build for the long term</strong>: invest in pages that are easy to extract, not in single snapshots.</li></ul>',
                             'open_by_default' => 0,
                         ],
                         [
@@ -121,7 +121,7 @@ final class ShowcaseStrategyPages
                 ShowcaseBlocks::block('desiderio_herostats', [
                     'eyebrow' => 'Strategy 2026–2030',
                     'header' => 'AI agents that work within TYPO3 permissions',
-                    'subheadline' => 'This is webconsulting\'s plan for TYPO3 v14 as a platform that agents can use safely. Large parts of it already run in this lab.',
+                    'subheadline' => 'This is webconsulting’s plan for TYPO3 v14 as a platform that agents can use safely. Large parts of it already run in this lab.',
                     'primary_button_text' => 'Book a call',
                     'primary_button_link' => '{{page:desiderio-powermail/callback}}',
                     'stats' => [
@@ -219,7 +219,7 @@ final class ShowcaseStrategyPages
                 self::v14StrategyTextmedia(
                     'Run the whole stack on EU infrastructure',
                     'media-left',
-                    'Many European clients can\'t move content work to US cloud services. A self-hosted TYPO3 stack solves that.',
+                    'Many European clients can’t move content work to US cloud services. A self-hosted TYPO3 stack solves that.',
                     '<ul><li><strong>Self-hosted</strong>: TYPO3, the MCP server, the agent tools and the audit log run on your servers.</li><li><strong>Model choice</strong>: use your own models, EU-hosted APIs or, if you opt in, models outside the EU.</li><li><strong>Regulation</strong>: the EU Data Act asks for providers you can switch and protection from non-EU access.</li></ul>',
                     self::strategyImage('strategy-own-infrastructure-b72491fc.webp', 'A server cabinet in a bright office', 'A small server cabinet with its door open in a bright office, standing for infrastructure you run yourself.')
                 ),
@@ -227,11 +227,11 @@ final class ShowcaseStrategyPages
                 // ----------------------------------------------- where do we stand
                 ShowcaseBlocks::block('desiderio_featurenumbered', [
                     'header' => 'Readiness check: 11 questions',
-                    'subheadline' => 'If you can\'t answer a question clearly, you have found a gap to plan for.',
+                    'subheadline' => 'If you can’t answer a question clearly, you have found a gap to plan for.',
                     'items' => [
                         ['title' => 'Which agent changed which record, and why?', 'description' => '<p>You need a trace with the agent, its permission and the reason.</p>'],
                         ['title' => 'Can you undo or replay a failed run?', 'description' => '<p>Rollback and safe retries keep automation from becoming a risk.</p>'],
-                        ['title' => 'Is the agent\'s context current and sourced?', 'description' => '<p>Agents should work from scoped, current records with sources.</p>'],
+                        ['title' => 'Is the agent’s context current and sourced?', 'description' => '<p>Agents should work from scoped, current records with sources.</p>'],
                         ['title' => 'Do people review risky changes first?', 'description' => '<p>High-risk writes should wait for a human decision.</p>'],
                         ['title' => 'Can you price and cap AI costs?', 'description' => '<p>Visible costs per task let you sell AI work at a fixed price.</p>'],
                         ['title' => 'Can long jobs pause and resume?', 'description' => '<p>Imports, translations and launches must survive waits and handovers.</p>'],
@@ -249,7 +249,7 @@ final class ShowcaseStrategyPages
                 // photo, which put random portraits next to these steps.
                 ShowcaseBlocks::block('desiderio_featuretimeline', [
                     'header' => 'Start with one workflow in four steps',
-                    'subheadline' => 'You don\'t need the whole platform at once. Start small and grow from measured results.',
+                    'subheadline' => 'You don’t need the whole platform at once. Start small and grow from measured results.',
                     'items' => [
                         ['step' => '1', 'title' => 'Run the readiness check', 'description' => '<p>Answer the 11 questions with your team. The gaps show where to start.</p>'],
                         ['step' => '2', 'title' => 'Pick one repeated task', 'description' => '<p>Good first tasks are translations, content checks or accessibility reviews. They repeat often and are easy to measure.</p>'],

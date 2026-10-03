@@ -180,9 +180,49 @@ final class StyleguideSeedCommandTest extends AbstractStyleguideSeedingTestCase
             self::markTestSkipped('Only meaningful inside the lab, which has config/sites.');
         }
 
-        preg_match_all('/\{\{site:([a-z0-9_-]+)\}\}/', (string)file_get_contents(__DIR__ . '/../../Classes/Data/StyleguideShowcasePages.php'), $matches);
+        $source = (string)file_get_contents(__DIR__ . '/../../Classes/Data/StyleguideShowcasePages.php')
+            . (string)file_get_contents(__DIR__ . '/../../Classes/Data/Showcase/ShowcaseFeatureDefinitions.php');
+        // {{site:<identifier>}} or {{site:<identifier>/<slug>}}: the identifier is what must exist.
+        preg_match_all('/\{\{site:([a-z0-9_-]+)(?:\/[^}]*)?\}\}/', $source, $matches);
         self::assertNotSame([], $matches[1]);
         self::assertSame([], array_values(array_filter($matches[1], static fn(string $identifier): bool => !isset($known[$identifier]))));
+    }
+
+    public function testSitePlaceholdersResolveAnywhereInAField(): void
+    {
+        $block = [
+            'ctype' => 'desiderio_herosaas',
+            'colPos' => 0,
+            'fields' => [
+                'primary_link' => '{{site:astryx-typo3}}',
+                'secondary_link' => '{{site:astryx-typo3/components}}',
+                'search_link' => '{{page:search}}&tx_solr%5Bq%5D=Desiderio',
+                'gone_link' => '{{site:not-here}}',
+            ],
+        ];
+
+        $resolved = $this->invokeMethod($this->createCommand(), 'substituteLinkPlaceholders', [
+            $block,
+            ['site:astryx-typo3' => 1290, 'site:astryx-typo3/components' => 1302, 'search' => 738],
+        ]);
+
+        self::assertIsArray($resolved);
+        $fields = $resolved['fields'] ?? null;
+        self::assertIsArray($fields);
+        self::assertSame('t3://page?uid=1290', $fields['primary_link'] ?? null);
+        self::assertSame('t3://page?uid=1302', $fields['secondary_link'] ?? null);
+        self::assertSame('t3://page?uid=738&tx_solr%5Bq%5D=Desiderio', $fields['search_link'] ?? null);
+        self::assertSame('https://github.com/dirnbauer/desiderio', $fields['gone_link'] ?? null);
+    }
+
+    public function testNoShowcaseDefinitionLinksAPlainPath(): void
+    {
+        // A plain "/path" never gets a language prefix: from /de/ it opened
+        // the English page. Showcase links are placeholders or full URLs;
+        // files (/llms.txt) and the API's routes have no language.
+        $source = (string)file_get_contents(__DIR__ . '/../../Classes/Data/Showcase/ShowcaseFeatureDefinitions.php');
+        preg_match_all("/'link' => '(\/(?!api\/)[^'.]*)'/", $source, $matches);
+        self::assertSame([], $matches[1]);
     }
 
     public function testEveryPagePlaceholderInAnElementFixtureNamesASeededPage(): void

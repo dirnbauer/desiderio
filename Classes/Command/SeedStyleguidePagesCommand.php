@@ -638,6 +638,14 @@ final class SeedStyleguidePagesCommand extends Command
             $parentPid,
             [$chapterContent, $supportPageBlocks, $showcaseBlocks]
         );
+        $siteRoots = $this->siteRootPages();
+        $linkTargets = $this->addSiteLinkTargets(
+            $linkTargets,
+            $siteRoots,
+            [$chapterContent, $supportPageBlocks, $showcaseBlocks],
+            $pageUpserter,
+            $pageColumns
+        );
 
         foreach ($chapterContent as $content) {
             $contentElementSeeder->insert($content['pageUid'], $now, $this->getFixtureResolver()->buildContentInsert(
@@ -669,7 +677,6 @@ final class SeedStyleguidePagesCommand extends Command
             }
         }
 
-        $siteRoots = $this->siteRootPages();
         foreach ($showcaseBlocks as $pageUid => $blocks) {
             // Showcase subpages are fully seeder-owned: clear leftover core
             // demo content (e.g. legacy text/textmedia articles) as well. The
@@ -1131,20 +1138,67 @@ final class SeedStyleguidePagesCommand extends Command
                 $values[$key] = $this->substituteLinkPlaceholdersInValue($value, $linkTargets);
                 continue;
             }
-            if (!is_string($value) || !str_contains($value, '{{page:')) {
+            if (!is_string($value) || (!str_contains($value, '{{page:') && !str_contains($value, '{{site:'))) {
                 continue;
             }
 
+            // {{page:<slug>}} names a page of this site, {{site:<identifier>}}
+            // the root of another site and {{site:<identifier>/<slug>}} a page
+            // in it (addSiteLinkTargets keys those as "site:…"). Both become
+            // t3://page links, so TYPO3 writes them in the reader's language;
+            // a plain "/path" never got a language prefix.
             $values[$key] = (string)preg_replace_callback(
-                '/\{\{page:([^}]+)\}\}/',
-                static fn(array $matches): string => isset($linkTargets[$matches[1]])
-                    ? 't3://page?uid=' . $linkTargets[$matches[1]]
-                    : 'https://github.com/dirnbauer/desiderio',
+                '/\{\{(page|site):([^}]+)\}\}/',
+                static function (array $matches) use ($linkTargets): string {
+                    $target = $matches[1] === 'site' ? 'site:' . $matches[2] : $matches[2];
+
+                    return isset($linkTargets[$target])
+                        ? 't3://page?uid=' . $linkTargets[$target]
+                        : 'https://github.com/dirnbauer/desiderio';
+                },
                 $value
             );
         }
 
         return $values;
+    }
+
+    /**
+     * Resolves every {{site:<identifier>}} and {{site:<identifier>/<slug>}}
+     * the blocks name: the root page of that site, or the default-language
+     * page with that slug below it. Keys are "site:<identifier>[/<slug>]";
+     * a site or page this installation does not have stays unresolved.
+     *
+     * @param array<string, int> $linkTargets
+     * @param array<string, int> $siteRoots
+     * @param list<array<array-key, mixed>> $valueSets
+     * @param array<string, true> $pageColumns
+     * @return array<string, int>
+     */
+    private function addSiteLinkTargets(array $linkTargets, array $siteRoots, array $valueSets, SeedPageUpserter $pageUpserter, array $pageColumns): array
+    {
+        $names = [];
+        array_walk_recursive($valueSets, static function (mixed $value) use (&$names): void {
+            if (is_string($value) && preg_match_all('/\{\{site:([^}]+)\}\}/', $value, $matches) > 0) {
+                foreach ($matches[1] as $name) {
+                    $names[$name] = true;
+                }
+            }
+        });
+
+        foreach (array_keys($names) as $name) {
+            [$identifier, $slug] = array_pad(explode('/', $name, 2), 2, '');
+            $rootUid = $siteRoots[$identifier] ?? null;
+            if ($rootUid === null) {
+                continue;
+            }
+            $uid = $slug === '' ? $rootUid : $pageUpserter->findPageBySlugBelow($rootUid, '/' . trim($slug, '/'), $pageColumns);
+            if ($uid !== null) {
+                $linkTargets['site:' . $name] = $uid;
+            }
+        }
+
+        return $linkTargets;
     }
 
     /**

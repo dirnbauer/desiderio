@@ -129,7 +129,7 @@ final class ShowcaseFeatureDefinitions
                 'header' => 'Build finished TYPO3 pages from 244 elements',
                 'subheadline' => 'Editors pick heroes, pricing tables, charts and forms from 10 groups. Change the theme in the site settings, and every page follows without a rebuild.',
                 'primaryButton' => ['text' => 'Get Desiderio', 'link' => 'https://github.com/dirnbauer/desiderio'],
-                'secondaryButton' => ['text' => 'See every element', 'link' => '/content-types'],
+                'secondaryButton' => ['text' => 'See every element', 'link' => '{{page:content-types}}'],
                 'image' => ShowcaseBlocks::screenshot('frontend-feature-desiderio-home-hero-cad71b20.webp', 'The home page, built from its own elements', 'Desiderio home page with the headline 244 ready-made content elements for TYPO3 and a preview of theme preset cards.', 'Live screenshot from the TYPO3 v14 lab.'),
             ],
             'problem' => ['header' => 'Every relaunch rebuilds the same sections', 'content' => '<p>You build heroes, pricing tables and footers again for each client, and editors wait for a developer to add a section. A new brand colour means CSS changes and another deployment. The budget goes into rework instead of content.</p>'],
@@ -204,7 +204,7 @@ final class ShowcaseFeatureDefinitions
                 'header' => 'Run Meta’s design system on TYPO3, without React',
                 'subheadline' => '250 content elements and 25 themes you switch per site or per page. Fluid renders everything on the server, with no build step after you save.',
                 'primaryButton' => ['text' => 'Get Astryx', 'link' => 'https://github.com/dirnbauer/astryx-typo3'],
-                'secondaryButton' => ['text' => 'See it live', 'link' => '/astryx-typo3/'],
+                'secondaryButton' => ['text' => 'See it live', 'link' => '{{site:astryx-typo3}}'],
                 'image' => ShowcaseBlocks::screenshot('frontend-feature-astryx-home-7eb2ba52.webp', 'The Astryx lab site, rendered by TYPO3', 'Astryx lab start page with a team photo beside the headline Meta’s design system, rendered by TYPO3.', 'Live screenshot from the TYPO3 v14 lab.'),
             ],
             'problem' => ['header' => 'Design systems usually come with a JavaScript stack', 'content' => '<p>Most current design systems ship as React components. Bringing one to TYPO3 means a Node build, a JavaScript runtime on every page and a rebuild whenever the look changes.</p>'],
@@ -260,7 +260,7 @@ final class ShowcaseFeatureDefinitions
             'install' => ['header' => 'Install Astryx for TYPO3', 'code' => implode("\n", ['# astryx-typo3 and the packages it builds on are not on Packagist', 'composer config repositories.astryx-typo3 vcs https://github.com/dirnbauer/astryx-typo3.git', 'composer config repositories.desiderio vcs https://github.com/dirnbauer/desiderio.git', 'composer config repositories.visual-editor-enhancements vcs https://github.com/dirnbauer/typo3-visual-editor-enhancements.git', 'composer require webconsulting/astryx-typo3', '', '# extension:setup cannot add the tt_content columns once the table is this wide:', '# dry run first, then --apply (the script expects the DDEV docroot /var/www/html)', 'ddev exec php vendor/webconsulting/astryx-typo3/Build/Scripts/apply-schema.php', 'ddev exec php vendor/webconsulting/astryx-typo3/Build/Scripts/apply-schema.php --apply', '', '# Add webconsulting/astryx-typo3 and webconsulting/astryx-typo3-content-elements', '# to config/sites/<site>/config.yaml, then seed the showcase:', 'ddev exec vendor/bin/typo3 astryx-typo3:site:seed --content'])],
             // packages/astryx_typo3/THIRD_PARTY_NOTICES.md: Astryx is MIT, © Meta Platforms, Inc.
             'credits' => ['names' => ['Meta’s Astryx team'], 'project' => 'Astryx', 'link' => 'https://github.com/facebook/astryx'],
-            'cta' => ['header' => 'See all 250 elements on the live site', 'description' => 'Browse the ten chapters and the 25 theme pages of the Astryx lab site. Then install it from GitHub.', 'text' => 'See the elements', 'link' => '/astryx-typo3/components'],
+            'cta' => ['header' => 'See all 250 elements on the live site', 'description' => 'Browse the ten chapters and the 25 theme pages of the Astryx lab site. Then install it from GitHub.', 'text' => 'See the elements', 'link' => '{{site:astryx-typo3/components}}'],
         ];
     }
 
@@ -281,7 +281,7 @@ final class ShowcaseFeatureDefinitions
                 'header' => 'Run your blog with the pages you know',
                 'subheadline' => 'Posts are TYPO3 pages built from ordinary content elements. Desiderio’s templates style lists, posts, widgets and comments in your theme, in light and dark mode.',
                 'primaryButton' => ['text' => 'Get the extension', 'link' => 'https://github.com/TYPO3GmbH/blog'],
-                'secondaryButton' => ['text' => 'See the blog', 'link' => '/14/'],
+                'secondaryButton' => ['text' => 'See the blog', 'link' => '{{site:14lts}}'],
                 'image' => ShowcaseBlocks::screenshot('frontend-feature-blog-list-43957885.webp', 'Blog – Modern: newest post first, then cards', 'The TYPO3 v14 blog in Blog – Modern: topic tabs, the newest post as a large card and the next posts below.', 'Live screenshot from the TYPO3 v14 lab.'),
             ],
             'problem' => ['header' => 'Blog add-ons pull editors out of TYPO3', 'content' => '<p>Many blog setups keep posts in their own tables, with their own editor and rules. Editors learn a second tool, and staging a post needs a workaround. The blog rarely looks like the rest of the site.</p>'],
@@ -730,7 +730,7 @@ final class ShowcaseFeatureDefinitions
                 'header' => 'Search results that look like your site',
                 'subheadline' => 'Solr finds your pages and news. Desiderio’s templates style results, filters and page numbers with your theme, so search needs no design work.',
                 'primaryButton' => ['text' => 'Get the templates', 'link' => 'https://github.com/dirnbauer/desiderio'],
-                'secondaryButton' => ['text' => 'Try a search', 'link' => '/search/?tx_solr%5Bq%5D=Desiderio'],
+                'secondaryButton' => ['text' => 'Try a search', 'link' => '{{page:search}}&tx_solr%5Bq%5D=Desiderio'],
                 'image' => ShowcaseBlocks::screenshot('frontend-feature-solr-results-facets-38390880.webp', 'Results, filters and page numbers in your theme', 'Search results page for \'Desiderio\' with 53 results, content-type filters, sorting and numbered pagination.', 'Live screenshot from the TYPO3 v14 lab.'),
             ],
             'problem' => ['header' => 'Good search, off-brand results', 'content' => '<p>Solr’s default templates don’t match your design. Someone restyles results, filters and pagination on every project, and again after each redesign. Until then, visitors land on a search page that looks like another site.</p>'],
@@ -801,7 +801,7 @@ final class ShowcaseFeatureDefinitions
                 'header' => 'Forms your editors build without a developer',
                 'subheadline' => 'Editors set up fields, steps and receivers in the TYPO3 backend. Every field follows your theme, and Friendly Captcha keeps bots out.',
                 'primaryButton' => ['text' => 'Get the code', 'link' => 'https://github.com/dirnbauer/powermail'],
-                'secondaryButton' => ['text' => 'Try the forms', 'link' => '/desiderio-powermail-lab'],
+                'secondaryButton' => ['text' => 'Try the forms', 'link' => '{{page:desiderio-powermail-lab}}'],
                 'image' => ShowcaseBlocks::screenshot('frontend-feature-powermail-multistep-c566b100.webp', 'A four-step project request with a step indicator', 'Project request form, step one of four, with fields for name, email, phone, company and role.', 'Live screenshot from the TYPO3 v14 lab.'),
             ],
             'problem' => ['header' => 'Forms are where leads get lost', 'content' => '<p>Long forms put people off, and styling every field by hand takes days. Spam fills the inbox, and many captchas make real visitors solve puzzles.</p>'],
@@ -858,7 +858,7 @@ final class ShowcaseFeatureDefinitions
             // The fork ports in2code's Powermail: vendor/in2code/powermail/composer.json
             // (authors at in2code) and Readme.md (upstream in2code-de/powermail)
             'credits' => ['names' => ['in2code'], 'project' => 'Powermail', 'link' => 'https://github.com/in2code-de/powermail'],
-            'cta' => ['header' => 'Start from six working demo forms', 'description' => 'Contact, newsletter, callback, appointment, support and a four-step project request are ready to try. Each one has spam protection and its own thank-you page.', 'text' => 'Try the forms', 'link' => '/desiderio-powermail-lab'],
+            'cta' => ['header' => 'Start from six working demo forms', 'description' => 'Contact, newsletter, callback, appointment, support and a four-step project request are ready to try. Each one has spam protection and its own thank-you page.', 'text' => 'Try the forms', 'link' => '{{page:desiderio-powermail-lab}}'],
         ];
     }
 
@@ -879,7 +879,7 @@ final class ShowcaseFeatureDefinitions
                 'header' => 'Forms that understand what people write',
                 'subheadline' => 'Jev reads a message as the visitor fills in the form. Your forms then show the right fields and send mail to the right team.',
                 'primaryButton' => ['text' => 'Get the code', 'link' => 'https://github.com/dirnbauer/typo3-webcon-jev'],
-                'secondaryButton' => ['text' => 'Try the demo', 'link' => '/desiderio-powermail-jev/support-triage'],
+                'secondaryButton' => ['text' => 'Try the demo', 'link' => '{{page:desiderio-powermail-jev/support-triage}}'],
                 'image' => ShowcaseBlocks::screenshot('frontend-feature-jev-support-triage-c0dd4571.webp', 'A bug report brings up the reproduction field', 'Support form where a described bug revealed the extra field \'How can we reproduce it?\'.', 'Live screenshot from the TYPO3 v14 lab.'),
             ],
             'problem' => ['header' => 'Forms can’t read, so people sort by hand', 'content' => '<p>A form reacts to what someone clicks or types, not to what they mean. Every message lands in one inbox, and a person forwards it to sales, support or accounting. Meanwhile visitors answer questions that don’t apply to them.</p>'],
@@ -933,7 +933,7 @@ final class ShowcaseFeatureDefinitions
                 ],
             ],
             'install' => ['header' => 'Install Jev', 'code' => implode("\n", ['composer config repositories.webcon-jev vcs https://github.com/dirnbauer/typo3-webcon-jev.git', 'composer require webconsulting/webcon-jev', 'vendor/bin/typo3 extension:setup', '# Put your TypeSafe key into TYPESAFE_API_KEY, then move it into nr-vault:', 'vendor/bin/typo3 webcon-jev:token:import', 'vendor/bin/typo3 webcon-jev:ping'])],
-            'cta' => ['header' => 'Let your forms read before they route', 'description' => 'Install Jev, store a TypeSafe key and try a decision in the playground before any form uses it.', 'text' => 'Try the demo', 'link' => '/desiderio-powermail-jev/support-triage'],
+            'cta' => ['header' => 'Let your forms read before they route', 'description' => 'Install Jev, store a TypeSafe key and try a decision in the playground before any form uses it.', 'text' => 'Try the demo', 'link' => '{{page:desiderio-powermail-jev/support-triage}}'],
         ];
     }
 
@@ -954,7 +954,7 @@ final class ShowcaseFeatureDefinitions
                 'header' => 'One login for your site and backend',
                 'subheadline' => 'Visitors and editors sign in with a password, an email code or Google, Microsoft, GitHub and Apple. Business customers bring SSO and manage their own teams.',
                 'primaryButton' => ['text' => 'Get the code', 'link' => 'https://github.com/dirnbauer/workos'],
-                'secondaryButton' => ['text' => 'Try the login', 'link' => '/features/workos/frontend-plugins/login'],
+                'secondaryButton' => ['text' => 'Try the login', 'link' => '{{page:features/workos/frontend-plugins/login}}'],
                 'image' => ShowcaseBlocks::screenshot('frontend-feature-workos-login-c7ee547e.webp', 'A finished sign-in card, styled like your site', 'WorkOS sign-in card on the website with email, password, email code and Google, Microsoft, GitHub, Apple.', 'Live screenshot from the TYPO3 v14 lab.'),
             ],
             'problem' => ['header' => 'Every login you build is another project', 'content' => '<p>Customers expect to sign in with the identity their company already uses. Building SSO, MFA, email codes and team invitations yourself takes months. The backend then needs the same work again.</p>'],
@@ -1092,7 +1092,7 @@ final class ShowcaseFeatureDefinitions
                 'header' => 'Ask about your site. Approve every change.',
                 'subheadline' => 'A chat inside the TYPO3 backend that reads your pages and records with your permissions. When it wants to change something, it stops and asks.',
                 'primaryButton' => ['text' => 'Get the extension', 'link' => 'https://github.com/dirnbauer/typo3-ai-assistant'],
-                'secondaryButton' => ['text' => 'See the tools', 'link' => '/features/mcp-server'],
+                'secondaryButton' => ['text' => 'See the tools', 'link' => '{{page:ai/mcp-server}}'],
                 'image' => ShowcaseBlocks::screenshot('feature-ai-assistant-start-fba0e7bd.webp', 'A chat that knows your installation', 'AI Assistant module: conversation list, empty chat with suggested questions, and details with model, tools and limits.', 'Live screenshot from the TYPO3 v14 lab.'),
             ],
             'problem' => ['header' => 'Answers hide behind too many clicks', 'content' => '<p>Which pages sit below Features, and what did the log record last night? Finding out means clicking through page trees, lists and logs. Most AI tools that could help want an API key, broad access and blind trust.</p>'],
@@ -1167,7 +1167,7 @@ final class ShowcaseFeatureDefinitions
                 'header' => 'Set up AI once for every TYPO3 extension',
                 'subheadline' => 'Connect a provider once, keep the key encrypted and give every AI feature a named configuration you can test and switch.',
                 'primaryButton' => ['text' => 'Get nr-llm', 'link' => 'https://github.com/netresearch/t3x-nr-llm'],
-                'secondaryButton' => ['text' => 'See the assistant', 'link' => '/features/ai-assistant'],
+                'secondaryButton' => ['text' => 'See the assistant', 'link' => '{{page:ai/ai-assistant}}'],
                 'image' => ShowcaseBlocks::screenshot('feature-nr-llm-manual-overview-0d0bb65d.webp', 'Usage, cost and setup state at a glance', 'nr-llm overview with cost, request and token tiles, a requests-by-provider chart, daily requests and setup cards.', 'Live screenshot from the TYPO3 v14 lab.'),
             ],
             'problem' => ['header' => 'Every AI feature brings its own setup', 'content' => '<p>Each AI extension wants its own provider settings, its own place for the API key and its own bill. Switching models means touching every extension. Nobody can say what AI costs the site in total.</p>'],
@@ -1376,7 +1376,7 @@ final class ShowcaseFeatureDefinitions
                 'header' => 'Let Claude and Cursor work safely in TYPO3',
                 'subheadline' => 'Claude, Cursor and Codex get structured tools for pages, records and files. Writes follow TYPO3 permissions and, on production, land in a workspace first.',
                 'primaryButton' => ['text' => 'Get the extension', 'link' => 'https://github.com/dirnbauer/typo3-mcp-server'],
-                'secondaryButton' => ['text' => 'See the assistant', 'link' => '/features/ai-assistant'],
+                'secondaryButton' => ['text' => 'See the assistant', 'link' => '{{page:ai/ai-assistant}}'],
                 'image' => ShowcaseBlocks::screenshot('feature-mcp-server-connect-756d6fe9.webp', 'Step-by-step setup for Claude, Cursor and Codex', 'MCP Server module, Connect a client tab: server URL with copy button and numbered steps to add TYPO3 to Claude.', 'Live screenshot from the TYPO3 v14 lab.'),
             ],
             'problem' => ['header' => 'Copy and paste is not an AI workflow', 'content' => '<p>Your team already works in Claude or Cursor, but TYPO3 content reaches them by copy and paste. Direct database access is out of the question. So the assistant guesses, and someone retypes its answer in the backend.</p>'],
@@ -1448,7 +1448,7 @@ final class ShowcaseFeatureDefinitions
                 'header' => 'Decide what AI agents may do in TYPO3',
                 'subheadline' => 'Describe an action once, with its input, scopes and risk. MCP, the CLI, REST and the backend then run it through the same checks and log every attempt.',
                 'primaryButton' => ['text' => 'Get the extension', 'link' => 'https://github.com/dirnbauer/typo3-abilities'],
-                'secondaryButton' => ['text' => 'See MCP tools', 'link' => '/features/mcp-server'],
+                'secondaryButton' => ['text' => 'See MCP tools', 'link' => '{{page:ai/mcp-server}}'],
                 'image' => ShowcaseBlocks::screenshot('feature-typo3-abilities-registry-c4b411e5.webp', 'Every ability with its scopes and risk', 'Abilities registry with 13 abilities, risk badges from low to critical, scopes, side effects, surfaces and Run buttons.', 'Live screenshot from the TYPO3 v14 lab.'),
             ],
             'problem' => ['header' => 'Every new protocol opens another door', 'content' => '<p>MCP, REST, webhooks and the CLI each get their own endpoints and their own checks. The rules drift apart, and nobody can say which agent did what. An audit then turns into guesswork.</p>'],

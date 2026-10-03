@@ -6,6 +6,15 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.17.2] — 2026-10-03
+
+### Fixed
+
+- **The large testimonial's quotation mark shows again.** The mark sits
+  behind the first line with a negative z-index, and since the card paints
+  its own background that sent it behind the card: only a teal sliver beside
+  the first line was left. The quote is now the mark's stacking context.
+
 ## [4.17.1] — 2026-10-03
 
 ### Fixed

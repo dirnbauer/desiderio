@@ -6,6 +6,31 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.20.0] — 2026-10-04
+
+### Changed
+
+- **Both blog templates, polished.** Bylines stay on one line; category and
+  tag badges get shadcn's hover fill and focus ring, the open one is filled
+  and marked as current; sidebar widgets sit under one heading; pagination
+  is centred; overview cards are clickable as a whole and read "All posts";
+  the author page shows picture and role; the first picture loads eagerly;
+  an empty comment box offers "Write comment"; hover motion only on fine
+  pointers, one gentle zoom, reduced-motion safe.
+- **The corporate starter, page by page.** A stronger first screen, calm
+  bands alternating with panels, full card rows, sector photos and studio
+  portraits, figures, steps and a quote on each service page, fictional but
+  complete contact data, legal pages from the legal elements, a 404 with
+  popular pages, search that stays on the starter, clearer English.
+
+### Fixed
+
+- The starter's buttons and links lead somewhere: the seeder stored them as
+  `#contact`, `#case-studies` and `/`, and now creates the pages first and
+  writes `t3://page` links.
+- The pagination's page numbers are no longer underlined, and a single post
+  reads "1 post" next to "8 posts".
+
 ## [4.19.0] — 2026-10-03
 
 ### Added

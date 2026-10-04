@@ -157,9 +157,12 @@
 
 <f:section name="extra">
     <div id="tx-solr-search-functions" class="space-y-6">
+        <f:comment>No facet with options, no facet block: an empty one still took a gap in the sidebar.</f:comment>
         <f:if condition="{resultSet.hasSearched}">
             <f:if condition="{resultSet.usedSearchRequest.contextTypoScriptConfiguration.searchFaceting}">
-                <f:render partial="Result/Facets" section="Facets" arguments="{resultSet:resultSet}" />
+                <f:if condition="{resultSet.facets.available -> f:count()} || {resultSet.facets.used -> f:count()}">
+                    <f:render partial="Result/Facets" section="Facets" arguments="{resultSet:resultSet}" />
+                </f:if>
             </f:if>
         </f:if>
 

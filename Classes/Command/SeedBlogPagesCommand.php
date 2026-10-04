@@ -11,9 +11,12 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Resource\StorageRepository;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use Webconsulting\Desiderio\Seeding\BlogPageTreeLocator;
 use Webconsulting\Desiderio\Seeding\BlogPageTreeSeeder;
+use Webconsulting\Desiderio\Seeding\DatabaseSchemaHelper;
+use Webconsulting\Desiderio\Seeding\ExtensionFalSeeder;
 
 #[AsCommand(
     name: 'desiderio:blog:seed-pages',
@@ -27,6 +30,8 @@ final class SeedBlogPagesCommand extends Command
 
     public function __construct(
         private readonly ConnectionPool $connectionPool,
+        private readonly StorageRepository $storageRepository,
+        private readonly DatabaseSchemaHelper $databaseSchema,
     ) {
         parent::__construct();
     }
@@ -148,7 +153,16 @@ final class SeedBlogPagesCommand extends Command
 
     private function getBlogPageTreeSeeder(): BlogPageTreeSeeder
     {
-        return $this->blogPageTreeSeeder ??= new BlogPageTreeSeeder($this->connectionPool);
+        return $this->blogPageTreeSeeder ??= new BlogPageTreeSeeder(
+            $this->connectionPool,
+            new ExtensionFalSeeder(
+                $this->connectionPool,
+                $this->storageRepository,
+                $this->databaseSchema,
+                BlogPageTreeSeeder::FAL_FOLDER,
+                1791100801,
+            ),
+        );
     }
 
     private function getBlogPageTreeLocator(): BlogPageTreeLocator

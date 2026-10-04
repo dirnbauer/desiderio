@@ -17,8 +17,9 @@
         <ol class="feature-timeline__list">
             <f:for each="{data.items}" as="item" iteration="iter">
                 <li class="feature-timeline__item">
+                    <f:variable name="stepLength" value="{item.step -> f:format.trim() -> f:length()}"/>
                     <div class="feature-timeline__marker">
-                        <span class="feature-timeline__dot">{item -> f:render.text(field: 'step')}</span>
+                        <span class="feature-timeline__dot{f:if(condition: '{stepLength} > 3', then: ' feature-timeline__dot--long')}">{item -> f:render.text(field: 'step')}</span>
                     </div>
                     <div class="feature-timeline__card">
                         <d:atom.typography tag="h3" variant="h3" class="feature-timeline__title">{item -> f:render.text(field: 'title')}</d:atom.typography>

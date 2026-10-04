@@ -6,6 +6,47 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.21.0] — 2026-10-04
+
+### Added
+
+- **Demo blog posts with pictures.** `desiderio:blog:seed-pages` gives each
+  demo post a featured image (generated photographs in
+  `Resources/Public/Styleguide/Blog/`, imported into `fileadmin/desiderio-blog/`)
+  when the post has none, so every card of the Modern template's grid shows
+  one. A picture an editor chose stays.
+
+### Changed
+
+- **TYPO3 topics instead of lifestyle posts.** The demo blog's spring
+  walk and Easter egg posts give way to "Writing teasers for the blog list"
+  and "A calm layout for long posts". Reseeding soft-deletes the old two
+  with their content, comments and file references, and drops their tags
+  once no post uses them.
+- **One comment per post, each its own.** Every demo post gets a reader
+  comment with its own author and text, so "Recent comments" no longer
+  lists the same example comment three times; the old shared comment is
+  removed.
+
+### Fixed
+
+- **CTA card:** the footer's top border floated as a short line above the
+  button, with 4rem of card below it. The element padded the card itself
+  and broke the card's own spacing; it now sets `--card-spacing`, so the
+  footer is a band across the card again. Badge, title and lead are one
+  group in the card header.
+- **Feature timeline:** a marker longer than three characters ("Week 1")
+  reached the edge of its circle, on phones most of all. Such markers get
+  a smaller face on two lines, and on phones the list keeps the full circle
+  size.
+- **Search:** a results page without facets no longer shows an empty filter
+  block in its sidebar.
+- **Blog list:** an element below the posts (the blog search) no longer
+  sits flush against the last post with a section seam on its edge; it
+  keeps the list's spacing, and the column draws no seams.
+- `desiderio-tailwind.css` is rebuilt from the current templates; 4.20.0
+  shipped it without `no-underline`, which the pagination uses.
+
 ## [4.20.0] — 2026-10-04
 
 ### Changed

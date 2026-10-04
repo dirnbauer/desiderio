@@ -25,6 +25,19 @@ article[itemtype="https://schema.org/BlogPosting"] [itemprop="articleBody"] .ce-
     padding-inline: 0;
 }
 
+/* Without that padding a section seam sat on the next element's edge (the
+   blog search below the posts): the column has no seams, and an element
+   after the first keeps the post list's own spacing. */
+.desiderio-blog-list__content {
+    --d-seam-line: none;
+    --d-seam-mark: none;
+    --d-seam-grow: none;
+}
+
+.desiderio-blog-list__content > .desiderio-section ~ .desiderio-section {
+    margin-top: 3.5rem;
+}
+
 .ce-fsc__intro,
 .ce-fsc-text,
 .ce-fsc-header,

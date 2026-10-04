@@ -35,10 +35,22 @@ final readonly class BlogPageTreeSeeder
     public const int BLOG_CATEGORY_RECORD_TYPE = 100;
 
     private const array LEGACY_DEFAULT_TAG_TITLES = ['Accessibility', 'TYPO3'];
-    private const array REMOVABLE_LEGACY_TAG_TITLES = ['Accessibility'];
+    /**
+     * Tags the seeder removes once no live post uses them: an old default and
+     * the tags of the retired lifestyle demo posts.
+     */
+    private const array REMOVABLE_LEGACY_TAG_TITLES = ['Accessibility', 'Easter', 'Spring', 'Connection', 'Family', 'Decor'];
 
+    /** Where the demo posts' featured images land in the default storage. */
+    public const string FAL_FOLDER = 'desiderio-blog';
+
+    /**
+     * @param ExtensionFalSeeder|null $falSeeder Imports the demo posts' featured
+     *        images; without one the posts are seeded without pictures.
+     */
     public function __construct(
         private ConnectionPool $connectionPool,
+        private ?ExtensionFalSeeder $falSeeder = null,
     ) {}
 
     /**
@@ -123,7 +135,8 @@ final readonly class BlogPageTreeSeeder
                 $this->mapTitlesToUids($post['tags'], $tagUids),
                 $authorUid
             );
-            $this->ensureComment($postUid);
+            $this->ensureComment($postUid, $post['comment']);
+            $this->ensureFeaturedImage($postUid, $folderUid, $post['title'], $post['image']);
 
             foreach ($post['content'] as $contentIndex => $content) {
                 if ($this->ensureContentElement($postUid, $content['header'], $content['body'], ($contentIndex + 1) * 100)) {
@@ -142,6 +155,9 @@ final readonly class BlogPageTreeSeeder
             )),
             $authorUid
         );
+        // Retire first, so the retired posts no longer count as using a tag.
+        $this->retireDemoPosts($folderUid);
+        $this->removeLegacyExampleComments($folderUid);
         $this->removeOrphanedLegacyTags($folderUid);
 
         return [
@@ -511,7 +527,13 @@ final readonly class BlogPageTreeSeeder
         ], ['uid' => $postUid]);
     }
 
-    public function ensureComment(int $postUid): void
+    /**
+     * One comment per demo post, each with its own author and text: the
+     * "Recent comments" widget lists them side by side.
+     *
+     * @param array{name: string, email: string, text: string} $comment
+     */
+    public function ensureComment(int $postUid, array $comment): void
     {
         $queryBuilder = $this->connectionPool->getQueryBuilderForTable('tx_blog_domain_model_comment');
         $queryBuilder->getRestrictions()->removeAll();
@@ -522,9 +544,13 @@ final readonly class BlogPageTreeSeeder
             ->where(
                 $queryBuilder->expr()->eq('parentid', $queryBuilder->createNamedParameter($postUid, ParameterType::INTEGER)),
                 $queryBuilder->expr()->eq('parenttable', $queryBuilder->createNamedParameter('pages')),
-                // Earlier seeds signed the demo comment with team@webconsulting.at;
-                // finding it by either address updates it instead of adding a second one.
-                $queryBuilder->expr()->in('email', $queryBuilder->createNamedParameter(['office@webconsulting.at', 'team@webconsulting.at'], ArrayParameterType::STRING)),
+                // Earlier seeds signed the one shared demo comment with an
+                // office address; finding it by those too turns it into this
+                // post's own comment instead of adding a second one.
+                $queryBuilder->expr()->in('email', $queryBuilder->createNamedParameter(
+                    [$comment['email'], 'office@webconsulting.at', 'team@webconsulting.at'],
+                    ArrayParameterType::STRING
+                )),
                 $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER))
             )
             ->setMaxResults(1)
@@ -534,10 +560,10 @@ final readonly class BlogPageTreeSeeder
         $now = time();
         $data = [
             'tstamp' => $now,
-            'name' => 'Webconsulting team',
-            'url' => 'https://webconsulting.at/',
-            'email' => 'office@webconsulting.at',
-            'comment' => 'This is an example comment. Readers can comment on every post, and an editor approves each comment before it appears.',
+            'name' => $comment['name'],
+            'url' => '',
+            'email' => $comment['email'],
+            'comment' => $comment['text'],
             'parentid' => $postUid,
             'parenttable' => 'pages',
             'post_language_id' => 0,
@@ -555,6 +581,162 @@ final readonly class BlogPageTreeSeeder
             'pid' => $postUid,
             'crdate' => $now,
         ]));
+    }
+
+    /**
+     * Gives a demo post its picture when it has none. A picture an editor
+     * chose stays: the seeder only fills the gap, so every card of the Modern
+     * template's grid has an image.
+     *
+     * @param array{file: string, alternative: string} $image
+     */
+    public function ensureFeaturedImage(int $postUid, int $folderUid, string $title, array $image): void
+    {
+        if (!$this->falSeeder instanceof ExtensionFalSeeder) {
+            return;
+        }
+
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('sys_file_reference');
+        $queryBuilder->getRestrictions()->removeAll();
+        $existing = (int)$queryBuilder
+            ->count('uid')
+            ->from('sys_file_reference')
+            ->where(
+                $queryBuilder->expr()->eq('tablenames', $queryBuilder->createNamedParameter('pages')),
+                $queryBuilder->expr()->eq('fieldname', $queryBuilder->createNamedParameter('featured_image')),
+                $queryBuilder->expr()->eq('uid_foreign', $queryBuilder->createNamedParameter($postUid, ParameterType::INTEGER)),
+                $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER))
+            )
+            ->executeQuery()
+            ->fetchOne();
+        if ($existing > 0) {
+            return;
+        }
+
+        $now = time();
+        $this->falSeeder->seedFileReferences('pages', $postUid, $folderUid, $now, [
+            'featured_image' => [[
+                'file' => $image['file'],
+                'title' => $title,
+                'alternative' => $image['alternative'],
+                'description' => 'Illustrative photo, generated.',
+                'source' => '',
+            ]],
+        ]);
+        $this->connectionPool->getConnectionForTable('pages')->update('pages', ['featured_image' => 1, 'tstamp' => $now], ['uid' => $postUid]);
+    }
+
+    /**
+     * Soft-deletes the demo posts earlier versions seeded and the definitions
+     * no longer have, with their content elements, comments and file references.
+     */
+    public function retireDemoPosts(int $folderUid): void
+    {
+        // Retired earlier or not: what is still live of such a post goes now.
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('pages');
+        $queryBuilder->getRestrictions()->removeAll();
+        $postUids = $queryBuilder
+            ->select('uid')
+            ->from('pages')
+            ->where(
+                $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($folderUid, ParameterType::INTEGER)),
+                $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)),
+                $queryBuilder->expr()->in('slug', $queryBuilder->createNamedParameter(BlogDemoPostDefinitions::retiredSlugs(), ArrayParameterType::STRING))
+            )
+            ->executeQuery()
+            ->fetchFirstColumn();
+
+        $now = time();
+        $live = ['deleted' => 0];
+        foreach (array_map('intval', $postUids) as $postUid) {
+            $this->softDeleteFileReferences('pages', $this->uidsWhere('pages', 'l10n_parent', $postUid, [$postUid]), $now);
+            $this->softDeleteFileReferences('tt_content', $this->uidsWhere('tt_content', 'pid', $postUid), $now);
+            // The post and its translations.
+            $this->connectionPool->getConnectionForTable('pages')->update('pages', ['deleted' => 1, 'tstamp' => $now], ['uid' => $postUid] + $live);
+            $this->connectionPool->getConnectionForTable('pages')->update('pages', ['deleted' => 1, 'tstamp' => $now], ['l10n_parent' => $postUid] + $live);
+            $this->connectionPool->getConnectionForTable('tt_content')->update('tt_content', ['deleted' => 1, 'tstamp' => $now], ['pid' => $postUid] + $live);
+            $this->connectionPool->getConnectionForTable('tx_blog_domain_model_comment')->update(
+                'tx_blog_domain_model_comment',
+                ['deleted' => 1, 'tstamp' => $now],
+                ['parentid' => $postUid, 'parenttable' => 'pages'] + $live
+            );
+        }
+    }
+
+    /**
+     * Uids of a table where a column has a value, deleted or not, plus the
+     * given extra uids.
+     *
+     * @param list<int> $extra
+     * @return list<int>
+     */
+    private function uidsWhere(string $table, string $column, int $value, array $extra = []): array
+    {
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable($table);
+        $queryBuilder->getRestrictions()->removeAll();
+        $uids = $queryBuilder
+            ->select('uid')
+            ->from($table)
+            ->where($queryBuilder->expr()->eq($column, $queryBuilder->createNamedParameter($value, ParameterType::INTEGER)))
+            ->executeQuery()
+            ->fetchFirstColumn();
+
+        return array_values(array_unique([...$extra, ...array_map('intval', $uids)]));
+    }
+
+    /**
+     * @param list<int> $foreignUids
+     */
+    private function softDeleteFileReferences(string $table, array $foreignUids, int $now): void
+    {
+        if ($foreignUids === []) {
+            return;
+        }
+
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('sys_file_reference');
+        $queryBuilder
+            ->update('sys_file_reference')
+            ->set('deleted', 1)
+            ->set('tstamp', $now)
+            ->where(
+                $queryBuilder->expr()->eq('tablenames', $queryBuilder->createNamedParameter($table)),
+                $queryBuilder->expr()->in('uid_foreign', $queryBuilder->createNamedParameter($foreignUids, ArrayParameterType::INTEGER)),
+                $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER))
+            )
+            ->executeStatement();
+    }
+
+    /**
+     * Soft-deletes the shared example comment earlier versions left on every
+     * post of this blog — on an editor's post too, where it never belonged.
+     */
+    public function removeLegacyExampleComments(int $folderUid): void
+    {
+        $pages = $this->connectionPool->getQueryBuilderForTable('pages');
+        $pages->getRestrictions()->removeAll();
+        $postUids = array_map('intval', $pages
+            ->select('uid')
+            ->from('pages')
+            ->where($pages->expr()->eq('pid', $pages->createNamedParameter($folderUid, ParameterType::INTEGER)))
+            ->executeQuery()
+            ->fetchFirstColumn());
+        if ($postUids === []) {
+            return;
+        }
+
+        $comments = $this->connectionPool->getQueryBuilderForTable('tx_blog_domain_model_comment');
+        $comments->getRestrictions()->removeAll();
+        $comments
+            ->update('tx_blog_domain_model_comment')
+            ->set('deleted', 1)
+            ->set('tstamp', time())
+            ->where(
+                $comments->expr()->in('parentid', $comments->createNamedParameter($postUids, ArrayParameterType::INTEGER)),
+                $comments->expr()->eq('parenttable', $comments->createNamedParameter('pages')),
+                $comments->expr()->eq('comment', $comments->createNamedParameter(BlogDemoPostDefinitions::LEGACY_EXAMPLE_COMMENT)),
+                $comments->expr()->eq('deleted', $comments->createNamedParameter(0, ParameterType::INTEGER))
+            )
+            ->executeStatement();
     }
 
     public function ensureContentElement(int $postUid, string $header, string $bodytext, int $sorting): bool

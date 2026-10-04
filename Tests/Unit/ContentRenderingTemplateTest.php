@@ -722,7 +722,11 @@ final class ContentRenderingTemplateTest extends TestCase
         $items = $fixture['items'] ?? [];
         self::assertIsArray($items);
 
-        self::assertStringContainsString('class="feature-timeline__dot"', $template);
+        // A marker of more than three characters ("Week 1") gets the
+        // two-line style that keeps it inside the circle.
+        self::assertStringContainsString('class="feature-timeline__dot{f:if(condition: \'{stepLength} > 3\', then: \' feature-timeline__dot--long\')}"', $template);
+        self::assertStringContainsString('.feature-timeline__dot--long {', $css);
+        self::assertStringContainsString('.feature-timeline__list:has(.feature-timeline__dot--long)', $css);
         self::assertStringContainsString("f:render.text(field: 'step')", $template);
         self::assertSame(['1', '2', '3', '4'], array_column($items, 'step'));
 

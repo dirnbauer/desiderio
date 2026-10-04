@@ -143,10 +143,25 @@
     margin: 0;
 }
 
+/* A marker longer than three characters ("Week 1", "Day 12") takes two
+   lines. A smaller face keeps both inside the circle; at the default size
+   "Week" reached the circle's edge. */
+.feature-timeline__dot--long {
+    font-size: var(--d-text-xs);
+    line-height: var(--d-leading-tight);
+    padding-inline: var(--d-spacing-2xs);
+}
+
 @media (max-width: 640px) {
     .feature-timeline__list {
         --feature-timeline-marker-size: 2.5rem;
         --feature-timeline-gap: var(--d-spacing-md);
+    }
+
+    /* Phones shrink the circles; with two-line markers the list keeps the
+       full size, so the label still fits. */
+    .feature-timeline__list:has(.feature-timeline__dot--long) {
+        --feature-timeline-marker-size: 3rem;
     }
 
     .feature-timeline__card {

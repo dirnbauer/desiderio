@@ -31,7 +31,8 @@
                     </div>
                     <d:atom.typography tag="h3" variant="h3" class="partner-grid__name">{item -> f:render.text(field: 'name')}</d:atom.typography>
                     <f:if condition="{item.kind}">
-                        <d:atom.badge variant="secondary" class="partner-grid__kind">{item -> f:render.text(field: 'kind')}</d:atom.badge>
+                        <f:comment>A label wider than a narrow card ends in an ellipsis instead of being cut off; the whole label stays in the tooltip.</f:comment>
+                        <d:atom.badge variant="secondary" class="partner-grid__kind" attributes="{title: item.kind}"><span class="partner-grid__kind-text">{item -> f:render.text(field: 'kind')}</span></d:atom.badge>
                     </f:if>
                     <f:if condition="{item.link.url}">
                         <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="partner-grid__link">

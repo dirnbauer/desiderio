@@ -51,6 +51,10 @@
     margin-block-end: var(--d-spacing-md);
     padding-inline: 0;
 }
+/* The badge never grows wider than its card; a long label ends in an
+   ellipsis (two cards side by side on a phone leave about 120px). */
+.partner-grid__kind { max-width: 100%; }
+.partner-grid__kind-text { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 /* Two logos per row on a phone as well: a logo wall reads as a wall, not
    as a column of tall cards. */
 @media (max-width: 640px) {

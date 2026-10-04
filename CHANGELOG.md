@@ -6,6 +6,16 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.22.1] — 2026-10-04
+
+### Fixed
+
+- **Partner grid:** a partner's label wider than its card (two cards side by
+  side on a phone leave about 120px) was cut off mid-letter. It now ends in
+  an ellipsis and keeps the whole label as a tooltip; the element library's
+  demo labels are badge-length ("Engineering", "Typefaces", "Testing").
+  Browser QA's render sweep reported it.
+
 ## [4.22.0] — 2026-10-04
 
 ### Added

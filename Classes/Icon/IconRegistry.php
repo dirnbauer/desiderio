@@ -569,6 +569,11 @@ final class IconRegistry
                 'group' => 'Status',
                 'paths' => '<path d="M16 17h6v-6"/><path d="m22 17-8.5-8.5-5 5L2 7"/>',
             ],
+            'trending-flat' => [
+                'label' => 'Trending Flat',
+                'group' => 'Status',
+                'paths' => '<path d="M2 12h20"/><path d="m18 8 4 4-4 4"/>',
+            ],
             'minus' => [
                 'label' => 'Minus',
                 'group' => 'Status',

@@ -1225,6 +1225,24 @@
         <target>Neutral</target>
       </segment>
     </unit>
+    <unit id="item.no_trend">
+      <segment state="final">
+        <source>No trend</source>
+        <target>Kein Trend</target>
+      </segment>
+    </unit>
+    <unit id="item.positive">
+      <segment state="final">
+        <source>Positive</source>
+        <target>Positiv</target>
+      </segment>
+    </unit>
+    <unit id="item.caution">
+      <segment state="final">
+        <source>Caution</source>
+        <target>Achtung</target>
+      </segment>
+    </unit>
     <unit id="item.muted">
       <segment state="final">
         <source>Muted</source>

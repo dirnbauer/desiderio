@@ -1,6 +1,7 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
       xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
       xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      xmlns:dv="http://typo3.org/ns/Webconsulting/Desiderio/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
 <f:asset.css identifier="d-textmedia" href="{cb:assetPath()}/frontend.css"/>
@@ -17,9 +18,16 @@
                     </video>
                 </f:then>
                 <f:else>
+                    <f:comment>The element that opens the page loads its picture at once: it is usually the largest paint. Every other picture stays lazy.</f:comment>
+                    <f:variable name="imageLoading" value="lazy"/>
+                    <f:variable name="imageAttributes" value="{decoding: 'async'}"/>
+                    <f:if condition="{dv:opensPage(record: data)}">
+                        <f:variable name="imageLoading" value="eager"/>
+                        <f:variable name="imageAttributes" value="{decoding: 'async', fetchpriority: 'high'}"/>
+                    </f:if>
                     <d:molecule.lightbox src="{f:uri.image(image: data.media.0, maxWidth: 1920)}">
                         <f:image image="{data.media.0}" alt="{f:if(condition: data.media.0.alternative, then: data.media.0.alternative, else: data.header)}" maxWidth="{maxWidth}"
-                                 class="textmedia__media {f:if(condition: data.media_rounded, then: 'textmedia__media--rounded')}" loading="lazy" decoding="async"/>
+                                 class="textmedia__media {f:if(condition: data.media_rounded, then: 'textmedia__media--rounded')}" loading="{imageLoading}" additionalAttributes="{imageAttributes}"/>
                     </d:molecule.lightbox>
                 </f:else>
             </f:if>

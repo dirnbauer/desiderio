@@ -25,5 +25,9 @@ a.sitemap-grid__link {
 @media (max-width: 640px), (pointer: coarse) {
     .sitemap-grid__links { gap: 0; }
     .sitemap-grid__link { display: inline-flex; align-items: center; min-block-size: 2.75rem; }
+    /* The last row's air below its text made the section's bottom look 14px
+       deeper than its top (54px against 40px on a phone); the grid gives it
+       back. The row keeps its full 44px. */
+    .sitemap-grid__grid { margin-block-end: calc((var(--d-text-sm) - 2.75rem) / 2); }
 }
 @media (prefers-reduced-motion: reduce) { .sitemap-grid__link { transition: none; } }

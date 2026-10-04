@@ -6,6 +6,34 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.22.0] — 2026-10-04
+
+### Added
+
+- **KPI cards without a trend.** The trend field offers "No trend", now the
+  default for new figures: the card shows the number and its label without
+  an arrow and without the trend colour. Figures that state a fact (244
+  elements) no longer have to claim a direction.
+- `<dv:opensPage record="{data}"/>` tells a content element whether it opens
+  the page: the first element of the main column on the page being rendered,
+  read the way the page reads its content (visibility, language overlay,
+  workspace).
+
+### Fixed
+
+- **KPI cards:** "steady" showed a minus sign, which read as "down"; it is a
+  level line now (the new `trending-flat` icon). The trend options carry
+  translated labels (en, de) instead of English text.
+- **Split Text & Media:** the picture of the element that opens a page (the
+  starter's service pages, the success stories) loads at once with a high
+  fetch priority instead of lazily; it is usually the largest paint. Every
+  other picture stays lazy.
+- **Sitemap grid:** on phones the 44px link rows left 14px more air below the
+  last link than above the heading; the grid gives it back.
+- The styleguide seeding test counted the homepage's "More sites on this
+  TYPO3 installation" block, which the seeder rightly leaves out on an
+  installation without those sites; the functional suite passes again.
+
 ## [4.21.0] — 2026-10-04
 
 ### Added

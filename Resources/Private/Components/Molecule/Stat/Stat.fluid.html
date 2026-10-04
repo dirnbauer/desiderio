@@ -44,7 +44,8 @@
                     <f:switch expression="{direction}">
                         <f:case value="up"><d:atom.icon name="trending-up" size="sm" /></f:case>
                         <f:case value="down"><d:atom.icon name="trending-down" size="sm" /></f:case>
-                        <f:defaultCase><d:atom.icon name="minus" size="sm" /></f:defaultCase>
+                        <f:comment>A level line, not a minus: a minus read as "down".</f:comment>
+                        <f:defaultCase><d:atom.icon name="trending-flat" size="sm" /></f:defaultCase>
                     </f:switch>
                 </span>
                 <span class="sr-only">

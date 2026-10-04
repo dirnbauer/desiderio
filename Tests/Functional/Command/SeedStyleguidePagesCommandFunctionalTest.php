@@ -264,6 +264,12 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
 
         $count = 0;
         foreach ($blocks as $block) {
+            // The test installation has no other sites, and the seeder leaves
+            // out a block whose items only name sites it lacks (the
+            // homepage's "More sites on this TYPO3 installation").
+            if (self::onlyNamesOtherSites($block)) {
+                continue;
+            }
             $blockCtype = $block['ctype'];
             if (($prefix && str_starts_with($blockCtype, $ctype)) || (!$prefix && $blockCtype === $ctype)) {
                 $count++;
@@ -271,6 +277,26 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
         }
 
         return $count;
+    }
+
+    /**
+     * @param array<string, mixed> $block
+     */
+    private static function onlyNamesOtherSites(array $block): bool
+    {
+        $fields = $block['fields'] ?? null;
+        $items = is_array($fields) ? ($fields['items'] ?? null) : null;
+        if (!is_array($items) || $items === []) {
+            return false;
+        }
+        foreach ($items as $item) {
+            $link = is_array($item) ? ($item['link'] ?? null) : null;
+            if (!is_string($link) || preg_match('/^\{\{site:[^}]+\}\}$/', $link) !== 1) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**

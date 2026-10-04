@@ -17,8 +17,9 @@
 
         <div class="kpi-cards__grid kpi-cards__grid--cols-{data.columns -> f:or(alternative: '4')}">
             <f:for each="{data.items}" as="item">
-                <article class="kpi-cards__item kpi-cards__item--{item.trend -> f:or(alternative: 'positive')}">
-                    <d:molecule.stat prefix="kpi-cards" trend="{item.trend -> f:or(alternative: 'positive')}" labelTag="h3">
+                <f:comment>No trend chosen, no arrow: the figure stands on its own.</f:comment>
+                <article class="kpi-cards__item{f:if(condition: item.trend, then: ' kpi-cards__item--{item.trend}')}">
+                    <d:molecule.stat prefix="kpi-cards" trend="{item.trend}" labelTag="h3">
                         <f:fragment name="value">{item -> f:render.text(field: 'value')}</f:fragment>
                         <f:fragment name="label">{item -> f:render.text(field: 'label')}</f:fragment>
                     </d:molecule.stat>

@@ -84,8 +84,8 @@ final class TrendAndImagePriorityTest extends TestCase
         $record = self::createStub(RecordInterface::class);
         $record->method('getMainType')->willReturn('tt_content');
         $record->method('getUid')->willReturn(42);
-        $record->method('has')->willReturnCallback(static fn (string $field): bool => $field === 'colPos');
-        $record->method('get')->willReturnCallback(static fn (string $field): mixed => $field === 'colPos' ? $colPos : null);
+        $record->method('has')->willReturnCallback(static fn(string $field): bool => $field === 'colPos');
+        $record->method('get')->willReturnCallback(static fn(string $field): mixed => $field === 'colPos' ? $colPos : null);
 
         return $record;
     }

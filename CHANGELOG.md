@@ -6,6 +6,20 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.22.2] — 2026-10-05
+
+### Fixed
+
+- **Checkboxes outside Powermail forms showed no tick.** The tick icon's
+  classes (`ControlClass` slot `checkboxIcon`) carried both `text-current`,
+  from shadcn's checkbox indicator, and `text-background`. shadcn's indicator
+  sits inside the checkbox; Desiderio's is a sibling of a native input, and
+  `text-current` won in the compiled CSS, so the tick took the label's
+  colour on a checked box filled with that same colour. The GDPR banner's
+  consent checkboxes showed a solid square. Powermail forms were unaffected,
+  because a Powermail-only rule already set the tick's colour. The shadcn
+  sync script now drops `text-current` from the indicator recipe.
+
 ## [4.22.1] — 2026-10-04
 
 ### Fixed

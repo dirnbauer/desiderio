@@ -778,6 +778,12 @@ function composeControlClassMap(array $recipes): array
     $textarea = normalizeClass($recipes['textarea'] . ' ' . $controlMarker . ' min-w-0');
     $checkbox = normalizeClass(nativeCheckedClass($recipes['checkbox']['root']) . ' ' . $controlMarker . ' peer appearance-none size-4! min-h-4!');
     $radio = normalizeClass(nativeCheckedClass($recipes['radio']['item']) . ' ' . $controlMarker . ' peer appearance-none size-4! min-h-4!');
+    // shadcn's indicator sits inside the checkbox and inherits its checked
+    // ink through text-current. Here it is a sibling of a native input, so it
+    // sets its own ink (text-background on the checked foreground fill);
+    // text-current comes later in the compiled CSS and would draw the tick in
+    // the fill's own colour.
+    $checkboxIndicator = removeClassTokens($recipes['checkbox']['indicator'], ['text-current']);
 
     return [
         'alertDestructive' => 'rounded-md border border-destructive/30 bg-destructive/10 p-4 text-sm text-[var(--d-danger-text)]',
@@ -791,7 +797,7 @@ function composeControlClassMap(array $recipes): array
         'cardDescription' => $recipes['card']['description'],
         'cardHeaderBordered' => normalizeClass($recipes['card']['header'] . ' border-b'),
         'cardTitle' => $recipes['card']['title'],
-        'checkboxIcon' => normalizeClass($recipes['checkbox']['indicator'] . ' pointer-events-none absolute left-1/2 top-1/2 size-3.5 -translate-x-1/2 -translate-y-1/2 text-background opacity-0 transition-opacity peer-checked:opacity-100'),
+        'checkboxIcon' => normalizeClass($checkboxIndicator . ' pointer-events-none absolute left-1/2 top-1/2 size-3.5 -translate-x-1/2 -translate-y-1/2 text-background opacity-0 transition-opacity peer-checked:opacity-100'),
         'checkboxInput' => $checkbox,
         'field' => $fieldVertical,
         'fieldHorizontal' => $fieldHorizontal,

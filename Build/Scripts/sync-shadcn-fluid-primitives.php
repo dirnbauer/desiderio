@@ -681,7 +681,7 @@ function renderLabel(string $class, string $header): string
 
 function renderSelect(array $recipe, string $header): string
 {
-    $class = normalizeClass($recipe['trigger'] . ' d-shadcn-control max-w-full appearance-none pr-8');
+    $class = normalizeClass(nativeSelectTrigger($recipe['trigger']) . ' d-shadcn-control w-full min-w-0 max-w-full appearance-none pr-8');
     $wrapperClass = 'relative block w-full';
     $iconClass = 'pointer-events-none absolute end-2 top-1/2 size-4 -translate-y-1/2 text-muted-foreground opacity-70';
 
@@ -773,7 +773,7 @@ function composeControlClassMap(array $recipes): array
         ]
     );
     $input = normalizeClass($recipes['input'] . ' ' . $controlMarker . ' min-w-0');
-    $select = normalizeClass($recipes['select']['trigger'] . ' ' . $controlMarker . ' w-full min-w-0 max-w-full');
+    $select = normalizeClass(nativeSelectTrigger($recipes['select']['trigger']) . ' ' . $controlMarker . ' w-full min-w-0 max-w-full');
     $nativeSelect = normalizeClass($select . ' appearance-none pr-8');
     $textarea = normalizeClass($recipes['textarea'] . ' ' . $controlMarker . ' min-w-0');
     $checkbox = normalizeClass(nativeCheckedClass($recipes['checkbox']['root']) . ' ' . $controlMarker . ' peer appearance-none size-4! min-h-4!');
@@ -1235,6 +1235,17 @@ function neutralizeNativeCheckedState(string $class): string
 /**
  * @param list<string> $tokensToRemove
  */
+/**
+ * shadcn's select trigger is w-fit: a popover button sized to its value. A
+ * native <select> fills its field the way an input does, and its chevron is
+ * drawn at the end of a full-width wrapper, so it must be full width too.
+ * Next to w-full, w-fit left the width to the order of the compiled CSS.
+ */
+function nativeSelectTrigger(string $trigger): string
+{
+    return removeClassTokens($trigger, ['w-fit']);
+}
+
 function removeClassTokens(string $class, array $tokensToRemove): string
 {
     $tokens = preg_split('/\s+/', trim($class)) ?: [];

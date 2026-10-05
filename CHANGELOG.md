@@ -6,6 +6,18 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.22.3] — 2026-10-05
+
+### Fixed
+
+- **Select atom:** `<d:atom.select>` was only as wide as its longest option
+  (shadcn's trigger is `w-fit`) while its wrapper and chevron spanned the
+  column, so in a wide field the chevron sat away from the box. It fills its
+  field now, like an input. The `select` and `selectNative` control classes
+  carried `w-fit` next to `w-full`, which left the width to the order of the
+  compiled CSS; the shadcn sync script drops `w-fit` from the select recipe.
+  Powermail's select fields were already full width and look the same.
+
 ## [4.22.2] — 2026-10-05
 
 ### Fixed

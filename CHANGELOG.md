@@ -6,6 +6,13 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.23.2] — 2026-10-12
+
+### Fixed
+
+- Supply a track ID when rendering the new ScrollControls component in the
+  functional test fixture, completing the component rendering gate.
+
 ## [4.23.1] — 2026-10-12
 
 ### Fixed

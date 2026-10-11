@@ -6,6 +6,24 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.23.0] — 2026-10-12
+
+### Changed
+
+- **Product film:** the homepage film is a new 89-second sales cut, "Desiderio
+  in 90 seconds". It opens with the sections every relaunch rebuilds, then
+  lists six features and explains each over real screens: 244 elements in ten
+  groups, 15 presets with their real fonts, corners and icon libraries plus
+  light and dark mode, editing on the page with a cursor working the Visual
+  Editor, Powermail, Solr, news and the blog in one theme, the WCAG 2.2 AA
+  colour pairs of every preset and the 62 components, and the four languages
+  in semantic HTML. A recap and the plans close it. New narration (library
+  voice) and score; the captions stay in the picture. 6.5 MB.
+- `render-film.mjs --reencode` makes the web file and soundtrack from the last
+  master without capturing the frames again; the web encode uses CRF 27 and
+  128 kbit/s audio. The score can enter late (`musicAt` in narration.json),
+  and film.html names its poster frame.
+
 ## [4.22.5] — 2026-10-11
 
 ### Fixed

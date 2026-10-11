@@ -5,6 +5,7 @@
  *   node Build/Scripts/render-film.mjs                 # MP4 + poster into Resources/Public/Styleguide/Video
  *   node Build/Scripts/render-film.mjs --stills=1500,6000,12500   # PNG stills into Build/Film/out, for checking
  *   node Build/Scripts/render-film.mjs --remix                     # new soundtrack on the current picture
+ *   node Build/Scripts/render-film.mjs --reencode                  # web encode + soundtrack from the last master
  *
  * Every motion in the film is a paused Web Animation, so each frame is
  * rendered by seeking the timeline, never by waiting: the output is the same
@@ -47,6 +48,7 @@ const SIZE = { width: 1600, height: 900 };
 const argument = (name) => process.argv.find((arg) => arg.startsWith(`--${name}=`))?.split('=')[1];
 const stills = argument('stills')?.split(',').map(Number);
 const remix = process.argv.includes('--remix');
+const reencode = process.argv.includes('--reencode');
 
 const TYPES = { '.html': 'text/html', '.json': 'application/json', '.png': 'image/png', '.jpg': 'image/jpeg', '.webp': 'image/webp', '.woff2': 'font/woff2', '.css': 'text/css', '.js': 'text/javascript' };
 const server = createServer((request, response) => {
@@ -86,7 +88,7 @@ function ffmpeg(args, input) {
 async function finish(mp4, poster) {
     const narrationFile = join(AUDIO, 'narration.json');
     if (existsSync(narrationFile) && existsSync(join(AUDIO, 'music.mp3'))) {
-        const lines = JSON.parse(readFileSync(narrationFile, 'utf8')).lines;
+        const { lines, musicAt = 0 } = JSON.parse(readFileSync(narrationFile, 'utf8'));
         const end = duration / 1000;
         // The music sits MUSIC_DB below the voice while it speaks and rises by
         // exactly BREAK_LIFT in the pauses: a volume automation, not a
@@ -101,7 +103,9 @@ async function finish(mp4, poster) {
         const graph = [
             ...voices,
             `${lines.map((_, i) => `[v${i}]`).join('')}amix=inputs=${lines.length}:normalize=0[voice]`,
-            `[0:a]aformat=sample_rates=44100:channel_layouts=stereo,volume='${musicVolume}':eval=frame,afade=t=in:st=0:d=1.2,afade=t=out:st=${end - 2.2}:d=2.2[music]`,
+            // The score may enter late (narration.json musicAt), so that its
+            // final chord lands under the last line.
+            `[0:a]aformat=sample_rates=44100:channel_layouts=stereo,adelay=${musicAt}|${musicAt},volume='${musicVolume}':eval=frame,afade=t=in:st=${musicAt / 1000}:d=1.2,afade=t=out:st=${end - 2.2}:d=2.2[music]`,
             `[music][voice]amix=inputs=2:normalize=0,atrim=0:${end}[mix]`,
         ].join(';');
         // Mix, measure, then one static gain to -16 LUFS and a peak limiter:
@@ -110,10 +114,10 @@ async function finish(mp4, poster) {
         await ffmpeg([...inputs, '-filter_complex', graph, '-map', '[mix]', '-ar', '44100', raw]);
         const gain = (-16 - lufs(raw)).toFixed(2);
         const scored = join(OUT, 'film-scored.mp4');
-        await ffmpeg(['-i', mp4, '-i', raw, '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-af', `volume=${gain}dB,alimiter=limit=0.84:level=false`, '-c:a', 'aac', '-b:a', '160k', '-ar', '44100', '-movflags', '+faststart', '-t', String(end), scored]);
+        await ffmpeg(['-i', mp4, '-i', raw, '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-af', `volume=${gain}dB,alimiter=limit=0.84:level=false`, '-c:a', 'aac', '-b:a', '128k', '-ar', '44100', '-movflags', '+faststart', '-t', String(end), scored]);
         unlinkSync(raw);
         renameSync(scored, mp4);
-        console.log(`soundtrack: ${lines.length} narration lines + music ${MUSIC_DB} dB below the voice, +${Math.round((BREAK_LIFT - 1) * 100)}% in the pauses, ${gain} dB to -16 LUFS`);
+        console.log(`soundtrack: ${lines.length} narration lines + music from ${musicAt} ms, ${MUSIC_DB} dB below the voice, +${Math.round((BREAK_LIFT - 1) * 100)}% in the pauses, ${gain} dB to -16 LUFS`);
     }
 
     mkdirSync(TARGET, { recursive: true });
@@ -162,7 +166,8 @@ if (remix) {
     const master = join(OUT, 'master.mp4');
     const frames = Math.round((duration / 1000) * FPS);
     // A near-lossless master first; the web encodes are made from it.
-    await ffmpeg(['-f', 'image2pipe', '-framerate', String(FPS), '-c:v', 'png', '-i', '-', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '8', '-pix_fmt', 'yuv420p', master], async (stdin) => {
+    if (reencode && !existsSync(master)) throw new Error('No master to re-encode: render the film first.');
+    if (!reencode) await ffmpeg(['-f', 'image2pipe', '-framerate', String(FPS), '-c:v', 'png', '-i', '-', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '8', '-pix_fmt', 'yuv420p', master], async (stdin) => {
         for (let frame = 0; frame < frames; frame++) {
             await page.evaluate((time) => window.seek(time), (frame * 1000) / FPS);
             const png = await page.screenshot({ type: 'png' });
@@ -174,9 +179,11 @@ if (remix) {
 
     const mp4 = join(OUT, 'film.mp4');
     const poster = join(OUT, 'poster.jpg');
-    await ffmpeg(['-i', master, '-c:v', 'libx264', '-preset', 'slow', '-tune', 'animation', '-crf', '23', '-profile:v', 'high', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', '-an', mp4]);
-    // The poster is the preset beat, the film's most telling frame.
-    await page.evaluate((time) => window.seek(time), 6400);
+    // CRF 27: the film autoplays on the homepage, and next to 23 it looks the
+    // same at this size for less than half the bytes.
+    await ffmpeg(['-i', master, '-c:v', 'libx264', '-preset', 'slow', '-tune', 'animation', '-crf', '27', '-profile:v', 'high', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', '-an', mp4]);
+    // The poster is the frame film.html names as its most telling one.
+    await page.evaluate((time) => window.seek(time), await page.evaluate(() => window.POSTER_AT ?? 0));
     await page.screenshot({ path: poster, type: 'jpeg', quality: 86 });
 
     await finish(mp4, poster);

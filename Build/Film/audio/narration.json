@@ -1,55 +1,104 @@
 {
   "voice": "George",
+  "musicAt": 4000,
   "lines": [
     {
-      "at": 300,
-      "say": "Meet Desiderio, for TYPO3.",
-      "show": "Meet Desiderio, for TYPO3.",
+      "at": 700,
+      "say": "Every relaunch starts the same way.",
+      "show": "Every relaunch starts the same way.",
       "file": "voice-01.mp3",
-      "duration": 2926
-    },
-    {
-      "at": 3300,
-      "say": "Fifteen presets, one switch. Every content element follows the theme you pick.",
-      "show": "15 presets, one switch. Every content element follows the theme you pick.",
-      "file": "voice-02.mp3",
-      "duration": 5198
-    },
-    {
-      "at": 8850,
-      "say": "Light and dark, from the same tokens.",
-      "show": "Light and dark, from the same tokens.",
-      "file": "voice-03.mp3",
       "duration": 2743
     },
     {
-      "at": 11650,
-      "say": "Two hundred and forty-four content elements, free and open source.",
-      "show": "244 content elements, free and open source.",
+      "at": 4300,
+      "say": "The same heroes, pricing tables and footers, built again from nothing.",
+      "show": "The same heroes, pricing tables and footers, built again from nothing.",
+      "file": "voice-02.mp3",
+      "duration": 4780
+    },
+    {
+      "at": 10200,
+      "say": "So we built them once, with care. This is Desiderio.",
+      "show": "So we built them once, with care. This is Desiderio.",
+      "file": "voice-03.mp3",
+      "duration": 4075
+    },
+    {
+      "at": 16200,
+      "say": "Six things, in one package.",
+      "show": "Six things, in one package.",
       "file": "voice-04.mp3",
-      "duration": 4362
+      "duration": 2325
     },
     {
-      "at": 16100,
-      "say": "The demo site speaks four languages.",
-      "show": "The demo site speaks four languages.",
+      "at": 21400,
+      "say": "Two hundred and forty-four content elements, in ten groups. Each one finished, with a backend preview.",
+      "show": "244 content elements, in ten groups. Each one finished, with a backend preview.",
       "file": "voice-05.mp3",
-      "duration": 2456
+      "duration": 7419
     },
     {
-      "at": 19500,
-      "say": "And your editors keep the tools they already like.",
-      "show": "And your editors keep the tools they already like.",
+      "at": 30100,
+      "say": "Fifteen theme presets. One setting restyles the whole site.",
+      "show": "15 theme presets. One setting restyles the whole site.",
       "file": "voice-06.mp3",
-      "duration": 3056
+      "duration": 4624
     },
     {
-      "at": 22700,
-      "say": "Free to use. Paid plans add support.",
-      "show": "Free to use. Paid plans add support.",
-      "speed": 1.1,
+      "at": 36000,
+      "say": "And every preset comes in light and dark.",
+      "show": "And every preset comes in light and dark.",
       "file": "voice-07.mp3",
-      "duration": 3187
+      "duration": 3370
+    },
+    {
+      "at": 40900,
+      "say": "Editors work on the page itself. They see each element before they add it, and change it where it sits.",
+      "show": "Editors work on the page itself. They see each element before they add it, and change it where it sits.",
+      "file": "voice-08.mp3",
+      "duration": 7419
+    },
+    {
+      "at": 49800,
+      "say": "Forms, search, news and the blog follow the same theme, from one package.",
+      "show": "Forms, search, news and the blog follow the same theme, from one package.",
+      "file": "voice-09.mp3",
+      "duration": 5982
+    },
+    {
+      "at": 57600,
+      "say": "Every preset is checked for accessible contrast before it ships.",
+      "show": "Every preset is checked for accessible contrast before it ships.",
+      "file": "voice-10.mp3",
+      "duration": 4493
+    },
+    {
+      "at": 62700,
+      "say": "Sixty-two typed components keep every page consistent.",
+      "show": "62 typed components keep every page consistent.",
+      "file": "voice-11.mp3",
+      "duration": 4441
+    },
+    {
+      "at": 68400,
+      "say": "The demo site speaks four languages, in markup that AI search can read and quote.",
+      "show": "The demo site speaks four languages, in markup that AI search can read and quote.",
+      "file": "voice-12.mp3",
+      "duration": 6087
+    },
+    {
+      "at": 75800,
+      "say": "Open source, and made for TYPO3 version fourteen.",
+      "show": "Open source, and made for TYPO3 v14.",
+      "file": "voice-13.mp3",
+      "duration": 4493
+    },
+    {
+      "at": 81400,
+      "say": "Desiderio. Free to use. Paid plans add support.",
+      "show": "Desiderio. Free to use. Paid plans add support.",
+      "file": "voice-14.mp3",
+      "duration": 4780
     }
   ]
 }

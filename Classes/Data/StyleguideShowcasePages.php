@@ -112,8 +112,8 @@ final class StyleguideShowcasePages
             // ----------------------------------------------------- product film
             ShowcaseBlocks::productFilm(
                 'Product film',
-                'Desiderio in 26 seconds',
-                '15 presets, light and dark mode, four languages and the tools your editors use, in one short film. Turn the sound on for music and narration; the captions are in the picture.',
+                'Desiderio in 90 seconds',
+                'Six features, each shown on real screens: elements, presets, editing, extensions, accessibility and languages. Turn the sound on for music and narration; the captions are in the picture.',
             ),
 
             // ------------------------------------------------- the problem

@@ -30,25 +30,42 @@ if (!KEY) {
 
 const VOICE = 'George';
 /**
- * One line per scene of film.html. `at` is the scene's start in milliseconds;
- * `say` is what the voice reads, `show` what the caption prints (digits where
- * the voice spells a number out).
+ * One line per beat of film.html. `at` is where the line starts in
+ * milliseconds; `say` is what the voice reads, `show` what the caption prints
+ * (digits where the voice spells a number out). Each line has to end before
+ * the next one starts: the script warns when one runs over.
  */
 const LINES = [
-    { at: 300, say: 'Meet Desiderio, for TYPO3.', show: 'Meet Desiderio, for TYPO3.' },
-    { at: 3300, say: 'Fifteen presets, one switch. Every content element follows the theme you pick.', show: '15 presets, one switch. Every content element follows the theme you pick.' },
-    { at: 8850, say: 'Light and dark, from the same tokens.', show: 'Light and dark, from the same tokens.' },
-    { at: 11650, say: 'Two hundred and forty-four content elements, free and open source.', show: '244 content elements, free and open source.' },
-    { at: 16100, say: 'The demo site speaks four languages.', show: 'The demo site speaks four languages.' },
-    { at: 19500, say: 'And your editors keep the tools they already like.', show: 'And your editors keep the tools they already like.' },
-    { at: 22700, say: 'Free to use. Paid plans add support.', show: 'Free to use. Paid plans add support.', speed: 1.1 },
+    { at: 700, say: 'Every relaunch starts the same way.', show: 'Every relaunch starts the same way.' },
+    { at: 4300, say: 'The same heroes, pricing tables and footers, built again from nothing.', show: 'The same heroes, pricing tables and footers, built again from nothing.' },
+    { at: 10200, say: 'So we built them once, with care. This is Desiderio.', show: 'So we built them once, with care. This is Desiderio.' },
+    { at: 16200, say: 'Six things, in one package.', show: 'Six things, in one package.' },
+    { at: 21400, say: 'Two hundred and forty-four content elements, in ten groups. Each one finished, with a backend preview.', show: '244 content elements, in ten groups. Each one finished, with a backend preview.' },
+    { at: 30100, say: 'Fifteen theme presets. One setting restyles the whole site.', show: '15 theme presets. One setting restyles the whole site.' },
+    { at: 36000, say: 'And every preset comes in light and dark.', show: 'And every preset comes in light and dark.' },
+    { at: 40900, say: 'Editors work on the page itself. They see each element before they add it, and change it where it sits.', show: 'Editors work on the page itself. They see each element before they add it, and change it where it sits.' },
+    { at: 49800, say: 'Forms, search, news and the blog follow the same theme, from one package.', show: 'Forms, search, news and the blog follow the same theme, from one package.' },
+    { at: 57600, say: 'Every preset is checked for accessible contrast before it ships.', show: 'Every preset is checked for accessible contrast before it ships.' },
+    { at: 62700, say: 'Sixty-two typed components keep every page consistent.', show: '62 typed components keep every page consistent.' },
+    { at: 68400, say: 'The demo site speaks four languages, in markup that AI search can read and quote.', show: 'The demo site speaks four languages, in markup that AI search can read and quote.' },
+    { at: 75800, say: 'Open source, and made for TYPO3 version fourteen.', show: 'Open source, and made for TYPO3 v14.' },
+    { at: 81400, say: 'Desiderio. Free to use. Paid plans add support.', show: 'Desiderio. Free to use. Paid plans add support.' },
 ];
+/** The voice: unhurried, soft and close, like a designer talking about a product he cares about. */
+const DELIVERY = { stability: 0.62, similarity_boost: 0.78, style: 0.18, speed: 0.9 };
+/**
+ * The score. `at` is where it enters the film: the generator lets its music
+ * resolve a few seconds before the requested length, so the cue starts late
+ * and its final chord lands under the last line.
+ */
 const MUSIC = {
-    prompt: 'Uplifting modern film-score cue for a bright product film, major key, warm and optimistic. Pulsing string '
-        + 'ostinato, rising synth arpeggios, warm French horns and a big hopeful build to a soaring peak around 20 seconds, '
-        + 'then a confident, smiling resolve on the final chord at 26 seconds. Epic but light, cinematic, joyful. '
-        + 'Instrumental only, no vocals.',
-    length: 27000,
+    prompt: 'Elegant, modern, minimal electronic score for an 89-second design-led product film. Warm felt piano and '
+        + 'soft synth pads open quietly; from 16 seconds a gentle pulsing beat, light percussion and airy strings carry '
+        + 'a steady, optimistic momentum that keeps building. A bright, hopeful swell at 76 seconds, sustained at full '
+        + 'warmth through 84 seconds, then one long, resolved final chord that rings to the very last second at 89 '
+        + 'seconds. The music never stops or fades before 86 seconds. Calm, refined, confident. Instrumental only, no vocals.',
+    length: 89000,
+    at: 4000,
 };
 
 async function fal(endpoint, input) {
@@ -89,10 +106,8 @@ if (only !== '--music') {
         const result = await fal('fal-ai/elevenlabs/tts/multilingual-v2', {
             text: line.say,
             voice: VOICE,
-            stability: 0.6,
-            similarity_boost: 0.75,
-            style: 0.15,
-            speed: line.speed ?? 0.95,
+            ...DELIVERY,
+            speed: line.speed ?? DELIVERY.speed,
             language_code: 'en',
             previous_text: LINES[index - 1]?.say ?? null,
             next_text: LINES[index + 1]?.say ?? null,
@@ -103,7 +118,13 @@ if (only !== '--music') {
         lines.push({ ...line, file, duration });
         console.log(`${file}  ${duration} ms  ${line.say}`);
     }
-    writeFileSync(join(AUDIO, 'narration.json'), JSON.stringify({ voice: VOICE, lines }, null, 2) + '\n');
+    writeFileSync(join(AUDIO, 'narration.json'), JSON.stringify({ voice: VOICE, musicAt: MUSIC.at, lines }, null, 2) + '\n');
+    for (const [index, line] of lines.entries()) {
+        const next = lines[index + 1];
+        if (next && line.at + line.duration > next.at - 150) {
+            console.warn(`line ${index + 1} runs to ${line.at + line.duration} ms, into line ${index + 2} at ${next.at} ms`);
+        }
+    }
 }
 
 if (only !== '--voice') {

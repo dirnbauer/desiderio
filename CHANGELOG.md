@@ -6,6 +6,18 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.22.4] — 2026-10-11
+
+### Fixed
+
+- Expose the link picker on every authored content-element button. Fourteen
+  missing controls across thirteen templates in cards, feature sections, carousel
+  slides, job listings, maps, product comparisons, team profiles and minimal CTAs
+  now use the same editable-link helper as the hero buttons. Visitor markup and
+  link destinations are unchanged.
+- Add template coverage for the button inventory and rendered regression tests
+  for content-record and collection-record button editing.
+
 ## [4.22.3] — 2026-10-05
 
 ### Fixed

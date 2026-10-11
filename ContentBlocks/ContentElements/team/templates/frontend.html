@@ -47,7 +47,7 @@
                                 <d:atom.button href="{f:uri.typolink(parameter: member.profile_link.url)}" target="{member.profile_link.target}" variant="outline" size="sm" class="team__list-action">
                                     <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:team.view_profile">View profile</f:translate>
                                     <span class="sr-only"> — {member -> f:render.text(field: 'name')}</span>
-                                </d:atom.button>
+                                </d:atom.button>{member -> f:render.link(field: 'profile_link')}
                             </f:if>
                         </li>
                     </f:for>
@@ -104,7 +104,7 @@
                                     <d:atom.button href="{f:uri.typolink(parameter: member.profile_link.url)}" target="{member.profile_link.target}" variant="secondary" size="sm" class="team__footer-action">
                                         <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:team.view_profile">View profile</f:translate>
                                         <span class="sr-only"> — {member -> f:render.text(field: 'name')}</span>
-                                    </d:atom.button>
+                                    </d:atom.button>{member -> f:render.link(field: 'profile_link')}
                                 </d:molecule.cardFooter>
                             </f:if>
                             </d:molecule.card>

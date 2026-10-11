@@ -58,7 +58,7 @@
                                         <f:if condition="{mapLinkTarget} == '_blank'">
                                             <span class="sr-only"> <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:social.newTab" default="(opens in a new tab)"/></span>
                                         </f:if>
-                                    </d:atom.button>
+                                    </d:atom.button>{data -> f:render.link(field: 'primary_button_link')}
                                 </f:if>
                             </div>
                         </f:if>

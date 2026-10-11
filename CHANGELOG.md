@@ -6,6 +6,24 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.23.1] — 2026-10-12
+
+### Fixed
+
+- Let section eyebrows inherit theme typography without a decorative dot.
+- Stack static card collections on small screens. Give horizontal feature,
+  team and gallery tracks shared shadcn outline controls with keyboard, RTL,
+  reduced-motion and scroll-boundary support.
+- Share rich-text list rules across content elements: align markers with the
+  paragraph edge, use the primary colour for bullets and text colour for
+  numbers, and preserve nested lists and native ordered-list counters.
+- Align FAQ hover with the shadcn accordion's underlined trigger; remove the
+  extra background and negative side margins while retaining separators
+  and visible keyboard focus.
+- Restore focus after theme selection, focus the mobile menu on keyboard
+  opening, close its submenu before the menu on Escape, identify active
+  footer links and correct the legacy styleguide landmarks and disclosures.
+
 ## [4.23.0] — 2026-10-12
 
 ### Changed

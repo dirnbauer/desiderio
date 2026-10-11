@@ -1,0 +1,59 @@
+/* Shared editorial lists. Keep native markers (including start, reversed
+   and li[value]) and logical alignment. Navigation, pricing feature lists
+   and shadcn controls are deliberately outside these rich-text wrappers. */
+:is(.d-richtext, .ce-fsc__richtext, .ce-bodytext) :where(ul, ol) {
+    margin-block: var(--d-spacing-sm) 0;
+    padding-inline: 0;
+    list-style-position: inside;
+}
+
+:is(.d-richtext, .ce-fsc__richtext, .ce-bodytext) ul {
+    list-style-type: disc;
+}
+
+:is(.d-richtext, .ce-fsc__richtext, .ce-bodytext) ol {
+    list-style-type: decimal;
+}
+
+:is(.d-richtext, .ce-fsc__richtext, .ce-bodytext) ul ul {
+    list-style-type: circle;
+}
+
+:is(.d-richtext, .ce-fsc__richtext, .ce-bodytext) ul ul ul {
+    list-style-type: square;
+}
+
+:is(.d-richtext, .ce-fsc__richtext, .ce-bodytext) ol ol {
+    list-style-type: lower-alpha;
+}
+
+:is(.d-richtext, .ce-fsc__richtext, .ce-bodytext) ol ol ol {
+    list-style-type: lower-roman;
+}
+
+/* The marker starts at the same inline edge as a neighbouring paragraph;
+   continuation lines stay indented. Inline start also works in RTL. */
+:is(.d-richtext, .ce-fsc__richtext, .ce-bodytext) li {
+    padding-inline-start: 1.5em;
+    text-indent: -1.5em;
+}
+
+:is(.d-richtext, .ce-fsc__richtext, .ce-bodytext) li > * {
+    text-indent: 0;
+}
+
+/* CKEditor may wrap the first item text in a paragraph. Keep its marker
+   on the same line without changing the paragraph's semantics. */
+:is(.d-richtext, .ce-fsc__richtext, .ce-bodytext) li > p:first-child {
+    display: inline;
+}
+
+:is(.d-richtext, .ce-fsc__richtext, .ce-bodytext) ul > li::marker {
+    color: var(--primary);
+}
+
+:is(.d-richtext, .ce-fsc__richtext, .ce-bodytext) ol > li::marker {
+    color: currentColor;
+    font-weight: inherit;
+    font-variant-numeric: tabular-nums;
+}

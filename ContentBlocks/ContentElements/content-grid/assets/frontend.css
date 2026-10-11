@@ -101,9 +101,6 @@
    siblings, list markers, heading sizes and a visible link. */
 .content-grid__content.d-richtext > * { margin-block: 0; }
 .content-grid__content.d-richtext > * + * { margin-block-start: var(--d-spacing-sm); }
-.content-grid__content.d-richtext :is(ul, ol) { padding-inline-start: var(--d-spacing-lg); }
-.content-grid__content.d-richtext ul { list-style: disc; }
-.content-grid__content.d-richtext ol { list-style: decimal; }
 .content-grid__content.d-richtext li + li { margin-block-start: var(--d-spacing-2xs); }
 .content-grid__content.d-richtext :is(h2, h3, h4, h5, h6) {
     color: var(--foreground);

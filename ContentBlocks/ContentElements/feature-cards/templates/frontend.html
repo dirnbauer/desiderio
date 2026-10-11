@@ -14,10 +14,7 @@
                 <f:fragment name="lead"><f:if condition="{data.subheadline}">{data -> f:render.text(field: 'subheadline')}</f:if></f:fragment>
             </d:molecule.sectionIntro>
         </f:if>
-        <f:comment>Five or more cards become a swipeable row on phones (frontend.css), so the grid is then a focusable, labelled scroll region.</f:comment>
-        <f:variable name="cardCount">{data.items -> f:count()}</f:variable>
-        <f:variable name="gridLabel" value="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features\', default: \'Features\')}')}" />
-        <div class="feature-cards__grid" {f:if(condition: '{cardCount} > 4', then: 'tabindex="0" role="region" aria-label="{gridLabel}"')}>
+        <div class="feature-cards__grid">
             <f:for each="{data.items}" as="item">
                 <d:molecule.card class="feature-cards__item">
                     <div class="feature-cards__body flex min-w-0 flex-col gap-1.5">

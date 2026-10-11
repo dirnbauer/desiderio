@@ -25,37 +25,6 @@
 }
 @media (max-width: 640px) {
     .feature-cards__grid { grid-template-columns: minmax(0, 1fr); }
-    /* Five or more cards would stack into a tall wall on a phone, so they
-       become one row that snaps card by card, with the next card peeking in.
-       The row runs to the screen edge (it takes back the container's 1rem
-       gutter) and snaps cards to the gutter line. The template makes the
-       grid a focusable, labelled region then. */
-    .feature-cards__grid:has(> :nth-child(5)) {
-        grid-template-columns: none;
-        grid-auto-flow: column;
-        grid-auto-columns: 85%;
-        overflow-x: auto;
-        overscroll-behavior-x: contain;
-        scroll-snap-type: x mandatory;
-        /* Block padding leaves room for the cards' ring and shadow, which
-           the scroller would clip. */
-        padding: var(--d-spacing-2xs) var(--d-spacing-md) var(--d-spacing-md);
-        margin-inline: calc(var(--d-spacing-md) * -1);
-        scroll-padding-inline: var(--d-spacing-md);
-        scrollbar-width: thin;
-    }
-    .feature-cards__grid:has(> :nth-child(5)) > * {
-        scroll-snap-align: start;
-    }
-    /* The row touches the screen edges: draw its focus ring inside. */
-    .feature-cards__grid:has(> :nth-child(5)):focus-visible {
-        outline-offset: -2px;
-    }
-}
-.feature-cards__grid:focus-visible {
-    outline: 2px solid var(--ring);
-    outline-offset: 2px;
-    border-radius: var(--d-radius-md);
 }
 .feature-cards__title {
     margin: 0;
@@ -76,8 +45,5 @@
 .d-richtext > :first-child { margin-block-start: 0; }
 .d-richtext > :last-child { margin-block-end: 0; }
 .d-richtext p { margin-block: 0 var(--d-spacing-sm); }
-.d-richtext ul, .d-richtext ol { margin-block: var(--d-spacing-sm) 0; padding-inline-start: var(--d-spacing-lg); }
-.d-richtext ul { list-style: disc; }
-.d-richtext ol { list-style: decimal; }
 .d-richtext li { margin-block-end: var(--d-spacing-2xs); }
 .d-richtext a { color: var(--d-link, var(--primary)); text-decoration: underline; text-underline-offset: 2px; }

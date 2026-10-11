@@ -17,7 +17,7 @@
             </header>
         </f:if>
 
-        <ul class="team-carousel__track" role="list" tabindex="0" aria-label="{regionLabel}">
+        <ul id="team-carousel-track-{data.uid}" class="team-carousel__track" role="list" tabindex="0" aria-label="{regionLabel}">
             <f:for each="{data.members}" as="member">
                 <li class="team-carousel__slide">
                     <d:molecule.card class="team-carousel__card">
@@ -44,6 +44,7 @@
                 </li>
             </f:for>
         </ul>
+        <d:molecule.scrollControls trackId="team-carousel-track-{data.uid}" />
     </d:layout.container>
 </d:layout.section>
 

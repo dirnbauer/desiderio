@@ -35,7 +35,7 @@
                 </f:for>
             </figure>
 
-            <div class="gallery__thumbs gallery__thumbs--cols-{data.columns -> f:or(alternative: '3')}" role="region" tabindex="0" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.aria.choose\', default: \'Choose slide to display\')}')}">
+            <div id="gallery-thumbs-{data.uid}" class="gallery__thumbs gallery__thumbs--cols-{data.columns -> f:or(alternative: '3')}" role="region" tabindex="0" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.aria.choose\', default: \'Choose slide to display\')}')}">
                 <f:for each="{data.items}" as="item" iteration="galleryIteration">
                     <f:for each="{item.image}" as="fileReference">
                         <button type="button"
@@ -57,6 +57,7 @@
                     </f:for>
                 </f:for>
             </div>
+            <d:molecule.scrollControls trackId="gallery-thumbs-{data.uid}" />
         </div>
     </d:layout.container>
 </d:layout.section>

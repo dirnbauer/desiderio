@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 final class ComponentStructureTest extends TestCase
 {
-    private const int EXPECTED_TOTAL = 62;
+    private const int EXPECTED_TOTAL = 63;
     private const string COMPONENTS_DIR = __DIR__ . '/../../Resources/Private/Components';
     private const array EXPECTED_ATOMS = [
         'AspectRatio', 'Avatar', 'Badge', 'Button', 'ControlClass', 'Icon', 'Image', 'Input',
@@ -22,7 +22,7 @@ final class ComponentStructureTest extends TestCase
         'RadioControl', 'SelectNative', 'Table', 'TableCell', 'TableHeader', 'TableRow',
         'Tabs', 'TabsContent', 'TabsList', 'TabsTrigger',
         'ActionGroup', 'CaptchaPlaceholder', 'FacetCheckbox', 'FeatureItem', 'Figure', 'Pagination',
-        'SectionIntro', 'Stat',
+        'ScrollControls', 'SectionIntro', 'Stat',
     ];
     private const array EXPECTED_LAYOUTS = ['Container', 'Grid', 'Section', 'Stack'];
     private const array EXPECTED_ORGANISMS = ['Breadcrumb', 'PageHeader', 'SiteFooter', 'SiteHeader'];
@@ -36,7 +36,7 @@ final class ComponentStructureTest extends TestCase
         $organisms = is_array($organismDirectories) ? $organismDirectories : [];
 
         self::assertCount(17, $atoms, 'Expected 17 atoms');
-        self::assertCount(37, $molecules, 'Expected 37 molecules');
+        self::assertCount(38, $molecules, 'Expected 38 molecules');
         self::assertCount(4, $layouts, 'Expected 4 layouts');
         self::assertCount(4, $organisms, 'Expected 4 organisms');
         self::assertSame(self::EXPECTED_TOTAL, count($atoms) + count($molecules) + count($layouts) + count($organisms));

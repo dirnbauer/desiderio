@@ -21,7 +21,7 @@
                     <d:styleguideGroups as="styleguideGroups">
                         <f:for each="{styleguideGroups}" as="group">
                             <div class="docs__nav-group" data-group="{group.groupId}">
-                                <button type="button" class="docs__nav-group-btn" aria-expanded="true" data-toggle-group="{group.groupId}">
+                                <button type="button" class="docs__nav-group-btn" aria-expanded="true" aria-controls="nav-{group.groupId}" data-toggle-group="{group.groupId}">
                                     <span>{group.groupTitle}</span>
                                     <span class="docs__nav-count">{group.elements -> f:count()}</span>
                                 </button>
@@ -45,7 +45,7 @@
         </aside>
 
         <!-- Main Content -->
-        <main class="docs__main" id="docs-main">
+        <div class="docs__main" id="docs-main">
             <!--TYPO3SEARCH_begin-->
             <!-- Welcome screen (shown when no component selected) -->
             <div class="docs__welcome" id="docs-welcome">
@@ -140,7 +140,7 @@
                 </div>
             </div>
             <!--TYPO3SEARCH_end-->
-        </main>
+        </div>
     </div>
 
     <d:fixtureJson />

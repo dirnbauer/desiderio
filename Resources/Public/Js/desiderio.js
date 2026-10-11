@@ -302,6 +302,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const root = btn.closest('[data-d-theme-switch]');
       if (root && root.tagName.toLowerCase() === 'details') {
         root.open = false;
+        root.querySelector('summary')?.focus({ preventScroll: true });
       }
     });
   });
@@ -348,14 +349,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const openMenus = () => menuToggles.filter(btn => btn.getAttribute('aria-expanded') === 'true');
 
   menuToggles.forEach(btn => {
-    btn.addEventListener('click', () => {
-      setMenu(btn, btn.getAttribute('aria-expanded') !== 'true');
+    btn.addEventListener('click', event => {
+      const open = btn.getAttribute('aria-expanded') !== 'true';
+      setMenu(btn, open);
+      // The nav precedes the action buttons in the header's DOM. A keyboard
+      // activation must enter the revealed links instead of tabbing past them.
+      if (open && event.detail === 0) {
+        const firstLink = menuTarget(btn)?.querySelector('a[href], button:not([disabled])');
+        firstLink?.focus({ preventScroll: true });
+      }
     });
   });
 
   document.addEventListener('keydown', e => {
     if (e.key !== 'Escape') return;
     openMenus().forEach(btn => {
+      // Let the submenu handler dismiss the innermost disclosure first. Its
+      // trigger must stay visible when focus returns to it.
+      const target = menuTarget(btn);
+      if (target?.contains(e.target) && target.querySelector('[data-d-nav-sub].is-open')) return;
       setMenu(btn, false);
       btn.focus();
     });
@@ -1846,25 +1858,43 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ------------------------------------------------------------------ */
-  /*  12. Feature carousel scroll indicator                              */
+  /*  12. Native carousel scroll controls                               */
   /* ------------------------------------------------------------------ */
-  document.querySelectorAll('[data-d-feature-carousel]').forEach(root => {
-    const track = root.querySelector('.feature-carousel__track');
-    const thumb = root.querySelector('.feature-carousel__scroll-thumb');
-    const scrollTrack = root.querySelector('.feature-carousel__scroll-track');
-    if (!track || !thumb || !scrollTrack) return;
+  document.querySelectorAll('[data-d-scroll-controls]').forEach(controls => {
+    const track = document.getElementById(controls.dataset.dScrollControls);
+    const previous = controls.querySelector('[data-d-scroll-previous]');
+    const next = controls.querySelector('[data-d-scroll-next]');
+    if (!track || !previous || !next) return;
+
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const direction = () => getComputedStyle(track).direction === 'rtl' ? -1 : 1;
+    const position = () => Math.abs(track.scrollLeft);
+    const limit = () => Math.max(0, track.scrollWidth - track.clientWidth);
+    const scrollTo = offset => track.scrollTo({
+      left: direction() * Math.max(0, Math.min(limit(), offset)),
+      behavior: motion.matches ? 'instant' : 'smooth',
+    });
+    const step = amount => {
+      const first = track.firstElementChild;
+      const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      scrollTo(position() + amount * ((first?.getBoundingClientRect().width || track.clientWidth) + gap));
+    };
 
     let ticking = false;
     const sync = () => {
       ticking = false;
-      const maxScroll = track.scrollWidth - track.clientWidth;
-      const ratio = maxScroll > 0 ? track.scrollLeft / maxScroll : 0;
-      const travel = scrollTrack.clientWidth - thumb.clientWidth;
-      thumb.style.transform = `translateX(${ratio * travel}px)`;
-      root.querySelector('.feature-carousel__scroll')?.classList.toggle(
-        'feature-carousel__scroll--hidden',
-        maxScroll <= 0,
-      );
+      const overflow = limit() > 1;
+      if (!overflow && controls.contains(document.activeElement)) {
+        track.tabIndex = -1;
+        track.focus({ preventScroll: true });
+      }
+      controls.hidden = !overflow;
+      controls.classList.toggle('hidden', !overflow);
+      // Keep rescued focus stable when resizing removes the scroll overflow.
+      // A negative tabindex leaves the static collection out of the Tab order.
+      track.tabIndex = overflow ? 0 : -1;
+      previous.disabled = position() <= 1;
+      next.disabled = position() >= limit() - 1;
     };
 
     const requestSync = () => {
@@ -1873,9 +1903,27 @@ document.addEventListener('DOMContentLoaded', () => {
       window.requestAnimationFrame(sync);
     };
 
-    sync();
+    previous.addEventListener('click', () => step(-1));
+    next.addEventListener('click', () => step(1));
+    track.addEventListener('keydown', event => {
+      // Preserve the keys used by links and gallery buttons within the track.
+      if (event.target !== track) return;
+      if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+        event.preventDefault();
+        step((event.key === 'ArrowRight' ? 1 : -1) * direction());
+      } else if (event.key === 'Home' || event.key === 'End') {
+        event.preventDefault();
+        scrollTo(event.key === 'Home' ? 0 : limit());
+      }
+    });
     track.addEventListener('scroll', requestSync, { passive: true });
     window.addEventListener('resize', requestSync, { passive: true });
+    if ('ResizeObserver' in window) {
+      const observer = new ResizeObserver(requestSync);
+      observer.observe(track);
+      Array.from(track.children).forEach(child => observer.observe(child));
+    }
+    sync();
   });
 
   /* ------------------------------------------------------------------ */

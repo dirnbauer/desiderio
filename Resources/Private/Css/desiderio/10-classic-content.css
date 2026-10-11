@@ -182,42 +182,9 @@ article[itemtype="https://schema.org/BlogPosting"] [itemprop="articleBody"] .ce-
     line-height: 1.65;
 }
 
-.ce-fsc__richtext :where(ul, ol) {
-    padding-inline-start: clamp(1.35rem, 4vw, 1.85rem);
-}
-
-.ce-fsc__richtext ul {
-    list-style: disc;
-}
-
-.ce-fsc__richtext ol {
-    list-style: decimal;
-}
-
-.ce-fsc__richtext ul ul {
-    list-style: circle;
-}
-
-.ce-fsc__richtext ul ul ul {
-    list-style: square;
-}
-
-.ce-fsc__richtext ol ol {
-    list-style: lower-alpha;
-}
-
-.ce-fsc__richtext ol ol ol {
-    list-style: lower-roman;
-}
-
 .ce-fsc__richtext li + li,
 .ce-fsc__richtext li > :where(ul, ol) {
     margin-block-start: var(--d-spacing-xs, 0.5rem);
-}
-
-.ce-fsc__richtext li::marker {
-    color: var(--d-primary-text, var(--primary));
-    font-weight: 650;
 }
 
 .ce-fsc__richtext > blockquote {

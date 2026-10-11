@@ -60,9 +60,6 @@
 .content-sidebar :is(.content-sidebar__main, .content-sidebar__sidebar-body).d-richtext > * + * { margin-block-start: var(--d-spacing-sm); }
 .content-sidebar .content-sidebar__main.d-richtext > * + * { margin-block-start: var(--d-spacing-md); }
 .content-sidebar :is(.content-sidebar__main, .content-sidebar__sidebar-body).d-richtext > * + :is(h2, h3, h4, h5, h6) { margin-block-start: var(--d-spacing-lg); }
-.content-sidebar :is(.content-sidebar__main, .content-sidebar__sidebar-body).d-richtext :is(ul, ol) { padding-inline-start: var(--d-spacing-lg); }
-.content-sidebar :is(.content-sidebar__main, .content-sidebar__sidebar-body).d-richtext ul { list-style: disc; }
-.content-sidebar :is(.content-sidebar__main, .content-sidebar__sidebar-body).d-richtext ol { list-style: decimal; }
 .content-sidebar :is(.content-sidebar__main, .content-sidebar__sidebar-body).d-richtext li + li { margin-block-start: var(--d-spacing-2xs); }
 .content-sidebar :is(.content-sidebar__main, .content-sidebar__sidebar-body).d-richtext :is(h2, h3, h4, h5, h6) {
     color: var(--foreground);

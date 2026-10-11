@@ -15,7 +15,7 @@
    neutral preset with grey charts gets a plain primary-ink rule and no
    horizon at all, instead of a dirty grey wash.
    Everything else is quiet craft — a fluid display scale with tight
-   tracking, eyebrows set in the theme's mono face, hairlines that fade at
+   tracking, eyebrows set in the theme's text face, hairlines that fade at
    the edges instead of ruling the page like a spreadsheet, surfaces that
    lift only when they are links, one entrance and a scroll-linked rise.
 
@@ -108,21 +108,19 @@ body {
     text-wrap-style: pretty;
 }
 
-/* Eyebrows speak in the theme's mono face — the voice of a token label on
-   the create page — with a primary dot in front. Badge eyebrows keep their
-   pill. display: block, not inline-flex: inside the grid intros a flex box
-   would be blockified and stretch, and the text would leave the midline. */
+/* Plain section labels use the selected theme's typography and primary ink.
+   Badge eyebrows retain the shadcn badge contract. */
 .desiderio-section [class$="__eyebrow"]:not([data-slot="badge"]),
 .desiderio-section .d-section-intro__eyebrow {
     /* No display here: a plain eyebrow is a <p> (or a span between blocks)
        and sits on its own line anyway, while a pill eyebrow keeps its own
        inline-flex box. Forcing block broke the pill's centring (the case
        study card's label sat at the top of its box). */
-    font-family: var(--font-mono, var(--d-font-mono));
-    font-size: 0.75rem;
-    font-weight: 500;
+    font-family: var(--font-sans, var(--d-font-sans));
+    font-size: var(--d-text-sm);
+    font-weight: var(--d-weight-medium);
     line-height: 1.4;
-    letter-spacing: 0.12em;
+    letter-spacing: var(--d-tracking-wide);
     text-transform: uppercase;
     color: var(--d-link, var(--primary));
     /* The eyebrow is a one-line label, not running text: it must not take
@@ -130,18 +128,6 @@ body {
        <p> eyebrow in a centred intro was a short box at the start edge, so
        its label sat left of the centred heading. */
     max-width: none;
-}
-
-.desiderio-section [class$="__eyebrow"]:not([data-slot="badge"])::before,
-.desiderio-section .d-section-intro__eyebrow::before {
-    content: "";
-    display: inline-block;
-    width: 0.375rem;
-    height: 0.375rem;
-    margin-inline-end: 0.5rem;
-    vertical-align: 0.1em;
-    border-radius: 999px;
-    background: var(--primary);
 }
 
 /* ------------------------------------------------------------------ */

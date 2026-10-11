@@ -44,30 +44,9 @@ ve-content-element .pricing-usage__link::after { content: none; }
     .pricing-usage__link:hover .pricing-usage__arrow { transform: none; }
 }
 
-/* Phones: five or more cards make one swipeable row instead of a stack two
-   screens tall. The next card peeks in at the edge, so the row reads as
-   one that scrolls. */
+/* Rate cards remain readable without a sideways gesture on phones. */
 @media (max-width: 639px) {
-    .pricing-usage__scroller {
-        overflow-x: auto;
-        overscroll-behavior-x: contain;
-        scroll-snap-type: x mandatory;
-        scrollbar-width: thin;
-        /* The row runs to the screen edges while the first card lines up
-           with the text (the container gutter is 1rem below 640px); the
-           block padding leaves room for the cards' shadow and focus ring. */
-        margin: calc(var(--d-spacing-xs) * -1) calc(var(--d-spacing-md) * -1);
-        padding: var(--d-spacing-xs) var(--d-spacing-md);
-        scroll-padding-inline: var(--d-spacing-md);
-    }
-    .pricing-usage__scroller > .pricing-usage__grid {
-        grid-template-columns: none;
-        grid-auto-flow: column;
-        grid-auto-columns: 85%;
-        gap: var(--d-spacing-md);
-    }
-    .pricing-usage__scroller .pricing-usage__item { scroll-snap-align: start; }
-    .pricing-usage__scroller:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: var(--radius); }
+    .pricing-usage__grid { grid-template-columns: minmax(0, 1fr); }
 }
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */
@@ -80,8 +59,5 @@ ve-content-element .pricing-usage__link::after { content: none; }
 .d-richtext > :first-child { margin-block-start: 0; }
 .d-richtext > :last-child { margin-block-end: 0; }
 .d-richtext p { margin-block: 0 var(--d-spacing-sm); }
-.d-richtext ul, .d-richtext ol { margin-block: var(--d-spacing-sm) 0; padding-inline-start: var(--d-spacing-lg); }
-.d-richtext ul { list-style: disc; }
-.d-richtext ol { list-style: decimal; }
 .d-richtext li { margin-block-end: var(--d-spacing-2xs); }
 .d-richtext a { color: var(--d-link, var(--primary)); text-decoration: underline; text-underline-offset: 2px; }

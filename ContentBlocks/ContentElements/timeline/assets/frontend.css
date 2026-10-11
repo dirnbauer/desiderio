@@ -237,9 +237,6 @@
    paragraphs no longer sit flush, lists show their markers, links show. */
 .timeline__text.d-richtext > * { margin-block: 0; }
 .timeline__text.d-richtext > * + * { margin-block-start: var(--d-spacing-sm); }
-.timeline__text.d-richtext :is(ul, ol) { padding-inline-start: var(--d-spacing-lg); }
-.timeline__text.d-richtext ul { list-style: disc; }
-.timeline__text.d-richtext ol { list-style: decimal; }
 .timeline__text.d-richtext li + li { margin-block-start: var(--d-spacing-2xs); }
 .timeline__text.d-richtext :is(h2, h3, h4, h5, h6) {
     color: var(--foreground);

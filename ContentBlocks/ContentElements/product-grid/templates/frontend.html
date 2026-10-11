@@ -47,21 +47,7 @@
             </header>
         </f:if>
 
-        <f:comment>
-            Five or more products become one swipeable row on phones instead
-            of a stack several screens tall; the row is a focusable, labelled
-            region so the keyboard can scroll it too.
-        </f:comment>
-        <f:if condition="{data.products -> f:count()} > 4">
-            <f:then>
-                <div class="product-grid__scroller" tabindex="0" role="region" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/ContentBlocks/ContentElements/product-grid/language/labels.xlf:region.label\', default: \'Products\')}')}">
-                    <f:render section="products" arguments="{data: data}"/>
-                </div>
-            </f:then>
-            <f:else>
-                <f:render section="products" arguments="{data: data}"/>
-            </f:else>
-        </f:if>
+        <f:render section="products" arguments="{data: data}"/>
     </d:layout.container>
 </d:layout.section>
 </html>

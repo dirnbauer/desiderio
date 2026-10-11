@@ -6,7 +6,7 @@
 .product-grid__items--cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .product-grid__items--cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 @media (max-width: 768px) { .product-grid__items { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 480px) { .product-grid__items { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 639px) { .product-grid__items { grid-template-columns: minmax(0, 1fr); } }
 
 /* The surface takes the card radius and elevation of d:molecule.card; its
    colours stay. */
@@ -39,32 +39,6 @@ ve-content-element .product-grid__link::after { content: none; }
   .product-grid__arrow { transition: none; }
   .product-grid__card:has(.product-grid__link:hover) .product-grid__image,
   .product-grid__link:hover .product-grid__arrow { transform: none; }
-}
-
-/* Phones: five or more products make one swipeable row instead of a stack
-   several screens tall. The next card peeks in at the edge, so the row
-   reads as one that scrolls. */
-@media (max-width: 639px) {
-    .product-grid__scroller {
-        overflow-x: auto;
-        overscroll-behavior-x: contain;
-        scroll-snap-type: x mandatory;
-        scrollbar-width: thin;
-        /* The row runs to the screen edges while the first card lines up
-           with the text (the container gutter is 1rem below 640px); the
-           block padding leaves room for the cards' shadow and focus ring. */
-        margin: calc(var(--d-spacing-xs) * -1) calc(var(--d-spacing-md) * -1);
-        padding: var(--d-spacing-xs) var(--d-spacing-md);
-        scroll-padding-inline: var(--d-spacing-md);
-    }
-    .product-grid__scroller > .product-grid__items {
-        grid-template-columns: none;
-        grid-auto-flow: column;
-        grid-auto-columns: 85%;
-        gap: var(--d-spacing-md);
-    }
-    .product-grid__scroller .product-grid__card { scroll-snap-align: start; }
-    .product-grid__scroller:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: var(--radius); }
 }
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */

@@ -68,7 +68,7 @@
                     </f:comment>
                     <f:for each="{legalMenu}" as="item">
                         <li>
-                            <f:link.typolink parameter="{item.link}" class="desiderio-footer__legal-link">
+                            <f:link.typolink parameter="{item.link}" class="desiderio-footer__legal-link" additionalAttributes="{f:if(condition: item.current, then: '{aria-current: \'page\'}')}">
                                 {item.title}
                             </f:link.typolink>
                         </li>

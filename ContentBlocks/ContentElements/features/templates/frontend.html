@@ -14,10 +14,7 @@
             </d:molecule.sectionIntro>
         </f:if>
 
-        <f:comment>Five or more cards (card style) become a swipeable row on phones (frontend.css), so the grid is then a focusable, labelled scroll region.</f:comment>
-        <f:variable name="itemCount">{data.feature_items -> f:count()}</f:variable>
-        <f:variable name="gridLabel" value="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features\', default: \'Features\')}')}" />
-        <div class="features__grid features__grid--cols-{data.columns -> f:or(alternative: '3')} features__grid--{data.variant -> f:or(alternative: 'icon-top')}" {f:if(condition: '{data.variant} == \'card\' && {itemCount} > 4', then: 'tabindex="0" role="region" aria-label="{gridLabel}"')}>
+        <div class="features__grid features__grid--cols-{data.columns -> f:or(alternative: '3')} features__grid--{data.variant -> f:or(alternative: 'icon-top')}">
             <f:for each="{data.feature_items}" as="feature">
                 <div class="features__item relative {f:if(condition: '{data.variant} == \'card\'', then: 'features__item--card')}">
                     <div class="features__icon" aria-hidden="true">

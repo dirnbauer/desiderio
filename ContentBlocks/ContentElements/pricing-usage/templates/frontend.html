@@ -48,21 +48,7 @@
             </header>
         </f:if>
 
-        <f:comment>
-            Five or more rate cards become one swipeable row on phones instead
-            of a stack two screens tall; the row is a focusable, labelled
-            region so the keyboard can scroll it too.
-        </f:comment>
-        <f:if condition="{data.items -> f:count()} > 4">
-            <f:then>
-                <div class="pricing-usage__scroller" tabindex="0" role="region" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/ContentBlocks/ContentElements/pricing-usage/language/labels.xlf:region.label\', default: \'Price list\')}')}">
-                    <f:render section="rates" arguments="{data: data}"/>
-                </div>
-            </f:then>
-            <f:else>
-                <f:render section="rates" arguments="{data: data}"/>
-            </f:else>
-        </f:if>
+        <f:render section="rates" arguments="{data: data}"/>
     </d:layout.container>
 </d:layout.section>
 </html>

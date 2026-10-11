@@ -1,0 +1,16 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+<f:argument name="trackId" type="string" />
+<f:comment>Native scroll tracks share the existing shadcn outline buttons. Controls appear only when the track overflows.</f:comment>
+<f:variable name="previousLabel" value="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.previous')}" />
+<f:variable name="nextLabel" value="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.next')}" />
+<div class="mt-3 flex justify-end gap-2 hidden" data-d-scroll-controls="{trackId}" hidden>
+    <d:atom.button variant="outline" size="icon" attributes="{data-d-scroll-previous: 'true', aria-controls: trackId, aria-label: previousLabel}">
+        <d:atom.icon name="arrow-left" size="sm" class="rtl:rotate-180" />
+    </d:atom.button>
+    <d:atom.button variant="outline" size="icon" attributes="{data-d-scroll-next: 'true', aria-controls: trackId, aria-label: nextLabel}">
+        <d:atom.icon name="arrow-right" size="sm" class="rtl:rotate-180" />
+    </d:atom.button>
+</div>
+</html>

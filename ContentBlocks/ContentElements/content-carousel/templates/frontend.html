@@ -17,10 +17,7 @@
 
         <f:if condition="{data.variant} == 'cards'">
             <f:then>
-                <div class="content-carousel__viewport content-carousel__viewport--cards"
-                     role="region"
-                     tabindex="0"
-                     aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.aria.collection\', default: \'Content collection\')}')}">
+                <div class="content-carousel__viewport content-carousel__viewport--cards">
                     <div class="content-carousel__track content-carousel__grid" role="list">
                         <f:for each="{data.items}" as="item">
                             <d:molecule.card class="content-carousel__slide card" size="sm" attributes="{role: 'listitem'}">

@@ -21,17 +21,17 @@
     justify-content: space-between;
     align-items: center;
     gap: var(--d-spacing-md);
-    padding: var(--d-spacing-md);
-    margin-inline: calc(var(--d-spacing-md) * -1);
+    padding-block: var(--d-spacing-md);
     cursor: pointer;
     list-style: none;
     border-radius: var(--d-radius-md);
-    transition: background-color var(--d-motion-fast) var(--d-ease);
 }
 .faq__question::-webkit-details-marker { display: none; }
+/* Match the shadcn accordion trigger: underline the label on hover, without
+   an additional surface extending past the item's separator. */
 @media (hover: hover) and (pointer: fine) {
-    .faq__question:hover {
-        background: var(--muted);
+    .faq__question:hover .faq__question-text {
+        text-decoration-line: underline;
     }
 }
 .faq__question:focus-visible {
@@ -65,7 +65,6 @@ details[open] > .faq__question > .faq__chevron {
 .faq__answer > div > :first-child { margin-block-start: 0; }
 .faq__answer > div > :last-child { margin-block-end: 0; }
 @media (prefers-reduced-motion: reduce) {
-    .faq__question,
     .faq__chevron {
         transition: none;
     }
@@ -96,9 +95,6 @@ details[open] > .faq__question > .faq__chevron {
 .faq__answer-text.d-richtext > * { margin-block: 0; }
 .faq__answer-text.d-richtext > * + * { margin-block-start: var(--d-spacing-sm); }
 .faq__answer-text.d-richtext > * + :is(h2, h3, h4, h5, h6) { margin-block-start: var(--d-spacing-md); }
-.faq__answer-text.d-richtext :is(ul, ol) { padding-inline-start: var(--d-spacing-lg); }
-.faq__answer-text.d-richtext ul { list-style: disc; }
-.faq__answer-text.d-richtext ol { list-style: decimal; }
 .faq__answer-text.d-richtext li + li { margin-block-start: var(--d-spacing-2xs); }
 .faq__answer-text.d-richtext :is(h2, h3, h4, h5, h6) {
     color: var(--foreground);

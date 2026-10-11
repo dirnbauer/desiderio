@@ -65,9 +65,6 @@
    tinted surfaces: the page link colour can fall below 4.5:1 on the tints. */
 .callout__content.d-richtext > * { margin-block: 0; }
 .callout__content.d-richtext > * + * { margin-block-start: var(--d-spacing-sm); }
-.callout__content.d-richtext :is(ul, ol) { padding-inline-start: var(--d-spacing-lg); }
-.callout__content.d-richtext ul { list-style: disc; }
-.callout__content.d-richtext ol { list-style: decimal; }
 .callout__content.d-richtext li + li { margin-block-start: var(--d-spacing-2xs); }
 .callout__content.d-richtext :is(h2, h3, h4, h5, h6) {
     font-size: var(--d-text-sm);

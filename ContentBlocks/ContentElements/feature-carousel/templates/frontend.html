@@ -7,7 +7,7 @@
 
 <d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="feature-carousel">
     <d:layout.container>
-        <div class="feature-carousel__viewport" data-d-feature-carousel role="region" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.region\', default: \'Highlights carousel\')}')}">
+        <div class="feature-carousel__viewport" role="region" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.region\', default: \'Highlights carousel\')}')}">
             <f:if condition="{data.header}">
                 <d:molecule.sectionIntro prefix="feature-carousel" align="center" leadVariant="lead" class="feature-carousel__intro" leadClass="feature-carousel__subheadline">
                     <f:fragment name="heading">{data -> f:render.text(field: 'header')}</f:fragment>
@@ -15,7 +15,7 @@
                 </d:molecule.sectionIntro>
             </f:if>
 
-            <ul class="feature-carousel__track" tabindex="0" role="group" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.aria.featureSlides', default: 'Feature slides, scrollable')}">
+            <ul id="feature-carousel-track-{data.uid}" class="feature-carousel__track" tabindex="0" role="list" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.aria.featureSlides', default: 'Feature slides, scrollable')}">
                 <f:for each="{data.items}" as="item">
                     <li class="feature-carousel__cell">
                         <d:molecule.card class="feature-carousel__slide relative has-[a:focus-visible]:ring-2 has-[a:focus-visible]:ring-ring">
@@ -37,11 +37,7 @@
                     </li>
                 </f:for>
             </ul>
-            <div class="feature-carousel__scroll" aria-hidden="true">
-                <div class="feature-carousel__scroll-track">
-                    <div class="feature-carousel__scroll-thumb"></div>
-                </div>
-            </div>
+            <d:molecule.scrollControls trackId="feature-carousel-track-{data.uid}" />
         </div>
     </d:layout.container>
 </d:layout.section>

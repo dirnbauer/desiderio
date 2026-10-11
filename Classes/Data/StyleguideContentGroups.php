@@ -66,8 +66,9 @@ final class StyleguideContentGroups
                 $ctype = $element['ctype'];
                 $element['fixture'] = $fixtures[$ctype] ?? [];
             }
+            unset($element);
         }
-        unset($group, $element);
+        unset($group);
 
         /** @var list<array{groupId: string, groupTitle: string, elements: list<array{name: string, ctype: string, keywords?: list<string>, fixture: array<string, mixed>}>}> $groups */
         return $groups;

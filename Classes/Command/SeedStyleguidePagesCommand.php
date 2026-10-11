@@ -296,8 +296,8 @@ final class SeedStyleguidePagesCommand extends Command
         // the group whether or not this run seeds a demo of them, and the
         // chapter intro and the content-types hub state the same number.
         $groupSizes = [];
-        foreach ($groups as $group) {
-            $groupSizes[(string)$group['groupId']] = count($group['elements']);
+        foreach ($groups as $unfilteredGroup) {
+            $groupSizes[(string)$unfilteredGroup['groupId']] = count($unfilteredGroup['elements']);
         }
         // With EXT:blog installed the success stories seed as real blog posts
         // and get hidden category/tag listing pages for their metadata badges.

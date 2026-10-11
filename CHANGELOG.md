@@ -6,6 +6,14 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.22.5] — 2026-10-11
+
+### Fixed
+
+- Release styleguide fixture references at each collection boundary and avoid
+  reusing the counting-loop variable. This preserves generated content and
+  satisfies current PHPStan strict rules.
+
 ## [4.22.4] — 2026-10-11
 
 ### Fixed

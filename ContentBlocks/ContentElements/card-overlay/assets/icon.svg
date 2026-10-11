@@ -1,1 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" class="icon-root"><title>Overlay Image Card icon</title><style>.icon-root{color-scheme:light dark}.s{fill:currentColor}.sd{fill:currentColor;opacity:.22}.a{fill:var(--icon-color-accent)}</style><rect class="sd" x="2.7" y="3" width="10.6" height="10" rx="2"/><circle class="s" cx="6" cy="6.1" r="1.1" opacity=".55"/><path class="s" d="M3.4 11.5l2.5-2.6 1.7 1.7 1.4-1.4 3.6 3.5z" opacity=".55"/><rect class="a icon-signature" x="4.3" y="9.9" width="7.4" height="2.2" rx=".9"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" class="icon-root">
+  <title>Overlay Image Card icon</title>
+  <style>.icon-root{color-scheme:light dark}.icon-root .s{fill:currentColor}.icon-root .sd{fill:none;stroke:currentColor;stroke-width:1.05;stroke-linecap:round;stroke-linejoin:round}.icon-root .a{fill:var(--icon-color-accent,currentColor)}.icon-root .o,.icon-root .ao{fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}.icon-root .ao{stroke:var(--icon-color-accent,currentColor)}</style>
+  <rect class="o" x="1.5" y="1.5" width="13" height="13" rx="0.7"/><path class="o" d="M2.0 13.5l3.9 -4.94 2.6 2.99 2.6 -2.6 3.25 4.55"/><circle class="a icon-signature" cx="10.6" cy="5.140000000000001" r="0.8"/><path class="o" d="M4 12h5"/>
+</svg>

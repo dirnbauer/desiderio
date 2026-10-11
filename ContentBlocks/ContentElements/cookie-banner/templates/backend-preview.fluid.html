@@ -10,44 +10,44 @@
 <f:section name="Content">
     <f:asset.css identifier="desiderio-content-preview" href="EXT:desiderio/Resources/Public/Css/content-preview.css" />
     <div class="d-ce-preview" data-slot="card">
-        <div class="d-ce-preview__meta">
-            <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.uid"/>: {data.uid}</span>
-            <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.page"/>: {data.pid}</span>
-            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
-        </div>
         <f:if condition="{data.header}">
             <h3 class="d-ce-preview__title">{data.header -> f:format.stripTags() -> f:format.htmlspecialchars()}</h3>
         </f:if>
         <f:if condition="{data.content}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Content</span>
+            <div class="d-ce-preview__field d-ce-preview__field--summary">
+                <span class="d-ce-preview__label"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/cookie-banner/language/labels.xlf:field.content"/></span>
                 <span class="d-ce-preview__value">{data.content -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.accept_text}">
             <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Accept Text</span>
+                <span class="d-ce-preview__label"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/cookie-banner/language/labels.xlf:field.accept_text"/></span>
                 <span class="d-ce-preview__value">{data.accept_text -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.decline_text}">
             <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Decline Text</span>
+                <span class="d-ce-preview__label"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/cookie-banner/language/labels.xlf:field.decline_text"/></span>
                 <span class="d-ce-preview__value">{data.decline_text -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.settings_text}">
             <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Settings Text</span>
+                <span class="d-ce-preview__label"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/cookie-banner/language/labels.xlf:field.settings_text"/></span>
                 <span class="d-ce-preview__value">{data.settings_text -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.position}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Position</span>
+            <div class="d-ce-preview__field d-ce-preview__field--setting">
+                <span class="d-ce-preview__label"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:position"/></span>
                 <span class="d-ce-preview__value">{data.position -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
+        <div class="d-ce-preview__meta">
+            <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.uid"/>: {data.uid}</span>
+            <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.page"/>: {data.pid}</span>
+            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
+        </div>
     </div>
 </f:section>
 

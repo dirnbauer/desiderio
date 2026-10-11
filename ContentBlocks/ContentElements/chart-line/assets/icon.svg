@@ -1,1 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" class="icon-root"><title>Line Chart icon</title><style>.icon-root{color-scheme:light dark}.s{fill:currentColor}.sd{fill:currentColor;opacity:.22}.a{fill:var(--icon-color-accent)}</style><path class="sd" d="M3 2.6a.9.9 0 0 1 .9.9v8.2h8.6a.9.9 0 0 1 0 1.8H3a.9.9 0 0 1-.9-.9V3.5a.9.9 0 0 1 .9-.9Z"/><path class="s" d="m5 9.55 2-2 2 1.5 3.05-3.45.97.86-3.7 4.18a.65.65 0 0 1-.88.08L7.46 9.4l-1.74 1.74a.65.65 0 0 1-.9.02l-.02-.02a.65.65 0 0 1 .02-.92Z"/><circle class="a icon-signature" cx="12.5" cy="5.6" r="1.5"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" class="icon-root">
+  <title>Line Chart icon</title>
+  <style>.icon-root{color-scheme:light dark}.icon-root .s{fill:currentColor}.icon-root .sd{fill:none;stroke:currentColor;stroke-width:1.05;stroke-linecap:round;stroke-linejoin:round}.icon-root .a{fill:var(--icon-color-accent,currentColor)}.icon-root .o,.icon-root .ao{fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}.icon-root .ao{stroke:var(--icon-color-accent,currentColor)}</style>
+  <path class="o" d="M1.5 1.5v13h13"/><path class="ao icon-signature" d="M4 10.5 7 7l3 2 4-6"/>
+</svg>

@@ -2737,5 +2737,23 @@
         <target>您的选择</target>
       </segment>
     </unit>
+    <unit id="preview.first_items">
+      <segment state="final">
+        <source>First {count} shown</source>
+        <target>显示前 {count} 项</target>
+      </segment>
+    </unit>
+    <unit id="preview.monthly">
+      <segment state="final">
+        <source>Monthly</source>
+        <target>每月</target>
+      </segment>
+    </unit>
+    <unit id="preview.yearly">
+      <segment state="final">
+        <source>Yearly</source>
+        <target>每年</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

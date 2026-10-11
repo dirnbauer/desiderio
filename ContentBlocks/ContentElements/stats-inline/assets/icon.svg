@@ -1,1 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" class="icon-root"><title>Inline Stats Row icon</title><style>.icon-root{color-scheme:light dark}.s{fill:currentColor}.sd{fill:currentColor;opacity:.22}.a{fill:var(--icon-color-accent)}</style><rect class="sd" x="2.3" y="6.1" width="11.4" height="3.8" rx="1.4"/><rect class="a icon-signature" x="3.7" y="7.1" width="2.2" height="1.8" rx=".5"/><rect class="s" x="7" y="7.1" width="2.2" height="1.8" rx=".5" opacity=".55"/><rect class="s" x="10.3" y="7.1" width="2.2" height="1.8" rx=".5" opacity=".55"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" class="icon-root">
+  <title>Inline Stats Row icon</title>
+  <style>.icon-root{color-scheme:light dark}.icon-root .s{fill:currentColor}.icon-root .sd{fill:none;stroke:currentColor;stroke-width:1.05;stroke-linecap:round;stroke-linejoin:round}.icon-root .a{fill:var(--icon-color-accent,currentColor)}.icon-root .o,.icon-root .ao{fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}.icon-root .ao{stroke:var(--icon-color-accent,currentColor)}</style>
+  <path class="o" d="M5.5 3v10m5-10v10"/><path class="ao icon-signature" d="M1.5 5h1.5v3H1.5m5.5-3h1.5v3H7m5.5-3H14v3h-1.5"/><path class="o" d="M1.5 11H3m4 0h1.5m4 0H14"/>
+</svg>

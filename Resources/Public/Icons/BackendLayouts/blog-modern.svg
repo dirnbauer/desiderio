@@ -8,7 +8,7 @@
     .ink{fill:currentColor}
     .soft{fill:currentColor;opacity:.4}
     .faint{fill:currentColor;opacity:.14}
-    .icon-signature{fill:var(--icon-color-accent)}
+    .icon-signature{fill:var(--icon-color-accent,currentColor)}
   </style>
   <rect class="tile" x="2" y="2" width="60" height="60" rx="8"/>
   <rect class="edge" x="2.75" y="2.75" width="58.5" height="58.5" rx="7.25"/>

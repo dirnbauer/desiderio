@@ -8,6 +8,10 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 defined('TYPO3') or die();
 
+// Content-type illustrations also appear in the new-record wizard, where no
+// content preview has rendered yet. Keep this small, scoped stylesheet global.
+$GLOBALS['TYPO3_CONF_VARS']['BE']['stylesheets']['desiderio-content-icons'] = 'EXT:desiderio/Resources/Public/Css/backend-icons.css';
+
 // CSS, JS and all frontend configuration come from the site set in
 // Configuration/Sets/Desiderio/; page TSconfig is auto-loaded from
 // Configuration/page.tsconfig. The extensionLoaded("<key>") TypoScript

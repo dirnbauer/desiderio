@@ -10,23 +10,18 @@
 <f:section name="Content">
     <f:asset.css identifier="desiderio-content-preview" href="EXT:desiderio/Resources/Public/Css/content-preview.css" />
     <div class="d-ce-preview" data-slot="card">
-        <div class="d-ce-preview__meta">
-            <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.uid"/>: {data.uid}</span>
-            <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.page"/>: {data.pid}</span>
-            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
-        </div>
         <f:if condition="{data.header}">
             <h3 class="d-ce-preview__title">{data.header -> f:format.stripTags() -> f:format.htmlspecialchars()}</h3>
         </f:if>
         <f:if condition="{data.eyebrow}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Eyebrow</span>
+            <div class="d-ce-preview__field d-ce-preview__field--eyebrow">
+                <span class="d-ce-preview__label"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow"/></span>
                 <span class="d-ce-preview__value">{data.eyebrow -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.description}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Description</span>
+            <div class="d-ce-preview__field d-ce-preview__field--summary">
+                <span class="d-ce-preview__label"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description"/></span>
                 <span class="d-ce-preview__value">{data.description -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
@@ -41,17 +36,27 @@
         </f:if>
         <f:if condition="{data.specs}">
             <div class="d-ce-preview__collection">
-                <span class="d-ce-preview__label">Specs</span>
+                <div class="d-ce-preview__collection-heading"><span class="d-ce-preview__label">Specs</span><span class="d-ce-preview__count">{data.specs -> f:count()}</span></div>
                 <ul class="d-ce-preview__list">
-                    <f:for each="{data.specs}" as="item">
+                    <f:for each="{data.specs}" as="item" iteration="previewIterator">
+                        <f:if condition="{previewIterator.index} < 4">
                         <li>
-                            <f:if condition="{item.value}"><span>{item.value -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
-                            <f:if condition="{item.label}"><span>{item.label -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
+                            <div class="d-ce-preview__item-content">
+                                <f:if condition="{item.label}"><span class="d-ce-preview__item-title">{item.label -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span></f:if>
+                                <f:if condition="{item.value} != ''"><span class="d-ce-preview__item-detail d-ce-preview__item-value">{item.value -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span></f:if>
+                            </div>
                         </li>
+                        </f:if>
                     </f:for>
                 </ul>
+                <f:if condition="{data.specs -> f:count()} > 4"><p class="d-ce-preview__more"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.first_items" arguments="{count: 4}"/></p></f:if>
             </div>
         </f:if>
+        <div class="d-ce-preview__meta">
+            <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.uid"/>: {data.uid}</span>
+            <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.page"/>: {data.pid}</span>
+            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
+        </div>
     </div>
 </f:section>
 

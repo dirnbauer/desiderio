@@ -2755,5 +2755,23 @@
         <target>Ihre Auswahl</target>
       </segment>
     </unit>
+    <unit id="preview.first_items">
+      <segment state="final">
+        <source>First {count} shown</source>
+        <target>Die ersten {count} Einträge</target>
+      </segment>
+    </unit>
+    <unit id="preview.monthly">
+      <segment state="final">
+        <source>Monthly</source>
+        <target>Monatlich</target>
+      </segment>
+    </unit>
+    <unit id="preview.yearly">
+      <segment state="final">
+        <source>Yearly</source>
+        <target>Jährlich</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

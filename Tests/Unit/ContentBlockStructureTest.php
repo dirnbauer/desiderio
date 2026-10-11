@@ -311,12 +311,30 @@ final class ContentBlockStructureTest extends AbstractContentBlockTestCase
             self::assertStringContainsString('currentColor', $icon, "{$name} icon should inherit backend icon color");
             self::assertStringContainsString('color-scheme:light dark', $icon, "{$name} icon should declare color-scheme:light dark so currentColor stays scheme-aware when rendered as an <img> in backend dark mode");
             self::assertStringContainsString('--icon-color-accent', $icon, "{$name} icon should expose the TYPO3 accent variable");
+            self::assertDoesNotMatchRegularExpression('/var\(\s*--icon-color-accent\s*\)/', $icon, "{$name} accent must remain visible when the SVG is loaded as an external image without inherited CSS variables");
+            self::assertStringNotContainsString('opacity:.22', $icon, "{$name} silhouette should be a full-contrast outline in either backend scheme");
             self::assertStringContainsString('icon-signature', $icon, "{$name} icon should include a visible per-element signature mark");
             self::assertDoesNotMatchRegularExpression('/#[0-9a-fA-F]{3,8}\b/', $icon, "{$name} icon must not hard-code color fallbacks");
             self::assertStringNotContainsString('#000', strtolower($icon), "{$name} icon must not hard-code black");
             self::assertStringNotContainsString('#fff', strtolower($icon), "{$name} icon must not hard-code white");
 
-            $normalizedIcons[$name] = (string)preg_replace('#<title>.*?</title>\s*#s', '', $icon);
+            $svg = simplexml_load_string($icon);
+            self::assertInstanceOf(\SimpleXMLElement::class, $svg, "{$name} icon must be valid SVG XML");
+            $geometry = [];
+            $shapes = $svg->xpath('//*[local-name()="path" or local-name()="rect" or local-name()="circle" or local-name()="ellipse" or local-name()="line" or local-name()="polyline" or local-name()="polygon"]');
+            self::assertIsArray($shapes, "{$name} vector geometry must be readable");
+            foreach ($shapes as $shape) {
+                $attributes = [];
+                foreach ($shape->attributes() as $attribute => $value) {
+                    if (!in_array($attribute, ['class', 'fill', 'stroke', 'opacity'], true)) {
+                        $attributes[$attribute] = (string)$value;
+                    }
+                }
+                ksort($attributes);
+                $geometry[] = [$shape->getName(), $attributes];
+            }
+            self::assertNotEmpty($geometry, "{$name} icon must contain visible vector geometry");
+            $normalizedIcons[$name] = json_encode($geometry, JSON_THROW_ON_ERROR);
         }
 
         self::assertCount(
@@ -336,6 +354,7 @@ final class ContentBlockStructureTest extends AbstractContentBlockTestCase
             self::assertStringContainsString('icon-root', $icon, "{$relative} should declare the adaptive icon root class");
             self::assertStringContainsString('color-scheme:light dark', $icon, "{$relative} should declare color-scheme:light dark so currentColor stays scheme-aware when rendered as an <img> in backend dark mode");
             self::assertStringContainsString('--icon-color-accent', $icon, "{$relative} should expose the TYPO3 accent variable");
+            self::assertDoesNotMatchRegularExpression('/var\(\s*--icon-color-accent\s*\)/', $icon, "{$relative} accent must provide a fallback for external SVG rendering");
             self::assertStringContainsString('currentColor', $icon, "{$relative} should preserve currentColor inheritance");
             self::assertDoesNotMatchRegularExpression('/#[0-9a-fA-F]{3,8}\b/', $icon, "{$relative} must not hard-code color fallbacks");
             self::assertStringNotContainsString('#000', $lower, "{$relative} must not hard-code black");

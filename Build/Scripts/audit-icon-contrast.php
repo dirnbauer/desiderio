@@ -18,6 +18,14 @@ foreach ($iconFiles as $file) {
     assertContains($svg, '--icon-color-accent', $relative, 'is missing the TYPO3 accent icon variable', $errors);
     assertContains($svg, 'currentColor', $relative, 'does not preserve currentColor inheritance', $errors);
 
+    if (preg_match('/var\(\s*--icon-color-accent\s*\)/', $svg)) {
+        $errors[] = sprintf('%s must provide a currentColor fallback for accents because external SVG images cannot inherit the backend CSS variable', $relative);
+    }
+
+    if (str_contains($relative, 'ContentBlocks/') && str_contains($svg, 'opacity:.22')) {
+        $errors[] = sprintf('%s still uses a faint silhouette instead of a readable outline', $relative);
+    }
+
     foreach (['#000', '#fff', 'black', 'white'] as $forbidden) {
         if (str_contains($lower, $forbidden)) {
             $errors[] = sprintf('%s contains forbidden fixed color "%s"', $relative, $forbidden);

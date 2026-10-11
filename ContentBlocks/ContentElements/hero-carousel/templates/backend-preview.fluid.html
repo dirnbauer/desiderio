@@ -10,42 +10,41 @@
 <f:section name="Content">
     <f:asset.css identifier="desiderio-content-preview" href="EXT:desiderio/Resources/Public/Css/content-preview.css" />
     <div class="d-ce-preview" data-slot="card">
-        <div class="d-ce-preview__meta">
-            <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.uid"/>: {data.uid}</span>
-            <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.page"/>: {data.pid}</span>
-            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
-        </div>
         <f:if condition="{data.header}">
             <h3 class="d-ce-preview__title">{data.header -> f:format.stripTags() -> f:format.htmlspecialchars()}</h3>
         </f:if>
         <f:if condition="{data.subheadline}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Subheadline</span>
+            <div class="d-ce-preview__field d-ce-preview__field--summary">
+                <span class="d-ce-preview__label"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline"/></span>
                 <span class="d-ce-preview__value">{data.subheadline -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.slides}">
             <div class="d-ce-preview__collection">
-                <span class="d-ce-preview__label">Slides</span>
+                <div class="d-ce-preview__collection-heading"><span class="d-ce-preview__label">Slides</span><span class="d-ce-preview__count">{data.slides -> f:count()}</span></div>
                 <ul class="d-ce-preview__list">
-                    <f:for each="{data.slides}" as="item">
+                    <f:for each="{data.slides}" as="item" iteration="previewIterator">
+                        <f:if condition="{previewIterator.index} < 4">
                         <li>
-                            <f:if condition="{item.image}">
-                                <f:for each="{item.image}" as="file">
-                                    <f:if condition="{file.publicUrl}">
-                                        <img src="{file.publicUrl}" alt="{file.alternative}" class="d-ce-preview__thumb d-ce-preview__thumb--inline" loading="lazy" />
-                                    </f:if>
-                                </f:for>
-                            </f:if>
-                            <f:if condition="{item.title}"><strong>{item.title -> f:format.stripTags() -> f:format.htmlspecialchars()}</strong></f:if>
-                            <f:if condition="{item.lead}"><span>{item.lead -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
-                            <f:if condition="{item.description}"><span>{item.description -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span></f:if>
-                            <f:if condition="{item.button_text}"><span>{item.button_text -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
+                            <f:for each="{item.image}" as="file"><f:if condition="{file.publicUrl}"><img src="{file.publicUrl}" alt="{file.alternative}" class="d-ce-preview__thumb d-ce-preview__thumb--inline" loading="lazy" /></f:if></f:for>
+                            <div class="d-ce-preview__item-content">
+                                <f:if condition="{item.title}"><span class="d-ce-preview__item-title">{item.title -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span></f:if>
+                                <f:if condition="{item.description}"><span class="d-ce-preview__item-description">{item.description -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span></f:if>
+                                <f:if condition="{item.lead}"><span class="d-ce-preview__item-detail">{item.lead -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
+                                <f:if condition="{item.button_text}"><span class="d-ce-preview__item-detail">{item.button_text -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
+                            </div>
                         </li>
+                        </f:if>
                     </f:for>
                 </ul>
+                <f:if condition="{data.slides -> f:count()} > 4"><p class="d-ce-preview__more"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.first_items" arguments="{count: 4}"/></p></f:if>
             </div>
         </f:if>
+        <div class="d-ce-preview__meta">
+            <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.uid"/>: {data.uid}</span>
+            <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.page"/>: {data.pid}</span>
+            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
+        </div>
     </div>
 </f:section>
 

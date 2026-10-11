@@ -4,7 +4,7 @@
     .tile{fill:Canvas}
     .edge{fill:none;stroke:color-mix(in srgb,currentColor 20%,Canvas);stroke-width:1.5}
     .sheet{fill:none;stroke:currentColor;stroke-linejoin:round}
-    .icon-signature{fill:var(--icon-color-accent)}
+    .icon-signature{fill:var(--icon-color-accent,currentColor)}
   </style>
   <rect class="tile" x="6" y="6" width="52" height="52" rx="10"/>
   <rect class="edge" x="6.75" y="6.75" width="50.5" height="50.5" rx="9.25"/>

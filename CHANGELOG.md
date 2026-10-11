@@ -6,6 +6,25 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.24.0] — 2026-10-12
+
+### Changed
+
+- Rework the backend previews of all 244 content elements around their
+  headlines, images, actions and collection items. Keep record details in a
+  quiet footer and adapt the layout to narrow columns and TYPO3 light or dark
+  mode.
+- Give every content element a distinct, readable outline icon in the page
+  module and content wizard, including when TYPO3 loads the SVG as an image.
+
+### Fixed
+
+- Render collection records, zero values, prices and descriptions correctly
+  in backend previews. Show collection totals and translate the preview limit
+  and billing-period labels.
+- Render one icon library per backend preview item while retaining theme-based
+  icon switching on the frontend.
+
 ## [4.23.2] — 2026-10-12
 
 ### Fixed

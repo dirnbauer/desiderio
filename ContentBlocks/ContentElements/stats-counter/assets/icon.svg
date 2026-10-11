@@ -1,1 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" class="icon-root"><title>Counter Stats icon</title><style>.icon-root{color-scheme:light dark}.s{fill:currentColor}.sd{fill:currentColor;opacity:.22}.a{fill:var(--icon-color-accent)}</style><rect class="sd" x="2.5" y="3" width="11" height="10" rx="2"/><rect class="s" x="4.3" y="6.5" width="4.8" height="1.7" rx=".85"/><rect class="s" x="4.3" y="9.1" width="3.4" height="1.4" rx=".7" opacity=".55"/><path class="a icon-signature" d="M11.1 5l2.1 2.6h-1.3v2.6h-1.6V7.6h-1.3z"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" class="icon-root">
+  <title>Counter Stats icon</title>
+  <style>.icon-root{color-scheme:light dark}.icon-root .s{fill:currentColor}.icon-root .sd{fill:none;stroke:currentColor;stroke-width:1.05;stroke-linecap:round;stroke-linejoin:round}.icon-root .a{fill:var(--icon-color-accent,currentColor)}.icon-root .o,.icon-root .ao{fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}.icon-root .ao{stroke:var(--icon-color-accent,currentColor)}</style>
+  <rect class="o" x="1.5" y="4" width="9" height="9" rx="0.7"/><path class="o" d="M4 7h4M4 10h2"/><path class="ao icon-signature" d="M12.5 8V1.5m-2 2 2-2 2 2"/>
+</svg>

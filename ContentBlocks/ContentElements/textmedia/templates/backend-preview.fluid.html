@@ -10,35 +10,30 @@
 <f:section name="Content">
     <f:asset.css identifier="desiderio-content-preview" href="EXT:desiderio/Resources/Public/Css/content-preview.css" />
     <div class="d-ce-preview" data-slot="card">
-        <div class="d-ce-preview__meta">
-            <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.uid"/>: {data.uid}</span>
-            <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.page"/>: {data.pid}</span>
-            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
-        </div>
         <f:if condition="{data.header}">
             <h3 class="d-ce-preview__title">{data.header -> f:format.stripTags() -> f:format.htmlspecialchars()}</h3>
         </f:if>
         <f:if condition="{data.subheadline}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Subheadline</span>
+            <div class="d-ce-preview__field d-ce-preview__field--summary">
+                <span class="d-ce-preview__label"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline"/></span>
                 <span class="d-ce-preview__value">{data.subheadline -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.content}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Content</span>
+            <div class="d-ce-preview__field d-ce-preview__field--summary">
+                <span class="d-ce-preview__label"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:content"/></span>
                 <span class="d-ce-preview__value">{data.content -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.button_text}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Button Text</span>
+            <div class="d-ce-preview__field d-ce-preview__field--action">
+                <span class="d-ce-preview__label"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text"/></span>
                 <span class="d-ce-preview__value">{data.button_text -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.shadcn_layout}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Shadcn Layout</span>
+            <div class="d-ce-preview__field d-ce-preview__field--setting">
+                <span class="d-ce-preview__label"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:shadcn_layout"/></span>
                 <span class="d-ce-preview__value">{data.shadcn_layout -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
@@ -51,6 +46,11 @@
                 </f:for>
             </div>
         </f:if>
+        <div class="d-ce-preview__meta">
+            <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.uid"/>: {data.uid}</span>
+            <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.page"/>: {data.pid}</span>
+            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
+        </div>
     </div>
 </f:section>
 

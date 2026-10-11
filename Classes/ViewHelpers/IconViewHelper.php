@@ -16,6 +16,7 @@ final class IconViewHelper extends AbstractViewHelper
         $this->registerArgument('name', 'string', 'Semantic Desiderio icon key', true);
         $this->registerArgument('size', 'string', 'Icon size token', false, 'default');
         $this->registerArgument('class', 'string', 'Additional CSS classes', false, '');
+        $this->registerArgument('library', 'string', 'Render one icon library; leave empty for frontend theme switching', false, '');
     }
 
     public function render(): string
@@ -28,11 +29,14 @@ final class IconViewHelper extends AbstractViewHelper
 
         $size = is_string($this->arguments['size'] ?? null) ? $this->arguments['size'] : 'default';
         $class = is_string($this->arguments['class'] ?? null) ? $this->arguments['class'] : '';
+        $selectedLibrary = is_string($this->arguments['library'] ?? null) ? trim($this->arguments['library']) : '';
+        // Backend previews do not load the frontend CSS that selects a library.
+        $libraries = $selectedLibrary === '' ? IconRegistry::supportedLibraries() : [IconRegistry::normalizeLibrary($selectedLibrary)];
         $sizeClass = $this->sizeClass($size);
         $classAttribute = trim('d-icon shrink-0 ' . $sizeClass . ' ' . $class);
         $output = '';
 
-        foreach (IconRegistry::supportedLibraries() as $library) {
+        foreach ($libraries as $library) {
             $paths = IconRegistry::paths($key, $library);
             if ($paths === '') {
                 continue;

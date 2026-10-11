@@ -10,11 +10,6 @@
 <f:section name="Content">
     <f:asset.css identifier="desiderio-content-preview" href="EXT:desiderio/Resources/Public/Css/content-preview.css" />
     <div class="d-ce-preview" data-slot="card">
-        <div class="d-ce-preview__meta">
-            <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.uid"/>: {data.uid}</span>
-            <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.page"/>: {data.pid}</span>
-            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
-        </div>
         <f:if condition="{data.header}">
             <h3 class="d-ce-preview__title">{data.header -> f:format.stripTags() -> f:format.htmlspecialchars()}</h3>
         </f:if>
@@ -26,29 +21,46 @@
         </f:if>
         <f:if condition="{data.column_definitions}">
             <div class="d-ce-preview__collection">
-                <span class="d-ce-preview__label">Column Definitions</span>
+                <div class="d-ce-preview__collection-heading"><span class="d-ce-preview__label">Column Definitions</span><span class="d-ce-preview__count">{data.column_definitions -> f:count()}</span></div>
                 <ul class="d-ce-preview__list">
-                    <f:for each="{data.column_definitions}" as="item">
+                    <f:for each="{data.column_definitions}" as="item" iteration="previewIterator">
+                        <f:if condition="{previewIterator.index} < 4">
                         <li>
-                            <f:if condition="{item.column_label}"><span>{item.column_label -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
-                            <f:if condition="{item.column_align}"><span>{item.column_align -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
+
+                            <div class="d-ce-preview__item-content">
+                                <f:if condition="{item.column_label}"><span class="d-ce-preview__item-title">{item.column_label -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
+                                <f:if condition="{item.column_align}"><span class="d-ce-preview__item-detail">{item.column_align -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
+                            </div>
                         </li>
+                        </f:if>
                     </f:for>
                 </ul>
+                <f:if condition="{data.column_definitions -> f:count()} > 4"><p class="d-ce-preview__more"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.first_items" arguments="{count: 4}"/></p></f:if>
             </div>
         </f:if>
         <f:if condition="{data.rows}">
             <div class="d-ce-preview__collection">
-                <span class="d-ce-preview__label">Rows</span>
+                <div class="d-ce-preview__collection-heading"><span class="d-ce-preview__label">Rows</span><span class="d-ce-preview__count">{data.rows -> f:count()}</span></div>
                 <ul class="d-ce-preview__list">
-                    <f:for each="{data.rows}" as="item">
+                    <f:for each="{data.rows}" as="item" iteration="previewIterator">
+                        <f:if condition="{previewIterator.index} < 4">
                         <li>
-                            <f:if condition="{item.row_label}"><span>{item.row_label -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
+
+                            <div class="d-ce-preview__item-content">
+                                <f:if condition="{item.row_label}"><span class="d-ce-preview__item-title">{item.row_label -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
+                            </div>
                         </li>
+                        </f:if>
                     </f:for>
                 </ul>
+                <f:if condition="{data.rows -> f:count()} > 4"><p class="d-ce-preview__more"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.first_items" arguments="{count: 4}"/></p></f:if>
             </div>
         </f:if>
+        <div class="d-ce-preview__meta">
+            <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.uid"/>: {data.uid}</span>
+            <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.page"/>: {data.pid}</span>
+            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
+        </div>
     </div>
 </f:section>
 

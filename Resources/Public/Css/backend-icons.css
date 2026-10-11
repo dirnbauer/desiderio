@@ -1,0 +1,5 @@
+/* Only content-type illustrations grow; flags and action icons stay native.
+   The new-record wizard already renders these SVGs at TYPO3 medium (32px). */
+.t3-page-ce-header-left .icon[data-identifier^="tt_content-desiderio_"] {
+  --icon-size: 1.75rem;
+}

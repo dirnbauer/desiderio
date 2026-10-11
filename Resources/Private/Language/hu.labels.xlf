@@ -2737,5 +2737,23 @@
         <target>Az Ön választása</target>
       </segment>
     </unit>
+    <unit id="preview.first_items">
+      <segment state="final">
+        <source>First {count} shown</source>
+        <target>Az első {count} elem</target>
+      </segment>
+    </unit>
+    <unit id="preview.monthly">
+      <segment state="final">
+        <source>Monthly</source>
+        <target>Havonta</target>
+      </segment>
+    </unit>
+    <unit id="preview.yearly">
+      <segment state="final">
+        <source>Yearly</source>
+        <target>Évente</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

@@ -10,11 +10,6 @@
 <f:section name="Content">
     <f:asset.css identifier="desiderio-content-preview" href="EXT:desiderio/Resources/Public/Css/content-preview.css" />
     <div class="d-ce-preview" data-slot="card">
-        <div class="d-ce-preview__meta">
-            <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.uid"/>: {data.uid}</span>
-            <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.page"/>: {data.pid}</span>
-            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
-        </div>
         <f:if condition="{data.header}">
             <h3 class="d-ce-preview__title">{data.header -> f:format.stripTags() -> f:format.htmlspecialchars()}</h3>
         </f:if>
@@ -32,18 +27,29 @@
         </f:if>
         <f:if condition="{data.reviews}">
             <div class="d-ce-preview__collection">
-                <span class="d-ce-preview__label">Reviews</span>
+                <div class="d-ce-preview__collection-heading"><span class="d-ce-preview__label">Reviews</span><span class="d-ce-preview__count">{data.reviews -> f:count()}</span></div>
                 <ul class="d-ce-preview__list">
-                    <f:for each="{data.reviews}" as="item">
+                    <f:for each="{data.reviews}" as="item" iteration="previewIterator">
+                        <f:if condition="{previewIterator.index} < 4">
                         <li>
-                            <f:if condition="{item.rating}"><span>{item.rating -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
-                            <f:if condition="{item.date}"><span>{item.date -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
-                            <f:if condition="{item.author}"><span>{item.author -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
+                            <div class="d-ce-preview__item-content">
+                                <f:if condition="{item.title}"><span class="d-ce-preview__item-title">{item.title -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span></f:if>
+                                <f:if condition="{item.rating} != ''"><span class="d-ce-preview__item-detail d-ce-preview__item-value">{item.rating -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span></f:if>
+                                <f:if condition="{item.date}"><span class="d-ce-preview__item-detail">{item.date -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span></f:if>
+                                <f:if condition="{item.author}"><span class="d-ce-preview__item-detail">{item.author -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
+                            </div>
                         </li>
+                        </f:if>
                     </f:for>
                 </ul>
+                <f:if condition="{data.reviews -> f:count()} > 4"><p class="d-ce-preview__more"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.first_items" arguments="{count: 4}"/></p></f:if>
             </div>
         </f:if>
+        <div class="d-ce-preview__meta">
+            <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.uid"/>: {data.uid}</span>
+            <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.page"/>: {data.pid}</span>
+            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
+        </div>
     </div>
 </f:section>
 

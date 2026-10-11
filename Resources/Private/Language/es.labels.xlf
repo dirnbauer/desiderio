@@ -1135,5 +1135,23 @@
         <target>Activar el sonido</target>
       </segment>
     </unit>
+    <unit id="preview.first_items">
+      <segment state="final">
+        <source>First {count} shown</source>
+        <target>Primeros {count} elementos</target>
+      </segment>
+    </unit>
+    <unit id="preview.monthly">
+      <segment state="final">
+        <source>Monthly</source>
+        <target>Mensual</target>
+      </segment>
+    </unit>
+    <unit id="preview.yearly">
+      <segment state="final">
+        <source>Yearly</source>
+        <target>Anual</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

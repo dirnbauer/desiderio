@@ -70,7 +70,7 @@
                     "wait": 2500
                 },
                 {
-                    "click": ".docx-line:has-text(\"Template hours lower the margin\")",
+                    "click": ".docx-line:has-text(\"Built for the teams that ship TYPO3\")",
                     "frame": true,
                     "wait": 800
                 },
@@ -88,7 +88,7 @@
         },
         {
             "name": "feature-docx-editor-review",
-            "kind": "backend",
+            "kind": "frontend-auth",
             "url": "/typo3/module/web/layout?id=1094",
             "viewport": "1120x700",
             "steps": [

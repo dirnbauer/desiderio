@@ -1,0 +1,121 @@
+{
+    "_note": "Live backend previews and content wizard in native TYPO3 light/dark modes. Run capture-feature-screenshots.mjs --shots Build/Data/backend-preview-screenshots.json --state <session.json> --rewrite --manifest <captures.json>.",
+    "shots": [
+        {
+            "name": "backend-page-module-hero",
+            "kind": "backend",
+            "url": "/typo3/module/web/layout?id=669&languages[0]=0",
+            "viewport": "1360x1100",
+            "colorScheme": "light",
+            "steps": [
+                {
+                    "waitFor": ".t3-page-ce:has-text(\"desiderio/hero-announcement\")",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "scroll": ".t3-page-ce:has-text(\"desiderio/hero-announcement\")",
+                    "frame": true,
+                    "wait": 1000
+                }
+            ],
+            "clip": "frame:.t3-page-ce:has-text(\"desiderio/hero-announcement\")",
+            "padding": 12,
+            "settle": 1500,
+            "frameCss": "agentation-toolbar{display:none!important}"
+        },
+        {
+            "name": "feature-desiderio-page-module",
+            "kind": "backend",
+            "url": "/typo3/module/web/layout?id=667&languages[0]=1",
+            "viewport": "1360x1100",
+            "colorScheme": "dark",
+            "steps": [
+                {
+                    "waitFor": ".t3-page-ce:has-text(\"desiderio/feature-grid-3\")",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "scroll": ".t3-page-ce:has-text(\"desiderio/feature-grid-3\")",
+                    "frame": true,
+                    "wait": 1000
+                }
+            ],
+            "clip": "frame:.t3-page-ce:has-text(\"desiderio/feature-grid-3\")",
+            "padding": 12,
+            "settle": 1500,
+            "frameCss": "agentation-toolbar{display:none!important}",
+            "alternatives": {
+                "0": "TYPO3 page module in dark mode with a Desiderio feature grid, one icon per item, readable content and a subtle record footer.",
+                "1": "TYPO3-Seitenmodul im dunklen Modus mit einem Desiderio-Feature-Raster, einem Icon je Eintrag, gut lesbaren Inhalten und dezenten Datensatzangaben.",
+                "2": "深色模式下的 TYPO3 页面模块，展示 Desiderio 功能网格，每项一个图标、清晰易读的内容和低调的记录信息。",
+                "3": "A TYPO3 oldalmodul sötét módban: Desiderio funkciórács elemenként egy ikonnal, olvasható tartalommal és visszafogott rekordadatokkal."
+            }
+        },
+        {
+            "name": "backend-content-wizard",
+            "kind": "backend",
+            "url": "/typo3/module/web/layout?id=671&languages[0]=0",
+            "viewport": "1600x1000",
+            "css": "typo3-backend-modal .modal-size-large{--typo3-modal-width:1280px}",
+            "steps": [
+                {
+                    "waitFor": "typo3-backend-new-content-element-wizard-button",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "click": "typo3-backend-new-content-element-wizard-button",
+                    "frame": true,
+                    "wait": 500
+                },
+                {
+                    "waitFor": "typo3-backend-new-record-wizard button.navigation-item",
+                    "timeout": 120000
+                },
+                {
+                    "click": "typo3-backend-new-record-wizard button.navigation-item:has-text(\"Plans & Pricing\")",
+                    "wait": 1500
+                }
+            ],
+            "settle": 1500,
+            "clip": "typo3-backend-modal dialog",
+            "padding": 0,
+            "frameCss": "input,textarea,select{caret-color:transparent!important}agentation-toolbar{display:none!important}",
+            "colorScheme": "light"
+        },
+        {
+            "name": "feature-desiderio-content-wizard",
+            "kind": "backend",
+            "url": "/typo3/module/web/layout?id=671&languages[0]=0",
+            "viewport": "1600x1000",
+            "css": "typo3-backend-modal .modal-size-large{--typo3-modal-width:1280px}",
+            "steps": [
+                {
+                    "waitFor": "typo3-backend-new-content-element-wizard-button",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "click": "typo3-backend-new-content-element-wizard-button",
+                    "frame": true,
+                    "wait": 500
+                },
+                {
+                    "waitFor": "typo3-backend-new-record-wizard button.navigation-item",
+                    "timeout": 120000
+                },
+                {
+                    "click": "typo3-backend-new-record-wizard button.navigation-item:has-text(\"Plans & Pricing\")",
+                    "wait": 1500
+                }
+            ],
+            "settle": 1500,
+            "clip": "typo3-backend-modal dialog",
+            "padding": 0,
+            "frameCss": "input,textarea,select{caret-color:transparent!important}agentation-toolbar{display:none!important}",
+            "colorScheme": "dark"
+        }
+    ]
+}

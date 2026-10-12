@@ -15,8 +15,9 @@ declare(strict_types=1);
  * The manifest may contain any nonempty subset of ALLOWED_SHOTS. Every requested
  * shot must match at least one existing live reference before any FAL import or
  * DataHandler write. Default is read-only; --apply also works in Production.
- * Existing reference IDs, order, content relationships and alternatives remain
- * intact unless the manifest explicitly supplies alternatives per language.
+ * Existing reference IDs, order and content relationships remain intact.
+ * Alternatives and titles are preserved unless their optional language-ID maps
+ * explicitly supply replacement text for the reference's language.
  * No old assets are overwritten or deleted, and no content is reseeded.
  */
 
@@ -40,15 +41,32 @@ const ALLOWED_SHOTS = [
     'frontend-feature-blog-post',
     'frontend-feature-blog-comments',
     'frontend-feature-skillflow-catalogue',
+    'frontend-feature-skillflow-skill-detail',
+    'frontend-feature-agent-nexus-hub',
+    'frontend-feature-agent-nexus-a2ui-form',
+    'frontend-feature-agent-nexus-agui-approval',
+    'frontend-feature-agent-nexus-ucp-checkout',
     'frontend-feature-solr-results-facets',
     'frontend-feature-solr-active-filter',
     'frontend-feature-solr-dark-mode',
+    'frontend-feature-solr-suggest',
+    'frontend-feature-powermail-final-step',
+    'frontend-feature-powermail-dark-mode',
+    'frontend-feature-sg-apicore-try-it',
+    'frontend-feature-agentation-frontend-note',
+    'frontend-feature-llms-txt-llms',
+    'frontend-feature-llms-txt-agents-md',
+    'frontend-feature-llms-txt-per-language',
     'feature-visual-editor-field-chooser',
     'feature-visual-editor-rte-toolbar',
     'feature-visual-editor-link-helper',
     'feature-visual-editor-element-library',
     'feature-visual-editor-search',
     'feature-docx-editor-word-menu',
+    'feature-docx-editor-page-in-word',
+    'feature-docx-editor-review',
+    'feature-docx-editor-import-pages',
+    'feature-agentation-backend-note',
     'backend-visual-editor',
     'backend-page-module-hero',
     'feature-desiderio-page-module',
@@ -102,12 +120,14 @@ foreach ($manifest as $shot) {
     ) {
         throw new RuntimeException('Missing, invalid or incorrectly hashed WebP: ' . $file);
     }
-    if (isset($shot['alternatives']) && !is_array($shot['alternatives'])) {
-        throw new RuntimeException('Screenshot alternatives must map language IDs to text.');
-    }
-    foreach ($shot['alternatives'] ?? [] as $language => $alternative) {
-        if (!ctype_digit((string)$language) || !is_string($alternative) || trim($alternative) === '') {
-            throw new RuntimeException('Invalid language ID or empty screenshot alternative.');
+    foreach (['alternatives', 'titles'] as $field) {
+        if (array_key_exists($field, $shot) && !is_array($shot[$field])) {
+            throw new RuntimeException('Screenshot ' . $field . ' must map language IDs to text.');
+        }
+        foreach ($shot[$field] ?? [] as $language => $text) {
+            if (!ctype_digit((string)$language) || !is_string($text) || trim($text) === '') {
+                throw new RuntimeException('Invalid language ID or empty screenshot ' . $field . ' text.');
+            }
         }
     }
     $sources[$name] = $source;
@@ -155,7 +175,7 @@ foreach ($manifest as $shot) {
             continue;
         }
         $references = $referencesConnection->select(
-            ['uid', 'pid', 'uid_local', 'uid_foreign', 'tablenames', 'fieldname', 'sorting_foreign', 'sys_language_uid', 'alternative'],
+            ['uid', 'pid', 'uid_local', 'uid_foreign', 'tablenames', 'fieldname', 'sorting_foreign', 'sys_language_uid', 'alternative', 'title'],
             'sys_file_reference',
             ['uid_local' => (int)$oldFile['uid'], 'deleted' => 0, 't3ver_wsid' => 0],
         )->fetchAllAssociative();
@@ -163,7 +183,8 @@ foreach ($manifest as $shot) {
         $matched[$shot['name']] += count($references);
         foreach ($references as $reference) {
             $alternative = $shot['alternatives'][(int)$reference['sys_language_uid']] ?? $reference['alternative'];
-            if ($oldFile['name'] === $shot['file'] && $reference['alternative'] === $alternative) {
+            $title = $shot['titles'][(int)$reference['sys_language_uid']] ?? $reference['title'];
+            if ($oldFile['name'] === $shot['file'] && $reference['alternative'] === $alternative && $reference['title'] === $title) {
                 continue;
             }
             $changes[] = [
@@ -173,6 +194,7 @@ foreach ($manifest as $shot) {
                 'to' => $shot['file'],
                 'replacementUid' => $oldFile['name'] === $shot['file'] ? (int)$oldFile['uid'] : null,
                 'alternative' => $alternative,
+                'title' => $title,
             ];
         }
     }
@@ -219,6 +241,7 @@ if ($apply && $changes !== []) {
         $datamap['sys_file_reference'][(int)$change['reference']['uid']] = [
             'uid_local' => $change['replacementUid'],
             'alternative' => $change['alternative'],
+            'title' => $change['title'],
         ];
     }
     unset($change);
@@ -231,11 +254,11 @@ if ($apply && $changes !== []) {
     foreach ($changes as $change) {
         $reference = $change['reference'];
         $actual = $referencesConnection->select(
-            ['uid_local', 'alternative', 'pid', 'uid_foreign', 'tablenames', 'fieldname', 'sorting_foreign', 'sys_language_uid'],
+            ['uid_local', 'alternative', 'title', 'pid', 'uid_foreign', 'tablenames', 'fieldname', 'sorting_foreign', 'sys_language_uid'],
             'sys_file_reference',
             ['uid' => (int)$reference['uid'], 'deleted' => 0, 't3ver_wsid' => 0],
         )->fetchAssociative();
-        if (!$actual || (int)$actual['uid_local'] !== $change['replacementUid'] || $actual['alternative'] !== $change['alternative']) {
+        if (!$actual || (int)$actual['uid_local'] !== $change['replacementUid'] || $actual['alternative'] !== $change['alternative'] || $actual['title'] !== $change['title']) {
             throw new RuntimeException('Screenshot reference verification failed for UID ' . $reference['uid']);
         }
         foreach (['pid', 'uid_foreign', 'tablenames', 'fieldname', 'sorting_foreign', 'sys_language_uid'] as $field) {

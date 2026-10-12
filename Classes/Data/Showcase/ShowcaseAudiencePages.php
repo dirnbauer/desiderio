@@ -69,7 +69,7 @@ final class ShowcaseAudiencePages
                     'media_rounded' => 1,
                     'button_text' => 'See in-house details',
                     'button_link' => '{{page:target-groups/for-inhouse-teams}}',
-                    'media' => ShowcaseBlocks::screenshot('backend-visual-editor-460d5038.png', 'Editing a page in the Visual Editor', 'The TYPO3 Visual Editor with a Desiderio hero element selected for inline editing.'),
+                    'media' => ShowcaseBlocks::screenshot('backend-visual-editor-7f9bffd8.webp', 'Editing a page in the Visual Editor', 'The TYPO3 Visual Editor with a Desiderio hero element selected for inline editing.'),
                 ]),
                 ShowcaseBlocks::block('desiderio_textmedia', [
                     'header' => 'Freelancers get a full design system for €0',
@@ -197,7 +197,7 @@ final class ShowcaseAudiencePages
                     'media_rounded' => 1,
                     'button_text' => 'See technical details',
                     'button_link' => '{{page:technical-features}}',
-                    'media' => ShowcaseBlocks::screenshot('backend-visual-editor-460d5038.png', 'Editing a page in the Visual Editor', 'The TYPO3 Visual Editor with a Desiderio hero element selected for inline editing.'),
+                    'media' => ShowcaseBlocks::screenshot('backend-visual-editor-7f9bffd8.webp', 'Editing a page in the Visual Editor', 'The TYPO3 Visual Editor with a Desiderio hero element selected for inline editing.'),
                 ]),
                 ShowcaseBlocks::block('desiderio_benefitcards', [
                     'header' => 'What changes for your team',

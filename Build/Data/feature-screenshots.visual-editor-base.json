@@ -1,0 +1,51 @@
+{
+    "shots": [
+        {
+            "name": "backend-visual-editor",
+            "kind": "backend",
+            "url": "/typo3/module/web/edit?id=669",
+            "viewport": "1400x900",
+            "steps": [
+                {
+                    "waitFor": "ve-content-element",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "timeout": 120000
+                },
+                {
+                    "waitFor": "ve-element-library-button .fab",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "timeout": 120000
+                },
+                {
+                    "evaluate": "(() => { const s = document.createElement('style'); s.textContent = '#TSFE_ADMIN_PANEL_FORM{display:none!important}*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}[class*=reveal],[class*=fade],section{opacity:1!important;transform:none!important}'; document.head.append(s); window.scrollTo(0,0); })()",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "wait": 1500
+                },
+                {
+                    "waitFor": "ve-content-element[ctype=desiderio_hero] ve-editable-text[field=header]",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "timeout": 120000
+                },
+                {
+                    "evaluate": "(() => { const hero = document.querySelector('ve-content-element[ctype=desiderio_hero]'); window.scrollTo(0, hero.getBoundingClientRect().top + window.scrollY - 110); })()",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "wait": 1000
+                },
+                {
+                    "hover": "ve-content-element[ctype=desiderio_hero]",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "wait": 500
+                },
+                {
+                    "click": "ve-content-element[ctype=desiderio_hero] ve-editable-text[field=header]",
+                    "frame": "iframe#typo3-contentIframe >> iframe.visual-editor-iframe",
+                    "wait": 800
+                }
+            ],
+            "clip": "module",
+            "padding": 0,
+            "settle": 2000
+        }
+    ],
+    "_note": "The base screenshot embedded by hero-product. Capture and publish this first, then capture feature-visual-editor-link-helper so its inset shows the current UI."
+}

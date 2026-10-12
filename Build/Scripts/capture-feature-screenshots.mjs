@@ -2,7 +2,7 @@
 /**
  * Captures the screenshots of the /features pages from the running lab.
  *
- *   node Build/Scripts/capture-feature-screenshots.mjs [--base <url>] [--shots <file>] [--only <name-prefix>] [--rewrite] [--headed] [--list]
+ *   node Build/Scripts/capture-feature-screenshots.mjs [--base <url>] [--shots <file>] [--state <file>] [--http-credentials <file>] [--only <name-prefix>] [--rewrite] [--manifest <file>] [--headed] [--list]
  *   node Build/Scripts/capture-feature-screenshots.mjs --relink
  *
  * The shots are listed in Build/Data/feature-screenshots.json (or the file
@@ -21,7 +21,7 @@
  *
  * A shot: name (a "frontend-" prefix files it under Frontend, the rest under
  * Backend), kind (frontend | backend | frontend-auth), url, viewport ("WxH",
- * default 1440x900), colorScheme (frontend shots), css (top document),
+ * default 1440x900), colorScheme (light or dark, including backend shots), css (top document),
  * frameCss (module iframe), steps, settle (ms before the shot, default 800),
  * clip, padding and aspect. A step is one of click, hover, fill [selector, value],
  * select [selector, value], check, press, waitFor, goto, evaluate or scroll,
@@ -52,8 +52,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const LAB = join(ROOT, '..', '..');
-const STATE = join(LAB, 'var', 'playwright-backend', 'backend-state.json');
-const REFERENCES = [join(ROOT, 'Classes', 'Data', 'Showcase')];
+const REFERENCES = ['Classes/Data', 'ContentBlocks/ContentElements', 'Build/Film'].map((folder) => join(ROOT, folder));
 const FOLDERS = ['Frontend', 'Backend'].map((folder) => join(ROOT, 'Resources', 'Public', 'Styleguide', folder));
 
 const args = process.argv.slice(2);
@@ -65,6 +64,10 @@ const base = (flag('base', 'https://webconsulting-typo3-lab.ddev.site') ?? '').r
 const only = flag('only');
 const rewrite = args.includes('--rewrite');
 const headed = args.includes('--headed');
+const state = flag('state', join(LAB, 'var', 'playwright-backend', 'backend-state.json'));
+const httpCredentialsFile = flag('http-credentials');
+const httpCredentials = httpCredentialsFile ? JSON.parse(readFileSync(httpCredentialsFile, 'utf8')) : undefined;
+const manifest = flag('manifest');
 const shotList = flag('shots', join(ROOT, 'Build', 'Data', 'feature-screenshots.json'));
 
 if (args.includes('--relink')) {
@@ -97,7 +100,8 @@ const backend = shots.some((shot) => shot.kind !== 'frontend')
         ignoreHTTPSErrors: true,
         deviceScaleFactor: 2,
         colorScheme: 'light',
-        storageState: existsSync(STATE) ? STATE : undefined,
+        httpCredentials,
+        storageState: existsSync(state) ? state : undefined,
     })
     : null;
 
@@ -111,7 +115,7 @@ try {
             }
             console.log('Sign in to the TYPO3 backend in the window that opened; the capture starts afterwards.');
             await page.waitForURL(/\/typo3\/(main|module)/, { timeout: 30 * 60 * 1000 });
-            await backend.storageState({ path: STATE });
+            await backend.storageState({ path: state });
         }
     }
 
@@ -119,9 +123,10 @@ try {
         const [width, height] = (shot.viewport ?? '1440x900').split('x').map(Number);
         const context = shot.kind !== 'frontend'
             ? backend
-            : await browser.newContext({ ignoreHTTPSErrors: true, deviceScaleFactor: 2, colorScheme: shot.colorScheme ?? 'light', viewport: { width, height } });
+            : await browser.newContext({ ignoreHTTPSErrors: true, deviceScaleFactor: 2, colorScheme: shot.colorScheme ?? 'light', viewport: { width, height }, httpCredentials });
         const page = shot.kind !== 'frontend' ? (backend.pages()[0] ?? (await backend.newPage())) : await context.newPage();
         await page.setViewportSize({ width, height });
+        await page.emulateMedia({ colorScheme: shot.colorScheme ?? 'light', reducedMotion: 'reduce' });
         // Backend modules poll (dashboards, badges), so they never go network-idle.
         await page.goto(base + shot.url, { waitUntil: shot.waitUntil ?? (shot.kind === 'backend' ? 'domcontentloaded' : 'networkidle'), timeout: 120000 });
         await page.addStyleTag({ content: STILL + (shot.kind !== 'backend' ? UNSTICK : MODULE_CORNER) + (shot.css ?? '') });
@@ -138,10 +143,15 @@ try {
                 }
             }
         }
+        if (shot.kind === 'backend') {
+            // Use the backend's own theme event without changing the user's saved preference.
+            await page.evaluate((colorScheme) => document.dispatchEvent(new CustomEvent('typo3:color-scheme:update', { detail: { colorScheme } })), shot.colorScheme ?? 'light');
+            await page.waitForFunction((colorScheme) => document.documentElement.dataset.colorScheme === colorScheme, shot.colorScheme ?? 'light');
+        }
         await page.waitForTimeout(shot.settle ?? 800);
         const clip = await resolveClip(page, shot);
         const png = await page.screenshot({ type: 'png', clip, animations: 'disabled' });
-        const file = save(shot.name, png);
+        const file = save(shot, png);
         if (shot.kind === 'frontend') {
             await context.close();
         }
@@ -156,6 +166,17 @@ try {
 if (rewrite) {
     rewriteReferences(renamed);
 }
+if (manifest) {
+    writeFileSync(manifest, JSON.stringify(renamed.map(({ name, file, alternatives }) => ({ name, file, alternatives })), null, 2) + '\n');
+}
+
+/** Source references include fixtures and film captions as well as showcase PHP. */
+function referenceFiles(directory) {
+    return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+        const path = join(directory, entry.name);
+        return entry.isDirectory() ? referenceFiles(path) : (/\.(php|json|html)$/.test(path) ? [path] : []);
+    });
+}
 
 /**
  * Points the references in Classes/Data/Showcase at the given files and
@@ -163,11 +184,7 @@ if (rewrite) {
  */
 function rewriteReferences(files) {
     for (const directory of REFERENCES) {
-        for (const entry of readdirSync(directory)) {
-            const path = join(directory, entry);
-            if (!statSync(path).isFile() || !path.endsWith('.php')) {
-                continue;
-            }
+        for (const path of referenceFiles(directory)) {
             let content = readFileSync(path, 'utf8');
             let changed = false;
             for (const { name, file } of files) {
@@ -196,8 +213,8 @@ function rewriteReferences(files) {
 function relink() {
     const names = new Set();
     for (const directory of REFERENCES) {
-        for (const entry of readdirSync(directory).filter((entry) => entry.endsWith('.php'))) {
-            for (const match of readFileSync(join(directory, entry), 'utf8').matchAll(/((?:frontend-)?feature-[a-z0-9-]+?)(?:-[0-9a-f]{8})?\.(?:png|webp)/g)) {
+        for (const path of referenceFiles(directory)) {
+            for (const match of readFileSync(path, 'utf8').matchAll(/((?:frontend-)?feature-[a-z0-9-]+?)(?:-[0-9a-f]{8})?\.(?:png|webp)/g)) {
                 names.add(match[1]);
             }
         }
@@ -375,7 +392,7 @@ function fitAspect(rect, shot, viewport, minX) {
 }
 
 /** PNG in, content-hashed WebP out, in the folder ShowcaseBlocks::screenshot() reads. */
-function save(name, png) {
+function save({ name, alternatives }, png) {
     const folder = join(ROOT, 'Resources', 'Public', 'Styleguide', name.startsWith('frontend-') ? 'Frontend' : 'Backend');
     const source = join(workDir, `${name}.png`);
     const target = join(workDir, `${name}.webp`);
@@ -385,6 +402,6 @@ function save(name, png) {
     const hash = createHash('sha256').update(webp).digest('hex').slice(0, 8);
     const file = `${name}-${hash}.webp`;
     writeFileSync(join(folder, file), webp);
-    renamed.push({ folder, name, file });
+    renamed.push({ folder, name, file, alternatives });
     return file;
 }

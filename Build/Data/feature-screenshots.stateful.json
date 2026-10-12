@@ -183,67 +183,45 @@
         {
             "name": "frontend-feature-agentation-frontend-note",
             "kind": "frontend-auth",
-            "url": "/",
+            "url": "/?no_cache=1",
             "viewport": "1440x900",
             "waitUntil": "domcontentloaded",
             "css": "#typo3-preview-info,#TSFE_ADMIN_PANEL_FORM,.typo3-adminPanel{display:none!important}",
             "steps": [
                 {
                     "waitFor": "agentation-toolbar button[aria-label=\"Start feedback mode\"]",
-                    "timeout": 180000,
+                    "timeout": 30000,
                     "wait": 1500
                 },
                 {
-                    "evaluate": "(() => { const mark = (el, name) => el && el.setAttribute(\"data-shot-target\", name); const visible = (e) => { const r = e.getBoundingClientRect(); return r.width > 50 && r.height > 20 && r.top >= 0 && r.bottom <= innerHeight; }; mark([...document.querySelectorAll(\"h1,h2,h3\")].filter(visible).sort((a, b) => parseFloat(getComputedStyle(b).fontSize) - parseFloat(getComputedStyle(a).fontSize))[0], \"headline\"); mark([...document.querySelectorAll(\"a,button\")].find((e) => visible(e) && /get started/i.test(e.textContent)), \"button\"); mark([...document.querySelectorAll(\"main img\")].find(visible), \"image\"); })()"
+                    "evaluate": "(() => { const e = document.querySelector(\"main section.hero h2, main section.hero h1\"); if (!e) throw new Error(\"Home hero heading missing\"); e.setAttribute(\"data-shot-target\", \"headline\"); })()"
                 },
                 {
                     "click": "agentation-toolbar button[aria-label=\"Start feedback mode\"]",
-                    "wait": 900
+                    "wait": 600
                 },
                 {
                     "click": "[data-shot-target=headline]",
-                    "wait": 900
+                    "wait": 600
                 },
                 {
                     "fill": [
                         "agentation-toolbar textarea[placeholder=\"What should change?\"]",
-                        "Keep \u201celements for TYPO3\u201d together: break the line after \u201ccontent\u201d."
+                        "Keep the headline concise and pair it with the agency team photo."
                     ]
                 },
                 {
-                    "click": "agentation-toolbar button[class*=submit]",
-                    "wait": 900
-                },
-                {
-                    "click": "[data-shot-target=button]",
-                    "wait": 900
-                },
-                {
-                    "fill": [
-                        "agentation-toolbar textarea[placeholder=\"What should change?\"]",
-                        "Use the brand colour here, so it stands out from See the features."
-                    ]
-                },
-                {
-                    "click": "agentation-toolbar button[class*=submit]",
-                    "wait": 900
-                },
-                {
-                    "click": "[data-shot-target=image]",
-                    "wait": 900
-                },
-                {
-                    "fill": [
-                        "agentation-toolbar textarea[placeholder=\"What should change?\"]",
-                        "Add a short caption under this preview"
-                    ]
-                },
-                {
-                    "evaluate": "document.activeElement && document.activeElement.blur && 0",
+                    "evaluate": "document.activeElement?.blur()",
                     "wait": 600
                 }
             ],
-            "clip": "viewport"
+            "clip": "viewport",
+            "alternatives": {
+                "0": "Agentation feedback draft attached to the current Desiderio homepage headline beside an agency team photo.",
+                "1": "Agentation-Feedbackentwurf an der Überschrift der aktuellen Desiderio-Startseite neben einem Foto des Agenturteams.",
+                "2": "Agentation 反馈草稿附加在当前 Desiderio 首页标题上，旁边是代理机构团队的照片。",
+                "3": "Agentation-visszajelzés vázlata a jelenlegi Desiderio-kezdőlap címsorához csatolva, az ügynökségi csapat fényképe mellett."
+            }
         },
         {
             "name": "feature-agentation-backend-note",
@@ -258,8 +236,9 @@
                     "wait": 1500
                 },
                 {
-                    "evaluate": "(() => { const visible = (e) => { const r = e.getBoundingClientRect(); return r.width > 200 && r.height > 60 && r.top > 120 && r.bottom < innerHeight - 40; }; const ce = [...document.querySelectorAll(\".t3-page-ce .t3-page-ce-element, .t3-page-ce-body, .t3-page-ce\")].filter(visible)[1]; ce && ce.setAttribute(\"data-shot-target\", \"element\"); })()",
-                    "frame": true
+                    "evaluate": "(() => { const ce = document.querySelector('.d-ce-preview'); if (!ce) throw new Error('No published preview found'); ce.scrollIntoView({block: 'center'}); ce.setAttribute('data-shot-target', 'element'); })()",
+                    "frame": true,
+                    "wait": 700
                 },
                 {
                     "click": "agentation-toolbar button[aria-label=\"Start feedback mode\"]",
@@ -277,14 +256,15 @@
                         "Swap the order: the problem section should come before the screenshots."
                     ],
                     "frame": true
-                },
-                {
-                    "click": "agentation-toolbar button[class*=submit]",
-                    "frame": true,
-                    "wait": 1200
                 }
             ],
-            "clip": "module"
+            "clip": "module",
+            "alternatives": {
+                "0": "TYPO3 page module with the updated Desiderio preview and an unsent Agentation feedback note attached to the content.",
+                "1": "TYPO3-Seitenmodul mit der aktualisierten Desiderio-Vorschau und einem noch nicht gesendeten Agentation-Kommentar zum Inhalt.",
+                "2": "TYPO3 页面模块展示更新后的 Desiderio 预览，以及附加到内容的尚未发送的 Agentation 反馈。",
+                "3": "A TYPO3 oldalmodul a frissített Desiderio előnézettel és a tartalomhoz csatolt, még el nem küldött Agentation-visszajelzéssel."
+            }
         },
         {
             "name": "feature-agentation-module",

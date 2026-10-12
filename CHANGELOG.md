@@ -6,6 +6,19 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.24.1] — 2026-10-12
+
+### Changed
+
+- Refresh feature and showcase screenshots after publishing the current
+  frontend, editor and backend preview changes. Update translated descriptions,
+  fixture references and nested screenshot previews to match the captured pages.
+- Make screenshot capture recipes repeatable with authenticated production
+  access and unsent Agentation feedback drafts in Development.
+- Add a scoped screenshot reference updater that validates image hashes and
+  matches before importing files, preserves existing content relationships,
+  and defaults to a dry run.
+
 ## [4.24.0] — 2026-10-12
 
 ### Changed

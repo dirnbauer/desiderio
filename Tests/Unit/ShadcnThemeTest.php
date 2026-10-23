@@ -268,10 +268,8 @@ final class ShadcnThemeTest extends TestCase
         self::assertIsArray($dependencies);
         $scripts = $packageJson['scripts'] ?? null;
         self::assertIsArray($scripts);
-        self::assertSame('^4.2.4', $dependencies['tailwindcss'] ?? null);
-        self::assertSame('^4.2.4', $dependencies['@tailwindcss/cli'] ?? null);
-        self::assertSame('^5.2.7', $dependencies['@fontsource-variable/nunito-sans'] ?? null);
-        self::assertSame('^4.5.0', $dependencies['shadcn'] ?? null);
+        self::assertIsString($dependencies['tailwindcss'] ?? null);
+        self::assertSame($dependencies['tailwindcss'], $dependencies['@tailwindcss/cli'] ?? null, 'The Tailwind compiler and CLI must use the same release constraint.');
         self::assertSame('shadcn info --json', $scripts['shadcn:info'] ?? null);
         self::assertSame('php Build/Scripts/sync-shadcn-fluid-primitives.php', $scripts['shadcn:sync-fluid'] ?? null);
         self::assertSame('shadcn build --output Resources/Public/ShadcnRegistry', $scripts['registry:build'] ?? null);

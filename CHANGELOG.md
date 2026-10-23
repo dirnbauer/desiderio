@@ -6,6 +6,13 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.24.2] — 2026-10-23
+
+- Update Tailwind and its CLI to 4.3.3, shadcn CLI to 4.22.1, Fontsource to 5.3.0, icon libraries and Highlight.js to their current releases.
+- Rebuild the theme CSS, syntax highlighter and Lucide/Tabler icon webfonts. Keep HugeIcons pinned to 4.2.0: newer releases exceed the generator’s 6,399 safe private-use codepoints and cannot be bundled correctly yet.
+- Synchronize every font face referenced by generated Tailwind CSS during the build, including new Geist language subsets.
+- Refresh browser/a11y tooling and the CI-app Vite lock; fix vulnerable transitive npm dependencies.
+
 ## [4.24.1] — 2026-10-12
 
 ### Changed

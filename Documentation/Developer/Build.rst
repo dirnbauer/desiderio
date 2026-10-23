@@ -93,9 +93,15 @@ are kept; preserving a mapping does not freeze the icon's appearance.
 
 The build checks every generated WOFF2 cmap for complete, nonempty glyphs before
 copying fonts to :file:`Resources/Public`. The outlining cache includes the
-source artwork and pinned tools; deleting :file:`var/hugeicons-font` forces a
+source artwork, outlining helper and pinned tools; deleting :file:`var/hugeicons-font` forces a
 clean rebuild. Run ``Build/Scripts/runTests.sh -s iconfonts`` for the mapping
 regressions and the ``assets`` suite for generation/reproducibility checks.
+The outlining step sorts closed contours within each filled path, preserving
+coordinates, winding and path-element paint order. This makes macOS and Linux
+cold builds byte-identical despite native Skia contour-order differences.
+The ``all`` suite includes mapping regressions; the ``assets`` suite runs the
+Python contour regressions after provisioning the pinned outlining runtime.
+
 With Playwright Chromium installed, ``npm run test:iconfonts:browser`` checks
 every CSS mapping and actual font table, and compares representative glyphs
 against a small licensed subset of the published font.

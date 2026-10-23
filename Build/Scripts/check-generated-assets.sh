@@ -36,6 +36,9 @@ if ! npm run build --silent >"$BUILD_LOG" 2>&1; then
   exit 1
 fi
 
+# The build provisions the pinned Python venv before these outlining regressions.
+npm run test:iconfonts:outline
+
 if git diff --exit-code -- Resources/Public Build/hugeicons/codepoints.json; then
   echo "OK: generated assets under Resources/Public are current."
   exit 0

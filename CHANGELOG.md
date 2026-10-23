@@ -13,6 +13,7 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 - Update HugeIcons to 4.3.5 using two self-hosted BMP font shards. Preserve all 6,156 published class/codepoint mappings and the original MIT artwork for 32 removed names; expose all 6,782 current and compatible classes.
 - Make icon mappings append-only, validate every generated WOFF2 glyph, fail on outlining errors, and invalidate the artwork cache when its sources or tools change.
 - Include HugeIcons generation and mapping regressions in the regular asset build and CI checks.
+- Canonicalize filled contour order so native macOS and Linux font builds are byte-identical, preserving geometry, winding, published mappings and rendered glyphs. Cover the real platform differences and hole winding with outlining regressions.
 
 ## [4.24.2] — 2026-10-23
 

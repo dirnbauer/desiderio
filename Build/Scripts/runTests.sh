@@ -27,7 +27,7 @@ export PHP
 echo "Using $("$PHP" -r 'echo PHP_VERSION;')"
 
 SUITES=("$SUITE")
-[[ "$SUITE" != all ]] || SUITES=(phpstan unit functional validate assets)
+[[ "$SUITE" != all ]] || SUITES=(phpstan unit functional validate iconfonts assets)
 for suite in "${SUITES[@]}"; do
     case "$suite" in
         phpstan) "$PHP" -d memory_limit=2G vendor/bin/phpstan analyse --no-progress ;;

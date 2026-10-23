@@ -77,6 +77,7 @@ for (const font of plan.fonts) {
 if (!existsSync(join(venvDir, 'bin/python'))) {
   execFileSync('python3', ['-m', 'venv', venvDir], { stdio: 'inherit' });
 }
+const outlineScript = join(root, 'Build/Scripts/outline_hugeicons.py');
 const requirements = join(root, 'Build/hugeicons/requirements.txt');
 const requirementsHash = createHash('sha256').update(readFileSync(requirements)).digest('hex');
 const installedRequirements = join(venvDir, 'requirements.sha256');
@@ -89,7 +90,8 @@ if (!existsSync(installedRequirements) || readFileSync(installedRequirements, 'u
 // shapes. Include every rendered source, build code and pinned tool version.
 const sourceHash = createHash('sha256')
   .update(readFileSync(fileURLToPath(import.meta.url)))
-  .update(requirementsHash);
+  .update(requirementsHash)
+  .update(readFileSync(outlineScript));
 for (const slug of [...names.keys()].sort()) sourceHash.update(slug).update(renderSvg(names.get(slug)));
 const fingerprint = sourceHash.digest('hex');
 const fingerprintPath = join(workDir, 'source.sha256');
@@ -110,26 +112,8 @@ if (!outlinedIsComplete) {
 }
 
 // 2. Outline strokes to fills with picosvg (icon fonts cannot render strokes).
-const outlineScript = `
-import sys, pathlib
-from picosvg.svg import SVG
-
-src, dst = pathlib.Path(sys.argv[1]), pathlib.Path(sys.argv[2])
-failed = []
-for svg_file in sorted(src.glob('*.svg')):
-    try:
-        pico = SVG.fromstring(svg_file.read_text()).topicosvg()
-        (dst / svg_file.name).write_text(pico.tostring())
-    except Exception as exc:
-        failed.append(f'{svg_file.stem}: {exc}')
-print(f'outlined {len(list(dst.glob("*.svg")))} icons, {len(failed)} failed')
-for line in failed:
-    print('  FAILED', line)
-sys.exit(1 if failed else 0)
-`;
 if (!outlinedIsComplete) {
-  writeFileSync(join(workDir, 'outline.py'), outlineScript);
-  execFileSync(join(venvDir, 'bin/python'), [join(workDir, 'outline.py'), svgDir, outlinedDir], {
+  execFileSync(join(venvDir, 'bin/python'), [outlineScript, svgDir, outlinedDir], {
     stdio: 'inherit',
   });
   writeFileSync(fingerprintPath, fingerprint);

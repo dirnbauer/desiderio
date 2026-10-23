@@ -19,7 +19,8 @@
     "shadcn:info": "shadcn info --json",
     "shadcn:sync-fluid": "php Build/Scripts/sync-shadcn-fluid-primitives.php",
     "registry:build": "shadcn build --output Resources/Public/ShadcnRegistry",
-    "build:fonts": "node Build/Scripts/sync-fonts.mjs"
+    "build:fonts": "node Build/Scripts/sync-fonts.mjs",
+    "test:iconfonts:outline": "var/picosvg-venv/bin/python -B Tests/Python/HugeiconsOutlineTest.py"
   },
   "dependencies": {
     "@fontsource-variable/geist": "^5.3.0",

@@ -239,7 +239,24 @@ jobs:
           coverage: none
 
       - name: Verify generated assets are current
-        run: Build/Scripts/check-generated-assets.sh
+        run: |
+          npm run test:iconfonts
+          Build/Scripts/check-generated-assets.sh
+          git diff --exit-code -- Build/hugeicons/codepoints.json
+
+      - name: Install Chromium for icon font acceptance
+        run: npx playwright install --with-deps chromium
+
+      - name: Verify rendered HugeIcons fonts and published mappings
+        run: npm run test:iconfonts:browser
+
+      - name: Upload icon font evidence
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: hugeicons-font-acceptance
+          path: var/hugeicons-browser/
+          retention-days: 14
 
       - name: Show the stale diff
         if: failure()

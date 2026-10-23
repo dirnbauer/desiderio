@@ -1,7 +1,9 @@
 import { execFileSync } from 'node:child_process';
-import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { FIRST_CODEPOINT, planIconFonts } from './lib/hugeicons-font-plan.mjs';
 
 /**
  * Generates a self-hosted HugeIcons webfont from the MIT-licensed SVG data in
@@ -19,6 +21,7 @@ const svgDir = join(workDir, 'svg');
 const outlinedDir = join(workDir, 'outlined');
 const targetDir = join(root, 'Resources/Public/IconFonts/hugeicons');
 const venvDir = join(root, 'var/picosvg-venv');
+const manifestPath = join(root, 'Build/hugeicons/codepoints.json');
 
 const icons = await import('@hugeicons/core-free-icons');
 
@@ -54,31 +57,59 @@ for (const exportName of Object.keys(icons)) {
   }
   const slug = kebab(exportName.slice(0, -'Icon'.length));
   if (!names.has(slug)) {
-    names.set(slug, exportName);
+    names.set(slug, icons[exportName]);
   }
 }
 
-// The slow outlining step is skipped when var/ already holds a complete run.
+// Keep removed public names with their original MIT artwork. Never reassign
+// their font/codepoint pair to another glyph when an upstream name disappears.
+const legacy = JSON.parse(readFileSync(join(root, 'Build/hugeicons/legacy-icons.json'), 'utf8'));
+for (const [slug, icon] of Object.entries(legacy.icons)) {
+  if (!names.has(slug)) names.set(slug, icon);
+}
+const plan = planIconFonts([...names.keys()], JSON.parse(readFileSync(manifestPath, 'utf8')));
+for (const font of plan.fonts) {
+  for (const slug of font.icons) {
+    if (!names.has(slug)) throw new Error(`Missing source for published icon ${slug}; preserve its artwork first`);
+  }
+}
+
+if (!existsSync(join(venvDir, 'bin/python'))) {
+  execFileSync('python3', ['-m', 'venv', venvDir], { stdio: 'inherit' });
+}
+const requirements = join(root, 'Build/hugeicons/requirements.txt');
+const requirementsHash = createHash('sha256').update(readFileSync(requirements)).digest('hex');
+const installedRequirements = join(venvDir, 'requirements.sha256');
+if (!existsSync(installedRequirements) || readFileSync(installedRequirements, 'utf8') !== requirementsHash) {
+  execFileSync(join(venvDir, 'bin/pip'), ['install', '--quiet', '-r', requirements], { stdio: 'inherit' });
+  writeFileSync(installedRequirements, requirementsHash);
+}
+
+// A count alone accepts stale artwork whenever a package changes existing
+// shapes. Include every rendered source, build code and pinned tool version.
+const sourceHash = createHash('sha256')
+  .update(readFileSync(fileURLToPath(import.meta.url)))
+  .update(requirementsHash);
+for (const slug of [...names.keys()].sort()) sourceHash.update(slug).update(renderSvg(names.get(slug)));
+const fingerprint = sourceHash.digest('hex');
+const fingerprintPath = join(workDir, 'source.sha256');
 const outlinedIsComplete =
   existsSync(outlinedDir) &&
-  (await import('node:fs')).readdirSync(outlinedDir).filter((f) => f.endsWith('.svg')).length === names.size;
+  existsSync(fingerprintPath) && readFileSync(fingerprintPath, 'utf8') === fingerprint &&
+  readdirSync(outlinedDir).filter((f) => f.endsWith('.svg')).length === names.size &&
+  [...names.keys()].every(slug => existsSync(join(outlinedDir, `${slug}.svg`)));
 
 if (!outlinedIsComplete) {
   rmSync(workDir, { recursive: true, force: true });
   mkdirSync(svgDir, { recursive: true });
   mkdirSync(outlinedDir, { recursive: true });
-  for (const [slug, exportName] of names) {
-    writeFileSync(join(svgDir, `${slug}.svg`), renderSvg(icons[exportName]));
+  for (const [slug, icon] of names) {
+    writeFileSync(join(svgDir, `${slug}.svg`), renderSvg(icon));
   }
   console.log(`Exported ${names.size} stroke SVGs.`);
 }
 
 // 2. Outline strokes to fills with picosvg (icon fonts cannot render strokes).
-if (!existsSync(join(venvDir, 'bin/python'))) {
-  execFileSync('python3', ['-m', 'venv', venvDir], { stdio: 'inherit' });
-  execFileSync(join(venvDir, 'bin/pip'), ['install', '--quiet', 'picosvg'], { stdio: 'inherit' });
-}
-
 const outlineScript = `
 import sys, pathlib
 from picosvg.svg import SVG
@@ -94,42 +125,60 @@ for svg_file in sorted(src.glob('*.svg')):
 print(f'outlined {len(list(dst.glob("*.svg")))} icons, {len(failed)} failed')
 for line in failed:
     print('  FAILED', line)
+sys.exit(1 if failed else 0)
 `;
 if (!outlinedIsComplete) {
   writeFileSync(join(workDir, 'outline.py'), outlineScript);
   execFileSync(join(venvDir, 'bin/python'), [join(workDir, 'outline.py'), svgDir, outlinedDir], {
     stdio: 'inherit',
   });
+  writeFileSync(fingerprintPath, fingerprint);
 }
 
-// 3. Compile the woff2 font + css. Codepoints are assigned explicitly inside
-// the BMP Private Use Area (U+E001–U+F8FF, 6400 slots): fantasticon's default
-// numbering overflows past U+FFFF for this many icons, and the generated
-// cmap (format 4) silently drops supplementary-plane codepoints.
-const sortedSlugs = [...names.keys()].sort();
-const FIRST_CODEPOINT = 0xe001;
-if (FIRST_CODEPOINT + sortedSlugs.length - 1 > 0xf8ff) {
-  throw new Error(`${sortedSlugs.length} icons no longer fit into the BMP Private Use Area`);
-}
-const codepoints = {};
-sortedSlugs.forEach((slug, index) => {
-  codepoints[slug] = FIRST_CODEPOINT + index;
-});
-
+// 3. Each shard uses only U+E001–U+F8FF (6399 slots). Its family name and
+// append-only manifest disambiguate repeated codepoints across font files.
 const { generateFonts } = await import('fantasticon');
+const staged = join(workDir, 'output');
+mkdirSync(staged, { recursive: true });
+let css = '';
+for (const font of plan.fonts) {
+  const inputDir = join(workDir, font.name);
+  rmSync(inputDir, { recursive: true, force: true });
+  mkdirSync(inputDir, { recursive: true });
+  const codepoints = {};
+  font.icons.forEach((slug, index) => {
+    codepoints[slug] = FIRST_CODEPOINT + index;
+    copyFileSync(join(outlinedDir, `${slug}.svg`), join(inputDir, `${slug}.svg`));
+  });
+  await generateFonts({
+    inputDir,
+    outputDir: staged,
+    name: font.name,
+    fontTypes: ['woff2'],
+    assetTypes: [],
+    normalize: true,
+    fontHeight: 1000,
+    codepoints,
+  });
+  const hash = createHash('sha256').update(readFileSync(join(staged, `${font.name}.woff2`))).digest('hex').slice(0, 16);
+  css += `@font-face {\n    font-family: "${font.name}";\n    font-display: block;\n    src: url("./${font.name}.woff2?${hash}") format("woff2");\n}\n\n`;
+}
+css += `.hgi:before {\n    font-family: hugeicons !important;\n    font-style: normal;\n    font-weight: normal !important;\n    font-variant: normal;\n    text-transform: none;\n    line-height: 1;\n    -webkit-font-smoothing: antialiased;\n    -moz-osx-font-smoothing: grayscale;\n}\n\n`;
+for (const font of plan.fonts) {
+  font.icons.forEach((slug, index) => {
+    css += `.hgi.hgi-${slug}:before {\n    content: "\\${(FIRST_CODEPOINT + index).toString(16)}";\n`;
+    if (font.name !== 'hugeicons') css += `    font-family: "${font.name}" !important;\n`;
+    css += '}\n';
+  });
+}
+writeFileSync(join(staged, 'hugeicons.css'), css);
+const stagedManifest = join(workDir, 'codepoints.json');
+writeFileSync(stagedManifest, JSON.stringify(plan, null, 2) + '\n');
+execFileSync(join(venvDir, 'bin/python'), [join(root, 'Build/Scripts/check-hugeicons-fonts.py'), staged, stagedManifest], { stdio: 'inherit' });
 mkdirSync(targetDir, { recursive: true });
-await generateFonts({
-  inputDir: outlinedDir,
-  outputDir: targetDir,
-  name: 'hugeicons',
-  prefix: 'hgi',
-  selector: '.hgi',
-  fontTypes: ['woff2'],
-  assetTypes: ['css'],
-  normalize: true,
-  fontHeight: 1000,
-  codepoints,
-});
+for (const font of plan.fonts) copyFileSync(join(staged, `${font.name}.woff2`), join(targetDir, `${font.name}.woff2`));
+copyFileSync(join(staged, 'hugeicons.css'), join(targetDir, 'hugeicons.css'));
+writeFileSync(manifestPath, JSON.stringify(plan, null, 2) + '\n');
 
 // 4. Provenance: MIT license text plus a note about how the font was built.
 const version = JSON.parse(
@@ -140,6 +189,8 @@ writeFileSync(
   `This webfont was generated by the Desiderio build (Build/Scripts/build-hugeicons-font.mjs)
 from the MIT-licensed SVG icon data in @hugeicons/core-free-icons v${version}
 (https://www.npmjs.com/package/@hugeicons/core-free-icons).
+The ${Object.keys(legacy.icons).length} removed names in Build/hugeicons/legacy-icons.json retain
+their MIT-licensed v${legacy.source.version} artwork and original published codepoints.
 
 It is NOT the official hugeicons webfont, which must not be redistributed
 per https://hugeicons.com/license-agreement.

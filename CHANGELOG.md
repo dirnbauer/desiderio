@@ -6,6 +6,14 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.24.3] — 2026-10-23
+
+### Fixed
+
+- Update HugeIcons to 4.3.5 using two self-hosted BMP font shards. Preserve all 6,156 published class/codepoint mappings and the original MIT artwork for 32 removed names; expose all 6,782 current and compatible classes.
+- Make icon mappings append-only, validate every generated WOFF2 glyph, fail on outlining errors, and invalidate the artwork cache when its sources or tools change.
+- Include HugeIcons generation and mapping regressions in the regular asset build and CI checks.
+
 ## [4.24.2] — 2026-10-23
 
 - Update Tailwind and its CLI to 4.3.3, shadcn CLI to 4.22.1, Fontsource to 5.3.0, icon libraries and Highlight.js to their current releases.

@@ -32,6 +32,8 @@ Vite build clears TYPO3 caches so repeated builds keep asset URLs valid.
 
 With PHP 8.4 or 8.5 and Node.js installed directly, the same commands run
 without ``ddev exec``.
+Set ``DESIDERIO_RUN_ON_HOST=1`` when running ``Build/Scripts/runTests.sh``
+natively in an isolated checkout whose DDEV project name is already in use.
 
 ..  _developer-build-assets:
 
@@ -69,6 +71,34 @@ One build command
 working tree differs, which is exactly the "someone edited a template but did
 not rebuild" case. The same script backs the ``assets`` suite of
 :file:`Build/Scripts/runTests.sh`, the ``pre-commit`` hook and the CI job.
+
+HugeIcons font updates
+----------------------
+
+``build:iconfonts`` also builds the HugeIcons fonts from the MIT-licensed
+``@hugeicons/core-free-icons`` data. Python 3 with venv support is required;
+the script installs the exact tools in :file:`Build/hugeicons/requirements.txt`
+into a local :file:`var/picosvg-venv` directory. Nothing is installed globally.
+
+:file:`Build/hugeicons/codepoints.json` records the published glyph order for
+each font. Keep it append-only: new names fill the remaining BMP private-use
+slots, then continue in another family. Each family holds at most 6,399 glyphs.
+The public ``hgi hgi-<name>`` classes select the correct family automatically.
+Do not renumber, reorder or reuse an existing slot.
+
+When upstream removes a name, preserve its previous MIT artwork in
+:file:`Build/hugeicons/legacy-icons.json`, including its provenance. The build
+fails if a published name has no artwork. Upstream changes to existing artwork
+are kept; preserving a mapping does not freeze the icon's appearance.
+
+The build checks every generated WOFF2 cmap for complete, nonempty glyphs before
+copying fonts to :file:`Resources/Public`. The outlining cache includes the
+source artwork and pinned tools; deleting :file:`var/hugeicons-font` forces a
+clean rebuild. Run ``Build/Scripts/runTests.sh -s iconfonts`` for the mapping
+regressions and the ``assets`` suite for generation/reproducibility checks.
+With Playwright Chromium installed, ``npm run test:iconfonts:browser`` checks
+every CSS mapping and actual font table, and compares representative glyphs
+against a small licensed subset of the published font.
 
 ..  _developer-build-css-layers:
 

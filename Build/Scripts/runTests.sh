@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # Run the same checks locally and in CI. The default suite runs every gate.
 # Usage: Build/Scripts/runTests.sh [-s SUITE] [-p 8.4|8.5] [SUITE]
-# Suites: all, phpstan, unit (or phpunit), functional, audit, validate, assets
+# Suites: all, phpstan, unit (or phpunit), functional, audit, validate, assets, iconfonts
 set -euo pipefail
 cd "$(dirname "$0")/../.."
 
 # Use the project's PHP and Node versions when DDEV is available locally.
-if [[ -z "${IS_DDEV_PROJECT:-}" && -f .ddev/config.yaml ]] && command -v ddev >/dev/null 2>&1; then
+if [[ -z "${DESIDERIO_RUN_ON_HOST:-}" && -z "${IS_DDEV_PROJECT:-}" && -f .ddev/config.yaml ]] && command -v ddev >/dev/null 2>&1; then
     exec ddev exec Build/Scripts/runTests.sh "$@"
 fi
 
@@ -39,6 +39,7 @@ for suite in "${SUITES[@]}"; do
             "$PHP" "$(command -v composer)" audit --abandoned=fail
             ;;
         assets|tailwind|css) Build/Scripts/check-generated-assets.sh ;;
+        iconfonts) npm run test:iconfonts ;;
         *) echo "Unknown suite: $suite" >&2; exit 2 ;;
     esac
 done

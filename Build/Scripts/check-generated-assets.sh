@@ -36,7 +36,7 @@ if ! npm run build --silent >"$BUILD_LOG" 2>&1; then
   exit 1
 fi
 
-if git diff --exit-code -- Resources/Public; then
+if git diff --exit-code -- Resources/Public Build/hugeicons/codepoints.json; then
   echo "OK: generated assets under Resources/Public are current."
   exit 0
 fi

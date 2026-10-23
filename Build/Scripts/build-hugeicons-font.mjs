@@ -124,6 +124,8 @@ if (!outlinedIsComplete) {
 const { generateFonts } = await import('fantasticon');
 const staged = join(workDir, 'output');
 mkdirSync(staged, { recursive: true });
+const stagedManifest = join(workDir, 'codepoints.json');
+writeFileSync(stagedManifest, JSON.stringify(plan, null, 2) + '\n');
 let css = '';
 for (const font of plan.fonts) {
   const inputDir = join(workDir, font.name);
@@ -144,6 +146,15 @@ for (const font of plan.fonts) {
     fontHeight: 1000,
     codepoints,
   });
+  if (font.name === 'hugeicons') {
+    execFileSync(join(venvDir, 'bin/python'), [
+      join(root, 'Build/Scripts/preserve_hugeicons_glyphs.py'),
+      join(staged, `${font.name}.woff2`),
+      join(root, 'Build/hugeicons/published-4.2.0.woff2'),
+      join(root, 'Build/hugeicons/published-4.2.0.json'),
+      stagedManifest,
+    ], { stdio: 'inherit' });
+  }
   const hash = createHash('sha256').update(readFileSync(join(staged, `${font.name}.woff2`))).digest('hex').slice(0, 16);
   css += `@font-face {\n    font-family: "${font.name}";\n    font-display: block;\n    src: url("./${font.name}.woff2?${hash}") format("woff2");\n}\n\n`;
 }
@@ -156,8 +167,7 @@ for (const font of plan.fonts) {
   });
 }
 writeFileSync(join(staged, 'hugeicons.css'), css);
-const stagedManifest = join(workDir, 'codepoints.json');
-writeFileSync(stagedManifest, JSON.stringify(plan, null, 2) + '\n');
+
 execFileSync(join(venvDir, 'bin/python'), [join(root, 'Build/Scripts/check-hugeicons-fonts.py'), staged, stagedManifest], { stdio: 'inherit' });
 mkdirSync(targetDir, { recursive: true });
 for (const font of plan.fonts) copyFileSync(join(staged, `${font.name}.woff2`), join(targetDir, `${font.name}.woff2`));

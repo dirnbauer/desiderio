@@ -99,6 +99,13 @@ regressions and the ``assets`` suite for generation/reproducibility checks.
 The outlining step sorts closed contours within each filled path, preserving
 coordinates, winding and path-element paint order. This makes macOS and Linux
 cold builds byte-identical despite native Skia contour-order differences.
+The licensed published font in :file:`Build/hugeicons/published-4.2.0.woff2`
+then preserves the original ordered glyph data only when all oriented contours,
+point flags, metrics, bounds and empty instructions match exactly. Changed
+upstream artwork keeps its new geometry. Aliases split when needed so preserving
+an old glyph cannot change a new or updated character. Reference and public
+mapping checksums are recorded in :file:`Build/hugeicons/published-4.2.0.json`.
+This also preserves Linux raster output, which can depend on contour order.
 The ``all`` suite includes mapping regressions; the ``assets`` suite runs the
 Python contour regressions after provisioning the pinned outlining runtime.
 

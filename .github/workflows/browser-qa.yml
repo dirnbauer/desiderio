@@ -62,6 +62,9 @@ jobs:
       - name: Install Playwright Chromium
         run: npx playwright install --with-deps chromium
 
+      - name: QA scheme and preset state regression
+        run: npm run test:visualqa:state
+
       - name: Boot the QA app (composer install, TYPO3 setup, seed)
         run: Build/CiApp/bootstrap.sh
 

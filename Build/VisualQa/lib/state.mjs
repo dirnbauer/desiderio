@@ -15,6 +15,10 @@
  *    thumbnails composite nicely. axe's color-contrast rule cannot resolve a
  *    transparent ancestor and returns "incomplete" for the entire page, so a
  *    solid token background has to be painted in first.
+ * 4. Reduced motion still leaves .01ms transitions on every element. After
+ *    a scheme/preset switch, inherited ink can advance one ancestor per
+ *    frame while its surface already has the new colour. Disable transitions
+ *    for static measurements; waiting for fonts alone does not settle them.
  */
 
 export const PRESET_DEFAULT = 'b0';
@@ -54,7 +58,8 @@ export async function settleFonts(page) {
 
 export async function paintOpaqueBackground(page) {
     await page.addStyleTag({
-        content: 'body{background:var(--background)!important;color:var(--foreground)}',
+        content: 'body{background:var(--background)!important;color:var(--foreground)}'
+            + '*,*::before,*::after{transition:none!important}',
     });
 }
 

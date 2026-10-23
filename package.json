@@ -15,6 +15,7 @@
     "build:hugeicons-font": "node Build/Scripts/build-hugeicons-font.mjs",
     "test:iconfonts": "node --test Tests/JavaScript/HugeiconsFont.test.mjs",
     "test:iconfonts:browser": "node Tests/JavaScript/HugeiconsFont.browser.mjs",
+    "test:visualqa:state": "node --test Tests/JavaScript/VisualQaState.browser.mjs",
     "watch:css": "tailwindcss -i Resources/Private/Tailwind/desiderio.css -o Resources/Public/Css/desiderio-tailwind.css --watch",
     "shadcn:info": "shadcn info --json",
     "shadcn:sync-fluid": "php Build/Scripts/sync-shadcn-fluid-primitives.php",

@@ -1,8 +1,8 @@
 name: desiderio
 type: typo3
 docroot: Build/CiApp/public
-php_version: "8.4"
-nodejs_version: "24"
+php_version: "8.5"
+nodejs_version: "26.12.1"
 webserver_type: nginx-fpm
 performance_mode: none
 omit_containers: [db]

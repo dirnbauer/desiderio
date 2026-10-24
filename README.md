@@ -111,3 +111,12 @@ every asset and fails on a diff. Details:
 GPL-2.0-or-later. See [LICENSE](LICENSE). Bundled icon webfonts keep their own
 licenses; see
 [Documentation/Configuration/IconFonts.rst](Documentation/Configuration/IconFonts.rst).
+
+### Reproducible asset toolchain
+
+Use the Node version in `.nvmrc`, npm from `packageManager`, and Python from
+`.python-version`. The font build checks Python before creating its isolated
+venv, pins pip and all font libraries in `Build/hugeicons/requirements.txt`, and
+includes that runtime in its outline-cache fingerprint. `npm run build` rebuilds
+all distributed JS/CSS/fonts; `Build/Scripts/check-generated-assets.sh` also runs
+the Python geometry, alias and preservation regressions.

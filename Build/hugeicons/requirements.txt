@@ -1,4 +1,5 @@
-# Exact outlining/verification toolchain; install in the build's local venv.
+# Exact outlining/verification toolchain; Python is pinned in .python-version.
+pip==26.2.2
 absl-py==2.5.1
 brotli==1.2.1
 picosvg==0.23.0

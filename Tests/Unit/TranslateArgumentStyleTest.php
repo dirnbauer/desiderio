@@ -23,6 +23,9 @@ final class TranslateArgumentStyleTest extends TestCase
     private const ICU_PLACEHOLDER = '/\{\s*[A-Za-z0-9_]+\s*(?:\}|,)/';
     private const SPRINTF_PLACEHOLDER = '/%(?:\d+\$)?[sdf]/';
 
+    /** @var array<string, array<string, string>> */
+    private array $labels = [];
+
     public function testEveryTranslateCallPassesArgumentsInTheStyleOfItsLabel(): void
     {
         $root = dirname(__DIR__, 2);
@@ -65,9 +68,6 @@ final class TranslateArgumentStyleTest extends TestCase
         self::assertGreaterThan(20, $checked, 'Too few translate calls with arguments were found; the pattern no longer matches the templates.');
         self::assertSame([], $problems, implode("\n", $problems));
     }
-
-    /** @var array<string, array<string, string>> */
-    private array $labels = [];
 
     private function source(string $file, string $id): ?string
     {

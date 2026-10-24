@@ -6,6 +6,15 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.24.4] — 2026-10-24
+
+### Changed
+
+- Pin the asset toolchain to Node 26.12.1, npm 12.2.1 and Python 3.15.1; include Python in the font cache identity and pin pip 26.2.2. Refresh npm transitive locks and the CI-app build lock.
+- Update PHP development tools to PHPUnit 13.4.3, PHPStan 2.3.1, PHP CS Fixer 3.95.27 and the current TYPO3 testing/coding standards. Migrate PHPUnit configuration and current coding conventions; retain both supported PHP CI lines.
+- Rebuild every JS, CSS and font asset. The resulting assets remain byte-identical, with all 6,782 icon mappings, 6,156 frozen legacy mappings and strict raster goldens verified.
+
+
 ## [4.24.3] — 2026-10-23
 
 ### Fixed

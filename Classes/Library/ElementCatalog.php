@@ -48,6 +48,34 @@ final class ElementCatalog
     private const string METADATA_CACHE_VERSION = 'metadata-v3';
     private const string SEARCH_FINGERPRINT_VERSION = 'config-keywords-v1';
 
+    /**
+     * Extra search terms for elements that carry no authored keywords, keyed
+     * by the substring of "title description cType group" that earns them.
+     * Longest/most specific needles first: the terms of every match are kept,
+     * in this order, and de-duplicated by the caller.
+     *
+     * @var array<string, list<string>>
+     */
+    private const array KEYWORD_HINTS = [
+        'case stud' => ['case studies', 'customer success', 'social proof', 'metrics'],
+        'marquee' => ['marquee', 'ticker', 'scrolling', 'motion'],
+        'orbit' => ['orbiting circles', 'radial', 'animation', 'motion'],
+        'terminal' => ['terminal', 'console', 'command line', 'code'],
+        'stats' => ['stats', 'metrics', 'kpi'],
+        'metric' => ['stats', 'metrics', 'kpi'],
+        'dashboard' => ['dashboard', 'overview'],
+        'progress' => ['progress', 'percentage', 'target'],
+        'usage' => ['usage', 'limits', 'resources'],
+        'breakdown' => ['breakdown', 'comparison'],
+        'badge' => ['badges', 'status'],
+        'link' => ['links', 'navigation'],
+        'trend' => ['trend', 'change'],
+        'area chart' => ['area chart', 'chart', 'data'],
+        'chart' => ['chart', 'data visualization'],
+        'card' => ['cards', 'grid'],
+        'border' => ['borders', 'comparison'],
+    ];
+
     /** @var array<string, list<array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, keywords: list<string>, vendor: string, config: array<string, mixed>, fixture: array<string, mixed>, libraryFixture: array<string, mixed>}>> keyed by locale ('' = source language) */
     private array $elements = [];
 
@@ -601,34 +629,6 @@ final class ElementCatalog
 
         return array_slice(array_keys($terms), 0, 10);
     }
-
-    /**
-     * Extra search terms for elements that carry no authored keywords, keyed
-     * by the substring of "title description cType group" that earns them.
-     * Longest/most specific needles first: the terms of every match are kept,
-     * in this order, and de-duplicated by the caller.
-     *
-     * @var array<string, list<string>>
-     */
-    private const array KEYWORD_HINTS = [
-        'case stud' => ['case studies', 'customer success', 'social proof', 'metrics'],
-        'marquee' => ['marquee', 'ticker', 'scrolling', 'motion'],
-        'orbit' => ['orbiting circles', 'radial', 'animation', 'motion'],
-        'terminal' => ['terminal', 'console', 'command line', 'code'],
-        'stats' => ['stats', 'metrics', 'kpi'],
-        'metric' => ['stats', 'metrics', 'kpi'],
-        'dashboard' => ['dashboard', 'overview'],
-        'progress' => ['progress', 'percentage', 'target'],
-        'usage' => ['usage', 'limits', 'resources'],
-        'breakdown' => ['breakdown', 'comparison'],
-        'badge' => ['badges', 'status'],
-        'link' => ['links', 'navigation'],
-        'trend' => ['trend', 'change'],
-        'area chart' => ['area chart', 'chart', 'data'],
-        'chart' => ['chart', 'data visualization'],
-        'card' => ['cards', 'grid'],
-        'border' => ['borders', 'comparison'],
-    ];
 
     /**
      * @return list<string>

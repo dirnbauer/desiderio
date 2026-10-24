@@ -10,6 +10,12 @@ namespace Webconsulting\Desiderio\Data;
 final class BlogDemoPostDefinitions
 {
     /**
+     * The one example comment earlier versions put on every post. The "Recent
+     * comments" widget then listed the same sentence again and again; the
+     * seeder removes it wherever it is left over.
+     */
+    public const LEGACY_EXAMPLE_COMMENT = 'This is an example comment. Readers can comment on every post, and an editor approves each comment before it appears.';
+    /**
      * @return list<array{
      *   slug: string,
      *   title: string,
@@ -128,11 +134,4 @@ final class BlogDemoPostDefinitions
     {
         return ['/holding-hands-through-spring-showers', '/minimal-egg-decorating-for-a-bright-table'];
     }
-
-    /**
-     * The one example comment earlier versions put on every post. The "Recent
-     * comments" widget then listed the same sentence again and again; the
-     * seeder removes it wherever it is left over.
-     */
-    public const LEGACY_EXAMPLE_COMMENT = 'This is an example comment. Readers can comment on every post, and an editor approves each comment before it appears.';
 }

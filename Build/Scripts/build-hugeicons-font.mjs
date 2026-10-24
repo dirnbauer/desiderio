@@ -74,6 +74,14 @@ for (const font of plan.fonts) {
   }
 }
 
+const pythonVersion = readFileSync(join(root, '.python-version'), 'utf8').trim();
+const versionOf = (executable) => execFileSync(executable, ['-c', 'import platform; print(platform.python_version())'], { encoding: 'utf8' }).trim();
+if (versionOf('python3') !== pythonVersion) {
+  throw new Error(`Use Python ${pythonVersion} from .python-version for reproducible font builds`);
+}
+if (existsSync(join(venvDir, 'bin/python')) && versionOf(join(venvDir, 'bin/python')) !== pythonVersion) {
+  rmSync(venvDir, { recursive: true, force: true });
+}
 if (!existsSync(join(venvDir, 'bin/python'))) {
   execFileSync('python3', ['-m', 'venv', venvDir], { stdio: 'inherit' });
 }
@@ -82,7 +90,7 @@ const requirements = join(root, 'Build/hugeicons/requirements.txt');
 const requirementsHash = createHash('sha256').update(readFileSync(requirements)).digest('hex');
 const installedRequirements = join(venvDir, 'requirements.sha256');
 if (!existsSync(installedRequirements) || readFileSync(installedRequirements, 'utf8') !== requirementsHash) {
-  execFileSync(join(venvDir, 'bin/pip'), ['install', '--quiet', '-r', requirements], { stdio: 'inherit' });
+  execFileSync(join(venvDir, 'bin/python'), ['-m', 'pip', 'install', '--quiet', '-r', requirements], { stdio: 'inherit' });
   writeFileSync(installedRequirements, requirementsHash);
 }
 
@@ -91,6 +99,7 @@ if (!existsSync(installedRequirements) || readFileSync(installedRequirements, 'u
 const sourceHash = createHash('sha256')
   .update(readFileSync(fileURLToPath(import.meta.url)))
   .update(requirementsHash)
+  .update(pythonVersion)
   .update(readFileSync(outlineScript));
 for (const slug of [...names.keys()].sort()) sourceHash.update(slug).update(renderSvg(names.get(slug)));
 const fingerprint = sourceHash.digest('hex');

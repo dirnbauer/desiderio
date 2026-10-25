@@ -18,7 +18,8 @@ use TYPO3\CMS\Core\Localization\LanguageService;
  * reorders the items it already has. No external service, no per-element file
  * read on the hot path: the per-language index is persistently cached in the
  * existing "desiderio_library" cache (fingerprint includes the keyword files,
- * so editing a keyword self-invalidates it).
+ * so editing a keyword self-invalidates it). A site with its own labels
+ * (elementLibrary.labels) gets its own index, keyed by that file and its mtime.
  */
 final readonly class ElementSearchService
 {
@@ -65,8 +66,12 @@ final readonly class ElementSearchService
      *
      * @param list<string>|null $allowedCTypes Restrict results (and the suggestion
      *        vocabulary) to these cTypes; null searches the whole catalog. Sites
-     *        pass the cTypes their `elementLibrary.hosts` setting allows, so the
-     *        index stays shared per language instead of one per host combination.
+     *        pass the cTypes their scope allows (ElementLibraryScope:
+     *        `elementLibrary.hosts`, `elementLibrary.onlySeeded`), so the index
+     *        stays shared per language instead of one per scope.
+     * @param ElementLabelOverrides|null $labels The site's own element texts
+     *        (elementLibrary.labels). The index is built from the overridden
+     *        titles, descriptions, keywords and groups, and cached per labels file.
      * @return array{matches: list<array{cType: string, score: float}>, suggestions: list<string>, didYouMean: string|null}
      */
     public function search(
@@ -74,6 +79,7 @@ final readonly class ElementSearchService
         LanguageService $languageService,
         string $langKey,
         ?array $allowedCTypes = null,
+        ?ElementLabelOverrides $labels = null,
     ): array {
         $empty = ['matches' => [], 'suggestions' => [], 'didYouMean' => null];
 
@@ -82,7 +88,7 @@ final readonly class ElementSearchService
             return $empty;
         }
 
-        $index = $this->getIndex($languageService, $langKey);
+        $index = $this->getIndex($languageService, $langKey, $labels);
         $index = $this->restrictIndex($index, $allowedCTypes);
         $vocab = $index['vocab'];
 
@@ -249,19 +255,20 @@ final readonly class ElementSearchService
     }
 
     /**
-     * Builds (or reads from cache) the weighted token index for one language.
+     * Builds (or reads from cache) the weighted token index for one language
+     * (and, when the site has its own labels, for that labels file).
      * Best-effort cache: a cache failure only ever slows the search, never
      * breaks it (mirrors ElementCatalog::getElementMetadata()).
      *
      * @return array{elements: array<string, array{title: string, tokens: array<string, int>}>, vocab: array<string, int>}
      */
-    private function getIndex(LanguageService $languageService, string $langKey): array
+    private function getIndex(LanguageService $languageService, string $langKey, ?ElementLabelOverrides $labels = null): array
     {
         $cache = null;
         $cacheKey = '';
         try {
             $cache = $this->cacheManager->getCache(self::CACHE_IDENTIFIER);
-            $cacheKey = 'search-index-' . $this->sanitizeKey($langKey) . '-' . $this->elementCatalog->getSearchFingerprint();
+            $cacheKey = $this->indexCacheKey($langKey, $this->elementCatalog->getSearchFingerprint(), $labels);
             $cached = $cache->get($cacheKey);
             if (is_array($cached)) {
                 /** @var array{elements: array<string, array{title: string, tokens: array<string, int>}>, vocab: array<string, int>} $cached */
@@ -271,7 +278,7 @@ final readonly class ElementSearchService
             $cache = null;
         }
 
-        $index = $this->buildIndex($languageService);
+        $index = $this->buildIndex($languageService, $labels);
 
         if ($cache !== null) {
             try {
@@ -282,6 +289,22 @@ final readonly class ElementSearchService
         }
 
         return $index;
+    }
+
+    /**
+     * Cache entry of one index: language + catalog/keyword fingerprint, plus
+     * the labels fingerprint (file reference, file and translation mtimes) for
+     * a site with its own labels. Sites on the host texts keep sharing the
+     * plain per-language entry.
+     */
+    private function indexCacheKey(string $langKey, string $catalogFingerprint, ?ElementLabelOverrides $labels): string
+    {
+        $key = 'search-index-' . $this->sanitizeKey($langKey) . '-' . $catalogFingerprint;
+        if ($labels !== null && !$labels->isEmpty()) {
+            $key .= '-labels-' . $labels->fingerprint($langKey);
+        }
+
+        return $key;
     }
 
     /**
@@ -320,14 +343,14 @@ final readonly class ElementSearchService
     /**
      * @return array{elements: array<string, array{title: string, tokens: array<string, int>}>, vocab: array<string, int>}
      */
-    private function buildIndex(LanguageService $languageService): array
+    private function buildIndex(LanguageService $languageService, ?ElementLabelOverrides $labels = null): array
     {
         $elements = [];
         $vocab = [];
 
         foreach ($this->elementCatalog->getElementMetadata() as $element) {
-            $localized = $this->elementCatalog->localizeElement($element, $languageService);
-            $keywords = $this->elementCatalog->localizeKeywords($element, $languageService);
+            // The texts the cards show, so the search matches what the editor reads.
+            $texts = $this->elementCatalog->pickerTexts($element, $languageService, $labels);
 
             /** @var array<string, int> $tokens token => max weight */
             $tokens = [];
@@ -339,15 +362,15 @@ final readonly class ElementSearchService
                 }
             };
 
-            $add($localized['title'], self::WEIGHT_TITLE);
-            foreach ($keywords['keywords'] as $keyword) {
+            $add($texts['title'], self::WEIGHT_TITLE);
+            foreach ($texts['keywords'] as $keyword) {
                 $add($keyword, self::WEIGHT_KEYWORD);
             }
-            foreach ($keywords['synonyms'] as $synonym) {
+            foreach ($texts['synonyms'] as $synonym) {
                 $add($synonym, self::WEIGHT_SYNONYM);
             }
-            $add($element['group'], self::WEIGHT_GROUP);
-            $add($localized['description'], self::WEIGHT_DESCRIPTION);
+            $add($texts['group'], self::WEIGHT_GROUP);
+            $add($texts['description'], self::WEIGHT_DESCRIPTION);
 
             foreach ($tokens as $token => $weight) {
                 if (!isset($vocab[$token]) || $vocab[$token] < $weight) {
@@ -356,7 +379,7 @@ final readonly class ElementSearchService
             }
 
             $elements[$element['cType']] = [
-                'title' => $localized['title'],
+                'title' => $texts['title'],
                 'tokens' => $tokens,
             ];
         }

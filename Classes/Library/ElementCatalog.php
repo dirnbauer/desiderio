@@ -304,6 +304,18 @@ final class ElementCatalog
                 'synonyms' => [],
             ];
         }
+        return self::parseKeywordUnit($raw);
+    }
+
+    /**
+     * Splits one keyword unit value, "primary || synonyms" with each group a
+     * " | "-separated list, into its two term lists. Shared by the host files
+     * (library_keywords.xlf) and a site's elementLibrary.labels overrides.
+     *
+     * @return array{keywords: list<string>, synonyms: list<string>}
+     */
+    public static function parseKeywordUnit(string $raw): array
+    {
         [$primary, $synonyms] = array_pad(explode(' || ', $raw, 2), 2, '');
         $split = static function (string $value): array {
             if (trim($value) === '') {
@@ -315,6 +327,43 @@ final class ElementCatalog
             ));
         };
         return ['keywords' => $split($primary), 'synonyms' => $split($synonyms)];
+    }
+
+    /**
+     * Everything the picker shows about one element in the editor's language:
+     * title, description, card blurb, keyword chips + synonyms and group. With
+     * a site's elementLibrary.labels overrides, each unit the site authored
+     * replaces the host's text (ElementLabelOverrides::relabel()).
+     *
+     * The card blurb comes from the host's library_short.xlf (or the site's
+     * `<cType>.short`) and falls back to the description when neither exists.
+     * The list endpoint and the search index both read this, so what an editor
+     * sees is what the search matches.
+     *
+     * @param array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, keywords?: list<string>} $element
+     * @return array{title: string, description: string, short: string, keywords: list<string>, synonyms: list<string>, group: string}
+     */
+    public function pickerTexts(array $element, LanguageService $languageService, ?ElementLabelOverrides $labels = null): array
+    {
+        $localized = $this->localizeElement($element, $languageService);
+        $keywords = $this->localizeKeywords($element, $languageService);
+
+        $texts = [
+            'title' => $localized['title'],
+            'description' => $localized['description'],
+            'short' => $languageService->sL(self::languageFile($element['hostExtension'], 'library_short.xlf') . $element['cType']),
+            'keywords' => $keywords['keywords'],
+            'synonyms' => $keywords['synonyms'],
+            'group' => $element['group'],
+        ];
+        if ($labels !== null) {
+            $texts = $labels->relabel($element['cType'], $texts, $languageService->sL(...));
+        }
+        if ($texts['short'] === '') {
+            $texts['short'] = $texts['description'];
+        }
+
+        return $texts;
     }
 
     /**

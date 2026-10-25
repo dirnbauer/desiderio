@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="de">
+  <file id="desiderio_test_site_labels" original="EXT:desiderio/Tests/Functional/Library/Fixtures/site-labels.xlf">
+    <unit id="desiderio_accordion.title">
+      <segment state="final">
+        <source>Tasting menu</source>
+        <target>Degustationsmenü</target>
+      </segment>
+    </unit>
+    <unit id="desiderio_accordion.description">
+      <segment state="final">
+        <source>The courses of the evening, one panel per course.</source>
+        <target>Die Gänge des Abends, ein Panel pro Gang.</target>
+      </segment>
+    </unit>
+    <unit id="desiderio_accordion.keywords">
+      <segment state="final">
+        <source>tasting menu | courses | degustation || wine pairing | chef's table</source>
+        <target>degustationsmenü | gänge || weinbegleitung</target>
+      </segment>
+    </unit>
+    <unit id="desiderio_accordion.group">
+      <segment state="final">
+        <source>Restaurant</source>
+        <target>Restaurant</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

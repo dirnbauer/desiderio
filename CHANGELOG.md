@@ -6,6 +6,11 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Let a site's element library show only its own elements, in its own words. The site setting `elementLibrary.onlySeeded` lists only the elements with a demo record in the site's library folder and limits search, suggestions and "did you mean" to the same set. `elementLibrary.labels` names an XLIFF file whose `<cType>.title`, `.description`, `.short`, `.keywords` and `.group` units replace the provider's texts in the editor's language; missing units keep them. The category chips use the site's groups, the list is sorted by the site's titles, and the search indexes the site's texts in a cache entry keyed by the labels file and its modification times. Both settings default to the previous behaviour.
+- Add a set `labels.xlf` (+ German) for the Desiderio site set, carrying the labels of the two new settings.
+
 ## [4.24.4] — 2026-10-24
 
 ### Changed

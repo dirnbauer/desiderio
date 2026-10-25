@@ -15,6 +15,8 @@ use TYPO3\CMS\Core\Http\JsonResponse;
 use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use Webconsulting\Desiderio\Library\ElementCatalog;
+use Webconsulting\Desiderio\Library\ElementLabelOverrides;
+use Webconsulting\Desiderio\Library\ElementLibraryScope;
 use Webconsulting\Desiderio\Library\ElementSearchService;
 use Webconsulting\Desiderio\Library\PreviewUrlBuilder;
 use Webconsulting\Desiderio\Library\PreviewWarmer;
@@ -30,7 +32,9 @@ use Webconsulting\Desiderio\Utility\SiteSettings;
  * token (window.veInfo.token, scope visual_editor/save) in X-Request-Token,
  * so the endpoint is only reachable from an authenticated edit session.
  *
- * @phpstan-type CatalogEntry array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, keywords: list<string>, iconUrl: string}
+ * ?elementLibrarySearch=<term> ranks the same catalog (ElementSearchService).
+ * Both endpoints honour the site's scope (elementLibrary.hosts,
+ * elementLibrary.onlySeeded) and its own labels (elementLibrary.labels).
  */
 final readonly class ElementLibraryMiddleware implements MiddlewareInterface
 {
@@ -73,15 +77,20 @@ final readonly class ElementLibraryMiddleware implements MiddlewareInterface
             return new JsonResponse(['error' => 'No site resolved for this request'], 404);
         }
 
-        // A site may restrict its picker to the providers it actually themes
-        // (elementLibrary.hosts, e.g. "desiderio,innesto,core"). Empty = all
-        // hosts, which is the pre-existing behaviour.
-        $allowedHosts = $this->resolveAllowedHosts($site);
+        // Per-site scope (ElementLibraryScope): elementLibrary.hosts limits the
+        // picker to the providers the site themes ("desiderio,innesto,core";
+        // empty = every host), elementLibrary.onlySeeded to the elements with a
+        // demo record in the site's library folder. elementLibrary.labels
+        // (ElementLabelOverrides) renames them in the site's own words.
+        $scope = ElementLibraryScope::fromSite($site);
+        $labels = ElementLabelOverrides::fromSite($site);
+        $storagePid = SiteSettings::integer($site, 'elementLibrary.storagePid');
 
         // Typo-tolerant search + suggestions. The panel already holds the whole
         // catalog, so we only return a ranked cType list (+ suggest / did-you-mean)
-        // and it reorders the items it has. Scoped to the same hosts as the list,
-        // so suggestions never name an element this site cannot insert.
+        // and it reorders the items it has. Scoped to the same elements as the
+        // list, so suggestions never name an element this site cannot insert,
+        // and indexed with the same (overridden) texts the cards show.
         if ($isSearch) {
             $rawQuery = $queryParams['elementLibrarySearch'] ?? '';
             $query = is_string($rawQuery) ? $rawQuery : '';
@@ -90,19 +99,26 @@ final readonly class ElementLibraryMiddleware implements MiddlewareInterface
                 $lang = $backendUser->user['lang'] ?? null;
                 $langKey = is_string($lang) && $lang !== '' ? $lang : 'default';
             }
+            $allowedCTypes = null;
+            if ($scope->isRestricted()) {
+                $seededRecords = $scope->needsSeededRecords() && $storagePid > 0
+                    ? $this->previewWarmer->getSeededRecords($storagePid)
+                    : [];
+                $allowedCTypes = $scope->allowedCTypes($this->elementCatalog->getElementMetadata(), $seededRecords);
+            }
             return new JsonResponse(
                 $this->elementSearchService->search(
                     $query,
                     $languageService,
                     $langKey,
-                    $this->allowedCTypes($allowedHosts),
+                    $allowedCTypes,
+                    $labels,
                 ),
                 200,
                 ['Cache-Control' => 'private, no-store'],
             );
         }
 
-        $storagePid = SiteSettings::integer($site, 'elementLibrary.storagePid');
         if ($storagePid <= 0) {
             return new JsonResponse(
                 ['error' => 'Element library not configured: run desiderio:library:seed and set elementLibrary.storagePid in the site settings'],
@@ -114,31 +130,27 @@ final readonly class ElementLibraryMiddleware implements MiddlewareInterface
 
         // Light, persistently cached catalog: no config/fixture parsing per
         // request (the seeder-only data) - just the fields the picker renders.
-        $catalog = $this->filterByHosts($this->elementCatalog->getElementMetadata(), $allowedHosts);
+        $catalog = $scope->filter($this->elementCatalog->getElementMetadata(), $seededRecords);
 
         $elements = [];
         foreach ($catalog as $element) {
             $demoUid = $seededRecords[$element['cType']] ?? 0;
-            $localized = $this->elementCatalog->localizeElement($element, $languageService);
-            // Short, scannable card blurb (with **bold**/*italic* emphasis), keyed
-            // by cType in a per-host catalog file. The full description stays the
-            // "description" above and is shown in the enlarged preview; cards show
-            // this shorter one. Falls back to the full text when none is authored.
-            $shortFile = ElementCatalog::languageFile($element['hostExtension'], 'library_short.xlf');
-            $shortDescription = $languageService->sL($shortFile . $element['cType']);
-            // Keyword chips: cards show the first ~10 (ranked); the detail view
-            // shows keywords + synonyms. Both also feed the client-side search
-            // fallback when the PHP search endpoint is unreachable.
-            $kw = $this->elementCatalog->localizeKeywords($element, $languageService);
+            // Title, description, card blurb (library_short.xlf, with
+            // **bold**/*italic* emphasis; falls back to the description),
+            // keyword chips + synonyms (library_keywords.xlf; cards show the
+            // first ~10, the detail view all of them, and both feed the
+            // client-side search fallback) and group - each replaced by the
+            // site's own unit when elementLibrary.labels provides one.
+            $texts = $this->elementCatalog->pickerTexts($element, $languageService, $labels);
             $elements[] = [
                 'cType' => $element['cType'],
                 'name' => $element['name'],
-                'title' => $localized['title'],
-                'description' => $localized['description'],
-                'shortDescription' => $shortDescription !== '' ? $shortDescription : $localized['description'],
-                'keywords' => $kw['keywords'],
-                'synonyms' => $kw['synonyms'],
-                'group' => $element['group'],
+                'title' => $texts['title'],
+                'description' => $texts['description'],
+                'shortDescription' => $texts['short'],
+                'keywords' => $texts['keywords'],
+                'synonyms' => $texts['synonyms'],
+                'group' => $texts['group'],
                 'source' => $element['hostExtension'],
                 'demoUid' => $demoUid,
                 'previewUrl' => $demoUid > 0 ? $this->previewUrlBuilder->build($site, $demoUid) : '',
@@ -146,73 +158,21 @@ final readonly class ElementLibraryMiddleware implements MiddlewareInterface
             ];
         }
 
+        // The catalog is sorted by the hosts' titles. A site that renames its
+        // elements lists them by the names it shows instead.
+        if (!$labels->isEmpty()) {
+            usort($elements, static fn(array $a, array $b): int => strcasecmp($a['title'], $b['title']));
+        }
+
         return new JsonResponse(
             [
-                'categories' => $this->elementCatalog->getCategories($catalog),
+                // From the listed elements, so the chips show the site's own
+                // groups and never a category with nothing in it.
+                'categories' => $this->elementCatalog->getCategories($elements),
                 'elements' => $elements,
             ],
             200,
             ['Cache-Control' => 'private, no-store']
         );
-    }
-
-    /**
-     * Host extensions this site's picker may list, from the site setting
-     * `elementLibrary.hosts` (comma separated, e.g. "desiderio,innesto,core";
-     * "core" means the native TYPO3 content types). An empty setting means
-     * "every host", which is what sites configured before this setting existed
-     * get.
-     *
-     * @return list<string> empty = no restriction
-     */
-    private function resolveAllowedHosts(Site $site): array
-    {
-        $configured = $site->getSettings()->get('elementLibrary.hosts', '');
-        if (!is_string($configured) || trim($configured) === '') {
-            return [];
-        }
-
-        return array_values(array_unique(array_filter(
-            array_map(
-                static fn(string $host): string => strtolower(trim($host)),
-                explode(',', $configured),
-            ),
-            static fn(string $host): bool => $host !== '',
-        )));
-    }
-
-    /**
-     * @param list<CatalogEntry> $catalog
-     * @param list<string> $allowedHosts
-     * @return list<CatalogEntry>
-     */
-    private function filterByHosts(array $catalog, array $allowedHosts): array
-    {
-        if ($allowedHosts === []) {
-            return $catalog;
-        }
-
-        return array_values(array_filter(
-            $catalog,
-            static fn(array $element): bool => in_array(strtolower($element['hostExtension']), $allowedHosts, true),
-        ));
-    }
-
-    /**
-     * cTypes the search may return for this site, or null when unrestricted.
-     *
-     * @param list<string> $allowedHosts
-     * @return list<string>|null
-     */
-    private function allowedCTypes(array $allowedHosts): ?array
-    {
-        if ($allowedHosts === []) {
-            return null;
-        }
-
-        return array_values(array_map(
-            static fn(array $element): string => $element['cType'],
-            $this->filterByHosts($this->elementCatalog->getElementMetadata(), $allowedHosts),
-        ));
     }
 }

@@ -59,5 +59,29 @@ element's title, keywords, synonyms, group and description with
 ``levenshtein()``-based fuzzy matching, autocomplete and "did you mean"
 suggestions — pure PHP, no external search service.
 
+Each site decides what its picker offers, through its site settings
+(category "Element Library"):
+
+..  list-table::
+    :header-rows: 1
+    :widths: 32 68
+
+    *   - Setting
+        - Effect
+    *   - ``elementLibrary.storagePid``
+        - The library folder seeded by ``desiderio:library:seed``.
+    *   - ``elementLibrary.previewTypeNum``
+        - The page type that renders single-element previews.
+    *   - ``elementLibrary.hosts``
+        - Only the elements of these provider extensions
+          (``desiderio,innesto,core``); empty lists every provider.
+    *   - ``elementLibrary.onlySeeded``
+        - Only the elements with a demo record in the library folder; search
+          is limited to the same elements. Off by default.
+    *   - ``elementLibrary.labels``
+        - An XLIFF file with the site's own titles, descriptions, card
+          blurbs, keywords and groups, keyed ``<cType>.title`` and so on.
+          Empty uses the providers' texts.
+
 Implementation details: :ref:`developer-element-library`,
-:ref:`developer-element-library-search`.
+:ref:`element-library-site-scope`, :ref:`developer-element-library-search`.

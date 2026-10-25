@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en">
+  <file id="sets.desiderio" original="EXT:desiderio/Configuration/Sets/Desiderio/labels.xlf">
+    <unit id="settings.elementLibrary.onlySeeded">
+      <segment>
+        <source>Element Library: seeded elements only</source>
+      </segment>
+    </unit>
+    <unit id="settings.description.elementLibrary.onlySeeded">
+      <segment>
+        <source>List only the elements that have a demo record in this site's Element Library storage folder; the picker search is limited to the same elements. Use it when a site offers a subset of a provider's elements: seed only those, then switch this on. Applies together with "Element Library hosts".</source>
+      </segment>
+    </unit>
+    <unit id="settings.elementLibrary.labels">
+      <segment>
+        <source>Element Library labels</source>
+      </segment>
+    </unit>
+    <unit id="settings.description.elementLibrary.labels">
+      <segment>
+        <source>XLIFF file with this site's own words for its elements, e.g. "EXT:my_theme/Resources/Private/Language/Library/site.xlf". Units are keyed &lt;cType&gt;.title, &lt;cType&gt;.description, &lt;cType&gt;.short, &lt;cType&gt;.keywords ("primary || synonyms", terms separated by " | ") and &lt;cType&gt;.group. Each unit that exists replaces the provider's text in the editor's language (translations in de.&lt;file&gt;); a missing unit keeps it. Empty = the provider's texts.</source>
+      </segment>
+    </unit>
+  </file>
+</xliff>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="de">
+  <file id="sets.desiderio" original="EXT:desiderio/Configuration/Sets/Desiderio/labels.xlf">
+    <unit id="settings.elementLibrary.onlySeeded">
+      <segment state="final">
+        <source>Element Library: seeded elements only</source>
+        <target>Element-Bibliothek: nur Elemente mit Demo-Datensatz</target>
+      </segment>
+    </unit>
+    <unit id="settings.description.elementLibrary.onlySeeded">
+      <segment state="final">
+        <source>List only the elements that have a demo record in this site's Element Library storage folder; the picker search is limited to the same elements. Use it when a site offers a subset of a provider's elements: seed only those, then switch this on. Applies together with "Element Library hosts".</source>
+        <target>Listet nur die Elemente, die einen Demo-Datensatz im Speicherordner der Element-Bibliothek dieser Site haben; die Suche im Auswahlfenster ist auf dieselben Elemente beschränkt. Für Sites, die nur einen Teil der Elemente eines Anbieters verwenden: nur diese anlegen (seeden), dann diese Option einschalten. Gilt zusammen mit „Element Library hosts“.</target>
+      </segment>
+    </unit>
+    <unit id="settings.elementLibrary.labels">
+      <segment state="final">
+        <source>Element Library labels</source>
+        <target>Element-Bibliothek: eigene Bezeichnungen</target>
+      </segment>
+    </unit>
+    <unit id="settings.description.elementLibrary.labels">
+      <segment state="final">
+        <source>XLIFF file with this site's own words for its elements, e.g. "EXT:my_theme/Resources/Private/Language/Library/site.xlf". Units are keyed &lt;cType&gt;.title, &lt;cType&gt;.description, &lt;cType&gt;.short, &lt;cType&gt;.keywords ("primary || synonyms", terms separated by " | ") and &lt;cType&gt;.group. Each unit that exists replaces the provider's text in the editor's language (translations in de.&lt;file&gt;); a missing unit keeps it. Empty = the provider's texts.</source>
+        <target>XLIFF-Datei mit den eigenen Bezeichnungen dieser Site für ihre Elemente, z. B. „EXT:my_theme/Resources/Private/Language/Library/site.xlf“. Die Units heißen &lt;cType&gt;.title, &lt;cType&gt;.description, &lt;cType&gt;.short, &lt;cType&gt;.keywords („Hauptbegriffe || Synonyme“, Begriffe getrennt durch „ | “) und &lt;cType&gt;.group. Jede vorhandene Unit ersetzt den Text des Anbieters in der Sprache der Redakteurin oder des Redakteurs (Übersetzungen in de.&lt;Datei&gt;); fehlt eine Unit, bleibt dessen Text. Leer = Texte des Anbieters.</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

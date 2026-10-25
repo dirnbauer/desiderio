@@ -6,8 +6,8 @@ namespace Webconsulting\Desiderio\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 use Webconsulting\Desiderio\Library\ElementCatalog;
+use Webconsulting\Desiderio\Library\ElementLibraryScope;
 use Webconsulting\Desiderio\Library\ElementSearchService;
-use Webconsulting\Desiderio\Middleware\ElementLibraryMiddleware;
 
 /**
  * The element library serves more than one provider extension: Desiderio and
@@ -93,12 +93,7 @@ final class ElementLibraryHostsTest extends TestCase
      */
     private function filterHosts(array $catalog, array $allowedHosts): array
     {
-        $middleware = new \ReflectionClass(ElementLibraryMiddleware::class)->newInstanceWithoutConstructor();
-        $method = new \ReflectionMethod($middleware, 'filterByHosts');
-
-        /** @var list<array{cType: string}> $filtered */
-        $filtered = $method->invoke($middleware, $catalog, $allowedHosts);
-        return array_column($filtered, 'cType');
+        return array_column(new ElementLibraryScope($allowedHosts)->filter($catalog), 'cType');
     }
 
     public function testASiteListsOnlyTheHostsItConfigured(): void

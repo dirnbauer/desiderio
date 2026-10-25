@@ -279,6 +279,99 @@ site's library folder holds matching demo records:
 Search, suggestions and "did you mean" honour the same restriction, so a site
 never proposes an element it cannot render.
 
+..  _element-library-site-scope:
+
+A site's own elements, in its own words
+---------------------------------------
+
+A theme that runs several sites often uses only part of its elements on each,
+and each site calls them by its own names — a restaurant's "Tasting menu" is
+the provider's "Item list". Two further site settings cover that:
+
+..  code-block:: yaml
+    :caption: config/sites/<site>/settings.yaml
+
+    elementLibrary.hosts: 'my_theme'
+    elementLibrary.onlySeeded: true
+    elementLibrary.labels: 'EXT:my_theme/Resources/Private/Language/Library/odera.xlf'
+
+..  list-table::
+    :header-rows: 1
+    :widths: 30 14 56
+
+    *   - Setting
+        - Type, default
+        - Effect
+    *   - ``elementLibrary.onlySeeded``
+        - bool, ``false``
+        - The list contains only the elements that have a live demo record in
+          the site's library folder (``elementLibrary.storagePid``, the
+          ``demoUid`` of the entry is greater than 0). Search results,
+          suggestions and "did you mean" are limited to the same set. Applies
+          together with ``elementLibrary.hosts``. Seed the folder with just the
+          elements the site uses, then switch this on.
+    *   - ``elementLibrary.labels``
+        - string, ``''``
+        - An XLIFF file with the site's own texts, ``EXT:…/<name>.xlf`` (an
+          ``LLL:`` prefix is accepted). Empty, or anything that is not an
+          ``EXT:`` reference to an ``.xlf`` file, means the provider's texts.
+
+The labels file holds one unit per element and field, keyed
+``<cType>.<field>``:
+
+..  list-table::
+    :header-rows: 1
+    :widths: 30 70
+
+    *   - Unit id
+        - Replaces
+    *   - ``<cType>.title``
+        - The title on the card and in the preview.
+    *   - ``<cType>.description``
+        - The full description in the enlarged preview.
+    *   - ``<cType>.short``
+        - The card blurb (``library_short.xlf``). Without one, the card shows
+          the provider's blurb, or the description when the provider has none.
+    *   - ``<cType>.keywords``
+        - Keyword chips **and** synonyms, in the ``library_keywords.xlf``
+          encoding: ``primary || synonyms``, the terms of each list separated
+          by a spaced pipe (``menu | courses``). The unit replaces both lists;
+          without ``||`` the element has no synonyms.
+    *   - ``<cType>.group``
+        - The category. The category chips are built from the listed elements,
+          so they show the site's groups.
+
+..  code-block:: xml
+    :caption: EXT:my_theme/Resources/Private/Language/Library/odera.xlf
+
+    <unit id="my_theme_itemlist.title">
+      <segment><source>Tasting menu</source></segment>
+    </unit>
+    <unit id="my_theme_itemlist.keywords">
+      <segment><source>tasting menu | courses || degustation | wine pairing</source></segment>
+    </unit>
+    <unit id="my_theme_itemlist.group">
+      <segment><source>Restaurant</source></segment>
+    </unit>
+
+Every unit that exists replaces the provider's text; a missing or empty unit
+keeps it. Units are read through the backend user's ``LanguageService``, like
+any other label, so German comes from ``de.odera.xlf`` next to the file. A
+unit that the translation lacks resolves to the file's English source, which
+still replaces the provider's text: the site renamed the element. With a
+labels file, the list is sorted by the titles the site shows.
+
+The search indexes the same texts the cards show. Its cache entry is keyed by
+the labels file reference and the modification time of the file and of its
+translation in the editor's language, so two sites with different files never
+share an index and editing either file rebuilds it. Sites without a labels file
+keep sharing the plain per-language index. The labels themselves are read
+through TYPO3's localization cache, so — as after any XLIFF edit — flush the
+system caches to see a changed file in the list. The logic lives in two pure
+classes, ``ElementLibraryScope`` (which elements) and
+``ElementLabelOverrides`` (whose words), used by both endpoints of
+``ElementLibraryMiddleware``.
+
 The cache
 ---------
 
@@ -501,8 +594,11 @@ Caching and fallback
 The per-language weighted index is built once and stored in the same
 ``desiderio_library`` cache as the catalog (``SimpleFileBackend``, group
 ``system``). Its key includes the keyword-file fingerprint, so editing a keyword
-self-invalidates it; "flush all caches" clears it too. Cache reads and writes are
-best-effort — a cache failure only ever slows a search, never breaks it.
+self-invalidates it; "flush all caches" clears it too. A site with its own
+``elementLibrary.labels`` gets its own index, keyed by that file and its
+modification times (see :ref:`element-library-site-scope`). Cache reads and
+writes are best-effort — a cache failure only ever slows a search, never
+breaks it.
 
 While the first request is in flight, or whenever the endpoint is unreachable, the
 panel falls back to a pure client-side substring filter over the catalog it

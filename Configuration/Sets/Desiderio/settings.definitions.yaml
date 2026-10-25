@@ -508,3 +508,16 @@ settings:
     category: desiderio.elementLibrary
     type: string
     default: ''
+
+  # Label and description of the two settings below come from labels.xlf
+  # (settings.<key> / settings.description.<key>) and de.labels.xlf next to
+  # this file.
+  elementLibrary.onlySeeded:
+    category: desiderio.elementLibrary
+    type: bool
+    default: false
+
+  elementLibrary.labels:
+    category: desiderio.elementLibrary
+    type: string
+    default: ''

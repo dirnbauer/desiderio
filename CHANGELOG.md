@@ -6,6 +6,13 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.25.1] — 2026-10-25
+
+### Fixed
+
+- Rank element library search results with equal scores deterministically. One exact keyword hit scores the same in every element that lists the term ("probestunde" scored booking, hero and CTA alike on the Yoga Fitness site, then fell back to alphabetical titles). Ties now follow the authored keyword order: the element whose primary keywords list the matched term earlier ranks first, then an element whose title matches, then catalogue order (the order the panel lists the elements). Scores, the matched set and the suggestions are unchanged; where scores differ, the score alone decides. Scores that differ only in float noise count as equal.
+- Send the element library's category as its title. A provider's group went out as its key (`social-proof`, `magic-ui`), which the panel only disguised by title-casing every word; it is now the label the provider registered with `addTcaSelectItemGroup()` in the editor's language ("Vertrauen & Referenzen"). A site's own group from `elementLibrary.labels` is passed through as written.
+
 ## [4.25.0] — 2026-10-25
 
 ### Added

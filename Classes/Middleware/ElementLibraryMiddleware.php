@@ -140,7 +140,9 @@ final readonly class ElementLibraryMiddleware implements MiddlewareInterface
             // keyword chips + synonyms (library_keywords.xlf; cards show the
             // first ~10, the detail view all of them, and both feed the
             // client-side search fallback) and group - each replaced by the
-            // site's own unit when elementLibrary.labels provides one.
+            // site's own unit when elementLibrary.labels provides one. A host
+            // group shows its registered title instead of its key; the search
+            // index is built from pickerTexts() and is unaffected.
             $texts = $this->elementCatalog->pickerTexts($element, $languageService, $labels);
             $elements[] = [
                 'cType' => $element['cType'],
@@ -150,7 +152,7 @@ final readonly class ElementLibraryMiddleware implements MiddlewareInterface
                 'shortDescription' => $texts['short'],
                 'keywords' => $texts['keywords'],
                 'synonyms' => $texts['synonyms'],
-                'group' => $texts['group'],
+                'group' => $this->elementCatalog->groupTitle($texts['group'], $languageService),
                 'source' => $element['hostExtension'],
                 'demoUid' => $demoUid,
                 'previewUrl' => $demoUid > 0 ? $this->previewUrlBuilder->build($site, $demoUid) : '',

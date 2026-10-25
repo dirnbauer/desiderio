@@ -7,6 +7,7 @@ namespace Webconsulting\Desiderio\Library;
 use Symfony\Component\Yaml\Yaml;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Localization\LanguageService;
+use TYPO3\CMS\Core\Schema\TcaSchemaFactory;
 use TYPO3\CMS\Core\SystemResource\Publishing\SystemResourcePublisherInterface;
 use TYPO3\CMS\Core\SystemResource\Publishing\UriGenerationOptions;
 use TYPO3\CMS\Core\SystemResource\SystemResourceFactory;
@@ -86,6 +87,7 @@ final class ElementCatalog
         private readonly CacheManager $cacheManager,
         private readonly SystemResourceFactory $systemResourceFactory,
         private readonly SystemResourcePublisherInterface $resourcePublisher,
+        private readonly TcaSchemaFactory $tcaSchemaFactory,
     ) {}
 
     /**
@@ -364,6 +366,34 @@ final class ElementCatalog
         }
 
         return $texts;
+    }
+
+    /**
+     * The title of an element group in the editor's language, as the picker
+     * shows it: the label the group's host registered for it with
+     * ExtensionManagementUtility::addTcaSelectItemGroup() - the title the New
+     * Content Element wizard shows ("Vertrauen & Referenzen" for
+     * "social-proof"). A group without a registered label, such as a site's
+     * own group from elementLibrary.labels, is a title already and is
+     * returned unchanged.
+     */
+    public function groupTitle(string $group, LanguageService $languageService): string
+    {
+        if (!$this->tcaSchemaFactory->has('tt_content')) {
+            return $group;
+        }
+        $schema = $this->tcaSchemaFactory->get('tt_content');
+        if (!$schema->hasField('CType')) {
+            return $group;
+        }
+        $itemGroups = $schema->getField('CType')->getConfiguration()['itemGroups'] ?? null;
+        $label = is_array($itemGroups) ? ($itemGroups[$group] ?? null) : null;
+        if (!is_string($label) || $label === '') {
+            return $group;
+        }
+        $title = $languageService->sL($label);
+
+        return $title !== '' ? $title : $group;
     }
 
     /**

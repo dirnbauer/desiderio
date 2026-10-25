@@ -150,12 +150,13 @@ final class ElementLibrarySiteScopeTest extends FunctionalTestCase
         self::assertStringContainsString('color-coded notice box', (string)$alert['description']);
         self::assertNotSame([], $alert['keywords']);
 
-        // No units at all: the host's texts, untouched.
+        // No units at all: the host's texts, untouched - its group by the
+        // title the host registered for it, not by the key.
         self::assertSame('Quote', $elements['desiderio_quote']['title']);
-        self::assertSame('content', $elements['desiderio_quote']['group']);
+        self::assertSame('Content & Editorial', $elements['desiderio_quote']['group']);
 
         // Sorted by the names the site shows, categories from its own groups.
-        self::assertSame(['Restaurant', 'content'], $response['categories']);
+        self::assertSame(['Content & Editorial', 'Restaurant'], $response['categories']);
     }
 
     public function testTheSitesLabelsFollowTheBackendUsersLanguage(): void

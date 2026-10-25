@@ -20,10 +20,27 @@ use TYPO3\CMS\Core\Localization\LanguageService;
  * existing "desiderio_library" cache (fingerprint includes the keyword files,
  * so editing a keyword self-invalidates it). A site with its own labels
  * (elementLibrary.labels) gets its own index, keyed by that file and its mtime.
+ *
+ * Equal scores are common: one exact keyword hit scores the same in every
+ * element that lists the term. Ties are broken by the authored keyword order
+ * (the element that lists the matched term earlier ranks first), then by a
+ * title match, then by catalogue order - the order the panel lists the
+ * elements - so the same query always ranks the same way.
+ *
+ * @phpstan-type ElementTokens array{title: string, tokens: array<string, int>, keywordPositions: array<string, int>}
+ * @phpstan-type IndexedElement array{title: string, tokens: array<string, int>, keywordPositions: array<string, int>, catalogPosition: int}
+ * @phpstan-type SearchIndex array{elements: array<string, IndexedElement>, vocab: array<string, int>}
+ * @phpstan-type RankedMatch array{cType: string, score: float, keywordPosition: int, titleMatch: bool, catalogPosition: int}
  */
 final readonly class ElementSearchService
 {
     private const string CACHE_IDENTIFIER = 'desiderio_library';
+
+    /**
+     * Part of the index cache key. Bump it whenever the cached index shape
+     * changes, so an index cached by an older release is never read back.
+     */
+    private const string INDEX_VERSION = 'v2';
 
     /**
      * Matches below this score are dropped. Kept low on purpose so the search
@@ -81,17 +98,30 @@ final readonly class ElementSearchService
         ?array $allowedCTypes = null,
         ?ElementLabelOverrides $labels = null,
     ): array {
-        $empty = ['matches' => [], 'suggestions' => [], 'didYouMean' => null];
-
         $queryTokens = $this->tokenize($query);
         if ($queryTokens === []) {
-            return $empty;
+            return ['matches' => [], 'suggestions' => [], 'didYouMean' => null];
         }
 
         $index = $this->getIndex($languageService, $langKey, $labels);
-        $index = $this->restrictIndex($index, $allowedCTypes);
+
+        return $this->rank($queryTokens, $this->restrictIndex($index, $allowedCTypes));
+    }
+
+    /**
+     * Scores every element of the index against the query tokens and orders
+     * the matches: by score, and on equal scores by keyword position, title
+     * match and catalogue order (compareMatches()).
+     *
+     * @param non-empty-list<string> $queryTokens
+     * @param SearchIndex $index
+     * @return array{matches: list<array{cType: string, score: float}>, suggestions: list<string>, didYouMean: string|null}
+     */
+    private function rank(array $queryTokens, array $index): array
+    {
         $vocab = $index['vocab'];
 
+        /** @var list<RankedMatch> $matches */
         $matches = [];
         // Per query token: did it hit something solid (exact/prefix/substring)?
         // Tokens that only matched fuzzily - or not at all - drive "did you mean".
@@ -99,41 +129,66 @@ final readonly class ElementSearchService
 
         foreach ($index['elements'] as $cType => $element) {
             $tokens = $element['tokens'];
+            $keywordPositions = $element['keywordPositions'];
             $score = 0.0;
             $matched = 0;
             $titleHit = false;
+            $titleMatch = false;
+            $keywordPosition = PHP_INT_MAX;
 
             foreach ($queryTokens as $queryToken) {
                 $best = 0.0;
                 $bestSolid = false;
+                // The keyword this query token matches best (match quality
+                // first, then the earliest authored position).
+                $bestKeywordFactor = 0.0;
+                $bestKeywordPosition = PHP_INT_MAX;
                 $lq = strlen($queryToken);
                 $maxEdits = $lq <= 3 ? 0 : ($lq <= 6 ? 1 : 2);
 
                 foreach ($tokens as $token => $weight) {
                     $token = (string)$token;
-                    $contribution = 0.0;
+                    $factor = 0.0;
                     $solid = false;
                     if ($token === $queryToken) {
-                        $contribution = $weight * 1.0;
+                        $factor = 1.0;
                         $solid = true;
                         if ($weight === self::WEIGHT_TITLE) {
                             $titleHit = true;
                         }
                     } elseif ($lq >= 2 && str_starts_with($token, $queryToken)) {
-                        $contribution = $weight * 0.85;
+                        $factor = 0.85;
                         $solid = true;
                     } elseif ($lq >= 3 && str_contains($token, $queryToken)) {
-                        $contribution = $weight * 0.55;
+                        $factor = 0.55;
                         $solid = true;
                     } elseif ($maxEdits > 0 && abs(strlen($token) - $lq) <= $maxEdits) {
                         $distance = levenshtein($queryToken, $token);
                         if ($distance <= $maxEdits) {
-                            $contribution = $weight * (0.7 - 0.18 * $distance);
+                            $factor = 0.7 - 0.18 * $distance;
                         }
                     }
+                    if ($factor <= 0.0) {
+                        continue;
+                    }
+
+                    // A token's weight is the highest field it occurs in and
+                    // the title weighs most, so this token is a title word.
+                    if ($weight === self::WEIGHT_TITLE) {
+                        $titleMatch = true;
+                    }
+                    $contribution = $weight * $factor;
                     if ($contribution > $best) {
                         $best = $contribution;
                         $bestSolid = $solid;
+                    }
+                    $position = $keywordPositions[$token] ?? null;
+                    if ($position !== null
+                        && ($factor > $bestKeywordFactor
+                            || ($factor === $bestKeywordFactor && $position < $bestKeywordPosition))
+                    ) {
+                        $bestKeywordFactor = $factor;
+                        $bestKeywordPosition = $position;
                     }
                 }
 
@@ -143,6 +198,7 @@ final readonly class ElementSearchService
                     if ($bestSolid) {
                         $tokenSolid[$queryToken] = true;
                     }
+                    $keywordPosition = min($keywordPosition, $bestKeywordPosition);
                 }
             }
 
@@ -160,18 +216,23 @@ final readonly class ElementSearchService
                 $score *= 1.25;
             }
             if ($score >= self::SCORE_FLOOR) {
-                $matches[$cType] = ['score' => $score, 'title' => $element['title']];
+                $matches[] = [
+                    'cType' => (string)$cType,
+                    // Ranked by the score the endpoint reports: scores that
+                    // only differ in float noise are a tie, not an order.
+                    'score' => round($score, 3),
+                    'keywordPosition' => $keywordPosition,
+                    'titleMatch' => $titleMatch,
+                    'catalogPosition' => $element['catalogPosition'],
+                ];
             }
         }
 
-        uasort($matches, static function (array $a, array $b): int {
-            $byScore = $b['score'] <=> $a['score'];
-            return $byScore !== 0 ? $byScore : strcasecmp($a['title'], $b['title']);
-        });
+        usort($matches, self::compareMatches(...));
 
         $result = [];
-        foreach ($matches as $cType => $data) {
-            $result[] = ['cType' => $cType, 'score' => round($data['score'], 3)];
+        foreach ($matches as $match) {
+            $result[] = ['cType' => $match['cType'], 'score' => $match['score']];
         }
 
         return [
@@ -179,6 +240,20 @@ final readonly class ElementSearchService
             'suggestions' => $this->suggest((string)end($queryTokens), $vocab),
             'didYouMean' => $this->didYouMean($queryTokens, $tokenSolid, $vocab),
         ];
+    }
+
+    /**
+     * Order of two matches: the higher score first. On equal scores the
+     * element whose primary keywords list the matched term earlier, then the
+     * element whose title matches, then catalogue order.
+     *
+     * @param RankedMatch $a
+     * @param RankedMatch $b
+     */
+    private static function compareMatches(array $a, array $b): int
+    {
+        return [$b['score'], $a['keywordPosition'], $b['titleMatch'], $a['catalogPosition']]
+            <=> [$a['score'], $b['keywordPosition'], $a['titleMatch'], $b['catalogPosition']];
     }
 
     /**
@@ -260,7 +335,7 @@ final readonly class ElementSearchService
      * Best-effort cache: a cache failure only ever slows the search, never
      * breaks it (mirrors ElementCatalog::getElementMetadata()).
      *
-     * @return array{elements: array<string, array{title: string, tokens: array<string, int>}>, vocab: array<string, int>}
+     * @return SearchIndex
      */
     private function getIndex(LanguageService $languageService, string $langKey, ?ElementLabelOverrides $labels = null): array
     {
@@ -271,7 +346,7 @@ final readonly class ElementSearchService
             $cacheKey = $this->indexCacheKey($langKey, $this->elementCatalog->getSearchFingerprint(), $labels);
             $cached = $cache->get($cacheKey);
             if (is_array($cached)) {
-                /** @var array{elements: array<string, array{title: string, tokens: array<string, int>}>, vocab: array<string, int>} $cached */
+                /** @var SearchIndex $cached */
                 return $cached;
             }
         } catch (\Throwable) {
@@ -299,7 +374,7 @@ final readonly class ElementSearchService
      */
     private function indexCacheKey(string $langKey, string $catalogFingerprint, ?ElementLabelOverrides $labels): string
     {
-        $key = 'search-index-' . $this->sanitizeKey($langKey) . '-' . $catalogFingerprint;
+        $key = 'search-index-' . self::INDEX_VERSION . '-' . $this->sanitizeKey($langKey) . '-' . $catalogFingerprint;
         if ($labels !== null && !$labels->isEmpty()) {
             $key .= '-labels-' . $labels->fingerprint($langKey);
         }
@@ -312,9 +387,9 @@ final readonly class ElementSearchService
      * vocabulary from the surviving elements so "did you mean" can never name a
      * term that only exists in a filtered-out element.
      *
-     * @param array{elements: array<string, array{title: string, tokens: array<string, int>}>, vocab: array<string, int>} $index
+     * @param SearchIndex $index
      * @param list<string>|null $allowedCTypes
-     * @return array{elements: array<string, array{title: string, tokens: array<string, int>}>, vocab: array<string, int>}
+     * @return SearchIndex
      */
     private function restrictIndex(array $index, ?array $allowedCTypes): array
     {
@@ -324,12 +399,26 @@ final readonly class ElementSearchService
 
         $allowed = array_fill_keys($allowedCTypes, true);
         $elements = [];
-        $vocab = [];
         foreach ($index['elements'] as $cType => $element) {
-            if (!isset($allowed[$cType])) {
-                continue;
+            if (isset($allowed[$cType])) {
+                $elements[$cType] = $element;
             }
-            $elements[$cType] = $element;
+        }
+
+        return ['elements' => $elements, 'vocab' => $this->vocabulary($elements)];
+    }
+
+    /**
+     * The suggestion vocabulary of a set of indexed elements: every token with
+     * the highest weight it carries in any of them.
+     *
+     * @param array<string, IndexedElement> $elements
+     * @return array<string, int>
+     */
+    private function vocabulary(array $elements): array
+    {
+        $vocab = [];
+        foreach ($elements as $element) {
             foreach ($element['tokens'] as $token => $weight) {
                 if (!isset($vocab[$token]) || $vocab[$token] < $weight) {
                     $vocab[$token] = $weight;
@@ -337,54 +426,91 @@ final readonly class ElementSearchService
             }
         }
 
-        return ['elements' => $elements, 'vocab' => $vocab];
+        return $vocab;
     }
 
     /**
-     * @return array{elements: array<string, array{title: string, tokens: array<string, int>}>, vocab: array<string, int>}
+     * @return SearchIndex
      */
     private function buildIndex(LanguageService $languageService, ?ElementLabelOverrides $labels = null): array
     {
         $elements = [];
-        $vocab = [];
-
         foreach ($this->elementCatalog->getElementMetadata() as $element) {
             // The texts the cards show, so the search matches what the editor reads.
-            $texts = $this->elementCatalog->pickerTexts($element, $languageService, $labels);
-
-            /** @var array<string, int> $tokens token => max weight */
-            $tokens = [];
-            $add = function (string $text, int $weight) use (&$tokens): void {
-                foreach ($this->tokenize($text) as $token) {
-                    if (!isset($tokens[$token]) || $tokens[$token] < $weight) {
-                        $tokens[$token] = $weight;
-                    }
-                }
-            };
-
-            $add($texts['title'], self::WEIGHT_TITLE);
-            foreach ($texts['keywords'] as $keyword) {
-                $add($keyword, self::WEIGHT_KEYWORD);
-            }
-            foreach ($texts['synonyms'] as $synonym) {
-                $add($synonym, self::WEIGHT_SYNONYM);
-            }
-            $add($texts['group'], self::WEIGHT_GROUP);
-            $add($texts['description'], self::WEIGHT_DESCRIPTION);
-
-            foreach ($tokens as $token => $weight) {
-                if (!isset($vocab[$token]) || $vocab[$token] < $weight) {
-                    $vocab[$token] = $weight;
-                }
-            }
-
-            $elements[$element['cType']] = [
-                'title' => $texts['title'],
-                'tokens' => $tokens,
-            ];
+            $elements[$element['cType']] = $this->indexElement(
+                $this->elementCatalog->pickerTexts($element, $languageService, $labels),
+            );
         }
 
-        return ['elements' => $elements, 'vocab' => $vocab];
+        return $this->assembleIndex($elements, $labels !== null && !$labels->isEmpty());
+    }
+
+    /**
+     * The index of the elements, given in catalog order. Each element records
+     * its catalogue position - the place the panel lists it at
+     * (ElementLibraryMiddleware): the catalog's own order, or by the shown
+     * title on a site with its own labels - for rank()'s last tie-break.
+     * The elements stay in catalog order, and with them the vocabulary.
+     *
+     * @param array<string, ElementTokens> $elements
+     * @return SearchIndex
+     */
+    private function assembleIndex(array $elements, bool $listedByTitle): array
+    {
+        $order = array_map(strval(...), array_keys($elements));
+        if ($listedByTitle) {
+            usort($order, static fn(string $a, string $b): int => strcasecmp($elements[$a]['title'], $elements[$b]['title']));
+        }
+        $positions = array_flip($order);
+
+        $indexed = [];
+        foreach ($elements as $cType => $element) {
+            $indexed[$cType] = [...$element, 'catalogPosition' => $positions[$cType]];
+        }
+
+        return ['elements' => $indexed, 'vocab' => $this->vocabulary($indexed)];
+    }
+
+    /**
+     * The index entry of one element: each token with the highest field
+     * weight it occurs in, and for each primary keyword token the position of
+     * the first keyword it occurs in (the authored, ranked keyword order).
+     *
+     * @param array{title: string, keywords: list<string>, synonyms: list<string>, group: string, description: string} $texts
+     * @return ElementTokens
+     */
+    private function indexElement(array $texts): array
+    {
+        /** @var array<string, int> $tokens token => max weight */
+        $tokens = [];
+        $add = function (string $text, int $weight) use (&$tokens): void {
+            foreach ($this->tokenize($text) as $token) {
+                if (!isset($tokens[$token]) || $tokens[$token] < $weight) {
+                    $tokens[$token] = $weight;
+                }
+            }
+        };
+
+        /** @var array<string, int> $keywordPositions token => first keyword position */
+        $keywordPositions = [];
+        $add($texts['title'], self::WEIGHT_TITLE);
+        foreach ($texts['keywords'] as $position => $keyword) {
+            $add($keyword, self::WEIGHT_KEYWORD);
+            foreach ($this->tokenize($keyword) as $token) {
+                $keywordPositions[$token] ??= $position;
+            }
+        }
+        foreach ($texts['synonyms'] as $synonym) {
+            $add($synonym, self::WEIGHT_SYNONYM);
+        }
+        $add($texts['group'], self::WEIGHT_GROUP);
+        $add($texts['description'], self::WEIGHT_DESCRIPTION);
+
+        return [
+            'title' => $texts['title'],
+            'tokens' => $tokens,
+            'keywordPositions' => $keywordPositions,
+        ];
     }
 
     /**

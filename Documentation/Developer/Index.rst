@@ -189,7 +189,11 @@ element with a rendered preview) is filled by a single frontend request,
 ``?elementLibrary=1``, handled by ``ElementLibraryMiddleware``. That endpoint
 returns the full catalog as JSON: one entry per content element with its
 localized title and description, category, seeded demo ``uid``, icon, and a
-cache-hash-signed preview URL.
+cache-hash-signed preview URL. The category is a title, shown as it is
+written: a provider's group is sent as the label the provider registered for
+it with ``ExtensionManagementUtility::addTcaSelectItemGroup()`` — the group
+title of the New Content Element wizard, in the editor's language — never as
+its key.
 
 The problem it solves
 ---------------------
@@ -339,7 +343,7 @@ The labels file holds one unit per element and field, keyed
           without ``||`` the element has no synonyms.
     *   - ``<cType>.group``
         - The category. The category chips are built from the listed elements,
-          so they show the site's groups.
+          so they show the site's groups, exactly as written.
 
 ..  code-block:: xml
     :caption: EXT:my_theme/Resources/Private/Language/Library/odera.xlf
@@ -567,7 +571,23 @@ The per-element score is the sum of its token contributions, then:
 *   boosted ``× 1.25`` when a query word hit the title;
 *   dropped if it stays below the **score floor** (``0.3``).
 
-Matches are sorted by score, ties broken alphabetically by title.
+Matches are sorted by the score the endpoint reports (rounded to three
+decimals). One exact keyword hit scores the same in every element that lists
+the term, so ties are common; they are broken deterministically:
+
+#.  the **keyword position**: the element whose primary keywords list the
+    matched term earlier ranks higher. Keywords are ranked by importance when
+    they are written (:file:`library_keywords.xlf`, a site's
+    ``<cType>.keywords``), so this follows the author's order. Per query word
+    the best-matching keyword counts (exact before prefix before substring
+    before fuzzy), then the earliest one; for several words the earliest of
+    them;
+#.  a **title match**: an element whose title contains a matched word ranks
+    above one that does not;
+#.  **catalogue order**: the order the panel lists the elements in — the
+    catalog's own order, or by the shown title on a site with its own labels.
+
+Where the scores differ, the score alone decides.
 
 ..  note::
 

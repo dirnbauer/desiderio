@@ -691,6 +691,6 @@ final class StyleguideShowcasePages
      */
     public static function megaMenuNote(): string
     {
-        return 'This page uses a mega menu with a short description for every page. It appears on the home page only; every other page uses the standard menu.';
+        return 'This page uses a mega menu: every section opens with a short summary and lists its pages. It appears on the home page only; every other page uses the standard menu.';
     }
 }

@@ -6,8 +6,8 @@
  * shadcn/ui NavigationMenu, mega-menu variant, in the header's main
  * navigation on the site's root page: ghost triggers in a row, one content
  * panel per trigger with a feature link (the first-level page, on a muted
- * gradient) next to a grid of list items (title + muted, two-line
- * description). Panel surface and chrome come from d-menu-surface--wide and
+ * gradient, the panel's only abstract) above a grid of title-only links.
+ * Panel surface and chrome come from d-menu-surface--wide and
  * d-menu-popover (01-menu-surface.css), so the menu colour and menu accent
  * of the create page apply. Up to 1024px the burger panel shows it as a
  * stacked accordion: panels expand inline, one column, no popover chrome.
@@ -78,6 +78,12 @@
 
 .desiderio-mega__item.is-open > .desiderio-mega__trigger .desiderio-mega__chevron {
     transform: rotate(180deg);
+}
+
+/* Priority+ overflow: desiderio.js hides the triggers that do not fit one
+   row and shows their entries in the "More" panel. */
+.desiderio-mega__list :is(.desiderio-mega__item, .desiderio-mega__entry)[hidden] {
+    display: none;
 }
 
 /* ---- The panel ------------------------------------------------------ */
@@ -235,8 +241,7 @@
 }
 
 .desiderio-mega__link {
-    gap: 0.25rem 0;
-    padding: 0.625rem 0.75rem;
+    padding: 0.5rem 0.75rem;
 }
 
 .desiderio-mega__link > * {
@@ -288,13 +293,6 @@
     background-color: var(--d-menu-highlight, var(--accent));
 }
 
-/* On a highlighted row the description takes the row's ink: a muted ink
-   would not hold 4.5:1 on the bold (primary) highlight. */
-.desiderio-mega__link:is(:hover, :focus-visible) .desiderio-mega__description,
-.desiderio-mega__link--current .desiderio-mega__description {
-    color: inherit;
-}
-
 .desiderio-mega__link--current {
     color: var(--d-menu-accent-foreground, var(--accent-foreground));
     background-color: var(--d-menu-accent, var(--accent));
@@ -313,6 +311,10 @@
         flex-direction: column;
         align-items: stretch;
         flex-wrap: nowrap;
+    }
+
+    .desiderio-mega__item--more {
+        display: none;
     }
 
     .desiderio-mega__trigger {
@@ -364,6 +366,7 @@
 
     .desiderio-mega__link {
         min-height: 2.75rem;
+        align-content: center;
     }
 
     .desiderio-mega__leaves {

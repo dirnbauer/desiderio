@@ -740,8 +740,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // with aria-expanded/aria-controls, the panel holds plain links. Click,
   // Enter and Space everywhere; on the wide layout mouse users also get
   // hover-open with hover intent. A hovered panel stays while the pointer is
-  // on it, Escape and outside clicks dismiss it (WCAG 1.4.13). In the burger
-  // panel (up to 1024px) the panels expand inline, clicks only.
+  // on it, Escape and outside clicks dismiss it (WCAG 1.4.13). Triggers that
+  // do not fit one row move into a "More" panel. In the burger panel (up to
+  // 1024px) the panels expand inline, clicks only.
   document.querySelectorAll('[data-d-mega-menu]').forEach(mega => {
     const items = [...mega.querySelectorAll('[data-d-mega-item]')];
     if (items.length === 0) return;
@@ -834,6 +835,81 @@ document.addEventListener('DOMContentLoaded', () => {
       if (open) fit(open);
     }, { passive: true });
     navWideMedia.addEventListener?.('change', () => closeAll());
+
+    // Priority+ overflow, like section 6c: on the wide layout the triggers
+    // that do not fit one row hide, and their entries in the trailing
+    // "More" panel show. Both lists follow the menu order, so the first
+    // `count` triggers stay in the row and the More panel lists the rest.
+    const nav = mega.closest('[data-d-primary-nav]');
+    const moreItem = mega.querySelector('[data-d-mega-more]');
+    if (!nav || !moreItem) return;
+    const tops = [...mega.children].filter(li => li !== moreItem);
+    const entries = [...moreItem.querySelectorAll('[data-d-mega-more-entry]')];
+    const gap = parseFloat(getComputedStyle(mega).columnGap) || 4;
+    let widths = [];
+    let moreWidth = 0;
+    let visibleCount = -1;
+
+    const show = count => {
+      tops.forEach((li, index) => {
+        li.hidden = index >= count;
+        if (li.hidden && li.classList.contains('is-open')) setOpen(li, false);
+      });
+      entries.forEach((li, index) => { li.hidden = index < count; });
+      moreItem.hidden = count >= tops.length;
+      if (moreItem.hidden && moreItem.classList.contains('is-open')) setOpen(moreItem, false);
+      visibleCount = count;
+    };
+
+    // Trigger widths depend on text and fonts, not on the window, so they
+    // are measured once per font state with every trigger in the row. The
+    // header-button page is display: none there and counts as zero.
+    const measure = () => {
+      show(tops.length);
+      moreItem.hidden = false;
+      widths = tops.map(li => li.getBoundingClientRect().width);
+      moreWidth = moreItem.getBoundingClientRect().width;
+      moreItem.hidden = true;
+      visibleCount = -1;
+    };
+
+    const rowWidth = (count, withMore) => {
+      const parts = widths.slice(0, count).filter(width => width > 0);
+      if (withMore) parts.push(moreWidth);
+      return parts.reduce((sum, width) => sum + width, 0) + gap * Math.max(0, parts.length - 1);
+    };
+
+    const update = () => {
+      if (!navWideMedia.matches) {
+        if (visibleCount !== tops.length) show(tops.length);
+        return;
+      }
+      if (widths.length === 0) measure();
+      const available = nav.clientWidth;
+      let count = tops.length;
+      if (rowWidth(count, false) > available) {
+        count = 0;
+        while (count < tops.length && rowWidth(count + 1, true) <= available) count += 1;
+      }
+      if (count !== visibleCount) show(count);
+    };
+
+    const remeasure = () => {
+      widths = [];
+      update();
+    };
+
+    update();
+    let resizeFrame = 0;
+    let lastNavWidth = nav.clientWidth;
+    new ResizeObserver(() => {
+      if (nav.clientWidth === lastNavWidth) return;
+      lastNavWidth = nav.clientWidth;
+      window.cancelAnimationFrame(resizeFrame);
+      resizeFrame = window.requestAnimationFrame(update);
+    }).observe(nav);
+    navWideMedia.addEventListener?.('change', remeasure);
+    document.fonts?.ready?.then(remeasure);
   });
 
   /* ------------------------------------------------------------------ */

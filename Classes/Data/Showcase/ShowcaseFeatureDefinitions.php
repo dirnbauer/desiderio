@@ -120,14 +120,14 @@ final class ShowcaseFeatureDefinitions
         return [
             'slug' => 'desiderio',
             'product' => 'Desiderio + Innesto',
-            'badge' => 'Desiderio + Innesto',
-            'title' => 'Desiderio + Innesto: pages without template work',
-            'navTitle' => 'Design system',
-            'description' => '244 ready-made content elements for TYPO3 v14.3, 15 theme presets you switch in the site settings, and Innesto for new elements from shadcn registries.',
-            'abstract' => 'Desiderio gives editors 244 ready-made content elements in 10 groups, themed from the site settings. Innesto turns shadcn registry components into new elements with one command.',
+            'badge' => 'Desiderio design system',
+            'title' => 'Desiderio design system: TYPO3 pages without template work',
+            'navTitle' => 'Desiderio design system',
+            'description' => 'The Desiderio design system for TYPO3 v14.3: 244 ready-made elements, 15 theme presets in the site settings, and Innesto for elements from shadcn registries.',
+            'abstract' => 'The Desiderio design system gives editors 244 ready-made elements in 10 groups, themed from the site settings. Innesto turns shadcn registry components into new elements with one command.',
             'hero' => [
-                'header' => 'Build finished TYPO3 pages from 244 elements',
-                'subheadline' => 'Editors pick heroes, pricing tables, charts and forms from 10 groups. Change the theme in the site settings, and every page follows without a rebuild.',
+                'header' => 'Build finished TYPO3 pages from one design system',
+                'subheadline' => 'Desiderio brings shadcn/ui to TYPO3 v14 as 244 elements in 10 groups, from heroes to pricing tables, charts and forms. Change the theme in the site settings, and every page follows without a rebuild.',
                 'primaryButton' => ['text' => 'Get Desiderio', 'link' => 'https://github.com/dirnbauer/desiderio'],
                 'secondaryButton' => ['text' => 'See every element', 'link' => '{{page:content-types}}'],
                 'image' => ShowcaseBlocks::screenshot('frontend-feature-desiderio-home-hero-b85b6c67.webp', 'The home page, built from its own elements', 'Desiderio home page with the headline “Ship TYPO3 client sites in days, not weeks”, download and pricing buttons, and a photo of an agency team working together.', 'Live screenshot from the TYPO3 v14 lab.'),
@@ -164,7 +164,7 @@ final class ShowcaseFeatureDefinitions
                 ],
             ],
             'benefits' => [
-                'header' => 'What you get with Desiderio + Innesto',
+                'header' => 'What you get with the Desiderio design system',
                 'items' => [
                     ['icon' => 'rocket', 'title' => '244 elements, ready to use', 'description' => 'Heroes, pricing tables, charts, forms and footers come finished, with English and German demo content. Install the package, enable the site sets and start building.'],
                     ['icon' => 'sparkles', 'title' => 'One setting changes the look', 'description' => 'Pick one of 15 presets in the site settings, or one per page tree. Colours, fonts, corners and icons change together.'],
@@ -176,14 +176,15 @@ final class ShowcaseFeatureDefinitions
                 'header' => 'Questions before you install',
                 'subheadline' => 'Setup, requirements, licence and data.',
                 'items' => [
+                    ['question' => 'What makes Desiderio a design system?', 'answer' => 'Every part reads the same design tokens for colour, type, corners, spacing and icons: 244 elements, 62 Fluid components, 15 presets and 5 icon libraries. So content, forms, blog and search follow one look. Innesto adds elements that read the same tokens.'],
                     ['question' => 'How much work is the setup?', 'answer' => 'Add the GitHub repositories to Composer, require the package and run extension:setup. Then enable the Desiderio site sets for your site. One command seeds a demo page tree with every element.'],
                     ['question' => 'Which TYPO3 and PHP versions does it need?', 'answer' => 'TYPO3 v14.3.6 or newer on the 14.3 LTS branch, with PHP 8.4 or 8.5. Innesto needs TYPO3 v14.3.7 and Content Blocks 2.4. Neither installs on TYPO3 v13.'],
                     ['question' => 'What does it cost?', 'answer' => 'Nothing. Desiderio and Innesto are free under GPL-2.0-or-later, with no licence key and no locked features. The bundled icon fonts keep their own licences.'],
                     ['question' => 'What happens when I switch the theme?', 'answer' => 'Nothing. Records store field values and semantic icon keys, not colours or CSS classes. A preset switch only swaps design tokens, so the same content renders in the new look.'],
                 ],
             ],
-            'install' => ['header' => 'Install Desiderio + Innesto', 'code' => implode("\n", ['# Desiderio and the Visual Editor enhancements it requires are not on Packagist', 'composer config repositories.desiderio vcs https://github.com/dirnbauer/desiderio.git', 'composer config repositories.visual-editor-enhancements vcs https://github.com/dirnbauer/typo3-visual-editor-enhancements.git', 'composer require webconsulting/desiderio', 'vendor/bin/typo3 extension:setup', 'vendor/bin/typo3 cache:flush', '', '# Optional: a demo page tree with every element below page 1', 'vendor/bin/typo3 desiderio:styleguide:seed --parent=1', '', '# Optional: Innesto, then graft a registry component as a new element', 'composer config repositories.innesto vcs https://github.com/dirnbauer/innesto.git', 'composer require webconsulting/innesto:^2.3', 'vendor/bin/typo3 extension:setup', 'vendor/bin/typo3 innesto:add magicui/marquee --key partner-marquee'])],
-            'cta' => ['header' => 'Start your next TYPO3 site with 244 elements', 'description' => 'Install Desiderio, enable its site sets and seed the demo page tree. Then pick a preset and start building pages.', 'text' => 'Get Desiderio', 'link' => 'https://github.com/dirnbauer/desiderio'],
+            'install' => ['header' => 'Install the Desiderio design system', 'code' => implode("\n", ['# Desiderio and the Visual Editor enhancements it requires are not on Packagist', 'composer config repositories.desiderio vcs https://github.com/dirnbauer/desiderio.git', 'composer config repositories.visual-editor-enhancements vcs https://github.com/dirnbauer/typo3-visual-editor-enhancements.git', 'composer require webconsulting/desiderio', 'vendor/bin/typo3 extension:setup', 'vendor/bin/typo3 cache:flush', '', '# Optional: a demo page tree with every element below page 1', 'vendor/bin/typo3 desiderio:styleguide:seed --parent=1', '', '# Optional: Innesto, then graft a registry component as a new element', 'composer config repositories.innesto vcs https://github.com/dirnbauer/innesto.git', 'composer require webconsulting/innesto:^2.3', 'vendor/bin/typo3 extension:setup', 'vendor/bin/typo3 innesto:add magicui/marquee --key partner-marquee'])],
+            'cta' => ['header' => 'Start your next TYPO3 site on the Desiderio design system', 'description' => 'Install Desiderio, enable its site sets and seed the demo page tree. Then pick a preset and start building pages.', 'text' => 'Get Desiderio', 'link' => 'https://github.com/dirnbauer/desiderio'],
         ];
     }
 

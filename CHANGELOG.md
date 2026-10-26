@@ -6,6 +6,12 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.25.2] — 2026-10-26
+
+### Changed
+
+- Name the /features/desiderio page "Desiderio design system", like its sibling "Astryx design system": the menu entry, page title, hero badge and headline, meta description, abstract, benefits, install and closing headers now say design system instead of "Desiderio + Innesto". The hero says what it is (shadcn/ui for TYPO3 v14), and a new first FAQ answer explains what makes it a design system: one set of design tokens read by all 244 elements, 62 Fluid components, 15 presets and 5 icon libraries. The slug stays `/features/desiderio`; the hub card keeps "Desiderio + Innesto" as its product line.
+
 ## [4.25.1] — 2026-10-25
 
 ### Fixed

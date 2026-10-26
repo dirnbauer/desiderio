@@ -4,8 +4,9 @@
 <meta charset="utf-8">
 <title>Desiderio product film</title>
 <!--
-  The Desiderio product film: 89 seconds at 1600 × 900 (16:9, the ratio of
-  the Video Feature Section and of most players). It sells the package in
+  The Desiderio product film: 91 seconds at 1600 × 900 (16:9, the ratio of
+  the Video Feature Section and of most players), 89 of them scenes between
+  the start card and the held plans card. It sells the package in
   six numbered features, each explained over real screens, framed by a
   problem opener, a recap and the plans.
 
@@ -26,6 +27,14 @@
 
   Copy, timings and colours live in FILM below; the narration and its
   timing in audio/narration.json (Build/Scripts/generate-film-audio.mjs).
+
+  The film opens on its start card (FILM.card), complete in the very first
+  frame, because muted autoplay and a paused player show that frame. The
+  scenes keep their own clock, which starts LEAD ms later: `seek(t)` shows
+  scene time t - LEAD, so every scene, line and caption keeps its timing.
+  At the end the plans card stays on screen TAIL ms longer instead of fading
+  to black: the last frame is the card. Times in FILM, AURA and
+  narration.json are scene times.
 -->
 <style>
 @font-face { font-family: "Inter Variable"; font-weight: 100 900; font-display: block; src: url(../../Resources/Public/Css/files/inter-latin-wght-normal.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
@@ -53,7 +62,6 @@ body { font-family: var(--font); color: var(--ink); -webkit-font-smoothing: anti
 #aura { position: absolute; inset: 0; }
 .grain { position: absolute; inset: 0; opacity: 0.55; pointer-events: none; z-index: 40; }
 .vignette { position: absolute; inset: 0; z-index: 41; pointer-events: none; background: radial-gradient(120% 95% at 50% 45%, transparent 55%, rgb(0 0 0 / 0.55) 100%); }
-.blackout { position: absolute; inset: 0; z-index: 60; background: #000; opacity: 0; }
 
 /* Type */
 .eyebrow { font-family: var(--mono); font-size: 15px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
@@ -97,6 +105,15 @@ body { font-family: var(--font); color: var(--ink); -webkit-font-smoothing: anti
 .frame-view { position: absolute; left: 0; top: 40px; right: 0; bottom: 0; overflow: hidden; background: #fff; }
 .frame-view img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; object-position: top left; }
 .wipe-edge { position: absolute; top: 40px; left: 0; width: 2px; bottom: 0; background: linear-gradient(transparent, rgb(255 255 255 / 0.95), transparent); box-shadow: 0 0 24px 4px rgb(185 164 255 / 0.6); opacity: 0; }
+
+/* Start card, before the scenes' clock starts */
+.start { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px; text-align: center; padding-bottom: 34px; }
+.start .eyebrow { font-size: 16px; }
+.start-head { font-size: 108px; font-weight: 650; letter-spacing: -0.045em; line-height: 1.02; }
+.start-head span { display: inline-block; }
+.start-head .time { color: var(--accent); }
+.start-mark { position: absolute; inset-inline: 0; bottom: 78px; display: flex; align-items: center; justify-content: center; gap: 12px; font-family: var(--mono); font-size: 17px; letter-spacing: 0.02em; color: #d4d4d8; }
+.start-mark .mark circle { stroke-width: 10; }
 
 /* 0 · Opener: wireframes of the sections every relaunch rebuilds */
 .wires { position: absolute; inset: 0; perspective: 1500px; perspective-origin: 50% 35%; }
@@ -242,9 +259,14 @@ body { font-family: var(--font); color: var(--ink); -webkit-font-smoothing: anti
 // ---------------------------------------------------------------------------
 // Copy, facts and timing (milliseconds). Everything the film says is here.
 // ---------------------------------------------------------------------------
+// The start card before the scenes and the closing card's hold after them (ms).
+const LEAD = 1500;
+const TAIL = 700;
+
 const FILM = {
   duration: 89000,
   poster: 19600,
+  card: { eyebrow: 'shadcn/ui for TYPO3 v14', head: ['Desiderio', 'in 90 seconds'], host: 'typo3-lab.webconsulting.at' },
   scenes: {
     open: [0, 9600], title: [9600, 15600], index: [15600, 21000], elements: [21000, 29600], presets: [29600, 40200],
     editing: [40200, 49200], extensions: [49200, 57000], a11y: [57000, 67800], languages: [67800, 75200], recap: [75200, 80800], end: [80800, 89000],
@@ -347,7 +369,8 @@ const FILM = {
 // The aura behind everything: three soft lights whose colours follow the
 // story. [time, [colour, colour, colour], strength]
 const AURA = [
-  [0, ['#2a3346', '#1b2130', '#2a2440'], 0],
+  [-LEAD, ['#7b51da', '#3730a3', '#1d4ed8'], 0.85],
+  [-400, ['#7b51da', '#3730a3', '#1d4ed8'], 0.85],
   [1800, ['#2a3346', '#1b2130', '#2a2440'], 0.55],
   [8600, ['#2a3346', '#1b2130', '#2a2440'], 0.5],
   [9400, ['#3b2a7a', '#1f2a5a', '#2a1f55'], 0.35],
@@ -363,7 +386,6 @@ const AURA = [
   [75200, ['#7b51da', '#2563eb', '#0d9488'], 0.65],
   [80800, ['#7b51da', '#4f46e5', '#be185d'], 0.9],
   [87600, ['#7b51da', '#4f46e5', '#be185d'], 0.8],
-  [89000, ['#7b51da', '#4f46e5', '#be185d'], 0],
 ];
 
 const OUT = 'cubic-bezier(0.23, 1, 0.32, 1)';
@@ -1084,8 +1106,31 @@ function buildEnd() {
   const cta = node('div', 'cta', layer, `${E.cta}<i></i>`);
   life(cta, start + 3300, null, { from: { y: 12 }, blur: 6 });
   track(cta.querySelector('i'), [[start + 3800, { transform: 'scaleX(0)' }, OUT], [start + 4700, { transform: 'scaleX(1)' }]]);
-  const fade = node('div', 'blackout');
-  track(fade, [[end - 1300, { opacity: 0 }, SOFT], [end, { opacity: 1 }]]);
+  // No fade to black: the card stays to the last frame (TAIL).
+}
+
+// ---------------------------------------------------------------------------
+// Start card (scene time -LEAD to 0): complete in the first frame, then it
+// leaves the way the scenes hand over, while the opener comes in.
+// ---------------------------------------------------------------------------
+function buildStart() {
+  const C = FILM.card;
+  const layer = node('section', 'layer start');
+  const eyebrow = node('div', 'eyebrow', layer, C.eyebrow);
+  const head = node('h1', 'start-head', layer);
+  const words = [...splitInto(node('span', '', head), C.head[0], 'word')];
+  head.append(' ');
+  const time = node('span', 'time', head);
+  words.push(...splitInto(time, C.head[1], 'word'));
+  const mark = node('div', 'start-mark', layer, `<span class="mark" style="--size:24px"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" /></svg><span class="dot"></span></span>${C.host}`);
+  const leave = (element, t, y, blur) => track(element, [
+    [-LEAD, { opacity: 1, transform: 'translateY(0px)', filter: 'blur(0px)' }],
+    [t, { opacity: 1, transform: 'translateY(0px)', filter: 'blur(0px)' }, INOUT],
+    [t + 460, { opacity: 0, transform: `translateY(${y}px)`, filter: `blur(${blur}px)` }],
+  ]);
+  leave(eyebrow, -300, -10, 4);
+  words.forEach((word, i) => leave(word, -280 + i * 30, -16, 8));
+  leave(mark, -300, 8, 4);
 }
 
 // ---------------------------------------------------------------------------
@@ -1103,10 +1148,14 @@ async function subtitles() {
   }
 }
 
-window.POSTER_AT = FILM.poster;
+// Film time: the start card, the scenes LEAD ms later, the closing card's hold.
+const DURATION = LEAD + FILM.duration + TAIL;
+window.CLOCK = { lead: LEAD, content: FILM.duration, duration: DURATION };
+window.POSTER_AT = LEAD + FILM.poster;
 window.seek = (t) => {
-  for (const animation of document.getAnimations()) animation.currentTime = t;
-  for (const update of custom) update(t);
+  const scene = t - LEAD;
+  for (const animation of document.getAnimations()) animation.currentTime = scene;
+  for (const update of custom) update(scene);
 };
 window.ready = (async () => {
   await Promise.all(['640 140px "Inter Variable"', '500 18px "JetBrains Mono Variable"'].map((font) => document.fonts.load(font)));
@@ -1122,13 +1171,14 @@ window.ready = (async () => {
   buildLanguages();
   buildSix(S.recap, { head: FILM.six.recap, checks: true });
   buildEnd();
+  buildStart();
   buildHud();
   node('div', 'vignette');
   await subtitles();
   await document.fonts.ready;
   await Promise.all([...document.images].map((img) => img.decode().catch(() => {})));
   window.seek(0);
-  return FILM.duration;
+  return DURATION;
 })();
 const hold = location.hash.match(/^#t=(\d+)/);
 if (hold) window.ready.then(() => window.seek(Number(hold[1])));

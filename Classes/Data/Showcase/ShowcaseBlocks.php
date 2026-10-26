@@ -134,7 +134,7 @@ final class ShowcaseBlocks
             'header' => $header,
             'description' => $description,
             'video_file' => [
-                'file' => 'Resources/Public/Styleguide/Video/desiderio-film-6bb5b35c.mp4',
+                'file' => 'Resources/Public/Styleguide/Video/desiderio-film-e9132eff.mp4',
                 'title' => 'Desiderio in 90 seconds',
                 'alternative' => 'A product film in six parts: elements, theme presets, editing on the page, extensions, accessibility and languages.',
                 'description' => 'Rendered from code over screens of this site, with narration and music.',
@@ -142,7 +142,7 @@ final class ShowcaseBlocks
                 'autoplay' => true,
             ],
             'poster' => [
-                'file' => 'Resources/Public/Styleguide/Video/desiderio-film-poster-6bb5b35c.jpg',
+                'file' => 'Resources/Public/Styleguide/Video/desiderio-film-poster-e9132eff.jpg',
                 'title' => 'Desiderio in 90 seconds',
                 'alternative' => 'The six features of Desiderio as numbered cards.',
                 'description' => '',

@@ -59,7 +59,7 @@ final class FeatureVideoAccessibilityTest extends TestCase
         self::assertCount(2, $names);
         self::assertMatchesRegularExpression('/^desiderio-film-[0-9a-f]{8}\.mp4$/', $names[0]);
         self::assertMatchesRegularExpression('/^desiderio-film-poster-[0-9a-f]{8}\.jpg$/', $names[1]);
-        // The film runs 89 seconds and autoplays on the homepage: about
+        // The film runs 91 seconds and autoplays on the homepage: about
         // 6 MB with its soundtrack. A larger file needs a reason.
         foreach ($files as $file) {
             self::assertLessThan(8 * 1024 * 1024, (int)filesize($file), basename($file));

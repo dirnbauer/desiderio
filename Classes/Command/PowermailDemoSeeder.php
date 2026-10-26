@@ -63,13 +63,18 @@ final readonly class PowermailDemoSeeder
         $pageColumns = $this->databaseSchema->getColumnNames('pages');
         $contentColumns = $this->databaseSchema->getColumnNames('tt_content');
 
+        // The menu shows the nav title, the homepage mega menu the abstract below it.
         $rootUid = $this->upsertPage(
             $parentPid,
             'Powermail Lab',
             '/desiderio-powermail-lab',
             8192,
             $now,
-            $pageColumns
+            $pageColumns,
+            attributes: [
+                'nav_title' => 'Demo forms with Powermail',
+                'abstract' => 'Powermail forms to try, one per page: contact, newsletter, callback, appointment, support and project requests.',
+            ]
         );
         $rootTranslationUid = $this->upsertPage(
             $parentPid,
@@ -79,7 +84,11 @@ final readonly class PowermailDemoSeeder
             $now,
             $pageColumns,
             $germanLanguageUid,
-            $rootUid
+            $rootUid,
+            attributes: [
+                'nav_title' => 'Demo-Formulare mit Powermail',
+                'abstract' => 'Powermail-Formulare zum Ausprobieren, eines pro Seite: Kontakt, Newsletter, Rückruf, Termin, Support und Projektanfrage.',
+            ]
         );
         $storagePid = $storagePid > 0 ? $storagePid : $rootUid;
 
@@ -130,7 +139,8 @@ final readonly class PowermailDemoSeeder
                 '/desiderio-powermail/' . $form['slug'],
                 $sorting,
                 $now,
-                $pageColumns
+                $pageColumns,
+                attributes: ['abstract' => $form['introEn']]
             );
             $this->upsertPage(
                 $rootUid,
@@ -140,7 +150,8 @@ final readonly class PowermailDemoSeeder
                 $now,
                 $pageColumns,
                 $germanLanguageUid,
-                $formPageUid
+                $formPageUid,
+                attributes: ['abstract' => $form['introDe']]
             );
             $createdPages += 2;
 
@@ -577,6 +588,7 @@ final readonly class PowermailDemoSeeder
 
     /**
      * @param array<string, true> $columns
+     * @param array<string, string> $attributes Further page columns, such as nav_title and abstract
      */
     private function upsertPage(
         int $pid,
@@ -588,9 +600,11 @@ final readonly class PowermailDemoSeeder
         int $languageUid = 0,
         int $l10nParent = 0,
         bool $navHide = false,
+        array $attributes = [],
     ): int {
         $existingUid = $this->findExistingPageUid($pid, $slug, $languageUid, $l10nParent, $columns);
         $row = $this->databaseSchema->filterRow([
+            ...$attributes,
             'pid' => $pid,
             'title' => $title,
             'doktype' => 1,

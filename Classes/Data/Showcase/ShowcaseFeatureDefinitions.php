@@ -36,7 +36,7 @@ final class ShowcaseFeatureDefinitions
     {
         return [
             'title' => 'Features',
-            'navTitle' => 'Features',
+            'navTitle' => 'Website tools',
             'seoTitle' => 'Website tools for TYPO3 v14',
             'description' => '13 tools for TYPO3 v14 websites: design systems, editing and publishing, search and forms, sign-in, payments and a REST API, with live screenshots.',
             'abstract' => 'The website tools built in this lab, with live screenshots: design systems, editing and publishing, search and forms, sign-in, payments and APIs.',
@@ -64,7 +64,7 @@ final class ShowcaseFeatureDefinitions
     {
         return [
             'title' => 'AI',
-            'navTitle' => 'AI',
+            'navTitle' => 'AI and agents',
             'seoTitle' => 'AI for TYPO3 v14, with people in charge',
             'description' => '10 AI tools for TYPO3 v14: an assistant that asks before it writes, model setup, AI form logic, agent skills, MCP and agent protocols.',
             'abstract' => 'The AI tools built in this lab, with live screenshots: an assistant, model setup, AI form logic, skills, MCP, agent protocols and llms.txt.',
@@ -275,7 +275,7 @@ final class ShowcaseFeatureDefinitions
             'product' => 'TYPO3 Blog',
             'badge' => 'TYPO3 Blog',
             'title' => 'TYPO3 Blog: blogging with the tools you know',
-            'navTitle' => 'Blog',
+            'navTitle' => 'Blogging with TYPO3 Blog',
             'description' => 'The TYPO3 Blog extension with Desiderio templates: posts are pages, 20 plugins, moderated comments, RSS feeds and a theme that follows your site.',
             'abstract' => 'The TYPO3 Blog extension turns pages into posts, so editors write with the content elements they know. Desiderio’s templates give lists, posts, widgets and comments your site’s theme.',
             'hero' => [
@@ -352,7 +352,7 @@ final class ShowcaseFeatureDefinitions
             'product' => 'Visual Editor Enhancements',
             'badge' => 'Visual Editor add-on',
             'title' => 'Visual Editor Enhancements: edit more on the page',
-            'navTitle' => 'Visual editing',
+            'navTitle' => 'Visual editing with VE Enhancements',
             'description' => 'An element library with live previews and typo-tolerant search, a field chooser, link editing and a one-row text toolbar for the TYPO3 Visual Editor.',
             'abstract' => 'Visual Editor Enhancements adds what editors miss on the page: an element library with live previews, a popover for layout options and link editing. Everything saves through the Visual Editor.',
             'hero' => [
@@ -430,7 +430,7 @@ final class ShowcaseFeatureDefinitions
             'product' => 'Records List Types',
             'badge' => 'Records List Types',
             'title' => 'Records List Types: records at a glance',
-            'navTitle' => 'Record views',
+            'navTitle' => 'Record views with Records List Types',
             'description' => 'Grid, compact, teaser and custom views for the TYPO3 v14 Records module. Editors find records faster, with filters, sorting and draft states.',
             'abstract' => 'Records List Types shows TYPO3 records as photo cards, dense tables, teasers or your own layouts. Editors pick the view that suits each table.',
             'hero' => [
@@ -505,7 +505,7 @@ final class ShowcaseFeatureDefinitions
             'product' => 'Easy Workspace',
             'badge' => 'Easy Workspace',
             'title' => 'Easy Workspace: review and publish in one click',
-            'navTitle' => 'One-click publishing',
+            'navTitle' => 'One-click publishing with Easy Workspace',
             'description' => 'Publish TYPO3 workspace changes from the toolbar: see what changed on the page in every language, pick what goes live and publish in one click.',
             'abstract' => 'Easy Workspace adds a publishing dropdown to the TYPO3 toolbar. Editors see the pending changes of the page they are on and publish them in one click.',
             'hero' => [
@@ -580,7 +580,7 @@ final class ShowcaseFeatureDefinitions
             'product' => 'DOCX Editor',
             'badge' => 'DOCX Editor',
             'title' => 'DOCX Editor: edit Word files inside TYPO3',
-            'navTitle' => 'Word documents',
+            'navTitle' => 'Word documents with DOCX Editor',
             'description' => 'Edit .docx files from the TYPO3 v14 file list with Word’s layout. Send whole pages to Word and back, with a review before anything is saved.',
             'abstract' => 'DOCX Editor opens Word files from the file list in a full-page editor and saves them back to the same file. It also turns a page into a Word document and imports the edits after a review.',
             'hero' => [
@@ -655,7 +655,7 @@ final class ShowcaseFeatureDefinitions
             'product' => 'Image Workbench',
             'badge' => 'Image Workbench',
             'title' => 'Image Workbench: crop and create images in TYPO3',
-            'navTitle' => 'Image editing',
+            'navTitle' => 'Image editing with Image Workbench',
             'description' => 'Crop, adjust, filter and annotate JPEG, PNG and WebP images in the TYPO3 v14 file list, and generate new images from a prompt through nr-llm.',
             'abstract' => 'Image Workbench opens JPEG, PNG and WebP files from the file list in a full-page editor and saves a copy next to the original. A side panel creates new images from a prompt through nr-llm.',
             'hero' => [
@@ -724,7 +724,7 @@ final class ShowcaseFeatureDefinitions
             'product' => 'Apache Solr for TYPO3',
             'badge' => 'Apache Solr',
             'title' => 'Apache Solr: search results in your design',
-            'navTitle' => 'Site search',
+            'navTitle' => 'Site search with Apache Solr',
             'description' => 'Apache Solr search for TYPO3 v14 with ready templates: results, filters, sorting and page numbers follow your theme in light and dark mode.',
             'abstract' => 'Apache Solr finds your content fast, and Desiderio’s templates make the results page match the rest of your site, from filters to page numbers.',
             'hero' => [
@@ -795,7 +795,7 @@ final class ShowcaseFeatureDefinitions
             'product' => 'Powermail',
             'badge' => 'Powermail',
             'title' => 'Powermail: forms your editors build themselves',
-            'navTitle' => 'Forms',
+            'navTitle' => 'Forms with Powermail',
             'description' => 'Powermail forms for TYPO3 v14 in your theme: multi-step wizards, inline validation and Friendly Captcha, built by editors in the backend.',
             'abstract' => 'Powermail lets editors build contact, booking and multi-step forms in the TYPO3 backend. Desiderio styles every field with your theme, and Friendly Captcha stops bots.',
             'hero' => [
@@ -873,7 +873,7 @@ final class ShowcaseFeatureDefinitions
             'product' => 'Jev',
             'badge' => 'Jev',
             'title' => 'Jev: forms that understand what people write',
-            'navTitle' => 'AI form logic',
+            'navTitle' => 'AI form logic with Jev',
             'description' => 'Jev reads what visitors type into TYPO3 Powermail forms, shows only the fields that apply and routes each message to the right team.',
             'abstract' => 'Jev brings TypeSafe AI’s typed decisions into TYPO3. Powermail forms show fields, hold back empty messages and route mail by what people write.',
             'hero' => [
@@ -948,7 +948,7 @@ final class ShowcaseFeatureDefinitions
             'product' => 'WorkOS Auth',
             'badge' => 'WorkOS Auth',
             'title' => 'WorkOS Auth: one login for frontend and backend',
-            'navTitle' => 'Single sign-on',
+            'navTitle' => 'Single sign-on with WorkOS',
             'description' => 'WorkOS sign-in for TYPO3 v14: passwords, email codes, social login and SSO for site and backend, plus self-service accounts and team invites.',
             'abstract' => 'WorkOS Auth adds WorkOS sign-in to the TYPO3 frontend and backend. Customers use their company identity, manage their account and invite their team themselves.',
             'hero' => [
@@ -1017,7 +1017,7 @@ final class ShowcaseFeatureDefinitions
             'product' => 'x402 Paywall',
             'badge' => 'x402 Paywall',
             'title' => 'x402 Paywall: paid content for people and agents',
-            'navTitle' => 'Paid content',
+            'navTitle' => 'Paid content with x402',
             'description' => 'Sell TYPO3 pages and API routes with HTTP 402. People pay from a browser wallet, AI agents pay in headers, and USDC settles in the same request.',
             'abstract' => 'x402 Paywall sells TYPO3 pages and API routes for small USDC amounts. Browsers get a wallet paywall, AI agents pay through HTTP headers, with no accounts or card forms.',
             'hero' => [
@@ -1086,7 +1086,7 @@ final class ShowcaseFeatureDefinitions
             'product' => 'AI Assistant',
             'badge' => 'AI Assistant',
             'title' => 'AI Assistant: ask TYPO3, approve every change',
-            'navTitle' => 'AI assistant',
+            'navTitle' => 'AI assistant for editors',
             'description' => 'A chat in the TYPO3 v14 backend that answers questions about your site with its own MCP tools and asks before it changes anything.',
             'abstract' => 'A chat in the TYPO3 backend that answers questions about your installation with its own tools. Every change waits for your approval.',
             'hero' => [
@@ -1161,7 +1161,7 @@ final class ShowcaseFeatureDefinitions
             'product' => 'nr-llm',
             'badge' => 'nr-llm',
             'title' => 'nr-llm: one AI setup for every extension',
-            'navTitle' => 'AI models',
+            'navTitle' => 'AI model setup with nr-llm',
             'description' => 'Set up AI providers, models and named configurations once in TYPO3 with nr-llm. Keys stay encrypted in nr-vault; usage and cost stay visible.',
             'abstract' => 'nr-llm keeps AI providers, models and configurations in one place for every extension. Keys stay encrypted in nr-vault, and each feature uses a named configuration you can test.',
             'hero' => [
@@ -1238,7 +1238,7 @@ final class ShowcaseFeatureDefinitions
             'product' => 'Skillflow',
             'badge' => 'Skillflow',
             'title' => 'Skillflow: agent skills that review your pages',
-            'navTitle' => 'Agent skills',
+            'navTitle' => 'Agent skills with Skillflow',
             'description' => 'Run agent skills on TYPO3 pages and workspace stages, keep every report and publish your skill library as a searchable Solr catalogue.',
             'abstract' => 'Skillflow runs agent skills on TYPO3 pages and workspace stages and keeps every report. Your skill library becomes a searchable catalogue with a page per skill.',
             'hero' => [
@@ -1307,7 +1307,7 @@ final class ShowcaseFeatureDefinitions
             'product' => 'Skillspector',
             'badge' => 'Skillspector',
             'title' => 'Skillspector: check skills before agents use them',
-            'navTitle' => 'Skill security',
+            'navTitle' => 'Skill security with Skillspector',
             'description' => 'Check every agent skill for prompt injection, secrets, risky commands and licence problems before your AI follows it, with advisory checks in TYPO3.',
             'abstract' => 'Skillspector reads every agent skill before your AI does. It flags prompt injection, secrets, risky commands and licence problems, and an administrator decides what to hide.',
             'hero' => [
@@ -1370,7 +1370,7 @@ final class ShowcaseFeatureDefinitions
             'product' => 'MCP Server',
             'badge' => 'MCP Server',
             'title' => 'MCP Server: connect your AI assistant to TYPO3',
-            'navTitle' => 'AI connections',
+            'navTitle' => 'AI connections via MCP Server',
             'description' => 'Connect Claude, Cursor or Codex to TYPO3 v14. 52 built-in MCP tools for pages, records and files, with OAuth login, workspace drafts and a CLI.',
             'abstract' => 'Connect Claude, Cursor or Codex to TYPO3. They get structured tools for pages, records and files, and on production every write lands in a workspace.',
             'hero' => [
@@ -1442,7 +1442,7 @@ final class ShowcaseFeatureDefinitions
             'product' => 'Abilities Registry',
             'badge' => 'Abilities Registry',
             'title' => 'Abilities Registry: control what agents may do',
-            'navTitle' => 'Agent permissions',
+            'navTitle' => 'Agent permissions with Abilities Registry',
             'description' => 'One typed registry of what your TYPO3 site can do. MCP, CLI, REST and the backend run each ability under one policy, with scopes and a trace log.',
             'abstract' => 'One list of what your installation can do, with scopes, risk tiers and a site-wide policy. Every surface runs it the same way and logs each attempt.',
             'hero' => [
@@ -1511,7 +1511,7 @@ final class ShowcaseFeatureDefinitions
             'product' => 'sg_apicore',
             'badge' => 'sg_apicore',
             'title' => 'sg_apicore: a documented REST API for TYPO3',
-            'navTitle' => 'REST API',
+            'navTitle' => 'REST API with sg_apicore',
             'description' => 'Build REST APIs in TYPO3 with PHP attributes: live Swagger docs, token or user login, scopes, rate limits, Auto-CRUD for tables and MCP tools.',
             'abstract' => 'sg_apicore turns TYPO3 content into a REST API with live Swagger docs, token login, scopes and rate limits. The same endpoints also work as MCP tools.',
             'hero' => [
@@ -1582,7 +1582,7 @@ final class ShowcaseFeatureDefinitions
             'product' => 'Agent Nexus',
             'badge' => 'Agent Nexus',
             'title' => 'Agent Nexus: five agent protocols on your TYPO3',
-            'navTitle' => 'Agent protocols',
+            'navTitle' => 'Agent protocols with Agent Nexus',
             'description' => 'Run A2UI, AG-UI, A2A, UCP and AP2 on your own TYPO3 site. Public endpoints, editor widgets, a traffic log and approval before every write.',
             'abstract' => 'Agent Nexus runs five agent protocols on your TYPO3 site, with endpoints, demo widgets and a traffic log. Every write waits for a person, and every payment is simulated.',
             'hero' => [
@@ -1657,7 +1657,7 @@ final class ShowcaseFeatureDefinitions
             'product' => 'Agentation',
             'badge' => 'Agentation',
             'title' => 'Agentation: show coding agents what to fix',
-            'navTitle' => 'Visual feedback',
+            'navTitle' => 'Visual feedback with Agentation',
             'description' => 'Click an element on a TYPO3 page or backend screen and write a note. Your coding agent gets it over MCP with selector, page and computed styles.',
             'abstract' => 'With Agentation, backend users click an element in the TYPO3 frontend or backend and write a note. Claude Code, Cursor or another MCP agent gets it with selector and styles.',
             'hero' => [
@@ -1720,7 +1720,7 @@ final class ShowcaseFeatureDefinitions
             'product' => 'llms.txt',
             'badge' => 'llms.txt',
             'title' => 'llms.txt: your site explained to AI agents',
-            'navTitle' => 'AI discovery',
+            'navTitle' => 'AI discovery with llms.txt',
             'description' => 'Serve /llms.txt and /agents.md for every TYPO3 site and language. Both come from your page tree, so AI agents find your content and interfaces.',
             'abstract' => 'Every TYPO3 site and language serves an llms.txt and an agents.md, built from the page tree and site configuration. AI agents learn what the site offers and how to use it.',
             'hero' => [

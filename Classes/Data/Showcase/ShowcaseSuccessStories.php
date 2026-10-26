@@ -46,7 +46,7 @@ final class ShowcaseSuccessStories
     {
         return [
             'title' => 'Success stories',
-            'navTitle' => 'Success stories',
+            'navTitle' => 'Example stories: Desiderio in use',
             'slug' => '/success-stories',
             'abstract' => 'Fifteen example stories show what Desiderio changes for TYPO3 teams. The organisations, people and figures in them are invented.',
             'description' => 'Fifteen example stories, from an AI lab to a toy maker, show how Desiderio helps TYPO3 teams run many brands and publish faster.',
@@ -75,7 +75,7 @@ final class ShowcaseSuccessStories
     {
         return [
             'title' => 'What if an AI lab ran on TYPO3?',
-            'navTitle' => 'An AI lab',
+            'navTitle' => 'Example: an AI lab',
             'slug' => '/success-stories/an-ai-lab',
             'abstract' => 'Example story: an AI lab publishes papers, model cards and policy posts every week. A paper page now goes live 57 minutes after the paper is final.',
             'description' => 'Example story: an AI lab runs its research blog on TYPO3. Editors preview and publish papers themselves, with a theme preset per product line.',
@@ -131,7 +131,7 @@ final class ShowcaseSuccessStories
     {
         return [
             'title' => 'What if a space company ran on TYPO3?',
-            'navTitle' => 'A space company',
+            'navTitle' => 'Example: a space company',
             'slug' => '/success-stories/a-space-company',
             'abstract' => 'Example story: a space company launches rockets every week. Each mission now gets its own page tree, theme preset and countdown, with no rebuild.',
             'description' => 'Example story: a space company builds a TYPO3 microsite per mission, with its own preset, countdown hero and status board, and no rebuild.',
@@ -187,7 +187,7 @@ final class ShowcaseSuccessStories
     {
         return [
             'title' => 'What if an AI research lab used TYPO3?',
-            'navTitle' => 'An AI research lab',
+            'navTitle' => 'Example: an AI research lab',
             'slug' => '/success-stories/an-ai-research-lab',
             'abstract' => 'Example story: an AI research lab ships a product line every quarter. Its launch page now goes live 2 hours after the keynote, without a rebuild.',
             'description' => 'Example story: an AI research lab launches products on TYPO3, with a theme preset per product family and pricing pages its editors update.',
@@ -243,7 +243,7 @@ final class ShowcaseSuccessStories
     {
         return [
             'title' => 'What if a space agency ran on TYPO3?',
-            'navTitle' => 'A space agency',
+            'navTitle' => 'Example: a space agency',
             'slug' => '/success-stories/a-space-agency',
             'abstract' => 'Example story: a national space agency moves six decades of mission pages onto one TYPO3 installation. It now meets its own accessibility rules.',
             'description' => 'Example story: a space agency moves its mission archive to TYPO3, with accessible elements, a page tree per mission and editors who publish themselves.',
@@ -290,7 +290,7 @@ final class ShowcaseSuccessStories
     {
         return [
             'title' => 'What if a streaming platform ran on TYPO3?',
-            'navTitle' => 'A streaming platform',
+            'navTitle' => 'Example: a streaming platform',
             'slug' => '/success-stories/a-streaming-platform',
             'abstract' => 'Example story: a streaming platform builds a themed landing page for every original series, all from one installation and with no rebuilds.',
             'description' => 'Example story: a streaming platform runs its series pages on TYPO3, with a theme preset per show and countdown heroes for each premiere.',
@@ -337,7 +337,7 @@ final class ShowcaseSuccessStories
     {
         return [
             'title' => 'What if a game studio ran on TYPO3?',
-            'navTitle' => 'A game studio',
+            'navTitle' => 'Example: a game studio',
             'slug' => '/success-stories/a-game-studio',
             'abstract' => 'Example story: a game studio gives every game series its own look. All series now share one TYPO3 installation, with a preset each.',
             'description' => 'Example story: a game studio runs its game series pages on TYPO3, with a theme preset per series and launch pages built from ready elements.',
@@ -384,7 +384,7 @@ final class ShowcaseSuccessStories
     {
         return [
             'title' => 'What if a toy maker ran on TYPO3?',
-            'navTitle' => 'A toy maker',
+            'navTitle' => 'Example: a toy maker',
             'slug' => '/success-stories/a-toy-maker',
             'abstract' => 'Example story: a toy maker launches new sets every week. It now builds campaign pages the way it builds toys, from documented parts.',
             'description' => 'Example story: a toy maker builds each campaign page on TYPO3 in one afternoon, from Desiderio elements with a preset per product line.',
@@ -431,7 +431,7 @@ final class ShowcaseSuccessStories
     {
         return [
             'title' => 'What if a furniture retailer ran on TYPO3?',
-            'navTitle' => 'A furniture retailer',
+            'navTitle' => 'Example: a furniture retailer',
             'slug' => '/success-stories/a-furniture-retailer',
             'abstract' => 'Example story: a furniture retailer publishes its catalogue in dozens of languages. Each country team now builds its own pages from the same elements.',
             'description' => 'Example story: a furniture retailer runs 42 country sites on TYPO3. Plurals and dates are right in every language, and local teams build the pages.',
@@ -478,7 +478,7 @@ final class ShowcaseSuccessStories
     {
         return [
             'title' => 'What if a music-streaming service ran on TYPO3?',
-            'navTitle' => 'A music service',
+            'navTitle' => 'Example: a music service',
             'slug' => '/success-stories/a-music-service',
             'abstract' => 'Example story: a music-streaming service publishes an artist feature every day. Each takes 45 minutes, built from ready elements in dark mode.',
             'description' => 'Example story: a music service builds artist features on TYPO3 from ready elements, in dark mode, with a year-end campaign that needs no rebuild.',
@@ -525,7 +525,7 @@ final class ShowcaseSuccessStories
     {
         return [
             'title' => 'What if a payments company ran on TYPO3?',
-            'navTitle' => 'A payments company',
+            'navTitle' => 'Example: a payments company',
             'slug' => '/success-stories/a-payments-company',
             'abstract' => 'Example story: a payments company with strict engineering rules checks its marketing site. It finds typed components, audited templates and no drift.',
             'description' => 'Example story: a payments company runs its marketing pages on TYPO3, with typed Fluid components, a clean template audit and pricing tables editors update.',
@@ -572,7 +572,7 @@ final class ShowcaseSuccessStories
     {
         return [
             'title' => 'What if a language-learning app ran on TYPO3?',
-            'navTitle' => 'A language app',
+            'navTitle' => 'Example: a language app',
             'slug' => '/success-stories/a-language-app',
             'abstract' => 'Example story: a language-learning app teaches forty languages. Its website now speaks all of them, with correct plurals, dates and screen-reader labels.',
             'description' => 'Example story: a language app runs its course pages on TYPO3, with ICU MessageFormat for every language and streak counters from ready elements.',
@@ -619,7 +619,7 @@ final class ShowcaseSuccessStories
     {
         return [
             'title' => 'What if a nonprofit encyclopedia ran on TYPO3?',
-            'navTitle' => 'A nonprofit encyclopedia',
+            'navTitle' => 'Example: a nonprofit encyclopedia',
             'slug' => '/success-stories/a-nonprofit-encyclopedia',
             'abstract' => 'Example story: a nonprofit encyclopedia treats its fundraising pages like its articles: open source, accessible and free of vendor lock-in.',
             'description' => 'Example story: a nonprofit encyclopedia runs its campaign pages on TYPO3 and Desiderio, both under the GPL, with donation banners its editors test.',
@@ -666,7 +666,7 @@ final class ShowcaseSuccessStories
     {
         return [
             'title' => 'What if an energy-drink brand ran on TYPO3?',
-            'navTitle' => 'An energy-drink brand',
+            'navTitle' => 'Example: an energy-drink brand',
             'slug' => '/success-stories/an-energy-drink-brand',
             'abstract' => 'Example story: an energy-drink brand runs more events than some sports federations. Each event now gets a themed microsite in 90 minutes.',
             'description' => 'Example story: an energy-drink brand builds event microsites on TYPO3, with a page tree per event and a countdown hero for every start.',
@@ -713,7 +713,7 @@ final class ShowcaseSuccessStories
     {
         return [
             'title' => 'What if a physics lab ran on TYPO3?',
-            'navTitle' => 'A physics lab',
+            'navTitle' => 'Example: a physics lab',
             'slug' => '/success-stories/a-physics-lab',
             'abstract' => 'Example story: a physics research lab replaces PDF press releases with experiment pages. Results appear as accessible charts an hour after the preprint.',
             'description' => 'Example story: a physics lab publishes experiment pages on TYPO3, with accessible chart elements for its data and a theme preset per experiment.',
@@ -760,7 +760,7 @@ final class ShowcaseSuccessStories
     {
         return [
             'title' => 'What if an animation studio ran on TYPO3?',
-            'navTitle' => 'An animation studio',
+            'navTitle' => 'Example: an animation studio',
             'slug' => '/success-stories/an-animation-studio',
             'abstract' => 'Example story: an animation studio gives every film its own web look. Each film page follows the storyboard and needs no rebuild.',
             'description' => 'Example story: an animation studio builds film pages on TYPO3, with a theme preset per film, scroll pages from ready elements and a dark mode.',

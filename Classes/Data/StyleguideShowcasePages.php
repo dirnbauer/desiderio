@@ -87,6 +87,24 @@ final class StyleguideShowcasePages
     }
 
     /**
+     * Menu texts for pages in the menu that no seeder writes, by slug: the
+     * nav title the menu shows and the abstract the homepage mega menu shows
+     * below it. The Innesto demo page is the one today; the innesto
+     * extension fills it with elements.
+     *
+     * @return array<string, array{navTitle: string, abstract: string}>
+     */
+    public static function adoptedMenuTexts(): array
+    {
+        return [
+            '/innesto-demo' => [
+                'navTitle' => 'shadcn/ui elements with Innesto',
+                'abstract' => 'All 19 Innesto elements on one page: shadcn/ui registry components turned into TYPO3 content elements, one command each.',
+            ],
+        ];
+    }
+
+    /**
      * @return array<int, ShowcasePage>
      */
     public static function blogSupportPages(): array
@@ -391,7 +409,7 @@ final class StyleguideShowcasePages
     {
         return [
             'title' => 'Themes',
-            'navTitle' => 'Themes',
+            'navTitle' => 'All 15 theme presets',
             'slug' => '/themes',
             'backendLayout' => 'pagets__DesiderioThemes',
             'abstract' => 'All 15 Desiderio theme presets side by side. Each card is shown in its own preset, with its colours, fonts, corner radius, density, focus ring and icons.',
@@ -449,7 +467,7 @@ final class StyleguideShowcasePages
     {
         return [
             'title' => 'Technical features',
-            'navTitle' => 'Tech facts',
+            'navTitle' => 'Technology and quality checks',
             'slug' => '/technical-features',
             'abstract' => 'Every main technical feature of Desiderio in one list: Fluid 5.3 components, translations, the theme engine, CSS, integrations and quality checks.',
             'description' => 'How Desiderio works: typed Fluid 5.3 components, a runtime theme engine, Content Blocks 2.2 and PHPStan level 8. All of it is on GitHub.',
@@ -590,7 +608,7 @@ final class StyleguideShowcasePages
     {
         return [
             'title' => 'Content types',
-            'navTitle' => 'Content types',
+            'navTitle' => 'All 244 content elements',
             'slug' => '/content-types',
             'abstract' => 'All 244 Desiderio content elements in 10 groups. Each one has a backend preview, demo content and accessible markup.',
             'description' => '244 content elements in 10 groups, from heroes and navigation to charts, forms and footers. Each group is shown live in its own theme preset.',

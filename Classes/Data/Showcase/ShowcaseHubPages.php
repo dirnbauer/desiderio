@@ -24,7 +24,7 @@ final class ShowcaseHubPages
     {
         return [
             'title' => 'Product',
-            'navTitle' => 'Product',
+            'navTitle' => 'Elements and themes',
             'slug' => '/product',
             'seoTitle' => 'The design system for TYPO3 v14',
             'abstract' => 'What is in Desiderio: 244 content elements, 62 typed components, 15 theme presets and templates for the extensions you already use.',
@@ -91,7 +91,7 @@ final class ShowcaseHubPages
     {
         return [
             'title' => 'Resources',
-            'navTitle' => 'Resources',
+            'navTitle' => 'News and demos',
             'slug' => '/resources',
             'seoTitle' => 'News, demos and documentation',
             'abstract' => 'News about Desiderio, the Powermail Lab with every demo form, the complete demo site to download and the documentation.',

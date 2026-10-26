@@ -244,7 +244,7 @@ final class NewsDemoSeeder
             'nav_hide' => 1,
         ]);
         $listUid = $this->upsertPage($parentPid, 'News', '/news', 8449, $now, $pageColumns, [
-            'nav_title' => 'News',
+            'nav_title' => 'News and releases',
             'abstract' => 'Desiderio project news, shown with the templates for the News extension that come with the package.',
             'description' => 'News about Desiderio: releases, accessibility work and services. The pages use the News templates that come with the Desiderio package.',
         ]);

@@ -36,7 +36,7 @@ final class ShowcaseAudiencePages
     {
         return [
             'title' => 'Solutions',
-            'navTitle' => 'Solutions',
+            'navTitle' => 'For your team',
             'slug' => '/target-groups',
             'seoTitle' => 'For agencies, in-house teams and freelancers',
             'abstract' => 'Desiderio is built for agencies, in-house teams and freelancers. This page gives the short version for each group and links to its own page.',
@@ -100,7 +100,7 @@ final class ShowcaseAudiencePages
     {
         return [
             'title' => 'For agencies and integrators',
-            'navTitle' => 'For agencies',
+            'navTitle' => 'For agencies and integrators',
             'slug' => '/target-groups/for-agencies',
             'abstract' => 'How agencies use Desiderio: finished elements shorten fixed-price projects, and live theme demos help in pitches. The Agency plan adds direct support from the maintainers.',
             'description' => 'Desiderio for TYPO3 agencies: 244 finished elements, live theme demos and one installation for many brands. The Agency plan costs €1,990 a year.',
@@ -177,7 +177,7 @@ final class ShowcaseAudiencePages
     {
         return [
             'title' => 'For in-house marketing and product teams',
-            'navTitle' => 'For in-house teams',
+            'navTitle' => 'For in-house marketing and product teams',
             'slug' => '/target-groups/for-inhouse-teams',
             'abstract' => 'How in-house teams use Desiderio: editors build campaign pages without developer tickets, and design tokens keep every page on brand. Studio adds guaranteed support.',
             'description' => 'Desiderio for in-house teams: editors build campaign pages from 244 elements with backend previews, and design tokens keep every page on brand.',
@@ -254,7 +254,7 @@ final class ShowcaseAudiencePages
     {
         return [
             'title' => 'For freelancers and solo developers',
-            'navTitle' => 'For freelancers',
+            'navTitle' => 'For freelancers and solo developers',
             'slug' => '/target-groups/for-freelancers',
             'abstract' => 'How freelancers use Desiderio: a free design system with quality checks keeps fixed-price projects profitable. Studio adds support when you need it.',
             'description' => 'Desiderio for freelancers: a free design system with 244 elements and CI quality checks, so fixed-price TYPO3 projects stay profitable.',

@@ -174,6 +174,36 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
         self::assertSame(self::CONTENT_TYPE_PRESETS_BY_SLUG, $presetsBySlug);
     }
 
+    /**
+     * The menu names say what a page holds, and the abstract below them fills
+     * the homepage mega menu: on showcase pages, on chapter pages (which keep
+     * the content wizard's group title) and on a page no seeder writes.
+     */
+    public function testSeedWritesMenuNamesAndAbstracts(): void
+    {
+        $innestoUid = $this->insertPage(1, 'Innesto demo (all elements)', '/innesto-demo');
+        $tester = $this->createCommandTester();
+        self::assertSame(Command::SUCCESS, $tester->execute(['--parent' => '1', '--skip-powermail' => true, '--skip-news' => true]), $tester->getDisplay());
+
+        $contentTypes = $this->fetchPageBySlug('/content-types');
+        self::assertSame('All 244 content elements', $contentTypes['nav_title']);
+        self::assertSame('Content types', $contentTypes['title']);
+
+        $heroChapter = $this->fetchPageBySlug('/content-types/hero-landing-intros');
+        $heroMenu = StyleguideContentGroups::chapterPage('hero');
+        self::assertNotNull($heroMenu);
+        self::assertSame('Hero & Landing Intros', $heroChapter['title']);
+        self::assertSame($heroMenu['navTitle'], $heroChapter['nav_title']);
+        self::assertSame($heroMenu['abstract'], $heroChapter['abstract']);
+
+        self::assertSame('Single sign-on with WorkOS', $this->fetchPageBySlug('/features/workos')['nav_title']);
+
+        $innesto = $this->fetchPageBySlug('/innesto-demo');
+        self::assertSame($innestoUid, $this->intValue($innesto, 'uid'));
+        self::assertSame(StyleguideShowcasePages::adoptedMenuTexts()['/innesto-demo']['navTitle'], $innesto['nav_title']);
+        self::assertSame(StyleguideShowcasePages::adoptedMenuTexts()['/innesto-demo']['abstract'], $innesto['abstract']);
+    }
+
     public function testReseedingIsIdempotentForPagesAndLiveContent(): void
     {
         $groups = $this->seededContentTypeGroups(StyleguideContentGroups::getGroupsWithFixtures());

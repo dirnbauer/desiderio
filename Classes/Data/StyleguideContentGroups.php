@@ -168,6 +168,35 @@ final class StyleguideContentGroups
     }
 
     /**
+     * Menu texts of a chapter page. The page title stays the group title the
+     * content wizard shows; the menu names what the elements are for, and
+     * the homepage mega menu shows the abstract below that name.
+     *
+     * @return array{navTitle: string, abstract: string}|null
+     */
+    public static function chapterPage(string $groupId): ?array
+    {
+        $pages = [
+            'hero' => ['Hero sections and page intros', '21 hero elements for the first screen of a page, from split and video layouts to countdowns, search and stats.'],
+            'navigation' => ['Menus, headers and breadcrumbs', '24 navigation elements: navigation bars, mega menus, page headers, breadcrumbs, tabs, pagination and a location map.'],
+            'content' => ['Text, media and article layouts', '24 elements for articles and text pages: text with media, quotes, tabs, accordions, timelines, galleries, code and downloads.'],
+            'features' => ['Feature and benefit sections', '25 ways to explain a product or service: feature grids, bento layouts, comparison tables, tabs, steps and timelines.'],
+            'pricing' => ['Pricing tables and shop elements', '25 pricing and shop elements: plan tables, monthly and yearly toggles, a pricing slider, product listings and order summaries.'],
+            'social-proof' => ['Testimonials, logos and case studies', '25 trust elements: testimonials, logo clouds, case studies, awards, ratings, press mentions and trust badges.'],
+            'team' => ['Team, company and careers sections', '24 elements about the people behind a company: team grids, organisation charts, founder quotes, values, history and job listings.'],
+            'data' => ['Charts, KPIs and data tables', '29 data elements: KPI cards, nine chart types, data tables and status boards. Charts render on the server, without React.'],
+            'conversion' => ['Forms, sign-ups and calls to action', '24 elements that turn visits into leads: calls to action, contact and booking forms, newsletter and waitlist sign-ups.'],
+            'footer' => ['Footers, consent and legal notices', '23 footer and utility elements: site footers, cookie consent banners, imprint, privacy and accessibility notices, and a back-to-top button.'],
+        ];
+        if (!isset($pages[$groupId])) {
+            return null;
+        }
+        [$navTitle, $abstract] = $pages[$groupId];
+
+        return ['navTitle' => $navTitle, 'abstract' => $abstract];
+    }
+
+    /**
      * Closing conversion banner for a chapter page. The conversion chapter
      * already demos CTA elements aplenty and gets none.
      *

@@ -35,7 +35,7 @@ final class ShowcasePricingPages
 
         return [
             'title' => 'Pricing',
-            'navTitle' => 'Pricing',
+            'navTitle' => 'Pricing and plans',
             'slug' => '/pricing',
             'seoTitle' => 'Prices for support plans and services',
             'abstract' => 'Desiderio is free under GPL-2.0, with every release. The Studio, Agency and Partner support plans add guaranteed answer times and the maintenance promise; services have fixed prices.',

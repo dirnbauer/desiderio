@@ -386,8 +386,9 @@ final class SeedStyleguidePagesCommand extends Command
         /** @var list<array{pageUid: int, ctype: string, name: string, fixture: array<string, mixed>, sorting: int}> $chapterContent */
         $chapterContent = [];
 
+        // Its nav title and abstract come from the showcase definition of the
+        // page (StyleguideShowcasePages), written further down in this run.
         $contentTypesPageAttributes = [
-            'nav_title' => self::CONTENT_TYPES_PAGE_TITLE,
             ...$this->buildSeoPageAttributes(
                 self::CONTENT_TYPES_PAGE_TITLE,
                 'Desiderio content elements in 10 chapters: heroes, navigation, editorial content, features, pricing, trust, team, data, conversion and footers.'
@@ -431,8 +432,12 @@ final class SeedStyleguidePagesCommand extends Command
             $sorting = ($index + 1) * 256;
 
             $preset = $this->presetForContentTypeGroup($groupId);
+            // The title stays the group title of the content wizard; the
+            // menu names what the elements are for.
+            $chapterPage = StyleguideContentGroups::chapterPage($groupId);
             $pageAttributes = [
                 'tx_desiderio_shadcn_preset' => $preset,
+                ...($chapterPage === null ? [] : ['nav_title' => $chapterPage['navTitle'], 'abstract' => $chapterPage['abstract']]),
                 ...$this->buildSeoPageAttributes($title, sprintf(
                     '%s: %d Desiderio content elements for TYPO3 v14, each with demo content. This chapter uses the %s theme preset.',
                     $title,
@@ -745,6 +750,19 @@ final class SeedStyleguidePagesCommand extends Command
                 $pageUpserter->move($placedUid, $hubUid, $hubSorting, $now, $pageColumns);
                 $movedPages++;
             }
+        }
+        // Placed pages no seeder writes still get a menu name that explains
+        // them and an abstract for the homepage mega menu.
+        foreach (StyleguideShowcasePages::adoptedMenuTexts() as $slug => $menuTexts) {
+            $adoptedUid = $pageUpserter->findPageBySlugBelow($parentPid, $slug, $pageColumns);
+            if ($adoptedUid === null) {
+                continue;
+            }
+            $this->connectionPool->getConnectionForTable('pages')->update(
+                'pages',
+                $this->databaseSchema->filterRow(['nav_title' => $menuTexts['navTitle'], 'abstract' => $menuTexts['abstract'], 'tstamp' => $now], $pageColumns),
+                ['uid' => $adoptedUid]
+            );
         }
         $redirects = $this->ensureFormerSlugRedirects($showcasePages, $parentPid, $now);
 

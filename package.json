@@ -15,6 +15,7 @@
     "build:iconfonts": "node Build/Scripts/sync-icon-fonts.mjs && npm run build:hugeicons-font",
     "build:hugeicons-font": "node Build/Scripts/build-hugeicons-font.mjs",
     "test:iconfonts": "node --test Tests/JavaScript/HugeiconsFont.test.mjs",
+    "test:powermail": "node --test Tests/JavaScript/PowermailValidation.test.mjs",
     "test:iconfonts:browser": "node Tests/JavaScript/HugeiconsFont.browser.mjs",
     "test:visualqa:state": "node --test Tests/JavaScript/VisualQaState.browser.mjs",
     "watch:css": "tailwindcss -i Resources/Private/Tailwind/desiderio.css -o Resources/Public/Css/desiderio-tailwind.css --watch",

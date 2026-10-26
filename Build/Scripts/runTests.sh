@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Run the same checks locally and in CI. The default suite runs every gate.
 # Usage: Build/Scripts/runTests.sh [-s SUITE] [-p 8.4|8.5] [SUITE]
-# Suites: all, phpstan, unit (or phpunit), functional, audit, validate, assets, iconfonts
+# Suites: all, phpstan, unit (or phpunit), functional, audit, validate, assets, iconfonts, powermail
 set -euo pipefail
 cd "$(dirname "$0")/../.."
 
@@ -27,7 +27,7 @@ export PHP
 echo "Using $("$PHP" -r 'echo PHP_VERSION;')"
 
 SUITES=("$SUITE")
-[[ "$SUITE" != all ]] || SUITES=(phpstan unit functional validate iconfonts assets)
+[[ "$SUITE" != all ]] || SUITES=(phpstan unit functional validate iconfonts powermail assets)
 for suite in "${SUITES[@]}"; do
     case "$suite" in
         phpstan) "$PHP" -d memory_limit=2G vendor/bin/phpstan analyse --no-progress ;;
@@ -40,6 +40,7 @@ for suite in "${SUITES[@]}"; do
             ;;
         assets|tailwind|css) Build/Scripts/check-generated-assets.sh ;;
         iconfonts) npm run test:iconfonts ;;
+        powermail) npm run test:powermail ;;
         *) echo "Unknown suite: $suite" >&2; exit 2 ;;
     esac
 done

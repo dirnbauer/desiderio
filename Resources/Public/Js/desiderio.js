@@ -1734,7 +1734,8 @@ document.addEventListener('DOMContentLoaded', () => {
       || control.dataset.powermailRequired === 'true'
       || control.getAttribute('aria-required') === 'true';
 
-    if (required && value === '' && !validity?.badInput) {
+    // Checkboxes and radio groups can be missing a selection while their value is nonempty.
+    if (validity?.valueMissing || (required && value === '' && !validity?.badInput)) {
       messages.push(getPowermailRequiredMessage(form, control));
       return uniquePowermailMessages(messages);
     }

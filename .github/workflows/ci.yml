@@ -248,6 +248,7 @@ jobs:
       - name: Verify generated assets are current
         run: |
           npm run test:iconfonts
+          npm run test:powermail
           Build/Scripts/check-generated-assets.sh
           git diff --exit-code -- Build/hugeicons/codepoints.json
 

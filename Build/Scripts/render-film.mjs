@@ -22,6 +22,11 @@
  * under it 15 LU below the voice and 10 % louder in the pauses, faded in and
  * out, then one measured gain to -16 LUFS and a peak limiter. The captions
  * in film.html come from the same narration.json.
+ *
+ * The film opens on a start card and ends on the plans card held still
+ * (film.html, window.CLOCK): narration.json keeps scene times, and the
+ * soundtrack follows the scenes, LEAD ms into the film, silent under the
+ * start card and after the last scene.
  */
 
 import { chromium } from '@playwright/test';
@@ -88,8 +93,13 @@ function ffmpeg(args, input) {
 async function finish(mp4, poster) {
     const narrationFile = join(AUDIO, 'narration.json');
     if (existsSync(narrationFile) && existsSync(join(AUDIO, 'music.mp3'))) {
-        const { lines, musicAt = 0 } = JSON.parse(readFileSync(narrationFile, 'utf8'));
+        const { lines: scenes, musicAt: sceneMusicAt = 0 } = JSON.parse(readFileSync(narrationFile, 'utf8'));
         const end = duration / 1000;
+        // Scene times to film times: the scenes start LEAD ms into the film
+        // and the music fades out where they end.
+        const lines = scenes.map((line) => ({ ...line, at: line.at + clock.lead }));
+        const musicAt = sceneMusicAt + clock.lead;
+        const until = (clock.lead + clock.content) / 1000;
         // The music sits MUSIC_DB below the voice while it speaks and rises by
         // exactly BREAK_LIFT in the pauses: a volume automation, not a
         // compressor, so nothing pumps. Both levels follow from the measured
@@ -105,7 +115,7 @@ async function finish(mp4, poster) {
             `${lines.map((_, i) => `[v${i}]`).join('')}amix=inputs=${lines.length}:normalize=0[voice]`,
             // The score may enter late (narration.json musicAt), so that its
             // final chord lands under the last line.
-            `[0:a]aformat=sample_rates=44100:channel_layouts=stereo,adelay=${musicAt}|${musicAt},volume='${musicVolume}':eval=frame,afade=t=in:st=${musicAt / 1000}:d=1.2,afade=t=out:st=${end - 2.2}:d=2.2[music]`,
+            `[0:a]aformat=sample_rates=44100:channel_layouts=stereo,adelay=${musicAt}|${musicAt},volume='${musicVolume}':eval=frame,afade=t=in:st=${musicAt / 1000}:d=1.2,afade=t=out:st=${until - 2.2}:d=2.2,apad=whole_dur=${end}[music]`,
             `[music][voice]amix=inputs=2:normalize=0,atrim=0:${end}[mix]`,
         ].join(';');
         // Mix, measure, then one static gain to -16 LUFS and a peak limiter:
@@ -146,6 +156,7 @@ const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: SIZE, deviceScaleFactor: 1 });
 await page.goto(`${base}/Build/Film/film.html`, { waitUntil: 'networkidle' });
 const duration = await page.evaluate(() => window.ready);
+const clock = await page.evaluate(() => window.CLOCK ?? null) ?? { lead: 0, content: duration };
 
 if (remix) {
     // The picture of the current film, with a new soundtrack: copy its video

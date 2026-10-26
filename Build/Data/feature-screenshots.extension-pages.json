@@ -1,0 +1,259 @@
+{
+    "shots": [
+        {
+            "name": "frontend-feature-innesto-demo",
+            "kind": "frontend",
+            "url": "/innesto-demo/",
+            "viewport": "1440x900",
+            "steps": [
+                {
+                    "evaluate": "(() => { const e = document.querySelector('.innesto-marquee-section'); window.scrollTo({ top: e.getBoundingClientRect().top + window.scrollY - 24, behavior: 'instant' }); })()",
+                    "wait": 1500
+                }
+            ],
+            "clip": "viewport"
+        },
+        {
+            "name": "frontend-feature-innesto-stats",
+            "kind": "frontend",
+            "url": "/innesto-demo/",
+            "viewport": "1440x900",
+            "steps": [
+                {
+                    "evaluate": "(() => { const e = document.querySelector('.innesto-stats-segmented-progress-section'); window.scrollTo({ top: e.getBoundingClientRect().top + window.scrollY - 24, behavior: 'instant' }); })()",
+                    "wait": 1500
+                }
+            ],
+            "clip": "viewport"
+        },
+        {
+            "name": "frontend-feature-innesto-dark",
+            "kind": "frontend",
+            "url": "/innesto-demo/",
+            "viewport": "1440x900",
+            "steps": [
+                {
+                    "evaluate": "document.querySelector('[data-d-theme-option=\"dark\"]').click()",
+                    "wait": 600
+                },
+                {
+                    "evaluate": "(() => { const e = document.querySelector('.innesto-stats-status-section'); window.scrollTo({ top: e.getBoundingClientRect().top + window.scrollY - 24, behavior: 'instant' }); })()",
+                    "wait": 1500
+                }
+            ],
+            "clip": "viewport"
+        },
+        {
+            "name": "feature-innesto-wizard",
+            "kind": "backend",
+            "url": "/typo3/module/web/layout?id=1032",
+            "viewport": "1600x1000",
+            "css": "typo3-backend-modal .modal-size-large{--typo3-modal-width:1280px} .modal::backdrop{background:#fff!important;opacity:1!important}",
+            "steps": [
+                {
+                    "waitFor": "typo3-backend-new-content-element-wizard-button",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "click": "typo3-backend-new-content-element-wizard-button",
+                    "frame": true,
+                    "wait": 500
+                },
+                {
+                    "waitFor": "typo3-backend-new-record-wizard button.navigation-item",
+                    "timeout": 120000
+                },
+                {
+                    "click": "typo3-backend-new-record-wizard button.navigation-item:has-text(\"Stats\")",
+                    "wait": 9000
+                },
+                {
+                    "evaluate": "(() => { document.activeElement && document.activeElement.blur(); const r = document.querySelector('typo3-backend-new-record-wizard').shadowRoot; r && r.activeElement && r.activeElement.blur(); })()",
+                    "wait": 300
+                }
+            ],
+            "settle": 1500,
+            "clip": "typo3-backend-modal dialog",
+            "padding": 0,
+            "frameCss": "input,textarea,select{caret-color:transparent!important}"
+        },
+        {
+            "name": "frontend-feature-news-list",
+            "kind": "frontend",
+            "url": "/news/",
+            "viewport": "1440x900",
+            "steps": [
+                {
+                    "evaluate": "(async () => { const e = document.querySelector('.news-list-view'); window.scrollTo({ top: e.getBoundingClientRect().top + window.scrollY - 24, behavior: 'instant' }); document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); })()",
+                    "wait": 800
+                }
+            ],
+            "clip": "viewport"
+        },
+        {
+            "name": "frontend-feature-news-article",
+            "kind": "frontend",
+            "url": "/news/article/desiderio-2-6-adds-theme-presets-per-page/",
+            "viewport": "1440x900",
+            "steps": [
+                {
+                    "evaluate": "(async () => { document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); })()",
+                    "wait": 800
+                }
+            ],
+            "clip": "viewport"
+        },
+        {
+            "name": "frontend-feature-news-dark",
+            "kind": "frontend",
+            "url": "/news/",
+            "viewport": "1440x900",
+            "steps": [
+                {
+                    "evaluate": "document.querySelector('[data-d-theme-option=\"dark\"]').click()",
+                    "wait": 600
+                },
+                {
+                    "evaluate": "(async () => { const e = document.querySelector('.news-list-view'); window.scrollTo({ top: e.getBoundingClientRect().top + window.scrollY - 24, behavior: 'instant' }); document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); })()",
+                    "wait": 800
+                }
+            ],
+            "clip": "viewport"
+        },
+        {
+            "name": "feature-news-record",
+            "kind": "backend",
+            "url": "/typo3/record/edit?edit[tx_news_domain_model_news][3498]=edit",
+            "viewport": "1600x1000",
+            "steps": [
+                {
+                    "waitFor": "form[name=editform]",
+                    "frame": true,
+                    "timeout": 120000,
+                    "wait": 1500
+                }
+            ],
+            "clip": [
+                "frame:.module-docheader",
+                "frame:.module-body"
+            ],
+            "padding": 0,
+            "frameCss": "input,textarea,select{caret-color:transparent!important}"
+        },
+        {
+            "name": "feature-nr-vault-secrets",
+            "kind": "backend",
+            "url": "/typo3/module/admin/vault/secrets",
+            "viewport": "1600x1000",
+            "steps": [
+                {
+                    "waitFor": "table",
+                    "frame": true,
+                    "timeout": 120000,
+                    "wait": 1000
+                }
+            ],
+            "clip": [
+                "frame:.module-docheader",
+                "frame:.module-body"
+            ],
+            "padding": 0
+        },
+        {
+            "name": "feature-nr-vault-readiness",
+            "kind": "backend",
+            "url": "/typo3/module/admin/vault",
+            "viewport": "1600x1000",
+            "steps": [
+                {
+                    "waitFor": "text=Security Readiness",
+                    "frame": true,
+                    "timeout": 120000,
+                    "wait": 1000
+                }
+            ],
+            "clip": [
+                "frame:.module-docheader",
+                "frame:.module-body"
+            ],
+            "padding": 0
+        },
+        {
+            "name": "feature-nr-vault-audit",
+            "kind": "backend",
+            "url": "/typo3/module/admin/vault/audit",
+            "viewport": "1600x1000",
+            "steps": [
+                {
+                    "waitFor": "table",
+                    "frame": true,
+                    "timeout": 120000,
+                    "wait": 1000
+                }
+            ],
+            "clip": [
+                "frame:.module-docheader",
+                "frame:.module-body"
+            ],
+            "padding": 0
+        },
+        {
+            "name": "feature-context-edit-records-news",
+            "kind": "backend",
+            "url": "/typo3/module/content/records?id=991",
+            "viewport": "1600x1000",
+            "steps": [
+                {
+                    "waitFor": "tr[data-table=\"tx_news_domain_model_news\"] typo3-backend-contextual-record-edit-trigger",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "click": "tr[data-table=\"tx_news_domain_model_news\"] typo3-backend-contextual-record-edit-trigger",
+                    "frame": true,
+                    "wait": 30000
+                }
+            ],
+            "clip": "viewport"
+        },
+        {
+            "name": "feature-context-edit-records-page",
+            "kind": "backend",
+            "url": "/typo3/module/content/records?id=505&table=pages",
+            "viewport": "1600x1000",
+            "steps": [
+                {
+                    "waitFor": "tr[data-table=\"pages\"] typo3-backend-contextual-record-edit-trigger",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "click": "tr[data-table=\"pages\"] typo3-backend-contextual-record-edit-trigger",
+                    "frame": true,
+                    "wait": 30000
+                }
+            ],
+            "clip": "viewport"
+        },
+        {
+            "name": "feature-context-edit-records-address",
+            "kind": "backend",
+            "url": "/typo3/module/content/records?id=569",
+            "viewport": "1600x1000",
+            "steps": [
+                {
+                    "waitFor": "tr[data-table=\"tt_address\"] typo3-backend-contextual-record-edit-trigger",
+                    "frame": true,
+                    "timeout": 120000
+                },
+                {
+                    "click": "tr[data-table=\"tt_address\"] typo3-backend-contextual-record-edit-trigger",
+                    "frame": true,
+                    "wait": 30000
+                }
+            ],
+            "clip": "viewport"
+        }
+    ]
+}

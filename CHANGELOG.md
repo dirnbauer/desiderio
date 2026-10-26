@@ -6,6 +6,8 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.26.0] — 2026-10-26
+
 ### Added
 
 - Give the main menu a third level. A second-level page with subpages opens a flyout beside its dropdown (shadcn DropdownMenuSub look: same popover surface, radius, shadow and item highlight), on the left when the window's right edge is too close, and never taller than the window: long lists such as the 15 success stories scroll inside it. Every chevron is a disclosure button (click, Enter, Space); mouse users also get hover-open with hover intent and a safe pointer path, so moving diagonally into a flyout across neighbouring rows keeps it open. Escape closes the innermost level and returns focus to its chevron, an outside click closes all, focus leaving a branch closes it. The burger menu and the Priority+ "More" panel expand all three levels inline. `lib.desiderioPageDataProcessing` now reads `levels = 3`.
@@ -15,6 +17,10 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 - Support the two menu options of the create page on ui.shadcn.com: site settings `desiderio.shadcn.menuColor` (`default`, `inverted`, `default-translucent`, `inverted-translucent`) and `desiderio.shadcn.menuAccent` (`subtle`, `bold`), both defaulting to `preset`, which decodes them from the preset's create code (`Classes/Theme/ShadcnPresetCode.php`, a port of shadcn's decoder: `b4hb38Fyj` has inverted menus, `b6G5977cw` translucent ones; house presets the defaults). They apply to the header dropdowns and flyouts, the mega menu and the language and colour-scheme menus, through `data-menu-color`/`data-menu-accent` on `<body>`. Inverted menus use the preset's real dark tokens, generated into `26-menu-surface-tokens.css` by `Build/Scripts/build-menu-surface-tokens.php`. Bold changes the highlight of menu items only, not the global `--accent`, which stays tuned for content boxes. Translucent menus move secondary text and focus rings towards the foreground, so they keep WCAG 2.2 AA over any backdrop, and the glass header moves its own blur behind its content so the menus blur the page and not just the header.
 
 ### Changed
+
+- Name every menu entry by what it holds, on all three levels: first level "Elements and themes", "Website tools", "AI and agents", "For your team", "Pricing and plans", "News and demos"; tools say what they do and with which product ("Single sign-on with WorkOS", "Site search with Apache Solr", "AI model setup with nr-llm"); content-group pages say what their elements are for ("Hero sections and page intros"); the invented success stories start with "Example: ". Slugs and page titles stay. Every menu page gets an abstract, which the mega menu shows (content-group pages open with their element count).
+- Thank Netresearch DTT GmbH on the pages of extensions that build on their work: AI Assistant grew out of nr-mcp-agent and runs on nr-llm; Skillflow, Skillspector and Image Workbench require nr-llm; Jev keeps its token in nr-vault; Agent Nexus, the Abilities Registry and the Desiderio styleguide can use nr-llm. Credits take an optional text of their own, which must still link the upstream project.
+- Open the product film on a start card ("Desiderio in 90 seconds") instead of black and end on the plans card held still; the scenes, narration and music are unchanged, 1.5 s later (91.2 s in all). The film pipeline keeps the cards on a re-render.
 
 - Draw each main-menu item with a submenu as one pill: label, 4px, a 12px chevron centred on the text, one shared hover, open and current background, and a clear gap to the next item (law of proximity, as shadcn's NavigationMenuTrigger). Link and chevron stay two controls; their focus rings sit inside the pill. preset-corporate keeps its text-only hover through `--d-nav-hover-bg`.
 

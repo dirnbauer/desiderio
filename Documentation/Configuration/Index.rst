@@ -120,7 +120,7 @@ with the page itself, its subpages with their abstract (``pages.abstract``)
 and their own subpages as compact links. The burger shows it as an accordion.
 Every other page keeps the main menu. ``desiderio:styleguide:seed`` adds a
 short note about it below the product film of a home page with the mega
-menu.
+menu, in the film's :guilabel:`Note below the video` field.
 
 ``desiderio.shadcn.menuColor`` and ``desiderio.shadcn.menuAccent`` are the
 menu options of the create page on ui.shadcn.com and apply to the dropdowns,

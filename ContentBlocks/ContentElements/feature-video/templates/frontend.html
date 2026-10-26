@@ -49,6 +49,18 @@
                 </f:else>
             </f:if>
         </div>
+
+        <f:comment>
+            The note below the film: one short, quiet line that belongs to the
+            film (a caption, a hint), in the same section, so no seam and no
+            section spacing separate it from the player.
+        </f:comment>
+        <f:if condition="{data.caption}">
+            <p class="feature-video__note">
+                <d:atom.icon name="info" size="xs" class="feature-video__note-icon"/>
+                <span>{data -> f:render.text(field: 'caption')}</span>
+            </p>
+        </f:if>
     </d:layout.container>
 </d:layout.section>
 

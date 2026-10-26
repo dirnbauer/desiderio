@@ -48,3 +48,9 @@ fields:
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:poster_image'
     allowed: common-image-types
     maxitems: 1
+  -
+    identifier: caption
+    type: Textarea
+    rows: 2
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:video_note'
+    description: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:video_note.description'

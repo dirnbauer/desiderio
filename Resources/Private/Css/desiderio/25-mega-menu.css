@@ -134,7 +134,7 @@
 
 .desiderio-mega__panel-body {
     display: grid;
-    grid-template-columns: minmax(12rem, 16rem) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
     gap: 0.5rem;
     padding: 0.5rem;
     /* desiderio.js sets --d-mega-max-height to the room left below the
@@ -147,16 +147,18 @@
 }
 
 /* The feature link: the first-level page itself, on the recipe's muted
-   gradient (from-muted/50 to-muted), title over abstract. */
+   gradient with the brand mark, title and abstract. It runs across the top
+   of the panel rather than down a side column: beside a tall list (Features
+   has five rows) a side card either stretches into an empty block or leaves
+   an empty column under it; across the top it is as tall as its text in
+   every panel. */
 .desiderio-mega__feature {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    gap: 0.5rem;
-    min-height: 100%;
-    padding: 1.25rem;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
     border-radius: calc(var(--radius) - 2px);
-    background-image: linear-gradient(to bottom, color-mix(in oklch, var(--d-menu-feature, var(--muted)) 50%, transparent), var(--d-menu-feature, var(--muted)));
+    background-image: linear-gradient(to right, var(--d-menu-feature, var(--muted)), color-mix(in oklch, var(--d-menu-feature, var(--muted)) 50%, transparent));
     color: var(--popover-foreground);
     text-decoration: none;
     transition: box-shadow 0.15s;
@@ -166,19 +168,33 @@
     box-shadow: inset 0 0 0 1px var(--d-menu-separator, var(--border)), var(--shadow-sm);
 }
 
+.desiderio-mega__feature-mark {
+    flex: 0 0 auto;
+    width: 2rem;
+    height: 2rem;
+}
+
+.desiderio-mega__feature-text {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+}
+
 .desiderio-mega__feature-title {
-    font-size: 1.125rem;
+    font-size: 1.0625rem;
     font-weight: 600;
     line-height: 1.3;
 }
 
 .desiderio-mega__feature .desiderio-mega__description {
-    -webkit-line-clamp: 5;
-    line-clamp: 5;
+    max-width: 80ch;
 }
 
 .desiderio-mega__feature-arrow {
     display: inline-flex;
+    flex: 0 0 auto;
     color: var(--d-menu-muted, var(--muted-foreground));
     transition: transform 0.15s var(--d-ease, ease-out);
 }
@@ -324,7 +340,6 @@
     }
 
     .desiderio-mega__panel-body {
-        grid-template-columns: minmax(0, 1fr);
         padding: 0 0 0 0.5rem;
         max-height: none;
         overflow: visible;
@@ -333,6 +348,10 @@
 
     .desiderio-mega__feature {
         padding: 0.75rem;
+    }
+
+    .desiderio-mega__feature-mark {
+        display: none;
     }
 
     .desiderio-mega__feature-title {

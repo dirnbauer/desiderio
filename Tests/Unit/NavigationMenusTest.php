@@ -195,18 +195,31 @@ final class NavigationMenusTest extends TestCase
         self::assertStringNotContainsString('nav.mega.note', $mega, 'The note lives in the home page content, not in the menu.');
     }
 
-    public function testTheHomePageNoteFollowsTheProductFilmOnlyWithTheMegaMenu(): void
+    public function testTheHomePageNoteSitsUnderTheProductFilmOnlyWithTheMegaMenu(): void
     {
-        self::assertSame(StyleguideShowcasePages::homeContent(), StyleguideShowcasePages::homeContentFor(false));
+        $plain = StyleguideShowcasePages::homeContent();
+        self::assertSame($plain, StyleguideShowcasePages::homeContentFor(false));
 
         $withNote = StyleguideShowcasePages::homeContentFor(true);
-        self::assertCount(count(StyleguideShowcasePages::homeContent()) + 1, $withNote);
-        $types = array_column($withNote, 'ctype');
-        $film = array_search('desiderio_featurevideo', $types, true);
+        self::assertCount(count($plain), $withNote, 'The note is part of the film, not an element of its own.');
+        $film = array_search('desiderio_featurevideo', array_column($withNote, 'ctype'), true);
         self::assertIsInt($film);
-        self::assertSame(StyleguideShowcasePages::megaMenuNote(), $withNote[$film + 1]);
-        self::assertSame('desiderio_alert', $withNote[$film + 1]['ctype']);
-        self::assertSame('info', $withNote[$film + 1]['fields']['icon']);
+        self::assertSame(StyleguideShowcasePages::megaMenuNote(), $withNote[$film]['fields']['caption'] ?? null);
+        self::assertArrayNotHasKey('caption', $plain[$film]['fields']);
+        foreach ($withNote as $index => $block) {
+            if ($index !== $film) {
+                self::assertSame($plain[$index], $block);
+            }
+        }
+
+        // The film renders the note below the player, in its own section.
+        $config = Yaml::parseFile(self::ROOT . '/ContentBlocks/ContentElements/feature-video/config.yaml');
+        self::assertIsArray($config);
+        self::assertContains('caption', array_column($config['fields'], 'identifier'));
+        $template = (string)file_get_contents(self::ROOT . '/ContentBlocks/ContentElements/feature-video/templates/frontend.html');
+        self::assertMatchesRegularExpression('/feature-video__player.*<p class="feature-video__note">.*<\/d:layout\.container>/s', $template);
+        self::assertStringContainsString("{data -> f:render.text(field: 'caption')}", $template);
+
     }
 
     public function testOnlyASiteThatShowsTheMegaMenuOnItsRootPageGetsTheNote(): void

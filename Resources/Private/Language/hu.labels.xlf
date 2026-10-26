@@ -1765,6 +1765,18 @@
         <target>YouTube- vagy Vimeo-beágyazási URL</target>
       </segment>
     </unit>
+    <unit id="video_note">
+      <segment state="final">
+        <source>Note below the video</source>
+        <target>Megjegyzés a videó alatt</target>
+      </segment>
+    </unit>
+    <unit id="video_note.description">
+      <segment state="final">
+        <source>One short line under the player, e.g. a caption or a hint. It shows small and muted with an info icon, in the same section as the video.</source>
+        <target>Egy rövid sor a lejátszó alatt, például képaláírás vagy tipp. Kicsi, visszafogott betűvel és info ikonnal jelenik meg, a videóval azonos szakaszban.</target>
+      </segment>
+    </unit>
     <unit id="video_file">
       <segment state="final">
         <source>Video file</source>

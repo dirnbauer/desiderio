@@ -48,6 +48,24 @@
     outline-offset: 2px;
 }
 
+/* The note below the film: small, muted (--muted-foreground holds 4.5:1 on
+   every preset's background, ThemeContrastTest), set like a caption from
+   the player's left edge, the icon leading its first line. */
+.feature-video__note {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--d-spacing-xs);
+    max-width: 65ch;
+    margin: var(--d-spacing-sm) 0 0;
+    font-size: var(--d-text-sm);
+    line-height: var(--d-leading-normal);
+    color: var(--muted-foreground);
+}
+.feature-video__note-icon {
+    flex: 0 0 auto;
+    margin-block-start: 0.25em;
+}
+
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */
 .feature-video__intro {
     display: grid;

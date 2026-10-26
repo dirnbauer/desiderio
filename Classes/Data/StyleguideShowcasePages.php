@@ -634,9 +634,10 @@ final class StyleguideShowcasePages
     }
 
     /**
-     * The homepage content for one site: homeContent(), plus the note about
-     * the mega menu directly below the product film when the site shows the
-     * mega menu on this page (see showsMegaMenuNote()).
+     * The homepage content for one site: homeContent(), and when the site
+     * shows the mega menu on this page (see showsMegaMenuNote()) the product
+     * film carries a note about it as the line below the player
+     * (desiderio_featurevideo.caption), inside the film's own section.
      *
      * @return array<int, ShowcaseBlock>
      */
@@ -648,12 +649,10 @@ final class StyleguideShowcasePages
         }
         foreach ($content as $index => $block) {
             if ($block['ctype'] === 'desiderio_featurevideo') {
-                array_splice($content, $index + 1, 0, [self::megaMenuNote()]);
-
-                return $content;
+                $content[$index]['fields']['caption'] = self::megaMenuNote();
+                break;
             }
         }
-        $content[] = self::megaMenuNote();
 
         return $content;
     }
@@ -670,19 +669,10 @@ final class StyleguideShowcasePages
     }
 
     /**
-     * A quiet note below the product film: the home page's mega menu and
-     * where the standard menu takes over. Inline Alert Notice, default
-     * variant, info icon, no heading.
-     *
-     * @return ShowcaseBlock
+     * The note below the product film on a home page with the mega menu.
      */
-    public static function megaMenuNote(): array
+    public static function megaMenuNote(): string
     {
-        return ShowcaseBlocks::block('desiderio_alert', [
-            'variant' => 'default',
-            'icon' => 'info',
-            'description' => 'This page uses a mega menu with a short description for every page. It appears on the home page only; every other page uses the standard menu.',
-            'show_close_button' => 0,
-        ]);
+        return 'This page uses a mega menu with a short description for every page. It appears on the home page only; every other page uses the standard menu.';
     }
 }

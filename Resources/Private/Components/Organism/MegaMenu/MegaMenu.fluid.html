@@ -11,8 +11,10 @@
     Mega menu after the shadcn/ui NavigationMenu recipe
     (ui.shadcn.com/docs/components/navigation-menu): a row of triggers, one
     per first-level page, each opening a content panel. The panel leads with
-    a card for the first-level page itself (its title and abstract, the
-    recipe's row-spanning feature link), followed by one link per subpage:
+    a card for the first-level page itself: the recipe's feature link (muted
+    gradient, brand mark, title and abstract), laid across the top of the
+    panel so it never stretches into an empty block beside tall lists. One
+    link per subpage follows:
     title plus the page abstract as a muted, line-clamped description. A
     subpage's own subpages follow its link as compact links. A first-level
     page without subpages is a plain link in trigger style.
@@ -56,10 +58,15 @@
                                 class="desiderio-mega__feature{f:if(condition: item.current, then: ' desiderio-mega__link--current')}"
                                 additionalAttributes="{f:if(condition: '{item.current}', then: '{aria-current: \'page\'}')}"
                             >
-                                <span class="desiderio-mega__feature-title">{item.title}</span>
-                                <f:if condition="{item.data.abstract}">
-                                    <span class="desiderio-mega__description">{item.data.abstract}</span>
-                                </f:if>
+                                <span class="desiderio-header__brand-mark desiderio-mega__feature-mark" aria-hidden="true">
+                                    <span class="desiderio-header__brand-mark-inner"></span>
+                                </span>
+                                <span class="desiderio-mega__feature-text">
+                                    <span class="desiderio-mega__feature-title">{item.title}</span>
+                                    <f:if condition="{item.data.abstract}">
+                                        <span class="desiderio-mega__description">{item.data.abstract}</span>
+                                    </f:if>
+                                </span>
                                 <span class="desiderio-mega__feature-arrow" aria-hidden="true">
                                     <d:atom.icon name="arrow-right" size="xs"/>
                                 </span>

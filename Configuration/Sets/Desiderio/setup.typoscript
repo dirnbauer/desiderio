@@ -125,7 +125,22 @@ page {
     }
 
     30 = TEXT
-    30.value = " data-shadcn-style="{$desiderio.shadcn.style}" data-icon-library="{$desiderio.shadcn.iconLibrary}" data-density="{$desiderio.layout.density}" data-container="{$desiderio.layout.container}" data-section-seam="{$desiderio.layout.sectionSeam}" data-radius="{$desiderio.layout.radius}" data-font="{$desiderio.typography.fontSans}" data-header-style="{$desiderio.header.style}" data-footer-style="{$desiderio.footer.style}">
+    30.value = " data-shadcn-style="{$desiderio.shadcn.style}" data-icon-library="{$desiderio.shadcn.iconLibrary}" data-density="{$desiderio.layout.density}" data-container="{$desiderio.layout.container}" data-section-seam="{$desiderio.layout.sectionSeam}" data-radius="{$desiderio.layout.radius}" data-font="{$desiderio.typography.fontSans}" data-header-style="{$desiderio.header.style}" data-footer-style="{$desiderio.footer.style}"
+
+    # data-menu-color / data-menu-accent: the menu settings of the create page
+    # on ui.shadcn.com. "preset" (the default) reads them from the effective
+    # preset's create code, so a per-page preset override carries its menus.
+    40 = USER
+    40 {
+      userFunc = Webconsulting\Desiderio\Theme\MenuAppearance->renderBodyAttributes
+      preset.data = levelfield:-1, tx_desiderio_shadcn_preset, slide
+      preset.ifEmpty = {$desiderio.shadcn.preset}
+      menuColor = {$desiderio.shadcn.menuColor}
+      menuAccent = {$desiderio.shadcn.menuAccent}
+    }
+
+    50 = TEXT
+    50.value = >
   }
 
   10 >

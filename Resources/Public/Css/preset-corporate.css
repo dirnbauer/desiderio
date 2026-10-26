@@ -45,6 +45,11 @@
     background: transparent;
 }
 
+/* The same text-only hover on items with a submenu (link + chevron pill). */
+.desiderio-header__nav {
+    --d-nav-hover-bg: transparent;
+}
+
 .desiderio-header__nav-link--active,
 .desiderio-header__nav-link--active:hover {
     color: var(--accent-foreground);

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Webconsulting\Desiderio\Data;
 
+use TYPO3\CMS\Core\Site\Entity\Site;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseAudiencePages;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseBlocks;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseFeaturePages;
@@ -14,6 +15,7 @@ use Webconsulting\Desiderio\Data\Showcase\ShowcasePricing;
 use Webconsulting\Desiderio\Data\Showcase\ShowcasePricingPages;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseStrategyPages;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseSuccessStories;
+use Webconsulting\Desiderio\Utility\SiteSettings;
 
 /**
  * Marketing showcase seeded by desiderio:styleguide:seed in addition to the
@@ -629,5 +631,58 @@ final class StyleguideShowcasePages
                 ]),
             ],
         ];
+    }
+
+    /**
+     * The homepage content for one site: homeContent(), plus the note about
+     * the mega menu directly below the product film when the site shows the
+     * mega menu on this page (see showsMegaMenuNote()).
+     *
+     * @return array<int, ShowcaseBlock>
+     */
+    public static function homeContentFor(bool $withMegaMenuNote): array
+    {
+        $content = self::homeContent();
+        if (!$withMegaMenuNote) {
+            return $content;
+        }
+        foreach ($content as $index => $block) {
+            if ($block['ctype'] === 'desiderio_featurevideo') {
+                array_splice($content, $index + 1, 0, [self::megaMenuNote()]);
+
+                return $content;
+            }
+        }
+        $content[] = self::megaMenuNote();
+
+        return $content;
+    }
+
+    /**
+     * True when the page seeded as the homepage is the site's root page and
+     * the site shows the mega menu there (desiderio.navigation.megaMenu =
+     * home). Sites without the mega menu never get the note.
+     */
+    public static function showsMegaMenuNote(Site $site, int $homePageUid): bool
+    {
+        return $site->getRootPageId() === $homePageUid
+            && SiteSettings::string($site, 'desiderio.navigation.megaMenu', 'off') === 'home';
+    }
+
+    /**
+     * A quiet note below the product film: the home page's mega menu and
+     * where the standard menu takes over. Inline Alert Notice, default
+     * variant, info icon, no heading.
+     *
+     * @return ShowcaseBlock
+     */
+    public static function megaMenuNote(): array
+    {
+        return ShowcaseBlocks::block('desiderio_alert', [
+            'variant' => 'default',
+            'icon' => 'info',
+            'description' => 'This page uses a mega menu with a short description for every page. It appears on the home page only; every other page uses the standard menu.',
+            'show_close_button' => 0,
+        ]);
     }
 }

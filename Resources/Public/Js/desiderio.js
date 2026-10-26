@@ -367,7 +367,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Let the submenu handler dismiss the innermost disclosure first. Its
       // trigger must stay visible when focus returns to it.
       const target = menuTarget(btn);
-      if (target?.contains(e.target) && target.querySelector('[data-d-nav-sub].is-open')) return;
+      if (target?.contains(e.target) && target.querySelector('[data-d-nav-sub].is-open, [data-d-mega-item].is-open')) return;
       setMenu(btn, false);
       btn.focus();
     });
@@ -387,59 +387,214 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ------------------------------------------------------------------ */
-  /*  6b. Primary nav submenu disclosure                                 */
+  /*  6b. Primary nav submenu disclosure (three levels)                  */
   /* ------------------------------------------------------------------ */
-  // Submenus open via their chevron button (APG disclosure navigation);
-  // mouse users on the horizontal layout also get hover-open. Escape and
-  // outside clicks dismiss (WCAG 1.4.13), focusout keeps only the submenu
-  // the keyboard is actually in open.
+  // Every page with subpages has a chevron button (APG disclosure
+  // navigation): on level 1 it opens the dropdown, on level 2 a flyout
+  // beside the dropdown (shadcn DropdownMenuSub). Mouse users on the
+  // horizontal layout also get hover-open with hover intent, and a safe
+  // pointer path into a flyout. Escape closes the innermost open level and
+  // hands focus back to its button; outside clicks close everything (WCAG
+  // 1.4.13); focusout keeps only the branch the keyboard is in. In the
+  // burger panel and in the "More" panel every level expands inline and
+  // follows clicks only.
   const navHoverMedia = window.matchMedia('(hover: hover) and (min-width: 1025px)');
+  const navWideMedia = window.matchMedia('(min-width: 1025px)');
+  const NAV_OPEN_DELAY = 60;
+  const NAV_CLOSE_DELAY = 140;
+  // How long the pointer may travel from a row towards its flyout across
+  // the neighbouring rows (Radix uses the same 300 ms grace).
+  const FLYOUT_GRACE = 300;
+  const VIEWPORT_EDGE = 8;
+
+  // Ray casting: is the point inside the polygon?
+  const insidePolygon = (x, y, polygon) => {
+    let inside = false;
+    for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+      const [xi, yi] = polygon[i];
+      const [xj, yj] = polygon[j];
+      if ((yi > y) !== (yj > y) && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) inside = !inside;
+    }
+    return inside;
+  };
 
   document.querySelectorAll('[data-d-primary-nav]').forEach(nav => {
     const items = [...nav.querySelectorAll('[data-d-nav-sub]')];
     if (items.length === 0) return;
     nav.dataset.dNavReady = 'true';
 
+    // The first match is the item's own: its trigger and its panel come
+    // before anything nested in the panel.
+    const toggleOf = item => item.querySelector('[data-d-subnav-toggle]');
+    const panelOf = item => item.querySelector('.desiderio-header__subnav');
+    const inMore = item => item.closest('[data-d-nav-more-list]') !== null;
+    const isFlyout = item => item.dataset.dNavLevel === '2' && navWideMedia.matches && !inMore(item);
+    const hoverable = item => navHoverMedia.matches && !inMore(item);
+
+    const clearPlacement = panel => {
+      if (!panel) return;
+      ['left', 'top', 'max-height'].forEach(property => panel.style.removeProperty(property));
+      delete panel.dataset.side;
+    };
+
+    // A flyout is position: fixed, so the dropdown's scrolling list cannot
+    // cut it off. Its containing block is the viewport, or the header while
+    // the glass header's backdrop-filter makes it one; measuring the box at
+    // 0/0 yields that origin either way. Beside the dropdown on the right,
+    // flipped to the left when the viewport ends first, aligned with its
+    // row, and never taller than the viewport (the list inside scrolls).
+    const placeFlyout = item => {
+      const panel = panelOf(item);
+      const dropdown = item.parentElement?.closest('.desiderio-header__subnav');
+      if (!panel || !dropdown) return;
+      const row = item.querySelector('.desiderio-header__subnav-trigger') || item;
+
+      panel.style.left = '0px';
+      panel.style.top = '0px';
+      panel.style.maxHeight = `${window.innerHeight - VIEWPORT_EDGE * 2}px`;
+      const origin = panel.getBoundingClientRect();
+      const rowRect = row.getBoundingClientRect();
+      const dropRect = dropdown.getBoundingClientRect();
+      const gap = 4;
+
+      let side = 'right';
+      let x = dropRect.right + gap;
+      if (x + origin.width > window.innerWidth - VIEWPORT_EDGE) {
+        if (dropRect.left - gap - origin.width >= VIEWPORT_EDGE) {
+          side = 'left';
+          x = dropRect.left - gap - origin.width;
+        } else {
+          x = Math.max(VIEWPORT_EDGE, window.innerWidth - VIEWPORT_EDGE - origin.width);
+        }
+      }
+
+      const style = window.getComputedStyle(panel);
+      let y = rowRect.top - parseFloat(style.paddingTop) - parseFloat(style.borderTopWidth);
+      y = Math.min(y, window.innerHeight - VIEWPORT_EDGE - origin.height);
+      y = Math.max(VIEWPORT_EDGE, y);
+
+      panel.style.left = `${Math.round(x - origin.left)}px`;
+      panel.style.top = `${Math.round(y - origin.top)}px`;
+      panel.dataset.side = side;
+    };
+
     const setOpen = (item, open) => {
       item.classList.toggle('is-open', open);
-      item.querySelector('[data-d-subnav-toggle]')?.setAttribute('aria-expanded', String(open));
+      toggleOf(item)?.setAttribute('aria-expanded', String(open));
+      if (open) {
+        if (isFlyout(item)) placeFlyout(item);
+        return;
+      }
+      clearPlacement(item.dataset.dNavLevel === '2' ? panelOf(item) : null);
+      // A level that closes takes its open levels with it.
+      items.forEach(other => {
+        if (other !== item && item.contains(other) && other.classList.contains('is-open')) setOpen(other, false);
+      });
     };
-    // Items can nest (Priority+ moves submenu items into the "More" panel),
-    // so keeping one branch open means sparing the exception's ancestors and
-    // descendants, not just the exception itself.
+
+    // Items nest (level 2 in level 1, Priority+ moves whole branches into
+    // "More"), so keeping one branch open spares the exception's ancestors
+    // and descendants, not just the exception itself.
     const closeAll = except => items.forEach(item => {
       if (item === except) return;
       if (except && (item.contains(except) || except.contains(item))) return;
-      setOpen(item, false);
+      if (item.classList.contains('is-open')) setOpen(item, false);
     });
 
+    const timers = new Map();
+    const clearTimer = item => {
+      window.clearTimeout(timers.get(item));
+      timers.delete(item);
+    };
+    const later = (item, callback, delay) => {
+      clearTimer(item);
+      timers.set(item, window.setTimeout(() => {
+        timers.delete(item);
+        callback();
+      }, delay));
+    };
+
+    // Safe pointer path: leaving a row with an open flyout spans a polygon
+    // from the pointer to the flyout's near and far edges. While the pointer
+    // moves inside it (for up to FLYOUT_GRACE), crossing neighbouring rows
+    // neither closes the flyout nor opens theirs.
+    let grace = null;
+    let pointer = { x: -1, y: -1 };
+    const endGrace = () => {
+      if (!grace) return;
+      window.clearTimeout(grace.timer);
+      grace = null;
+    };
+    const settle = () => {
+      if (!grace) return;
+      const { owner } = grace;
+      endGrace();
+      const under = document.elementFromPoint(pointer.x, pointer.y);
+      if (under && owner.contains(under)) return;
+      setOpen(owner, false);
+      const target = under?.closest('[data-d-nav-sub]');
+      if (target && nav.contains(target) && hoverable(target) && !target.classList.contains('is-open')) {
+        later(target, () => {
+          closeAll(target);
+          setOpen(target, true);
+        }, NAV_OPEN_DELAY);
+      }
+    };
+
+    document.addEventListener('pointermove', event => {
+      pointer = { x: event.clientX, y: event.clientY };
+      if (grace && !insidePolygon(pointer.x, pointer.y, grace.polygon)) settle();
+    }, { passive: true });
+
     items.forEach(item => {
-      const toggle = item.querySelector('[data-d-subnav-toggle]');
+      const toggle = toggleOf(item);
       if (!toggle) return;
 
       toggle.addEventListener('click', () => {
         const open = !item.classList.contains('is-open');
+        endGrace();
+        clearTimer(item);
         closeAll(item);
         setOpen(item, open);
       });
 
-      // Hover-open stays off for items nested inside the "More" panel —
-      // there the submenu expands inline and should only follow clicks.
-      const nested = () => item.parentElement?.closest('[data-d-nav-sub]') !== null;
-
-      let hoverTimer = null;
       item.addEventListener('pointerenter', event => {
-        if (event.pointerType !== 'mouse' || !navHoverMedia.matches || nested()) return;
-        window.clearTimeout(hoverTimer);
-        hoverTimer = window.setTimeout(() => {
+        if (event.pointerType !== 'mouse' || !hoverable(item)) return;
+        clearTimer(item);
+        if (grace) {
+          // Back on the row (or in its flyout): the path held.
+          if (grace.owner === item) endGrace();
+          // A neighbour crossed on the way: settle() decides.
+          return;
+        }
+        if (item.classList.contains('is-open')) return;
+        later(item, () => {
           closeAll(item);
           setOpen(item, true);
-        }, 60);
+        }, NAV_OPEN_DELAY);
       });
+
       item.addEventListener('pointerleave', event => {
-        if (event.pointerType !== 'mouse' || !navHoverMedia.matches || nested()) return;
-        window.clearTimeout(hoverTimer);
-        hoverTimer = window.setTimeout(() => setOpen(item, false), 140);
+        if (event.pointerType !== 'mouse' || !hoverable(item)) return;
+        clearTimer(item);
+        if (!item.classList.contains('is-open')) return;
+        const panel = panelOf(item);
+        const rect = isFlyout(item) ? panel?.getBoundingClientRect() : null;
+        if (rect && rect.width > 0) {
+          const towardsRight = panel.dataset.side !== 'left';
+          const near = towardsRight ? rect.left : rect.right;
+          const far = towardsRight ? rect.right : rect.left;
+          const x = event.clientX + (towardsRight ? -5 : 5);
+          endGrace();
+          pointer = { x: event.clientX, y: event.clientY };
+          grace = {
+            owner: item,
+            polygon: [[x, event.clientY], [near, rect.top], [far, rect.top], [far, rect.bottom], [near, rect.bottom]],
+            timer: window.setTimeout(settle, FLYOUT_GRACE),
+          };
+          return;
+        }
+        later(item, () => setOpen(item, false), NAV_CLOSE_DELAY);
       });
 
       item.addEventListener('focusout', () => {
@@ -450,19 +605,43 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.addEventListener('click', event => {
-      if (!nav.contains(event.target)) closeAll();
+      if (nav.contains(event.target)) return;
+      endGrace();
+      closeAll();
     });
 
     document.addEventListener('keydown', event => {
       if (event.key !== 'Escape') return;
       const openItems = items.filter(item => item.classList.contains('is-open'));
       if (openItems.length === 0) return;
-      // Innermost open item holding focus first (items are in document
-      // order, so for nested branches the deepest match comes last).
-      const focused = openItems.filter(item => item.contains(document.activeElement)).pop();
-      const open = focused || openItems[0];
-      setOpen(open, false);
-      if (focused) open.querySelector('[data-d-subnav-toggle]')?.focus();
+      // The innermost level: an open item without an open item inside it.
+      const innermost = openItems.filter(item => !openItems.some(other => other !== item && item.contains(other)));
+      const target = innermost.find(item => item.contains(document.activeElement)) || innermost[innermost.length - 1];
+      const hadFocus = target.contains(document.activeElement);
+      endGrace();
+      setOpen(target, false);
+      if (hadFocus) toggleOf(target)?.focus();
+    });
+
+    // Flyouts follow their row when the page or the dropdown list scrolls
+    // and when the window changes size; leaving the wide layout closes all.
+    let placeFrame = 0;
+    const replace = () => {
+      window.cancelAnimationFrame(placeFrame);
+      placeFrame = window.requestAnimationFrame(() => {
+        items.forEach(item => {
+          if (item.dataset.dNavLevel !== '2') return;
+          if (item.classList.contains('is-open') && isFlyout(item)) placeFlyout(item);
+          else clearPlacement(panelOf(item));
+        });
+      });
+    };
+    window.addEventListener('resize', replace, { passive: true });
+    window.addEventListener('scroll', replace, { passive: true, capture: true });
+    navWideMedia.addEventListener?.('change', () => {
+      endGrace();
+      closeAll();
+      replace();
     });
   });
 
@@ -551,6 +730,110 @@ document.addEventListener('DOMContentLoaded', () => {
     new ResizeObserver(onResize).observe(nav);
     navDesktopMedia.addEventListener?.('change', () => { measure(); update(); });
     document.fonts?.ready?.then(() => { measure(); update(); });
+  });
+
+  /* ------------------------------------------------------------------ */
+  /*  6d. Mega menu (home page only)                                     */
+  /* ------------------------------------------------------------------ */
+  // d:organism.megaMenu, in the header's main navigation on the site's root
+  // page: shadcn NavigationMenu as disclosures. Each trigger is a button
+  // with aria-expanded/aria-controls, the panel holds plain links. Click,
+  // Enter and Space everywhere; on the wide layout mouse users also get
+  // hover-open with hover intent. A hovered panel stays while the pointer is
+  // on it, Escape and outside clicks dismiss it (WCAG 1.4.13). In the burger
+  // panel (up to 1024px) the panels expand inline, clicks only.
+  document.querySelectorAll('[data-d-mega-menu]').forEach(mega => {
+    const items = [...mega.querySelectorAll('[data-d-mega-item]')];
+    if (items.length === 0) return;
+    mega.dataset.dMegaReady = 'true';
+
+    const triggerOf = item => item.querySelector('[data-d-mega-trigger]');
+    const openItem = () => items.find(item => item.classList.contains('is-open'));
+
+    // A long panel scrolls inside the viewport instead of running off it,
+    // and the hover bridge spans exactly the gap below the trigger.
+    const fit = item => {
+      const panel = item.querySelector('[data-d-mega-panel]');
+      const body = panel?.querySelector('.desiderio-mega__panel-body');
+      if (!panel || !body) return;
+      if (!navWideMedia.matches) {
+        body.style.removeProperty('--d-mega-max-height');
+        panel.style.removeProperty('--d-mega-bridge');
+        return;
+      }
+      const top = body.getBoundingClientRect().top;
+      body.style.setProperty('--d-mega-max-height', `${Math.max(160, Math.floor(window.innerHeight - top - 16))}px`);
+      const gap = panel.getBoundingClientRect().top - (triggerOf(item)?.getBoundingClientRect().bottom ?? 0);
+      panel.style.setProperty('--d-mega-bridge', `${Math.max(0, Math.ceil(gap))}px`);
+    };
+
+    const setOpen = (item, open) => {
+      item.classList.toggle('is-open', open);
+      triggerOf(item)?.setAttribute('aria-expanded', String(open));
+      if (open) fit(item);
+    };
+    const closeAll = except => items.forEach(item => {
+      if (item !== except && item.classList.contains('is-open')) setOpen(item, false);
+    });
+
+    // One timer for the whole bar: entering a trigger cancels the pending
+    // close of the panel the pointer came from. Opening waits a moment, and
+    // switching a little longer, so crossing a neighbouring trigger on the
+    // way down into the open panel does not swap it.
+    let timer = 0;
+    items.forEach(item => {
+      triggerOf(item)?.addEventListener('click', () => {
+        window.clearTimeout(timer);
+        const open = !item.classList.contains('is-open');
+        closeAll(item);
+        setOpen(item, open);
+      });
+
+      item.addEventListener('pointerenter', event => {
+        if (event.pointerType !== 'mouse' || !navHoverMedia.matches) return;
+        window.clearTimeout(timer);
+        if (item.classList.contains('is-open')) return;
+        timer = window.setTimeout(() => {
+          closeAll(item);
+          setOpen(item, true);
+        }, openItem() ? 120 : 80);
+      });
+
+      item.addEventListener('pointerleave', event => {
+        if (event.pointerType !== 'mouse' || !navHoverMedia.matches) return;
+        window.clearTimeout(timer);
+        if (!item.classList.contains('is-open')) return;
+        timer = window.setTimeout(() => setOpen(item, false), 160);
+      });
+
+      item.addEventListener('focusout', () => {
+        window.requestAnimationFrame(() => {
+          if (!item.contains(document.activeElement)) setOpen(item, false);
+        });
+      });
+    });
+
+    document.addEventListener('click', event => {
+      if (!mega.contains(event.target)) closeAll();
+    });
+
+    // Escape closes the open panel first; with none open the burger handler
+    // (section 6) closes the burger panel.
+    document.addEventListener('keydown', event => {
+      if (event.key !== 'Escape') return;
+      const open = openItem();
+      if (!open) return;
+      const hadFocus = open.contains(document.activeElement);
+      window.clearTimeout(timer);
+      setOpen(open, false);
+      if (hadFocus) triggerOf(open)?.focus();
+    });
+
+    window.addEventListener('resize', () => {
+      const open = openItem();
+      if (open) fit(open);
+    }, { passive: true });
+    navWideMedia.addEventListener?.('change', () => closeAll());
   });
 
   /* ------------------------------------------------------------------ */

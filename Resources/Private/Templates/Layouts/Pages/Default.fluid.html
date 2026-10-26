@@ -33,7 +33,16 @@
     <f:translate extensionName="desiderio" key="a11y.skipToContent">Skip to main content</f:translate>
 </a>
 
-<d:organism.siteHeader site="{site}" breadcrumb="{breadcrumb}" mainMenu="{mainMenu}" languageNavigation="{languageNavigation}"/>
+<f:comment>
+    desiderio.navigation.megaMenu = home: on the site's root page the header
+    shows the mega menu (d:organism.megaMenu) in place of the main menu.
+    Every other page renders none of its markup.
+</f:comment>
+<f:variable name="megaMenu" value="{false}"/>
+<f:if condition="{site.configuration.settings.desiderio.navigation.megaMenu} == 'home' && {page.id} == {site.rootPageId}">
+    <f:variable name="megaMenu" value="{true}"/>
+</f:if>
+<d:organism.siteHeader site="{site}" breadcrumb="{breadcrumb}" mainMenu="{mainMenu}" languageNavigation="{languageNavigation}" megaMenu="{megaMenu}"/>
 
 <main id="main-content" tabindex="-1" class="desiderio-main {f:if(condition: '{site.configuration.settings.desiderio.header.fixedPosition}', then: 'desiderio-main--fixed')}">
     <f:comment>

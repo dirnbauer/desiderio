@@ -34,6 +34,17 @@ final class SiteSettings
         return is_numeric($configured) ? (int)$configured : $default;
     }
 
+    /**
+     * A string setting (an enum value, a slug), or the default when it is
+     * absent or not a scalar.
+     */
+    public static function string(Site $site, string $settingIdentifier, string $default = ''): string
+    {
+        $configured = $site->getSettings()->get($settingIdentifier, $default);
+
+        return is_scalar($configured) ? trim((string)$configured) : $default;
+    }
+
     private static function isTruthy(mixed $value): bool
     {
         return match (true) {

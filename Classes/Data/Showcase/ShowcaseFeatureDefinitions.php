@@ -184,6 +184,7 @@ final class ShowcaseFeatureDefinitions
                 ],
             ],
             'install' => ['header' => 'Install the Desiderio design system', 'code' => implode("\n", ['# Desiderio and the Visual Editor enhancements it requires are not on Packagist', 'composer config repositories.desiderio vcs https://github.com/dirnbauer/desiderio.git', 'composer config repositories.visual-editor-enhancements vcs https://github.com/dirnbauer/typo3-visual-editor-enhancements.git', 'composer require webconsulting/desiderio', 'vendor/bin/typo3 extension:setup', 'vendor/bin/typo3 cache:flush', '', '# Optional: a demo page tree with every element below page 1', 'vendor/bin/typo3 desiderio:styleguide:seed --parent=1', '', '# Optional: Innesto, then graft a registry component as a new element', 'composer config repositories.innesto vcs https://github.com/dirnbauer/innesto.git', 'composer require webconsulting/innesto:^2.3', 'vendor/bin/typo3 extension:setup', 'vendor/bin/typo3 innesto:add magicui/marquee --key partner-marquee'])],
+            'credits' => ['names' => ['Netresearch DTT GmbH'], 'project' => 'nr-llm', 'link' => 'https://github.com/netresearch/t3x-nr-llm', 'text' => '<p>The agentic features in the Desiderio styleguide run on <a href="https://github.com/netresearch/t3x-nr-llm">nr-llm</a>, the shared AI foundation for TYPO3 by Netresearch DTT GmbH. Thank you very much for building and sharing it.</p>'],
             'cta' => ['header' => 'Start your next TYPO3 site on the Desiderio design system', 'description' => 'Install Desiderio, enable its site sets and seed the demo page tree. Then pick a preset and start building pages.', 'text' => 'Get Desiderio', 'link' => 'https://github.com/dirnbauer/desiderio'],
         ];
     }
@@ -710,6 +711,7 @@ final class ShowcaseFeatureDefinitions
                 ],
             ],
             'install' => ['header' => 'Install Image Workbench', 'code' => implode("\n", ['# Not on Packagist: add the Git repository first', 'composer config repositories.image-workbench vcs https://github.com/dirnbauer/typo3-image-workbench.git', 'composer require webconsulting/image-workbench', 'vendor/bin/typo3 extension:setup'])],
+            'credits' => ['names' => ['Netresearch DTT GmbH'], 'project' => 'nr-llm', 'link' => 'https://github.com/netresearch/t3x-nr-llm', 'text' => '<p>Image generation in Image Workbench runs through <a href="https://github.com/netresearch/t3x-nr-llm">nr-llm</a> by Netresearch DTT GmbH, which keeps models, budgets and costs in one place. Thank you very much for building and maintaining it.</p>'],
             'cta' => ['header' => 'Let editors fix images where they find them', 'description' => 'Install Image Workbench and open the file list: Edit image is ready for JPEG, PNG and WebP files. Add an nr-llm image configuration to switch on generation.', 'text' => 'Get Image Workbench', 'link' => 'https://github.com/dirnbauer/typo3-image-workbench'],
         ];
     }
@@ -934,6 +936,7 @@ final class ShowcaseFeatureDefinitions
                 ],
             ],
             'install' => ['header' => 'Install Jev', 'code' => implode("\n", ['composer config repositories.webcon-jev vcs https://github.com/dirnbauer/typo3-webcon-jev.git', 'composer require webconsulting/webcon-jev', 'vendor/bin/typo3 extension:setup', '# Put your TypeSafe key into TYPESAFE_API_KEY, then move it into nr-vault:', 'vendor/bin/typo3 webcon-jev:token:import', 'vendor/bin/typo3 webcon-jev:ping'])],
+            'credits' => ['names' => ['Netresearch DTT GmbH'], 'project' => 'nr-vault', 'link' => 'https://github.com/netresearch/t3x-nr-vault', 'text' => '<p>Jev keeps its TypeSafe API token in <a href="https://github.com/netresearch/t3x-nr-vault">nr-vault</a> by Netresearch DTT GmbH, so the secret never sits in a configuration file. Thank you very much for building and maintaining it.</p>'],
             'cta' => ['header' => 'Let your forms read before they route', 'description' => 'Install Jev, store a TypeSafe key and try a decision in the playground before any form uses it.', 'text' => 'Try the demo', 'link' => '{{page:desiderio-powermail-jev/support-triage}}'],
         ];
     }
@@ -1147,6 +1150,7 @@ final class ShowcaseFeatureDefinitions
                 ],
             ],
             'install' => ['header' => 'Install AI Assistant', 'code' => implode("\n", ['composer config repositories.typo3-mcp-server vcs https://github.com/dirnbauer/typo3-mcp-server.git', 'composer config repositories.typo3-abilities vcs https://github.com/dirnbauer/typo3-abilities.git', 'composer config repositories.typo3-ai-assistant vcs https://github.com/dirnbauer/typo3-ai-assistant.git', 'composer require webconsulting/typo3-ai-assistant:^2.0', 'vendor/bin/typo3 extension:setup', '# Needs one working nr-llm configuration (default identifier: backend-assistant).', '# Then open Administration > AI Assistant > Chat.'])],
+            'credits' => ['names' => ['Netresearch DTT GmbH'], 'project' => 'nr-mcp-agent', 'link' => 'https://github.com/netresearch/t3x-nr-mcp-agent', 'text' => '<p>AI Assistant grew out of <a href="https://github.com/netresearch/t3x-nr-mcp-agent">nr-mcp-agent</a>, the backend AI chat that Netresearch DTT GmbH published as open source. Its conversations, toolbar chat and document readers started there, and every answer still runs on their <a href="https://github.com/netresearch/t3x-nr-llm">nr-llm</a>. Thank you very much for this groundwork and for sharing it.</p>'],
             'cta' => ['header' => 'Put an assistant into your TYPO3 backend', 'description' => 'Install it with Composer, choose an nr-llm configuration and start asking. Every change still waits for your approval.', 'text' => 'Get the extension', 'link' => 'https://github.com/dirnbauer/typo3-ai-assistant'],
         ];
     }
@@ -1293,6 +1297,7 @@ final class ShowcaseFeatureDefinitions
                 ],
             ],
             'install' => ['header' => 'Install Skillflow', 'code' => implode("\n", ['composer config repositories.skillflow vcs https://github.com/dirnbauer/skillflow.git', 'composer require webconsulting/skillflow:^1.9', 'vendor/bin/typo3 extension:setup', 'vendor/bin/typo3 cache:flush', '# Catalogue: add the site set webconsulting/skillflow-solr to your site'])],
+            'credits' => ['names' => ['Netresearch DTT GmbH'], 'project' => 'nr-llm', 'link' => 'https://github.com/netresearch/t3x-nr-llm', 'text' => '<p>Skillflow builds on <a href="https://github.com/netresearch/t3x-nr-llm">nr-llm</a> by Netresearch DTT GmbH: the skills it runs, the providers and the models all live there. Thank you very much for this solid foundation.</p>'],
             'cta' => ['header' => 'Give every draft the same review', 'description' => 'Install Skillflow, connect a skill repository in nr_llm and assign your first skill to a workspace stage. It runs on TYPO3 v14.3 with PHP 8.4.', 'text' => 'Get Skillflow', 'link' => 'https://github.com/dirnbauer/skillflow'],
         ];
     }
@@ -1356,6 +1361,7 @@ final class ShowcaseFeatureDefinitions
                 ],
             ],
             'install' => ['header' => 'Install Skillspector', 'code' => implode("\n", ['composer config repositories.skillspector vcs https://github.com/dirnbauer/typo3-skillspector.git', 'composer require webconsulting/skillspector:^1.2', 'vendor/bin/typo3 extension:setup --extension=skillspector', '# Optional: the NVIDIA scanner', 'uv tool install git+https://github.com/NVIDIA/skillspector.git'])],
+            'credits' => ['names' => ['Netresearch DTT GmbH'], 'project' => 'nr-llm', 'link' => 'https://github.com/netresearch/t3x-nr-llm', 'text' => '<p>Skillspector checks the agent skills that <a href="https://github.com/netresearch/t3x-nr-llm">nr-llm</a> by Netresearch DTT GmbH manages, and reviews them with the models configured there. Thank you very much for building and maintaining it.</p>'],
             'cta' => ['header' => 'Check your skills before you trust them', 'description' => 'Install Skillspector next to nr_llm and click Check all skills. Nothing is hidden until an administrator decides.', 'text' => 'Get Skillspector', 'link' => 'https://github.com/dirnbauer/typo3-skillspector'],
         ];
     }
@@ -1497,6 +1503,7 @@ final class ShowcaseFeatureDefinitions
                 ],
             ],
             'install' => ['header' => 'Install Abilities Registry', 'code' => implode("\n", ['composer config repositories.typo3-abilities vcs https://github.com/dirnbauer/typo3-abilities.git', 'composer require webconsulting/typo3-abilities:^1.3', 'vendor/bin/typo3 extension:setup --extension=abilities', 'vendor/bin/typo3 abilities:list'])],
+            'credits' => ['names' => ['Netresearch DTT GmbH'], 'project' => 'nr-llm', 'link' => 'https://github.com/netresearch/t3x-nr-llm', 'text' => '<p>The ability catalogue also lists the agent skills of <a href="https://github.com/netresearch/t3x-nr-llm">nr-llm</a> by Netresearch DTT GmbH. Thank you very much for this shared AI foundation for TYPO3.</p>'],
             'cta' => ['header' => 'Give agents rules before you give them access', 'description' => 'Register an ability once, and MCP, the CLI, REST and the backend follow the same policy. Every attempt lands in the trace log.', 'text' => 'Get the extension', 'link' => 'https://github.com/dirnbauer/typo3-abilities'],
         ];
     }
@@ -1643,6 +1650,7 @@ final class ShowcaseFeatureDefinitions
                 ],
             ],
             'install' => ['header' => 'Install Agent Nexus', 'code' => implode("\n", ['composer config repositories.agent-nexus vcs https://github.com/dirnbauer/typo3-agent-nexus.git', 'composer require webconsulting/agent-nexus:^4.0', 'vendor/bin/typo3 extension:setup', 'vendor/bin/typo3 cache:flush', '# Optional: build the demo site', 'vendor/bin/typo3 agentnexus:seed-site --base=https://example.com/'])],
+            'credits' => ['names' => ['Netresearch DTT GmbH'], 'project' => 'nr-llm', 'link' => 'https://github.com/netresearch/t3x-nr-llm', 'text' => '<p>When <a href="https://github.com/netresearch/t3x-nr-llm">nr-llm</a> by Netresearch DTT GmbH is installed, the Agent Nexus widgets answer with a real language model. Thank you very much for this shared AI foundation for TYPO3.</p>'],
             'cta' => ['header' => 'Show your next client a working agent', 'description' => 'Install Agent Nexus, run the seed command and open the five demos. Every checkout and payment stays simulated.', 'text' => 'Get Agent Nexus', 'link' => 'https://github.com/dirnbauer/typo3-agent-nexus'],
         ];
     }

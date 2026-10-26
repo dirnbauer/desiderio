@@ -15,7 +15,7 @@ namespace Webconsulting\Desiderio\Data\Showcase;
  * @phpstan-type ShowcaseMedia array{file: string, title: string, alternative: string, description: string, source: string, autoplay?: bool}
  * @phpstan-type ShowcaseBlogMeta array{publishDate: string, categories: list<string>, tags: list<string>}
  * @phpstan-type ShowcasePage array{title: string, navTitle: string, slug: string, abstract: string, description: string, parentSlug: string|null, seoTitle?: string, subtitle?: string, pageTsConfig?: string, backendLayout?: string, blogList?: bool, blog?: ShowcaseBlogMeta, hideInNav?: bool, formerSlugs?: list<string>, content: array<int, ShowcaseBlock>}
- * @phpstan-type ShowcaseCredits array{names: non-empty-list<string>, project: string, link: string}
+ * @phpstan-type ShowcaseCredits array{names: non-empty-list<string>, project: string, link: string, text?: string}
  */
 final class ShowcaseBlocks
 {
@@ -85,6 +85,8 @@ final class ShowcaseBlocks
      * and links the project in its text. Pages put it below their main
      * content, never first. The names come from the extension's own
      * composer.json or ext_emconf.php; webconsulting never thanks itself.
+     * An extension of ours that grew out of or builds on someone else's
+     * package says how in its own text, which links that package.
      *
      * @param ShowcaseCredits $credits
      * @return ShowcaseBlock
@@ -93,7 +95,7 @@ final class ShowcaseBlocks
     {
         return self::block('desiderio_contenthighlight', [
             'header' => 'Thank you, ' . self::listing($credits['names']),
-            'content' => sprintf(
+            'content' => $credits['text'] ?? sprintf(
                 '<p><a href="%s">%s</a> is the work of %s. Thank you so much for building and maintaining it.</p>',
                 htmlspecialchars($credits['link']),
                 htmlspecialchars($credits['project']),

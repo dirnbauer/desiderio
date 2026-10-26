@@ -109,7 +109,10 @@ async function finish(mp4, poster) {
         const speaking = lines.map((line) => `between(t,${(line.at - 100) / 1000},${(line.at + line.duration + 150) / 1000})`).join('+');
         const musicVolume = `${(musicGain * BREAK_LIFT).toFixed(5)}-${(musicGain * (BREAK_LIFT - 1)).toFixed(5)}*(${speaking})`;
         const inputs = ['-i', join(AUDIO, 'music.mp3'), ...lines.flatMap((line) => ['-i', join(AUDIO, line.file)])];
-        const voices = lines.map((line, i) => `[${i + 1}:a]aformat=sample_rates=44100:channel_layouts=stereo,adelay=${line.at}|${line.at}[v${i}]`);
+        // A take that ends on a stray fragment (narration.json `end`) is used
+        // up to the end of its speech, with a 30 ms fade.
+        const cut = (line) => (line.end ? `atrim=0:${line.end / 1000},afade=t=out:st=${(line.end - 30) / 1000}:d=0.03,` : '');
+        const voices = lines.map((line, i) => `[${i + 1}:a]aformat=sample_rates=44100:channel_layouts=stereo,${cut(line)}adelay=${line.at}|${line.at}[v${i}]`);
         const graph = [
             ...voices,
             `${lines.map((_, i) => `[v${i}]`).join('')}amix=inputs=${lines.length}:normalize=0[voice]`,

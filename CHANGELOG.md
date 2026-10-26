@@ -6,6 +6,10 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+- Remove the broken bits from the homepage film's narration. Six of its 14 voice takes ended on a stray fragment: given the next line as context, the voice started that line's first sound ("s", "f") after the sentence and the take stopped in the middle of it, so the film played a short hiss that broke off, half a second after "…from nothing.", "This is Desiderio.", "…before it ships." and three other lines (up to -13 dBFS, well above the music). `generate-film-audio.mjs` now finds such an ending (new `--trim` checks existing takes without the API) and writes where the speech ends into narration.json (`end`); `render-film.mjs` uses each take up to there, with a 30 ms fade. The soundtrack is otherwise sample-identical before AAC, the picture, captions and poster are unchanged (desiderio-film-ad4cf1bf.mp4).
+
 ## [4.26.0] — 2026-10-26
 
 ### Added

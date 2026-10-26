@@ -88,6 +88,12 @@ final class ShowcaseCreditsTest extends AbstractStyleguideSeedingTestCase
         self::assertStringNotContainsString("'", $credits['project'], 'Apostrophes are typographic.');
         self::assertStringStartsWith('https://', $credits['link']);
         self::assertStringNotContainsString('github.com/dirnbauer/', $credits['link'], 'The link goes to the upstream project, not to a fork of ours.');
+        if (isset($credits['text'])) {
+            self::assertStringContainsString('href="' . $credits['link'] . '"', $credits['text'], 'A thank-you in its own words still links the project.');
+            self::assertStringNotContainsString('github.com/dirnbauer/', $credits['text']);
+            self::assertStringNotContainsString("'", strip_tags($credits['text']), 'Apostrophes are typographic.');
+            self::assertStringContainsString('Thank you', $credits['text']);
+        }
     }
 
     public function testTheThankYouNamesEveryoneAndLinksTheProject(): void

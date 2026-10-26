@@ -116,9 +116,10 @@ expand inline. The menu reads ``levels = 3`` of
 With ``desiderio.navigation.megaMenu = home`` the site's root page shows a
 mega menu (``d:organism.megaMenu``, the shadcn/ui NavigationMenu recipe) in
 the header instead: one trigger per first-level page, each opening a panel
-with the page itself, its subpages with their abstract (``pages.abstract``)
-and their own subpages as compact links. The burger shows it as an accordion.
-Every other page keeps the main menu. ``desiderio:styleguide:seed`` adds a
+led by a card for the page itself with its abstract (``pages.abstract``),
+then its subpages and their own subpages as compact links. Triggers that do not fit one row
+move into a "More" panel, which lists those pages with their subpages. The
+burger shows it as an accordion. Every other page keeps the main menu. ``desiderio:styleguide:seed`` adds a
 short note about it below the product film of a home page with the mega
 menu, in the film's :guilabel:`Note below the video` field.
 

@@ -13,18 +13,18 @@
     per first-level page, each opening a content panel. The panel leads with
     a card for the first-level page itself: the recipe's feature link (muted
     gradient, brand mark, title and abstract), laid across the top of the
-    panel so it never stretches into an empty block beside tall lists. One
-    link per subpage follows:
-    title plus the page abstract as a muted, line-clamped description. A
-    subpage's own subpages follow its link as compact links. A first-level
-    page without subpages is a plain link in trigger style.
+    panel so it never stretches into an empty block beside tall lists. Only
+    that card carries an abstract; one title-only link per subpage follows,
+    so a panel with 20 subpages stays a few rows tall. A subpage's own
+    subpages follow its link as compact links. A first-level page without
+    subpages is a plain link in trigger style.
 
     d:organism.siteHeader renders it inside its main-navigation landmark, in
     place of the main menu, on the site's root page when
     desiderio.navigation.megaMenu is "home". Disclosure pattern (desiderio.js
     section 6d): each trigger is a button with aria-expanded and
     aria-controls; links stay links. Up to 1024px the burger opens it as a
-    stacked accordion, panels inline with their summaries.
+    stacked accordion, panels inline.
 
     The panels carry d-menu-surface--wide and d-menu-popover, so the menu
     colour and menu accent of the create page on ui.shadcn.com apply here as
@@ -81,9 +81,6 @@
                                             additionalAttributes="{f:if(condition: '{subitem.current}', then: '{aria-current: \'page\'}')}"
                                         >
                                             <span class="desiderio-mega__title">{subitem.title}</span>
-                                            <f:if condition="{subitem.data.abstract}">
-                                                <span class="desiderio-mega__description">{subitem.data.abstract}</span>
-                                            </f:if>
                                         </f:link.typolink>
                                         <f:if condition="{subitem.children}">
                                             <ul class="desiderio-mega__leaves" role="list" aria-label="{subitem.title}">
@@ -120,6 +117,58 @@
             </f:else>
         </f:if>
     </f:for>
+    <f:comment>
+        Priority+ overflow (desiderio.js section 6d), as in the main menu:
+        on the wide layout the first-level pages that do not fit one row
+        leave it, and this panel shows them instead, each with its subpages,
+        in the same order. It stays hidden while everything fits and in the
+        burger panel.
+    </f:comment>
+    <li class="desiderio-mega__item desiderio-mega__item--more" data-d-mega-item data-d-mega-more hidden>
+        <button
+            type="button"
+            class="desiderio-mega__trigger"
+            data-d-mega-trigger
+            aria-expanded="false"
+            aria-controls="desiderio-mega-panel-more"
+        >
+            <span><f:translate extensionName="desiderio" key="nav.more">More</f:translate></span>
+            <d:atom.icon name="chevron-down" size="xs" class="desiderio-mega__chevron"/>
+        </button>
+        <div id="desiderio-mega-panel-more" class="desiderio-mega__panel d-menu-surface--wide d-menu-popover" data-d-mega-panel>
+            <div class="desiderio-mega__panel-body">
+                <ul class="desiderio-mega__entries" role="list">
+                    <f:for each="{mainMenu}" as="item">
+                        <f:variable name="childCount" value="{item.children -> f:count()}"/>
+                        <li class="desiderio-mega__entry{f:if(condition: '{childCount} > 3', then: ' desiderio-mega__entry--wide')}{f:if(condition: '{ctaSlug} && {item.data.slug} == {ctaSlug}', then: ' desiderio-header__nav-item--cta')}" data-d-mega-more-entry hidden>
+                            <f:link.typolink
+                                parameter="{item.link}"
+                                class="desiderio-mega__link{f:if(condition: item.active, then: ' desiderio-mega__link--current')}"
+                                additionalAttributes="{f:if(condition: '{item.current}', then: '{aria-current: \'page\'}')}"
+                            >
+                                <span class="desiderio-mega__title">{item.title}</span>
+                            </f:link.typolink>
+                            <f:if condition="{item.children}">
+                                <ul class="desiderio-mega__leaves" role="list" aria-label="{item.title}">
+                                    <f:for each="{item.children}" as="subitem">
+                                        <li>
+                                            <f:link.typolink
+                                                parameter="{subitem.link}"
+                                                class="desiderio-mega__leaf{f:if(condition: subitem.active, then: ' desiderio-mega__link--current')}"
+                                                additionalAttributes="{f:if(condition: '{subitem.current}', then: '{aria-current: \'page\'}')}"
+                                            >
+                                                {subitem.title}
+                                            </f:link.typolink>
+                                        </li>
+                                    </f:for>
+                                </ul>
+                            </f:if>
+                        </li>
+                    </f:for>
+                </ul>
+            </div>
+        </div>
+    </li>
 </ul>
 
 </html>

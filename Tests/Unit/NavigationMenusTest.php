@@ -187,10 +187,18 @@ final class NavigationMenusTest extends TestCase
         self::assertStringContainsString('<ul class="desiderio-mega__list" role="list" data-d-mega-menu>', $mega);
         self::assertStringNotContainsString('<nav', $mega, 'One landmark: the header\'s main navigation.');
         // Disclosures: button, aria-expanded, aria-controls on the panel id.
-        self::assertSame(1, substr_count($mega, 'aria-expanded="false"'));
+        self::assertSame(2, substr_count($mega, 'aria-expanded="false"'));
         self::assertStringContainsString('aria-controls="desiderio-mega-panel-{megaIteration.cycle}"', $mega);
         self::assertStringContainsString('id="desiderio-mega-panel-{megaIteration.cycle}"', $mega);
-        self::assertStringContainsString('{subitem.data.abstract}', $mega);
+        // Priority+ overflow: a hidden "More" disclosure with one hidden entry per first-level page.
+        self::assertStringContainsString('data-d-mega-item data-d-mega-more hidden>', $mega);
+        self::assertStringContainsString('aria-controls="desiderio-mega-panel-more"', $mega);
+        self::assertStringContainsString('id="desiderio-mega-panel-more"', $mega);
+        self::assertSame(2, substr_count($mega, '<f:for each="{mainMenu}" as="item"'));
+        self::assertStringContainsString('data-d-mega-more-entry hidden>', $mega);
+        // Only the feature card of each panel carries an abstract.
+        self::assertSame(1, substr_count($mega, '.data.abstract}">'));
+        self::assertStringContainsString('<f:if condition="{item.data.abstract}">', $mega);
         self::assertStringContainsString('d-menu-surface--wide d-menu-popover', $mega);
         self::assertStringNotContainsString('nav.mega.note', $mega, 'The note lives in the home page content, not in the menu.');
     }

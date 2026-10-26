@@ -101,7 +101,7 @@ final class StyleguideShowcasePages
         return [
             '/innesto-demo' => [
                 'navTitle' => 'shadcn/ui elements with Innesto',
-                'abstract' => 'All 19 Innesto elements on one page: shadcn/ui registry components turned into TYPO3 content elements, one command each.',
+                'abstract' => 'Six Innesto elements, live: shadcn/ui registry components turned into TYPO3 content elements, one command each.',
             ],
         ];
     }

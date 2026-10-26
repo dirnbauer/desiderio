@@ -6,6 +6,21 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.27.0] — 2026-10-26
+
+### Added
+
+- Add four feature pages below /features/, in the shape of the other tool pages (hero, problem, screenshot tour, benefits, FAQ, install, thanks, call to action), each with live screenshots from the TYPO3 v14 lab:
+  - **Innesto**: the 19 grafted shadcn/ui, Magic UI and blocks.so elements, the content wizard, dark mode, and `innesto:add`.
+  - **News**: Desiderio's templates for EXT:news (list with page numbers, article, record form, dark mode). Thanks Georg Ringer.
+  - **Context Edit Records**: editing news, pages and addresses in the TYPO3 v14 side panel next to the Records list. Thanks Georg Ringer.
+  - **nr-vault**: the Secrets module, the security readiness check, and the hash-chained audit log, without any secret value. Thanks Netresearch DTT GmbH.
+- Add the capture spec for their 14 screenshots (`Build/Data/feature-screenshots.extension-pages.json`).
+
+### Changed
+
+- The website tools hub lists 17 tools: Innesto and News join the design systems, Context Edit Records joins editing and publishing, and nr-vault joins sign-in, payments and APIs.
+
 ## [4.26.1] — 2026-10-26
 
 ### Fixed

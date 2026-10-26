@@ -204,6 +204,30 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
         self::assertSame(StyleguideShowcasePages::adoptedMenuTexts()['/innesto-demo']['abstract'], $innesto['abstract']);
     }
 
+    /**
+     * A page another package owns (the lab's Download page) opens with the
+     * showcase's sales hero, so its title becomes screen-reader-only, in the
+     * default language and in its translations.
+     */
+    public function testAdoptedHeroPageKeepsItsTitleForScreenReadersOnly(): void
+    {
+        $downloadsUid = $this->insertPage(1, 'Downloads', '/downloads');
+        $connection = $this->getConnectionPool()->getConnectionForTable('pages');
+        $connection->insert('pages', ['pid' => 1, 'title' => 'Downloads', 'slug' => '/downloads', 'doktype' => 1, 'sys_language_uid' => 1, 'l10n_parent' => $downloadsUid]);
+        $tester = $this->createCommandTester();
+        self::assertSame(Command::SUCCESS, $tester->execute(['--parent' => '1', '--skip-powermail' => true, '--skip-news' => true]), $tester->getDisplay());
+
+        $flags = $connection->createQueryBuilder()
+            ->select('sys_language_uid', 'tx_desiderio_h1_sronly')
+            ->from('pages')
+            ->where('uid = ' . $downloadsUid . ' OR l10n_parent = ' . $downloadsUid)
+            ->orderBy('sys_language_uid')
+            ->executeQuery()
+            ->fetchAllKeyValue();
+
+        self::assertEquals([0 => 1, 1 => 1], $flags);
+    }
+
     public function testReseedingIsIdempotentForPagesAndLiveContent(): void
     {
         $groups = $this->seededContentTypeGroups(StyleguideContentGroups::getGroupsWithFixtures());

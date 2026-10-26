@@ -6,6 +6,12 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.26.2] — 2026-10-26
+
+### Fixed
+
+- Keep the page title of a page that opens with an adopted sales hero (the lab's Download page) for screen readers only, as intended: the check for the `tx_desiderio_h1_sronly` column looked at the values of a column map keyed by name, so it never matched and the page showed its title above the hero. The flag now also reaches the page's translations (the field is `l10n_mode` exclude and the direct update skipped them).
+
 ## [4.26.1] — 2026-10-26
 
 ### Fixed

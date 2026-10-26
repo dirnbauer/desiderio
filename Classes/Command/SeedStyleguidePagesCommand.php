@@ -725,8 +725,14 @@ final class SeedStyleguidePagesCommand extends Command
                 $contentColumns
             ));
             $createdContentElements++;
-            if (in_array('tx_desiderio_h1_sronly', $pageColumns, true)) {
-                $this->connectionPool->getConnectionForTable('pages')->update('pages', ['tx_desiderio_h1_sronly' => 1], ['uid' => $adoptedUid]);
+            // The hero now leads the page, so its title stays for screen
+            // readers only, in every language: the field is l10n_mode
+            // exclude, and a direct update does not reach the translations.
+            // $pageColumns is keyed by column name.
+            if (isset($pageColumns['tx_desiderio_h1_sronly'])) {
+                $pagesConnection = $this->connectionPool->getConnectionForTable('pages');
+                $pagesConnection->update('pages', ['tx_desiderio_h1_sronly' => 1], ['uid' => $adoptedUid]);
+                $pagesConnection->update('pages', ['tx_desiderio_h1_sronly' => 1], ['l10n_parent' => $adoptedUid]);
             }
         }
 

@@ -39,6 +39,16 @@ Core site settings
     *   - ``desiderio.shadcn.iconLibrary``
         - ``tabler``
         - Runtime icon library. Existing records keep semantic icon keys.
+    *   - ``desiderio.shadcn.menuColor``
+        - ``preset``
+        - Menu colour of the create page on ui.shadcn.com: ``default``,
+          ``inverted``, ``default-translucent`` or ``inverted-translucent``.
+          ``preset`` reads it from the active preset's create code; house
+          presets use ``default``. See :ref:`configuration-menus`.
+    *   - ``desiderio.shadcn.menuAccent``
+        - ``preset``
+        - Menu accent of the create page: ``subtle`` or ``bold``; ``preset``
+          as above.
     *   - ``desiderio.layout.density``
         - ``comfortable``
         - ``compact``, ``comfortable``, or ``spacious``.
@@ -73,6 +83,10 @@ Core site settings
     *   - ``desiderio.header.fixedPosition``
         - ``false``
         - Keeps the header pinned while scrolling.
+    *   - ``desiderio.navigation.megaMenu``
+        - ``off``
+        - ``home`` shows a mega menu instead of the main menu on the site's
+          root page. See :ref:`configuration-menus`.
     *   - ``desiderio.footer.style``
         - ``columns``
         - ``columns``, ``centered``, ``minimal``, or ``mega``.
@@ -83,6 +97,49 @@ Core site settings
 The base TypoScript renders these values as ``data-*`` attributes on the
 ``<body>`` element. CSS in ``Resources/Public/Css/shadcn-theme.css`` uses
 those attributes to apply the active preset.
+
+..  _configuration-menus:
+
+Menus
+=====
+
+The main menu has three levels. A first-level page with subpages is a link
+plus a chevron button that opens its dropdown; label and chevron read as one
+item. A second-level page with subpages opens a flyout beside the dropdown,
+on the left when the right edge of the window is too close. Every chevron is
+a disclosure button: click, :kbd:`Enter` and :kbd:`Space` open it, mouse
+users get hover-open with a safe path into the flyout, :kbd:`Escape` closes
+the innermost level. In the burger menu and in the "More" panel all levels
+expand inline. The menu reads ``levels = 3`` of
+``lib.desiderioPageDataProcessing``.
+
+With ``desiderio.navigation.megaMenu = home`` the site's root page shows a
+mega menu (``d:organism.megaMenu``, the shadcn/ui NavigationMenu recipe) in
+the header instead: one trigger per first-level page, each opening a panel
+with the page itself, its subpages with their abstract (``pages.abstract``)
+and their own subpages as compact links. The burger shows it as an accordion.
+Every other page keeps the main menu. ``desiderio:styleguide:seed`` adds a
+short note about it below the product film of a home page with the mega
+menu, in the film's :guilabel:`Note below the video` field.
+
+``desiderio.shadcn.menuColor`` and ``desiderio.shadcn.menuAccent`` are the
+menu options of the create page on ui.shadcn.com and apply to the dropdowns,
+flyouts, the mega menu and the language and colour-scheme menus. The
+default ``preset`` decodes them from the preset's create code
+(:file:`Classes/Theme/ShadcnPresetCode.php`): ``b4hb38Fyj`` has inverted
+menus, ``b6G5977cw`` translucent ones, the house presets the defaults.
+
+*   ``inverted`` shows the menus in the preset's dark colours on a light
+    page, as the create page does; a dark page needs no change. The colours
+    are generated from :file:`shadcn-theme.css` by
+    :file:`Build/Scripts/build-menu-surface-tokens.php` (part of
+    ``npm run build:desiderio-css``); re-run it after changing a preset.
+*   ``translucent`` gives the menus a 70 % surface over a blurred backdrop.
+    Secondary text and the focus ring move towards the foreground colour, so
+    they keep WCAG 2.2 AA over any content.
+*   ``bold`` highlights menu items with the primary colour. Unlike shadcn,
+    which changes the global ``--accent``, Desiderio changes it for the menus
+    only: the accent colours of cards and tinted boxes stay as they are.
 
 ..  _configuration-presets:
 

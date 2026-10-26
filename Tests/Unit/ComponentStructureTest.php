@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 final class ComponentStructureTest extends TestCase
 {
-    private const int EXPECTED_TOTAL = 63;
+    private const int EXPECTED_TOTAL = 64;
     private const string COMPONENTS_DIR = __DIR__ . '/../../Resources/Private/Components';
     private const array EXPECTED_ATOMS = [
         'AspectRatio', 'Avatar', 'Badge', 'Button', 'ControlClass', 'Icon', 'Image', 'Input',
@@ -25,7 +25,7 @@ final class ComponentStructureTest extends TestCase
         'ScrollControls', 'SectionIntro', 'Stat',
     ];
     private const array EXPECTED_LAYOUTS = ['Container', 'Grid', 'Section', 'Stack'];
-    private const array EXPECTED_ORGANISMS = ['Breadcrumb', 'PageHeader', 'SiteFooter', 'SiteHeader'];
+    private const array EXPECTED_ORGANISMS = ['Breadcrumb', 'MegaMenu', 'PageHeader', 'SiteFooter', 'SiteHeader'];
 
     public function testExpectedNumberOfComponents(): void
     {
@@ -38,7 +38,7 @@ final class ComponentStructureTest extends TestCase
         self::assertCount(17, $atoms, 'Expected 17 atoms');
         self::assertCount(38, $molecules, 'Expected 38 molecules');
         self::assertCount(4, $layouts, 'Expected 4 layouts');
-        self::assertCount(4, $organisms, 'Expected 4 organisms');
+        self::assertCount(5, $organisms, 'Expected 5 organisms');
         self::assertSame(self::EXPECTED_TOTAL, count($atoms) + count($molecules) + count($layouts) + count($organisms));
     }
 
@@ -72,7 +72,7 @@ final class ComponentStructureTest extends TestCase
 
     public function testOrganismsOwnTheirMarkupInsteadOfDelegatingToLegacyPagePartials(): void
     {
-        foreach (['Breadcrumb', 'SiteFooter', 'SiteHeader'] as $name) {
+        foreach (['Breadcrumb', 'MegaMenu', 'SiteFooter', 'SiteHeader'] as $name) {
             $template = (string)file_get_contents(self::COMPONENTS_DIR . "/Organism/{$name}/{$name}.fluid.html");
 
             self::assertStringNotContainsString(

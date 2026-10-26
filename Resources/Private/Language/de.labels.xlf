@@ -1777,6 +1777,18 @@
         <target>Einbettungs-URL von YouTube oder Vimeo</target>
       </segment>
     </unit>
+    <unit id="video_note">
+      <segment state="final">
+        <source>Note below the video</source>
+        <target>Hinweis unter dem Video</target>
+      </segment>
+    </unit>
+    <unit id="video_note.description">
+      <segment state="final">
+        <source>One short line under the player, e.g. a caption or a hint. It shows small and muted with an info icon, in the same section as the video.</source>
+        <target>Eine kurze Zeile unter dem Player, z. B. eine Bildunterschrift oder ein Hinweis. Sie erscheint klein und zurückhaltend mit einem Info-Symbol, im selben Abschnitt wie das Video.</target>
+      </segment>
+    </unit>
     <unit id="video_file">
       <segment state="final">
         <source>Video file</source>

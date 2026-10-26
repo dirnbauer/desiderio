@@ -1486,6 +1486,16 @@
         <source>YouTube or Vimeo embed URL</source>
       </segment>
     </unit>
+    <unit id="video_note">
+      <segment>
+        <source>Note below the video</source>
+      </segment>
+    </unit>
+    <unit id="video_note.description">
+      <segment>
+        <source>One short line under the player, e.g. a caption or a hint. It shows small and muted with an info icon, in the same section as the video.</source>
+      </segment>
+    </unit>
     <unit id="video_file">
       <segment>
         <source>Video file</source>

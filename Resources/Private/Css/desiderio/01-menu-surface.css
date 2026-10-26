@@ -1,0 +1,140 @@
+/* ------------------------------------------------------------------ */
+/*  Menu surfaces (menu colour + menu accent of shadcn/create)          */
+/* ------------------------------------------------------------------ */
+
+/*
+ * Every menu that pops over the page — the header's dropdowns and flyouts,
+ * the "More" panel, the home-page mega menu, the language and colour-scheme
+ * menus — carries two classes:
+ *
+ *   d-menu-surface   the tokens: menu colour (default / inverted /
+ *                    translucent) and menu accent (subtle / bold), the two
+ *                    menu options of the create page on ui.shadcn.com.
+ *                    d-menu-surface--wide is the same from 1025px up only,
+ *                    for panels that expand inline in the burger menu.
+ *   d-menu-popover   the chrome: popover background, border, radius, shadow
+ *                    and the blur layer of the translucent variants. Inline
+ *                    contexts (burger panel, "More" panel) take it off again
+ *                    in 01-header.css and 25-mega-menu.css.
+ *
+ * <body> carries the resolved options as data-menu-color and
+ * data-menu-accent (Classes/Theme/MenuAppearance.php). The inverted colours
+ * come from 26-menu-surface-tokens.css (generated).
+ *
+ * Items highlight with --d-menu-highlight / --d-menu-highlight-foreground
+ * and secondary text uses --d-menu-muted, never --accent or
+ * --muted-foreground directly: "bold" swaps the highlight to the
+ * primary pair for menus only. shadcn applies it to the global --accent; in
+ * Desiderio the accent pair is contrast-tuned for content boxes (cards,
+ * tinted frames), which must not turn primary because a menu setting changed.
+ */
+
+.d-menu-surface,
+.d-menu-surface--wide {
+    --d-menu-bg: var(--popover);
+    --d-menu-accent: var(--accent);
+    --d-menu-accent-foreground: var(--accent-foreground);
+    --d-menu-highlight: var(--d-menu-accent);
+    --d-menu-highlight-foreground: var(--d-menu-accent-foreground);
+    --d-menu-separator: var(--border);
+    /* Secondary menu text (dropdown links, mega menu descriptions). */
+    --d-menu-muted: var(--muted-foreground);
+    --d-menu-ring: var(--ring);
+}
+
+body[data-menu-accent="bold"] :is(.d-menu-surface, .d-menu-surface--wide) {
+    --d-menu-accent: var(--primary);
+    --d-menu-accent-foreground: var(--primary-foreground);
+}
+
+/*
+ * Translucent (shadcn .cn-menu-translucent): the popover at 70% over a
+ * blurred, saturated backdrop; items highlight with 10% foreground,
+ * separators with 5%; no open animation.
+ *
+ * Three Desiderio additions keep WCAG 2.2 AA whatever shows through:
+ * - text that was muted moves to 90% foreground. At 70% the surface can sit
+ *   over black (light scheme) or white (dark scheme) content; muted ink
+ *   falls to about 2.3:1 there, 90% foreground keeps 5:1 and more.
+ * - focus rings take the foreground colour (3:1 non-text contrast).
+ * - with the bold accent the highlight stays the solid primary pair. shadcn
+ *   lets 10% foreground win and keeps the accent ink, which leaves light
+ *   primary-foreground text on a light highlight.
+ */
+body[data-menu-color$="translucent"] :is(.d-menu-surface, .d-menu-surface--wide) {
+    --d-menu-bg: color-mix(in oklch, var(--popover) 70%, transparent);
+    --d-menu-backdrop: blur(40px) saturate(1.5);
+    --d-menu-highlight: color-mix(in oklch, var(--foreground) 10%, transparent);
+    --d-menu-highlight-foreground: var(--foreground);
+    --d-menu-separator: color-mix(in oklch, var(--foreground) 5%, transparent);
+    --d-menu-muted: color-mix(in oklch, var(--popover-foreground) 90%, var(--popover));
+    /* The mega menu's feature card: a foreground tint instead of solid muted. */
+    --d-menu-feature: color-mix(in oklch, var(--foreground) 8%, transparent);
+    /* The focus ring needs 3:1 against whatever shows through; a coloured
+       --ring dropped to 2.5:1 over the worst case, foreground keeps 6:1. */
+    --d-menu-ring: var(--foreground);
+}
+
+body[data-menu-color$="translucent"][data-menu-accent="bold"] :is(.d-menu-surface, .d-menu-surface--wide) {
+    --d-menu-highlight: var(--d-menu-accent);
+    --d-menu-highlight-foreground: var(--d-menu-accent-foreground);
+}
+
+/* Focus rings inside menus follow the surface (outline-color only, so each
+   component keeps its own width and offset). */
+body :is(.d-menu-surface, .d-menu-surface--wide) :focus-visible {
+    outline-color: var(--d-menu-ring, var(--ring));
+}
+
+.d-menu-popover {
+    background-color: var(--d-menu-bg, var(--popover));
+    color: var(--popover-foreground);
+    border: 1px solid var(--d-menu-separator, var(--border));
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    isolation: isolate;
+}
+
+/* The blur layer sits behind the content as its own box: a backdrop-filter
+   on the panel itself would make it the containing block of the flyouts
+   (position: fixed) inside it and cut them off at its edge. */
+.d-menu-popover::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
+    -webkit-backdrop-filter: var(--d-menu-backdrop, none);
+    backdrop-filter: var(--d-menu-backdrop, none);
+}
+
+body[data-menu-color$="translucent"] .d-menu-popover {
+    animation: none !important;
+}
+
+/* A backdrop-filter element is the "backdrop root" of everything inside it:
+   menus in the glass header would blur the header alone and show the page
+   unblurred behind 70% popover. With translucent menus the header's own
+   blur moves to a layer behind its content, so the header stops being a
+   backdrop root; the look of the glass header does not change. */
+body[data-header-style="glass"][data-menu-color$="translucent"] .desiderio-header {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+}
+
+body[data-header-style="glass"][data-menu-color$="translucent"] .desiderio-header::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    -webkit-backdrop-filter: blur(16px) saturate(1.6);
+    backdrop-filter: blur(16px) saturate(1.6);
+}
+
+/* Bold accent on the colour-scheme menu: the pressed option's dot is the
+   primary colour, which would vanish on a primary highlight. */
+body[data-menu-accent="bold"] .desiderio-theme-switch__option[aria-pressed="true"]::after {
+    background-color: currentColor;
+}

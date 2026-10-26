@@ -21,5 +21,85 @@
         <source>XLIFF file with this site's own words for its elements, e.g. "EXT:my_theme/Resources/Private/Language/Library/site.xlf". Units are keyed &lt;cType&gt;.title, &lt;cType&gt;.description, &lt;cType&gt;.short, &lt;cType&gt;.keywords ("primary || synonyms", terms separated by " | ") and &lt;cType&gt;.group. Each unit that exists replaces the provider's text in the editor's language (translations in de.&lt;file&gt;); a missing unit keeps it. Empty = the provider's texts.</source>
       </segment>
     </unit>
+    <unit id="settings.desiderio.shadcn.menuColor">
+      <segment>
+        <source>Menu colour</source>
+      </segment>
+    </unit>
+    <unit id="settings.description.desiderio.shadcn.menuColor">
+      <segment>
+        <source>Surface of the menus: header dropdowns and their flyouts, the home-page mega menu, the language and colour-scheme menus. The options of the create page on ui.shadcn.com. "Inverted" paints the menus in the preset's dark colours on a light page; "translucent" lets the page show through a blurred, 70% opaque surface. "From the preset" uses the value stored in the preset's create code; house presets use "Default".</source>
+      </segment>
+    </unit>
+    <unit id="settings.desiderio.shadcn.menuColor.preset">
+      <segment>
+        <source>From the preset</source>
+      </segment>
+    </unit>
+    <unit id="settings.desiderio.shadcn.menuColor.default">
+      <segment>
+        <source>Default</source>
+      </segment>
+    </unit>
+    <unit id="settings.desiderio.shadcn.menuColor.inverted">
+      <segment>
+        <source>Inverted</source>
+      </segment>
+    </unit>
+    <unit id="settings.desiderio.shadcn.menuColor.default-translucent">
+      <segment>
+        <source>Default, translucent</source>
+      </segment>
+    </unit>
+    <unit id="settings.desiderio.shadcn.menuColor.inverted-translucent">
+      <segment>
+        <source>Inverted, translucent</source>
+      </segment>
+    </unit>
+    <unit id="settings.desiderio.shadcn.menuAccent">
+      <segment>
+        <source>Menu accent</source>
+      </segment>
+    </unit>
+    <unit id="settings.description.desiderio.shadcn.menuAccent">
+      <segment>
+        <source>Highlight of the hovered, focused and current menu entry. "Subtle" uses the theme's accent colour, "Bold" the primary colour. Applies to the menus only, not to the accent of content elements. "From the preset" uses the value stored in the preset's create code; house presets use "Subtle".</source>
+      </segment>
+    </unit>
+    <unit id="settings.desiderio.shadcn.menuAccent.preset">
+      <segment>
+        <source>From the preset</source>
+      </segment>
+    </unit>
+    <unit id="settings.desiderio.shadcn.menuAccent.subtle">
+      <segment>
+        <source>Subtle</source>
+      </segment>
+    </unit>
+    <unit id="settings.desiderio.shadcn.menuAccent.bold">
+      <segment>
+        <source>Bold</source>
+      </segment>
+    </unit>
+    <unit id="settings.desiderio.navigation.megaMenu">
+      <segment>
+        <source>Mega menu</source>
+      </segment>
+    </unit>
+    <unit id="settings.description.desiderio.navigation.megaMenu">
+      <segment>
+        <source>On the site's root page the header shows a mega menu instead of the main menu: one button per main-menu page, each opening a panel with its subpages, their abstracts and their own subpages; the burger opens it as an accordion. "Home page only" switches it on for the root page; every other page keeps the three-level main menu. With it on, desiderio:styleguide:seed adds a short note about it below the product film on the home page.</source>
+      </segment>
+    </unit>
+    <unit id="settings.desiderio.navigation.megaMenu.off">
+      <segment>
+        <source>Off</source>
+      </segment>
+    </unit>
+    <unit id="settings.desiderio.navigation.megaMenu.home">
+      <segment>
+        <source>Home page only</source>
+      </segment>
+    </unit>
   </file>
 </xliff>

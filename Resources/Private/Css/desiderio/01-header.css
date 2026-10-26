@@ -186,31 +186,146 @@
     background-color: var(--accent);
 }
 
+/*
+ * One pill per item on the horizontal layout (law of proximity): the label
+ * link and its chevron button read as one item, like shadcn's
+ * NavigationMenuTrigger — text, 4px, a 12px chevron centred on the text
+ * (the 4px are the link's end padding, so its focus ring clears the text),
+ * one shared hover / open / current background, and a clear gap to the next
+ * item. They stay two controls: the label remains a link to its page, the
+ * chevron the disclosure button (24px wide, the WCAG 2.5.8 target size).
+ * Focus rings sit inside the pill, each hugging its own half.
+ * --d-nav-hover-bg lets a preset keep text-only hover (preset-corporate).
+ */
+/* The shared states apply in the burger panel too: there the row is the pill. */
+.desiderio-header__nav-trigger {
+    border-radius: var(--radius);
+    transition: background-color 0.15s;
+}
+
+.desiderio-header__nav-trigger > :is(.desiderio-header__nav-link:not(:last-child), .desiderio-header__subnav-toggle),
+.desiderio-header__nav-trigger > :is(.desiderio-header__nav-link:not(:last-child), .desiderio-header__subnav-toggle):hover,
+.desiderio-header__nav-item.is-open > .desiderio-header__nav-trigger .desiderio-header__subnav-toggle {
+    background-color: transparent;
+}
+
+.desiderio-header__nav-trigger:has(> .desiderio-header__subnav-toggle):hover {
+    background-color: var(--d-nav-hover-bg, var(--accent));
+}
+
+.desiderio-header__nav-trigger:has(> .desiderio-header__subnav-toggle):hover > * {
+    color: var(--foreground);
+}
+
+.desiderio-header__nav-item.is-open > .desiderio-header__nav-trigger,
+.desiderio-header__nav-trigger:has(> .desiderio-header__nav-link--active) {
+    background-color: var(--accent);
+}
+
+.desiderio-header__nav-item.is-open > .desiderio-header__nav-trigger > *,
+.desiderio-header__nav-trigger:has(> .desiderio-header__nav-link--active) > * {
+    color: var(--accent-foreground);
+}
+
+.desiderio-header__nav-trigger > :is(.desiderio-header__nav-link, .desiderio-header__subnav-toggle):focus-visible {
+    outline-offset: calc(-1 * var(--d-ring-width, 2px));
+}
+
+@media (min-width: 1025px) {
+    .desiderio-header__nav-list {
+        column-gap: 0.375rem;
+    }
+
+    .desiderio-header__nav-trigger {
+        gap: 0;
+    }
+
+    .desiderio-header__nav-trigger > .desiderio-header__nav-link:not(:last-child) {
+        padding-inline-end: 0.25rem;
+        border-start-end-radius: 0;
+        border-end-end-radius: 0;
+    }
+
+    .desiderio-header__nav-trigger > .desiderio-header__subnav-toggle {
+        justify-content: flex-start;
+        width: 1.5rem;
+        height: 2.25rem;
+        padding-inline-start: 0;
+        border-radius: 0 var(--radius) var(--radius) 0;
+        color: color-mix(in oklch, var(--muted-foreground) 60%, var(--foreground));
+    }
+
+    .desiderio-header__nav-trigger .desiderio-header__subnav-chevron {
+        width: 0.75rem;
+        height: 0.75rem;
+    }
+
+    /* Rows moved into the "More" panel highlight like menu items. */
+    .desiderio-header__nav [data-d-nav-more-list] .desiderio-header__nav-trigger:hover {
+        background-color: var(--d-menu-highlight, var(--accent));
+    }
+
+    .desiderio-header__nav [data-d-nav-more-list] .desiderio-header__nav-trigger:hover > * {
+        color: var(--d-menu-highlight-foreground, var(--accent-foreground));
+    }
+}
+
+/*
+ * Dropdown panel (level 2) and flyout (level 3). The panel is a wrapper:
+ * d-menu-popover paints it (01-menu-surface.css), the list inside scrolls
+ * when it is taller than the viewport, so the wrapper's blur layer and its
+ * hover bridge stay put. Recipe: shadcn DropdownMenuContent / SubContent —
+ * p-1 surface, rounded items, accent highlight.
+ */
 .desiderio-header__subnav {
     display: none;
     position: absolute;
     top: calc(100% + 0.25rem);
     left: 0;
     min-width: 13rem;
+    max-width: min(22rem, calc(100vw - 2rem));
     padding: 0.375rem;
-    list-style: none;
-    margin: 0;
-    background-color: var(--popover);
-    color: var(--popover-foreground);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-md);
     z-index: 60;
+    flex-direction: column;
 }
 
-.desiderio-header__nav-item.is-open > .desiderio-header__subnav { display: grid; }
+.desiderio-header__subnav-list {
+    display: grid;
+    gap: 0.0625rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    min-height: 0;
+    /* Long lists (a dozen pages and more) scroll inside the viewport. */
+    max-height: calc(100dvh - var(--d-header-height, 4rem) - 1.5rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in oklch, var(--foreground) 25%, transparent) transparent;
+}
+
+/* Hover bridge: the gap between trigger row and panel counts as the panel. */
+.desiderio-header__subnav::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: 100%;
+    height: 0.5rem;
+}
+
+.desiderio-header__nav-item.is-open > .desiderio-header__subnav,
+.desiderio-header__subnav-item.is-open > .desiderio-header__subnav { display: flex; }
 
 /* No-JS fallback only — JS marks the nav ready and takes over. */
-.desiderio-header__nav:not([data-d-nav-ready]) .desiderio-header__nav-item:is(:hover, :focus-within) .desiderio-header__subnav { display: grid; }
+.desiderio-header__nav:not([data-d-nav-ready]) :is(.desiderio-header__nav-item, .desiderio-header__subnav-item):is(:hover, :focus-within) > .desiderio-header__subnav { display: flex; }
 
 @media (prefers-reduced-motion: no-preference) {
     .desiderio-header__nav-item.is-open > .desiderio-header__subnav {
         animation: desiderio-subnav-in 0.15s var(--d-ease, ease-out);
+    }
+
+    .desiderio-header__subnav-item.is-open > .desiderio-header__subnav {
+        animation: desiderio-flyout-in 0.12s var(--d-ease, ease-out);
     }
 
     @keyframes desiderio-subnav-in {
@@ -223,27 +338,157 @@
             transform: translateY(0);
         }
     }
+
+    @keyframes desiderio-flyout-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
 }
 
+.desiderio-header__subnav-item {
+    position: relative;
+}
+
+/* A level-2 page with subpages: link plus chevron-right button
+   (DropdownMenuSubTrigger), one highlighted row. */
+.desiderio-header__subnav-trigger {
+    display: flex;
+    align-items: center;
+    gap: 0.125rem;
+    border-radius: calc(var(--radius) - 2px);
+}
+
+.desiderio-header__subnav-trigger .desiderio-header__subnav-link {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Full width and padded to height: a site stylesheet that turns small links
+   into inline-flex boxes for target size (the lab's desiderio-a11y.css does,
+   with !important) leaves the rows intact. */
 .desiderio-header__subnav-link {
-    display: block;
-    padding: 0.5rem 0.75rem;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 2rem;
+    padding: 0.4375rem 0.75rem;
     font-size: 0.875rem;
-    color: var(--muted-foreground);
+    line-height: 1.25;
+    color: var(--d-menu-muted, var(--muted-foreground));
     text-decoration: none;
     border-radius: calc(var(--radius) - 2px);
     transition: color 0.15s, background-color 0.15s;
 }
 
-.desiderio-header__subnav-link:hover {
-    color: var(--foreground);
-    background-color: var(--accent);
+.desiderio-header__subnav-link:hover,
+.desiderio-header__subnav-link:focus-visible {
+    color: var(--d-menu-highlight-foreground, var(--accent-foreground));
+    background-color: var(--d-menu-highlight, var(--accent));
 }
 
 .desiderio-header__subnav-link--active,
 .desiderio-header__subnav-link--active:hover {
-    color: var(--accent-foreground);
-    background-color: var(--accent);
+    color: var(--d-menu-accent-foreground, var(--accent-foreground));
+    background-color: var(--d-menu-accent, var(--accent));
+}
+
+/* The current page itself (not just an ancestor of it): a marker that is
+   not colour alone (WCAG 1.4.1). */
+.desiderio-header__subnav-link[aria-current="page"] {
+    font-weight: 600;
+}
+
+.desiderio-header__subnav-toggle--flyout {
+    width: 1.75rem;
+    height: 1.75rem;
+}
+
+/* Link and chevron-right button share one row highlight (one item, two
+   controls); focus rings sit inside the row. */
+.desiderio-header__subnav-trigger:hover {
+    color: var(--d-menu-highlight-foreground, var(--accent-foreground));
+    background-color: var(--d-menu-highlight, var(--accent));
+}
+
+.desiderio-header__subnav-trigger:hover > :is(.desiderio-header__subnav-link, .desiderio-header__subnav-toggle--flyout) {
+    color: inherit;
+    background-color: transparent;
+}
+
+.desiderio-header__subnav-trigger > :is(.desiderio-header__subnav-link, .desiderio-header__subnav-toggle--flyout):focus-visible {
+    outline-offset: calc(-1 * var(--d-ring-width, 2px));
+}
+
+/* The row stays highlighted while its flyout is open (SubTrigger
+   data-open): one highlight for link and button. */
+.desiderio-header__subnav-item.is-open > .desiderio-header__subnav-trigger {
+    color: var(--d-menu-highlight-foreground, var(--accent-foreground));
+    background-color: var(--d-menu-highlight, var(--accent));
+}
+
+.desiderio-header__subnav-item.is-open > .desiderio-header__subnav-trigger > :is(.desiderio-header__subnav-link, .desiderio-header__subnav-toggle--flyout) {
+    color: inherit;
+    background-color: transparent;
+}
+
+/*
+ * Flyout (level 3), desktop: desiderio.js places it beside its dropdown with
+ * position: fixed (a fixed box is not cut off by the dropdown's scrolling
+ * list), aligned to its row, flipped to the left when the right edge of the
+ * viewport is too close (data-side), and capped at the viewport's height.
+ * Without JavaScript it opens to the right of its row.
+ */
+.desiderio-header__subnav--flyout {
+    top: -0.4375rem;
+    left: calc(100% + 0.375rem);
+    min-width: 14rem;
+}
+
+.desiderio-header__nav[data-d-nav-ready] .desiderio-header__subnav--flyout {
+    position: fixed;
+    top: 0;
+    left: 0;
+    max-height: calc(100dvh - 1rem);
+    /* JS measures the box at 0/0 and then moves it: a transition on left/top
+       (reduced-motion resets turn every property into a 0.01ms transition)
+       would hand it the old position to measure. */
+    transition-property: none;
+}
+
+/* Bridge towards the row that opened it, on whichever side that is. */
+.desiderio-header__subnav--flyout::after {
+    inset-inline: auto;
+    bottom: 0;
+    top: 0;
+    height: auto;
+    width: 0.625rem;
+    right: 100%;
+}
+
+.desiderio-header__subnav--flyout[data-side="left"]::after {
+    right: auto;
+    left: 100%;
+}
+
+.desiderio-header__subnav--flyout .desiderio-header__subnav-list {
+    max-height: none;
+    flex: 1 1 auto;
+}
+
+/* Slim, scheme-coloured scrollbar thumb on long lists (WebKit/Blink; the
+   standard scrollbar-* properties above cover Firefox). */
+.desiderio-header__subnav-list::-webkit-scrollbar {
+    width: 0.375rem;
+}
+
+.desiderio-header__subnav-list::-webkit-scrollbar-track {
+    background: transparent;
+    margin-block: 0.25rem;
+}
+
+.desiderio-header__subnav-list::-webkit-scrollbar-thumb {
+    background-color: color-mix(in oklch, var(--foreground) 25%, transparent);
+    border-radius: 999px;
 }
 
 /*
@@ -260,6 +505,8 @@
     border: 0;
     background: transparent;
     font: inherit;
+    /* font: inherit resets the nav link's line height; keep the row's. */
+    line-height: 1.25;
     cursor: pointer;
 }
 
@@ -273,54 +520,21 @@
     background-color: var(--accent);
 }
 
-/* The "More" item sits at the row's end; anchor its panel to the right edge
-   and keep it scrollable inside the viewport when it holds many items.
-   The scrollbar is a slim, rounded, scheme-coloured thumb on a quiet track. */
+/* The "More" item sits at the row's end; anchor its panel to the right edge. */
 .desiderio-header__nav-item--more > .desiderio-header__subnav {
     left: auto;
     right: 0;
+    min-width: 15rem;
+}
+
+.desiderio-header__nav-item--more > .desiderio-header__subnav > .desiderio-header__subnav-list {
     max-height: min(70vh, 36rem);
-    overflow-y: auto;
-    overscroll-behavior: contain;
-}
-
-/* WebKit/Blink: custom always-visible slim bar (setting the standard
-   scrollbar-* properties there would disable these pseudo-elements and
-   fall back to the auto-hiding macOS overlay bar). */
-.desiderio-header__nav-item--more > .desiderio-header__subnav::-webkit-scrollbar {
-    width: 0.375rem;
-}
-
-.desiderio-header__nav-item--more > .desiderio-header__subnav::-webkit-scrollbar-track {
-    background: transparent;
-    margin-block: 0.5rem;
-}
-
-.desiderio-header__nav-item--more > .desiderio-header__subnav::-webkit-scrollbar-thumb {
-    background-color: color-mix(in oklch, var(--primary) 55%, transparent);
-    border-radius: 999px;
-}
-
-.desiderio-header__nav-item--more > .desiderio-header__subnav::-webkit-scrollbar-thumb:hover {
-    background-color: color-mix(in oklch, var(--primary) 80%, transparent);
-}
-
-/* Firefox: thin native bar in the scheme colour. */
-@supports (-moz-appearance: none) {
-    .desiderio-header__nav-item--more > .desiderio-header__subnav {
-        scrollbar-width: thin;
-        scrollbar-color: color-mix(in oklch, var(--primary) 55%, transparent) transparent;
-    }
-
-    .desiderio-header__nav-item--more > .desiderio-header__subnav:hover {
-        scrollbar-color: color-mix(in oklch, var(--primary) 80%, transparent) transparent;
-    }
 }
 
 /*
  * Menu items moved into the "More" panel render as rows; their own
- * submenus expand inline (like the mobile panel) instead of stacking
- * popovers.
+ * submenus, level 3 included, expand inline (like the burger panel)
+ * instead of stacking popovers.
  */
 [data-d-nav-more-list] .desiderio-header__nav-trigger {
     display: flex;
@@ -335,13 +549,36 @@
     padding: 0.5rem 0.75rem;
 }
 
-[data-d-nav-more-list] .desiderio-header__subnav {
+.desiderio-header__nav [data-d-nav-more-list] .desiderio-header__subnav {
     position: static;
+    min-width: 0;
+    max-width: none;
+    max-height: none;
+    padding: 0 0 0.25rem 0.75rem;
     border: 0;
+    border-radius: 0;
     box-shadow: none;
     background: transparent;
-    min-width: 0;
-    padding: 0 0 0.25rem 0.75rem;
+    animation: none;
+}
+
+.desiderio-header__nav [data-d-nav-more-list] .desiderio-header__subnav::before,
+.desiderio-header__nav [data-d-nav-more-list] .desiderio-header__subnav::after {
+    content: none;
+}
+
+.desiderio-header__nav [data-d-nav-more-list] .desiderio-header__subnav-list {
+    max-height: none;
+    overflow: visible;
+}
+
+/* Inline levels point down, not sideways. */
+[data-d-nav-more-list] .desiderio-header__subnav-toggle--flyout .desiderio-header__subnav-chevron {
+    transform: rotate(90deg);
+}
+
+[data-d-nav-more-list] .desiderio-header__subnav-item.is-open > .desiderio-header__subnav-trigger .desiderio-header__subnav-toggle--flyout .desiderio-header__subnav-chevron {
+    transform: rotate(-90deg);
 }
 
 .desiderio-header__actions {
@@ -486,6 +723,7 @@
     text-transform: uppercase;
 }
 
+/* Surface and chrome: d-menu-surface d-menu-popover (01-menu-surface.css). */
 .desiderio-header__lang-list {
     position: absolute;
     inset-block-start: calc(100% + 0.375rem);
@@ -495,11 +733,7 @@
     min-width: 10rem;
     list-style: none;
     margin: 0;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background-color: var(--popover);
     padding: 0.375rem;
-    box-shadow: var(--shadow-md);
     z-index: 80;
 }
 
@@ -513,10 +747,15 @@
     border-radius: calc(var(--radius) - 2px);
 }
 
-.desiderio-header__lang-link:hover,
-.desiderio-header__lang-link--active {
-    color: var(--foreground);
-    background-color: var(--accent);
+.desiderio-header__lang-link:hover {
+    color: var(--d-menu-highlight-foreground, var(--accent-foreground));
+    background-color: var(--d-menu-highlight, var(--accent));
+}
+
+.desiderio-header__lang-link--active,
+.desiderio-header__lang-link--active:hover {
+    color: var(--d-menu-accent-foreground, var(--accent-foreground));
+    background-color: var(--d-menu-accent, var(--accent));
 }
 
 @media (max-width: 1024px) {
@@ -616,16 +855,55 @@
         height: 2.75rem;
     }
 
-    .desiderio-header__subnav {
+    /* Every level expands inline in the burger panel: no popover chrome,
+       no surface colours (d-menu-surface--wide applies from 1025px only),
+       one indent step per level. */
+    .desiderio-header__subnav,
+    .desiderio-header__nav[data-d-nav-ready] .desiderio-header__subnav--flyout {
         position: static;
-        border: 0;
-        box-shadow: none;
+        min-width: 0;
+        max-width: none;
+        max-height: none;
         padding: 0.25rem 0 0.5rem 0.75rem;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
         background: transparent;
+        animation: none;
+    }
+
+    .desiderio-header__subnav::before,
+    .desiderio-header__subnav::after {
+        content: none;
+    }
+
+    .desiderio-header__subnav-list {
+        max-height: none;
+        overflow: visible;
+    }
+
+    .desiderio-header__subnav--flyout {
+        margin-inline-start: 0.25rem;
+        border-inline-start: 1px solid var(--border);
     }
 
     .desiderio-header__subnav-link {
+        min-height: 2.75rem;
         padding: 0.75rem;
+    }
+
+    .desiderio-header__subnav-toggle--flyout {
+        width: 2.75rem;
+        height: 2.75rem;
+    }
+
+    /* Inline levels point down, not sideways. */
+    .desiderio-header__subnav-toggle--flyout .desiderio-header__subnav-chevron {
+        transform: rotate(90deg);
+    }
+
+    .desiderio-header__subnav-item.is-open > .desiderio-header__subnav-trigger .desiderio-header__subnav-toggle--flyout .desiderio-header__subnav-chevron {
+        transform: rotate(-90deg);
     }
 
     /* Priority+ never applies in the burger panel. */

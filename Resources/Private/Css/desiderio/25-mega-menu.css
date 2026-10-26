@@ -1,0 +1,377 @@
+/* ------------------------------------------------------------------ */
+/*  Mega menu (home page only, d:organism.megaMenu)                     */
+/* ------------------------------------------------------------------ */
+
+/*
+ * shadcn/ui NavigationMenu, mega-menu variant, in the header's main
+ * navigation on the site's root page: ghost triggers in a row, one content
+ * panel per trigger with a feature link (the first-level page, on a muted
+ * gradient) next to a grid of list items (title + muted, two-line
+ * description). Panel surface and chrome come from d-menu-surface--wide and
+ * d-menu-popover (01-menu-surface.css), so the menu colour and menu accent
+ * of the create page apply. Up to 1024px the burger panel shows it as a
+ * stacked accordion: panels expand inline, one column, no popover chrome.
+ */
+
+.desiderio-mega__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.125rem 0.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+}
+
+/* Trigger: navigationMenuTriggerStyle (ghost, h-9, text-sm, font-medium,
+   the chevron 4px after the text, turned while open). */
+.desiderio-mega__trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    min-height: 2.25rem;
+    padding: 0.375rem 0.625rem;
+    border: 0;
+    border-radius: var(--radius);
+    background-color: transparent;
+    color: color-mix(in oklch, var(--muted-foreground) 60%, var(--foreground));
+    font: inherit;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color 0.15s, background-color 0.15s;
+}
+
+.desiderio-mega__trigger:hover {
+    color: var(--foreground);
+    background-color: var(--accent);
+}
+
+.desiderio-mega__item.is-open > .desiderio-mega__trigger,
+.desiderio-mega__trigger--active {
+    color: var(--accent-foreground);
+    background-color: var(--accent);
+}
+
+.desiderio-mega__trigger:focus-visible,
+.desiderio-mega__feature:focus-visible,
+.desiderio-mega__link:focus-visible,
+.desiderio-mega__leaf:focus-visible {
+    outline: var(--d-ring-width, 2px) solid var(--ring);
+    outline-offset: 2px;
+}
+
+/* Inside the scrolling panel an outer ring would be cut off at the edge. */
+.desiderio-mega__panel :is(.desiderio-mega__feature, .desiderio-mega__link, .desiderio-mega__leaf):focus-visible {
+    outline-offset: -2px;
+}
+
+.desiderio-mega__chevron {
+    width: 0.75rem;
+    height: 0.75rem;
+    transition: transform 0.2s var(--d-ease, ease-out);
+}
+
+.desiderio-mega__item.is-open > .desiderio-mega__trigger .desiderio-mega__chevron {
+    transform: rotate(180deg);
+}
+
+/* ---- The panel ------------------------------------------------------ */
+
+/* The panel spans the header's container, under the whole header row. */
+.desiderio-header--mega .desiderio-header__inner {
+    position: relative;
+}
+
+.desiderio-mega__panel {
+    display: none;
+    position: absolute;
+    top: calc(100% + 0.25rem);
+    left: 0;
+    right: 0;
+    z-index: 60;
+}
+
+/* Hover bridge from the trigger row down to the panel; desiderio.js sets
+   its height to the gap it measures. */
+.desiderio-mega__panel::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    bottom: 100%;
+    height: var(--d-mega-bridge, 0.875rem);
+}
+
+.desiderio-mega__item.is-open > .desiderio-mega__panel {
+    display: block;
+}
+
+/* No-JS fallback only — desiderio.js marks the list ready and takes over. */
+.desiderio-mega__list:not([data-d-mega-ready]) .desiderio-mega__item:is(:hover, :focus-within) > .desiderio-mega__panel {
+    display: block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .desiderio-mega__item.is-open > .desiderio-mega__panel {
+        animation: desiderio-mega-in 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    @keyframes desiderio-mega-in {
+        from {
+            opacity: 0;
+            transform: translateY(-0.25rem) scale(0.99);
+        }
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+}
+
+.desiderio-mega__panel-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.5rem;
+    padding: 0.5rem;
+    /* desiderio.js sets --d-mega-max-height to the room left below the
+       panel when it opens; a long panel scrolls inside the viewport. */
+    max-height: var(--d-mega-max-height, calc(100dvh - 8rem));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in oklch, var(--foreground) 25%, transparent) transparent;
+}
+
+/* The feature link: the first-level page itself, on the recipe's muted
+   gradient with the brand mark, title and abstract. It runs across the top
+   of the panel rather than down a side column: beside a tall list (Features
+   has five rows) a side card either stretches into an empty block or leaves
+   an empty column under it; across the top it is as tall as its text in
+   every panel. */
+.desiderio-mega__feature {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    border-radius: calc(var(--radius) - 2px);
+    background-image: linear-gradient(to right, var(--d-menu-feature, var(--muted)), color-mix(in oklch, var(--d-menu-feature, var(--muted)) 50%, transparent));
+    color: var(--popover-foreground);
+    text-decoration: none;
+    transition: box-shadow 0.15s;
+}
+
+.desiderio-mega__feature:hover {
+    box-shadow: inset 0 0 0 1px var(--d-menu-separator, var(--border)), var(--shadow-sm);
+}
+
+.desiderio-mega__feature-mark {
+    flex: 0 0 auto;
+    width: 2rem;
+    height: 2rem;
+}
+
+.desiderio-mega__feature-text {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+}
+
+.desiderio-mega__feature-title {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.desiderio-mega__feature .desiderio-mega__description {
+    max-width: 80ch;
+}
+
+.desiderio-mega__feature-arrow {
+    display: inline-flex;
+    flex: 0 0 auto;
+    color: var(--d-menu-muted, var(--muted-foreground));
+    transition: transform 0.15s var(--d-ease, ease-out);
+}
+
+.desiderio-mega__feature:hover .desiderio-mega__feature-arrow {
+    transform: translateX(0.125rem);
+}
+
+.desiderio-mega__entries {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+    align-content: start;
+    gap: 0.125rem 0.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* A subpage with more than three subpages takes the full row, its
+   subpages in columns below it. */
+.desiderio-mega__entry--wide {
+    grid-column: 1 / -1;
+}
+
+/* Rows, not columns, and full width: a site stylesheet that turns small
+   links into inline-flex boxes for target size (the lab's
+   desiderio-a11y.css does, with !important) then still lays them out. */
+.desiderio-mega__link,
+.desiderio-mega__leaf {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    width: 100%;
+    border-radius: calc(var(--radius) - 2px);
+    color: var(--popover-foreground);
+    text-decoration: none;
+    transition: color 0.15s, background-color 0.15s;
+}
+
+.desiderio-mega__link {
+    gap: 0.25rem 0;
+    padding: 0.625rem 0.75rem;
+}
+
+.desiderio-mega__link > * {
+    flex: 1 0 100%;
+}
+
+.desiderio-mega__title {
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+.desiderio-mega__description {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    color: var(--d-menu-muted, var(--muted-foreground));
+}
+
+.desiderio-mega__leaves {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+    gap: 0 0.25rem;
+    list-style: none;
+    margin: 0 0 0.25rem;
+    padding: 0 0 0 0.75rem;
+}
+
+.desiderio-mega__leaf {
+    align-items: center;
+    /* 28px rows, above the 24px target size of WCAG 2.5.8; the height comes
+       from the padding, so an overriding min-height cannot shrink it. */
+    min-height: 1.75rem;
+    padding: 0.3125rem 0.5rem;
+    font-size: 0.8125rem;
+    line-height: 1.3;
+    color: var(--d-menu-muted, var(--muted-foreground));
+}
+
+.desiderio-mega__link:hover,
+.desiderio-mega__link:focus-visible,
+.desiderio-mega__leaf:hover,
+.desiderio-mega__leaf:focus-visible {
+    color: var(--d-menu-highlight-foreground, var(--accent-foreground));
+    background-color: var(--d-menu-highlight, var(--accent));
+}
+
+/* On a highlighted row the description takes the row's ink: a muted ink
+   would not hold 4.5:1 on the bold (primary) highlight. */
+.desiderio-mega__link:is(:hover, :focus-visible) .desiderio-mega__description,
+.desiderio-mega__link--current .desiderio-mega__description {
+    color: inherit;
+}
+
+.desiderio-mega__link--current {
+    color: var(--d-menu-accent-foreground, var(--accent-foreground));
+    background-color: var(--d-menu-accent, var(--accent));
+}
+
+.desiderio-mega__link--current[aria-current="page"],
+.desiderio-mega__leaf[aria-current="page"],
+.desiderio-mega__feature[aria-current="page"] {
+    font-weight: 600;
+}
+
+/* ---- Stacked accordion in the burger panel ---------------------------- */
+
+@media (max-width: 1024px) {
+    .desiderio-mega__list {
+        flex-direction: column;
+        align-items: stretch;
+        flex-wrap: nowrap;
+    }
+
+    .desiderio-mega__trigger {
+        justify-content: space-between;
+        width: 100%;
+        min-height: 2.75rem;
+        padding: 0.75rem;
+        white-space: normal;
+        text-align: start;
+    }
+
+    .desiderio-mega__panel {
+        position: static;
+        padding: 0 0 0.5rem 0.75rem;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        background: transparent;
+        animation: none;
+    }
+
+    .desiderio-mega__panel::before,
+    .desiderio-mega__panel::after {
+        content: none;
+    }
+
+    .desiderio-mega__panel-body {
+        padding: 0 0 0 0.5rem;
+        max-height: none;
+        overflow: visible;
+        border-inline-start: 1px solid var(--border);
+    }
+
+    .desiderio-mega__feature {
+        padding: 0.75rem;
+    }
+
+    .desiderio-mega__feature-mark {
+        display: none;
+    }
+
+    .desiderio-mega__feature-title {
+        font-size: 1rem;
+    }
+
+    .desiderio-mega__entries {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .desiderio-mega__link {
+        min-height: 2.75rem;
+    }
+
+    .desiderio-mega__leaves {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .desiderio-mega__leaf {
+        min-height: 2.5rem;
+        padding-block: 0.625rem;
+    }
+}

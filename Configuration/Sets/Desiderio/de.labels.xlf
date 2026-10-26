@@ -25,5 +25,101 @@
         <target>XLIFF-Datei mit den eigenen Bezeichnungen dieser Site für ihre Elemente, z. B. „EXT:my_theme/Resources/Private/Language/Library/site.xlf“. Die Units heißen &lt;cType&gt;.title, &lt;cType&gt;.description, &lt;cType&gt;.short, &lt;cType&gt;.keywords („Hauptbegriffe || Synonyme“, Begriffe getrennt durch „ | “) und &lt;cType&gt;.group. Jede vorhandene Unit ersetzt den Text des Anbieters in der Sprache der Redakteurin oder des Redakteurs (Übersetzungen in de.&lt;Datei&gt;); fehlt eine Unit, bleibt dessen Text. Leer = Texte des Anbieters.</target>
       </segment>
     </unit>
+    <unit id="settings.desiderio.shadcn.menuColor">
+      <segment state="final">
+        <source>Menu colour</source>
+        <target>Menüfarbe</target>
+      </segment>
+    </unit>
+    <unit id="settings.description.desiderio.shadcn.menuColor">
+      <segment state="final">
+        <source>Surface of the menus: header dropdowns and their flyouts, the home-page mega menu, the language and colour-scheme menus. The options of the create page on ui.shadcn.com. "Inverted" paints the menus in the preset's dark colours on a light page; "translucent" lets the page show through a blurred, 70% opaque surface. "From the preset" uses the value stored in the preset's create code; house presets use "Default".</source>
+        <target>Fläche der Menüs: Aufklappmenüs der Kopfzeile mit ihren Untermenüs, das Mega-Menü der Startseite, Sprach- und Farbschema-Menü. Die Optionen der Create-Seite auf ui.shadcn.com. „Invertiert“ zeigt die Menüs auf einer hellen Seite in den dunklen Farben des Presets; „transluzent“ lässt die Seite durch eine unscharfe, zu 70 % deckende Fläche scheinen. „Aus dem Preset“ verwendet den Wert aus dem Create-Code des Presets; Haus-Presets verwenden „Standard“.</target>
+      </segment>
+    </unit>
+    <unit id="settings.desiderio.shadcn.menuColor.preset">
+      <segment state="final">
+        <source>From the preset</source>
+        <target>Aus dem Preset</target>
+      </segment>
+    </unit>
+    <unit id="settings.desiderio.shadcn.menuColor.default">
+      <segment state="final">
+        <source>Default</source>
+        <target>Standard</target>
+      </segment>
+    </unit>
+    <unit id="settings.desiderio.shadcn.menuColor.inverted">
+      <segment state="final">
+        <source>Inverted</source>
+        <target>Invertiert</target>
+      </segment>
+    </unit>
+    <unit id="settings.desiderio.shadcn.menuColor.default-translucent">
+      <segment state="final">
+        <source>Default, translucent</source>
+        <target>Standard, transluzent</target>
+      </segment>
+    </unit>
+    <unit id="settings.desiderio.shadcn.menuColor.inverted-translucent">
+      <segment state="final">
+        <source>Inverted, translucent</source>
+        <target>Invertiert, transluzent</target>
+      </segment>
+    </unit>
+    <unit id="settings.desiderio.shadcn.menuAccent">
+      <segment state="final">
+        <source>Menu accent</source>
+        <target>Menü-Akzent</target>
+      </segment>
+    </unit>
+    <unit id="settings.description.desiderio.shadcn.menuAccent">
+      <segment state="final">
+        <source>Highlight of the hovered, focused and current menu entry. "Subtle" uses the theme's accent colour, "Bold" the primary colour. Applies to the menus only, not to the accent of content elements. "From the preset" uses the value stored in the preset's create code; house presets use "Subtle".</source>
+        <target>Hervorhebung des Menüeintrags unter der Maus, mit dem Fokus und der aktuellen Seite. „Dezent“ verwendet die Akzentfarbe des Themes, „Kräftig“ die Primärfarbe. Gilt nur für die Menüs, nicht für den Akzent der Inhaltselemente. „Aus dem Preset“ verwendet den Wert aus dem Create-Code des Presets; Haus-Presets verwenden „Dezent“.</target>
+      </segment>
+    </unit>
+    <unit id="settings.desiderio.shadcn.menuAccent.preset">
+      <segment state="final">
+        <source>From the preset</source>
+        <target>Aus dem Preset</target>
+      </segment>
+    </unit>
+    <unit id="settings.desiderio.shadcn.menuAccent.subtle">
+      <segment state="final">
+        <source>Subtle</source>
+        <target>Dezent</target>
+      </segment>
+    </unit>
+    <unit id="settings.desiderio.shadcn.menuAccent.bold">
+      <segment state="final">
+        <source>Bold</source>
+        <target>Kräftig</target>
+      </segment>
+    </unit>
+    <unit id="settings.desiderio.navigation.megaMenu">
+      <segment state="final">
+        <source>Mega menu</source>
+        <target>Mega-Menü</target>
+      </segment>
+    </unit>
+    <unit id="settings.description.desiderio.navigation.megaMenu">
+      <segment state="final">
+        <source>On the site's root page the header shows a mega menu instead of the main menu: one button per main-menu page, each opening a panel with its subpages, their abstracts and their own subpages; the burger opens it as an accordion. "Home page only" switches it on for the root page; every other page keeps the three-level main menu. With it on, desiderio:styleguide:seed adds a short note about it below the product film on the home page.</source>
+        <target>Auf der Startseite der Site zeigt die Kopfzeile ein Mega-Menü statt des Hauptmenüs: je Seite des Hauptmenüs eine Schaltfläche, die ein Feld mit den Unterseiten, ihren Kurzfassungen und deren Unterseiten öffnet; das Burger-Menü zeigt es als Akkordeon. „Nur auf der Startseite“ schaltet es für die Startseite ein; alle anderen Seiten behalten das dreistufige Hauptmenü. Ist es eingeschaltet, fügt desiderio:styleguide:seed unter dem Produktfilm der Startseite einen kurzen Hinweis darauf ein.</target>
+      </segment>
+    </unit>
+    <unit id="settings.desiderio.navigation.megaMenu.off">
+      <segment state="final">
+        <source>Off</source>
+        <target>Aus</target>
+      </segment>
+    </unit>
+    <unit id="settings.desiderio.navigation.megaMenu.home">
+      <segment state="final">
+        <source>Home page only</source>
+        <target>Nur auf der Startseite</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

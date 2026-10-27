@@ -8,12 +8,6 @@
 <f:argument name="breadcrumb" type="array" />
 <f:argument name="mainMenu" type="array" optional="{true}" />
 <f:argument name="languageNavigation" type="array" optional="{true}" />
-<f:comment>
-    megaMenu: the page shows the mega menu (d:organism.megaMenu) in place of
-    the main menu — the layout sets it on the site's root page when
-    desiderio.navigation.megaMenu is "home".
-</f:comment>
-<f:argument name="megaMenu" type="bool" optional="{true}" default="{false}" />
 
 <f:variable name="siteTitle" value="{f:if(condition: site.configuration.websiteTitle, then: site.configuration.websiteTitle, else: site.identifier)}"/>
 <f:variable name="siteTitle" value="{siteTitle ?: breadcrumb.0.title}"/>
@@ -33,7 +27,7 @@
 </f:comment>
 <f:variable name="ctaSlug" value="{site.configuration.settings.desiderio.header.ctaSlug}"/>
 
-<header class="desiderio-header {f:if(condition: '{site.configuration.settings.desiderio.header.fixedPosition}', then: 'desiderio-header--fixed')}{f:if(condition: megaMenu, then: ' desiderio-header--mega')}" data-d-site-header>
+<header class="desiderio-header {f:if(condition: '{site.configuration.settings.desiderio.header.fixedPosition}', then: 'desiderio-header--fixed')}" data-d-site-header>
     <d:layout.container>
         <div class="desiderio-header__inner">
             <f:link.typolink parameter="{breadcrumb.0.link}" class="desiderio-header__logo">
@@ -56,16 +50,9 @@
                 expands inline. d-menu-surface carries the menu colour and
                 menu accent of the create page on ui.shadcn.com; d-menu-popover
                 the popover chrome (01-menu-surface.css).
-
-                With megaMenu the same landmark holds the mega menu instead:
-                its triggers sit where the list sits, and the burger opens it
-                as an accordion with the page summaries.
             </f:comment>
-            <nav id="desiderio-main-nav" class="desiderio-header__nav{f:if(condition: megaMenu, then: ' desiderio-header__nav--mega')}" data-d-primary-nav aria-label="{f:translate(extensionName: 'desiderio', key: 'a11y.nav.main', default: 'Main navigation')}">
-                <f:if condition="{mainMenu} && {megaMenu}">
-                    <d:organism.megaMenu mainMenu="{mainMenu}" ctaSlug="{ctaSlug}"/>
-                </f:if>
-                <f:if condition="{mainMenu} && !{megaMenu}">
+            <nav id="desiderio-main-nav" class="desiderio-header__nav" data-d-primary-nav aria-label="{f:translate(extensionName: 'desiderio', key: 'a11y.nav.main', default: 'Main navigation')}">
+                <f:if condition="{mainMenu}">
                     <ul class="desiderio-header__nav-list" role="list">
                         <f:for each="{mainMenu}" as="item" iteration="navIteration">
                             <li class="desiderio-header__nav-item{f:if(condition: '{ctaSlug} && {item.data.slug} == {ctaSlug}', then: ' desiderio-header__nav-item--cta')}" data-d-nav-level="1" {f:if(condition: item.children, then: 'data-d-nav-sub')}>

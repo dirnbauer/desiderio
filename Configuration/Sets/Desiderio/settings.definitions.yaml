@@ -151,15 +151,6 @@ settings:
     default: ''
     category: desiderio.header
 
-  # Label, description and option names from labels.xlf / de.labels.xlf.
-  desiderio.navigation.megaMenu:
-    type: string
-    enum:
-      'off': '{label}:settings.desiderio.navigation.megaMenu.off'
-      home: '{label}:settings.desiderio.navigation.megaMenu.home'
-    default: 'off'
-    category: desiderio.header
-
   # --------------------------------------------------------------- Footer
   desiderio.footer.style:
     label: 'Footer style'

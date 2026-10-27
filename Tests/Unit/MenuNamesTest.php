@@ -12,9 +12,8 @@ use Webconsulting\Desiderio\Data\StyleguideShowcasePages;
 
 /**
  * Every menu entry explains itself: the menu shows the nav title, and the
- * homepage mega menu shows the page's abstract below it. A first-level name
- * stays short enough for the header bar; deeper names fit two lines of the
- * mega menu.
+ * page abstract is the summary search engines and the error page fall back
+ * to. A first-level name stays short enough for the header bar.
  */
 final class MenuNamesTest extends TestCase
 {

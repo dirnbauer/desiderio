@@ -6,6 +6,12 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.27.3] — 2026-10-27
+
+### Removed
+
+- Remove the home-page mega menu. The site's root page now uses the same three-level main menu as every other page, including its "More" overflow. Gone with it: the `d:organism.megaMenu` component, the `desiderio.navigation.megaMenu` site setting, and the note `desiderio:styleguide:seed` wrote under the home page's product film. The Mega Menu Panel content element is unchanged.
+
 ## [4.27.2] — 2026-10-27
 
 ### Fixed

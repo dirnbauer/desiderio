@@ -9,15 +9,12 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 use Symfony\Component\Yaml\Yaml;
 use TYPO3\CMS\Core\Attribute\AsAllowedCallable;
-use TYPO3\CMS\Core\Site\Entity\Site;
-use TYPO3\CMS\Core\Site\Entity\SiteSettings as CoreSiteSettings;
-use Webconsulting\Desiderio\Data\StyleguideShowcasePages;
 use Webconsulting\Desiderio\Theme\MenuAppearance;
 use Webconsulting\Desiderio\Theme\ShadcnPresetCode;
 
 /**
- * The three-level header menu, the home-page mega menu and the two menu
- * options of the create page on ui.shadcn.com (menu colour, menu accent).
+ * The three-level header menu and the two menu options of the create page
+ * on ui.shadcn.com (menu colour, menu accent).
  */
 final class NavigationMenusTest extends TestCase
 {
@@ -127,12 +124,11 @@ final class NavigationMenusTest extends TestCase
         self::assertSame(['preset', ...ShadcnPresetCode::MENU_COLORS], array_keys($settings['desiderio.shadcn.menuColor']['enum']));
         self::assertSame('preset', $settings['desiderio.shadcn.menuAccent']['default']);
         self::assertSame(['preset', ...ShadcnPresetCode::MENU_ACCENTS], array_keys($settings['desiderio.shadcn.menuAccent']['enum']));
-        self::assertSame('off', $settings['desiderio.navigation.megaMenu']['default']);
-        self::assertSame(['off', 'home'], array_keys($settings['desiderio.navigation.megaMenu']['enum']));
+        self::assertArrayNotHasKey('desiderio.navigation.megaMenu', $settings);
 
         $labels = (string)file_get_contents(self::ROOT . '/Configuration/Sets/Desiderio/labels.xlf');
         $germanLabels = (string)file_get_contents(self::ROOT . '/Configuration/Sets/Desiderio/de.labels.xlf');
-        foreach (['desiderio.shadcn.menuColor', 'desiderio.shadcn.menuAccent', 'desiderio.navigation.megaMenu'] as $key) {
+        foreach (['desiderio.shadcn.menuColor', 'desiderio.shadcn.menuAccent'] as $key) {
             foreach (['settings.' . $key, 'settings.description.' . $key] as $unit) {
                 self::assertStringContainsString('<unit id="' . $unit . '">', $labels);
                 self::assertStringContainsString('<unit id="' . $unit . '">', $germanLabels);
@@ -162,88 +158,13 @@ final class NavigationMenusTest extends TestCase
         // Every popover is a menu surface, so menu colour and accent reach it.
         self::assertSame(3, substr_count($header, 'd-menu-surface--wide d-menu-popover'));
         self::assertSame(2, substr_count($header, 'd-menu-surface d-menu-popover'));
-    }
 
-    public function testTheMegaMenuReplacesTheMainMenuOnTheHomePageOnly(): void
-    {
         $layout = (string)file_get_contents(self::ROOT . '/Resources/Private/Templates/Layouts/Pages/Default.fluid.html');
-        self::assertStringContainsString('<f:variable name="megaMenu" value="{false}"/>', $layout);
-        self::assertStringContainsString(
-            '<f:if condition="{site.configuration.settings.desiderio.navigation.megaMenu} == \'home\' && {page.id} == {site.rootPageId}">',
-            $layout,
-        );
-        self::assertStringContainsString('megaMenu="{megaMenu}"/>', $layout);
-        self::assertStringNotContainsString('<d:organism.megaMenu', $layout, 'The header renders the mega menu, the layout only decides.');
-
-        // In the header's main-navigation landmark, instead of the list.
-        $header = (string)file_get_contents(self::ROOT . '/Resources/Private/Components/Organism/SiteHeader/SiteHeader.fluid.html');
-        self::assertStringContainsString('<f:argument name="megaMenu" type="bool" optional="{true}" default="{false}" />', $header);
-        self::assertStringContainsString('<f:if condition="{mainMenu} && {megaMenu}">', $header);
-        self::assertStringContainsString('<d:organism.megaMenu mainMenu="{mainMenu}" ctaSlug="{ctaSlug}"/>', $header);
-        self::assertStringContainsString('<f:if condition="{mainMenu} && !{megaMenu}">', $header);
-        self::assertSame(1, substr_count($header, '<nav id="desiderio-main-nav"'));
-
-        $mega = (string)file_get_contents(self::ROOT . '/Resources/Private/Components/Organism/MegaMenu/MegaMenu.fluid.html');
-        self::assertStringContainsString('<ul class="desiderio-mega__list" role="list" data-d-mega-menu>', $mega);
-        self::assertStringNotContainsString('<nav', $mega, 'One landmark: the header\'s main navigation.');
-        // Disclosures: button, aria-expanded, aria-controls on the panel id.
-        self::assertSame(2, substr_count($mega, 'aria-expanded="false"'));
-        self::assertStringContainsString('aria-controls="desiderio-mega-panel-{megaIteration.cycle}"', $mega);
-        self::assertStringContainsString('id="desiderio-mega-panel-{megaIteration.cycle}"', $mega);
-        // Priority+ overflow: a hidden "More" disclosure with one hidden entry per first-level page.
-        self::assertStringContainsString('data-d-mega-item data-d-mega-more hidden>', $mega);
-        self::assertStringContainsString('aria-controls="desiderio-mega-panel-more"', $mega);
-        self::assertStringContainsString('id="desiderio-mega-panel-more"', $mega);
-        self::assertSame(2, substr_count($mega, '<f:for each="{mainMenu}" as="item"'));
-        self::assertStringContainsString('data-d-mega-more-entry hidden>', $mega);
-        // Only the feature card of each panel carries an abstract.
-        self::assertSame(1, substr_count($mega, '.data.abstract}">'));
-        self::assertStringContainsString('<f:if condition="{item.data.abstract}">', $mega);
-        self::assertStringContainsString('d-menu-surface--wide d-menu-popover', $mega);
-        self::assertStringNotContainsString('nav.mega.note', $mega, 'The note lives in the home page content, not in the menu.');
-    }
-
-    public function testTheHomePageNoteSitsUnderTheProductFilmOnlyWithTheMegaMenu(): void
-    {
-        $plain = StyleguideShowcasePages::homeContent();
-        self::assertSame($plain, StyleguideShowcasePages::homeContentFor(false));
-
-        $withNote = StyleguideShowcasePages::homeContentFor(true);
-        self::assertCount(count($plain), $withNote, 'The note is part of the film, not an element of its own.');
-        $film = array_search('desiderio_featurevideo', array_column($withNote, 'ctype'), true);
-        self::assertIsInt($film);
-        self::assertSame(StyleguideShowcasePages::megaMenuNote(), $withNote[$film]['fields']['caption'] ?? null);
-        self::assertArrayNotHasKey('caption', $plain[$film]['fields']);
-        foreach ($withNote as $index => $block) {
-            if ($index !== $film) {
-                self::assertSame($plain[$index], $block);
-            }
-        }
-
-        // The film renders the note below the player, in its own section.
-        $config = Yaml::parseFile(self::ROOT . '/ContentBlocks/ContentElements/feature-video/config.yaml');
-        self::assertIsArray($config);
-        self::assertContains('caption', array_column($config['fields'], 'identifier'));
-        $template = (string)file_get_contents(self::ROOT . '/ContentBlocks/ContentElements/feature-video/templates/frontend.html');
-        self::assertMatchesRegularExpression('/feature-video__player.*<p class="feature-video__note">.*<\/d:layout\.container>/s', $template);
-        self::assertStringContainsString("{data -> f:render.text(field: 'caption')}", $template);
-
-    }
-
-    public function testOnlyASiteThatShowsTheMegaMenuOnItsRootPageGetsTheNote(): void
-    {
-        $site = static fn(mixed $megaMenu): Site => new Site('desiderio', 505, ['base' => '/'], CoreSiteSettings::createFromSettingsTree(
-            $megaMenu === null ? [] : ['desiderio' => ['navigation' => ['megaMenu' => $megaMenu]]]
-        ));
-
-        self::assertTrue(StyleguideShowcasePages::showsMegaMenuNote($site('home'), 505));
-        self::assertFalse(StyleguideShowcasePages::showsMegaMenuNote($site('off'), 505));
-        self::assertFalse(StyleguideShowcasePages::showsMegaMenuNote($site(null), 505), 'No setting: the default is off.');
-        self::assertFalse(StyleguideShowcasePages::showsMegaMenuNote($site('home'), 600), 'Seeded below the root page: no mega menu there.');
-
+        self::assertStringNotContainsString('megaMenu', $layout);
+        self::assertStringNotContainsString('<d:organism.megaMenu', $header);
         $command = (string)file_get_contents(self::ROOT . '/Classes/Command/SeedStyleguidePagesCommand.php');
-        self::assertStringContainsString('StyleguideShowcasePages::homeContentFor($this->showsMegaMenuNote($parentPid))', $command);
-        self::assertStringContainsString('getSiteByPageId($homePageUid)', $command);
+        self::assertStringContainsString('StyleguideShowcasePages::homeContent()', $command);
+        self::assertStringNotContainsString('megaMenu', $command);
     }
 
     public function testTheInvertedMenuColoursAreGeneratedFromTheThemeStylesheet(): void
@@ -262,6 +183,6 @@ final class NavigationMenusTest extends TestCase
 
         $manifest = (string)file_get_contents(self::ROOT . '/Resources/Private/Css/desiderio/manifest.txt');
         self::assertMatchesRegularExpression('/01-menu-surface\.css\n01-header\.css/', $manifest, 'Menu surfaces must load before the header, whose inline contexts override them.');
-        self::assertStringContainsString("25-mega-menu.css\n26-menu-surface-tokens.css", $manifest);
+        self::assertStringNotContainsString('25-mega-menu.css', $manifest);
     }
 }

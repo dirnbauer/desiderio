@@ -24,7 +24,7 @@ declare(strict_types=1);
  *   }
  *
  * `.d-menu-surface--wide` gets the same mapping from 1025px up only: the
- * header's dropdowns and the mega menu panels are popovers there, but expand
+ * header's dropdowns are popovers there, but expand
  * inline in the burger panel, where dark tokens on the page background would
  * be light text on a light panel.
  *
@@ -204,7 +204,7 @@ CSS
     . implode("\n\n", $blocks)
     . "\n\n/* The menu surfaces: language and colour-scheme menus at every width. */\n"
     . ":root:not(.dark) body[data-menu-color^=\"inverted\"] .d-menu-surface {\n{$mappingBody}\n}\n\n"
-    . "/* Header dropdowns, flyouts and mega menu panels: popovers from 1025px up,\n   inline on the page below that. */\n"
+    . "/* Header dropdowns and flyouts: popovers from 1025px up,\n   inline on the page below that. */\n"
     . "@media (min-width: 1025px) {\n    :root:not(.dark) body[data-menu-color^=\"inverted\"] .d-menu-surface--wide {\n{$mappingBodyIndented}\n    }\n}\n";
 
 if ($check) {

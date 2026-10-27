@@ -97,29 +97,5 @@
         <target>Kräftig</target>
       </segment>
     </unit>
-    <unit id="settings.desiderio.navigation.megaMenu">
-      <segment state="final">
-        <source>Mega menu</source>
-        <target>Mega-Menü</target>
-      </segment>
-    </unit>
-    <unit id="settings.description.desiderio.navigation.megaMenu">
-      <segment state="final">
-        <source>On the site's root page the header shows a mega menu instead of the main menu: one button per main-menu page, each opening a panel with its subpages, their abstracts and their own subpages; the burger opens it as an accordion. "Home page only" switches it on for the root page; every other page keeps the three-level main menu. With it on, desiderio:styleguide:seed adds a short note about it below the product film on the home page.</source>
-        <target>Auf der Startseite der Site zeigt die Kopfzeile ein Mega-Menü statt des Hauptmenüs: je Seite des Hauptmenüs eine Schaltfläche, die ein Feld mit den Unterseiten, ihren Kurzfassungen und deren Unterseiten öffnet; das Burger-Menü zeigt es als Akkordeon. „Nur auf der Startseite“ schaltet es für die Startseite ein; alle anderen Seiten behalten das dreistufige Hauptmenü. Ist es eingeschaltet, fügt desiderio:styleguide:seed unter dem Produktfilm der Startseite einen kurzen Hinweis darauf ein.</target>
-      </segment>
-    </unit>
-    <unit id="settings.desiderio.navigation.megaMenu.off">
-      <segment state="final">
-        <source>Off</source>
-        <target>Aus</target>
-      </segment>
-    </unit>
-    <unit id="settings.desiderio.navigation.megaMenu.home">
-      <segment state="final">
-        <source>Home page only</source>
-        <target>Nur auf der Startseite</target>
-      </segment>
-    </unit>
   </file>
 </xliff>

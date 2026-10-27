@@ -175,9 +175,9 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
     }
 
     /**
-     * The menu names say what a page holds, and the abstract below them fills
-     * the homepage mega menu: on showcase pages, on chapter pages (which keep
-     * the content wizard's group title) and on a page no seeder writes.
+     * The menu names say what a page holds, and each page keeps an abstract:
+     * on showcase pages, on chapter pages (which keep the content wizard's
+     * group title) and on a page no seeder writes.
      */
     public function testSeedWritesMenuNamesAndAbstracts(): void
     {

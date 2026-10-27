@@ -170,7 +170,7 @@ final class StyleguideContentGroups
     /**
      * Menu texts of a chapter page. The page title stays the group title the
      * content wizard shows; the menu names what the elements are for, and
-     * the homepage mega menu shows the abstract below that name.
+     * the abstract is the page summary.
      *
      * @return array{navTitle: string, abstract: string}|null
      */

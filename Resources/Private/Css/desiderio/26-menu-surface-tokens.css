@@ -277,7 +277,7 @@
     color-scheme: dark;
 }
 
-/* Header dropdowns, flyouts and mega menu panels: popovers from 1025px up,
+/* Header dropdowns and flyouts: popovers from 1025px up,
    inline on the page below that. */
 @media (min-width: 1025px) {
     :root:not(.dark) body[data-menu-color^="inverted"] .d-menu-surface--wide {

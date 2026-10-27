@@ -15,7 +15,7 @@
  *   d-menu-popover   the chrome: popover background, border, radius, shadow
  *                    and the blur layer of the translucent variants. Inline
  *                    contexts (burger panel, "More" panel) take it off again
- *                    in 01-header.css and 25-mega-menu.css.
+ *                    in 01-header.css.
  *
  * <body> carries the resolved options as data-menu-color and
  * data-menu-accent (Classes/Theme/MenuAppearance.php). The inverted colours

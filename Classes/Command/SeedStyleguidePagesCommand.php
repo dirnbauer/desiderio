@@ -637,7 +637,7 @@ final class SeedStyleguidePagesCommand extends Command
             );
         }
 
-        $showcaseBlocks[$parentPid] = StyleguideShowcasePages::homeContentFor($this->showsMegaMenuNote($parentPid));
+        $showcaseBlocks[$parentPid] = StyleguideShowcasePages::homeContent();
         $linkTargets = $this->addSeededPageLinkTargets(
             $linkTargets,
             $parentPid,
@@ -758,7 +758,7 @@ final class SeedStyleguidePagesCommand extends Command
             }
         }
         // Placed pages no seeder writes still get a menu name that explains
-        // them and an abstract for the homepage mega menu.
+        // them and an abstract as the page summary.
         foreach (StyleguideShowcasePages::adoptedMenuTexts() as $slug => $menuTexts) {
             $adoptedUid = $pageUpserter->findPageBySlugBelow($parentPid, $slug, $pageColumns);
             if ($adoptedUid === null) {
@@ -1016,22 +1016,6 @@ final class SeedStyleguidePagesCommand extends Command
         $first = $content === [] ? null : $content[array_key_first($content)];
 
         return $first !== null && str_starts_with($first['ctype'], 'desiderio_hero');
-    }
-
-    /**
-     * Whether the homepage gets the note about the mega menu: only when the
-     * seeded page is its site's root page and that site switches the mega
-     * menu on there (StyleguideShowcasePages::showsMegaMenuNote()).
-     */
-    private function showsMegaMenuNote(int $homePageUid): bool
-    {
-        try {
-            $site = GeneralUtility::makeInstance(SiteFinder::class)->getSiteByPageId($homePageUid);
-        } catch (SiteNotFoundException) {
-            return false;
-        }
-
-        return StyleguideShowcasePages::showsMegaMenuNote($site, $homePageUid);
     }
 
     /**

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Webconsulting\Desiderio\Data;
 
-use TYPO3\CMS\Core\Site\Entity\Site;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseAudiencePages;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseBlocks;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseFeaturePages;
@@ -15,8 +14,6 @@ use Webconsulting\Desiderio\Data\Showcase\ShowcasePricing;
 use Webconsulting\Desiderio\Data\Showcase\ShowcasePricingPages;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseStrategyPages;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseSuccessStories;
-use Webconsulting\Desiderio\Utility\SiteSettings;
-
 /**
  * Marketing showcase seeded by desiderio:styleguide:seed in addition to the
  * element chapters: managed homepage content on the styleguide root page plus
@@ -90,8 +87,8 @@ final class StyleguideShowcasePages
 
     /**
      * Menu texts for pages in the menu that no seeder writes, by slug: the
-     * nav title the menu shows and the abstract the homepage mega menu shows
-     * below it. The Innesto demo page is the one today; the innesto
+     * nav title the menu shows and the abstract search engines fall back to.
+     * The Innesto demo page is the one today; the innesto
      * extension fills it with elements.
      *
      * @return array<string, array{navTitle: string, abstract: string}>
@@ -651,46 +648,4 @@ final class StyleguideShowcasePages
         ];
     }
 
-    /**
-     * The homepage content for one site: homeContent(), and when the site
-     * shows the mega menu on this page (see showsMegaMenuNote()) the product
-     * film carries a note about it as the line below the player
-     * (desiderio_featurevideo.caption), inside the film's own section.
-     *
-     * @return array<int, ShowcaseBlock>
-     */
-    public static function homeContentFor(bool $withMegaMenuNote): array
-    {
-        $content = self::homeContent();
-        if (!$withMegaMenuNote) {
-            return $content;
-        }
-        foreach ($content as $index => $block) {
-            if ($block['ctype'] === 'desiderio_featurevideo') {
-                $content[$index]['fields']['caption'] = self::megaMenuNote();
-                break;
-            }
-        }
-
-        return $content;
-    }
-
-    /**
-     * True when the page seeded as the homepage is the site's root page and
-     * the site shows the mega menu there (desiderio.navigation.megaMenu =
-     * home). Sites without the mega menu never get the note.
-     */
-    public static function showsMegaMenuNote(Site $site, int $homePageUid): bool
-    {
-        return $site->getRootPageId() === $homePageUid
-            && SiteSettings::string($site, 'desiderio.navigation.megaMenu', 'off') === 'home';
-    }
-
-    /**
-     * The note below the product film on a home page with the mega menu.
-     */
-    public static function megaMenuNote(): string
-    {
-        return 'This page uses a mega menu: every section opens with a short summary and lists its pages. It appears on the home page only; every other page uses the standard menu.';
-    }
 }

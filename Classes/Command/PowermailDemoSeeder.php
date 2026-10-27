@@ -63,7 +63,7 @@ final readonly class PowermailDemoSeeder
         $pageColumns = $this->databaseSchema->getColumnNames('pages');
         $contentColumns = $this->databaseSchema->getColumnNames('tt_content');
 
-        // The menu shows the nav title, the homepage mega menu the abstract below it.
+        // The menu shows the nav title; the abstract is the page summary.
         $rootUid = $this->upsertPage(
             $parentPid,
             'Powermail Lab',

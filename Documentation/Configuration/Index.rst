@@ -83,10 +83,6 @@ Core site settings
     *   - ``desiderio.header.fixedPosition``
         - ``false``
         - Keeps the header pinned while scrolling.
-    *   - ``desiderio.navigation.megaMenu``
-        - ``off``
-        - ``home`` shows a mega menu instead of the main menu on the site's
-          root page. See :ref:`configuration-menus`.
     *   - ``desiderio.footer.style``
         - ``columns``
         - ``columns``, ``centered``, ``minimal``, or ``mega``.
@@ -113,19 +109,9 @@ the innermost level. In the burger menu and in the "More" panel all levels
 expand inline. The menu reads ``levels = 3`` of
 ``lib.desiderioPageDataProcessing``.
 
-With ``desiderio.navigation.megaMenu = home`` the site's root page shows a
-mega menu (``d:organism.megaMenu``, the shadcn/ui NavigationMenu recipe) in
-the header instead: one trigger per first-level page, each opening a panel
-led by a card for the page itself with its abstract (``pages.abstract``),
-then its subpages and their own subpages as compact links. Triggers that do not fit one row
-move into a "More" panel, which lists those pages with their subpages. The
-burger shows it as an accordion. Every other page keeps the main menu. ``desiderio:styleguide:seed`` adds a
-short note about it below the product film of a home page with the mega
-menu, in the film's :guilabel:`Note below the video` field.
-
 ``desiderio.shadcn.menuColor`` and ``desiderio.shadcn.menuAccent`` are the
 menu options of the create page on ui.shadcn.com and apply to the dropdowns,
-flyouts, the mega menu and the language and colour-scheme menus. The
+flyouts and the language and colour-scheme menus. The
 default ``preset`` decodes them from the preset's create code
 (:file:`Classes/Theme/ShadcnPresetCode.php`): ``b4hb38Fyj`` has inverted
 menus, ``b6G5977cw`` translucent ones, the house presets the defaults.

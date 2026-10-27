@@ -5,10 +5,7 @@ lib.desiderioPageDataProcessing {
     as = mainMenu
     special = directory
     special.value.data = site:rootPageId
-    # Three levels: the header's dropdowns open level-3 flyouts, and the
-    # home-page mega menu (desiderio.navigation.megaMenu) lists them as
-    # compact links. item.data carries the page record, so the mega menu
-    # reads each page's abstract from it.
+    # Three levels: the header's dropdowns open level-3 flyouts.
     levels = 3
     expandAll = 1
     titleField = nav_title // title

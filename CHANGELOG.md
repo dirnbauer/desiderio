@@ -6,6 +6,12 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.27.2] — 2026-10-27
+
+### Fixed
+
+- A required Powermail checkbox or radio group now shows the page's translated required message when nothing is selected. Its value stays nonempty either way, so the validator used to skip its own message and show the browser's instead (German on an English page, for example).
+
 ## [4.27.1] — 2026-10-26
 
 ### Changed

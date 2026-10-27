@@ -6,6 +6,8 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.27.1] — 2026-10-26
+
 ### Changed
 
 - Slim the home page's mega menu down: only the feature card at the top of each panel keeps its abstract, the subpages below it are title-only links. Every subpage used to carry its own two-line description, which made the Website tools panel (20 subpages) almost 500px tall and the menu hard to scan. The burger accordion follows, and the seeded note under the home page's product film now says what the menu shows (English, German, Chinese and Hungarian).

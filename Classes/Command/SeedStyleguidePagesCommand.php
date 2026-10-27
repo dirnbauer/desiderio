@@ -594,6 +594,15 @@ final class SeedStyleguidePagesCommand extends Command
                 $pageUpserter->syncTranslationLayout($pageUid, $pageAttributes, $pageColumns);
             }
 
+            // Translations keep the slug they were created with. A page found
+            // by its current slug would otherwise leave a language on a former
+            // path, which is how /desiderio/typo3-v14-strategy/ survived.
+            foreach ($page['formerSlugs'] ?? [] as $formerSlug) {
+                if (is_string($formerSlug) && $formerSlug !== '') {
+                    $pageUpserter->renameTranslationSlugs($pageUid, $formerSlug, $page['slug'], $pageColumns);
+                }
+            }
+
             if ($blogAvailable && is_array($blogMeta)) {
                 $blogPostsToRelate[] = ['postUid' => $pageUid, 'storagePid' => $pagePid, 'meta' => $blogMeta];
             }

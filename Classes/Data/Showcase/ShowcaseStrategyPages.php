@@ -113,6 +113,7 @@ final class ShowcaseStrategyPages
             'title' => 'TYPO3 v14 and AI agents: our strategy',
             'navTitle' => 'Strategy: TYPO3 v14 and AI agents',
             'slug' => '/typo3-v14-strategy',
+            'formerSlugs' => ['/desiderio/typo3-v14-strategy'],
             'abstract' => 'A plan by webconsulting for TYPO3 v14 as a CMS that AI agents can use safely. It shows what runs today, what comes next and how to start.',
             'description' => 'The TYPO3 v14 strategy for AI agents by webconsulting: what runs in the lab today, the roadmap to 2030, a readiness check and first steps.',
             'parentSlug' => 'ai',

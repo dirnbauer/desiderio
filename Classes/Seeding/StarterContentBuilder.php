@@ -13,6 +13,14 @@ use Webconsulting\Desiderio\Data\StyleguidePortraitAssets;
  */
 final readonly class StarterContentBuilder
 {
+    /**
+     * Fields of the shared Desiderio/Appearance basic (tt_content columns every
+     * element has) that a definition may set although no block lists them in
+     * its own config.yaml: the frame (the surface a section sits on) and the
+     * spacing. Anything else outside a block's own fields is still dropped.
+     */
+    private const array SHARED_APPEARANCE_FIELDS = ['frame_class', 'space_before_class', 'space_after_class', 'layout'];
+
     private CollectionSchema $schema;
 
     public function __construct(
@@ -108,6 +116,9 @@ final readonly class StarterContentBuilder
 
             $fieldConfig = $definition['fields'][$field] ?? null;
             if (!is_array($fieldConfig)) {
+                if (in_array($field, self::SHARED_APPEARANCE_FIELDS, true) && !is_array($value)) {
+                    $resolvedFields[$field] = $this->fieldNormalizer->normalizeScalarValue($value);
+                }
                 continue;
             }
 

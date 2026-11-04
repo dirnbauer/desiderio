@@ -1,0 +1,166 @@
+{
+    "_note": "MedAtlas Austria (local production build on http://localhost:3000, nightly import run first). Dark statistics set first; the chat button is hidden on every page.",
+    "shots": [
+        {
+            "kind": "frontend",
+            "viewport": "1440x900",
+            "css": "button[aria-label=\"Assistent öffnen\"],button[aria-label=\"Assistent schließen\"],button.fixed.bottom-4.right-4.rounded-full,nextjs-portal,[data-nextjs-toast]{display:none!important}",
+            "settle": 1500,
+            "name": "frontend-feature-medatlas-statistics-dark",
+            "url": "/de/statistics",
+            "colorScheme": "dark",
+            "steps": [
+                {
+                    "evaluate": "(async () => { document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); const y = ([...document.querySelectorAll('main h1')].find((h) => h.textContent.includes('Lieferengpässe in Österreich')).getBoundingClientRect().top + window.scrollY) - 44; window.scrollTo({ left: 0, top: Math.max(0, Math.round(y)), behavior: 'instant' }); })()",
+                    "wait": 2500
+                }
+            ],
+            "clip": "viewport"
+        },
+        {
+            "kind": "frontend",
+            "viewport": "1440x900",
+            "css": "button[aria-label=\"Assistent öffnen\"],button[aria-label=\"Assistent schließen\"],button.fixed.bottom-4.right-4.rounded-full,nextjs-portal,[data-nextjs-toast]{display:none!important}",
+            "settle": 1500,
+            "name": "frontend-feature-medatlas-statistics-chart-dark",
+            "url": "/de/statistics",
+            "colorScheme": "dark",
+            "steps": [
+                {
+                    "evaluate": "(async () => { document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); const e = [...document.querySelectorAll('main h2')].find((h) => h.textContent.includes('Meldungen pro Monat')).closest('section'); const s = e.getBoundingClientRect(); window.scrollTo({ left: 0, top: Math.round(s.top + window.scrollY + -48 - (window.innerHeight - 590) / 2), behavior: 'instant' }); await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))); const b = e.getBoundingClientRect(); const x0 = Math.round(b.left + b.width / 2 - 944 / 2); const y0 = Math.round(b.top + -48); const m = document.createElement('div'); m.id = 'shot-frame'; m.style.cssText = 'position:fixed;pointer-events:none;opacity:0;z-index:-1;left:' + x0 + 'px;top:' + y0 + 'px;width:944px;height:590px'; document.body.appendChild(m); })()",
+                    "wait": 2500
+                }
+            ],
+            "clip": "#shot-frame",
+            "padding": 0
+        },
+        {
+            "kind": "frontend",
+            "viewport": "1440x900",
+            "css": "button[aria-label=\"Assistent öffnen\"],button[aria-label=\"Assistent schließen\"],button.fixed.bottom-4.right-4.rounded-full,nextjs-portal,[data-nextjs-toast]{display:none!important}",
+            "settle": 1500,
+            "name": "frontend-feature-medatlas-statistics-reasons-dark",
+            "url": "/de/statistics",
+            "colorScheme": "dark",
+            "steps": [
+                {
+                    "evaluate": "(async () => { document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); const y = ([...document.querySelectorAll('main h3')].find((h) => h.textContent.includes('Gründe')).getBoundingClientRect().top + window.scrollY) - 26; window.scrollTo({ left: 0, top: Math.max(0, Math.round(y)), behavior: 'instant' }); })()",
+                    "wait": 2500
+                }
+            ],
+            "clip": "viewport"
+        },
+        {
+            "kind": "frontend",
+            "viewport": "1440x900",
+            "css": "button[aria-label=\"Assistent öffnen\"],button[aria-label=\"Assistent schließen\"],button.fixed.bottom-4.right-4.rounded-full,nextjs-portal,[data-nextjs-toast]{display:none!important}",
+            "settle": 1500,
+            "name": "frontend-feature-medatlas-statistics-light",
+            "url": "/de/statistics",
+            "colorScheme": "light",
+            "steps": [
+                {
+                    "evaluate": "(async () => { document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); const y = ([...document.querySelectorAll('main h1')].find((h) => h.textContent.includes('Lieferengpässe in Österreich')).getBoundingClientRect().top + window.scrollY) - 44; window.scrollTo({ left: 0, top: Math.max(0, Math.round(y)), behavior: 'instant' }); })()",
+                    "wait": 2500
+                }
+            ],
+            "clip": "viewport"
+        },
+        {
+            "kind": "frontend",
+            "viewport": "1440x900",
+            "css": "button[aria-label=\"Assistent öffnen\"],button[aria-label=\"Assistent schließen\"],button.fixed.bottom-4.right-4.rounded-full,nextjs-portal,[data-nextjs-toast]{display:none!important}",
+            "settle": 1500,
+            "name": "frontend-feature-medatlas-home",
+            "url": "/de",
+            "colorScheme": "light",
+            "steps": [
+                {
+                    "evaluate": "(async () => { document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); const y = 0; window.scrollTo({ left: 0, top: Math.max(0, Math.round(y)), behavior: 'instant' }); })()",
+                    "wait": 1500
+                }
+            ],
+            "clip": "viewport"
+        },
+        {
+            "kind": "frontend",
+            "viewport": "1440x900",
+            "css": "button[aria-label=\"Assistent öffnen\"],button[aria-label=\"Assistent schließen\"],button.fixed.bottom-4.right-4.rounded-full,nextjs-portal,[data-nextjs-toast]{display:none!important}",
+            "settle": 1500,
+            "name": "frontend-feature-medatlas-finder",
+            "url": "/de/substance-finder?q=Ibuprofen&form=Suspension%20zum%20Einnehmen",
+            "colorScheme": "light",
+            "steps": [
+                {
+                    "evaluate": "(async () => { document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); const y = ([...document.querySelectorAll('main h2')].find((h) => h.textContent.includes('von 113')).closest('section').getBoundingClientRect().top + window.scrollY) - 32; window.scrollTo({ left: 0, top: Math.max(0, Math.round(y)), behavior: 'instant' }); })()",
+                    "wait": 1500
+                }
+            ],
+            "clip": "viewport"
+        },
+        {
+            "kind": "frontend",
+            "viewport": "1440x900",
+            "css": "button[aria-label=\"Assistent öffnen\"],button[aria-label=\"Assistent schließen\"],button.fixed.bottom-4.right-4.rounded-full,nextjs-portal,[data-nextjs-toast]{display:none!important}",
+            "settle": 1500,
+            "name": "frontend-feature-medatlas-shortage-detail",
+            "url": "/de/shortages/700",
+            "colorScheme": "light",
+            "steps": [
+                {
+                    "evaluate": "(async () => { document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); const y = (document.querySelector(\"main h1\").getBoundingClientRect().top + window.scrollY) - 88; window.scrollTo({ left: 0, top: Math.max(0, Math.round(y)), behavior: 'instant' }); })()",
+                    "wait": 1500
+                }
+            ],
+            "clip": "viewport"
+        },
+        {
+            "kind": "frontend",
+            "viewport": "1440x900",
+            "css": "button[aria-label=\"Assistent öffnen\"],button[aria-label=\"Assistent schließen\"],button.fixed.bottom-4.right-4.rounded-full,nextjs-portal,[data-nextjs-toast]{display:none!important}main .sticky,main thead th{position:static!important}",
+            "settle": 1500,
+            "name": "frontend-feature-medatlas-next-steps",
+            "url": "/de/substance-finder?q=Ibuprofen&form=Suspension%20zum%20Einnehmen",
+            "colorScheme": "light",
+            "steps": [
+                {
+                    "evaluate": "(async () => { document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); const y = ([...document.querySelectorAll('main h2')].find((h) => h.textContent.includes('Nächste Schritte')).closest('section').getBoundingClientRect().top + window.scrollY) + [...document.querySelectorAll('main h2')].find((h) => h.textContent.includes('Nächste Schritte')).closest('section').getBoundingClientRect().height + 40 - window.innerHeight; window.scrollTo({ left: 0, top: Math.max(0, Math.round(y)), behavior: 'instant' }); })()",
+                    "wait": 1500
+                }
+            ],
+            "clip": "viewport"
+        },
+        {
+            "kind": "frontend",
+            "viewport": "1440x900",
+            "css": "button[aria-label=\"Assistent öffnen\"],button[aria-label=\"Assistent schließen\"],button.fixed.bottom-4.right-4.rounded-full,nextjs-portal,[data-nextjs-toast]{display:none!important}",
+            "settle": 1500,
+            "name": "frontend-feature-medatlas-alerts",
+            "url": "/de/alerts",
+            "colorScheme": "light",
+            "steps": [
+                {
+                    "evaluate": "(async () => { document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); const y = 0; window.scrollTo({ left: 0, top: Math.max(0, Math.round(y)), behavior: 'instant' }); })()",
+                    "wait": 1200
+                }
+            ],
+            "clip": "viewport"
+        },
+        {
+            "kind": "frontend",
+            "viewport": "1440x900",
+            "css": "button[aria-label=\"Assistent öffnen\"],button[aria-label=\"Assistent schließen\"],button.fixed.bottom-4.right-4.rounded-full,nextjs-portal,[data-nextjs-toast]{display:none!important}",
+            "settle": 1500,
+            "name": "frontend-feature-medatlas-my-medications",
+            "url": "/de/my-medications",
+            "colorScheme": "light",
+            "steps": [
+                {
+                    "evaluate": "(async () => { document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); const y = 0; window.scrollTo({ left: 0, top: Math.max(0, Math.round(y)), behavior: 'instant' }); })()",
+                    "wait": 1200
+                }
+            ],
+            "clip": "viewport"
+        }
+    ]
+}

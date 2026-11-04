@@ -296,6 +296,37 @@ final class StyleguideShowcasePages
                 ],
             ]),
 
+            // ----------------------------------------------------- strategy
+            // The five points of the strategy page. The films seeder puts the
+            // strategy film right after this element, found by its header.
+            ShowcaseBlocks::block('desiderio_featurechecklist', [
+                'eyebrow' => 'Strategy 2026–2030',
+                'header' => 'Five points for all our software',
+                'items' => ShowcaseStrategyPages::fivePoints(),
+            ]),
+            ShowcaseBlocks::block('desiderio_ctainline', [
+                'header' => 'Not only TYPO3',
+                'description_text' => 'Our strategy for TYPO3 v14 and AI agents is the standard for everything we build: every site, framework and product, from T3 Ops to MedAtlas.',
+                'cta_text' => 'Read the strategy',
+                'cta_link' => '{{page:typo3-v14-strategy}}',
+            ]),
+
+            // ------------------------------------------------- lab overview
+            // The films seeder puts the lab overview film right after this
+            // element, found by its header.
+            ShowcaseBlocks::block('desiderio_categorycards', [
+                'eyebrow' => 'Overview',
+                'header' => 'Everything in this lab',
+                'subheadline' => 'Four groups, each with an overview page that leads to every tool, product and template.',
+                'columns' => '4',
+                'items' => [
+                    ['title' => 'Website tools', 'count' => sprintf('%d tools', count(ShowcaseFeaturePages::websitePages()) - 1), 'description' => 'Themes, editing, search, forms, login and paid access: the extensions this site runs.', 'link' => '{{page:features}}'],
+                    ['title' => 'AI and agents', 'count' => sprintf('%d tools', count(ShowcaseFeaturePages::aiPages()) - 1), 'description' => 'AI for editors, skills with safety checks, and tools that open a site to outside agents.', 'link' => '{{page:ai}}'],
+                    ['title' => 'Software', 'count' => sprintf('%d products', count(ShowcaseFeaturePages::softwarePages()) - 1), 'description' => 'T3 Ops, Ledger, MedAtlas Austria and CapexOne Plus, built by webconsulting.', 'link' => '{{page:software}}'],
+                    ['title' => 'Website templates', 'count' => '10 templates', 'description' => 'Ten complete websites for TYPO3 v14, free under the MIT licence and live in this lab.', 'link' => '{{page:templates}}'],
+                ],
+            ]),
+
             // ----------------------------------------------------- the lab
             // One card per other site of the installation. The seeder links
             // {{site:<identifier>}} to that site's root page and leaves out

@@ -25,6 +25,23 @@ final class ShowcaseStrategyPages
     }
 
     /**
+     * The five points of the strategy, shared by the strategy page and the
+     * home page so both always say the same.
+     *
+     * @return list<array{title: string, description_text: string}>
+     */
+    public static function fivePoints(): array
+    {
+        return [
+            ['title' => 'Agents use governed tools', 'description_text' => 'They work through MCP tools, CLI commands and APIs, never through a shared admin login.'],
+            ['title' => 'People approve what goes live', 'description_text' => 'Workspaces, permissions and approval steps apply to agents as they do to editors.'],
+            ['title' => 'One registry defines each action', 'description_text' => 'An ability is described once, with its scopes and risk level, and every surface uses it.'],
+            ['title' => 'You choose the AI model', 'description_text' => 'The model layer connects many providers, so price, location and data policy stay your decision.'],
+            ['title' => 'Governance is what clients buy', 'description_text' => 'Buyers pay for audit trails, approvals and EU hosting, not for AI decoration.'],
+        ];
+    }
+
+    /**
      * @return ShowcasePage
      */
     private static function geoAiSearchPage(): array
@@ -135,13 +152,15 @@ final class ShowcaseStrategyPages
                 ShowcaseBlocks::block('desiderio_featurechecklist', [
                     'eyebrow' => 'Summary',
                     'header' => 'The strategy in five points',
-                    'items' => [
-                        ['title' => 'Agents use governed tools', 'description_text' => 'They work through MCP tools, CLI commands and APIs, never through a shared admin login.'],
-                        ['title' => 'People approve what goes live', 'description_text' => 'Workspaces, permissions and approval steps apply to agents as they do to editors.'],
-                        ['title' => 'One registry defines each action', 'description_text' => 'An ability is described once, with its scopes and risk level, and every surface uses it.'],
-                        ['title' => 'You choose the AI model', 'description_text' => 'The model layer connects many providers, so price, location and data policy stay your decision.'],
-                        ['title' => 'Governance is what clients buy', 'description_text' => 'Buyers pay for audit trails, approvals and EU hosting, not for AI decoration.'],
-                    ],
+                    'items' => self::fivePoints(),
+                ]),
+
+                // ------------------------------------- the standard for everything
+                ShowcaseBlocks::block('desiderio_contenthighlight', [
+                    'header' => 'Not only TYPO3',
+                    'content' => '<p>These five points are the standard for everything we build: every site, every framework, every product. T3 Ops, Ledger, MedAtlas, CapexOne Plus and the agentic skills are held to the same rules as a TYPO3 site. TYPO3 v14 is where we show it running.</p>',
+                    'variant' => 'bordered',
+                    'alignment' => 'center',
                 ]),
 
                 // ------------------------------------------------------ why now
@@ -224,6 +243,24 @@ final class ShowcaseStrategyPages
                     '<ul><li><strong>Self-hosted</strong>: TYPO3, the MCP server, the agent tools and the audit log run on your servers.</li><li><strong>Model choice</strong>: use your own models, EU-hosted APIs or, if you opt in, models outside the EU.</li><li><strong>Regulation</strong>: the EU Data Act asks for providers you can switch and protection from non-EU access.</li></ul>',
                     self::strategyImage('strategy-own-infrastructure-b72491fc.webp', 'A server cabinet in a bright office', 'A small server cabinet with its door open in a bright office, standing for infrastructure you run yourself.')
                 ),
+
+                // ------------------------------------------- the floor under the five
+                // What the five points do not yet say: one line per standard
+                // that applies to every product. Text only; nothing is built.
+                ShowcaseBlocks::block('desiderio_featurechecklist', [
+                    'eyebrow' => 'What else counts',
+                    'header' => 'The floor under the five points',
+                    'items' => [
+                        ['title' => 'Agents are first-class users', 'description_text' => 'A documented API, typed data, llms.txt and agents.md, and typed browser tools (WebMCP) where visitors complete tasks.'],
+                        ['title' => 'Accessible by default', 'description_text' => 'WCAG 2.2 AA, automated scans plus a review by people, and an accessibility statement for every site.'],
+                        ['title' => 'Secure down to the supply chain', 'description_text' => 'Dependency audits around every update, signed releases with an SBOM, MFA for every backend and a plan for the Cyber Resilience Act.'],
+                        ['title' => 'Proof, not promise', 'description_text' => 'A change to a live site goes out with evidence: a baseline, a staging run and a before-and-after comparison. Agent changes too.'],
+                        ['title' => 'Operated, not only built', 'description_text' => 'Monitoring, verified backups, an incident process and update records from the first day.'],
+                        ['title' => 'Fast and light', 'description_text' => 'Core Web Vitals in the green, static caching, modern image formats and EU hosting with a small footprint.'],
+                        ['title' => 'Private by design', 'description_text' => 'Little data, EU-based models without retention, no training on client data, labelled AI output, and outside embeds that load after a click.'],
+                        ['title' => 'Costs you can see', 'description_text' => 'Every AI task shows its cost and runs under a cap, so AI work can have a fixed price.'],
+                    ],
+                ]),
 
                 // ----------------------------------------------- where do we stand
                 ShowcaseBlocks::block('desiderio_featurenumbered', [

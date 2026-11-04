@@ -1,0 +1,115 @@
+{
+    "description": "Ledger product screens for /software/ledger (plan 2026-11-04, section 5.3). Local demo with synthetic data only (Musterfirma Digital GmbH, scripts/seed-demo.mjs on branch demo-seed) on http://localhost:3200, signed in as the Buchhaltung-role user; see var/research/ledger-demo.md. Capture with Build/Scripts/capture-app-screenshots.mjs --base http://localhost:3200 --shots <this file> --state <signed-in storage state> (or --login with APP_USERNAME / APP_PASSWORD in the environment). The invoice shot reads a static page on http://127.0.0.1:8766 that shows a sent demo invoice rendered as PNG. Never press 'Rechnung aus Auswahl', 'Automatisch abgleichen' or any Redmine/Drive/Gmail button.",
+    "locale": "de-AT",
+    "css": "nextjs-portal,[data-nextjs-toast],[data-next-badge-root]{display:none!important}",
+    "login": {
+        "url": "/login",
+        "username": "input[name=username]",
+        "password": "input[name=password]",
+        "submit": "button[type=submit]"
+    },
+    "shots": [
+        {
+            "name": "frontend-feature-ledger-overview",
+            "url": "/",
+            "steps": [
+                {
+                    "scrollTo": "text=Finanzplanung · Ausblick 12 Monate",
+                    "offset": 100
+                }
+            ],
+            "settle": 1500
+        },
+        {
+            "name": "frontend-feature-ledger-time-invoice",
+            "url": "/time?project=1",
+            "steps": [
+                {
+                    "click": ":nth-match(tbody button[role=checkbox], 4)"
+                },
+                {
+                    "click": ":nth-match(tbody button[role=checkbox], 5)"
+                },
+                {
+                    "click": ":nth-match(tbody button[role=checkbox], 6)"
+                },
+                {
+                    "click": ":nth-match(tbody button[role=checkbox], 7)"
+                },
+                {
+                    "click": ":nth-match(tbody button[role=checkbox], 8)"
+                },
+                {
+                    "click": ":nth-match(tbody button[role=checkbox], 9)"
+                },
+                {
+                    "scrollTo": "text=Alle Leistungen",
+                    "offset": 96
+                },
+                {
+                    "waitFor": "text=Rechnung aus Auswahl"
+                },
+                {
+                    "hover": "text=Alle Leistungen",
+                    "wait": 400
+                }
+            ],
+            "settle": 1000
+        },
+        {
+            "name": "frontend-feature-ledger-receipt-review",
+            "url": "/expenses/100",
+            "steps": [
+                {
+                    "evaluate": "(() => { const hit = [...document.querySelectorAll('main *')].find((e) => e.children.length === 0 && e.textContent.trim() === 'Storno-Verweis'); let box = hit; while (box && box.parentElement && box.parentElement.querySelector('input') === null) box = box.parentElement; (box?.parentElement ?? box)?.remove(); })()"
+                },
+                {
+                    "scrollTo": "text=Rechnungsmängel",
+                    "offset": 230
+                }
+            ],
+            "settle": 1000
+        },
+        {
+            "name": "frontend-feature-ledger-closing-matching",
+            "url": "/closing/2026-10?step=matching&view=open",
+            "steps": [
+                {
+                    "evaluate": "(() => { const hit = [...document.querySelectorAll('main p, main div')].find((e) => e.children.length === 0 && e.textContent.includes('Gmail-Label')); hit?.remove(); })()"
+                },
+                {
+                    "scrollTo": "text=3 · Buchungen mit Belegen abgleichen",
+                    "offset": 96
+                }
+            ],
+            "settle": 1000,
+            "viewport": "1920x1200"
+        },
+        {
+            "name": "frontend-feature-ledger-bank",
+            "url": "/bank?state=all",
+            "steps": [
+                {
+                    "evaluate": "(() => { const hit = [...document.querySelectorAll('main *')].find((e) => e.children.length === 0 && e.textContent.trim() === 'Noch keine Bank verbunden'); let box = hit; while (box && box.parentElement && !box.parentElement.matches('main, section, form') && box.parentElement.textContent.trim().startsWith('Noch keine Bank verbunden')) box = box.parentElement; box?.remove(); })()"
+                }
+            ],
+            "settle": 1000
+        },
+        {
+            "name": "frontend-feature-ledger-login-dark",
+            "url": "/login",
+            "auth": false,
+            "colorScheme": "dark",
+            "localStorage": {
+                "ledger-theme": "dark"
+            },
+            "settle": 1000
+        },
+        {
+            "name": "frontend-feature-ledger-invoice-pdf",
+            "url": "http://127.0.0.1:8766/index.html",
+            "auth": false,
+            "settle": 600
+        }
+    ]
+}

@@ -1,0 +1,69 @@
+{
+    "description": "CapexOne Plus product screens for /software/capex-one (plan 2026-11-04, section 5.5). Local demo on http://localhost:3100 against the fictional ACME Foods GmbH database (capexone_ui); reference project Waste Management Optimization (a5eec76f-ae68-4710-8798-9264abe65bfc), gate 4. Capture with Build/Scripts/capture-app-screenshots.mjs --base http://localhost:3100 --shots <this file> --state <signed-in storage state of cfo@acme-foods.com>.",
+    "css": "nextjs-portal,[data-nextjs-toast],[data-next-badge-root]{display:none!important}",
+    "shots": [
+        {
+            "name": "frontend-feature-capexone-value-portfolio",
+            "url": "/value",
+            "colorScheme": "light",
+            "localStorage": { "theme": "light" },
+            "settle": 1500
+        },
+        {
+            "name": "frontend-feature-capexone-planner",
+            "url": "/planner/new",
+            "colorScheme": "light",
+            "localStorage": { "theme": "light" },
+            "steps": [
+                { "click": "text=Palletizer replacement (English)", "wait": 1500 }
+            ],
+            "settle": 1500
+        },
+        {
+            "name": "frontend-feature-capexone-phases",
+            "url": "/projects/a5eec76f-ae68-4710-8798-9264abe65bfc/phases",
+            "colorScheme": "light",
+            "localStorage": { "theme": "light" },
+            "settle": 1500
+        },
+        {
+            "name": "frontend-feature-capexone-gate-pack",
+            "url": "/projects/a5eec76f-ae68-4710-8798-9264abe65bfc/phases/4/gate",
+            "colorScheme": "light",
+            "localStorage": { "theme": "light" },
+            "steps": [
+                { "evaluate": "[...document.querySelectorAll('h2,h3,[data-slot=card-title]')].find((e) => e.textContent.trim() === 'Gate pack')?.scrollIntoView({ block: 'center' })", "wait": 800 }
+            ],
+            "settle": 1500
+        },
+        {
+            "name": "frontend-feature-capexone-project-value",
+            "url": "/projects/a5eec76f-ae68-4710-8798-9264abe65bfc/value",
+            "colorScheme": "light",
+            "localStorage": { "theme": "light" },
+            "settle": 1500
+        },
+        {
+            "name": "frontend-feature-capexone-ledger-invoices",
+            "url": "/projects/a5eec76f-ae68-4710-8798-9264abe65bfc/financial-ledger",
+            "colorScheme": "light",
+            "localStorage": { "theme": "light" },
+            "steps": [
+                { "click": "[role=tab]:has-text('Invoices')", "wait": 1500 }
+            ],
+            "settle": 1500
+        },
+        {
+            "name": "frontend-feature-capexone-audit",
+            "url": "/settings/audit",
+            "colorScheme": "light",
+            "localStorage": { "theme": "light" },
+            "steps": [
+                { "click": "button:has-text('Verify hash chain')", "wait": 2500 },
+                { "click": "[aria-label='Event type']", "wait": 500 },
+                { "click": "[role=option]:has-text('Export')", "wait": 2000 }
+            ],
+            "settle": 1500
+        }
+    ]
+}

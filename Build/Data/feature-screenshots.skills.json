@@ -1,0 +1,285 @@
+{
+  "_note": "The /ai/agentic-skills page and its ten skill pages. Three bases, captured with --only: the terminal pages and the Archify diagram from a static folder (python3 -m http.server 8789 --directory /tmp/skills-shots, --base http://127.0.0.1:8789; the pages hold the real output of ./install.sh --generate-only, find rules, head of a rule and node t3u.mjs --help, run in a git archive of typo3-skills), the lab catalogue (default base) and the public GitHub pages (--base https://github.com, anonymous, light).",
+  "shots": [
+    {
+      "name": "frontend-feature-skills-install",
+      "kind": "frontend",
+      "url": "/install.html",
+      "viewport": "1440x900",
+      "clip": "viewport"
+    },
+    {
+      "name": "frontend-feature-skills-rules",
+      "kind": "frontend",
+      "url": "/rules.html",
+      "viewport": "1440x900",
+      "clip": "viewport"
+    },
+    {
+      "name": "frontend-feature-skills-t3u-help",
+      "kind": "frontend",
+      "url": "/t3u-help.html",
+      "viewport": "1840x1150",
+      "clip": "viewport"
+    },
+    {
+      "name": "frontend-feature-skills-upgrade-graph",
+      "kind": "frontend",
+      "url": "/archify.html",
+      "viewport": "1440x900",
+      "colorScheme": "light",
+      "steps": [
+        {
+          "click": "text=Safety contract",
+          "wait": 1200
+        }
+      ],
+      "settle": 1500,
+      "clip": "viewport"
+    },
+    {
+      "name": "frontend-feature-skills-catalogue",
+      "kind": "frontend",
+      "url": "/desiderio-corporate-starter/skills-shadcn?tx_solr%5Bq%5D=typo3-upgrade",
+      "viewport": "1440x900",
+      "steps": [
+        {
+          "evaluate": "(() => { const e = document.querySelector(\".tx_solr\"); if (!e) throw new Error(\"Skill catalogue missing\"); window.scrollTo({top:e.getBoundingClientRect().top + window.scrollY - 24,behavior:\"instant\"}); })()",
+          "wait": 600
+        }
+      ],
+      "clip": "viewport"
+    },
+    {
+      "name": "frontend-feature-skills-github",
+      "kind": "frontend",
+      "url": "/dirnbauer/typo3-skills",
+      "viewport": "1440x900",
+      "colorScheme": "light",
+      "settle": 2000,
+      "clip": "viewport",
+      "waitUntil": "load",
+      "css": ".js-consent-banner,cookie-consent-banner,[data-testid=cookie-consent-banner],.flash-full,#js-flash-container{display:none!important}"
+    },
+    {
+      "name": "frontend-feature-skills-typo3-upgrade-run",
+      "kind": "frontend",
+      "url": "/dirnbauer/typo3-skills/blob/main/skills/typo3-upgrade-run/SKILL.md",
+      "viewport": "1440x900",
+      "colorScheme": "light",
+      "steps": [
+        {
+          "waitFor": "article.markdown-body",
+          "timeout": 60000,
+          "optional": true
+        },
+        {
+          "evaluate": "(() => { const e = document.querySelector(\"article.markdown-body, .markdown-body\"); if (e) { window.scrollTo({top:e.getBoundingClientRect().top + window.scrollY - 140,behavior:\"instant\"}); } })()",
+          "wait": 800
+        }
+      ],
+      "settle": 2000,
+      "clip": "viewport",
+      "waitUntil": "load",
+      "css": ".js-consent-banner,cookie-consent-banner,[data-testid=cookie-consent-banner],.flash-full,#js-flash-container{display:none!important}"
+    },
+    {
+      "name": "frontend-feature-skills-typo3-wcag22-aa-agentic",
+      "kind": "frontend",
+      "url": "/dirnbauer/typo3-skills/blob/main/skills/typo3-wcag22-aa-agentic/SKILL.md",
+      "viewport": "1440x900",
+      "colorScheme": "light",
+      "steps": [
+        {
+          "waitFor": "article.markdown-body",
+          "timeout": 60000,
+          "optional": true
+        },
+        {
+          "evaluate": "(() => { const e = document.querySelector(\"article.markdown-body, .markdown-body\"); if (e) { window.scrollTo({top:e.getBoundingClientRect().top + window.scrollY - 140,behavior:\"instant\"}); } })()",
+          "wait": 800
+        }
+      ],
+      "settle": 2000,
+      "clip": "viewport",
+      "waitUntil": "load",
+      "css": ".js-consent-banner,cookie-consent-banner,[data-testid=cookie-consent-banner],.flash-full,#js-flash-container{display:none!important}"
+    },
+    {
+      "name": "frontend-feature-skills-typo3-webmcp",
+      "kind": "frontend",
+      "url": "/dirnbauer/typo3-skills/blob/main/skills/typo3-webmcp/SKILL.md",
+      "viewport": "1440x900",
+      "colorScheme": "light",
+      "steps": [
+        {
+          "waitFor": "article.markdown-body",
+          "timeout": 60000,
+          "optional": true
+        },
+        {
+          "evaluate": "(() => { const e = document.querySelector(\"article.markdown-body, .markdown-body\"); if (e) { window.scrollTo({top:e.getBoundingClientRect().top + window.scrollY - 140,behavior:\"instant\"}); } })()",
+          "wait": 800
+        }
+      ],
+      "settle": 2000,
+      "clip": "viewport",
+      "waitUntil": "load",
+      "css": ".js-consent-banner,cookie-consent-banner,[data-testid=cookie-consent-banner],.flash-full,#js-flash-container{display:none!important}"
+    },
+    {
+      "name": "frontend-feature-skills-typo3-structured-data",
+      "kind": "frontend",
+      "url": "/dirnbauer/typo3-skills/blob/main/skills/typo3-structured-data/SKILL.md",
+      "viewport": "1440x900",
+      "colorScheme": "light",
+      "steps": [
+        {
+          "waitFor": "article.markdown-body",
+          "timeout": 60000,
+          "optional": true
+        },
+        {
+          "evaluate": "(() => { const e = document.querySelector(\"article.markdown-body, .markdown-body\"); if (e) { window.scrollTo({top:e.getBoundingClientRect().top + window.scrollY - 140,behavior:\"instant\"}); } })()",
+          "wait": 800
+        }
+      ],
+      "settle": 2000,
+      "clip": "viewport",
+      "waitUntil": "load",
+      "css": ".js-consent-banner,cookie-consent-banner,[data-testid=cookie-consent-banner],.flash-full,#js-flash-container{display:none!important}"
+    },
+    {
+      "name": "frontend-feature-skills-typo3-backend-rights",
+      "kind": "frontend",
+      "url": "/dirnbauer/typo3-skills/blob/main/skills/typo3-backend-rights/SKILL.md",
+      "viewport": "1440x900",
+      "colorScheme": "light",
+      "steps": [
+        {
+          "waitFor": "article.markdown-body",
+          "timeout": 60000,
+          "optional": true
+        },
+        {
+          "evaluate": "(() => { const e = document.querySelector(\"article.markdown-body, .markdown-body\"); if (e) { window.scrollTo({top:e.getBoundingClientRect().top + window.scrollY - 140,behavior:\"instant\"}); } })()",
+          "wait": 800
+        }
+      ],
+      "settle": 2000,
+      "clip": "viewport",
+      "waitUntil": "load",
+      "css": ".js-consent-banner,cookie-consent-banner,[data-testid=cookie-consent-banner],.flash-full,#js-flash-container{display:none!important}"
+    },
+    {
+      "name": "frontend-feature-skills-typo3-content-blocks",
+      "kind": "frontend",
+      "url": "/dirnbauer/typo3-skills/blob/main/skills/typo3-content-blocks/SKILL.md",
+      "viewport": "1440x900",
+      "colorScheme": "light",
+      "steps": [
+        {
+          "waitFor": "article.markdown-body",
+          "timeout": 60000,
+          "optional": true
+        },
+        {
+          "evaluate": "(() => { const e = document.querySelector(\"article.markdown-body, .markdown-body\"); if (e) { window.scrollTo({top:e.getBoundingClientRect().top + window.scrollY - 140,behavior:\"instant\"}); } })()",
+          "wait": 800
+        }
+      ],
+      "settle": 2000,
+      "clip": "viewport",
+      "waitUntil": "load",
+      "css": ".js-consent-banner,cookie-consent-banner,[data-testid=cookie-consent-banner],.flash-full,#js-flash-container{display:none!important}"
+    },
+    {
+      "name": "frontend-feature-skills-typo3-shadcn-content-elements",
+      "kind": "frontend",
+      "url": "/dirnbauer/typo3-skills/blob/main/skills/typo3-shadcn-content-elements/SKILL.md",
+      "viewport": "1440x900",
+      "colorScheme": "light",
+      "steps": [
+        {
+          "waitFor": "article.markdown-body",
+          "timeout": 60000,
+          "optional": true
+        },
+        {
+          "evaluate": "(() => { const e = document.querySelector(\"article.markdown-body, .markdown-body\"); if (e) { window.scrollTo({top:e.getBoundingClientRect().top + window.scrollY - 140,behavior:\"instant\"}); } })()",
+          "wait": 800
+        }
+      ],
+      "settle": 2000,
+      "clip": "viewport",
+      "waitUntil": "load",
+      "css": ".js-consent-banner,cookie-consent-banner,[data-testid=cookie-consent-banner],.flash-full,#js-flash-container{display:none!important}"
+    },
+    {
+      "name": "frontend-feature-skills-typo3-visual-editor",
+      "kind": "frontend",
+      "url": "/dirnbauer/typo3-skills/blob/main/skills/typo3-visual-editor/SKILL.md",
+      "viewport": "1440x900",
+      "colorScheme": "light",
+      "steps": [
+        {
+          "waitFor": "article.markdown-body",
+          "timeout": 60000,
+          "optional": true
+        },
+        {
+          "evaluate": "(() => { const e = document.querySelector(\"article.markdown-body, .markdown-body\"); if (e) { window.scrollTo({top:e.getBoundingClientRect().top + window.scrollY - 140,behavior:\"instant\"}); } })()",
+          "wait": 800
+        }
+      ],
+      "settle": 2000,
+      "clip": "viewport",
+      "waitUntil": "load",
+      "css": ".js-consent-banner,cookie-consent-banner,[data-testid=cookie-consent-banner],.flash-full,#js-flash-container{display:none!important}"
+    },
+    {
+      "name": "frontend-feature-skills-typo3-rector",
+      "kind": "frontend",
+      "url": "/dirnbauer/typo3-skills/blob/main/skills/typo3-rector/SKILL.md",
+      "viewport": "1440x900",
+      "colorScheme": "light",
+      "steps": [
+        {
+          "waitFor": "article.markdown-body",
+          "timeout": 60000,
+          "optional": true
+        },
+        {
+          "evaluate": "(() => { const e = document.querySelector(\"article.markdown-body, .markdown-body\"); if (e) { window.scrollTo({top:e.getBoundingClientRect().top + window.scrollY - 140,behavior:\"instant\"}); } })()",
+          "wait": 800
+        }
+      ],
+      "settle": 2000,
+      "clip": "viewport",
+      "waitUntil": "load",
+      "css": ".js-consent-banner,cookie-consent-banner,[data-testid=cookie-consent-banner],.flash-full,#js-flash-container{display:none!important}"
+    },
+    {
+      "name": "frontend-feature-skills-typo3-records-list-types",
+      "kind": "frontend",
+      "url": "/dirnbauer/typo3-skills/blob/main/skills/typo3-records-list-types/SKILL.md",
+      "viewport": "1440x900",
+      "colorScheme": "light",
+      "steps": [
+        {
+          "waitFor": "article.markdown-body",
+          "timeout": 60000,
+          "optional": true
+        },
+        {
+          "evaluate": "(() => { const e = document.querySelector(\"article.markdown-body, .markdown-body\"); if (e) { window.scrollTo({top:e.getBoundingClientRect().top + window.scrollY - 140,behavior:\"instant\"}); } })()",
+          "wait": 800
+        }
+      ],
+      "settle": 2000,
+      "clip": "viewport",
+      "waitUntil": "load",
+      "css": ".js-consent-banner,cookie-consent-banner,[data-testid=cookie-consent-banner],.flash-full,#js-flash-container{display:none!important}"
+    }
+  ]
+}

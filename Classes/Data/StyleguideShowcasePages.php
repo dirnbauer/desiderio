@@ -12,6 +12,7 @@ use Webconsulting\Desiderio\Data\Showcase\ShowcaseHubPages;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseLegalPages;
 use Webconsulting\Desiderio\Data\Showcase\ShowcasePricing;
 use Webconsulting\Desiderio\Data\Showcase\ShowcasePricingPages;
+use Webconsulting\Desiderio\Data\Showcase\ShowcaseSkillPages;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseStrategyPages;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseSuccessStories;
 
@@ -56,7 +57,7 @@ final class StyleguideShowcasePages
             ...ShowcaseFeaturePages::websitePages(),
             ...ShowcaseFeaturePages::aiPages(),
             ...ShowcaseStrategyPages::pages(),
-            // WP3 inserts ...ShowcaseSkillPages::pages() here (the agentic skill detail pages below /ai/agentic-skills).
+            ...ShowcaseSkillPages::pages(),
             ...ShowcaseFeaturePages::softwarePages(),
             ...ShowcaseAudiencePages::pages(),
             ...ShowcaseSuccessStories::pages(),

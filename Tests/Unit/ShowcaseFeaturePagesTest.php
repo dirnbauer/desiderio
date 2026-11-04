@@ -66,10 +66,10 @@ final class ShowcaseFeaturePagesTest extends TestCase
         }
     }
 
-    public function testTheSplitKeepsThe27FeaturesAndTheFourProducts(): void
+    public function testTheSplitKeepsThe28FeaturesAndTheFourProducts(): void
     {
         self::assertCount(1 + 17, ShowcaseFeaturePages::websitePages());
-        self::assertCount(1 + 10, ShowcaseFeaturePages::aiPages());
+        self::assertCount(1 + 11, ShowcaseFeaturePages::aiPages());
         self::assertCount(1 + 4, ShowcaseFeaturePages::softwarePages());
     }
 

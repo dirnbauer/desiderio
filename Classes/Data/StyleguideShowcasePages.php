@@ -136,7 +136,7 @@ final class StyleguideShowcasePages
             ShowcaseBlocks::productFilm(
                 'Product film',
                 'Desiderio in 90 seconds',
-                'Six features, each shown on real screens: elements, presets, editing, extensions, accessibility and languages. Turn the sound on for music and narration; the captions are in the picture.',
+                'Six features on real screens: elements, presets, editing, extensions, accessibility and languages. Turn the sound on for narration; the captions are in the picture.',
             ),
 
             // ------------------------------------------------- the problem
@@ -309,7 +309,7 @@ final class StyleguideShowcasePages
             ]),
             ShowcaseBlocks::block('desiderio_ctainline', [
                 'header' => 'Not only TYPO3',
-                'description_text' => 'Our strategy for TYPO3 v14 and AI agents is the standard for everything we build: every site, framework and product, from T3 Ops to MedAtlas.',
+                'description_text' => ShowcaseStrategyPages::standardLine(),
                 'cta_text' => 'Read the strategy',
                 'cta_link' => '{{page:typo3-v14-strategy}}',
             ]),

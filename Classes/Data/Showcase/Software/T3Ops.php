@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Webconsulting\Desiderio\Data\Showcase\Software;
 
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseBlocks;
+use Webconsulting\Desiderio\Data\Showcase\ShowcaseStrategyPages;
 
 /**
  * /software/t3-ops: T3 Ops, the control plane for a fleet of TYPO3 sites.
@@ -45,8 +46,8 @@ final class T3Ops
             'description' => 'T3 Ops checks TYPO3 fleets for security problems four times a day, proves updates on staging before release and watches monitoring and backups.',
             'abstract' => 'Security checks four times a day, updates proven on staging before release, monitoring and verified backups, for every site of a fleet.',
             'hero' => [
-                'header' => 'Run many TYPO3 sites without the fear',
-                'subheadline' => 'Security checks four times a day, updates proven on a staging copy before release, monitoring and verified backups: one screen for the whole fleet.',
+                'header' => 'Every TYPO3 update proven before it goes live',
+                'subheadline' => 'T3 Ops checks every site four times a day, tests each update on a staging copy and waits for a person to release it.',
                 'primaryButton' => ['text' => 'Book a demo', 'link' => '{{page:desiderio-powermail/callback}}'],
                 'secondaryButton' => ['text' => 'Read the strategy', 'link' => '{{page:typo3-v14-strategy}}'],
                 'image' => self::shot('frontend-feature-t3ops-overview-94f125f6.webp', 'Decisions first', 'T3 Ops overview: 15 of 22 demo sites at risk, a health ring and an inbox of security updates, most urgent first.'),
@@ -68,7 +69,7 @@ final class T3Ops
                     [
                         'tab' => 'Update assistant',
                         'title' => 'Staging first, release second',
-                        'description' => 'Pick the update and the projects, then review before anything starts. Each page is captured on desktop, tablet and phone.',
+                        'description' => 'The review step before anything starts: four demo projects move to 14.3.9, with sample pages captured on desktop, tablet and phone.',
                         'image' => self::shot('frontend-feature-t3ops-update-assistant-0c6c3071.webp', 'Staging first, release second', 'Update assistant at the review step: four demo projects move from 14.3.6 or 14.3.7 to 14.3.9, with a screenshot sample.'),
                     ],
                     [
@@ -182,7 +183,7 @@ final class T3Ops
             'install' => null,
             'cta' => [
                 'header' => 'Put your fleet on one screen',
-                'description' => 'See T3 Ops on a demo fleet. Like everything we build, it follows our strategy’s five points: governed tools, human approval, one registry, your choice of model, governance you can buy.',
+                'description' => ShowcaseStrategyPages::standardLine('T3 Ops'),
                 'text' => 'Book a demo',
                 'link' => '{{page:desiderio-powermail/callback}}',
             ],

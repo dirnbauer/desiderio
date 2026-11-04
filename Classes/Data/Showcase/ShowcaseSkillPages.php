@@ -167,10 +167,10 @@ final class ShowcaseSkillPages
             [
                 'slug' => 'typo3-upgrade-run',
                 'icon' => 'rocket',
-                'title' => 'typo3-upgrade-run: the upgrade as a sealed evidence graph',
+                'title' => 'typo3-upgrade-run: upgrades as a sealed graph',
                 'navTitle' => 'Upgrade run',
                 'abstract' => 'Orchestrates a 12/13 → 14.3 upgrade as 72 graph nodes with bounded retries and a strict-zero visual proof.',
-                'description' => 'A TYPO3 12 or 13 to v14.3 upgrade in DDEV as a sealed graph of 72 nodes. Retries are bounded, and a strict-zero visual proof shows parity.',
+                'description' => 'Upgrades TYPO3 v12 or v13 to v14.3 in DDEV as a sealed graph of 72 nodes, with bounded retries and a strict-zero visual proof.',
                 'card' => 'A 12 or 13 to 14.3 upgrade as a sealed graph, with a strict-zero visual proof.',
                 'sub' => 'Upgrades a TYPO3 v12 or v13 site to v14.3 LTS in DDEV and proves that visitors see no difference.',
                 'cards' => [
@@ -221,10 +221,10 @@ final class ShowcaseSkillPages
             [
                 'slug' => 'typo3-wcag22-aa-agentic',
                 'icon' => 'users',
-                'title' => 'typo3-wcag22-aa-agentic: WCAG 2.2 AA mapped to templates',
+                'title' => 'typo3-wcag22-aa-agentic: WCAG 2.2 AA scans',
                 'navTitle' => 'WCAG 2.2 AA scans',
                 'abstract' => 'Playwright and axe scans that name the Fluid template behind each finding, with a CI gate and a draft accessibility statement.',
-                'description' => 'Scans a TYPO3 site against WCAG 2.2 AA with Playwright and axe-core and maps findings to Fluid templates. A CI gate and a manual review follow.',
+                'description' => 'WCAG 2.2 AA scans of a TYPO3 site with Playwright and axe-core, mapped to Fluid templates, with a CI gate and a review by people.',
                 'card' => 'Playwright and axe scans mapped to Fluid templates, with a CI gate.',
                 'sub' => 'Scans a TYPO3 site against WCAG 2.2 AA and names the Fluid template behind each finding.',
                 'cards' => [
@@ -286,7 +286,7 @@ final class ShowcaseSkillPages
                         ['title' => 'Same origin by default', 'text' => 'Cross-origin use only when it is named, approved and tested.'],
                     ],
                 ],
-                'trigger' => 'Make the search and contact journey on this TYPO3 14 website available to browser agents through WebMCP.',
+                'trigger' => 'Make the search and the contact form on this TYPO3 v14 website available to browser agents through WebMCP.',
                 'prerequisites' => 'A TYPO3 v14.3 sitepackage with a Vite entry, HTTPS, and Chrome with the WebMCP testing flag or the origin trial from Chrome 149.',
                 'returns' => 'Tools you can inspect in a WebMCP-enabled Chrome profile, with their names, descriptions and schemas, and the evidence of each test.',
                 'language' => 'bash',
@@ -302,7 +302,7 @@ final class ShowcaseSkillPages
             [
                 'slug' => 'typo3-structured-data',
                 'icon' => 'code',
-                'title' => 'typo3-structured-data: one JSON-LD graph per page',
+                'title' => 'typo3-structured-data: JSON-LD per page',
                 'navTitle' => 'Structured data',
                 'abstract' => 'Builds schema.org JSON-LD from the records that render the page, keeps it identical through an upgrade, enriches it afterwards.',
                 'description' => 'Schema.org JSON-LD for TYPO3 v14.3, built from the records that render the page, kept identical through an upgrade and enriched afterwards.',
@@ -342,7 +342,7 @@ final class ShowcaseSkillPages
             [
                 'slug' => 'typo3-backend-rights',
                 'icon' => 'key-round',
-                'title' => 'typo3-backend-rights: editor roles you can verify',
+                'title' => 'typo3-backend-rights: verified editor roles',
                 'navTitle' => 'Backend rights',
                 'abstract' => 'Audits and builds editor groups, page and language rights, MFA and login branding without ever locking out the admin.',
                 'description' => 'TYPO3 backend rights as a verified model: editor groups, content types, page and language rights, MFA and login branding, with the admin kept.',
@@ -380,7 +380,7 @@ final class ShowcaseSkillPages
             [
                 'slug' => 'typo3-content-blocks',
                 'icon' => 'component',
-                'title' => 'typo3-content-blocks: elements defined in YAML',
+                'title' => 'typo3-content-blocks: elements in YAML',
                 'navTitle' => 'Content Blocks',
                 'abstract' => 'Defines content elements, records and page types in one config.yaml each, and migrates Mask without losing records.',
                 'description' => 'TYPO3 Content Blocks 2.x for v14.3: elements, records and page types defined in one config.yaml each, and Mask migrated without losing records.',
@@ -500,7 +500,7 @@ final class ShowcaseSkillPages
             [
                 'slug' => 'typo3-rector',
                 'icon' => 'git-branch',
-                'title' => 'typo3-rector and typo3-fractor: deprecations fixed by tools',
+                'title' => 'typo3-rector and typo3-fractor: automated fixes',
                 'navTitle' => 'Rector and Fractor',
                 'abstract' => 'Dry run, review, apply, dry run again: PHP with Rector, TypoScript, Fluid and FlexForm with Fractor.',
                 'description' => 'Deprecated TYPO3 code fixed by tools for v14: PHP with Rector, TypoScript, Fluid, FlexForm and YAML with Fractor, with a second dry run.',
@@ -542,7 +542,7 @@ final class ShowcaseSkillPages
             [
                 'slug' => 'typo3-records-list-types',
                 'icon' => 'layout-sidebar-right',
-                'title' => 'typo3-records-list-types: cards instead of tables',
+                'title' => 'typo3-records-list-types: cards and boards',
                 'navTitle' => 'Records list types',
                 'abstract' => 'Configures grid, teaser, timeline and board views of the v14 Records module through TSconfig, no patches.',
                 'description' => 'Grid, compact, teaser, timeline and board views for the TYPO3 v14 Records module, configured per record type through TSconfig and Fluid.',

@@ -42,6 +42,21 @@ final class ShowcaseStrategyPages
     }
 
     /**
+     * The one sentence that says the five points apply to everything we
+     * build (plan D13: communicated, not audited). The software pages pass
+     * the product's name; without a subject it reads "Everything we build
+     * follows ...". One wording everywhere, and at most 25 words.
+     */
+    public static function standardLine(string $subject = ''): string
+    {
+        $points = 'our five strategy points: governed tools, human approval, one registry, your choice of model, governance you can buy.';
+
+        return $subject === ''
+            ? 'Everything we build follows ' . $points
+            : 'Like everything we build, ' . $subject . ' follows ' . $points;
+    }
+
+    /**
      * @return ShowcasePage
      */
     private static function geoAiSearchPage(): array
@@ -158,7 +173,7 @@ final class ShowcaseStrategyPages
                 // ------------------------------------- the standard for everything
                 ShowcaseBlocks::block('desiderio_contenthighlight', [
                     'header' => 'Not only TYPO3',
-                    'content' => '<p>These five points are the standard for everything we build: every site, every framework, every product. T3 Ops, Ledger, MedAtlas, CapexOne Plus and the agentic skills are held to the same rules as a TYPO3 site. TYPO3 v14 is where we show it running.</p>',
+                    'content' => '<p>The five points apply to everything we build: T3 Ops, Ledger, MedAtlas Austria, CapexOne Plus, the agentic skills and every TYPO3 site.</p>',
                     'variant' => 'bordered',
                     'alignment' => 'center',
                 ]),
@@ -254,8 +269,8 @@ final class ShowcaseStrategyPages
                         ['title' => 'Agents are first-class users', 'description_text' => 'A documented API, typed data, llms.txt and agents.md, and typed browser tools (WebMCP) where visitors complete tasks.'],
                         ['title' => 'Accessible by default', 'description_text' => 'WCAG 2.2 AA, automated scans plus a review by people, and an accessibility statement for every site.'],
                         ['title' => 'Secure down to the supply chain', 'description_text' => 'Dependency audits around every update, signed releases with an SBOM, MFA for every backend and a plan for the Cyber Resilience Act.'],
-                        ['title' => 'Proof, not promise', 'description_text' => 'A change to a live site goes out with evidence: a baseline, a staging run and a before-and-after comparison. Agent changes too.'],
-                        ['title' => 'Operated, not only built', 'description_text' => 'Monitoring, verified backups, an incident process and update records from the first day.'],
+                        ['title' => 'Every change proven', 'description_text' => 'A change to a live site goes out with evidence: a baseline, a staging run and a before-and-after comparison. Agent changes too.'],
+                        ['title' => 'Operated from the first day', 'description_text' => 'Monitoring, verified backups, an incident process and a record of every update.'],
                         ['title' => 'Fast and light', 'description_text' => 'Core Web Vitals in the green, static caching, modern image formats and EU hosting with a small footprint.'],
                         ['title' => 'Private by design', 'description_text' => 'Little data, EU-based models without retention, no training on client data, labelled AI output, and outside embeds that load after a click.'],
                         ['title' => 'Costs you can see', 'description_text' => 'Every AI task shows its cost and runs under a cap, so AI work can have a fixed price.'],

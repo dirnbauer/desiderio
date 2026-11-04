@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Webconsulting\Desiderio\Data\Showcase\Software;
 
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseBlocks;
+use Webconsulting\Desiderio\Data\Showcase\ShowcaseStrategyPages;
 
 /**
  * /software/medatlas: MedAtlas Austria, an independent research and
@@ -51,7 +52,7 @@ final class MedAtlas
             'description' => 'MedAtlas Austria shows every medicine in Austria, whether it is available and what shares the same substance. A research project on open data.',
             'abstract' => 'Every medicine in Austria, whether it is available, and which products share the same substance. A research project on open data.',
             'hero' => [
-                'header' => 'Every medicine in Austria, and whether it’s available',
+                'header' => 'Every medicine in Austria and its supply status',
                 'subheadline' => 'Which medicines are authorised, which are in short supply, and what contains the same substance. Shortage and availability data are updated every night.',
                 'primaryButton' => ['text' => 'Book a demo', 'link' => '{{page:desiderio-powermail/callback}}'],
                 'secondaryButton' => ['text' => 'See the strategy', 'link' => '{{page:typo3-v14-strategy}}'],
@@ -59,7 +60,7 @@ final class MedAtlas
             ],
             'problem' => [
                 'header' => 'The pharmacy says: not available',
-                'content' => '<p>A parent stands at the counter with a prescription for a child. The register knows about the shortage. Nobody says what else contains the same substance, or when supply returns.</p>',
+                'content' => '<p>A parent with a prescription for a child hears: not available. Nobody says what else contains the same substance, or when supply returns.</p>',
             ],
             'tour' => [
                 'header' => 'From the substance to the next step',
@@ -86,7 +87,7 @@ final class MedAtlas
                     [
                         'tab' => 'Next steps',
                         'title' => 'Call, check, then ask',
-                        'description' => 'Call a pharmacy with the registration number, or check the stock apps ApoApp and ApoScout. Doctor or pharmacist decide whether a substitute suits you.',
+                        'description' => 'Products that are not available, the availability note and the Next steps box: call a pharmacy, check ApoApp or ApoScout, ask a doctor or pharmacist.',
                         'image' => self::shot('frontend-feature-medatlas-next-steps-1d250fdd.webp', 'Call, check, then ask', 'Finder results that are not available, the availability note and the Next steps box with pharmacy and stock app links.'),
                     ],
                     [
@@ -125,8 +126,8 @@ final class MedAtlas
             ],
             'install' => null,
             'cta' => [
-                'header' => 'See MedAtlas on your own data questions',
-                'description' => 'We show you the finder, the alerts and the data report. Like everything we build, it follows our five strategy points: governed tools, human approval, one registry, your choice of model, governance you can buy.',
+                'header' => 'See the finder and the data report',
+                'description' => ShowcaseStrategyPages::standardLine('MedAtlas Austria'),
                 'text' => 'Book a demo',
                 'link' => '{{page:desiderio-powermail/callback}}',
             ],
@@ -144,7 +145,7 @@ final class MedAtlas
             ShowcaseBlocks::block('desiderio_headersection', [
                 'eyebrow' => 'Research project',
                 'header' => 'Not only a list of what is missing',
-                'subheadline' => 'It asks how shortages develop, which causes studies name and how Austria compares in the EU. The first reports, AI research with cited sources and a human check, are in progress.',
+                'subheadline' => 'It asks how shortages develop, which causes studies name and how Austria compares in the EU. The first reports are in progress: AI research, cited sources, a human check.',
                 'variant' => 'center',
             ]),
         ];

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Webconsulting\Desiderio\Data\Showcase\Software;
 
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseBlocks;
+use Webconsulting\Desiderio\Data\Showcase\ShowcaseStrategyPages;
 
 /**
  * /software/ledger: Ledger, webconsulting's internal tool for time billing,
@@ -36,7 +37,7 @@ final class Ledger
             'slug' => 'ledger',
             'product' => 'Ledger',
             'badge' => 'Ledger',
-            'title' => 'Ledger: time, receipts and bank in one month-end',
+            'title' => 'Ledger: hours, receipts and bank in one place',
             'navTitle' => 'Ledger',
             'description' => 'Ledger, our internal month-end tool: hours from Redmine, receipts from mail, bank bookings over PSD2, matched and handed to the tax advisor.',
             'abstract' => 'Imports hours from Redmine, receipts from mail and bank bookings over PSD2, matches them and hands the month to the tax advisor.',
@@ -44,11 +45,11 @@ final class Ledger
                 // The app's own line on its sign-in page: "Weniger Buchhaltung. Mehr Überblick."
                 'header' => 'Less bookkeeping. More overview.',
                 'subheadline' => 'Hours from Redmine, receipts from your inbox, bookings from the bank, matched in one place and handed to the tax advisor once a month.',
-                'primaryButton' => ['text' => 'Book a demo', 'link' => '{{page:desiderio-powermail/callback}}'],
+                'primaryButton' => ['text' => 'Book a call', 'link' => '{{page:desiderio-powermail/callback}}'],
                 'secondaryButton' => ['text' => 'See all software', 'link' => '{{page:software}}'],
                 'image' => ShowcaseBlocks::screenshot('frontend-feature-ledger-overview-bac84103.webp', 'The next twelve months at a glance', 'Ledger overview: income, running costs and net for the next twelve months as ranges, a range chart and the next due invoices.', self::SHOT),
             ],
-            'problem' => ['header' => 'Three places, one month-end', 'content' => '<p>Hours sit in Redmine, receipts in mail and shared folders, bookings in the bank. At month-end someone copies between them and chases missing receipts. That was our month-end before Ledger.</p>'],
+            'problem' => ['header' => 'Three places, one month-end', 'content' => '<p>Hours sit in Redmine, receipts in mail and Drive, bookings in the bank. Our month-end meant copying between them and chasing receipts.</p>'],
             'tour' => [
                 'header' => 'From hours to a closed month',
                 'subheadline' => 'Ledger’s interface is in German. Every screen shows synthetic data of a made-up company.',
@@ -155,7 +156,7 @@ final class Ledger
             'install' => null,
             'cta' => [
                 'header' => 'Bring this pattern to your month-end',
-                'description' => 'We show you Ledger with demo data. Like everything we build, it follows our five strategy points: governed tools, human approval, one registry, your choice of model, governance you can buy.',
+                'description' => ShowcaseStrategyPages::standardLine('Ledger'),
                 'text' => 'Book a call',
                 'link' => '{{page:desiderio-powermail/callback}}',
             ],

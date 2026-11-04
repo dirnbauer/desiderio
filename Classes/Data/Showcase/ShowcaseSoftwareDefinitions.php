@@ -37,8 +37,8 @@ final class ShowcaseSoftwareDefinitions
             'badge' => 'Four products',
             'header' => 'Software we build and run',
             'subheadline' => 'Four products from the same stack as this lab: Next.js, PostgreSQL, Coolify on EU servers, AI with people in charge.',
-            'primaryButton' => ['text' => 'See T3 Ops', 'link' => '{{page:software/t3-ops}}'],
-            'secondaryButton' => ['text' => 'Read our strategy', 'link' => '{{page:typo3-v14-strategy}}'],
+            'primaryButton' => ['text' => 'Book a call', 'link' => '{{page:desiderio-powermail/callback}}'],
+            'secondaryButton' => ['text' => 'See T3 Ops', 'link' => '{{page:software/t3-ops}}'],
             'image' => ShowcaseHeroPhotos::for('software'),
             'sections' => [
                 ShowcaseBlocks::block('desiderio_featurecards', [
@@ -54,8 +54,8 @@ final class ShowcaseSoftwareDefinitions
                 ]),
                 ShowcaseBlocks::block('desiderio_contenthighlight', [
                     'header' => 'Built for people and for agents',
-                    'content' => '<p>T3 Ops, MedAtlas Austria and CapexOne Plus offer documented REST APIs, so software agents can use them under the same rules as people.</p>'
-                        . '<p>Our TYPO3 v14 strategy is not a TYPO3 checklist. Its five points are the standard for every product on this page, whatever the framework.</p>',
+                    'content' => '<p>T3 Ops, MedAtlas Austria and CapexOne Plus have documented REST APIs, so agents work under the same rules as people.</p>'
+                        . '<p>' . ShowcaseStrategyPages::standardLine('each product') . '</p>',
                     'variant' => 'bordered',
                     'alignment' => 'center',
                     'link' => '{{page:typo3-v14-strategy}}',
@@ -64,7 +64,7 @@ final class ShowcaseSoftwareDefinitions
             ],
             'cta' => [
                 'header' => 'Talk to us about one of these products',
-                'description' => 'Tell us which product fits your work, and we show it on your own questions.',
+                'description' => 'Tell us which product fits your work. We show it to you on your own questions.',
                 'text' => 'Book a call',
                 'link' => '{{page:desiderio-powermail/callback}}',
             ],
@@ -82,7 +82,7 @@ final class ShowcaseSoftwareDefinitions
             [
                 'label' => 'Software',
                 'header' => 'Four products, each one running',
-                'subheadline' => 'T3 Ops, Ledger, MedAtlas Austria and CapexOne Plus. Each page shows live screens of the running product.',
+                'subheadline' => 'Each page shows the running product in screenshots and a short film.',
                 'columns' => '2',
                 'features' => [T3Ops::definition(), Ledger::definition(), MedAtlas::definition(), CapexOne::definition()],
             ],

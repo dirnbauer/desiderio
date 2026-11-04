@@ -61,7 +61,7 @@ final class ShowcaseFeatureDefinitions
     }
 
     /**
-     * The AI hub: the 10 AI and agent tools.
+     * The AI hub: the 11 AI and agent tools.
      *
      * @return FeatureHub
      */
@@ -71,9 +71,9 @@ final class ShowcaseFeatureDefinitions
             'title' => 'AI',
             'navTitle' => 'AI and agents',
             'seoTitle' => 'AI for TYPO3 v14, with people in charge',
-            'description' => '10 AI tools for TYPO3 v14: an assistant that asks before it writes, model setup, AI form logic, agent skills, MCP and agent protocols.',
+            'description' => '11 AI tools for TYPO3 v14: an assistant that asks before it writes, model setup, AI form logic, agent skills, MCP and agent protocols.',
             'abstract' => 'The AI tools built in this lab, with live screenshots: an assistant, model setup, AI form logic, skills, MCP, agent protocols and llms.txt.',
-            'badge' => '10 AI tools',
+            'badge' => '11 AI tools',
             'header' => 'AI in TYPO3, with people in charge',
             'subheadline' => 'An assistant, one model setup, AI form logic, agent skills and open agent protocols. The assistant asks before every write.',
             'primaryButton' => ['text' => 'Meet the assistant', 'link' => '{{page:ai/ai-assistant}}'],
@@ -1271,7 +1271,7 @@ final class ShowcaseFeatureDefinitions
             'slug' => 'agentic-skills',
             'product' => 'typo3-skills',
             'badge' => 'typo3-skills',
-            'title' => 'Agentic skills: 61 TYPO3 skills for coding agents',
+            'title' => 'Agentic skills: 61 TYPO3 skills for agents',
             'navTitle' => 'Agentic skills',
             'description' => '61 open-source TYPO3 skills for Claude Code, Codex, Cursor and Gemini, with 22 rules and the upgrade skills that prove a TYPO3 v14.3 update.',
             'abstract' => 'Open-source skills that teach Claude Code, Codex and Cursor how we work with TYPO3, including the upgrade skills that prove an update invisible.',
@@ -1282,7 +1282,7 @@ final class ShowcaseFeatureDefinitions
                 'secondaryButton' => ['text' => 'Meet ten skills', 'link' => '{{page:ai/agentic-skills/typo3-upgrade-run}}'],
                 'image' => $shot('frontend-feature-skills-install-64d548d2.webp', 'One script for every client', 'Terminal running ./install.sh --generate-only: catalogue and instruction files for 61 skills written for each client.'),
             ],
-            'problem' => ['header' => 'An agent knows TYPO3 in general', 'content' => '<p>Your project needs TYPO3 v14.3 in particular: which API replaced which hook, how an upgrade is proven, what a rule forbids. Without that, every session starts from memory, and memory is often out of date after the v14 removals.</p>'],
+            'problem' => ['header' => 'An agent knows TYPO3 in general', 'content' => '<p>Your project needs TYPO3 v14.3 in particular: which API replaced which hook, how an upgrade is proven. A model’s training data often predates the v14 removals.</p>'],
             'tour' => [
                 'header' => 'From install to the upgrade graph',
                 'subheadline' => 'Screens from the repository and this lab, as of 4 November 2026.',
@@ -1323,9 +1323,9 @@ final class ShowcaseFeatureDefinitions
                     'items' => [
                         ['step' => '1', 'title' => 'Intake', 'description' => '<p>A read-only preflight proves the repository, the DDEV project, the database, the files and the dataset date. One round of owner decisions fixes the scope.</p>'],
                         ['step' => '2', 'title' => 'Baseline', 'description' => '<p>Fresh browsers capture the untouched site twice, and both captures must match at zero differences. The second is sealed with a manifest and a lock.</p>'],
-                        ['step' => '3', 'title' => 'Migration', 'description' => '<p>One cause per node, each with a rollback anchor. The 13.4 rung, Rector, Fractor and data migrations come first, then the 14.3 rung with fixes for 15 known breakers.</p>'],
+                        ['step' => '3', 'title' => 'Migration', 'description' => '<p>One cause per node, each with a rollback anchor. First the 13.4 rung, Rector, Fractor and data migrations, then 14.3 with 15 known breakers fixed.</p>'],
                         ['step' => '4', 'title' => 'Closure', 'description' => '<p>Every URL is compared over HTTP, then DOM, then pixels, followed by 13 closure checks with Lighthouse and axe. A person accepts the certificate.</p>'],
-                        ['step' => '5', 'title' => 'Retrospective', 'description' => '<p>A read-only audit of finished runs names the root cause, the prevention and the node that owns the fix. The skills were hardened on twelve real projects.</p>'],
+                        ['step' => '5', 'title' => 'Retrospective', 'description' => '<p>A read-only audit of finished runs names each root cause and the node that owns the fix. The skills were hardened on twelve real projects.</p>'],
                     ],
                 ]),
                 ShowcaseBlocks::block('desiderio_featurestats', [
@@ -1344,7 +1344,7 @@ final class ShowcaseFeatureDefinitions
                     'subheadline' => 'An upgrade run keeps two promises apart, so an improvement never hides a regression.',
                     'items' => [
                         ['title' => 'Contract A: nothing visible changes', 'description' => '<p>The same data, configuration, request and browser produce the same visitor-facing result before and after the upgrade. Every unexplained difference blocks the run.</p>'],
-                        ['title' => 'Contract B: structured data and WebMCP', 'description' => '<p>After Contract A is signed off, every run adds honest JSON-LD and typed WebMCP tools for browser agents. They are a standard part of every run, not options.</p>'],
+                        ['title' => 'Contract B: structured data and WebMCP', 'description' => '<p>After Contract A is signed off, every run adds honest JSON-LD and typed WebMCP tools for browser agents, as a standard step.</p>'],
                     ],
                 ]),
                 ShowcaseBlocks::block('desiderio_benefitcards', [
@@ -1379,12 +1379,13 @@ final class ShowcaseFeatureDefinitions
             ],
             'install' => ['header' => 'Install the skills', 'code' => 'git clone https://github.com/dirnbauer/typo3-skills.git && cd typo3-skills && ./install.sh'],
             'credits' => [
-                'names' => ['Netresearch DTT GmbH', 'Anthropic', 'Supabase', 'Vercel', 'ehmo', 'Cursor', 'Matt Pocock', 'Philipp Schmid', 'Lev Selector', 'Alex Sprogis'],
+                // The heading thanks Netresearch by name; the text names all ten.
+                'names' => ['Netresearch DTT GmbH', 'nine others'],
                 'project' => 'the vendored skills',
                 'link' => 'https://github.com/netresearch',
                 'text' => '<p>20 of the 61 skills are vendored unchanged and pinned: 16 from <a href="https://github.com/netresearch">Netresearch DTT GmbH</a>, the others from Anthropic, Supabase, Vercel and ehmo. Cursor shared the code-quality review. Matt Pocock, Philipp Schmid, Lev Selector and Alex Sprogis shaped how the skills are written, tested and drawn. Thank you very much.</p>',
             ],
-            'cta' => ['header' => 'Clone the skills today', 'description' => 'One clone and one install script give Claude Code, Codex, Cursor and Gemini the same TYPO3 knowledge. Start with the upgrade run.', 'text' => 'Clone the skills', 'link' => $repo],
+            'cta' => ['header' => 'Give your coding agent our TYPO3 rules', 'description' => 'One clone and one install script give Claude Code, Codex, Cursor and Gemini the same TYPO3 knowledge. Start with the upgrade run.', 'text' => 'Get the skills', 'link' => $repo],
         ];
     }
 

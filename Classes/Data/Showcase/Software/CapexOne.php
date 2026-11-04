@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Webconsulting\Desiderio\Data\Showcase\Software;
 
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseBlocks;
+use Webconsulting\Desiderio\Data\Showcase\ShowcaseStrategyPages;
 
 /**
  * /software/capex-one: CapexOne Plus, capital-project steering with gate
@@ -54,14 +55,14 @@ final class CapexOne
             'abstract' => 'Six-phase stage-gate, gate packs, a business case checked live, a financial ledger with four-eyes approval, and an API agents can read.',
             'hero' => [
                 'header' => 'Decide on live numbers, not last month’s slides.',
-                'subheadline' => 'CapexOne Plus checks every capital project against its business case, live from project to company, and builds the pack for every gate. Your teams win back 30–50 hours per gate review.',
+                'subheadline' => 'CapexOne Plus checks each capital project against its business case, live, and builds the pack for every gate review. That saves an estimated 30–50 hours per gate.',
                 'primaryButton' => ['text' => 'Book a demo', 'link' => self::CALLBACK],
                 'secondaryButton' => ['text' => 'See all software', 'link' => '{{page:software}}'],
                 'image' => ShowcaseBlocks::screenshot('frontend-feature-capexone-value-portfolio-451057e9.webp', 'Where the capital goes', 'CapexOne Plus value view: NPV, value at risk, capex forecast, portfolio IRR and ROCE, and gates waiting for a decision.', self::SHOT_SOURCE),
             ],
             'problem' => [
-                'header' => 'What gate preparation really costs',
-                'content' => '<p>Every gate review ties up a project team for 30 to 50 hours: exporting numbers, updating the business case, chasing documents, building slides. At an internal rate of €100 an hour, that is €3,000 to €5,000 per gate.</p>',
+                'header' => 'What gate preparation costs',
+                'content' => '<p>A gate review takes a project team an estimated 30 to 50 hours of exports, chasing and slides: €3,000 to €5,000 at €100 an hour.</p>',
             ],
             'tour' => [
                 'header' => 'Six screens from the running product',
@@ -70,7 +71,7 @@ final class CapexOne
                     [
                         'tab' => 'Planner',
                         'title' => 'Describe the investment in your own words',
-                        'description' => 'The Planner reads figures and dates with fixed rules. The AI only answers nine typed questions and never produces a number.',
+                        'description' => 'A palletising cell in plain words, with the cost and benefit found in it. Fixed rules read the figures; the AI produces no number.',
                         'image' => ShowcaseBlocks::screenshot('frontend-feature-capexone-planner-1004c895.webp', 'Describe the investment in your own words', 'CapexOne Plus Planner, step Describe: a robot palletizing cell in plain text, with the cost and benefit found in it.', self::SHOT_SOURCE),
                     ],
                     [
@@ -87,9 +88,9 @@ final class CapexOne
                     ],
                     [
                         'tab' => 'Value',
-                        'title' => 'Every report is checked against the business case',
+                        'title' => 'Checked against the approved business case',
                         'description' => 'NPV, IRR, ROI, ROCE and payback against the version approved at gate 3. This project is off track, and the value bridge shows why.',
-                        'image' => ShowcaseBlocks::screenshot('frontend-feature-capexone-project-value-62b8b80a.webp', 'Every report is checked against the business case', 'CapexOne Plus project value: off-track notice, NPV, IRR, ROI, ROCE and payback against the approved case, value bridge.', self::SHOT_SOURCE),
+                        'image' => ShowcaseBlocks::screenshot('frontend-feature-capexone-project-value-62b8b80a.webp', 'Checked against the approved business case', 'CapexOne Plus project value: off-track notice, NPV, IRR, ROI, ROCE and payback against the approved case, value bridge.', self::SHOT_SOURCE),
                     ],
                     [
                         'tab' => 'Invoices',
@@ -298,7 +299,7 @@ final class CapexOne
             'install' => null,
             'cta' => [
                 'header' => 'Walk into the meeting with the pack done',
-                'description' => 'We show you CapexOne Plus with your own numbers. Like everything we build, it follows our strategy’s five points: governed tools, human approval, one registry, your choice of model, governance you can buy.',
+                'description' => ShowcaseStrategyPages::standardLine('CapexOne Plus'),
                 'text' => 'Book a demo',
                 'link' => self::CALLBACK,
             ],

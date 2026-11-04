@@ -104,6 +104,12 @@ body { font-family: var(--font); color: var(--ink); -webkit-font-smoothing: anti
 .frame-url { margin-left: 18px; height: 24px; padding: 0 12px; border-radius: 7px; background: rgb(255 255 255 / 0.06); color: var(--muted); font-size: 13px; display: flex; align-items: center; font-family: var(--mono); }
 .frame-view { position: absolute; left: 0; top: 40px; right: 0; bottom: 0; overflow: hidden; background: #fff; }
 .frame-view img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+/* Finish (FILM.background other than 'aurora', or FILM.finish): a light sweep over the
+   frames and a second, softer shadow. --sheen runs 0 → 1 every 9 s (one WAAPI track). */
+@property --sheen { syntax: '<number>'; inherits: true; initial-value: 0; }
+.finish .frame { box-shadow: 0 50px 120px -40px rgb(0 0 0 / 0.85), 0 0 0 1px rgb(0 0 0 / 0.4), 0 95px 190px -60px rgb(0 0 0 / 0.55); }
+.finish .frame::after { content: ''; position: absolute; inset: 0; z-index: 8; pointer-events: none; border-radius: inherit;
+  background: linear-gradient(112deg, transparent calc(var(--sheen) * 170% - 75%), rgb(255 255 255 / 0.075) calc(var(--sheen) * 170% - 58%), transparent calc(var(--sheen) * 170% - 41%)); }
 .wipe-edge { position: absolute; top: 40px; left: 0; width: 2px; bottom: 0; background: linear-gradient(transparent, rgb(255 255 255 / 0.95), transparent); box-shadow: 0 0 24px 4px rgb(185 164 255 / 0.6); opacity: 0; }
 
 /* Start card, before the scenes' clock starts */
@@ -509,9 +515,14 @@ function oklch(value) {
 const S = FILM.scenes;
 
 // ---------------------------------------------------------------------------
-// The aura and the grain: functions of the time, drawn on every seek.
+// The aura and the grain: functions of the time, drawn on every seek. The
+// background itself is Build/Film/backgrounds.mjs (shared with the lab's page
+// films): FILM.background picks the style, 'aurora' (the three lights this
+// film always had) by default; AURA gives its colours and strength over time.
 // ---------------------------------------------------------------------------
-const auraCtx = $('aura').getContext('2d');
+const BACKGROUND = FILM.background ?? 'aurora';
+const FINISH = FILM.finish ?? BACKGROUND !== 'aurora';
+let paint = null;
 let presetTint = null;
 function auraAt(t) {
   let i = 0;
@@ -531,28 +542,21 @@ function drawAura(t) {
       colours[2] = colours[2].map((v, n) => lerp(v, presetTint.rgb(t)[n] * 0.55, w));
     }
   }
-  const s = t / 1000;
-  auraCtx.globalCompositeOperation = 'source-over';
-  auraCtx.fillStyle = '#060608';
-  auraCtx.fillRect(0, 0, 1600, 900);
-  auraCtx.globalCompositeOperation = 'lighter';
-  const lights = [
-    [0.28 + 0.1 * Math.sin(s * 0.21), 0.36 + 0.1 * Math.cos(s * 0.17), 780],
-    [0.74 + 0.09 * Math.cos(s * 0.19 + 1), 0.3 + 0.12 * Math.sin(s * 0.15 + 2), 700],
-    [0.55 + 0.14 * Math.sin(s * 0.13 + 4), 0.82 + 0.08 * Math.cos(s * 0.23 + 1), 860],
-  ];
-  lights.forEach(([x, y, r], i) => {
-    const [R, G, B] = colours[i].map(Math.round);
-    const gradient = auraCtx.createRadialGradient(x * 1600, y * 900, 0, x * 1600, y * 900, r);
-    gradient.addColorStop(0, `rgba(${R},${G},${B},${0.5 * strength})`);
-    gradient.addColorStop(0.45, `rgba(${R},${G},${B},${0.2 * strength})`);
-    gradient.addColorStop(1, `rgba(${R},${G},${B},0)`);
-    auraCtx.fillStyle = gradient;
-    auraCtx.fillRect(0, 0, 1600, 900);
-  });
-  auraCtx.globalCompositeOperation = 'source-over';
+  paint?.(t, strength, { colours });
 }
 custom.push(drawAura);
+/** Loads backgrounds.mjs (as a Blob: the render server sends .mjs as octet-stream) and sets up the finish. */
+async function background() {
+  const code = await (await fetch('backgrounds.mjs')).text();
+  const url = URL.createObjectURL(new Blob([code], { type: 'text/javascript' }));
+  const { createBackground } = await import(url);
+  URL.revokeObjectURL(url);
+  paint = createBackground($('aura'), { style: BACKGROUND, palette: AURA[0][1], seed: FILM.seed ?? 1, base: '#060608', radii: [780, 700, 860] });
+  if (FINISH) {
+    stage.classList.add('finish');
+    stage.animate([{ '--sheen': 0 }, { '--sheen': 1 }], { duration: 9000, iterations: Infinity, easing: SOFT }).pause();
+  }
+}
 
 const grain = node('div', 'grain');
 {
@@ -1158,6 +1162,7 @@ window.seek = (t) => {
   for (const update of custom) update(scene);
 };
 window.ready = (async () => {
+  await background();
   await Promise.all(['640 140px "Inter Variable"', '500 18px "JetBrains Mono Variable"'].map((font) => document.fonts.load(font)));
   buildNumerals();
   buildOpen();

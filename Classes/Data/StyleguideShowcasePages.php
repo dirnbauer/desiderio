@@ -45,7 +45,7 @@ final class StyleguideShowcasePages
     public static function subpages(): array
     {
         // The first-level pages come in menu order: Product, Features, AI,
-        // Solutions, Pricing, Resources (Download is the site package's).
+        // Software, Solutions, Pricing, Resources (Download is the site package's).
         return [
             ShowcaseHubPages::productPage(),
             self::contentTypesHubPage(),
@@ -55,6 +55,8 @@ final class StyleguideShowcasePages
             ...ShowcaseFeaturePages::websitePages(),
             ...ShowcaseFeaturePages::aiPages(),
             ...ShowcaseStrategyPages::pages(),
+            // WP3 inserts ...ShowcaseSkillPages::pages() here (the agentic skill detail pages below /ai/agentic-skills).
+            ...ShowcaseFeaturePages::softwarePages(),
             ...ShowcaseAudiencePages::pages(),
             ...ShowcaseSuccessStories::pages(),
             ...ShowcasePricingPages::pages(),

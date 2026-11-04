@@ -38,6 +38,11 @@ final class ShowcaseHeroPhotos
             'title' => 'Two developers look at an AI assistant',
             'alternative' => 'A young developer and an older colleague with glasses look at a chat panel on a laptop screen.',
         ],
+        'software' => [
+            'file' => 'hero-software-9f26fe2c.webp',
+            'title' => 'Two engineers review a fleet dashboard',
+            'alternative' => 'A young woman and an older man with glasses sit at a desk. He points at a dashboard with charts on a large monitor.',
+        ],
         'solutions' => [
             'file' => 'hero-solutions-8e3c28e0.webp',
             'title' => 'A client meeting in a bright room',

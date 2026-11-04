@@ -91,7 +91,7 @@ final class ShowcasePricingTest extends TestCase
             static fn(array $page): bool => $page['parentSlug'] === null && !($page['hideInNav'] ?? false) && !in_array($page['slug'], ['/imprint', '/privacy', '/accessibility', '/404'], true),
         );
 
-        self::assertSame(['/product', '/features', '/ai', '/target-groups', '/pricing', '/resources'], array_values(array_column($firstLevel, 'slug')));
+        self::assertSame(['/product', '/features', '/ai', '/software', '/target-groups', '/pricing', '/resources'], array_values(array_column($firstLevel, 'slug')));
         $heroes = [
             StyleguideShowcasePages::homeContent()[0],
             ...array_map(static fn(array $page): array => $page['content'][0], array_values($firstLevel)),

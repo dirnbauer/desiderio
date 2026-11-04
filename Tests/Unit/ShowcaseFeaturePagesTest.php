@@ -9,6 +9,7 @@ use PHPUnit\Framework\TestCase;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseBlocks;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseFeatureDefinitions;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseFeaturePages;
+use Webconsulting\Desiderio\Data\Showcase\ShowcaseSoftwareDefinitions;
 use Webconsulting\Desiderio\Data\StyleguideShowcasePages;
 
 /**
@@ -32,6 +33,7 @@ final class ShowcaseFeaturePagesTest extends TestCase
     {
         yield 'features' => [ShowcaseFeaturePages::websitePages(), '/features'];
         yield 'ai' => [ShowcaseFeaturePages::aiPages(), '/ai'];
+        yield 'software' => [ShowcaseFeaturePages::softwarePages(), '/software'];
     }
 
     /**
@@ -64,10 +66,38 @@ final class ShowcaseFeaturePagesTest extends TestCase
         }
     }
 
-    public function testTheSplitKeepsThe27Features(): void
+    public function testTheSplitKeepsThe27FeaturesAndTheFourProducts(): void
     {
         self::assertCount(1 + 17, ShowcaseFeaturePages::websitePages());
         self::assertCount(1 + 10, ShowcaseFeaturePages::aiPages());
+        self::assertCount(1 + 4, ShowcaseFeaturePages::softwarePages());
+    }
+
+    public function testTheSoftwareHubShowsItsFourProductsInTwoColumns(): void
+    {
+        $teasers = array_values(array_filter(
+            ShowcaseFeaturePages::softwarePages()[0]['content'],
+            static fn(array $block): bool => $block['ctype'] === 'desiderio_blogteasers',
+        ));
+
+        self::assertCount(1, $teasers);
+        self::assertSame('2', $teasers[0]['fields']['columns'] ?? null);
+        self::assertSame('3', ShowcaseFeaturePages::websitePages()[0]['content'][1]['fields']['columns'] ?? null, 'Other hubs keep three columns.');
+    }
+
+    /**
+     * A hub's own sections sit between its category grids and the closing
+     * call to action.
+     */
+    public function testTheHubSectionsComeBeforeTheCallToAction(): void
+    {
+        foreach (['ai' => [ShowcaseFeatureDefinitions::aiHub(), ShowcaseFeaturePages::aiPages()[0]], 'software' => [ShowcaseSoftwareDefinitions::hub(), ShowcaseFeaturePages::softwarePages()[0]]] as $section => [$hub, $page]) {
+            $sections = $hub['sections'] ?? [];
+            self::assertNotSame([], $sections, $section);
+            $content = array_values($page['content']);
+            self::assertSame($sections, array_slice($content, -1 - count($sections), count($sections)), $section);
+            self::assertSame('desiderio_ctabanner', $content[count($content) - 1]['ctype'], $section);
+        }
     }
 
     public function testTheAiPagesRedirectFromTheirFormerFeatureUrls(): void
@@ -75,7 +105,7 @@ final class ShowcaseFeaturePagesTest extends TestCase
         foreach (array_slice(ShowcaseFeaturePages::aiPages(), 1) as $page) {
             self::assertSame(['/features/' . substr($page['slug'], strlen('/ai/'))], $page['formerSlugs'] ?? null, $page['slug']);
         }
-        foreach (ShowcaseFeaturePages::websitePages() as $page) {
+        foreach ([...ShowcaseFeaturePages::websitePages(), ...ShowcaseFeaturePages::softwarePages()] as $page) {
             self::assertArrayNotHasKey('formerSlugs', $page, $page['slug']);
         }
     }
@@ -83,18 +113,23 @@ final class ShowcaseFeaturePagesTest extends TestCase
     public function testEveryFeaturePageFollowsTheSameOutline(): void
     {
         $credited = [];
-        foreach (['features' => ShowcaseFeatureDefinitions::categories(), 'ai' => ShowcaseFeatureDefinitions::aiCategories()] as $section => $categories) {
+        $sections = [];
+        foreach (['features' => ShowcaseFeatureDefinitions::categories(), 'ai' => ShowcaseFeatureDefinitions::aiCategories(), 'software' => ShowcaseSoftwareDefinitions::categories()] as $section => $categories) {
             foreach ($categories as $category) {
                 foreach ($category['features'] as $feature) {
-                    $credited['/' . $section . '/' . $feature['slug']] = isset($feature['credits']);
+                    $slug = '/' . $section . '/' . $feature['slug'];
+                    $credited[$slug] = isset($feature['credits']);
+                    $sections[$slug] = array_map(static fn(array $block): string => $block['ctype'], $feature['sections'] ?? []);
                 }
             }
         }
 
-        $featurePages = [...array_slice(ShowcaseFeaturePages::websitePages(), 1), ...array_slice(ShowcaseFeaturePages::aiPages(), 1)];
+        $featurePages = [...array_slice(ShowcaseFeaturePages::websitePages(), 1), ...array_slice(ShowcaseFeaturePages::aiPages(), 1), ...array_slice(ShowcaseFeaturePages::softwarePages(), 1)];
+        self::assertCount(count($sections), $featurePages);
         foreach ($featurePages as $page) {
             $ctypes = array_map(static fn(array $block): string => $block['ctype'], $page['content']);
-            $expected = ['desiderio_herosaas', 'desiderio_contenthighlight', 'desiderio_gallery', 'desiderio_benefitcards', 'desiderio_faq'];
+            // The page's own sections, as declared, between benefits and questions.
+            $expected = ['desiderio_herosaas', 'desiderio_contenthighlight', 'desiderio_gallery', 'desiderio_benefitcards', ...$sections[$page['slug']], 'desiderio_faq'];
             if (in_array('desiderio_codeblock', $ctypes, true)) {
                 $expected[] = 'desiderio_codeblock';
             }
@@ -152,7 +187,7 @@ final class ShowcaseFeaturePagesTest extends TestCase
 
     public function testTheCopyNamesNoRealContactData(): void
     {
-        $copy = json_encode([ShowcaseFeatureDefinitions::hub(), ShowcaseFeatureDefinitions::categories(), ShowcaseFeatureDefinitions::aiHub(), ShowcaseFeatureDefinitions::aiCategories()], JSON_THROW_ON_ERROR);
+        $copy = json_encode([ShowcaseFeatureDefinitions::hub(), ShowcaseFeatureDefinitions::categories(), ShowcaseFeatureDefinitions::aiHub(), ShowcaseFeatureDefinitions::aiCategories(), ShowcaseSoftwareDefinitions::hub(), ShowcaseSoftwareDefinitions::categories()], JSON_THROW_ON_ERROR);
 
         self::assertDoesNotMatchRegularExpression('/[\w.+-]+@(?!example\.(com|org|net)\b)[\w-]+\.[a-z]{2,}/i', $copy, 'Addresses use example.com.');
         self::assertDoesNotMatchRegularExpression('/\+\d{2}[\s\d]{7,}/', $copy, 'No phone numbers.');

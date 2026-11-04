@@ -17,13 +17,18 @@ namespace Webconsulting\Desiderio\Data\Showcase;
  * repository. The page then thanks them below its main content. Our own
  * extensions have no credits.
  *
+ * A definition may add its own sections: blocks the page shows between the
+ * benefits and the questions. A category may ask for another column count on
+ * its hub, and a hub may add sections before its closing call to action.
+ *
+ * @phpstan-import-type ShowcaseBlock from ShowcaseBlocks
  * @phpstan-import-type ShowcaseMedia from ShowcaseBlocks
  * @phpstan-import-type ShowcaseCredits from ShowcaseBlocks
  * @phpstan-type FeatureButton array{text: string, link: string}
  * @phpstan-type FeatureShot array{tab: string, title: string, description: string, image: ShowcaseMedia}
- * @phpstan-type FeatureDefinition array{slug: string, product: string, badge: string, title: string, navTitle: string, description: string, abstract: string, hero: array{header: string, subheadline: string, primaryButton: FeatureButton, secondaryButton: FeatureButton, image: ShowcaseMedia}, problem: array{header: string, content: string}, tour: array{header: string, subheadline: string, shots: list<FeatureShot>}, benefits: array{header: string, items: list<array{icon: string, title: string, description: string}>}, faq: array{header: string, subheadline: string, items: list<array{question: string, answer: string}>}, install: array{header: string, code: string}|null, credits?: ShowcaseCredits, cta: array{header: string, description: string, text: string, link: string}}
- * @phpstan-type FeatureCategory array{label: string, header: string, subheadline: string, features: list<FeatureDefinition>}
- * @phpstan-type FeatureHub array{title: string, navTitle: string, seoTitle: string, description: string, abstract: string, badge: string, header: string, subheadline: string, primaryButton: FeatureButton, secondaryButton: FeatureButton, image: ShowcaseMedia, cta: array{header: string, description: string, text: string, link: string}}
+ * @phpstan-type FeatureDefinition array{slug: string, product: string, badge: string, title: string, navTitle: string, description: string, abstract: string, hero: array{header: string, subheadline: string, primaryButton: FeatureButton, secondaryButton: FeatureButton, image: ShowcaseMedia}, problem: array{header: string, content: string}, tour: array{header: string, subheadline: string, shots: list<FeatureShot>}, benefits: array{header: string, items: list<array{icon: string, title: string, description: string}>}, faq: array{header: string, subheadline: string, items: list<array{question: string, answer: string}>}, sections?: list<ShowcaseBlock>, install: array{header: string, code: string}|null, credits?: ShowcaseCredits, cta: array{header: string, description: string, text: string, link: string}}
+ * @phpstan-type FeatureCategory array{label: string, header: string, subheadline: string, columns?: string, features: list<FeatureDefinition>}
+ * @phpstan-type FeatureHub array{title: string, navTitle: string, seoTitle: string, description: string, abstract: string, badge: string, header: string, subheadline: string, primaryButton: FeatureButton, secondaryButton: FeatureButton, image: ShowcaseMedia, sections?: list<ShowcaseBlock>, cta: array{header: string, description: string, text: string, link: string}}
  */
 final class ShowcaseFeatureDefinitions
 {
@@ -74,6 +79,18 @@ final class ShowcaseFeatureDefinitions
             'primaryButton' => ['text' => 'Meet the assistant', 'link' => '{{page:ai/ai-assistant}}'],
             'secondaryButton' => ['text' => 'Read our strategy', 'link' => '{{page:typo3-v14-strategy}}'],
             'image' => ShowcaseHeroPhotos::for('ai'),
+            'sections' => [
+                ShowcaseBlocks::block('desiderio_benefitcards', [
+                    'eyebrow' => 'Strategy',
+                    'header' => 'AI search and our TYPO3 v14 plan',
+                    'subheadline' => 'How your content gets quoted by AI search, and how we build for AI agents.',
+                    'columns' => '2',
+                    'items' => [
+                        ['icon' => 'search', 'title' => 'GEO and AI search', 'description' => 'What makes AI search quote a page, and how Desiderio helps.', 'link' => '{{page:geo-ai-search}}'],
+                        ['icon' => 'trending-up', 'title' => 'TYPO3 v14 and AI agents', 'description' => 'Our strategy for TYPO3 v14, AI agents and the next LTS.', 'link' => '{{page:typo3-v14-strategy}}'],
+                    ],
+                ]),
+            ],
             'cta' => [
                 'header' => 'Try the AI tools on your own copy',
                 'description' => 'Download the demo site, add your own provider key and see every AI tool working. There is no AI fee from us.',

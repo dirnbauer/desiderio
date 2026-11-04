@@ -5,20 +5,26 @@ declare(strict_types=1);
 namespace Webconsulting\Desiderio\Data\Showcase;
 
 /**
- * The /features and /ai sections: two hubs that list the features built in
- * the lab, by category, and one page per feature. Every feature page has the same
- * blocks, so the pages read alike and a new one is a definition, not a layout:
+ * The /features, /ai and /software sections: three hubs that list the
+ * features and products built in the lab, by category, and one page per
+ * feature. Every feature page has the same blocks, so the pages read alike and
+ * a new one is a definition, not a layout:
  *
  *  1. hero with the product badge, the outcome, two buttons and the best screenshot
  *  2. the problem the reader has today
  *  3. a tour: the other live screenshots in a gallery with a lightbox
  *  4. four benefits
- *  5. the questions people ask before they install
- *  6. the install commands
- *  7. for an extension by other people, a thank-you to them (the definition's credits)
- *  8. a call to action
+ *  5. the page's own sections, if the definition declares any (a product
+ *     page shows its statistics, its hosting offer or its API story here)
+ *  6. the questions people ask before they install
+ *  7. the install commands
+ *  8. for an extension by other people, a thank-you to them (the definition's credits)
+ *  9. a call to action
  *
- * The copy and the screenshots live in ShowcaseFeatureDefinitions.
+ * A hub shows its sales hero, one card grid per category (three columns
+ * unless the category asks for another count), its own sections and a call
+ * to action. The copy and the screenshots live in ShowcaseFeatureDefinitions
+ * and ShowcaseSoftwareDefinitions.
  *
  * @phpstan-import-type ShowcaseBlock from ShowcaseBlocks
  * @phpstan-import-type ShowcaseMedia from ShowcaseBlocks
@@ -30,13 +36,13 @@ namespace Webconsulting\Desiderio\Data\Showcase;
 final class ShowcaseFeaturePages
 {
     /**
-     * Both sections: Features first, then AI.
+     * Every section: Features first, then AI, then Software.
      *
      * @return array<int, ShowcasePage>
      */
     public static function pages(): array
     {
-        return [...self::websitePages(), ...self::aiPages()];
+        return [...self::websitePages(), ...self::aiPages(), ...self::softwarePages()];
     }
 
     /**
@@ -59,6 +65,16 @@ final class ShowcaseFeaturePages
     public static function aiPages(): array
     {
         return self::section(ShowcaseFeatureDefinitions::aiHub(), ShowcaseFeatureDefinitions::aiCategories(), 'ai', 'features');
+    }
+
+    /**
+     * The Software hub and one page per product webconsulting builds and runs.
+     *
+     * @return array<int, ShowcasePage>
+     */
+    public static function softwarePages(): array
+    {
+        return self::section(ShowcaseSoftwareDefinitions::hub(), ShowcaseSoftwareDefinitions::categories(), 'software', null);
     }
 
     /**
@@ -98,17 +114,8 @@ final class ShowcaseFeaturePages
         foreach ($categories as $category) {
             $content[] = self::categoryBlock($category, $section);
         }
-        if ($section === 'ai') {
-            $content[] = ShowcaseBlocks::block('desiderio_benefitcards', [
-                'eyebrow' => 'Strategy',
-                'header' => 'AI search and our TYPO3 v14 plan',
-                'subheadline' => 'How your content gets quoted by AI search, and how we build for AI agents.',
-                'columns' => '2',
-                'items' => [
-                    ['icon' => 'search', 'title' => 'GEO and AI search', 'description' => 'What makes AI search quote a page, and how Desiderio helps.', 'link' => '{{page:geo-ai-search}}'],
-                    ['icon' => 'trending-up', 'title' => 'TYPO3 v14 and AI agents', 'description' => 'Our strategy for TYPO3 v14, AI agents and the next LTS.', 'link' => '{{page:typo3-v14-strategy}}'],
-                ],
-            ]);
+        foreach ($hub['sections'] ?? [] as $block) {
+            $content[] = $block;
         }
         $content[] = ShowcaseBlocks::block('desiderio_ctabanner', [
             'header' => $hub['cta']['header'],
@@ -153,7 +160,7 @@ final class ShowcaseFeaturePages
         return ShowcaseBlocks::block('desiderio_blogteasers', [
             'header' => $category['header'],
             'subheadline' => $category['subheadline'],
-            'columns' => '3',
+            'columns' => $category['columns'] ?? '3',
             'posts' => $posts,
         ]);
     }
@@ -215,15 +222,20 @@ final class ShowcaseFeaturePages
                     $feature['benefits']['items'],
                 ),
             ]),
-            ShowcaseBlocks::block('desiderio_faq', [
-                'header' => $feature['faq']['header'],
-                'subheadline' => $feature['faq']['subheadline'],
-                'items' => array_map(
-                    static fn(array $item): array => ['question' => $item['question'], 'answer' => '<p>' . $item['answer'] . '</p>'],
-                    $feature['faq']['items'],
-                ),
-            ]),
         ];
+        // The page's own sections sit between the shared benefits and the
+        // shared questions, so every page still reads in the same order.
+        foreach ($feature['sections'] ?? [] as $block) {
+            $content[] = $block;
+        }
+        $content[] = ShowcaseBlocks::block('desiderio_faq', [
+            'header' => $feature['faq']['header'],
+            'subheadline' => $feature['faq']['subheadline'],
+            'items' => array_map(
+                static fn(array $item): array => ['question' => $item['question'], 'answer' => '<p>' . $item['answer'] . '</p>'],
+                $feature['faq']['items'],
+            ),
+        ]);
         if ($feature['install'] !== null) {
             $content[] = ShowcaseBlocks::block('desiderio_codeblock', [
                 'header' => $feature['install']['header'],

@@ -14,8 +14,7 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 - An **Agentic skills** entry in the AI section (`/ai/agentic-skills`, first in "Skills and safety") with ten skill detail pages below it (`ShowcaseSkillPages`) on one shared outline: trigger phrases, prerequisites, commands and quotes from the skills' own SKILL.md files, with credits for the vendored skills.
 - Showcase definitions can carry extra `sections` (a feature definition renders them between the benefits and the FAQ, a hub before its CTA), a category can set its `columns`, and seeded elements may set the shared appearance fields (`frame_class`, the spacing, `layout`) although no block declares them.
 - Home page: a "Strategy 2026–2030" checklist with the five points (shared with the strategy page through `ShowcaseStrategyPages::fivePoints()`), a "Not only TYPO3" bar saying the strategy is the standard for everything we build, and "Everything in this lab" category cards with live counts. The strategy page gets the "Not only TYPO3" highlight and "The floor under the five points" with eight standards.
-- The Video Feature Section has a `variant` select: `portrait` puts a 9:16 click-to-play player beside the text column (used for the usability-slogans talk); `default` renders as before.
-- A hidden page `/usability-slogans` (`ShowcaseTalkPages`) that hosts the full talk, the ten slogans and the Nielsen source.
+- The Video Feature Section has a `variant` select: `portrait` puts a 9:16 click-to-play player beside the text column (the lab uses it for Kurt's five-minute usability-slogans talk on the home page); `default` renders as before.
 - Strategy page stills (`Build/Data/feature-screenshots.strategy.json`) for the strategy film.
 
 ### Changed

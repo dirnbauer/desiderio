@@ -31,7 +31,7 @@ final class FriendlyCaptchaTestModeMiddlewareTest extends TestCase
         $request = new ServerRequest()->withAttribute('site', $site);
         $GLOBALS['TYPO3_REQUEST'] = $request;
 
-        $handler = new class () implements RequestHandlerInterface {
+        $handler = new class implements RequestHandlerInterface {
             public ?ServerRequestInterface $request = null;
 
             public function handle(ServerRequestInterface $request): ResponseInterface
@@ -56,7 +56,7 @@ final class FriendlyCaptchaTestModeMiddlewareTest extends TestCase
         $request = new ServerRequest()->withAttribute('site', $site);
         $GLOBALS['TYPO3_REQUEST'] = $request;
 
-        $handler = new class () implements RequestHandlerInterface {
+        $handler = new class implements RequestHandlerInterface {
             public ?ServerRequestInterface $request = null;
 
             public function handle(ServerRequestInterface $request): ResponseInterface
@@ -81,7 +81,7 @@ final class FriendlyCaptchaTestModeMiddlewareTest extends TestCase
         $request = new ServerRequest()->withAttribute('site', $site);
         $GLOBALS['TYPO3_REQUEST'] = $request;
 
-        $handler = new class () implements RequestHandlerInterface {
+        $handler = new class implements RequestHandlerInterface {
             public ?ServerRequestInterface $request = null;
 
             public function handle(ServerRequestInterface $request): ResponseInterface
@@ -105,7 +105,7 @@ final class FriendlyCaptchaTestModeMiddlewareTest extends TestCase
         $request = new ServerRequest()->withAttribute('site', $site);
         $GLOBALS['TYPO3_REQUEST'] = $request;
 
-        $handler = new class () implements RequestHandlerInterface {
+        $handler = new class implements RequestHandlerInterface {
             public ?ServerRequestInterface $request = null;
 
             public function handle(ServerRequestInterface $request): ResponseInterface
@@ -128,7 +128,7 @@ final class FriendlyCaptchaTestModeMiddlewareTest extends TestCase
         $request = new ServerRequest()->withAttribute('site', $site);
         $GLOBALS['TYPO3_REQUEST'] = $request;
 
-        $handler = new class () implements RequestHandlerInterface {
+        $handler = new class implements RequestHandlerInterface {
             public ?ServerRequestInterface $request = null;
 
             public function handle(ServerRequestInterface $request): ResponseInterface
@@ -152,7 +152,7 @@ final class FriendlyCaptchaTestModeMiddlewareTest extends TestCase
         $request = new ServerRequest()->withAttribute('site', $site);
         $GLOBALS['TYPO3_REQUEST'] = $request;
 
-        $handler = new class () implements RequestHandlerInterface {
+        $handler = new class implements RequestHandlerInterface {
             public ?ServerRequestInterface $request = null;
 
             public function handle(ServerRequestInterface $request): ResponseInterface

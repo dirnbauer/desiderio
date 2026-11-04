@@ -35,7 +35,7 @@ final class ExtbasePluginRequestSanitizerMiddlewareTest extends TestCase
             'editMode' => '1',
         ]);
 
-        $request->expects(self::once())
+        $request->expects($this->once())
             ->method('withQueryParams')
             ->with([
                 'tx_news_pi1' => [
@@ -44,7 +44,7 @@ final class ExtbasePluginRequestSanitizerMiddlewareTest extends TestCase
             ])
             ->willReturnSelf();
 
-        $request->expects(self::once())
+        $request->expects($this->once())
             ->method('withParsedBody')
             ->with([
                 'tx_news_pi1' => [],
@@ -52,7 +52,7 @@ final class ExtbasePluginRequestSanitizerMiddlewareTest extends TestCase
             ])
             ->willReturnSelf();
 
-        $handler->expects(self::once())
+        $handler->expects($this->once())
             ->method('handle')
             ->with($request)
             ->willReturn($response);
@@ -77,14 +77,14 @@ final class ExtbasePluginRequestSanitizerMiddlewareTest extends TestCase
         $request->method('getMethod')->willReturn('GET');
         $request->method('getQueryParams')->willReturn($queryParams);
 
-        $request->expects(self::once())
+        $request->expects($this->once())
             ->method('withQueryParams')
             ->with($queryParams)
             ->willReturnSelf();
 
-        $request->expects(self::never())->method('withParsedBody');
+        $request->expects($this->never())->method('withParsedBody');
 
-        $handler->expects(self::once())
+        $handler->expects($this->once())
             ->method('handle')
             ->with($request)
             ->willReturn($response);

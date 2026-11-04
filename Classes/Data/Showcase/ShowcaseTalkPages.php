@@ -36,15 +36,15 @@ final class ShowcaseTalkPages
             'title' => 'Usability slogans: the full talk',
             'navTitle' => 'Usability slogans',
             'slug' => '/usability-slogans',
-            'abstract' => 'Kurt Dirnbauer’s talk in full: ten usability slogans after Jakob Nielsen in 4½ minutes, presented by his AI avatar, with English captions.',
-            'description' => 'The full talk by Kurt Dirnbauer: Jakob Nielsen’s ten usability slogans and what each one asks of a product team, in 4½ minutes.',
+            'abstract' => 'Kurt Dirnbauer’s talk in full: ten usability slogans after Jakob Nielsen in five minutes, presented by his AI avatar, with English captions.',
+            'description' => 'The full talk by Kurt Dirnbauer: Jakob Nielsen’s ten usability slogans and what each one asks of a product team, in five minutes.',
             'parentSlug' => null,
             'hideInNav' => true,
             'content' => [
                 ShowcaseBlocks::block('desiderio_headersection', [
                     'eyebrow' => 'From the founder',
                     'header' => 'Ten usability slogans, the full talk',
-                    'subheadline' => 'Kurt Dirnbauer presents ten usability slogans in 4½ minutes. For each one he explains what it asks of a product team.',
+                    'subheadline' => 'Kurt Dirnbauer presents ten usability slogans in five minutes. For each one he explains what it asks of a product team.',
                     'variant' => 'center',
                 ]),
                 ShowcaseBlocks::block('desiderio_featurenumbered', [

@@ -1,0 +1,89 @@
+{
+    "_note": "Stills of /typo3-v14-strategy for the strategy film (lab site package films/strategy.mjs). Light, 1440x900 = 16:10; each scrolls to its section heading. Capture from the lab root: node packages/desiderio/Build/Scripts/capture-feature-screenshots.mjs --base https://webconsulting-typo3-lab.ddev.site --shots packages/desiderio/Build/Data/feature-screenshots.strategy.json",
+    "shots": [
+        {
+            "name": "frontend-feature-strategy-hero",
+            "kind": "frontend",
+            "url": "/typo3-v14-strategy",
+            "viewport": "1440x900",
+            "colorScheme": "light",
+            "steps": [
+                {
+                    "evaluate": "(async () => { document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); window.scrollTo(0, 0); })()",
+                    "wait": 700
+                }
+            ],
+            "clip": "viewport"
+        },
+        {
+            "name": "frontend-feature-strategy-points",
+            "kind": "frontend",
+            "url": "/typo3-v14-strategy",
+            "viewport": "1440x900",
+            "colorScheme": "light",
+            "steps": [
+                {
+                    "evaluate": "(async () => { document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); const h = [...document.querySelectorAll('h1, h2, h3')].find((e) => e.textContent.trim().startsWith('The strategy in five points')); if (h) window.scrollTo({ left: 0, top: h.getBoundingClientRect().top + window.scrollY - 120, behavior: 'instant' }); })()",
+                    "wait": 700
+                }
+            ],
+            "clip": "viewport"
+        },
+        {
+            "name": "frontend-feature-strategy-layers",
+            "kind": "frontend",
+            "url": "/typo3-v14-strategy",
+            "viewport": "1440x900",
+            "colorScheme": "light",
+            "steps": [
+                {
+                    "evaluate": "(async () => { document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); const h = [...document.querySelectorAll('h1, h2, h3')].find((e) => e.textContent.trim().startsWith('The plan has three layers')); if (h) window.scrollTo({ left: 0, top: h.getBoundingClientRect().top + window.scrollY - 120, behavior: 'instant' }); })()",
+                    "wait": 700
+                }
+            ],
+            "clip": "viewport"
+        },
+        {
+            "name": "frontend-feature-strategy-today",
+            "kind": "frontend",
+            "url": "/typo3-v14-strategy",
+            "viewport": "1440x900",
+            "colorScheme": "light",
+            "steps": [
+                {
+                    "evaluate": "(async () => { document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); const h = [...document.querySelectorAll('h1, h2, h3')].find((e) => e.textContent.trim().startsWith('Where each part stands today')); if (h) window.scrollTo({ left: 0, top: h.getBoundingClientRect().top + window.scrollY - 120, behavior: 'instant' }); })()",
+                    "wait": 700
+                }
+            ],
+            "clip": "viewport"
+        },
+        {
+            "name": "frontend-feature-strategy-roadmap",
+            "kind": "frontend",
+            "url": "/typo3-v14-strategy",
+            "viewport": "1440x900",
+            "colorScheme": "light",
+            "steps": [
+                {
+                    "evaluate": "(async () => { document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); const h = [...document.querySelectorAll('h1, h2, h3')].find((e) => e.textContent.trim().startsWith('The roadmap to 2030')); if (h) window.scrollTo({ left: 0, top: h.getBoundingClientRect().top + window.scrollY - 120, behavior: 'instant' }); })()",
+                    "wait": 700
+                }
+            ],
+            "clip": "viewport"
+        },
+        {
+            "name": "frontend-feature-strategy-readiness",
+            "kind": "frontend",
+            "url": "/typo3-v14-strategy",
+            "viewport": "1440x900",
+            "colorScheme": "light",
+            "steps": [
+                {
+                    "evaluate": "(async () => { document.querySelectorAll('img[loading=lazy]').forEach((i) => { i.loading = 'eager'; }); await Promise.all([...document.images].filter((i) => !i.complete).map((i) => new Promise((r) => { i.onload = i.onerror = r; setTimeout(r, 8000); }))); const h = [...document.querySelectorAll('h1, h2, h3')].find((e) => e.textContent.trim().startsWith('Readiness check: 11 questions')); if (h) window.scrollTo({ left: 0, top: h.getBoundingClientRect().top + window.scrollY - 120, behavior: 'instant' }); })()",
+                    "wait": 700
+                }
+            ],
+            "clip": "viewport"
+        }
+    ]
+}

@@ -9,14 +9,18 @@ namespace Webconsulting\Desiderio\Data\Showcase;
  * /ai/agentic-skills. Every page has the same blocks in the same order, so
  * the pages read alike and a new skill is data, not a layout:
  *
- *  1. header section: the skill's name and what it is for (the page film
- *     follows it, placed by the site package's films seeder)
+ *  1. header section: the skill's promise and what it is for; the page
+ *     title above already names the skill (the page film follows it, placed
+ *     by the site package's films seeder)
  *  2. three cards: why use it
  *  3. a checklist: what it can do
  *  4. four numbered steps: install, ask, prerequisites, what comes back
  *  5. the commands
  *  6. one sentence quoted from the skill's SKILL.md, with its line
- *  7. a gallery: the SKILL.md on GitHub and, where one exists, a real output
+ *  7. the screens: a gallery when there are two or more (the SKILL.md on
+ *     GitHub and a real output), one text-and-media block for a single
+ *     screen, which a gallery would show twice (large and as a lone
+ *     thumbnail)
  *  8. a call to action
  *
  * The copy quotes the skills' own SKILL.md files and the facts of the public
@@ -80,13 +84,12 @@ final class ShowcaseSkillPages
             'content' => [
                 ShowcaseBlocks::block('desiderio_headersection', [
                     'eyebrow' => 'Skill',
-                    'header' => $skill['slug'],
+                    'header' => $skill['cards']['header'],
                     'subheadline' => $skill['sub'],
                     'variant' => 'center',
                 ]),
                 ShowcaseBlocks::block('desiderio_featurecards', [
-                    'eyebrow' => 'Why use it',
-                    'header' => $skill['cards']['header'],
+                    'header' => 'Why use it',
                     'items' => array_map(
                         static fn(array $card): array => ['title' => $card['title'], 'description' => '<p>' . $card['description'] . '</p>'],
                         $skill['cards']['items'],
@@ -118,20 +121,7 @@ final class ShowcaseSkillPages
                     'role' => 'SKILL.md, ' . $skill['quote']['line'],
                     'variant' => 'large',
                 ]),
-                ShowcaseBlocks::block('desiderio_gallery', [
-                    'header' => 'See it in the repository',
-                    'subheadline' => 'Screens of the public repository, 4 November 2026.',
-                    'columns' => '2',
-                    'items' => array_map(
-                        static fn(array $shot): array => [
-                            'title' => $shot['title'],
-                            'description' => $shot['caption'],
-                            'link' => '',
-                            'image' => ShowcaseBlocks::screenshot($shot['file'], $shot['title'], $shot['alternative'], 'Screenshot of the typo3-skills repository, 4 November 2026.'),
-                        ],
-                        $skill['shots'],
-                    ),
-                ]),
+                self::screens($skill['shots']),
                 ShowcaseBlocks::block('desiderio_ctabanner', [
                     'header' => 'Install the skills',
                     'description' => 'One clone and one install script add ' . $skill['slug'] . ' and the other 60 skills to your coding agent. Code MIT, content CC BY-SA 4.0.',
@@ -141,6 +131,46 @@ final class ShowcaseSkillPages
                 ]),
             ],
         ];
+    }
+
+    /**
+     * The skill's screens: a gallery for two or more, one text-and-media
+     * block for a single screen.
+     *
+     * @param non-empty-list<SkillShot> $shots
+     * @return ShowcaseBlock
+     */
+    private static function screens(array $shots): array
+    {
+        $image = static fn(array $shot): array => ShowcaseBlocks::screenshot($shot['file'], $shot['title'], $shot['alternative'], 'Screenshot of the typo3-skills repository, 4 November 2026.');
+
+        if (count($shots) === 1) {
+            $shot = $shots[0];
+
+            return ShowcaseBlocks::block('desiderio_textmedia', [
+                'header' => 'See it in the repository',
+                'shadcn_layout' => 'media-below',
+                'subheadline' => $shot['title'],
+                'content' => '<p>' . $shot['caption'] . ' As of 4 November 2026.</p>',
+                'media_rounded' => 1,
+                'media' => $image($shot),
+            ]);
+        }
+
+        return ShowcaseBlocks::block('desiderio_gallery', [
+            'header' => 'See it in the repository',
+            'subheadline' => 'Screens of the public repository, 4 November 2026.',
+            'columns' => '2',
+            'items' => array_map(
+                static fn(array $shot): array => [
+                    'title' => $shot['title'],
+                    'description' => $shot['caption'],
+                    'link' => '',
+                    'image' => $image($shot),
+                ],
+                $shots,
+            ),
+        ]);
     }
 
     /**

@@ -34,7 +34,10 @@ final class MedAtlas
 
     /**
      * The statistics blocks sit on the primary surface, the dark band the
-     * house presets paint, so the charts read the same in every colour scheme.
+     * house presets paint in light mode (in dark mode the band turns light).
+     * On that surface the chart blocks draw in the band's ink, not in the
+     * preset's chart colours (chart-bar and chart-donut frontend.css), so the
+     * bars read in both modes.
      */
     private const string SURFACE = 'primary';
 
@@ -243,7 +246,7 @@ final class MedAtlas
                     ['label' => 'Without an export ban', 'value' => 453, 'unit' => 'reports'],
                 ],
                 'center_value' => '47.7 %',
-                'center_label' => 'with an export ban',
+                'center_label' => 'export ban',
                 'show_legend' => 1,
                 'frame_class' => self::SURFACE,
             ]),

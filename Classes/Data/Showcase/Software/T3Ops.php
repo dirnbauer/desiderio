@@ -91,12 +91,6 @@ final class T3Ops
                         'image' => self::shot('frontend-feature-t3ops-hardening-d563196e.webp', 'A hardening checklist per site', 'Hardening checklist of a demo site: 83 %, 53 of 64 items fulfilled, release level Report only, first configuration items.'),
                     ],
                     [
-                        'tab' => 'Dark mode',
-                        'title' => 'The same overview in dark mode',
-                        'description' => 'Every screen follows the light or dark setting of your system.',
-                        'image' => self::shot('frontend-feature-t3ops-dark-9da3d01c.webp', 'The same overview in dark mode', 'T3 Ops overview in dark mode with the health ring, the security inbox and the TYPO3 versions in use.'),
-                    ],
-                    [
                         'tab' => 'Release flow',
                         'title' => 'From staging to production',
                         'description' => 'Check readiness, capture production, update and verify staging. Production is released as a separate step.',

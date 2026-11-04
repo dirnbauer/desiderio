@@ -117,31 +117,38 @@ final class CapexOne
             ],
             'sections' => [
                 // 1. The five things, as capex-one.com lists them.
-                ShowcaseBlocks::block('desiderio_featurenumbered', [
+                // A sequence of five steps as a timeline: the numbered grid
+                // has three columns and left an empty sixth slot.
+                ShowcaseBlocks::block('desiderio_featuretimeline', [
                     'header' => 'From the first plan to the proven return',
                     'subheadline' => 'Five things CapexOne Plus does for every project, from the idea to the benefits review.',
                     'items' => [
                         [
+                            'step' => '01',
                             'title' => 'Plan in minutes, calibrated on your track record',
                             'description' => '<p><strong>Plan · Planner.</strong> Describe the investment in your own words. A rule-based engine builds phases, gates, costs, cash flow, risks and the business case.</p>'
                                 . '<ul><li>Durations and costs corrected by your own finished projects</li><li>P50 and P80 for cost, dates and NPV from a seeded simulation</li><li>One click turns the plan into a project</li></ul>',
                         ],
                         [
+                            'step' => '02',
                             'title' => 'The gate pack builds itself',
                             'description' => '<p><strong>Decide · Gate packs.</strong> The pack is compiled from live data: business case, budget against actuals, risks, change orders and evidence for every deliverable.</p>'
                                 . '<ul><li>A readiness score shows what is missing before reviewers see it</li><li>Versioned PDF plus an evidence bundle for the meeting</li><li>A recommendation from go to no go, with its reasons</li></ul>',
                         ],
                         [
+                            'step' => '03',
                             'title' => 'Every report is checked against the business case',
                             'description' => '<p><strong>Track · Business case.</strong> NPV, IRR, ROI and ROCE are recalculated whenever costs, forecasts, dates or measured benefits change.</p>'
                                 . '<ul><li>Approved baseline, current forecast and actuals side by side</li><li>On track, at risk or off track by your own thresholds</li><li>One set of formulas for every report, pack and chart</li></ul>',
                         ],
                         [
+                            'step' => '04',
                             'title' => 'Live from project to division to company',
                             'description' => '<p><strong>Report · Live reports.</strong> Every invoice, commitment and forecast rolls up the moment it is booked.</p>'
                                 . '<ul><li>Budget, commitments, actuals and forecast at completion</li><li>Roll-ups by division, site and category</li><li>Export to PDF, Excel or PowerPoint</li></ul>',
                         ],
                         [
+                            'step' => '05',
                             'title' => 'The CFO always knows where the capital goes',
                             'description' => '<p><strong>Oversee · CFO view.</strong> One view of the portfolio: approved, committed, spent and forecast, and the value at risk.</p>'
                                 . '<ul><li>Portfolio value and value at risk, always current</li><li>Gate decisions waiting, each with its pack</li><li>Early warnings when budgets, forecasts or risks move</li></ul>',
@@ -221,7 +228,7 @@ final class CapexOne
                         . '<p>“Your agent will read Markdown. Then, it will run CLIs and call MCP tools. Your software will make API calls to other services. And software will become more and more invisible. Computers talking to other computers to get you an answer, even before you ask.”</p></blockquote>'
                         . '<p>Our reading: more and more people who use CapexOne Plus will send an agent instead of opening the app. So the API came first, with the same rules for people and agents.</p>',
                     'variant' => 'bordered',
-                    'alignment' => 'left',
+                    'alignment' => 'center',
                     'link' => self::RAUCH_POST,
                     'link_text' => 'Read the post',
                 ]),
@@ -276,13 +283,16 @@ final class CapexOne
 
                 // 7. Shared savings (D14): the goal of an engagement, kept apart
                 // from the product figures in section 2.
-                ShowcaseBlocks::block('desiderio_featurestats', [
+                // Three figures in one row of three: the feature-stats grid
+                // has two columns beside its intro and left the third alone.
+                ShowcaseBlocks::block('desiderio_stats', [
                     'header' => 'Our approach: shared savings',
-                    'description' => 'The target model of a CapexOne Plus engagement: a goal and a pricing approach, not a measured result and not a guarantee. We aim to save you 3 % of your capital-project cost and are paid a third of that saving.',
-                    'items' => [
-                        ['value' => '3 %', 'label' => 'The saving we aim for', 'description_text' => 'Of your capital-project cost'],
-                        ['value' => '1 %', 'label' => 'Our share', 'description_text' => 'One third of the saving'],
-                        ['value' => '2 %', 'label' => 'Your share', 'description_text' => 'Two thirds of the saving stay with you'],
+                    'subheadline' => 'The target model of a CapexOne Plus engagement: a goal and a pricing approach, not a measured result and not a guarantee. We aim to save you 3 % of your capital-project cost and are paid a third of that saving.',
+                    'columns' => '3',
+                    'stats' => [
+                        ['value' => '3 %', 'label' => 'The saving we aim for', 'description' => '<p>Of your capital-project cost</p>'],
+                        ['value' => '1 %', 'label' => 'Our share', 'description' => '<p>One third of the saving</p>'],
+                        ['value' => '2 %', 'label' => 'Your share', 'description' => '<p>Two thirds of the saving stay with you</p>'],
                     ],
                 ]),
             ],

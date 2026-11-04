@@ -19,6 +19,11 @@ use Webconsulting\Desiderio\Data\StyleguideShowcasePages;
  */
 final class ShowcaseSkillPagesTest extends TestCase
 {
+    /**
+     * Position 7 holds the screens: a gallery for two or more, one
+     * text-and-media block for a single screen (a gallery shows a single
+     * image twice, large and as a lone thumbnail).
+     */
     private const array OUTLINE = [
         'desiderio_headersection',
         'desiderio_featurecards',
@@ -26,7 +31,7 @@ final class ShowcaseSkillPagesTest extends TestCase
         'desiderio_featurenumbered',
         'desiderio_codeblock',
         'desiderio_quote',
-        'desiderio_gallery',
+        'screens',
         'desiderio_ctabanner',
     ];
 
@@ -74,18 +79,29 @@ final class ShowcaseSkillPagesTest extends TestCase
     public function testEverySkillPageFollowsTheSameOutline(): void
     {
         foreach (ShowcaseSkillPages::pages() as $page) {
-            self::assertSame(self::OUTLINE, array_map(static fn(array $block): string => $block['ctype'], $page['content']), $page['slug']);
+            $ctypes = array_map(static fn(array $block): string => $block['ctype'], $page['content']);
+            $screens = $ctypes[6] ?? '';
+            self::assertContains($screens, ['desiderio_gallery', 'desiderio_textmedia'], $page['slug']);
+            $ctypes[6] = 'screens';
+            self::assertSame(self::OUTLINE, $ctypes, $page['slug']);
             $header = $page['content'][0]['fields'];
             self::assertSame('Skill', $header['eyebrow'] ?? null, $page['slug']);
-            self::assertSame(substr($page['slug'], strlen('/ai/agentic-skills/')), $header['header'] ?? null, $page['slug'] . ': the header names the skill.');
+            $skill = substr($page['slug'], strlen('/ai/agentic-skills/'));
+            self::assertNotSame($skill, $header['header'] ?? null, $page['slug'] . ': the page title already names the skill; the header section opens with its promise.');
+            self::assertTrue(str_starts_with($page['title'], $skill), $page['slug'] . ': the page title names the skill.');
+            self::assertNotSame('', trim((string)($header['header'] ?? '')), $page['slug']);
             self::assertCount(3, self::items($page, 'desiderio_featurecards'), $page['slug']);
             $checklist = count(self::items($page, 'desiderio_featurechecklist'));
             self::assertGreaterThanOrEqual(4, $checklist, $page['slug']);
             self::assertLessThanOrEqual(5, $checklist, $page['slug']);
             self::assertCount(4, self::items($page, 'desiderio_featurenumbered'), $page['slug']);
-            $gallery = count(self::items($page, 'desiderio_gallery'));
-            self::assertGreaterThanOrEqual(1, $gallery, $page['slug']);
-            self::assertLessThanOrEqual(2, $gallery, $page['slug']);
+            if ($screens === 'desiderio_gallery') {
+                $gallery = count(self::items($page, 'desiderio_gallery'));
+                self::assertGreaterThanOrEqual(2, $gallery, $page['slug'] . ': a gallery only for two or more screens.');
+                self::assertLessThanOrEqual(3, $gallery, $page['slug']);
+            } else {
+                self::assertIsArray(self::block($page, 'desiderio_textmedia')['media'] ?? null, $page['slug'] . ': the single screen.');
+            }
             self::assertStringStartsWith('SKILL.md, line', (string)(self::block($page, 'desiderio_quote')['role'] ?? ''), $page['slug'] . ': the quote names its source line.');
             self::assertSame(ShowcaseSkillPages::REPO_URL, self::block($page, 'desiderio_ctabanner')['cta_link'] ?? null, $page['slug']);
         }

@@ -112,18 +112,22 @@ final class Ledger
                         ['title' => 'Bookings from the bank', 'description' => 'Account data over PSD2, George exports as CSV or Excel, and the original statement PDFs, accepted only when their printed totals add up.'],
                     ],
                 ]),
-                ShowcaseBlocks::block('desiderio_featurenumbered', [
+                // Eight features in four columns, two full rows: the numbered
+                // grid has three columns and left two empty slots.
+                ShowcaseBlocks::block('desiderio_features', [
                     'header' => 'Eight features we use every month',
                     'subheadline' => 'The German name in each item is the label you see in the app.',
-                    'items' => [
-                        ['title' => 'Statement with receipts', 'description' => '<p><strong>Auszug mit Belegen</strong>: the original bank statement with matched bookings highlighted and the receipt named under each one. Missing receipts are marked red.</p>'],
-                        ['title' => 'Matching with clear rules', 'description' => '<p><strong>Automatisch abgleichen</strong> matches on hard evidence only. Subscriptions, tips, foreign currency and 2 to 4 receipts in one charge have their own rules.</p>'],
-                        ['title' => 'Invoice from selected hours', 'description' => '<p><strong>Rechnung aus Auswahl</strong> turns ticked hours into an invoice with one line per ticket and a time statement.</p>'],
-                        ['title' => 'Sent documents stay as sent', 'description' => '<p>A database trigger blocks changes to sent invoices and billed hours. <strong>Admin-Korrektur</strong> needs a reason and keeps the old version.</p>'],
-                        ['title' => 'Every change on record', 'description' => '<p><strong>Protokoll</strong> logs each changed row with its old and new value, whether the change came from the app, an import script or psql.</p>'],
-                        ['title' => 'An assistant that asks first', 'description' => '<p>Ask in plain language and get answers from read-only queries. Proposed changes show before and after, and run only after <strong>Ausführen</strong>.</p>'],
-                        ['title' => 'Card bookings from George', 'description' => '<p>Card bookings don’t come over PSD2. The <strong>George-Assistent</strong> collects them in a browser window on the office computer.</p>'],
-                        ['title' => 'Pay with a code', 'description' => '<p><strong>Zahlen mit Code</strong>: every invoice carries an EPC QR code. A banking app scans it and fills in amount, IBAN and reference.</p>'],
+                    'columns' => '4',
+                    'variant' => 'icon-top',
+                    'feature_items' => [
+                        ['icon_name' => 'file-text', 'title' => 'Statement with receipts', 'description' => '<p><strong>Auszug mit Belegen</strong>: the original bank statement with matched bookings highlighted and the receipt named under each one. Missing receipts are marked red.</p>'],
+                        ['icon_name' => 'list-checks', 'title' => 'Matching with clear rules', 'description' => '<p><strong>Automatisch abgleichen</strong> matches on hard evidence only. Subscriptions, tips, foreign currency and 2 to 4 receipts in one charge have their own rules.</p>'],
+                        ['icon_name' => 'clock', 'title' => 'Invoice from selected hours', 'description' => '<p><strong>Rechnung aus Auswahl</strong> turns ticked hours into an invoice with one line per ticket and a time statement.</p>'],
+                        ['icon_name' => 'lock', 'title' => 'Sent documents stay as sent', 'description' => '<p>A database trigger blocks changes to sent invoices and billed hours. <strong>Admin-Korrektur</strong> needs a reason and keeps the old version.</p>'],
+                        ['icon_name' => 'history', 'title' => 'Every change on record', 'description' => '<p><strong>Protokoll</strong> logs each changed row with its old and new value, whether the change came from the app, an import script or psql.</p>'],
+                        ['icon_name' => 'message-circle', 'title' => 'An assistant that asks first', 'description' => '<p>Ask in plain language and get answers from read-only queries. Proposed changes show before and after, and run only after <strong>Ausführen</strong>.</p>'],
+                        ['icon_name' => 'building', 'title' => 'Card bookings from George', 'description' => '<p>Card bookings don’t come over PSD2. The <strong>George-Assistent</strong> collects them in a browser window on the office computer.</p>'],
+                        ['icon_name' => 'smartphone', 'title' => 'Pay with a code', 'description' => '<p><strong>Zahlen mit Code</strong>: every invoice carries an EPC QR code. A banking app scans it and fills in amount, IBAN and reference.</p>'],
                     ],
                 ]),
                 ShowcaseBlocks::block('desiderio_featuretimeline', [

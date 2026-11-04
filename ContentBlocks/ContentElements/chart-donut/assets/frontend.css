@@ -121,6 +121,21 @@
 .chart-donut__swatch--3 { background: var(--chart-3); }
 .chart-donut__swatch--4 { background: var(--chart-4); }
 .chart-donut__swatch--5 { background: var(--chart-5); }
+
+/* On the primary surface (frame_class "primary", 07-content-frames.css) every
+   semantic token turns into band ink, but the preset's --chart-1..5 do not.
+   Neutral presets keep the same light greys in both modes, and the dark-mode
+   band is light: the bars fell to about 1.1:1 against the card. On the band
+   the chart colours become a ramp of the band ink, like everything else there
+   (measured on /software/medatlas, 4 November 2026: bars 3.4:1 to 15:1 in dark
+   mode, 4.9:1 to 16:1 in light mode). */
+.desiderio-section.bg-primary .chart-donut {
+    --chart-1: var(--d-band-ink);
+    --chart-2: color-mix(in oklch, var(--d-band-ink) 58%, var(--d-band));
+    --chart-3: color-mix(in oklch, var(--d-band-ink) 44%, var(--d-band));
+    --chart-4: color-mix(in oklch, var(--d-band-ink) 34%, var(--d-band));
+    --chart-5: color-mix(in oklch, var(--d-band-ink) 26%, var(--d-band));
+}
 .chart-donut__legend-label {
     flex: 1 1 auto;
     min-width: 0;

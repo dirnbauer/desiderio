@@ -270,6 +270,9 @@ const LEAD = 1500;
 const TAIL = 700;
 
 const FILM = {
+  // Build/Film/backgrounds.mjs style ('aurora' when absent) and how much brighter than AURA's strength it is drawn.
+  background: 'mesh',
+  backgroundGain: 1.4,
   duration: 89000,
   poster: 19600,
   card: { eyebrow: 'shadcn/ui for TYPO3 v14', head: ['Desiderio', 'in 90 seconds'], host: 'typo3-lab.webconsulting.at' },
@@ -542,15 +545,12 @@ function drawAura(t) {
       colours[2] = colours[2].map((v, n) => lerp(v, presetTint.rgb(t)[n] * 0.55, w));
     }
   }
-  paint?.(t, strength, { colours });
+  paint?.(t, strength * (FILM.backgroundGain ?? 1), { colours });
 }
 custom.push(drawAura);
-/** Loads backgrounds.mjs (as a Blob: the render server sends .mjs as octet-stream) and sets up the finish. */
+/** Loads backgrounds.mjs and sets up the finish. */
 async function background() {
-  const code = await (await fetch('backgrounds.mjs')).text();
-  const url = URL.createObjectURL(new Blob([code], { type: 'text/javascript' }));
-  const { createBackground } = await import(url);
-  URL.revokeObjectURL(url);
+  const { createBackground } = await import('./backgrounds.mjs');
   paint = createBackground($('aura'), { style: BACKGROUND, palette: AURA[0][1], seed: FILM.seed ?? 1, base: '#060608', radii: [780, 700, 860] });
   if (FINISH) {
     stage.classList.add('finish');

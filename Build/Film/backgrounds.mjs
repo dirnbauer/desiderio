@@ -1,8 +1,8 @@
 // Copied from packages/site_package/Build/Film/lib/backgrounds.mjs of the webconsulting TYPO3 lab
 // (github.com/dirnbauer/webconsulting-typo3-lab); keep in sync: change both together.
-// The product film (film.html) loads it with fetch + a Blob URL, because
-// Build/Scripts/render-film.mjs serves .mjs files without a JavaScript MIME type;
-// so this module must stay free of imports.
+// The product film (film.html) loads it with a dynamic import(); Build/Scripts/render-film.mjs
+// serves .mjs files as text/javascript. Below this header the file is line for line the lab's
+// module, which has no imports of its own.
 
 /**
  * Generative film backgrounds, drawn on one 2D canvas behind every scene.
@@ -350,7 +350,7 @@ const STYLES = {
                 // The band: a soft strip across the whole width.
                 const strip = ctx.createLinearGradient(0, b.y - b.h, 0, b.y + b.h);
                 strip.addColorStop(0, rgba(b.rgb, 0));
-                strip.addColorStop(0.5, rgba(b.rgb, 0.05 * b.k * strength));
+                strip.addColorStop(0.5, rgba(b.rgb, 0.08 * b.k * strength));
                 strip.addColorStop(1, rgba(b.rgb, 0));
                 ctx.fillStyle = strip;
                 ctx.fillRect(0, b.y - b.h, W, b.h * 2);
@@ -367,14 +367,14 @@ const STYLES = {
             // Ledger rules drifting up, and the margin line.
             ctx.globalCompositeOperation = 'source-over';
             ctx.lineWidth = 1;
-            ctx.strokeStyle = `rgba(255,255,255,${0.035 * strength})`;
+            ctx.strokeStyle = `rgba(255,255,255,${0.06 * strength})`;
             ctx.beginPath();
             for (let y = rule - mod(s * 7, rule); y < H; y += rule) {
                 ctx.moveTo(0, Math.round(y) + 0.5);
                 ctx.lineTo(W, Math.round(y) + 0.5);
             }
             ctx.stroke();
-            ctx.strokeStyle = rgba(lift(colours[0], 0.2), 0.1 * strength);
+            ctx.strokeStyle = rgba(lift(colours[0], 0.2), 0.16 * strength);
             ctx.beginPath();
             ctx.moveTo(Math.round(W * 0.075) + 0.5, 0);
             ctx.lineTo(Math.round(W * 0.075) + 0.5, H);

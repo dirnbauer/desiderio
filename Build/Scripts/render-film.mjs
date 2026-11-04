@@ -55,7 +55,7 @@ const stills = argument('stills')?.split(',').map(Number);
 const remix = process.argv.includes('--remix');
 const reencode = process.argv.includes('--reencode');
 
-const TYPES = { '.html': 'text/html', '.json': 'application/json', '.png': 'image/png', '.jpg': 'image/jpeg', '.webp': 'image/webp', '.woff2': 'font/woff2', '.css': 'text/css', '.js': 'text/javascript' };
+const TYPES = { '.html': 'text/html', '.json': 'application/json', '.png': 'image/png', '.jpg': 'image/jpeg', '.webp': 'image/webp', '.woff2': 'font/woff2', '.css': 'text/css', '.js': 'text/javascript', '.mjs': 'text/javascript' };
 const server = createServer((request, response) => {
     const path = normalize(decodeURIComponent(new URL(request.url, 'http://localhost').pathname));
     const file = join(ROOT, path);

@@ -15,6 +15,7 @@ use Webconsulting\Desiderio\Data\Showcase\ShowcasePricingPages;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseSkillPages;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseStrategyPages;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseSuccessStories;
+use Webconsulting\Desiderio\Data\Showcase\ShowcaseTalkPages;
 
 /**
  * Marketing showcase seeded by desiderio:styleguide:seed in addition to the
@@ -58,6 +59,7 @@ final class StyleguideShowcasePages
             ...ShowcaseFeaturePages::aiPages(),
             ...ShowcaseStrategyPages::pages(),
             ...ShowcaseSkillPages::pages(),
+            ...ShowcaseTalkPages::pages(),
             ...ShowcaseFeaturePages::softwarePages(),
             ...ShowcaseAudiencePages::pages(),
             ...ShowcaseSuccessStories::pages(),

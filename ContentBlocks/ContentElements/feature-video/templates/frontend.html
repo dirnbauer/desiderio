@@ -5,62 +5,94 @@
 
 <f:asset.css identifier="d-feature-video" href="{cb:assetPath()}/frontend.css"/>
 
+<f:section name="intro">
+    <f:if condition="{data.eyebrow} || {data.header} || {data.description}">
+        <d:molecule.sectionIntro prefix="feature-video" align="{align}" class="feature-video__intro" leadClass="d-richtext" leadTag="div">
+            <f:fragment name="eyebrow"><f:if condition="{data.eyebrow}">{data -> f:render.text(field: 'eyebrow')}</f:if></f:fragment>
+            <f:fragment name="heading"><f:if condition="{data.header}">{data -> f:render.text(field: 'header')}</f:if></f:fragment>
+            <f:fragment name="lead"><f:if condition="{data.description}">{data -> f:render.text(field: 'description')}</f:if></f:fragment>
+        </d:molecule.sectionIntro>
+    </f:if>
+</f:section>
+
+<f:section name="player">
+    <div class="feature-video__player">
+        <f:if condition="{data.video_url}">
+            <f:then>
+                <div class="feature-video__embed">
+                    <iframe src="{data.video_url}" title="{videoTitle -> f:format.trim()}" frameborder="0" allowfullscreen loading="lazy"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                </div>
+            </f:then>
+            <f:else>
+                <f:if condition="{data.video_file.0}">
+                    <video class="feature-video__native" controls playsinline preload="metadata" aria-label="{videoTitle -> f:format.trim()}"
+                           {f:if(condition: data.poster.0, then: 'poster="{f:uri.image(image: data.poster.0, maxWidth: 1280)}"')}
+                           {f:if(condition: data.video_file.0.properties.autoplay, then: 'muted loop data-d-autoplay')}>
+                        <source src="{data.video_file.0.publicUrl}" type="{data.video_file.0.mimeType}"/>
+                        <f:if condition="{data.captions_file.0}">
+                            <track kind="captions" src="{data.captions_file.0.publicUrl}" srclang="en" label="English"/>
+                        </f:if>
+                        <a href="{data.video_file.0.publicUrl}"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:video_download"/></a>
+                    </video>
+                    <f:comment>
+                        Browsers start a video by itself only without sound, until the
+                        visitor has clicked or typed on the page. The runtime shows this
+                        button while the film plays muted; it turns the sound on and
+                        starts the film again from the beginning. Without autoplay on the
+                        file reference the player starts on a click, with sound, and
+                        needs no button.
+                    </f:comment>
+                    <f:if condition="{data.video_file.0.properties.autoplay}">
+                        <d:atom.button variant="secondary" size="sm" class="feature-video__sound" attributes="{'data-d-video-sound': '', 'hidden': 'hidden'}"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:video_sound_on"/></d:atom.button>
+                    </f:if>
+                </f:if>
+            </f:else>
+        </f:if>
+    </div>
+</f:section>
+
+<f:section name="note">
+    <f:comment>
+        The note below the film: one short, quiet line that belongs to the
+        film (a caption, a hint), in the same section, so no seam and no
+        section spacing separate it from the player.
+    </f:comment>
+    <f:if condition="{data.caption}">
+        <p class="feature-video__note">
+            <d:atom.icon name="info" size="xs" class="feature-video__note-icon"/>
+            <span>{data -> f:render.text(field: 'caption')}</span>
+        </p>
+    </f:if>
+</f:section>
+
 <f:variable name="videoTitle">{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:video_title\')}')}</f:variable>
 
-<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="feature-video">
+<f:comment>
+    Two layouts: "default" puts the intro above a wide player, centred;
+    "portrait" puts a 9:16 player beside a left-aligned text column (a talk,
+    a phone recording), stacked with the text first on small screens.
+</f:comment>
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="feature-video feature-video--{data.variant -> f:or(alternative: 'default')}">
     <d:layout.container>
-        <f:if condition="{data.eyebrow} || {data.header} || {data.description}">
-            <d:molecule.sectionIntro prefix="feature-video" align="center" class="feature-video__intro" leadClass="d-richtext" leadTag="div">
-                <f:fragment name="eyebrow"><f:if condition="{data.eyebrow}">{data -> f:render.text(field: 'eyebrow')}</f:if></f:fragment>
-                <f:fragment name="heading"><f:if condition="{data.header}">{data -> f:render.text(field: 'header')}</f:if></f:fragment>
-                <f:fragment name="lead"><f:if condition="{data.description}">{data -> f:render.text(field: 'description')}</f:if></f:fragment>
-            </d:molecule.sectionIntro>
-        </f:if>
-
-        <div class="feature-video__player">
-            <f:if condition="{data.video_url}">
-                <f:then>
-                    <div class="feature-video__embed">
-                        <iframe src="{data.video_url}" title="{videoTitle -> f:format.trim()}" frameborder="0" allowfullscreen loading="lazy"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+        <f:switch expression="{data.variant}">
+            <f:case value="portrait">
+                <div class="feature-video__layout">
+                    <div class="feature-video__text">
+                        <f:render section="intro" arguments="{data: data, align: 'start'}"/>
                     </div>
-                </f:then>
-                <f:else>
-                    <f:if condition="{data.video_file.0}">
-                        <video class="feature-video__native" controls playsinline preload="metadata" aria-label="{videoTitle -> f:format.trim()}"
-                               {f:if(condition: data.poster.0, then: 'poster="{f:uri.image(image: data.poster.0, maxWidth: 1280)}"')}
-                               {f:if(condition: data.video_file.0.properties.autoplay, then: 'muted loop data-d-autoplay')}>
-                            <source src="{data.video_file.0.publicUrl}" type="{data.video_file.0.mimeType}"/>
-                            <f:if condition="{data.captions_file.0}">
-                                <track kind="captions" src="{data.captions_file.0.publicUrl}" srclang="en" label="English"/>
-                            </f:if>
-                            <a href="{data.video_file.0.publicUrl}"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:video_download"/></a>
-                        </video>
-                        <f:comment>
-                            Browsers start a video by itself only without sound, until the
-                            visitor has clicked or typed on the page. The runtime shows this
-                            button while the film plays muted; it turns the sound on and
-                            starts the film again from the beginning.
-                        </f:comment>
-                        <f:if condition="{data.video_file.0.properties.autoplay}">
-                            <d:atom.button variant="secondary" size="sm" class="feature-video__sound" attributes="{'data-d-video-sound': '', 'hidden': 'hidden'}"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:video_sound_on"/></d:atom.button>
-                        </f:if>
-                    </f:if>
-                </f:else>
-            </f:if>
-        </div>
-
-        <f:comment>
-            The note below the film: one short, quiet line that belongs to the
-            film (a caption, a hint), in the same section, so no seam and no
-            section spacing separate it from the player.
-        </f:comment>
-        <f:if condition="{data.caption}">
-            <p class="feature-video__note">
-                <d:atom.icon name="info" size="xs" class="feature-video__note-icon"/>
-                <span>{data -> f:render.text(field: 'caption')}</span>
-            </p>
-        </f:if>
+                    <div class="feature-video__media">
+                        <f:render section="player" arguments="{data: data, videoTitle: videoTitle}"/>
+                        <f:render section="note" arguments="{data: data}"/>
+                    </div>
+                </div>
+            </f:case>
+            <f:defaultCase>
+                <f:render section="intro" arguments="{data: data, align: 'center'}"/>
+                <f:render section="player" arguments="{data: data, videoTitle: videoTitle}"/>
+                <f:render section="note" arguments="{data: data}"/>
+            </f:defaultCase>
+        </f:switch>
     </d:layout.container>
 </d:layout.section>
 

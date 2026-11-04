@@ -94,3 +94,46 @@
     display: none;
 }
 
+
+/* Portrait: a 9:16 player beside a left-aligned text column (a talk, a
+   phone recording). Stacked below 48rem, the text first; the player is
+   never taller than min(70vh, 42rem), so the whole of it fits the screen
+   and its width follows from that height. The note below takes the
+   player's width, so both share one edge. Tokens only: the text keeps the
+   section's foreground and the note its muted ink, AA on every preset. */
+.feature-video--portrait .feature-video__layout {
+    display: grid;
+    gap: var(--d-spacing-xl);
+}
+.feature-video--portrait .feature-video__intro {
+    text-align: start;
+    max-width: none;
+    margin: 0;
+}
+.feature-video--portrait .feature-video__media {
+    --feature-video-portrait-width: min(100%, 22rem, calc(min(70vh, 42rem) * 9 / 16));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-inline-size: 0;
+}
+.feature-video--portrait .feature-video__player {
+    --feature-video-ratio: 9 / 16;
+    inline-size: var(--feature-video-portrait-width);
+}
+.feature-video--portrait .feature-video__native {
+    max-block-size: min(70vh, 42rem);
+    margin-inline: auto;
+}
+.feature-video--portrait .feature-video__note {
+    inline-size: var(--feature-video-portrait-width);
+}
+@media (min-width: 48rem) {
+    .feature-video--portrait .feature-video__layout {
+        grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+        align-items: center;
+    }
+    .feature-video--portrait .feature-video__media {
+        --feature-video-portrait-width: min(100%, calc(min(70vh, 42rem) * 9 / 16));
+    }
+}

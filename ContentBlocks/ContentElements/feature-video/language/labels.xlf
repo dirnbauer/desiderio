@@ -11,5 +11,25 @@
         <source>A section with eyebrow, heading, and rich-text copy above one video: either an embedded iframe (YouTube/Vimeo URL) or an uploaded video file with optional poster image. Use it for: sections whose core asset is a video — product demos, explainers, tutorials, or recorded talks referenced in a document. Prefer 'Video Embed' for a bare video without intro copy; 'Video Hero' to open a page; 'Video Testimonial' for a customer video with quote.</source>
       </segment>
     </unit>
+    <unit id="field.variant">
+      <segment>
+        <source>Layout</source>
+      </segment>
+    </unit>
+    <unit id="field.variant.description">
+      <segment>
+        <source>Wide puts the player below the text, centred. Portrait puts a 9:16 video beside the text, for a talk or a phone recording.</source>
+      </segment>
+    </unit>
+    <unit id="item.variant.default">
+      <segment>
+        <source>Wide, centred</source>
+      </segment>
+    </unit>
+    <unit id="item.variant.portrait">
+      <segment>
+        <source>Portrait video beside the text</source>
+      </segment>
+    </unit>
   </file>
 </xliff>

@@ -25,6 +25,10 @@
                 <span class="d-ce-preview__value">{data.description -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
+        <div class="d-ce-preview__field">
+            <span class="d-ce-preview__label"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/feature-video/language/labels.xlf:field.variant"/></span>
+            <span class="d-ce-preview__value"><f:if condition="{data.variant} == 'portrait'"><f:then><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/feature-video/language/labels.xlf:item.variant.portrait"/></f:then><f:else><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/feature-video/language/labels.xlf:item.variant.default"/></f:else></f:if></span>
+        </div>
         <f:if condition="{data.caption}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:video_note"/></span>

@@ -54,3 +54,18 @@ fields:
     rows: 2
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:video_note'
     description: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:video_note.description'
+  -
+    identifier: variant
+    type: Select
+    prefixField: true
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/feature-video/language/labels.xlf:field.variant'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/feature-video/language/labels.xlf:field.variant.description'
+    items:
+      -
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/feature-video/language/labels.xlf:item.variant.default'
+        value: default
+      -
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/feature-video/language/labels.xlf:item.variant.portrait'
+        value: portrait
+    default: default

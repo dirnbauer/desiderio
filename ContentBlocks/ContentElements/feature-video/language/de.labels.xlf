@@ -13,5 +13,29 @@
         <target>Ein Abschnitt mit Eyebrow, Überschrift und Rich-Text über genau einem Video: entweder als eingebettetes Iframe (YouTube-/Vimeo-URL) oder als hochgeladene Videodatei mit optionalem Posterbild. Geeignet für: Abschnitte, deren Kern ein Video ist — Produktdemos, Erklärvideos, Tutorials oder aufgezeichnete Vorträge aus einem Dokument. Für ein Video ohne Einleitungstext besser 'Video Embed'; als Seitenauftakt 'Video Hero'; für Kundenvideos mit Zitat 'Video Testimonial'.</target>
       </segment>
     </unit>
+    <unit id="field.variant">
+      <segment state="final">
+        <source>Layout</source>
+        <target>Layout</target>
+      </segment>
+    </unit>
+    <unit id="field.variant.description">
+      <segment state="final">
+        <source>Wide puts the player below the text, centred. Portrait puts a 9:16 video beside the text, for a talk or a phone recording.</source>
+        <target>Breit stellt den Player zentriert unter den Text. Hochformat stellt ein 9:16-Video neben den Text, für einen Vortrag oder eine Handyaufnahme.</target>
+      </segment>
+    </unit>
+    <unit id="item.variant.default">
+      <segment state="final">
+        <source>Wide, centred</source>
+        <target>Breit, zentriert</target>
+      </segment>
+    </unit>
+    <unit id="item.variant.portrait">
+      <segment state="final">
+        <source>Portrait video beside the text</source>
+        <target>Hochformat-Video neben dem Text</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

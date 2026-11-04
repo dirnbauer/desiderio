@@ -77,7 +77,7 @@ final class ElementLibrarySiteScopeTest extends FunctionalTestCase
             ->withQueryParams($query)
             ->withHeader('X-Request-Token', $token);
 
-        $handler = new class implements RequestHandlerInterface {
+        $handler = new class () implements RequestHandlerInterface {
             public function handle(ServerRequestInterface $request): ResponseInterface
             {
                 return new Response();

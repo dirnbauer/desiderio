@@ -6,6 +6,29 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.28.0] — 2026-11-04
+
+### Added
+
+- A **Software** section on the Desiderio site, between "AI and agents" and the audience pages: a hub (`/software`, "Software by webconsulting", two-column product cards, a generated hero photo) and four product pages from the showcase generator, T3 Ops (`/software/t3-ops`), Ledger (`/software/ledger`), MedAtlas Austria (`/software/medatlas`) and CapexOne Plus (`/software/capex-one`), each with a hero, a problem block, a screenshot tour of the running product, benefits, product-specific sections, FAQ and CTA. The screenshots come from the products' demo instances with fictional data only (`Build/Data/feature-screenshots.software-*.json`, captured by the new `Build/Scripts/capture-app-screenshots.mjs`, which signs in with credentials from environment variables).
+- An **Agentic skills** entry in the AI section (`/ai/agentic-skills`, first in "Skills and safety") with ten skill detail pages below it (`ShowcaseSkillPages`) on one shared outline: trigger phrases, prerequisites, commands and quotes from the skills' own SKILL.md files, with credits for the vendored skills.
+- Showcase definitions can carry extra `sections` (a feature definition renders them between the benefits and the FAQ, a hub before its CTA), a category can set its `columns`, and seeded elements may set the shared appearance fields (`frame_class`, the spacing, `layout`) although no block declares them.
+- Home page: a "Strategy 2026–2030" checklist with the five points (shared with the strategy page through `ShowcaseStrategyPages::fivePoints()`), a "Not only TYPO3" bar saying the strategy is the standard for everything we build, and "Everything in this lab" category cards with live counts. The strategy page gets the "Not only TYPO3" highlight and "The floor under the five points" with eight standards.
+- The Video Feature Section has a `variant` select: `portrait` puts a 9:16 click-to-play player beside the text column (used for the usability-slogans talk); `default` renders as before.
+- A hidden page `/usability-slogans` (`ShowcaseTalkPages`) that hosts the full talk, the ten slogans and the Nielsen source.
+- Strategy page stills (`Build/Data/feature-screenshots.strategy.json`) for the strategy film.
+
+### Changed
+
+- The product film is rendered on the new `mesh` background with the frame sheen (`Build/Film/backgrounds.mjs`, shared with the lab's film pipeline); scenes, narration and timing are unchanged. `Build/Scripts/render-film.mjs` serves `.mjs` modules with the right content type.
+- A copy pass over the new pages: one wording of the strategy line (`ShowcaseStrategyPages::standardLine()`), "11 AI tools" on the AI hub, a shorter credits heading, fewer copy-lint warnings.
+- Layout: chart bars and donut segments on the primary surface take their colour from the band ink, so they stay readable in dark mode; the CapexOne and Ledger grids have no orphan cells; skill pages with one screenshot use a full-width text-and-media block instead of a one-image gallery.
+
+### Fixed
+
+- The 4.27.4 tag still declared 4.27.3 in `ext_emconf.php` and `composer.json`; both say 4.28.0 now.
+- Code style in four test files that `cgl:check` flagged.
+
 ## [4.27.3] — 2026-10-27
 
 ### Removed

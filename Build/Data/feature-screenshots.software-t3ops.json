@@ -1,0 +1,81 @@
+{
+    "description": "T3 Ops product screens for /software/t3-ops (plan 2026-11-04, section 5.2). Local demo with fictional .example data on http://localhost:3001 (see var/research/t3ops-demo.md). Capture with Build/Scripts/capture-app-screenshots.mjs --base http://localhost:3001 --shots <this file> --state <signed-in storage state>; the illustrations come from a static page on http://127.0.0.1:8765 that shows dashboard/public/help/infographics/*.webp. Never press Start in the update assistant.",
+    "css": "nextjs-portal,[data-nextjs-toast],[data-next-badge-root]{display:none!important}",
+    "shots": [
+        {
+            "name": "frontend-feature-t3ops-overview",
+            "url": "/",
+            "steps": [
+                { "evaluate": "(() => { for (const phrase of ['Updates cannot be dispatched right now']) { const hit = [...document.querySelectorAll('main *')].find((e) => e.children.length === 0 && e.textContent.trim() === phrase); let box = hit; while (box && box.parentElement && box.parentElement.textContent.trim().startsWith(phrase)) box = box.parentElement; box?.remove(); } })()" }
+            ],
+            "settle": 1200
+        },
+        {
+            "name": "frontend-feature-t3ops-security",
+            "url": "/security",
+            "steps": [
+                { "evaluate": "(() => { for (const phrase of ['Update runs can’t start yet', 'Update runs can\\'t start yet']) { const hit = [...document.querySelectorAll('main *')].find((e) => e.children.length === 0 && e.textContent.trim() === phrase); let box = hit; while (box && box.parentElement && box.parentElement.textContent.trim().startsWith(phrase)) box = box.parentElement; box?.remove(); } })()" }
+            ],
+            "settle": 1200
+        },
+        {
+            "name": "frontend-feature-t3ops-update-assistant",
+            "url": "/updates",
+            "steps": [
+                { "click": "main button:has-text(\"Continue\")", "wait": 1000 },
+                { "click": "text=Alpine Studio Architects" },
+                { "click": "text=Edelweiss Consulting" },
+                { "click": "text=Sonnblick IT Services" },
+                { "click": "text=Stahlwerk Intranet" },
+                { "click": "main button:has-text(\"Continue\")", "wait": 1500 },
+                { "waitFor": "text=Review your updates" },
+                { "evaluate": "window.scrollTo(0, 0)", "wait": 500 }
+            ],
+            "settle": 1000
+        },
+        {
+            "name": "frontend-feature-t3ops-runs",
+            "url": "/runs",
+            "steps": [
+                { "evaluate": "(() => { for (const phrase of ['Updates cannot be dispatched right now']) { const hit = [...document.querySelectorAll('main *')].find((e) => e.children.length === 0 && e.textContent.trim() === phrase); let box = hit; while (box && box.parentElement && box.parentElement.textContent.trim().startsWith(phrase)) box = box.parentElement; box?.remove(); } })()" }
+            ],
+            "settle": 1200
+        },
+        {
+            "name": "frontend-feature-t3ops-sites",
+            "url": "/sites",
+            "settle": 1200
+        },
+        {
+            "name": "frontend-feature-t3ops-hardening",
+            "url": "/sites/cmw1wavgu0027d3ag8d2yduvy/hardening",
+            "steps": [
+                { "scrollTo": "text=Hardening checklist", "offset": 140, "wait": 600 }
+            ],
+            "settle": 1200
+        },
+        {
+            "name": "frontend-feature-t3ops-dark",
+            "url": "/",
+            "colorScheme": "dark",
+            "localStorage": { "theme": "dark" },
+            "steps": [
+                { "evaluate": "(() => { for (const phrase of ['Updates cannot be dispatched right now']) { const hit = [...document.querySelectorAll('main *')].find((e) => e.children.length === 0 && e.textContent.trim() === phrase); let box = hit; while (box && box.parentElement && box.parentElement.textContent.trim().startsWith(phrase)) box = box.parentElement; box?.remove(); } })()" }
+            ],
+            "settle": 1200
+        },
+        {
+            "name": "frontend-feature-t3ops-illustration-release-flow",
+            "url": "http://127.0.0.1:8765/staging-release-flow.html",
+            "auth": false,
+            "viewport": "1024x640",
+            "steps": [ { "waitFor": "body[data-ready]" } ]
+        },
+        {
+            "name": "frontend-feature-t3ops-illustration-workspace",
+            "url": "http://127.0.0.1:8765/workspace-overview.html",
+            "auth": false,
+            "viewport": "920x575"
+        }
+    ]
+}

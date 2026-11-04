@@ -14,6 +14,7 @@ use Webconsulting\Desiderio\Data\Showcase\ShowcasePricing;
 use Webconsulting\Desiderio\Data\Showcase\ShowcasePricingPages;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseStrategyPages;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseSuccessStories;
+
 /**
  * Marketing showcase seeded by desiderio:styleguide:seed in addition to the
  * element chapters: managed homepage content on the styleguide root page plus

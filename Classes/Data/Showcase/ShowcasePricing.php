@@ -6,22 +6,40 @@ namespace Webconsulting\Desiderio\Data\Showcase;
 
 /**
  * Every price the showcase states, in one place: the plans, the services,
- * the Launch Pack and the founding offer. The pricing page, the homepage
- * and the target-group pages all read from here, so a price changes once.
- * The content canon (facts.desiderio.pricing and .services) mirrors it.
+ * Care, the Supporter, sponsored features, the Launch Pack and the founding
+ * offer. The pricing page, the model page, the homepage and the target-group
+ * pages all read from here, so a price changes once. The content canon
+ * (facts.desiderio.pricing, .services, .model and .seller) mirrors it.
  *
- * Desiderio is free with every release; the paid plans are support plans
- * (sales model decided 2026-09-27): no plan buys code or earlier releases.
- * Plans are priced by live sites; staging and local installations are free.
- * Every service is a fixed price that earns at least €125 an hour.
+ * The model (decided 2026-11-05): free software, paid care. Desiderio is
+ * free with every release (GPL-2.0); no plan buys code or earlier releases.
+ * Visitors relate to us in four ways (ways()): use it for free, support it,
+ * ask for features (or sponsor one for a public release), or let us take
+ * care (the support plans, priced by live sites, and Care, which runs the
+ * site). Staging and local installations are free. Every fixed price earns
+ * at least €130 an hour. webconsulting GmbH, Austria invoices (SELLER_NAME).
  *
  * @phpstan-type PricingPlan array{key: string, name: string, price: string, period: string, for: string, features: list<string>, button: array{text: string, link: string}, featured: bool}
  * @phpstan-type PricingService array{title: string, rate: string, unit: string, description: string}
+ * @phpstan-type PricingButton array{text: string, link: string}
+ * @phpstan-type PricingCare array{name: string, eyebrow: string, header: string, price: string, period: string, yearly: string, further_sites: string, description: string, features: list<string>, button: PricingButton}
+ * @phpstan-type PricingOffer array{name: string, price: string, period: string, description: string, button: PricingButton}
+ * @phpstan-type PricingWay array{icon: string, title: string, description: string, link: string}
+ * @phpstan-type PricingQuestion array{question: string, answer: string}
  */
 final class ShowcasePricing
 {
     /** Where a plan is ordered and a demo booked. */
     public const string ORDER_LINK = '{{page:pricing/order}}';
+
+    /** The party that invoices plans, services, Care, Supporters and sponsored features. */
+    public const string SELLER_NAME = 'webconsulting GmbH, Austria';
+
+    /** The seller's legal notice. */
+    public const string SELLER_IMPRINT_URL = 'https://www.webconsulting.at/impressum';
+
+    /** The seller's terms and conditions. */
+    public const string SELLER_TERMS_URL = 'https://www.webconsulting.at/agb';
 
     /**
      * @return list<PricingPlan>
@@ -148,7 +166,7 @@ final class ShowcasePricing
             ['title' => 'Custom element M', 'rate' => '€1,690', 'unit' => '', 'description' => 'Repeating items, variants or interaction such as tabs, sliders or filters. Larger elements get a quote after a written spec.'],
             ['title' => 'Upgrade audit', 'rate' => '€690', 'unit' => '', 'description' => 'A client site on TYPO3 v10 to v13: extension inventory, risks and a fixed quote for v14. Credited in full if you book the upgrade within 60 days.'],
             ['title' => 'Editor training', 'rate' => '€790', 'unit' => '', 'description' => '3 hours remote for up to 12 editors, under your agency’s name if you like, with a recording and a handout.'],
-            ['title' => 'Support hours', 'rate' => '€650', 'unit' => '5 hours', 'description' => 'Code reviews and project questions for plan holders, valid for 12 months.'],
+            ['title' => 'Support hours', 'rate' => '€690', 'unit' => '5 hours', 'description' => 'Code reviews and project questions for plan holders, valid for 12 months.'],
         ];
     }
 
@@ -191,7 +209,7 @@ final class ShowcasePricing
     /**
      * Questions buyers ask before they choose a plan.
      *
-     * @return list<array{question: string, answer: string}>
+     * @return list<PricingQuestion>
      */
     public static function faq(): array
     {
@@ -207,5 +225,169 @@ final class ShowcasePricing
             ['question' => 'How do we pay?', 'answer' => 'Yearly by invoice, or monthly. Prices are net; businesses in the EU get a reverse-charge invoice.'],
             ['question' => 'Can we get our money back?', 'answer' => 'Yes, within 30 days of the first yearly payment, no questions asked.'],
         ];
+    }
+
+    /**
+     * Care: we run the site. Not a fifth plan column: the plans sell answers
+     * and the maintenance promise, Care sells running a live site (hosting on
+     * the customer's own Coolify instance, T3 Ops updates, monitoring and
+     * backups). Priced per live site like the plans.
+     *
+     * @return PricingCare
+     */
+    public static function care(): array
+    {
+        return [
+            'name' => 'Care',
+            'eyebrow' => 'We take care',
+            'header' => 'Care: we run your site',
+            'price' => '€390',
+            'period' => 'a month per live site',
+            'yearly' => '€3,900 a year, two months free',
+            'further_sites' => 'Every further live site of the same customer: €290 a month',
+            'description' => 'For teams that want one partner for hosting, updates and support: your site runs on its own Coolify instance in the EU. T3 Ops applies TYPO3 and extension updates within the maintenance promise and checks security four times a day.',
+            'features' => [
+                'Hosting on your own Coolify instance in the EU',
+                'Updates and security fixes applied, with screenshots as evidence',
+                'Monitoring and daily backups',
+                'Answers by the next business day (CET)',
+                'Monthly billing, cancel to the end of a year',
+                'The maintenance promise',
+            ],
+            'button' => ['text' => 'Ask for Care', 'link' => self::ORDER_LINK],
+        ];
+    }
+
+    /**
+     * The Supporter: recognition only, no support included.
+     *
+     * @return PricingOffer
+     */
+    public static function supporter(): array
+    {
+        return [
+            'name' => 'Supporter',
+            'price' => '€190',
+            'period' => 'a year',
+            'description' => 'No support included, on purpose. Your name or logo on our How we earn page and a thank-you in the release notes. For companies that earn with Desiderio and want to say so.',
+            'button' => ['text' => 'Become a Supporter', 'link' => self::ORDER_LINK],
+        ];
+    }
+
+    /**
+     * A sponsored feature: built by a date, released free for everyone, the
+     * sponsor named. A custom element for private use is a service (€890).
+     *
+     * @return PricingOffer
+     */
+    public static function sponsoredFeature(): array
+    {
+        return [
+            'name' => 'Sponsored feature',
+            'price' => 'from €1,290',
+            'period' => 'per feature',
+            'description' => 'You name the feature and the date. We build it and release it free for everyone, with tests, documentation and translations, and your name in the release notes. A custom element for your own use stays €890.',
+            'button' => ['text' => 'Sponsor a feature', 'link' => self::ORDER_LINK],
+        ];
+    }
+
+    /**
+     * The four ways a visitor can relate to us, as cards: use it, support it,
+     * ask for features, let us take care. Prices come from the methods above.
+     *
+     * @return list<PricingWay>
+     */
+    public static function ways(): array
+    {
+        $supporter = self::supporter();
+        $care = self::care();
+
+        return [
+            [
+                'icon' => 'download',
+                'title' => 'Use it',
+                'description' => 'Install it, build client sites, sell your work. Every release and every fix is free under GPL-2.0. No registration, no licence key.',
+                'link' => ShowcaseBlocks::REPO_URL,
+            ],
+            [
+                'icon' => 'heart',
+                'title' => 'Support it',
+                'description' => sprintf('Star the repository, report what breaks, write about it. Or become a Supporter for %s %s and be thanked by name.', $supporter['price'], $supporter['period']),
+                'link' => '{{page:pricing/how-we-earn}}',
+            ],
+            [
+                'icon' => 'lightbulb',
+                'title' => 'Ask for features',
+                'description' => sprintf('Open an issue; good ideas go on the public roadmap. Sponsor one %s to have it by a date, released for everyone.', self::sponsoredFeature()['price']),
+                'link' => '{{page:pricing}}',
+            ],
+            [
+                'icon' => 'shield-check',
+                'title' => 'Let us take care',
+                'description' => sprintf('Plans from %s a year add answers and the maintenance promise. Care runs your site: hosting, updates, monitoring, %s %s.', self::plans()[1]['price'], $care['price'], $care['period']),
+                'link' => '{{page:pricing}}',
+            ],
+        ];
+    }
+
+    /**
+     * What never costs money: the left column of the free-or-paid comparison.
+     *
+     * @return list<string>
+     */
+    public static function alwaysFree(): array
+    {
+        return [
+            'Every release, the day it ships',
+            'Every bug and security fix',
+            'The demo site and its download',
+            'Documentation and GitHub issues',
+            'Commercial use on unlimited sites',
+        ];
+    }
+
+    /**
+     * What costs money, all of it our time: the right column of the
+     * free-or-paid comparison.
+     *
+     * @return list<string>
+     */
+    public static function costsMoney(): array
+    {
+        return [
+            'Guaranteed answer times and named developers (plans)',
+            'The maintenance promise in the terms (plans)',
+            'Workshops, Brand Themes and custom elements (fixed prices)',
+            'A feature by a date, released for everyone (sponsored feature)',
+            'Running your site: hosting, updates, monitoring (Care)',
+        ];
+    }
+
+    /**
+     * Honest questions about the model, for the model page. Answers are
+     * inline HTML (the FAQ answer is a rich-text field): wrap them in <p>.
+     *
+     * @return list<PricingQuestion>
+     */
+    public static function modelFaq(): array
+    {
+        $supporter = self::supporter();
+
+        return [
+            ['question' => 'What is the catch?', 'answer' => 'There is none we know of. The software is free because that is cheaper and safer for everyone, and we earn when you want our time.'],
+            ['question' => 'Do I have to pay if I earn money with Desiderio?', 'answer' => 'No. GPL-2.0 allows commercial use on unlimited sites. Pay when you want answers, work or Care.'],
+            ['question' => 'What if you stop maintaining it?', 'answer' => 'You keep every version and your sites keep working. Plan holders have the maintenance promise in their terms, and a missed patch extends the plan by a month.'],
+            ['question' => 'Why no paid early access?', 'answer' => 'A release that waits for payment is a security fix that waits. Everyone gets every release on the same day.'],
+            ['question' => 'Can I pay without needing support?', 'answer' => sprintf('Yes. Become a Supporter for %s %s, or sponsor a feature %s.', $supporter['price'], $supporter['period'], self::sponsoredFeature()['price'])],
+            ['question' => 'Who sends the invoice?', 'answer' => sprintf('%s sends every invoice. Its <a href="%s">legal notice</a> and <a href="%s">terms</a> are on webconsulting.at.', self::SELLER_NAME, self::SELLER_IMPRINT_URL, self::SELLER_TERMS_URL)],
+        ];
+    }
+
+    /**
+     * The one calm sentence every page uses about the model.
+     */
+    public static function modelSentence(): string
+    {
+        return 'Desiderio is free with every release. Paid plans add our time.';
     }
 }

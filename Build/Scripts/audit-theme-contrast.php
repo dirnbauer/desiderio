@@ -24,17 +24,24 @@ declare(strict_types=1);
  *  - PAGE: colours the base layer composes (22-modern-base.css) — the glass
  *    header over scrolling content and the chart-hued horizon behind the
  *    opening section — with their text on top.
+ *  - MENUS: menuColor "inverted" (26-menu-surface-tokens.css) gives the
+ *    language, colour-scheme and header menus the preset's dark scheme on a
+ *    light page. Each preset's menu is measured as a theme of its own, with
+ *    every pair whose tokens the menu re-points.
  *
  * What this does NOT cover, and what the browser sweep is for (run.mjs
  * --tier contrast): colours composed inside elements, text over photographs,
  * and anything whose background depends on stacking.
  *
- * Usage: php Build/Scripts/audit-theme-contrast.php [--json] [--verbose]
+ * Usage: php Build/Scripts/audit-theme-contrast.php [--json] [--verbose] [--menu-css=<file>]
+ *   --menu-css  measure another menu stylesheet (the unit test feeds it a
+ *               broken copy to prove the menus are measured, not exempted).
  * Exit code 1 if any required check fails.
  */
 const THEME_CSS = __DIR__ . '/../../Resources/Public/Css/shadcn-theme.css';
 const FRAMES_CSS = __DIR__ . '/../../Resources/Private/Css/desiderio/07-content-frames.css';
 const BASE_CSS = __DIR__ . '/../../Resources/Private/Css/desiderio/22-modern-base.css';
+const MENU_CSS = __DIR__ . '/../../Resources/Private/Css/desiderio/26-menu-surface-tokens.css';
 
 /**
  * `min` follows WCAG 2.2: 4.5 for body text (1.4.3), 3.0 for large text and
@@ -154,11 +161,19 @@ $options = array_slice($argv, 1);
 $asJson = in_array('--json', $options, true);
 $verbose = in_array('--verbose', $options, true);
 
+$menuCssPath = MENU_CSS;
+foreach ($options as $option) {
+    if (str_starts_with($option, '--menu-css=')) {
+        $menuCssPath = substr($option, strlen('--menu-css='));
+    }
+}
+
 $css = @file_get_contents(THEME_CSS);
 $framesCss = @file_get_contents(FRAMES_CSS);
 $baseCss = @file_get_contents(BASE_CSS);
-if ($css === false || $framesCss === false || $baseCss === false) {
-    fwrite(STDERR, "Cannot read the theme, frames or base stylesheet.\n");
+$menuCss = @file_get_contents($menuCssPath);
+if ($css === false || $framesCss === false || $baseCss === false || $menuCss === false) {
+    fwrite(STDERR, "Cannot read the theme, frames, base or menu stylesheet.\n");
     exit(2);
 }
 
@@ -215,6 +230,33 @@ function ruleDeclarations(string $css, string $selector): array
             foreach ($found as $declaration) {
                 $name = str_starts_with($declaration[1], '--') ? substr($declaration[1], 2) : strtolower($declaration[1]);
                 $declarations[$name] = trim($declaration[2]);
+            }
+        }
+    }
+
+    return $declarations;
+}
+
+/**
+ * The custom properties of every rule whose selector is exactly $selector,
+ * at any indentation: unlike parseBlock() this also finds a rule nested in
+ * an @media block (the wide menu mapping sits in one).
+ *
+ * @return array<string, string>
+ */
+function nestedRuleDeclarations(string $css, string $selector): array
+{
+    $css = preg_replace('#/\*.*?\*/#s', '', $css) ?? $css;
+    $pattern = '/^[ \t]*' . preg_quote($selector, '/') . '\s*\{([^{}]*)\}/m';
+    if (preg_match_all($pattern, $css, $matches) < 1) {
+        return [];
+    }
+
+    $declarations = [];
+    foreach ($matches[1] as $body) {
+        if (preg_match_all('/(?<![\w-])--([a-z0-9-]+)\s*:\s*([^;]+);/i', $body, $found, PREG_SET_ORDER) > 0) {
+            foreach ($found as $declaration) {
+                $declarations[$declaration[1]] = trim($declaration[2]);
             }
         }
     }
@@ -496,13 +538,31 @@ foreach (preg_split('/\}/', preg_replace('#/\*.*?\*/#s', '', $baseCss) ?? $baseC
 }
 $baseLayerBody = ruleDeclarations($baseCss, 'body');
 
+// Inverted menus: the preset's dark values sit on <body> as --d-menu-inv-*
+// (a generic block, then one per preset), and two rules hand them to the menu
+// surfaces: `.d-menu-surface` always, `.d-menu-surface--wide` from 1025px up.
+const MENU_BODY = ':root:not(.dark) body[data-menu-color^="inverted"]';
+$menuInvertedBase = parseBlock($menuCss, MENU_BODY);
+$menuMappings = [
+    'inverted menu' => nestedRuleDeclarations($menuCss, MENU_BODY . ' .d-menu-surface'),
+    'wide inverted menu' => nestedRuleDeclarations($menuCss, MENU_BODY . ' .d-menu-surface--wide'),
+];
+if ($menuInvertedBase === [] || in_array([], $menuMappings, true)) {
+    fwrite(STDERR, "Could not find the inverted menu tokens or their mapping in 26-menu-surface-tokens.css — has the file structure changed?\n");
+    exit(2);
+}
+$menuTokens = array_keys(array_merge(...array_values($menuMappings)));
+
 // Colour tokens redeclared by a stylesheet the audit reads are measured
 // above; anywhere else a redeclaration would change what ships without being
 // measured (a Powermail-only --input at 2.35:1 hid here once). Listed per
 // file: the tokens that file may redeclare because this audit models them.
-const AUDITED_REDECLARATIONS = [
+$auditedRedeclarations = [
     '07-content-frames.css' => '*',
     '22-modern-base.css' => ['muted-foreground', 'd-muted-foreground', 'd-link', 'background'],
+    // Exactly the tokens the two menu mappings re-point, each measured in
+    // every preset's inverted menu below.
+    '26-menu-surface-tokens.css' => $menuTokens,
 ];
 $redeclared = [];
 $sheets = array_merge(
@@ -511,7 +571,7 @@ $sheets = array_merge(
 );
 $colourTokens = 'background|foreground|card|card-foreground|popover|popover-foreground|primary|primary-foreground|secondary|secondary-foreground|muted|muted-foreground|accent|accent-foreground|destructive|destructive-foreground|border|input|ring|d-link|d-link-on-muted|d-muted-foreground|d-primary-text|d-danger-text|d-info-text|d-success-text|d-warning-text|d-input-subtle';
 foreach ($sheets as $sheet) {
-    $allowed = AUDITED_REDECLARATIONS[basename($sheet)] ?? [];
+    $allowed = $auditedRedeclarations[basename($sheet)] ?? [];
     if ($allowed === '*') {
         continue;
     }
@@ -533,6 +593,7 @@ if ($glassValue === null || $glows === []) {
 $failures = [];
 $advisories = [];
 $checked = 0;
+$checkedInMenus = 0;
 $skipped = [];
 $white = [1.0, 1.0, 1.0];
 $black = [0.0, 0.0, 0.0];
@@ -542,8 +603,11 @@ $black = [0.0, 0.0, 0.0];
  *
  * @param array<string, mixed> $entry
  */
-$record = static function (array $entry, float $ratio, float $minimum, string $severity) use (&$failures, &$advisories, &$checked, $verbose): void {
+$record = static function (array $entry, float $ratio, float $minimum, string $severity) use (&$failures, &$advisories, &$checked, &$checkedInMenus, $verbose): void {
     $checked++;
+    if (str_contains((string)$entry['pair'], 'inverted menu')) {
+        $checkedInMenus++;
+    }
     $entry['ratio'] = round($ratio, 2);
     $entry['required'] = $minimum;
     if ($ratio + 0.005 < $minimum) {
@@ -588,7 +652,10 @@ foreach ($presets as $preset) {
          * own --background is painted over: the canvas for the page, the page
          * for a band.
          */
-        $measure = static function (array $in, array $beneath, string $where, array $tintOverrides = []) use ($record, &$skipped, $preset, $mode): void {
+        $measure = static function (array $in, array $beneath, string $where, array $tintOverrides = [], ?array $only = null) use ($record, &$skipped, $preset, $mode): void {
+            // $only limits a scope to the pairs whose tokens it re-points; the
+            // rest are the page's colours and are measured on the page.
+            $applies = static fn (string ...$tokens): bool => $only === null || array_diff($tokens, $only) === [];
             $ground = ($color = resolve('background', $in)) !== null ? paint($color, $beneath) : null;
             $surface = static function (string $token) use ($in, $ground): ?array {
                 $color = resolve($token, $in);
@@ -598,7 +665,7 @@ foreach ($presets as $preset) {
             foreach (PAIRS as [$foreground, $background, $minimum, $severity, $description]) {
                 // Inside a band only the gates count: the advisories (hairlines,
                 // chart series) would repeat the page's list once per band.
-                if ($where !== '' && $severity === ADVISORY) {
+                if (($where !== '' && $severity === ADVISORY) || !$applies($foreground, $background)) {
                     continue;
                 }
                 $bg = $surface($background);
@@ -615,6 +682,9 @@ foreach ($presets as $preset) {
                 );
             }
             foreach (TINTS as [$inkToken, $inkAlpha, $tintToken, $lightAlpha, $darkAlpha, $description]) {
+                if (!$applies($inkToken, $tintToken)) {
+                    continue;
+                }
                 $ink = resolve($inkToken, $in);
                 $tint = resolve($tintToken, $in);
                 if ($ink === null || $tint === null || $ground === null) {
@@ -751,6 +821,26 @@ foreach ($presets as $preset) {
             }
         }
 
+        // Inverted menus (light mode only: on a dark page a menu already shows
+        // the dark scheme). The --d-menu-inv-* values resolve on <body> and
+        // reach the menu as computed colours; the mapping rule then re-points
+        // the menu's tokens to them, so the menu is a theme of its own.
+        if ($mode === 'light' && $page !== null) {
+            $onBody = array_merge(
+                $scope,
+                $menuInvertedBase,
+                parseBlock($menuCss, sprintf(':root:not(.dark) body[data-shadcn-preset="%s"][data-menu-color^="inverted"]', $preset)),
+            );
+            $inherited = [];
+            foreach ($onBody as $name => $value) {
+                $color = resolveValue($value, $onBody);
+                $inherited[$name] = $color !== null ? literal($color) : $value;
+            }
+            foreach ($menuMappings as $menu => $mapping) {
+                $measure(array_merge($inherited, $mapping), $page, ' in the ' . $menu, [], $menuTokens);
+            }
+        }
+
         $foreground = resolve('foreground', $scope);
         $background = resolve('background', $scope);
         $navInk = resolveValue($navInkValue, $scope);
@@ -804,6 +894,8 @@ foreach ($presets as $preset) {
     }
 }
 
+$menuChecks = $checkedInMenus;
+
 foreach ($redeclared as $where) {
     $failures[] = ['preset' => '-', 'mode' => '-', 'pair' => $where, 'what' => 'a colour token redeclared where this audit does not measure it', 'ratio' => 0.0, 'required' => 0.0];
 }
@@ -816,6 +908,7 @@ if ($asJson) {
         'failures' => $failures,
         'redeclared' => $redeclared,
         'advisories' => $advisories,
+        'menuChecks' => $menuChecks,
     ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES), "\n";
     exit($failures === [] ? 0 : 1);
 }

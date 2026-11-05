@@ -6,6 +6,8 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.30.0] — 2026-11-05
+
 ### Added
 
 - `desiderio:styleguide:seed --pages=<list>` reseeds only the named pages: comma-separated page uids or slugs as the seeder writes them (`/pricing/how-we-earn`, `pricing/how-we-earn/`, `content-types/hero-landing-intros`, `home` or `/` for the parent page; a URL with the site base path works too). Only those pages are written and refilled; every other page is looked up so links still resolve, and the run fails before writing when a selector matches no page (it lists the valid slugs) or when a page the selection needs does not exist yet. The Powermail and news demos, the legacy page cleanup and the menu placement are skipped; blog relations, adopted heroes, menu texts and former-slug redirects are written for selected pages only. `--dry-run` lists the selection with element counts, and the last line `Reseeded pages: <uids>` feeds `sitepackage:content:translate --pages=<uids>`, since reseeding a page removes its translated content. A production runner reseeds the changed pages in minutes instead of a three-hour full reseed and translate. Without `--pages` the command behaves as before.

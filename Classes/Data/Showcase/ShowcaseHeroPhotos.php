@@ -53,6 +53,11 @@ final class ShowcaseHeroPhotos
             'title' => 'Two agency founders review a proposal',
             'alternative' => 'A woman with curly red hair and a man with grey hair review a proposal on a laptop, with a printed page beside it.',
         ],
+        'how-we-earn' => [
+            'file' => 'hero-how-we-earn-6cc03feb.webp',
+            'title' => 'Two colleagues go through the numbers',
+            'alternative' => 'A woman with short curly hair points at a spreadsheet on a laptop while a younger bearded colleague beside her takes notes.',
+        ],
         'resources' => [
             'file' => 'hero-resources-a6eff766.webp',
             'title' => 'Reading the documentation',

@@ -206,7 +206,7 @@ final class ShowcasePricingTest extends TestCase
         $path = dirname(__DIR__, 2) . '/' . $photo['file'];
 
         self::assertFileExists($path);
-        self::assertMatchesRegularExpression('/^hero-[a-z]+-[0-9a-f]{8}\.webp$/', basename($path));
+        self::assertMatchesRegularExpression('/^hero-[a-z]+(-[a-z]+)*-[0-9a-f]{8}\.webp$/', basename($path));
         $size = getimagesize($path);
         self::assertIsArray($size);
         self::assertSame([1440, 900], [$size[0], $size[1]]);

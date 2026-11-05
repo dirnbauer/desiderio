@@ -68,6 +68,13 @@ vendor/bin/typo3 desiderio:styleguide:seed --parent=<page-uid>
 vendor/bin/typo3 desiderio:starter:seed
 ```
 
+To reseed only the pages whose fixtures changed, name them by slug or uid and
+re-translate the uids of the final `Reseeded pages:` line:
+
+```bash
+vendor/bin/typo3 desiderio:styleguide:seed --parent=<page-uid> --pages=/pricing/how-we-earn,home
+```
+
 See [Documentation/Developer/Commands.rst](Documentation/Developer/Commands.rst)
 for the full list, and
 [Innesto](Documentation/Developer/Innesto.rst) for grafting elements from other

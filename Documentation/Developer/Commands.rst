@@ -22,7 +22,8 @@ belongs in ``Classes/Seeding/``.
     *   - ``desiderio:styleguide:seed``
         - Create or update styleguide fixture pages below a parent page.
           Requires the live workspace; refuses Production without
-          ``--allow-production``.
+          ``--allow-production``. ``--pages=<uids or slugs>`` reseeds only
+          those pages (see :ref:`developer-styleguide-seed-pages`).
     *   - ``desiderio:starter:seed``
         - Create or update the corporate starter site structure and content.
     *   - ``desiderio:blog:seed-pages``
@@ -57,6 +58,49 @@ Seed commands write FAL assets under :file:`fileadmin/desiderio-styleguide/` or
 live-workspace fixture metadata in place. Every seeder refuses to run in the
 Production application context unless ``--allow-production`` is passed
 (``ProductionContextGuard``).
+
+..  _developer-styleguide-seed-pages:
+
+Reseeding selected pages
+========================
+
+A full ``desiderio:styleguide:seed`` rewrites every page, and the full
+translate run afterwards takes hours. When only a few fixtures changed,
+``--pages`` reseeds just those pages:
+
+..  code-block:: bash
+    :caption: Reseed two pages, then re-create their translations
+
+    vendor/bin/typo3 desiderio:styleguide:seed --parent=505 \
+        --pages=/pricing/how-we-earn,content-types/hero-landing-intros
+    # last line: Reseeded pages: 1012,1013
+    vendor/bin/typo3 sitepackage:content:translate --pages=1012,1013
+
+A selector is a page uid or a slug as the seeder writes it, with or without
+the leading or trailing slash: ``/pricing/how-we-earn``,
+``pricing/how-we-earn/``, a chapter such as
+``/content-types/hero-landing-intros``, ``/content-types`` for the hub, and
+``home`` or ``/`` for the ``--parent`` page. A URL or path copied from the
+browser works too; the site base path (``/desiderio/``) is stripped. A
+selector names one page, never its subpages.
+
+*   Only the selected pages get their page fields written and their seeded
+    content replaced. The other pages of the plan are looked up, never
+    written, so ``{{page:…}}`` links in the new content still resolve.
+*   The run stops before writing anything when a selector matches no page
+    (the message lists the valid slugs) or when a page the selection needs,
+    its parent or a page its content links to, does not exist yet. Run a
+    full seed first in that case.
+*   The Powermail and news demos, the legacy page cleanup and the menu
+    placement belong to a full seed and are skipped. Blog categories and
+    tags, adopted heroes (``/downloads``), adopted menu texts
+    (``/innesto-demo``) and former-slug redirects are written for selected
+    pages only.
+*   Replacing a page's content removes its translated content too. The last
+    line, ``Reseeded pages: <uids>``, is the list to pass to
+    ``sitepackage:content:translate --pages=<uids>``.
+*   ``--dry-run --pages=…`` lists the selected pages with their uids and
+    element counts and writes nothing.
 
 Internal links in seed data
 ===========================

@@ -167,6 +167,37 @@ final class SeedStyleguidePagesCommandBlogFunctionalTest extends FunctionalTestC
         self::assertSame(3, $this->countRows('tt_content', "deleted = 0 AND CType IN ('blog_posts', 'blog_category', 'blog_tag')"));
     }
 
+    /**
+     * --pages relates only the selected blog posts to their categories and
+     * tags; the other posts' relations stay as they are.
+     */
+    public function testPageFilterRelatesOnlyTheSelectedBlogPost(): void
+    {
+        $firstRun = $this->createCommandTester();
+        self::assertSame(Command::SUCCESS, $firstRun->execute(['--parent' => '1', '--skip-powermail' => true, '--skip-news' => true]));
+        $selectedUid = $this->intValue($this->fetchPageBySlug('/success-stories/an-ai-lab'), 'uid');
+        $otherUid = $this->intValue($this->fetchPageBySlug('/success-stories/a-space-company'), 'uid');
+        $selectedCategories = $this->fetchCategoryTitles($selectedUid);
+        $selectedTags = $this->fetchTagTitles($selectedUid);
+        self::assertNotSame([], $selectedCategories);
+        foreach ([$selectedUid, $otherUid] as $postUid) {
+            $this->getConnectionPool()->getConnectionForTable('sys_category_record_mm')
+                ->delete('sys_category_record_mm', ['uid_foreign' => $postUid, 'tablenames' => 'pages']);
+            $this->getConnectionPool()->getConnectionForTable('tx_blog_tag_pages_mm')
+                ->delete('tx_blog_tag_pages_mm', ['uid_local' => $postUid]);
+        }
+
+        $filteredRun = $this->createCommandTester();
+        self::assertSame(Command::SUCCESS, $filteredRun->execute(['--parent' => '1', '--pages' => '/success-stories/an-ai-lab']), $filteredRun->getDisplay());
+
+        self::assertStringContainsString('Reseeded pages: ' . $selectedUid . "\n", $filteredRun->getDisplay());
+        self::assertSame($selectedCategories, $this->fetchCategoryTitles($selectedUid));
+        self::assertSame($selectedTags, $this->fetchTagTitles($selectedUid));
+        self::assertSame([], $this->fetchCategoryTitles($otherUid));
+        self::assertSame([], $this->fetchTagTitles($otherUid));
+        self::assertSame(3, $this->countRows('tt_content', "deleted = 0 AND CType IN ('blog_posts', 'blog_category', 'blog_tag')"));
+    }
+
     public function testReseedingGivesTranslationsTheTemplateOfTheirPage(): void
     {
         self::assertSame(Command::SUCCESS, $this->createCommandTester()->execute(['--parent' => '1', '--skip-powermail' => true, '--skip-news' => true]));

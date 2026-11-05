@@ -35,10 +35,12 @@ use Webconsulting\Desiderio\Seeding\StarterContentBuilder;
 use Webconsulting\Desiderio\Seeding\StyleguideCollectionAliasPolicy;
 use Webconsulting\Desiderio\Seeding\StyleguideDemoValueGenerator;
 use Webconsulting\Desiderio\Seeding\StyleguideFixtureResolver;
+use Webconsulting\Desiderio\Seeding\StyleguidePageFilter;
 
 /**
  * @phpstan-import-type ShowcasePage from ShowcaseBlocks
  * @phpstan-import-type ShowcaseBlock from ShowcaseBlocks
+ * @phpstan-type PlannedPage array{title: string, parent: string|null, linkKey: string, elements: int, content: array<array-key, mixed>, formerSlugs: list<string>}
  */
 #[AsCommand(
     name: 'desiderio:styleguide:seed',
@@ -232,6 +234,16 @@ final class SeedStyleguidePagesCommand extends Command
                 'Only print the planned pages and content element count.'
             )
             ->addOption(
+                'pages',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Reseed only these pages: comma-separated page uids or slugs as the seeder writes them '
+                . '(for example "/pricing/how-we-earn,/content-types/hero-landing-intros"; "home" or "/" is the parent page). '
+                . 'The other pages are only looked up, never written; the Powermail and news demos, the legacy page cleanup and '
+                . 'the menu placement are skipped. Reseeding a page deletes its translated content too: pass the uids of the '
+                . 'final "Reseeded pages:" line to sitepackage:content:translate --pages=<uids> to re-create them.'
+            )
+            ->addOption(
                 'skip-powermail',
                 null,
                 InputOption::VALUE_NONE,
@@ -327,6 +339,65 @@ final class SeedStyleguidePagesCommand extends Command
             $groups
         )) + $this->countChapterFramingElements($groups) + count(self::CONTENT_TYPE_SUPPORT_PAGES) + StyleguideShowcasePages::contentElementCount();
 
+        // --pages: only the selected pages are written. Every other planned
+        // page is looked up once here, read-only, so links to it resolve.
+        $pageFilter = null;
+        $existingUids = [];
+        $pagesOption = $input->getOption('pages');
+        if (is_string($pagesOption)) {
+            $plan = $this->buildPagePlan($groups, $showcasePages, $blogAvailable);
+            $existingUids = $this->lookUpPlannedPages($plan, $parentPid, $this->databaseSchema->getColumnNames('pages'));
+            try {
+                $pageFilter = StyleguidePageFilter::fromSelectors(
+                    $pagesOption,
+                    array_keys($plan),
+                    $existingUids,
+                    $this->languagePathPrefixes($parentPid)[0]
+                );
+            } catch (\InvalidArgumentException $exception) {
+                $io->error($exception->getMessage());
+
+                return self::FAILURE;
+            }
+            $missing = $pageFilter->missingDependencies(
+                array_map(static fn(array $entry): ?string => $entry['parent'], $plan),
+                $existingUids,
+                $this->linkedPlanSlugs($plan, $pageFilter)
+            );
+            if ($missing !== []) {
+                $io->error(sprintf(
+                    'The selected pages need these pages, which do not exist yet: %s. Run a full seed first (without --pages), or add them to --pages.',
+                    implode(', ', $missing)
+                ));
+
+                return self::FAILURE;
+            }
+            if ($dryRun) {
+                $io->title('Desiderio styleguide seed dry run (selected pages)');
+                $io->listing(array_map(
+                    static fn(string $slug): string => sprintf(
+                        '%s (%s, %s): %d elements',
+                        $plan[$slug]['title'],
+                        $slug,
+                        ($existingUids[$slug] ?? null) === null ? 'new page' : 'uid ' . $existingUids[$slug],
+                        $plan[$slug]['elements']
+                    ),
+                    $pageFilter->slugs()
+                ));
+                $io->success(sprintf(
+                    'Would reseed %d selected pages and %d content elements below page uid %d.',
+                    count($pageFilter->slugs()),
+                    array_sum(array_map(static fn(string $slug): int => $plan[$slug]['elements'], $pageFilter->slugs())),
+                    $parentPid
+                ));
+
+                return self::SUCCESS;
+            }
+            // The global side steps belong to a full seed.
+            $skipPowermail = true;
+            $skipNews = true;
+        }
+
         if ($dryRun) {
             $io->title('Desiderio styleguide seed dry run');
             $listing = [];
@@ -383,6 +454,9 @@ final class SeedStyleguidePagesCommand extends Command
 
         $linkTargets = [];
         $movedPages = 0;
+        // The uids this run wrote, for the translate command (--pages mode).
+        $reseededUids = [];
+        $isSelected = static fn(string $slug): bool => $pageFilter === null || $pageFilter->includes($slug);
         /** @var list<array{pageUid: int, ctype: string, name: string, fixture: array<string, mixed>, sorting: int}> $chapterContent */
         $chapterContent = [];
 
@@ -394,42 +468,60 @@ final class SeedStyleguidePagesCommand extends Command
                 'Desiderio content elements in 10 chapters: heroes, navigation, editorial content, features, pricing, trust, team, data, conversion and footers.'
             ),
         ];
-        // Found wherever the menu put it (below Product, see PAGE_PLACEMENT).
-        $contentTypesPageUid = $pageUpserter->findExistingPageUid(
-            $parentPid,
-            self::CONTENT_TYPES_PAGE_TITLE,
-            self::CONTENT_TYPES_PAGE_SLUG,
-            $pageColumns
-        ) ?? $pageUpserter->findPageBySlugBelow($parentPid, self::CONTENT_TYPES_PAGE_SLUG, $pageColumns);
-        if ($contentTypesPageUid === null) {
-            $contentTypesPageUid = $pageUpserter->create(
+        if ($isSelected(self::CONTENT_TYPES_PAGE_SLUG)) {
+            // Found wherever the menu put it (below Product, see PAGE_PLACEMENT).
+            $contentTypesPageUid = $pageUpserter->findExistingPageUid(
                 $parentPid,
                 self::CONTENT_TYPES_PAGE_TITLE,
                 self::CONTENT_TYPES_PAGE_SLUG,
-                self::CONTENT_TYPES_PAGE_SORTING,
-                $now,
-                $pageColumns,
-                $contentTypesPageAttributes
-            );
-            $createdPages++;
+                $pageColumns
+            ) ?? $pageUpserter->findPageBySlugBelow($parentPid, self::CONTENT_TYPES_PAGE_SLUG, $pageColumns);
+            if ($contentTypesPageUid === null) {
+                $contentTypesPageUid = $pageUpserter->create(
+                    $parentPid,
+                    self::CONTENT_TYPES_PAGE_TITLE,
+                    self::CONTENT_TYPES_PAGE_SLUG,
+                    self::CONTENT_TYPES_PAGE_SORTING,
+                    $now,
+                    $pageColumns,
+                    $contentTypesPageAttributes
+                );
+                $createdPages++;
+            } else {
+                $pageUpserter->update(
+                    $contentTypesPageUid,
+                    self::CONTENT_TYPES_PAGE_TITLE,
+                    self::CONTENT_TYPES_PAGE_SLUG,
+                    self::CONTENT_TYPES_PAGE_SORTING,
+                    $now,
+                    $pageColumns,
+                    $contentTypesPageAttributes
+                );
+            }
+            $linkTargets['content-types'] = $contentTypesPageUid;
+            if ($pageFilter !== null) {
+                $reseededUids[$contentTypesPageUid] = true;
+            }
         } else {
-            $pageUpserter->update(
-                $contentTypesPageUid,
-                self::CONTENT_TYPES_PAGE_TITLE,
-                self::CONTENT_TYPES_PAGE_SLUG,
-                self::CONTENT_TYPES_PAGE_SORTING,
-                $now,
-                $pageColumns,
-                $contentTypesPageAttributes
-            );
+            // Looked up only: missingDependencies() made sure it exists when
+            // a selected page below it needs it.
+            $contentTypesPageUid = $existingUids[self::CONTENT_TYPES_PAGE_SLUG] ?? 0;
+            if ($contentTypesPageUid > 0) {
+                $linkTargets['content-types'] = $contentTypesPageUid;
+            }
         }
-        $linkTargets['content-types'] = $contentTypesPageUid;
 
         foreach ($groups as $index => $group) {
             $title = (string)$group['groupTitle'];
             $groupId = (string)$group['groupId'];
             $slug = $this->contentTypeSlugForGroup($groupId);
             $sorting = ($index + 1) * 256;
+            if (!$isSelected($slug)) {
+                if (($existingUids[$slug] ?? null) !== null) {
+                    $linkTargets['chapter-' . $groupId] = $existingUids[$slug];
+                }
+                continue;
+            }
 
             $preset = $this->presetForContentTypeGroup($groupId);
             // The title stays the group title of the content wizard; the
@@ -455,6 +547,7 @@ final class SeedStyleguidePagesCommand extends Command
             }
 
             $linkTargets['chapter-' . $groupId] = $pageUid;
+            $reseededUids[$pageUid] = true;
 
             $contentCleaner->softDeleteSeededContent($pageUid, $now, [], true);
 
@@ -497,8 +590,13 @@ final class SeedStyleguidePagesCommand extends Command
             $pageColumns,
             $pageUpserter,
             $now,
-            $createdPages
+            $createdPages,
+            $isSelected,
+            $existingUids
         );
+        foreach (array_keys($supportPageBlocks) as $supportPageUid) {
+            $reseededUids[$supportPageUid] = true;
+        }
 
         // Marketing showcase: subpages first (so internal links resolve), then
         // homepage content on the parent page itself, then subpage content.
@@ -506,6 +604,12 @@ final class SeedStyleguidePagesCommand extends Command
         $showcaseBlocks = [];
         $blogPostsToRelate = [];
         foreach ($showcasePages as $index => $page) {
+            if (!$isSelected($page['slug'])) {
+                if (($existingUids[$page['slug']] ?? null) !== null) {
+                    $linkTargets[ltrim($page['slug'], '/')] = $existingUids[$page['slug']];
+                }
+                continue;
+            }
             $sorting = $page['slug'] === self::CONTENT_TYPES_PAGE_SLUG
                 ? self::CONTENT_TYPES_PAGE_SORTING
                 : ($index + 1) * 16;
@@ -608,6 +712,7 @@ final class SeedStyleguidePagesCommand extends Command
             }
 
             $linkTargets[ltrim($page['slug'], '/')] = $pageUid;
+            $reseededUids[$pageUid] = true;
             $showcaseBlocks[$pageUid] = $page['content'];
             if ($blogAvailable && ($page['blogList'] ?? false)) {
                 // The list page leads with the paginated post list.
@@ -615,7 +720,9 @@ final class SeedStyleguidePagesCommand extends Command
             }
         }
 
-        $deletedLegacyPages = $this->softDeleteLegacyRootPages($parentPid, self::LEGACY_ROOT_PAGE_SLUGS, $now, $pageColumns, $contentCleaner);
+        $deletedLegacyPages = $pageFilter === null
+            ? $this->softDeleteLegacyRootPages($parentPid, self::LEGACY_ROOT_PAGE_SLUGS, $now, $pageColumns, $contentCleaner)
+            : 0;
 
         // Categories and tags live next to the posts on their list page so the
         // whole blog section stays inside the seeded subtree.
@@ -646,7 +753,12 @@ final class SeedStyleguidePagesCommand extends Command
             );
         }
 
-        $showcaseBlocks[$parentPid] = StyleguideShowcasePages::homeContent();
+        if ($isSelected(StyleguidePageFilter::HOME_SLUG)) {
+            $showcaseBlocks[$parentPid] = StyleguideShowcasePages::homeContent();
+            if ($pageFilter !== null) {
+                $reseededUids[$parentPid] = true;
+            }
+        }
         $linkTargets = $this->addSeededPageLinkTargets(
             $linkTargets,
             $parentPid,
@@ -721,9 +833,18 @@ final class SeedStyleguidePagesCommand extends Command
         // page) open with the showcase's sales hero. Only the showcase's own
         // elements there are replaced; the page's content stays below.
         foreach (StyleguideShowcasePages::adoptedHeroes() as $slug => $hero) {
+            if (!$isSelected($slug)) {
+                continue;
+            }
             $adoptedUid = $pageUpserter->findPageBySlugBelow($parentPid, $slug, $pageColumns);
             if ($adoptedUid === null) {
+                if ($pageFilter !== null) {
+                    $io->warning(sprintf('The page %s belongs to another package and does not exist below page uid %d; its hero was not seeded.', $slug, $parentPid));
+                }
                 continue;
+            }
+            if ($pageFilter !== null) {
+                $reseededUids[$adoptedUid] = true;
             }
             $contentCleaner->softDeleteSeededContent($adoptedUid, $now, [], true);
             $contentElementSeeder->insert($adoptedUid, $now, $this->getStarterContentBuilder()->buildContentInsert(
@@ -758,7 +879,7 @@ final class SeedStyleguidePagesCommand extends Command
 
         // Pages other seeders own (or nobody does) move below their menu hub
         // once the hub exists; they keep their slugs, so no URL changes.
-        foreach (self::PAGE_PLACEMENT as $slug => [$hubSlug, $hubSorting]) {
+        foreach ($pageFilter === null ? self::PAGE_PLACEMENT : [] as $slug => [$hubSlug, $hubSorting]) {
             $hubUid = $linkTargets[$hubSlug] ?? null;
             $placedUid = $pageUpserter->findPageBySlugBelow($parentPid, $slug, $pageColumns);
             if ($hubUid !== null && $placedUid !== null && $pageUpserter->parentOf($placedUid) !== $hubUid) {
@@ -769,9 +890,18 @@ final class SeedStyleguidePagesCommand extends Command
         // Placed pages no seeder writes still get a menu name that explains
         // them and an abstract as the page summary.
         foreach (StyleguideShowcasePages::adoptedMenuTexts() as $slug => $menuTexts) {
+            if (!$isSelected($slug)) {
+                continue;
+            }
             $adoptedUid = $pageUpserter->findPageBySlugBelow($parentPid, $slug, $pageColumns);
             if ($adoptedUid === null) {
+                if ($pageFilter !== null) {
+                    $io->warning(sprintf('The page %s belongs to another package and does not exist below page uid %d; its menu texts were not written.', $slug, $parentPid));
+                }
                 continue;
+            }
+            if ($pageFilter !== null) {
+                $reseededUids[$adoptedUid] = true;
             }
             $this->connectionPool->getConnectionForTable('pages')->update(
                 'pages',
@@ -779,7 +909,31 @@ final class SeedStyleguidePagesCommand extends Command
                 ['uid' => $adoptedUid]
             );
         }
-        $redirects = $this->ensureFormerSlugRedirects($showcasePages, $parentPid, $now);
+        $redirects = $this->ensureFormerSlugRedirects(
+            array_filter($showcasePages, static fn(array $page): bool => $isSelected($page['slug'])),
+            $parentPid,
+            $now
+        );
+
+        if ($pageFilter !== null) {
+            $uidList = array_keys($reseededUids);
+            sort($uidList);
+            $uidList = implode(',', $uidList);
+            $io->success(sprintf(
+                'Reseeded %d selected pages (%d new, %d moved, %d redirects kept) and inserted %d content elements below page uid %d. '
+                . 'Reseeding removed the translated content of these pages; re-create it with sitepackage:content:translate --pages=%s.',
+                count($reseededUids),
+                $createdPages,
+                $movedPages,
+                $redirects,
+                $createdContentElements,
+                $parentPid,
+                $uidList
+            ));
+            $output->writeln('Reseeded pages: ' . $uidList);
+
+            return self::SUCCESS;
+        }
 
         $io->success(sprintf(
             'Created or updated %d styleguide pages (%d new, %d moved, %d redirects kept) and inserted %d content elements below page uid %d%s%s%s.',
@@ -859,6 +1013,8 @@ final class SeedStyleguidePagesCommand extends Command
      * @param array<string, int> $linkTargets
      * @param array<string, true> $pageColumns
      * @param int $createdPages
+     * @param (callable(string): bool)|null $isSelected Whether a page is written; the others are only looked up in $existingUids
+     * @param array<string, int|null> $existingUids
      * @return array<int, list<array{ctype: string, colPos: int, fields: array<string, mixed>}>>
      */
     private function seedContentTypeSupportPages(
@@ -868,9 +1024,17 @@ final class SeedStyleguidePagesCommand extends Command
         SeedPageUpserter $pageUpserter,
         int $now,
         int &$createdPages,
+        ?callable $isSelected = null,
+        array $existingUids = [],
     ): array {
         $blocksByPageUid = [];
         foreach (self::CONTENT_TYPE_SUPPORT_PAGES as $page) {
+            if ($isSelected !== null && !$isSelected($page['slug'])) {
+                if (($existingUids[$page['slug']] ?? null) !== null) {
+                    $linkTargets[$page['linkTarget']] = $existingUids[$page['slug']];
+                }
+                continue;
+            }
             $pagePid = $linkTargets[$page['parentTarget']] ?? $contentTypesPageUid;
             $pageUid = $pageUpserter->findExistingPageUid($pagePid, $page['title'], $page['slug'], $pageColumns);
             $pageAttributes = $this->buildSeoPageAttributes(
@@ -896,6 +1060,156 @@ final class SeedStyleguidePagesCommand extends Command
         }
 
         return $blocksByPageUid;
+    }
+
+    /**
+     * Every page a full seed writes, by slug ("/" is the parent page), in
+     * seeding order: its planned parent, its {{page:}} key, how many
+     * elements it gets and the content they are made from. The pages of
+     * other packages the seeder adopts (a hero, menu texts) come last; they
+     * have no planned parent, as the seeder never creates them.
+     *
+     * @param list<array{groupId: string, groupTitle: string, elements: list<array{name: string, ctype: string, fixture: array<string, mixed>}>}> $groups
+     * @param array<int, ShowcasePage> $showcasePages
+     * @return array<string, PlannedPage>
+     */
+    private function buildPagePlan(array $groups, array $showcasePages, bool $blogAvailable): array
+    {
+        $showcaseBySlug = [];
+        foreach ($showcasePages as $page) {
+            $showcaseBySlug[$page['slug']] = $page;
+        }
+        $showcaseEntry = static function (array $page) use ($blogAvailable): array {
+            $parentSlug = $page['parentSlug'] ?? null;
+
+            return [
+                'title' => $page['title'],
+                'parent' => is_string($parentSlug) ? '/' . $parentSlug : StyleguidePageFilter::HOME_SLUG,
+                'linkKey' => ltrim($page['slug'], '/'),
+                'elements' => count($page['content']) + ($blogAvailable && ($page['blogList'] ?? false) ? 1 : 0),
+                'content' => $page['content'],
+                'formerSlugs' => array_values($page['formerSlugs'] ?? []),
+            ];
+        };
+
+        $homeContent = StyleguideShowcasePages::homeContent();
+        $plan = [
+            StyleguidePageFilter::HOME_SLUG => [
+                'title' => 'Homepage',
+                'parent' => null,
+                'linkKey' => 'home',
+                'elements' => count($homeContent),
+                'content' => $homeContent,
+                'formerSlugs' => [],
+            ],
+        ];
+        $plan[self::CONTENT_TYPES_PAGE_SLUG] = isset($showcaseBySlug[self::CONTENT_TYPES_PAGE_SLUG])
+            ? $showcaseEntry($showcaseBySlug[self::CONTENT_TYPES_PAGE_SLUG])
+            : ['title' => self::CONTENT_TYPES_PAGE_TITLE, 'parent' => StyleguidePageFilter::HOME_SLUG, 'linkKey' => 'content-types', 'elements' => 0, 'content' => [], 'formerSlugs' => []];
+
+        foreach ($groups as $group) {
+            $groupId = (string)$group['groupId'];
+            $content = [
+                StyleguideContentGroups::chapterIntro($groupId),
+                ...array_map(static fn(array $element): array => $element['fixture'], $group['elements']),
+                StyleguideContentGroups::chapterCta($groupId),
+            ];
+            $content = array_values(array_filter($content, static fn(?array $fixture): bool => $fixture !== null));
+            $plan[$this->contentTypeSlugForGroup($groupId)] = [
+                'title' => (string)$group['groupTitle'],
+                'parent' => self::CONTENT_TYPES_PAGE_SLUG,
+                'linkKey' => 'chapter-' . $groupId,
+                'elements' => count($content),
+                'content' => $content,
+                'formerSlugs' => [],
+            ];
+        }
+
+        foreach (self::CONTENT_TYPE_SUPPORT_PAGES as $page) {
+            $parentTarget = $page['parentTarget'];
+            $plan[$page['slug']] = [
+                'title' => $page['title'],
+                'parent' => str_starts_with($parentTarget, 'chapter-')
+                    ? $this->contentTypeSlugForGroup(substr($parentTarget, strlen('chapter-')))
+                    : '/' . $parentTarget,
+                'linkKey' => $page['linkTarget'],
+                'elements' => 1,
+                'content' => [$page['bodytext']],
+                'formerSlugs' => [],
+            ];
+        }
+
+        foreach ($showcasePages as $page) {
+            if (!isset($plan[$page['slug']])) {
+                $plan[$page['slug']] = $showcaseEntry($page);
+            }
+        }
+
+        foreach (StyleguideShowcasePages::adoptedHeroes() as $slug => $hero) {
+            $plan[$slug] ??= ['title' => 'Adopted page ' . $slug, 'parent' => null, 'linkKey' => ltrim($slug, '/'), 'elements' => 1, 'content' => [$hero], 'formerSlugs' => []];
+        }
+        foreach (array_keys(StyleguideShowcasePages::adoptedMenuTexts()) as $slug) {
+            $plan[$slug] ??= ['title' => 'Adopted page ' . $slug, 'parent' => null, 'linkKey' => ltrim($slug, '/'), 'elements' => 0, 'content' => [], 'formerSlugs' => []];
+        }
+
+        return $plan;
+    }
+
+    /**
+     * The live default-language page of every planned slug below the root
+     * (or below it under a former slug), null where none exists yet. Reads
+     * only; a --pages run takes the uids of the pages it does not write
+     * from here.
+     *
+     * @param array<string, PlannedPage> $plan
+     * @param array<string, true> $pageColumns
+     * @return array<string, int|null>
+     */
+    private function lookUpPlannedPages(array $plan, int $parentPid, array $pageColumns): array
+    {
+        $pageUpserter = $this->getPageUpserter();
+        $uids = [];
+        foreach ($plan as $slug => $entry) {
+            if ($slug === StyleguidePageFilter::HOME_SLUG) {
+                $uids[$slug] = $parentPid;
+                continue;
+            }
+            $uid = $pageUpserter->findPageBySlugBelow($parentPid, $slug, $pageColumns);
+            foreach ($entry['formerSlugs'] as $formerSlug) {
+                $uid ??= $pageUpserter->findPageBySlugBelow($parentPid, $formerSlug, $pageColumns);
+            }
+            $uids[$slug] = $uid;
+        }
+
+        return $uids;
+    }
+
+    /**
+     * The planned pages the content of the selected pages links to with a
+     * {{page:<key>}} placeholder.
+     *
+     * @param array<string, PlannedPage> $plan
+     * @return list<string>
+     */
+    private function linkedPlanSlugs(array $plan, StyleguidePageFilter $pageFilter): array
+    {
+        $slugsByLinkKey = [];
+        foreach ($plan as $slug => $entry) {
+            $slugsByLinkKey[$entry['linkKey']] ??= $slug;
+        }
+        $content = array_map(static fn(string $slug): array => $plan[$slug]['content'], $pageFilter->slugs());
+        $linked = [];
+        array_walk_recursive($content, static function (mixed $value) use (&$linked, $slugsByLinkKey): void {
+            if (is_string($value) && preg_match_all('/\{\{page:([^}]+)\}\}/', $value, $matches) > 0) {
+                foreach ($matches[1] as $key) {
+                    if (isset($slugsByLinkKey[$key])) {
+                        $linked[$slugsByLinkKey[$key]] = true;
+                    }
+                }
+            }
+        });
+
+        return array_keys($linked);
     }
 
     /**

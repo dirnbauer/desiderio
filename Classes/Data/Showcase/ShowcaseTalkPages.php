@@ -76,7 +76,9 @@ final class ShowcaseTalkPages
                 ]),
                 ShowcaseBlocks::block('desiderio_textmedia', [
                     'header' => 'What this means for editors',
-                    'shadcn_layout' => 'media-above',
+                    'shadcn_layout' => 'media-left',
+                    'media_rounded' => 1,
+                    'media' => ShowcaseBlocks::screenshot('backend-visual-editor-7f9bffd8.webp', 'Inline editing in the Visual Editor', 'The TYPO3 Visual Editor with a Desiderio hero element selected, its text edited where it appears on the page.'),
                     'subheadline' => 'Three of the slogans shaped how editors work with Desiderio.',
                     'content' => '<ul>'
                         . '<li><strong>Users are not designers.</strong> Editors choose finished elements and see a backend preview of each one, so nobody has to design a layout in the page module.</li>'

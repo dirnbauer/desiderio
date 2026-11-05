@@ -69,6 +69,9 @@ final class ShowcaseTalkPagesTest extends TestCase
         self::assertStringContainsString('(1993), chapter 1.3', $editors);
         self::assertStringContainsString('href="' . ShowcaseTalkPages::NIELSEN_URL . '"', $editors);
         self::assertStringContainsString('href="' . ShowcaseTalkPages::ARTICLE_URL . '"', $editors);
+        $media = $content[2]['fields']['media'] ?? null;
+        self::assertIsArray($media, 'The editors block shows the Visual Editor.');
+        self::assertSame('Resources/Public/Styleguide/Backend/backend-visual-editor-7f9bffd8.webp', $media['file'] ?? null);
 
         self::assertSame('{{page:target-groups/for-inhouse-teams}}', $content[3]['fields']['cta_link'] ?? null);
     }

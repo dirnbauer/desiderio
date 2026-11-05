@@ -175,7 +175,7 @@ final class StyleguideShowcasePages
                     [
                         'title' => 'Give each page tree its own look',
                         'description' => 'Any page can have its own preset, and its subpages inherit it. This site shows it: each chapter page uses a different theme.',
-                        'image' => ShowcaseBlocks::screenshot('frontend-pricing-midnight-dark-87c4160e.png', 'Pricing page in the Midnight preset', 'A Desiderio pricing page in the dark Midnight theme preset.'),
+                        'image' => ShowcaseBlocks::screenshot('frontend-feature-pricing-dark-dcf6dbfd.webp', 'Support plans in dark mode', 'The Desiderio pricing page in dark mode with the Community, Studio, Agency and Partner plans.'),
                         'link' => '{{page:themes}}',
                     ],
                 ],
@@ -268,7 +268,7 @@ final class StyleguideShowcasePages
             // ----------------------------------------------------- pricing
             ShowcaseBlocks::block('desiderio_pricingthreetier', [
                 'eyebrow' => 'Pricing',
-                'header' => 'Free to use. Paid plans add support.',
+                'header' => 'Free to use. Paid plans add our time.',
                 'subheadline' => sprintf('Desiderio is free under GPL-2.0, every release. Plans add guaranteed answer times and the maintenance promise; Care runs your site for %s %s.', ShowcasePricing::care()['price'], ShowcasePricing::care()['period']),
                 'plans' => array_map(
                     static fn(array $plan): array => [
@@ -302,8 +302,16 @@ final class StyleguideShowcasePages
 
             // ------------------------------------------------- lab overview
             // The link into the lab. The lab film, the other sites and the
-            // talk are on the Lab and resources page, which shows the same cards.
-            ShowcaseHubPages::labOverviewCards('Four groups, each with an overview page. Films, more sites and Kurt’s usability talk are on the lab page.'),
+            // talk are on the Lab and resources page, which shows the same
+            // cards; the category cards carry no button, so the inline CTA
+            // below leads there.
+            ShowcaseHubPages::labOverviewCards('Four groups, each with an overview page.'),
+            ShowcaseBlocks::block('desiderio_ctainline', [
+                'header' => 'See the lab',
+                'description_text' => 'Films, more sites and Kurt’s usability talk, on one page.',
+                'cta_text' => 'See the lab',
+                'cta_link' => '{{page:resources}}',
+            ]),
 
             // ----------------------------------------------------- get started
             ShowcaseBlocks::block('desiderio_howtosteps', [
@@ -333,17 +341,9 @@ final class StyleguideShowcasePages
                 ],
             ]),
 
-            // ----------------------------------------------------- proof + CTA
-            ShowcaseBlocks::block('desiderio_testimonialgrid', [
-                'eyebrow' => 'Sample quotes',
-                'header' => 'How teams could use Desiderio',
-                'columns' => '3',
-                'testimonials' => [
-                    ['quote' => 'We showed the client three themes in the kickoff by switching presets live.', 'author_name' => 'Hannah Vogel', 'author_title' => 'Lead integrator (example)'],
-                    ['quote' => 'Our editors now build campaign pages themselves. The backend previews show them what they publish.', 'author_name' => 'Jonas Klein', 'author_title' => 'Head of digital (example)'],
-                    ['quote' => 'As a freelancer I can offer a full design system at a small studio’s price.', 'author_name' => 'Lena Hoffmann', 'author_title' => 'Freelance developer (example)'],
-                ],
-            ]),
+            // ------------------------------------------------------------- CTA
+            // The example quotes stay on the audience pages; the home page
+            // shows no invented testimonials.
             ShowcaseBlocks::block('desiderio_ctabanner', [
                 'header' => 'Build your next TYPO3 site with Desiderio',
                 'description' => 'One command built this demo site, with 10 themed chapters and 244 elements. Download it and run it on your own machine.',

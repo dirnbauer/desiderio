@@ -12,8 +12,9 @@ use Webconsulting\Desiderio\Data\StyleguideShowcasePages;
 /**
  * The home page sells Desiderio; the lab, the other sites and the usability
  * talk live on the Lab and resources page (open-source round, 2026-11-05).
- * Fifteen sections in seventeen elements: an inline CTA follows two of them,
- * the four-ways cards (which carry no links) and the strategy checklist.
+ * Fourteen sections in seventeen elements: an inline CTA follows three of
+ * them, the four-ways cards and the lab cards (which carry no links) and the
+ * strategy checklist. The invented example quotes stay on the audience pages.
  */
 final class StyleguideHomeContentTest extends TestCase
 {
@@ -28,24 +29,25 @@ final class StyleguideHomeContentTest extends TestCase
         'Eight forms, ready to use',
         'Five elements to start with',
         'Built for three kinds of teams',
-        'Free to use. Paid plans add support.',
+        'Free to use. Paid plans add our time.',
         'Five points for all our software',
         'Not only TYPO3',
         'Everything in this lab',
+        'See the lab',
         'Set up a themed site in four steps',
-        'How teams could use Desiderio',
         'Build your next TYPO3 site with Desiderio',
     ];
 
-    public function testTheHomePageHasFifteenSectionsInSeventeenElements(): void
+    public function testTheHomePageHasFourteenSectionsInSeventeenElements(): void
     {
         $content = StyleguideShowcasePages::homeContent();
 
         self::assertSame(self::HEADERS, array_map(static fn(array $block): mixed => $block['fields']['header'] ?? null, $content));
         self::assertSame('desiderio_hero', $content[0]['ctype']);
         $inline = array_keys(array_column($content, 'ctype'), 'desiderio_ctainline', true);
-        self::assertSame(['Free software, paid care', 'Five points for all our software'], array_map(static fn(int $index): mixed => $content[$index - 1]['fields']['header'] ?? null, $inline));
-        self::assertSame(15, count($content) - count($inline), 'Fifteen sections.');
+        self::assertSame(['Free software, paid care', 'Five points for all our software', 'Everything in this lab'], array_map(static fn(int $index): mixed => $content[$index - 1]['fields']['header'] ?? null, $inline));
+        self::assertCount(17, $content);
+        self::assertSame(14, count($content) - count($inline), 'Fourteen sections.');
     }
 
     public function testThereIsOneFilmOnTheHomePage(): void
@@ -62,7 +64,7 @@ final class StyleguideHomeContentTest extends TestCase
         foreach (['Free software, paid care', 'Five points for all our software', 'Everything in this lab'] as $header) {
             self::assertStringContainsString($header, $copy);
         }
-        foreach (['More sites on this TYPO3 installation', 'Ten usability slogans', 'Built from 62 typed components', 'Fast to run, edit and launch', 'Five reasons to build on Desiderio', 'Templates for the extensions you use'] as $header) {
+        foreach (['More sites on this TYPO3 installation', 'Ten usability slogans', 'Built from 62 typed components', 'Fast to run, edit and launch', 'Five reasons to build on Desiderio', 'Templates for the extensions you use', 'How teams could use Desiderio', 'desiderio_testimonialgrid'] as $header) {
             self::assertStringNotContainsString($header, $copy);
         }
     }
@@ -88,7 +90,7 @@ final class StyleguideHomeContentTest extends TestCase
         self::assertStringContainsString($prices['agency'], $descriptions);
         self::assertStringContainsString($prices['studio'], $descriptions);
 
-        $pricing = self::blockWithHeader(StyleguideShowcasePages::homeContent(), 'Free to use. Paid plans add support.');
+        $pricing = self::blockWithHeader(StyleguideShowcasePages::homeContent(), 'Free to use. Paid plans add our time.');
         self::assertStringContainsString(ShowcasePricing::care()['price'], $pricing['fields']['subheadline']);
     }
 
@@ -99,6 +101,15 @@ final class StyleguideHomeContentTest extends TestCase
         self::assertSame('desiderio_ctainline', $cta['ctype']);
         self::assertSame('Watch the film', $cta['fields']['cta_text'] ?? null);
         self::assertSame('{{page:typo3-v14-strategy}}', $cta['fields']['cta_link'] ?? null);
+    }
+
+    public function testTheLabCardsLeadToTheLabPage(): void
+    {
+        $cta = self::blockWithHeader(StyleguideShowcasePages::homeContent(), 'See the lab');
+
+        self::assertSame('desiderio_ctainline', $cta['ctype']);
+        self::assertSame('See the lab', $cta['fields']['cta_text'] ?? null);
+        self::assertSame('{{page:resources}}', $cta['fields']['cta_link'] ?? null);
     }
 
     public function testTheHomePageAndTheLabPageShowTheSameLabCards(): void
@@ -117,6 +128,9 @@ final class StyleguideHomeContentTest extends TestCase
         self::assertSame('Lab and resources', $page['navTitle']);
         self::assertSame('/resources', $page['slug']);
         self::assertSame('desiderio_hero', $page['content'][0]['ctype'], 'The films seeder places the lab film after the hero.');
+        $hero = $page['content'][0]['fields'];
+        self::assertSame(['{{page:downloads}}', '{{page:typo3-v14-strategy}}'], [$hero['primary_button_link'] ?? null, $hero['secondary_button_link'] ?? null]);
+        self::assertSame(['Download the demo', 'Read the strategy'], [$hero['primary_button_text'] ?? null, $hero['secondary_button_text'] ?? null]);
         self::assertSame(
             ['Everything in this lab', 'More sites on this TYPO3 installation', 'Where to go next', 'Questions before you start?'],
             array_map(static fn(array $block): mixed => $block['fields']['header'] ?? null, array_slice($page['content'], 1)),

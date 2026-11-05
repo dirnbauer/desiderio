@@ -518,12 +518,6 @@ final class ShowcaseAudiencePages
      */
     private static function service(string $title): array
     {
-        foreach (ShowcasePricing::services() as $service) {
-            if ($service['title'] === $title) {
-                return $service;
-            }
-        }
-
-        throw new \LogicException(sprintf('ShowcasePricing has no service "%s".', $title), 1762300803);
+        return ShowcasePricing::service($title);
     }
 }

@@ -595,7 +595,11 @@ final class StyleguideShowcasePages
                 ]),
                 ShowcaseBlocks::block('desiderio_ctabanner', [
                     'header' => 'Install it yourself or book the setup',
-                    'description' => 'The package is free. A Kickstart workshop gets your team going for €1,490, and a Brand Theme turns a client’s brand into a preset for €2,490.',
+                    'description' => sprintf(
+                        'The package is free. A Kickstart workshop gets your team going for %s, and a Brand Theme turns a client’s brand into a preset for %s.',
+                        ShowcasePricing::service('Kickstart workshop')['rate'],
+                        ShowcasePricing::service('Brand Theme')['rate'],
+                    ),
                     'cta_text' => 'Get started free',
                     'cta_link' => ShowcaseBlocks::REPO_URL,
                     'bg_style' => 'muted',
@@ -635,7 +639,7 @@ final class StyleguideShowcasePages
                         ['icon' => 'sparkles', 'title' => 'Heroes and page intros', 'description' => '21 heroes, including split, video, countdown and stats layouts for the first screen.', 'link' => '{{page:chapter-hero}}'],
                         ['icon' => 'menu', 'title' => 'Navigation', 'description' => '24 elements: navigation bars, mega menus, breadcrumbs, pagination and a location map.', 'link' => '{{page:chapter-navigation}}'],
                         ['icon' => 'book-open', 'title' => 'Content and editorial', 'description' => '24 layouts for articles, with text, media, quotes, tabs and timelines.', 'link' => '{{page:chapter-content}}'],
-                        ['icon' => 'blocks', 'title' => 'Features and benefits', 'description' => '25 grids, bento layouts and comparisons to explain a product or service.', 'link' => '{{page:chapter-features}}'],
+                        ['icon' => 'layout-grid', 'title' => 'Features and benefits', 'description' => '25 grids, bento layouts and comparisons to explain a product or service.', 'link' => '{{page:chapter-features}}'],
                         ['icon' => 'tag', 'title' => 'Plans and pricing', 'description' => '25 pricing tables, monthly and yearly toggles and calculators.', 'link' => '{{page:chapter-pricing}}'],
                         ['icon' => 'shield-check', 'title' => 'Trust and social proof', 'description' => '25 testimonial walls, logo clouds and case studies.', 'link' => '{{page:chapter-social-proof}}'],
                         ['icon' => 'users', 'title' => 'People and team', 'description' => '24 team grids, organisation charts and founder stories.', 'link' => '{{page:chapter-team}}'],

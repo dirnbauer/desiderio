@@ -45,7 +45,13 @@ final class ShowcasePricingPages
             'slug' => '/pricing',
             'seoTitle' => 'Prices for support plans and services',
             'abstract' => 'Desiderio is free under GPL-2.0, with every release. The Studio, Agency and Partner support plans add guaranteed answer times and the maintenance promise; services have fixed prices.',
-            'description' => 'Desiderio is free. Support plans: Studio €590, Agency €1,990, Partner €4,900 a year, with guaranteed answer times; services at fixed prices.',
+            'description' => sprintf(
+                'Desiderio is free. Support plans: %s a year, with guaranteed answer times; services at fixed prices.',
+                implode(', ', array_map(
+                    static fn(array $plan): string => $plan['name'] . ' ' . $plan['price'],
+                    array_slice($plans, 1),
+                )),
+            ),
             'parentSlug' => null,
             'content' => [
                 ShowcaseBlocks::salesHero(

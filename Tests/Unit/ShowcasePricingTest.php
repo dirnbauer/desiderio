@@ -52,6 +52,84 @@ final class ShowcasePricingTest extends TestCase
     }
 
     /**
+     * Every price string of the price source: "€390", "€1,990", "from €1,290".
+     *
+     * @return iterable<string, array{0: string}>
+     */
+    public static function prices(): iterable
+    {
+        foreach (ShowcasePricing::plans() as $plan) {
+            yield 'plan ' . $plan['key'] => [$plan['price']];
+        }
+        foreach (ShowcasePricing::services() as $service) {
+            yield 'service ' . $service['title'] => [$service['rate']];
+        }
+        yield 'Care' => [ShowcasePricing::care()['price']];
+        yield 'Supporter' => [ShowcasePricing::supporter()['price']];
+        yield 'Sponsored feature' => [ShowcasePricing::sponsoredFeature()['price']];
+    }
+
+    #[DataProvider('prices')]
+    public function testEveryPriceIsWrittenTheSameWay(string $price): void
+    {
+        self::assertMatchesRegularExpression('/^(from )?€[0-9]{1,3}(,[0-9]{3})*$/u', $price);
+    }
+
+    public function testTheDecidedPricesOf20261105(): void
+    {
+        $care = ShowcasePricing::care();
+        self::assertSame('€390', $care['price']);
+        self::assertSame('a month per live site', $care['period']);
+        self::assertStringContainsString('€3,900 a year', $care['yearly']);
+        self::assertStringContainsString('€290 a month', $care['further_sites']);
+        self::assertSame(ShowcasePricing::ORDER_LINK, $care['button']['link']);
+        self::assertSame('€190', ShowcasePricing::supporter()['price']);
+        self::assertSame('from €1,290', ShowcasePricing::sponsoredFeature()['price']);
+
+        $hours = array_values(array_filter(ShowcasePricing::services(), static fn(array $service): bool => $service['title'] === 'Support hours'));
+        self::assertCount(1, $hours);
+        self::assertSame(['€690', '5 hours'], [$hours[0]['rate'], $hours[0]['unit']]);
+    }
+
+    public function testCareIsNeverCalledManagedHosting(): void
+    {
+        $copy = json_encode([ShowcasePricing::care(), ShowcasePricing::ways(), ShowcasePricing::costsMoney(), ShowcasePricing::modelFaq()], JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE);
+
+        self::assertDoesNotMatchRegularExpression('/managed hosting/i', $copy);
+    }
+
+    public function testTheFourWaysLinkToPagesOrTheRepository(): void
+    {
+        $ways = ShowcasePricing::ways();
+
+        self::assertSame(['Use it', 'Support it', 'Ask for features', 'Let us take care'], array_column($ways, 'title'));
+        foreach ($ways as $way) {
+            self::assertNotSame('', $way['icon'], $way['title']);
+            self::assertNotSame('', $way['description'], $way['title']);
+            self::assertLessThanOrEqual(25, str_word_count($way['description'], 0, '€0123456789,-.'), $way['title']);
+            self::assertMatchesRegularExpression('#^(\{\{page:[a-z0-9/-]*\}\}|https://|t3://)#', $way['link'], $way['title']);
+        }
+    }
+
+    public function testTheModelListsAndQuestionsAreComplete(): void
+    {
+        self::assertCount(5, ShowcasePricing::alwaysFree());
+        self::assertCount(5, ShowcasePricing::costsMoney());
+        $faq = ShowcasePricing::modelFaq();
+        self::assertCount(6, $faq);
+        foreach ($faq as $item) {
+            self::assertNotSame('', $item['question']);
+            self::assertNotSame('', $item['answer']);
+        }
+
+        $invoice = $faq[5];
+        self::assertStringContainsString(ShowcasePricing::SELLER_NAME, $invoice['answer']);
+        self::assertStringContainsString('href="' . ShowcasePricing::SELLER_IMPRINT_URL . '"', $invoice['answer']);
+        self::assertStringContainsString('href="' . ShowcasePricing::SELLER_TERMS_URL . '"', $invoice['answer']);
+        self::assertSame('Desiderio is free with every release. Paid plans add our time.', ShowcasePricing::modelSentence());
+    }
+
+    /**
      * @return iterable<string, array{0: string}>
      */
     public static function retiredOffers(): iterable
@@ -59,7 +137,8 @@ final class ShowcasePricingTest extends TestCase
         // Prices and promises of the scheme before 2026-09-27.
         yield 'Pro plan price' => ['/€\s?49\b(?! a month)/u'];
         yield 'old Agency price' => ['/€\s?149\b/u'];
-        yield 'old custom element price' => ['/€\s?390\b/u'];
+        // €390 is Care's monthly price since 2026-11-05; only the element price is retired.
+        yield 'old custom element price' => ['/(custom elements?|elements? (cost |costs )?from)[^"]{0,40}€\s?390\b/iu'];
         yield 'old upgrade price' => ['/€\s?2,400\b/u'];
         yield 'old Launch bundle' => ['/€\s?1,790\b/u'];
         yield 'discount code' => ['/DESIDERIO20/'];
@@ -69,7 +148,8 @@ final class ShowcasePricingTest extends TestCase
         yield 'four-hour answers' => ['/4 business hours/i'];
         yield 'installation service' => ['/installation service/i'];
         // Every release is free; the plans sell support (owner decision 2026-09-27).
-        yield 'paid early access' => ['/early[- ]access/i'];
+        // The model page may say that it sells none ("Why no paid early access?").
+        yield 'paid early access' => ['/(?<!no paid )(?<!sell )(?<!no )early[- ]access/i'];
     }
 
     #[DataProvider('retiredOffers')]

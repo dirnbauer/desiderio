@@ -34,4 +34,17 @@ final class ContentBlockLimitKeysTest extends TestCase
             self::assertFalse($validator->validateContentElement($object)->hasError(), $path);
         }
     }
+    public function testSharedRecordTypesPassTheInstalledContentBlocksSchema(): void
+    {
+        $validator = new JsonSchemaValidator();
+        $paths = glob(__DIR__ . '/../../ContentBlocks/RecordTypes/*/config.yaml');
+        self::assertIsArray($paths);
+        foreach ($paths as $path) {
+            $yaml = Yaml::parseFile($path);
+            $object = json_decode(json_encode($yaml, JSON_THROW_ON_ERROR), false, 512, JSON_THROW_ON_ERROR);
+            self::assertIsObject($object);
+            self::assertFalse($validator->validateRecordType($object)->hasError(), $path);
+        }
+    }
+
 }

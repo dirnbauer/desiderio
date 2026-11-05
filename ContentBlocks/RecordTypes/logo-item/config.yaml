@@ -13,8 +13,8 @@ fields:
     type: File
     label: 'Logo Image'
     allowed: common-image-types
+    minitems: 1
     maxitems: 1
-    required: true
   -
     identifier: name
     type: Textarea

@@ -16,6 +16,7 @@ namespace Webconsulting\Desiderio\Data\Showcase;
  *
  * @phpstan-import-type ShowcasePage from ShowcaseBlocks
  * @phpstan-import-type ShowcaseBlock from ShowcaseBlocks
+ * @phpstan-import-type PricingOffer from ShowcasePricing
  */
 final class ShowcasePricingPages
 {
@@ -38,6 +39,7 @@ final class ShowcasePricingPages
         $plans = ShowcasePricing::plans();
         $launchPack = ShowcasePricing::launchPack();
         $founding = ShowcasePricing::foundingOffer();
+        $sponsored = ShowcasePricing::sponsoredFeature();
 
         return [
             'title' => 'Pricing',
@@ -56,7 +58,7 @@ final class ShowcasePricingPages
             'content' => [
                 ShowcaseBlocks::salesHero(
                     'Plans and services',
-                    'Free to use. Paid plans add support.',
+                    'Free to use. Paid plans add our time.',
                     'Every element and every release is free and open source. Plans add guaranteed answer times and the maintenance promise; Care runs your site for you.',
                     ['text' => 'Choose a plan', 'link' => ShowcasePricing::ORDER_LINK],
                     ['text' => 'How we earn', 'link' => self::MODEL_PAGE_LINK],
@@ -104,24 +106,35 @@ final class ShowcasePricingPages
                     'eyebrow' => 'Services',
                     'header' => 'Fixed-price services for your projects',
                     'subheadline' => 'Written scope, fixed price, and delivered under your agency’s name if you like.',
-                    'items' => array_map(
-                        static fn(array $service): array => [
-                            'title' => $service['title'],
-                            'rate' => $service['rate'],
-                            'unit' => $service['unit'],
-                            'description' => $service['description'],
-                            'link' => ShowcasePricing::ORDER_LINK,
+                    // Seven services and the sponsored feature: eight cards fill
+                    // the four-column grid without an empty slot.
+                    'items' => [
+                        ...array_map(
+                            static fn(array $service): array => [
+                                'title' => $service['title'],
+                                'rate' => $service['rate'],
+                                'unit' => $service['unit'],
+                                'description' => $service['description'],
+                                'link' => ShowcasePricing::ORDER_LINK,
+                            ],
+                            ShowcasePricing::services(),
+                        ),
+                        [
+                            'title' => $sponsored['name'],
+                            'rate' => $sponsored['price'],
+                            'unit' => '',
+                            'description' => $sponsored['description'],
+                            'link' => $sponsored['button']['link'],
                         ],
-                        ShowcasePricing::services(),
-                    ),
+                    ],
                 ]),
                 ShowcaseBlocks::block('desiderio_benefitcards', [
                     'eyebrow' => 'Thank you',
                     'header' => 'Other ways to support',
                     'subheadline' => 'For teams that earn with Desiderio and want it to stay free and current.',
-                    'columns' => '3',
+                    'columns' => '2',
                     'items' => [
-                        ...self::supportCards(),
+                        self::supportCard('heart', ShowcasePricing::supporter()),
                         [
                             'icon' => 'star',
                             'title' => 'Stars, issues and articles',
@@ -189,7 +202,7 @@ final class ShowcasePricingPages
         $rates = array_column(ShowcasePricing::services(), 'rate', 'title');
 
         return [
-            'title' => 'Free software, paid care',
+            'title' => 'How we earn',
             'navTitle' => 'How we earn',
             'slug' => '/pricing/how-we-earn',
             'seoTitle' => 'How we earn with free TYPO3 software',
@@ -240,6 +253,7 @@ final class ShowcasePricingPages
                     sprintf('from %s', $studio['price']),
                     'Everything we charge for is our time, at a fixed price.',
                     ShowcasePricing::costsMoney(),
+                    false,
                 ),
                 // Numbers from the content canon (facts.desiderio.elements,
                 // .static_analysis) and the maintenance promise.
@@ -297,12 +311,14 @@ final class ShowcasePricingPages
      * "Always free" and "Our time" as two equal plans: the free tier on the
      * left with the shared list, our time on the right with the reader's paid
      * items. Two tiers, not a pro-and-con compare: the compare block reads
-     * its left column as what is not included.
+     * its left column as what is not included. $featured marks "Our time"
+     * as the recommended plan: on the audience pages, where the recommended
+     * plan stands behind it, not on the model page.
      *
      * @param list<string> $paid
      * @return ShowcaseBlock
      */
-    public static function freeAndPaid(string $eyebrow, string $header, string $subheadline, string $price, string $description, array $paid): array
+    public static function freeAndPaid(string $eyebrow, string $header, string $subheadline, string $price, string $description, array $paid, bool $featured = true): array
     {
         return ShowcaseBlocks::block('desiderio_pricingtwotier', [
             'eyebrow' => $eyebrow,
@@ -323,7 +339,7 @@ final class ShowcasePricingPages
                     'price' => $price,
                     'description' => '<p>' . $description . '</p>',
                     'features' => array_map(static fn(string $point): array => ['text' => $point], $paid),
-                    'featured' => true,
+                    'featured' => $featured,
                     'button_text' => 'See the plans',
                     'button_link' => '{{page:pricing}}',
                 ],
@@ -364,17 +380,26 @@ final class ShowcasePricingPages
      */
     private static function supportCards(): array
     {
-        $cards = [];
-        foreach ([['heart', ShowcasePricing::supporter()], ['code', ShowcasePricing::sponsoredFeature()]] as [$icon, $offer]) {
-            $cards[] = [
-                'icon' => $icon,
-                'title' => sprintf('%s, %s %s', $offer['name'], $offer['price'], $offer['period']),
-                'description' => $offer['description'],
-                'link' => $offer['button']['link'],
-            ];
-        }
+        return [
+            self::supportCard('heart', ShowcasePricing::supporter()),
+            self::supportCard('code', ShowcasePricing::sponsoredFeature()),
+        ];
+    }
 
-        return $cards;
+    /**
+     * One offer as a support card: name, price and period as the title.
+     *
+     * @param PricingOffer $offer
+     * @return array{icon: string, title: string, description: string, link: string}
+     */
+    private static function supportCard(string $icon, array $offer): array
+    {
+        return [
+            'icon' => $icon,
+            'title' => sprintf('%s, %s %s', $offer['name'], $offer['price'], $offer['period']),
+            'description' => $offer['description'],
+            'link' => $offer['button']['link'],
+        ];
     }
 
     /**

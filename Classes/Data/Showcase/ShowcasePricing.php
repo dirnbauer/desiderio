@@ -285,7 +285,7 @@ final class ShowcasePricing
             'name' => 'Supporter',
             'price' => '€190',
             'period' => 'a year',
-            'description' => 'For companies that earn with Desiderio: your name or logo on our How we earn page and in the release notes. No support included.',
+            'description' => 'No support included, on purpose. We name you in the release notes and, from the first Supporter on, on the how-we-earn page.',
             'button' => ['text' => 'Become a Supporter', 'link' => self::ORDER_LINK],
         ];
     }

@@ -44,6 +44,8 @@ final class ShowcasePricingPagesTest extends TestCase
         self::assertSame(['/pricing', '/pricing/how-we-earn', '/pricing/order'], array_column($pages, 'slug'));
         self::assertSame([null, 'pricing', 'pricing'], array_column($pages, 'parentSlug'));
         self::assertSame('How we earn', $pages[1]['navTitle']);
+        self::assertSame('How we earn', $pages[1]['title'], 'The page title (the sr-only h1) does not repeat the hero header.');
+        self::assertSame('How we earn with free TYPO3 software', $pages[1]['seoTitle'] ?? null);
         self::assertFalse($pages[1]['hideInNav'] ?? false, 'The model page is in the Pricing flyout.');
         self::assertTrue($pages[2]['hideInNav'] ?? false, 'The order page stays hidden.');
     }
@@ -69,7 +71,7 @@ final class ShowcasePricingPagesTest extends TestCase
         self::assertIsArray($plans);
         self::assertSame(['Always free', 'Our time'], array_column($plans, 'title'));
         self::assertSame(['€0', 'from ' . ShowcasePricing::plans()[1]['price']], array_column($plans, 'price'));
-        self::assertSame([false, true], array_column($plans, 'featured'));
+        self::assertSame([false, false], array_column($plans, 'featured'), 'No recommended-plan ribbon on the model page: no plan stands behind "Our time" here.');
         self::assertSame(ShowcasePricing::alwaysFree(), array_column($plans[0]['features'], 'text'));
         self::assertSame(ShowcasePricing::costsMoney(), array_column($plans[1]['features'], 'text'));
         self::assertSame([ShowcaseBlocks::REPO_URL, '{{page:pricing}}'], array_column($plans, 'button_link'));
@@ -81,6 +83,33 @@ final class ShowcasePricingPagesTest extends TestCase
 
         self::assertSame('desiderio_hero', $hero['ctype']);
         self::assertSame('{{page:pricing/how-we-earn}}', $hero['fields']['secondary_button_link']);
+    }
+
+    /**
+     * Seven services and the sponsored feature fill the four-column grid;
+     * the Supporter and the free ways share a two-column block.
+     */
+    public function testThePricingPageFillsTheServiceGridAndTheSupportBlock(): void
+    {
+        $content = self::page('/pricing')['content'];
+        $services = array_values(array_filter($content, static fn(array $block): bool => $block['ctype'] === 'desiderio_pricingusage'));
+        self::assertCount(1, $services);
+        $items = $services[0]['fields']['items'];
+        self::assertIsArray($items);
+        self::assertCount(8, $items);
+        self::assertSame(0, count($items) % 4, 'No empty slot in the four-column grid.');
+        $sponsored = ShowcasePricing::sponsoredFeature();
+        self::assertSame([...array_column(ShowcasePricing::services(), 'title'), $sponsored['name']], array_column($items, 'title'));
+        self::assertSame($sponsored['price'], $items[7]['rate']);
+
+        $support = array_values(array_filter($content, static fn(array $block): bool => ($block['fields']['header'] ?? null) === 'Other ways to support'));
+        self::assertCount(1, $support);
+        self::assertSame('2', $support[0]['fields']['columns'] ?? null);
+        $cards = $support[0]['fields']['items'];
+        self::assertIsArray($cards);
+        self::assertCount(2, $cards);
+        self::assertStringStartsWith(ShowcasePricing::supporter()['name'] . ',', $cards[0]['title']);
+        self::assertSame(['Stars, issues and articles', ShowcaseBlocks::REPO_URL], [$cards[1]['title'], $cards[1]['link']]);
     }
 
     public function testCareIsOneBlockShownOnceOnEachSalesPage(): void

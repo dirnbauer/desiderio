@@ -359,7 +359,7 @@ final class ShowcaseAudiencePages
                 self::path('You start for free. Each later step says what it costs.', [
                     ['title' => 'Install, seed, show 244 real elements', 'description' => 'Install the free package on a test DDEV site, seed the demo and send the client a link instead of wireframes.'],
                     ['title' => 'First live client site: Studio', 'description' => sprintf('Studio costs %s for up to 5 live sites, with answers within 2 business days. Staging and local installs are free.', self::yearly('studio'))],
-                    ['title' => 'Say thanks when it pays off', 'description' => sprintf('Become a Supporter for %s %s: your name or logo on our How we earn page and in the release notes.', ShowcasePricing::supporter()['price'], ShowcasePricing::supporter()['period'])],
+                    ['title' => 'Say thanks when it pays off', 'description' => sprintf('Become a Supporter for %s %s: we name you in the release notes.', ShowcasePricing::supporter()['price'], ShowcasePricing::supporter()['period'])],
                     ['title' => 'Care for a client who wants it run', 'description' => sprintf('We run the site for %s: hosting on its own Coolify instance in the EU, updates, monitoring and daily backups.', self::care())],
                 ]),
                 self::payAndGet('studio', [

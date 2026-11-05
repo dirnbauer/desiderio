@@ -12,7 +12,7 @@ use Webconsulting\Desiderio\Data\Showcase\ShowcasePricing;
 /**
  * The target-group hub and its three audience pages: the model block on the
  * hub, one outline on every audience page (the path with Desiderio and what
- * you pay against what you get after the benefits), links the seeder can
+ * is free next to what you pay for, after the benefits), links the seeder can
  * resolve, and no price that is not in the price source.
  *
  * @phpstan-import-type ShowcasePage from ShowcaseBlocks
@@ -30,7 +30,7 @@ final class ShowcaseAudiencePagesTest extends TestCase
         'desiderio_textmedia',
         'desiderio_benefitcards',
         'desiderio_featurenumbered',
-        'desiderio_compare',
+        'desiderio_pricingtwotier',
         'desiderio_pricingsimple',
         'desiderio_testimonial',
         'desiderio_ctabanner',
@@ -80,14 +80,21 @@ final class ShowcaseAudiencePagesTest extends TestCase
             self::assertSame('Your path with Desiderio', $path['header'], $page['slug']);
             self::assertCount(4, self::list($path, 'items'), $page['slug']);
 
-            $compare = self::block($page, 'desiderio_compare');
-            self::assertSame('What you pay, what you get', $compare['header'], $page['slug']);
-            self::assertSame(ShowcasePricing::alwaysFree(), array_column(self::list($compare, 'left_points'), 'text'), $page['slug']);
-            self::assertSame(ShowcaseBlocks::REPO_URL, $compare['left_button_link'], $page['slug']);
-            self::assertSame('{{page:pricing}}', $compare['right_button_link'], $page['slug']);
-            $paid = array_column(self::list($compare, 'right_points'), 'text');
-            self::assertGreaterThanOrEqual(4, count($paid), $page['slug']);
-            self::assertLessThanOrEqual(5, count($paid), $page['slug']);
+            $tiers = self::block($page, 'desiderio_pricingtwotier');
+            self::assertSame('What you pay, what you get', $tiers['header'], $page['slug']);
+            $plans = self::list($tiers, 'plans');
+            self::assertCount(2, $plans, $page['slug']);
+            [$free, $paidTier] = $plans;
+            self::assertIsArray($free);
+            self::assertIsArray($paidTier);
+            self::assertSame(['Always free', 'Our time'], [$free['title'], $paidTier['title']], $page['slug']);
+            self::assertSame(ShowcasePricing::alwaysFree(), array_column(self::list($free, 'features'), 'text'), $page['slug']);
+            self::assertSame(ShowcaseBlocks::REPO_URL, $free['button_link'], $page['slug']);
+            self::assertFalse($free['featured'], $page['slug']);
+            self::assertSame('{{page:pricing}}', $paidTier['button_link'], $page['slug']);
+            self::assertTrue($paidTier['featured'], $page['slug']);
+            self::assertStringStartsWith('from €', self::text($paidTier, 'price'), $page['slug']);
+            $paid = array_column(self::list($paidTier, 'features'), 'text');
             foreach ($paid as $point) {
                 self::assertIsString($point);
                 self::assertStringContainsString('€', $point, $page['slug'] . ': every paid item names its price.');

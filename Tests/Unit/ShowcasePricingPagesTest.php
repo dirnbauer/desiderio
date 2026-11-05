@@ -27,7 +27,7 @@ final class ShowcasePricingPagesTest extends TestCase
         'desiderio_hero',
         'desiderio_benefitcards',
         'desiderio_textmedia',
-        'desiderio_compare',
+        'desiderio_pricingtwotier',
         'desiderio_stats',
         'desiderio_featuretimeline',
         'desiderio_pricingsimple',
@@ -51,6 +51,28 @@ final class ShowcasePricingPagesTest extends TestCase
     public function testTheModelPageKeepsItsOutline(): void
     {
         self::assertSame(self::MODEL_OUTLINE, array_column(self::page('/pricing/how-we-earn')['content'], 'ctype'));
+    }
+
+    /**
+     * Always free and our time are two equal tiers, not a pro-and-con
+     * compare: screen readers would read the compare block's left column as
+     * "not included".
+     */
+    public function testTheModelPageShowsFreeAndPaidAsTwoTiers(): void
+    {
+        $tiers = array_values(array_filter(
+            self::page('/pricing/how-we-earn')['content'],
+            static fn(array $block): bool => $block['ctype'] === 'desiderio_pricingtwotier',
+        ));
+        self::assertCount(1, $tiers);
+        $plans = $tiers[0]['fields']['plans'];
+        self::assertIsArray($plans);
+        self::assertSame(['Always free', 'Our time'], array_column($plans, 'title'));
+        self::assertSame(['€0', 'from ' . ShowcasePricing::plans()[1]['price']], array_column($plans, 'price'));
+        self::assertSame([false, true], array_column($plans, 'featured'));
+        self::assertSame(ShowcasePricing::alwaysFree(), array_column($plans[0]['features'], 'text'));
+        self::assertSame(ShowcasePricing::costsMoney(), array_column($plans[1]['features'], 'text'));
+        self::assertSame([ShowcaseBlocks::REPO_URL, '{{page:pricing}}'], array_column($plans, 'button_link'));
     }
 
     public function testThePricingPageLinksTheModelPageFromItsHero(): void

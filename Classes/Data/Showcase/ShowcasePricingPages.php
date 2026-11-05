@@ -227,21 +227,14 @@ final class ShowcasePricingPages
                     'media_rounded' => 1,
                     'media' => ShowcaseHeroPhotos::for('pricing'),
                 ]),
-                ShowcaseBlocks::block('desiderio_compare', [
-                    'eyebrow' => 'In one look',
-                    'header' => 'What is always free, and what costs money',
-                    'left_title' => 'Always free',
-                    'left_description' => '<p>For everyone, on every site, without registration.</p>',
-                    'left_points' => array_map(static fn(string $point): array => ['text' => $point], ShowcasePricing::alwaysFree()),
-                    'left_button_text' => 'Install for free',
-                    'left_button_link' => ShowcaseBlocks::REPO_URL,
-                    'right_badge' => 'Our time',
-                    'right_title' => 'What costs money',
-                    'right_description' => '<p>Everything we charge for is our time, at a fixed price.</p>',
-                    'right_points' => array_map(static fn(string $point): array => ['text' => $point], ShowcasePricing::costsMoney()),
-                    'right_button_text' => 'See the plans',
-                    'right_button_link' => '{{page:pricing}}',
-                ]),
+                self::freeAndPaid(
+                    'In one look',
+                    'What is always free, and what costs money',
+                    '',
+                    sprintf('from %s', $studio['price']),
+                    'Everything we charge for is our time, at a fixed price.',
+                    ShowcasePricing::costsMoney(),
+                ),
                 // Numbers from the content canon (facts.desiderio.elements,
                 // .static_analysis) and the maintenance promise.
                 ShowcaseBlocks::block('desiderio_stats', [
@@ -292,6 +285,44 @@ final class ShowcasePricingPages
                 ]),
             ],
         ];
+    }
+
+    /**
+     * "Always free" and "Our time" as two equal plans: the free tier on the
+     * left with the shared list, our time on the right with the reader's paid
+     * items. Two tiers, not a pro-and-con compare: the compare block reads
+     * its left column as what is not included.
+     *
+     * @param list<string> $paid
+     * @return ShowcaseBlock
+     */
+    public static function freeAndPaid(string $eyebrow, string $header, string $subheadline, string $price, string $description, array $paid): array
+    {
+        return ShowcaseBlocks::block('desiderio_pricingtwotier', [
+            'eyebrow' => $eyebrow,
+            'header' => $header,
+            'subheadline' => $subheadline,
+            'plans' => [
+                [
+                    'title' => 'Always free',
+                    'price' => ShowcasePricing::plans()[0]['price'],
+                    'description' => '<p>For everyone, on every site, under GPL-2.0 and without registration.</p>',
+                    'features' => array_map(static fn(string $point): array => ['text' => $point], ShowcasePricing::alwaysFree()),
+                    'featured' => false,
+                    'button_text' => 'Install for free',
+                    'button_link' => ShowcaseBlocks::REPO_URL,
+                ],
+                [
+                    'title' => 'Our time',
+                    'price' => $price,
+                    'description' => '<p>' . $description . '</p>',
+                    'features' => array_map(static fn(string $point): array => ['text' => $point], $paid),
+                    'featured' => true,
+                    'button_text' => 'See the plans',
+                    'button_link' => '{{page:pricing}}',
+                ],
+            ],
+        ]);
     }
 
     /**

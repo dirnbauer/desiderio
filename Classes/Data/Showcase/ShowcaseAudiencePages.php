@@ -169,7 +169,7 @@ final class ShowcaseAudiencePages
                     ['title' => 'Your brand and elements, under your name', 'description' => sprintf('A Brand Theme costs %s and custom elements start at %s. We build them, and you deliver them as your agency’s work.', self::rate('Brand Theme'), self::rate('Custom element S'))],
                     ['title' => 'Care for clients who want one partner', 'description' => sprintf('We run the client’s site for %s, billed to you: hosting, updates, monitoring and backups. We never contact your clients.', self::care())],
                 ]),
-                self::payAndGet('What agencies pay for', [
+                self::payAndGet('agency', [
                     sprintf('Agency plan: %s for up to 25 live sites', self::yearly('agency')),
                     sprintf('Brand Theme: %s per client brand', self::rate('Brand Theme')),
                     sprintf('Custom elements: %s (S) or %s (M)', self::rate('Custom element S'), self::rate('Custom element M')),
@@ -263,7 +263,7 @@ final class ShowcaseAudiencePages
                     ['title' => 'Your brand as a theme preset', 'description' => sprintf('A Brand Theme costs %s: your brand as a preset, checked for WCAG 2.2 AA contrast and ready 10 business days after the assets arrive.', self::rate('Brand Theme'))],
                     ['title' => 'Care when no one runs TYPO3 in-house', 'description' => sprintf('We run your site for %s: hosting on your own Coolify instance in the EU, updates, monitoring and daily backups.', self::care())],
                 ]),
-                self::payAndGet('What in-house teams pay for', [
+                self::payAndGet('studio', [
                     sprintf('Studio plan: %s for up to 5 live sites', self::yearly('studio')),
                     sprintf('Editor training: %s once, for up to 12 editors', self::rate('Editor training')),
                     sprintf('Kickstart workshop: %s once, for your developers', self::rate('Kickstart workshop')),
@@ -355,7 +355,7 @@ final class ShowcaseAudiencePages
                     ['title' => 'Say thanks when it pays off', 'description' => sprintf('Become a Supporter for %s %s: your name or logo on our How we earn page and in the release notes.', ShowcasePricing::supporter()['price'], ShowcasePricing::supporter()['period'])],
                     ['title' => 'Care for a client who wants it run', 'description' => sprintf('We run the site for %s: hosting on its own Coolify instance in the EU, updates, monitoring and daily backups.', self::care())],
                 ]),
-                self::payAndGet('What freelancers pay for', [
+                self::payAndGet('studio', [
                     sprintf('Studio plan: %s for up to 5 live sites', self::yearly('studio')),
                     sprintf('Custom elements: %s (S) or %s (M)', self::rate('Custom element S'), self::rate('Custom element M')),
                     sprintf('Support hours: %s for %s, for code reviews', self::rate('Support hours'), self::unit('Support hours')),
@@ -418,29 +418,22 @@ final class ShowcaseAudiencePages
 
     /**
      * "What you pay, what you get": what is always free (the same list on
-     * every page) against what the audience pays for, with prices.
+     * every page) and what the audience pays for, with prices, as two equal
+     * tiers. The paid tier starts at the audience's recommended plan.
      *
      * @param list<string> $paid
      * @return ShowcaseBlock
      */
-    private static function payAndGet(string $title, array $paid): array
+    private static function payAndGet(string $planKey, array $paid): array
     {
-        return ShowcaseBlocks::block('desiderio_compare', [
-            'eyebrow' => 'Free and paid',
-            'header' => 'What you pay, what you get',
-            'subheadline' => ShowcasePricing::modelSentence(),
-            'left_title' => 'Always free',
-            'left_description' => '<p>For everyone, on every site, under GPL-2.0.</p>',
-            'left_points' => array_map(static fn(string $point): array => ['text' => $point], ShowcasePricing::alwaysFree()),
-            'left_button_text' => 'Install for free',
-            'left_button_link' => ShowcaseBlocks::REPO_URL,
-            'right_badge' => 'Our time',
-            'right_title' => $title,
-            'right_description' => '<p>Each item is our time, at a fixed price. Prices are net.</p>',
-            'right_points' => array_map(static fn(string $point): array => ['text' => $point], $paid),
-            'right_button_text' => 'See the plans',
-            'right_button_link' => '{{page:pricing}}',
-        ]);
+        return ShowcasePricingPages::freeAndPaid(
+            'Free and paid',
+            'What you pay, what you get',
+            ShowcasePricing::modelSentence(),
+            sprintf('from %s', self::plan($planKey)['price']),
+            'Each item is our time, at a fixed net price.',
+            $paid,
+        );
     }
 
     /**

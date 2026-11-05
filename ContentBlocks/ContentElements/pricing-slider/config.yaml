@@ -37,7 +37,7 @@ fields:
     table: pricing_slider_tiers
     prefixField: true
     label: 'Volume Tiers'
-    minItems: 2
+    minitems: 2
     fields:
       -
         identifier: volume

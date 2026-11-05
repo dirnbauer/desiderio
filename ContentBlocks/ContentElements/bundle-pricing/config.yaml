@@ -43,7 +43,7 @@ fields:
     table: bundle_pricing_items
     prefixField: true
     label: 'Bundle Items'
-    minItems: 2
+    minitems: 2
     fields:
       -
         identifier: name

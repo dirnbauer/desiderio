@@ -29,7 +29,7 @@ fields:
     table: awards_awards
     prefixField: true
     label: Awards
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: title

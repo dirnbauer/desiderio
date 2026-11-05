@@ -25,7 +25,7 @@ fields:
     prefixField: true
     label: Locations
     description: 'One card per office. City is required; address, phone, email, and map link are optional.'
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: city

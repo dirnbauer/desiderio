@@ -33,7 +33,7 @@ fields:
     prefixField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:page_groups'
     labelField: title
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: title
@@ -48,8 +48,8 @@ fields:
         table: sitemap_grid_pages
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:links'
         labelField: label
-        minItems: 1
-        maxItems: 12
+        minitems: 1
+        maxitems: 12
         fields:
           -
             identifier: label

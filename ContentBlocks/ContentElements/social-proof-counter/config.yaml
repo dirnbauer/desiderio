@@ -37,7 +37,7 @@ fields:
     table: social_proof_counter_counters
     prefixField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:counters'
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: value

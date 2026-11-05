@@ -24,7 +24,7 @@ fields:
     table: contact_info_items
     prefixField: true
     label: 'Contact Items'
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: label

@@ -37,7 +37,7 @@ fields:
     table: blog_teasers_posts
     prefixField: true
     label: Posts
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: image

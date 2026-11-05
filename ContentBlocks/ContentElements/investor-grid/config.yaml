@@ -24,7 +24,7 @@ fields:
     table: investor_grid_investors
     prefixField: true
     label: Investors
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: logo

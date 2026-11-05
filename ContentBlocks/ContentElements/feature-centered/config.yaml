@@ -29,7 +29,7 @@ fields:
     table: feature_centered_items
     prefixField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features'
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: icon

@@ -56,7 +56,7 @@ fields:
     table: features_feature_items
     prefixField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features'
-    minItems: 3
+    minitems: 3
     fields:
       -
         identifier: icon_name

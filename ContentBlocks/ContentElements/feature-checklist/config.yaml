@@ -24,7 +24,7 @@ fields:
     table: feature_checklist_items
     prefixField: true
     label: Checklist
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: title

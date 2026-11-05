@@ -24,7 +24,7 @@ fields:
     table: data_table_columns
     prefixField: true
     label: 'Column Definitions'
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: column_label
@@ -55,7 +55,7 @@ fields:
     prefixField: true
     label: 'Table Rows'
     labelField: row_label
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: row_label
@@ -68,7 +68,7 @@ fields:
         table: data_table_cells
         label: Cells
         labelField: value
-        minItems: 1
+        minitems: 1
         fields:
           -
             identifier: value

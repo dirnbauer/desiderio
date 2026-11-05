@@ -24,7 +24,7 @@ fields:
     table: review_carousel_reviews
     prefixField: true
     label: Reviews
-    minItems: 2
+    minitems: 2
     fields:
       -
         identifier: reviewer_name

@@ -38,8 +38,8 @@ fields:
     table: hero_stats_stats
     prefixField: true
     label: Stats
-    minItems: 1
-    maxItems: 4
+    minitems: 1
+    maxitems: 4
     fields:
       -
         identifier: value

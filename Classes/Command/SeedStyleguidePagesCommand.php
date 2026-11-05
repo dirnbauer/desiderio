@@ -633,6 +633,9 @@ final class SeedStyleguidePagesCommand extends Command
             if (isset($page['pageTsConfig'])) {
                 $pageAttributes['TSconfig'] = $page['pageTsConfig'];
             }
+            if (isset($page['noSearch'])) {
+                $pageAttributes['no_search'] = (int)$page['noSearch'];
+            }
             if ($page['hideInNav'] ?? false) {
                 $pageAttributes['nav_hide'] = 1;
             }

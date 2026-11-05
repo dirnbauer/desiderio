@@ -33,7 +33,7 @@ fields:
     shareAcrossFields: true
     prefixField: true
     label: Specifications
-    minItems: 1
+    minitems: 1
   -
     identifier: image
     type: File

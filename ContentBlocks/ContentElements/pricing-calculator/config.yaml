@@ -38,7 +38,7 @@ fields:
     table: pricing_calculator_tiers
     prefixField: true
     label: 'Pricing Tiers'
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: up_to

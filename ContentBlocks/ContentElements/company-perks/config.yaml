@@ -29,7 +29,7 @@ fields:
     table: company_perks_perks
     prefixField: true
     label: Perks
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: icon

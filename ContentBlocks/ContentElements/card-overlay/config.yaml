@@ -14,8 +14,8 @@ fields:
     type: File
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:background_image'
     allowed: common-image-types
+    minitems: 1
     maxitems: 1
-    required: true
   -
     identifier: eyebrow
     type: Textarea

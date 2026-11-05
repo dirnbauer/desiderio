@@ -30,7 +30,7 @@ fields:
     table: footer_columns_column_items
     prefixField: true
     label: 'Link Columns'
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: title

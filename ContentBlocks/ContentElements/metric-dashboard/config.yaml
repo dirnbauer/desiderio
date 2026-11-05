@@ -28,7 +28,7 @@ fields:
     shareAcrossFields: true
     prefixField: true
     label: Metrics
-    minItems: 1
+    minitems: 1
   -
     identifier: chart_data
     type: Textarea

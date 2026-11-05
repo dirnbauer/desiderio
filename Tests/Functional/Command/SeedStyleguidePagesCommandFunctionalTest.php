@@ -28,6 +28,7 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
     ];
 
     private const array CONTENT_TYPE_PRESETS_BY_SLUG = [
+        '/content-types/visual-editor-inline' => '',
         '/content-types/hero-landing-intros' => 'lagoon',
         '/content-types/navigation-wayfinding' => 'gold',
         '/content-types/content-editorial' => 'aurora',

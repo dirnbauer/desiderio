@@ -25,8 +25,8 @@ fields:
     prefixField: true
     label: Products
     labelField: name
-    minItems: 2
-    maxItems: 3
+    minitems: 2
+    maxitems: 3
     fields:
       -
         identifier: name
@@ -51,8 +51,8 @@ fields:
         table: product_comparison_specs
         label: Specs
         labelField: text
-        minItems: 1
-        maxItems: 8
+        minitems: 1
+        maxitems: 8
         fields:
           -
             identifier: text

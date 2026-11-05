@@ -19,7 +19,7 @@ fields:
     table: changelog_items
     prefixField: true
     label: Releases
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: version

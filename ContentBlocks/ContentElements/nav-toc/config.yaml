@@ -19,7 +19,7 @@ fields:
     table: nav_toc_items
     prefixField: true
     label: 'TOC Items'
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: label

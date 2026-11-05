@@ -73,7 +73,7 @@ fields:
     table: mega_menu_menu_groups
     prefixField: true
     label: 'Menu Groups'
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: title

@@ -32,7 +32,7 @@ fields:
     table: nav_steps_step_items
     prefixField: true
     label: Steps
-    minItems: 2
+    minitems: 2
     fields:
       -
         identifier: label

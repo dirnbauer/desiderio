@@ -19,7 +19,7 @@ fields:
     table: file_download_items
     prefixField: true
     label: Files
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: title
@@ -36,8 +36,8 @@ fields:
         identifier: file
         type: File
         label: File
+        minitems: 1
         maxitems: 1
-        required: true
       -
         identifier: file_size
         type: Textarea

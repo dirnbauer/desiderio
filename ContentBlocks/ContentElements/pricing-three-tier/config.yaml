@@ -30,8 +30,8 @@ fields:
     prefixField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:plans'
     labelField: name
-    minItems: 3
-    maxItems: 3
+    minitems: 3
+    maxitems: 3
     fields:
       -
         identifier: name
@@ -63,8 +63,8 @@ fields:
         table: pricing_three_tier_plan_features
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features'
         labelField: text
-        minItems: 1
-        maxItems: 8
+        minitems: 1
+        maxitems: 8
         fields:
           -
             identifier: text

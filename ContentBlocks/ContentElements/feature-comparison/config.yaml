@@ -29,7 +29,7 @@ fields:
     table: feature_comparison_items
     prefixField: true
     label: 'Comparison Rows'
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: feature

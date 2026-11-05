@@ -24,7 +24,7 @@ fields:
     table: directions_routes
     prefixField: true
     label: Routes
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: mode

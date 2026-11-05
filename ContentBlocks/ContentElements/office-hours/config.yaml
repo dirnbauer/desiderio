@@ -25,7 +25,7 @@ fields:
     prefixField: true
     label: Hours
     description: 'One row per day or day range. Use "Closed" in the Hours field for days you are not open.'
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: day

@@ -18,7 +18,7 @@ fields:
     table: legal_links_link_items
     prefixField: true
     label: 'Legal Links'
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: label

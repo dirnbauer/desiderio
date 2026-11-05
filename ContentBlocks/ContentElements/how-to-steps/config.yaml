@@ -26,7 +26,7 @@ fields:
     table: how_to_steps_items
     prefixField: true
     label: Steps
-    minItems: 2
+    minitems: 2
     fields:
       -
         identifier: title

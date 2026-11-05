@@ -29,7 +29,7 @@ fields:
     table: navbar_sidebar_sections
     prefixField: true
     label: Sections
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: title

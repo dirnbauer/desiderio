@@ -24,7 +24,7 @@ fields:
     table: feature_alternating_items
     prefixField: true
     label: 'Feature Rows'
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: title

@@ -24,8 +24,8 @@ fields:
     table: feature_stats_items
     prefixField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:stats'
-    minItems: 2
-    maxItems: 4
+    minitems: 2
+    maxitems: 4
     fields:
       -
         identifier: value

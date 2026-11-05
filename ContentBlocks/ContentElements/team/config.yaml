@@ -63,7 +63,7 @@ fields:
     table: team_members
     prefixField: true
     label: 'Team Members'
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: image

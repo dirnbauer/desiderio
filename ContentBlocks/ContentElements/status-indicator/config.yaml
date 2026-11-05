@@ -38,7 +38,7 @@ fields:
     table: status_indicator_items
     prefixField: true
     label: Services
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: name

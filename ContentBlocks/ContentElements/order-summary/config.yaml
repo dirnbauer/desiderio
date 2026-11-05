@@ -20,7 +20,7 @@ fields:
     prefixField: true
     label: 'Line Items'
     description: 'One row per product or plan. Enter the price as a formatted string, e.g. "€290.00".'
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: name

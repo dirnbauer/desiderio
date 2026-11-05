@@ -29,7 +29,7 @@ fields:
     table: client_list_clients
     prefixField: true
     label: Clients
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: name

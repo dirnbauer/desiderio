@@ -45,7 +45,7 @@ fields:
     table: kpi_cards_items
     prefixField: true
     label: 'KPI Items'
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: value

@@ -34,7 +34,7 @@ fields:
     table: feature_matrix_rows
     prefixField: true
     label: Rows
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: label

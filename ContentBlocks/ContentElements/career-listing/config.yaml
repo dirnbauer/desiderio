@@ -29,7 +29,7 @@ fields:
     table: career_listing_jobs
     prefixField: true
     label: 'Job Openings'
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: title

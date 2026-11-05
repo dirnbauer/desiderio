@@ -24,7 +24,7 @@ fields:
     table: board_members_members
     prefixField: true
     label: 'Board Members'
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: image

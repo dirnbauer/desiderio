@@ -31,7 +31,7 @@ fields:
     table: product_reviews_reviews
     prefixField: true
     label: Reviews
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: author

@@ -24,7 +24,7 @@ fields:
     table: company_milestones_milestones
     prefixField: true
     label: Milestones
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: year

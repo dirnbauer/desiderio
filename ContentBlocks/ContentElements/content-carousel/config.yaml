@@ -39,15 +39,15 @@ fields:
     table: content_carousel_items
     prefixField: true
     label: Slides
-    minItems: 2
+    minitems: 2
     fields:
       -
         identifier: slide_image
         type: File
         label: 'Slide Image'
         allowed: common-image-types
+        minitems: 1
         maxitems: 1
-        required: true
       -
         identifier: slide_title
         type: Textarea

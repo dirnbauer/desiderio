@@ -45,7 +45,7 @@ fields:
     table: feature_list_items
     prefixField: true
     label: 'Feature Items'
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: icon

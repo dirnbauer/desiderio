@@ -29,7 +29,7 @@ fields:
     table: use_case_grid_items
     prefixField: true
     label: 'Use Cases'
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: title

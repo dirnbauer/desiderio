@@ -24,7 +24,7 @@ fields:
     table: company_history_events
     prefixField: true
     label: Events
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: year

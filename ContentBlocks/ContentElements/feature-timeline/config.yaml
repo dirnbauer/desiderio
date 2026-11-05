@@ -24,7 +24,7 @@ fields:
     table: feature_timeline_items
     prefixField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:timeline_steps'
-    minItems: 2
+    minitems: 2
     fields:
       -
         identifier: step

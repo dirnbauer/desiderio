@@ -25,8 +25,8 @@ fields:
     type: File
     label: 'Audio File'
     allowed: common-media-types
+    minitems: 1
     maxitems: 1
-    required: true
   -
     identifier: show_download
     type: Checkbox

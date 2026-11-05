@@ -37,7 +37,7 @@ fields:
     table: stats_counter_counters
     prefixField: true
     label: Counters
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: counter_target

@@ -6,6 +6,15 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Hidden, non-searchable `/content-types/visual-editor-inline` showcase with 23 blocks: shared child tables, compact and spacious lists, RTE, nested tables and pricing, plus media fallbacks. Prices read from `ShowcasePricing`. The page enables the collection feature through its stable TSconfig switch; anonymous rendering needs no editor features.
+- Optional `noSearch` showcase page attribute, persisted by targeted seeding. Read-only `Build/Scripts/audit-collection-limits.php` reports actual child counts, language coverage and SQL before enabling collection limits.
+
+### Fixed
+
+- Normalize `minItems`/`maxItems` in 130 Content Block YAML files to the lowercase keys the installed parser supports. No configured values were lowered. Five File fields declared `required: true`, which the File parser also ignores; after a separate FAL audit these now use `minitems: 1`, including the required gallery image. Audit existing content on each installation before upgrading: this activates backend validation previously ignored by Content Blocks.
+
 ## [4.30.0] — 2026-11-05
 
 ### Added

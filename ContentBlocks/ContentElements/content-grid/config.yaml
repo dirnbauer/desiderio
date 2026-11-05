@@ -32,7 +32,7 @@ fields:
     table: content_grid_items
     prefixField: true
     label: 'Grid Items'
-    minItems: 2
+    minitems: 2
     fields:
       -
         identifier: title

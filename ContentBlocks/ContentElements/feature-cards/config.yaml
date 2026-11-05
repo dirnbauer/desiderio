@@ -29,7 +29,7 @@ fields:
     table: feature_cards_items
     prefixField: true
     label: 'Feature Cards'
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: title

@@ -40,7 +40,7 @@ fields:
     table: product_grid_products
     prefixField: true
     label: Products
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: name

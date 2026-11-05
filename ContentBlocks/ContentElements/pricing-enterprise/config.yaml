@@ -32,8 +32,8 @@ fields:
     prefixField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features'
     labelField: text
-    minItems: 1
-    maxItems: 8
+    minitems: 1
+    maxitems: 8
     fields:
       -
         identifier: text

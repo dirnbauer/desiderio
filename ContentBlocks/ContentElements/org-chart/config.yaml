@@ -26,7 +26,7 @@ fields:
     label: Levels
     labelField: level_label
     description: 'Each level is one horizontal tier, top to bottom. Add the most senior tier first.'
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: level_label
@@ -42,5 +42,5 @@ fields:
         shareAcrossFields: true
         label: People
         labelField: name
-        minItems: 1
-        maxItems: 12
+        minitems: 1
+        maxitems: 12

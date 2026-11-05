@@ -25,7 +25,7 @@ fields:
     prefixField: true
     label: Departments
     labelField: name
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: name
@@ -41,5 +41,5 @@ fields:
         shareAcrossFields: true
         label: Members
         labelField: name
-        minItems: 1
-        maxItems: 12
+        minitems: 1
+        maxitems: 12

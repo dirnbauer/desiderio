@@ -29,7 +29,7 @@ fields:
     table: certifications_certifications
     prefixField: true
     label: Certifications
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: name

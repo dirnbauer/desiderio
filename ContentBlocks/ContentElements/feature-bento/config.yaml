@@ -24,7 +24,7 @@ fields:
     table: feature_bento_items
     prefixField: true
     label: 'Bento Items'
-    minItems: 3
+    minitems: 3
     fields:
       -
         identifier: title

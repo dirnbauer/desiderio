@@ -29,7 +29,7 @@ fields:
     table: stats_bar_items
     prefixField: true
     label: 'Stat Bars'
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: label

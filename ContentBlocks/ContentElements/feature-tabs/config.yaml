@@ -24,8 +24,8 @@ fields:
     table: feature_tabs_items
     prefixField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:tabs'
-    minItems: 2
-    maxItems: 6
+    minitems: 2
+    maxitems: 6
     fields:
       -
         identifier: tab_label

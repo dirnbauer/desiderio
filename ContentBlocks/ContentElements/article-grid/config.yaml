@@ -24,7 +24,7 @@ fields:
     table: article_grid_items
     prefixField: true
     label: Articles
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: title

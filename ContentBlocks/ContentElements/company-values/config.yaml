@@ -29,7 +29,7 @@ fields:
     table: company_values_value_items
     prefixField: true
     label: Values
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: title

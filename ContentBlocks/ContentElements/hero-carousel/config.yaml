@@ -24,7 +24,7 @@ fields:
     table: hero_carousel_slides
     prefixField: true
     label: Slides
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: title

@@ -27,8 +27,8 @@ fields:
     prefixField: true
     label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-donut/language/labels.xlf:field.segments'
     description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-donut/language/labels.xlf:field.segments.description'
-    minItems: 2
-    maxItems: 5
+    minitems: 2
+    maxitems: 5
     fields:
       -
         identifier: label

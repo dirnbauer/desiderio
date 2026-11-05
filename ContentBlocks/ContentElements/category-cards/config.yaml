@@ -45,7 +45,7 @@ fields:
     table: category_cards_items
     prefixField: true
     label: Categories
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: title

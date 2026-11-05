@@ -40,7 +40,7 @@ fields:
     table: team_grid_minimal_members
     prefixField: true
     label: Members
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: image

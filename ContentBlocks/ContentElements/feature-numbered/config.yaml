@@ -24,7 +24,7 @@ fields:
     table: feature_numbered_items
     prefixField: true
     label: Steps
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: title

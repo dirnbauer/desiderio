@@ -24,7 +24,7 @@ fields:
     table: social_links_link_items
     prefixField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:social_links'
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: icon

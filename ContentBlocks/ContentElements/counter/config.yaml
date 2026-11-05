@@ -19,7 +19,7 @@ fields:
     table: counter_items
     prefixField: true
     label: Counters
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: target_value

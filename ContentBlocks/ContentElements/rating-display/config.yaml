@@ -24,7 +24,7 @@ fields:
     table: rating_display_rating_items
     prefixField: true
     label: 'Rating Sources'
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: platform

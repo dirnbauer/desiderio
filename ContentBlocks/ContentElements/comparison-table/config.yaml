@@ -27,7 +27,7 @@ fields:
     prefixField: true
     label: 'Comparison Columns'
     labelField: name
-    minItems: 2
+    minitems: 2
     fields:
       -
         identifier: name
@@ -47,7 +47,7 @@ fields:
     prefixField: true
     label: 'Feature Rows'
     labelField: name
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: name
@@ -60,7 +60,7 @@ fields:
         table: comparison_table_tier_values
         label: 'Column Values'
         labelField: value
-        minItems: 1
+        minitems: 1
         fields:
           -
             identifier: value

@@ -52,8 +52,8 @@ fields:
     shareAcrossFields: true
     prefixField: true
     label: 'Key Metrics'
-    minItems: 1
-    maxItems: 4
+    minitems: 1
+    maxitems: 4
   -
     identifier: link
     type: Link

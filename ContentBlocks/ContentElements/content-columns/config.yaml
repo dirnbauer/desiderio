@@ -32,7 +32,7 @@ fields:
     table: content_columns_items
     prefixField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:column_content'
-    minItems: 2
+    minitems: 2
     fields:
       -
         identifier: content

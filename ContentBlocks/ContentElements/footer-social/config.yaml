@@ -23,7 +23,7 @@ fields:
     table: footer_social_items
     prefixField: true
     label: 'Social Links'
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: platform_name

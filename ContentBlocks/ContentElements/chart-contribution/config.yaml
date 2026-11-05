@@ -41,7 +41,7 @@ fields:
     prefixField: true
     label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-contribution/language/labels.xlf:field.points'
     description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-contribution/language/labels.xlf:field.points.description'
-    minItems: 2
+    minitems: 2
     fields:
       -
         identifier: point_label

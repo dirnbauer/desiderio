@@ -19,7 +19,7 @@ fields:
     table: breadcrumb_items
     prefixField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:items'
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: label

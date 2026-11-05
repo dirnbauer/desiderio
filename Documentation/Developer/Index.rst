@@ -44,6 +44,7 @@ content elements.
     Build
     Innesto
     CollectionTableConsolidation
+    VisualEditorInlineShowcase
 
 ..  _developer-sets:
 

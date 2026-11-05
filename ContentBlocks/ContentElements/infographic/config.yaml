@@ -37,7 +37,7 @@ fields:
     table: infographic_items
     prefixField: true
     label: Steps
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: number

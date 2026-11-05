@@ -25,8 +25,8 @@ fields:
     prefixField: true
     label: 'Plan Names'
     labelField: name
-    minItems: 2
-    maxItems: 4
+    minitems: 2
+    maxitems: 4
     fields:
       -
         identifier: name
@@ -46,7 +46,7 @@ fields:
     prefixField: true
     label: 'Feature Rows'
     labelField: feature_name
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: feature_name
@@ -60,8 +60,8 @@ fields:
         table: pricing_comparison_tier_values
         label: 'Plan Values'
         labelField: value
-        minItems: 1
-        maxItems: 4
+        minitems: 1
+        maxitems: 4
         fields:
           -
             identifier: value

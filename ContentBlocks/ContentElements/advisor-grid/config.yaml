@@ -24,7 +24,7 @@ fields:
     table: advisor_grid_advisors
     prefixField: true
     label: Advisors
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: image

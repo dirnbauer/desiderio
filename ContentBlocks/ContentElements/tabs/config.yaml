@@ -39,7 +39,7 @@ fields:
     table: tabs_items
     prefixField: true
     label: 'Tab Panels'
-    minItems: 2
+    minitems: 2
     fields:
       -
         identifier: tab_label

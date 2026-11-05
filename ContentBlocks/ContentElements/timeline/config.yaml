@@ -24,7 +24,7 @@ fields:
     table: timeline_items
     prefixField: true
     label: 'Timeline Items'
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: step

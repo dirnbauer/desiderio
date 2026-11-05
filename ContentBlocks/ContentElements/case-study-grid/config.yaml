@@ -37,7 +37,7 @@ fields:
     table: case_study_grid_cases
     prefixField: true
     label: 'Case Studies'
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: client_name

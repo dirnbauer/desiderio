@@ -43,8 +43,8 @@ fields:
     prefixField: true
     label: 'Left Points'
     labelField: text
-    minItems: 1
-    maxItems: 8
+    minitems: 1
+    maxitems: 8
     fields:
       -
         identifier: text
@@ -85,8 +85,8 @@ fields:
     prefixField: true
     label: 'Right Points'
     labelField: text
-    minItems: 1
-    maxItems: 8
+    minitems: 1
+    maxitems: 8
     fields:
       -
         identifier: text

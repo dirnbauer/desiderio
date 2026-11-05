@@ -29,7 +29,7 @@ fields:
     table: testimonial_carousel_testimonials
     prefixField: true
     label: Testimonials
-    minItems: 2
+    minitems: 2
     fields:
       -
         identifier: quote

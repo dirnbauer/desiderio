@@ -24,7 +24,7 @@ fields:
     table: resource_library_items
     prefixField: true
     label: Resources
-    minItems: 1
+    minitems: 1
     fields:
       -
         identifier: title

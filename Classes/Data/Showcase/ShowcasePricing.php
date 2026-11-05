@@ -171,6 +171,22 @@ final class ShowcasePricing
     }
 
     /**
+     * One fixed-price service by its title, e.g. service('Brand Theme').
+     *
+     * @return PricingService
+     */
+    public static function service(string $title): array
+    {
+        foreach (self::services() as $service) {
+            if ($service['title'] === $title) {
+                return $service;
+            }
+        }
+
+        throw new \LogicException(sprintf('ShowcasePricing has no service "%s".', $title), 1762380001);
+    }
+
+    /**
      * The Launch Pack: the Agency plan with the two services every first
      * project needs, and the editor training included.
      *
@@ -276,7 +292,8 @@ final class ShowcasePricing
 
     /**
      * A sponsored feature: built by a date, released free for everyone, the
-     * sponsor named. A custom element for private use is a service (€890).
+     * sponsor named. A custom element for private use is a service
+     * (services(), "Custom element S").
      *
      * @return PricingOffer
      */
@@ -286,7 +303,7 @@ final class ShowcasePricing
             'name' => 'Sponsored feature',
             'price' => 'from €1,290',
             'period' => 'per feature',
-            'description' => sprintf('You name the feature and the date. We build it and release it free for everyone, with tests, documentation and translations, and your name in the release notes. A custom element for your own use stays %s.', array_column(self::services(), 'rate', 'title')['Custom element S']),
+            'description' => 'You name the feature and the date. We build and test it, release it free for everyone and name you in the release notes.',
             'button' => ['text' => 'Sponsor a feature', 'link' => self::ORDER_LINK],
         ];
     }
@@ -313,10 +330,12 @@ final class ShowcasePricing
                 'icon' => 'heart',
                 'title' => 'Support it',
                 'description' => sprintf('Star the repository, report what breaks, write about it. Or become a Supporter for %s %s and be thanked by name.', $supporter['price'], $supporter['period']),
-                'link' => '{{page:pricing/how-we-earn}}',
+                // Stars, issues and recommendations happen on GitHub; the
+                // Supporter is named on the model page, which shows this card.
+                'link' => ShowcaseBlocks::REPO_URL,
             ],
             [
-                'icon' => 'lightbulb',
+                'icon' => 'message-circle',
                 'title' => 'Ask for features',
                 'description' => sprintf('Open an issue; good ideas go on the public roadmap. Sponsor one %s to have it by a date, released for everyone.', self::sponsoredFeature()['price']),
                 'link' => '{{page:pricing}}',

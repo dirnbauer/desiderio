@@ -9,6 +9,7 @@ use PHPUnit\Framework\TestCase;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseHeroPhotos;
 use Webconsulting\Desiderio\Data\Showcase\ShowcasePricing;
 use Webconsulting\Desiderio\Data\StyleguideShowcasePages;
+use Webconsulting\Desiderio\Icon\IconRegistry;
 
 /**
  * The plans, prices and first-level heroes of the showcase: one price scheme
@@ -91,6 +92,15 @@ final class ShowcasePricingTest extends TestCase
         self::assertSame(['€690', '5 hours'], [$hours[0]['rate'], $hours[0]['unit']]);
     }
 
+    public function testAServiceIsFoundByItsTitle(): void
+    {
+        self::assertSame('€2,490', ShowcasePricing::service('Brand Theme')['rate']);
+        self::assertSame('€1,490', ShowcasePricing::service('Kickstart workshop')['rate']);
+
+        $this->expectException(\LogicException::class);
+        ShowcasePricing::service('Managed hosting');
+    }
+
     public function testCareIsNeverCalledManagedHosting(): void
     {
         $copy = json_encode([ShowcasePricing::care(), ShowcasePricing::ways(), ShowcasePricing::costsMoney(), ShowcasePricing::modelFaq()], JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE);
@@ -105,6 +115,7 @@ final class ShowcasePricingTest extends TestCase
         self::assertSame(['Use it', 'Support it', 'Ask for features', 'Let us take care'], array_column($ways, 'title'));
         foreach ($ways as $way) {
             self::assertNotSame('', $way['icon'], $way['title']);
+            self::assertSame($way['icon'], IconRegistry::normalizeKey($way['icon']), $way['title'] . ': the icon is in the icon set, not the fallback.');
             self::assertNotSame('', $way['description'], $way['title']);
             self::assertLessThanOrEqual(25, str_word_count($way['description'], 0, '€0123456789,-.'), $way['title']);
             self::assertMatchesRegularExpression('#^(\{\{page:[a-z0-9/-]*\}\}|https://|t3://)#', $way['link'], $way['title']);

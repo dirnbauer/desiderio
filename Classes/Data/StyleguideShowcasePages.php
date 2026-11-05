@@ -15,6 +15,7 @@ use Webconsulting\Desiderio\Data\Showcase\ShowcasePricingPages;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseSkillPages;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseStrategyPages;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseSuccessStories;
+use Webconsulting\Desiderio\Data\Showcase\ShowcaseTalkPages;
 
 /**
  * Marketing showcase seeded by desiderio:styleguide:seed in addition to the
@@ -47,7 +48,8 @@ final class StyleguideShowcasePages
     public static function subpages(): array
     {
         // The first-level pages come in menu order: Product, Features, AI,
-        // Software, Solutions, Pricing, Resources (Download is the site package's).
+        // Software, Solutions, Pricing, Lab and resources (Download is the site
+        // package's); the talk page follows its parent, Lab and resources.
         return [
             ShowcaseHubPages::productPage(),
             self::contentTypesHubPage(),
@@ -63,6 +65,7 @@ final class StyleguideShowcasePages
             ...ShowcaseSuccessStories::pages(),
             ...ShowcasePricingPages::pages(),
             ShowcaseHubPages::resourcesPage(),
+            ...ShowcaseTalkPages::pages(),
             ...ShowcaseLegalPages::pages(),
         ];
     }
@@ -124,7 +127,7 @@ final class StyleguideShowcasePages
             ShowcaseBlocks::salesHero(
                 'For TYPO3 agencies',
                 'Ship TYPO3 client sites in days, not weeks',
-                '244 finished content elements and 15 theme presets, with backend previews and inline editing. Free and open source; support plans add guaranteed answer times.',
+                '244 finished content elements and 15 theme presets, with backend previews and inline editing. Free with every release; paid plans add our time.',
                 ['text' => 'Download the demo', 'link' => '{{page:downloads}}'],
                 ['text' => 'See pricing', 'link' => '{{page:pricing}}'],
                 ShowcaseHeroPhotos::for('home'),
@@ -177,30 +180,23 @@ final class StyleguideShowcasePages
                     ],
                 ],
             ]),
-            // ----------------------------------------------------- atomic design
+            // ----------------------------------------------------- the model
+            // The four ways from the price source. Feature cards carry no
+            // links, so the inline CTA below leads to the model page.
             ShowcaseBlocks::block('desiderio_featurecards', [
-                'eyebrow' => 'Architecture',
-                'header' => 'Built from 62 typed components',
-                'subheadline' => 'Every element is assembled from Fluid 5 components with typed arguments. Small parts make up larger ones, and nothing is styled twice.',
-                'items' => [
-                    ['title' => '17 atoms', 'description' => 'Button, badge, input, icon, avatar and text. They use only design tokens, so a new preset changes all of them.'],
-                    ['title' => '37 molecules', 'description' => 'Cards, accordions, tabs, tables, alerts and form fields, built from atoms. Your own elements can use them too.'],
-                    ['title' => '4 layouts', 'description' => 'Section, container, grid and stack handle spacing and container queries. No element needs its own margins.'],
-                    ['title' => '4 organisms', 'description' => 'Site header, footer, breadcrumb and page header. Page templates only arrange organisms and content areas.'],
-                    ['title' => '244 content elements', 'description' => 'Heroes, pricing tables, dashboards and footers use the same components. That is why one audit can check all of them on every commit.'],
-                ],
+                'eyebrow' => 'Open source',
+                'header' => 'Free software, paid care',
+                'subheadline' => 'Everything is free with every release. You pay only for our time: answers, work by a date, or running your site.',
+                'items' => array_map(
+                    static fn(array $way): array => ['title' => $way['title'], 'description' => $way['description']],
+                    ShowcasePricing::ways(),
+                ),
             ]),
-
-            // ----------------------------------------------------- speed
-            ShowcaseBlocks::block('desiderio_featurestats', [
-                'header' => 'Fast to run, edit and launch',
-                'description' => 'Three kinds of speed: page performance, editing and project delivery.',
-                'items' => [
-                    ['value' => '0', 'label' => 'Rebuilds for a new design', 'description_text' => 'Themes switch through CSS tokens at runtime. No Tailwind build and no deployment.'],
-                    ['value' => '100%', 'label' => 'Static CSS, no JS framework', 'description_text' => 'No React or Vue in the frontend. Charts render on the server.'],
-                    ['value' => '1', 'label' => 'Command for the full demo site', 'description_text' => 'The seeder builds all 244 elements with their demo content. You can run it as often as you like.'],
-                    ['value' => '30', 'label' => 'Minutes from install to themed site', 'description_text' => 'Install, seed, pick a preset, publish. Or book a Kickstart workshop for your team.'],
-                ],
+            ShowcaseBlocks::block('desiderio_ctainline', [
+                'header' => 'How we earn with free software',
+                'description_text' => 'Why it is free, what always stays free and where the money goes.',
+                'cta_text' => 'How we earn',
+                'cta_link' => '{{page:pricing/how-we-earn}}',
             ]),
 
             // ----------------------------------------------------- 244 elements
@@ -253,53 +249,45 @@ final class StyleguideShowcasePages
                 'items' => [
                     [
                         'title' => 'Agencies and integrators',
-                        'description' => 'Deliver fixed-price projects faster, with finished elements and a theme per client.',
+                        'description' => sprintf('Deliver fixed-price projects faster, with a theme per client. Free to start, Agency at %s a year, Care per site when you want it.', self::planPrice('agency')),
                         'link' => '{{page:target-groups/for-agencies}}',
                     ],
                     [
                         'title' => 'In-house marketing and product teams',
-                        'description' => 'Build campaign pages without a developer ticket. Each campaign can have its own theme.',
+                        'description' => sprintf('Build campaign pages without a developer ticket. Free to start, Studio at %s a year, Care when no one in-house runs TYPO3.', self::planPrice('studio')),
                         'link' => '{{page:target-groups/for-inhouse-teams}}',
                     ],
                     [
                         'title' => 'Freelancers and solo developers',
-                        'description' => 'Get a complete design system with quality checks, for €0.',
+                        'description' => sprintf('A complete design system with quality checks, for %s. Studio at %s a year from the first live client site.', self::planPrice('community'), self::planPrice('studio')),
                         'link' => '{{page:target-groups/for-freelancers}}',
                     ],
                 ],
             ]),
 
-            // ----------------------------------------------------- advantages
-            ShowcaseBlocks::block('desiderio_featurechecklist', [
-                'eyebrow' => 'Advantages',
-                'header' => 'Five reasons to build on Desiderio',
-                'items' => [
-                    ['title' => 'A new design without a rebuild', 'description_text' => '15 presets, or your own from the shadcn/ui create page. Switch them per site or per page tree.'],
-                    ['title' => 'Fewer tickets from editors', 'description_text' => 'Backend previews for all 244 elements, inline editing and a content wizard in 10 groups.'],
-                    ['title' => 'Accessibility you can prove', 'description_text' => 'The build checks WCAG 2.2 AA contrast for every preset, in light and dark mode.'],
-                    ['title' => 'Measured quality', 'description_text' => 'PHPStan at level 8, unit and functional tests on PHP 8.4 and 8.5, and a template audit with zero findings.'],
-                    ['title' => 'Free and open source', 'description_text' => 'GPL-2.0, with the full source on GitHub and every release free. Support plans add guaranteed answer times and the maintenance promise.'],
-                ],
-            ]),
-
-            // ----------------------------------------------------- integrations
-            ShowcaseBlocks::block('desiderio_featurecards', [
-                'eyebrow' => 'Integrations',
-                'header' => 'Templates for the extensions you use',
-                'subheadline' => 'Each template set follows the active theme preset, in light and dark mode.',
-                'items' => [
-                    ['title' => 'Solr search', 'description' => 'Results, facets, sorting, suggestions in the header and accessible pagination.'],
-                    ['title' => 'Powermail', 'description' => 'All field types restyled, with demo forms and Friendly Captcha.'],
-                    ['title' => 'News', 'description' => 'Teaser cards, detail views, lists and pagination for the News extension.'],
-                    ['title' => 'Blog', 'description' => 'Post lists, sidebars and a comment form for the Blog extension.'],
-                    ['title' => 'Form Framework', 'description' => 'Eight ready forms, with double opt-in through Brevo.'],
-                    ['title' => 'Visual Editor', 'description' => 'Inline editing in the frontend, plus styled core content elements.'],
-                ],
+            // ----------------------------------------------------- pricing
+            ShowcaseBlocks::block('desiderio_pricingthreetier', [
+                'eyebrow' => 'Pricing',
+                'header' => 'Free to use. Paid plans add support.',
+                'subheadline' => sprintf('Desiderio is free under GPL-2.0, every release. Plans add guaranteed answer times and the maintenance promise; Care runs your site for %s a month.', ShowcasePricing::care()['price']),
+                'plans' => array_map(
+                    static fn(array $plan): array => [
+                        'name' => $plan['name'],
+                        'price' => $plan['price'],
+                        'billing_period' => $plan['period'],
+                        'description' => $plan['for'],
+                        'features' => array_slice($plan['features'], 0, 4),
+                        'is_recommended' => $plan['featured'],
+                        'button_text' => $plan['button']['text'],
+                        'button_link' => $plan['button']['link'],
+                    ],
+                    array_values(array_filter(ShowcasePricing::plans(), static fn(array $plan): bool => $plan['key'] !== 'community')),
+                ),
             ]),
 
             // ----------------------------------------------------- strategy
-            // The five points of the strategy page. The films seeder puts the
-            // strategy film right after this element, found by its header.
+            // The five points of the strategy page; the film and the full plan
+            // are on the strategy page the inline CTA leads to.
             ShowcaseBlocks::block('desiderio_featurechecklist', [
                 'eyebrow' => 'Strategy 2026–2030',
                 'header' => 'Five points for all our software',
@@ -308,46 +296,14 @@ final class StyleguideShowcasePages
             ShowcaseBlocks::block('desiderio_ctainline', [
                 'header' => 'Not only TYPO3',
                 'description_text' => ShowcaseStrategyPages::standardLine(),
-                'cta_text' => 'Read the strategy',
+                'cta_text' => 'Watch the film',
                 'cta_link' => '{{page:typo3-v14-strategy}}',
             ]),
 
             // ------------------------------------------------- lab overview
-            // The films seeder puts the lab overview film right after this
-            // element, found by its header.
-            ShowcaseBlocks::block('desiderio_categorycards', [
-                'eyebrow' => 'Overview',
-                'header' => 'Everything in this lab',
-                'subheadline' => 'Four groups, each with an overview page that leads to every tool, product and template.',
-                'columns' => '4',
-                'items' => [
-                    ['title' => 'Website tools', 'count' => sprintf('%d tools', count(ShowcaseFeaturePages::websitePages()) - 1), 'description' => 'Themes, editing, search, forms, login and paid access: the extensions this site runs.', 'link' => '{{page:features}}'],
-                    ['title' => 'AI and agents', 'count' => sprintf('%d tools', count(ShowcaseFeaturePages::aiPages()) - 1), 'description' => 'AI for editors, skills with safety checks, and tools that open a site to outside agents.', 'link' => '{{page:ai}}'],
-                    ['title' => 'Software', 'count' => sprintf('%d products', count(ShowcaseFeaturePages::softwarePages()) - 1), 'description' => 'T3 Ops, Ledger, MedAtlas Austria and CapexOne Plus, built by webconsulting.', 'link' => '{{page:software}}'],
-                    ['title' => 'Website templates', 'count' => '10 templates', 'description' => 'Ten complete websites for TYPO3 v14, free under the MIT licence and live in this lab.', 'link' => '{{page:templates}}'],
-                ],
-            ]),
-
-            // ----------------------------------------------------- the lab
-            // One card per other site of the installation. The seeder links
-            // {{site:<identifier>}} to that site's root page and leaves out
-            // the cards (and the block) for sites an installation lacks.
-            ShowcaseBlocks::block('desiderio_categorycards', [
-                'eyebrow' => 'This lab',
-                'header' => 'More sites on this TYPO3 installation',
-                'subheadline' => 'The same TYPO3 v14 installation runs these sites too, each with another theme, extension or language setup.',
-                'columns' => '4',
-                'items' => [
-                    ['title' => 'Astryx', 'count' => 'Second theme', 'description' => 'Meta’s Astryx design system for TYPO3: 250 server-rendered elements and 25 themes, without React.', 'link' => '{{site:astryx-typo3}}'],
-                    ['title' => 'Agent Nexus', 'count' => 'AI agents', 'description' => 'Agent protocols in TYPO3: A2UI, AG-UI, A2A, UCP and AP2, each with a demo, plus a playground.', 'link' => '{{site:agent-nexus}}'],
-                    ['title' => 'Northstar Advisory Group', 'count' => 'Starter site', 'description' => 'A complete company website from Desiderio’s corporate starter, seeded with one command.', 'link' => '{{site:desiderio-corporate-starter}}'],
-                    ['title' => 'TYPO3 Camp München 2026', 'count' => 'Event site', 'description' => 'A barcamp site in German, English, Chinese and Hungarian, with Solr search.', 'link' => '{{site:mtug-camp-munich-2026}}'],
-                    ['title' => 'The TYPO3 blog', 'count' => 'Blog', 'description' => 'Practical posts about TYPO3 in Desiderio’s Classic blog template.', 'link' => '{{site:typo3-blog}}'],
-                    ['title' => 'TYPO3 v14 blog', 'count' => 'Blog', 'description' => 'A demo blog in the Modern template, with an archive by category, tag, author and month.', 'link' => '{{site:14lts}}'],
-                    ['title' => 'Blog classico', 'count' => 'Blog in German', 'description' => 'A German lifestyle blog in the Classic template, about spring, Easter and family days.', 'link' => '{{site:blog}}'],
-                    ['title' => 'Camino', 'count' => 'Own site package', 'description' => 'A guide to the Way of St James, built with the Camino site package and its own content elements.', 'link' => '{{site:camino}}'],
-                ],
-            ]),
+            // The link into the lab. The lab film, the other sites and the
+            // talk are on the Lab and resources page, which shows the same cards.
+            ShowcaseHubPages::labOverviewCards('Four groups, each with an overview page. Films, more sites and Kurt’s usability talk are on the lab page.'),
 
             // ----------------------------------------------------- get started
             ShowcaseBlocks::block('desiderio_howtosteps', [
@@ -377,26 +333,6 @@ final class StyleguideShowcasePages
                 ],
             ]),
 
-            // ----------------------------------------------------- pricing
-            ShowcaseBlocks::block('desiderio_pricingthreetier', [
-                'eyebrow' => 'Pricing',
-                'header' => 'Free to use. Paid plans add support.',
-                'subheadline' => 'Desiderio is complete and free under GPL-2.0, every release. Support plans add guaranteed answer times and the maintenance promise; Agency and Partner add onboarding.',
-                'plans' => array_map(
-                    static fn(array $plan): array => [
-                        'name' => $plan['name'],
-                        'price' => $plan['price'],
-                        'billing_period' => $plan['period'],
-                        'description' => $plan['for'],
-                        'features' => array_slice($plan['features'], 0, 4),
-                        'is_recommended' => $plan['featured'],
-                        'button_text' => $plan['button']['text'],
-                        'button_link' => $plan['button']['link'],
-                    ],
-                    array_values(array_filter(ShowcasePricing::plans(), static fn(array $plan): bool => $plan['key'] !== 'community')),
-                ),
-            ]),
-
             // ----------------------------------------------------- proof + CTA
             ShowcaseBlocks::block('desiderio_testimonialgrid', [
                 'eyebrow' => 'Sample quotes',
@@ -416,6 +352,20 @@ final class StyleguideShowcasePages
                 'bg_style' => 'primary',
             ]),
         ];
+    }
+
+    /**
+     * The price of one plan from the price source, by its key.
+     */
+    private static function planPrice(string $key): string
+    {
+        foreach (ShowcasePricing::plans() as $plan) {
+            if ($plan['key'] === $key) {
+                return $plan['price'];
+            }
+        }
+
+        throw new \LogicException(sprintf('There is no plan "%s".', $key), 1793900001);
     }
 
     public static function contentElementCount(): int
@@ -520,6 +470,28 @@ final class StyleguideShowcasePages
                         ['title' => 'Fluid 5.3 components', 'content' => '62 typed Fluid 5.3 components make up the d: namespace. Arguments are declared with f:argument, so a wrong type fails at render time, not in production.', 'link' => 'https://github.com/dirnbauer/desiderio/tree/main/Resources/Private/Components'],
                         ['title' => 'Runtime theme engine', 'content' => '15 presets of OKLCH design tokens switch per site or per page tree, without a rebuild. A contrast solver meets WCAG 2.2 in light and dark mode.', 'link' => '{{page:themes}}'],
                         ['title' => 'Measured quality', 'content' => 'PHPStan level 8, unit and functional tests on PHP 8.4 and 8.5, and a template audit. CI fails when the generated CSS no longer matches the templates.', 'link' => 'https://github.com/dirnbauer/desiderio/actions/workflows/ci.yml'],
+                    ],
+                ]),
+                ShowcaseBlocks::block('desiderio_featurecards', [
+                    'eyebrow' => 'Architecture',
+                    'header' => 'Built from 62 typed components',
+                    'subheadline' => 'Every element is assembled from Fluid 5 components with typed arguments. Small parts make up larger ones, and nothing is styled twice.',
+                    'items' => [
+                        ['title' => '17 atoms', 'description' => 'Button, badge, input, icon, avatar and text. They use only design tokens, so a new preset changes all of them.'],
+                        ['title' => '37 molecules', 'description' => 'Cards, accordions, tabs, tables, alerts and form fields, built from atoms. Your own elements can use them too.'],
+                        ['title' => '4 layouts', 'description' => 'Section, container, grid and stack handle spacing and container queries. No element needs its own margins.'],
+                        ['title' => '4 organisms', 'description' => 'Site header, footer, breadcrumb and page header. Page templates only arrange organisms and content areas.'],
+                        ['title' => '244 content elements', 'description' => 'Heroes, pricing tables, dashboards and footers use the same components. That is why one audit can check all of them on every commit.'],
+                    ],
+                ]),
+                ShowcaseBlocks::block('desiderio_featurestats', [
+                    'header' => 'Fast to run, edit and launch',
+                    'description' => 'Three kinds of speed: page performance, editing and project delivery.',
+                    'items' => [
+                        ['value' => '0', 'label' => 'Rebuilds for a new design', 'description_text' => 'Themes switch through CSS tokens at runtime. No Tailwind build and no deployment.'],
+                        ['value' => '100%', 'label' => 'Static CSS, no JS framework', 'description_text' => 'No React or Vue in the frontend. Charts render on the server.'],
+                        ['value' => '1', 'label' => 'Command for the full demo site', 'description_text' => 'The seeder builds all 244 elements with their demo content. You can run it as often as you like.'],
+                        ['value' => '30', 'label' => 'Minutes from install to themed site', 'description_text' => 'Install, seed, pick a preset, publish. Or book a Kickstart workshop for your team.'],
                     ],
                 ]),
                 ShowcaseBlocks::block('desiderio_headersection', [

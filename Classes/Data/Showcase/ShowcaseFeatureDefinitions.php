@@ -138,7 +138,7 @@ final class ShowcaseFeatureDefinitions
             'slug' => 'desiderio',
             'product' => 'Desiderio + Innesto',
             'badge' => 'Desiderio design system',
-            'title' => 'Desiderio design system: TYPO3 pages without template work',
+            'title' => 'Desiderio: TYPO3 pages without template work',
             'navTitle' => 'Desiderio design system',
             'description' => 'The Desiderio design system for TYPO3 v14.3: 244 ready-made elements, 15 theme presets in the site settings, and Innesto for elements from shadcn registries.',
             'abstract' => 'The Desiderio design system gives editors 244 ready-made elements in 10 groups, themed from the site settings. Innesto turns shadcn registry components into new elements with one command.',
@@ -147,7 +147,7 @@ final class ShowcaseFeatureDefinitions
                 'subheadline' => 'Desiderio brings shadcn/ui to TYPO3 v14 as 244 elements in 10 groups, from heroes to pricing tables, charts and forms. Change the theme in the site settings, and every page follows without a rebuild.',
                 'primaryButton' => ['text' => 'Get Desiderio', 'link' => 'https://github.com/dirnbauer/desiderio'],
                 'secondaryButton' => ['text' => 'See every element', 'link' => '{{page:content-types}}'],
-                'image' => ShowcaseBlocks::screenshot('frontend-feature-desiderio-home-hero-b85b6c67.webp', 'The home page, built from its own elements', 'Desiderio home page with the headline “Ship TYPO3 client sites in days, not weeks”, download and pricing buttons, and a photo of an agency team working together.', 'Live screenshot from the TYPO3 v14 lab.'),
+                'image' => ShowcaseBlocks::screenshot('frontend-feature-desiderio-home-hero-b85b6c67.webp', 'The home page, built from its own elements', 'Desiderio home page: the headline “Ship TYPO3 client sites in days, not weeks”, download and pricing buttons, an agency team photo.', 'Live screenshot from the TYPO3 v14 lab.'),
             ],
             'problem' => ['header' => 'Every relaunch rebuilds the same sections', 'content' => '<p>You build heroes, pricing tables and footers again for each client, and editors wait for a developer to add a section. A new brand colour means CSS changes and another deployment. The budget goes into rework instead of content.</p>'],
             'tour' => [
@@ -202,7 +202,7 @@ final class ShowcaseFeatureDefinitions
             ],
             'install' => ['header' => 'Install the Desiderio design system', 'code' => implode("\n", ['# Desiderio and the Visual Editor enhancements it requires are not on Packagist', 'composer config repositories.desiderio vcs https://github.com/dirnbauer/desiderio.git', 'composer config repositories.visual-editor-enhancements vcs https://github.com/dirnbauer/typo3-visual-editor-enhancements.git', 'composer require webconsulting/desiderio', 'vendor/bin/typo3 extension:setup', 'vendor/bin/typo3 cache:flush', '', '# Optional: a demo page tree with every element below page 1', 'vendor/bin/typo3 desiderio:styleguide:seed --parent=1', '', '# Optional: Innesto, then graft a registry component as a new element', 'composer config repositories.innesto vcs https://github.com/dirnbauer/innesto.git', 'composer require webconsulting/innesto:^2.3', 'vendor/bin/typo3 extension:setup', 'vendor/bin/typo3 innesto:add magicui/marquee --key partner-marquee'])],
             'credits' => ['names' => ['Netresearch DTT GmbH'], 'project' => 'nr-llm', 'link' => 'https://github.com/netresearch/t3x-nr-llm', 'text' => '<p>The agentic features in the Desiderio styleguide run on <a href="https://github.com/netresearch/t3x-nr-llm">nr-llm</a>, the shared AI foundation for TYPO3 by Netresearch DTT GmbH. Thank you very much for building and sharing it.</p>'],
-            'cta' => ['header' => 'Start your next TYPO3 site on the Desiderio design system', 'description' => 'Install Desiderio, enable its site sets and seed the demo page tree. Then pick a preset and start building pages.', 'text' => 'Get Desiderio', 'link' => 'https://github.com/dirnbauer/desiderio'],
+            'cta' => ['header' => 'Start your next TYPO3 site on Desiderio', 'description' => 'Install Desiderio, enable its site sets and seed the demo page tree. Then pick a preset and start building pages.', 'text' => 'Get Desiderio', 'link' => 'https://github.com/dirnbauer/desiderio'],
         ];
     }
 
@@ -241,7 +241,7 @@ final class ShowcaseFeatureDefinitions
                         'tab' => 'Chapter page',
                         'title' => 'A pricing element in the Matcha theme',
                         'description' => 'The Plans & Pricing chapter uses <strong>Matcha</strong>, chosen in its page properties. Every element on the page follows.',
-                        'image' => ShowcaseBlocks::screenshot('frontend-feature-astryx-pricing-matcha-7e6d0d04.webp', 'A pricing element in the Matcha theme', 'Astryx featured pricing section in the green Matcha theme, with a handwritten heading beside a laptop photo and a €89-per-month offer card with buttons and entitlement rows.', 'Live screenshot from the TYPO3 v14 lab.'),
+                        'image' => ShowcaseBlocks::screenshot('frontend-feature-astryx-pricing-matcha-7e6d0d04.webp', 'A pricing element in the Matcha theme', 'Astryx pricing section in the green Matcha theme: a handwritten heading, a laptop photo and an offer card at €89 a month.', 'Live screenshot from the TYPO3 v14 lab.'),
                     ],
                     [
                         'tab' => 'Dark mode',

@@ -6,6 +6,17 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.29.1] — 2026-11-05
+
+### Fixed
+
+- The old dark pricing screenshot `frontend-pricing-midnight-dark-87c4160e.png` showed the retired plans (Pro €49, Agency €149). Five element fixtures (gallery, product gallery, hero carousel, download form, content carousel) now show the current dark pricing screenshot, the case-study grid the dark contact form; the capture script no longer makes the old shot, the file is deleted, and `RetiredScreenshotTest` keeps its name out of every source.
+- Copy the content audit flagged on the Desiderio site: the design system page title fits 50 characters, its call to action has seven words, two alt texts and the plans sentence of the news demo are shorter.
+
+### Added
+
+- `.github/FUNDING.yml`: GitHub shows a "Sponsor" button that leads to the How we earn page (Supporter, sponsored features, plans, Care). GitHub Sponsors stays a prepared comment until the owner has enrolled; `FundingFileTest` checks both.
+
 ## [4.29.0] — 2026-11-05
 
 ### Added

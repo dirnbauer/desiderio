@@ -39,8 +39,8 @@ final class ShowcaseAudiencePages
     }
 
     /**
-     * Overview page above the three audience pages: the model in four cards,
-     * then one condensed pitch per target group, each linking to the full
+     * Overview page above the three audience pages: the model in four cards
+     * and one link to the model page, then one condensed pitch per target group, each linking to the full
      * story on its subpage.
      *
      * @return ShowcasePage
@@ -65,15 +65,22 @@ final class ShowcaseAudiencePages
                     ShowcaseHeroPhotos::for('solutions'),
                 ),
                 // The model in the four ways of the price source. Feature
-                // cards carry no links; the model page is named in the lead.
+                // cards carry no links, so the inline CTA below leads to the
+                // model page, as on the home page.
                 ShowcaseBlocks::block('desiderio_featurecards', [
                     'eyebrow' => 'Open source',
                     'header' => 'Free software, paid care',
-                    'subheadline' => ShowcasePricing::modelSentence() . ' The full explanation is on the How we earn page.',
+                    'subheadline' => ShowcasePricing::modelSentence(),
                     'items' => array_map(
                         static fn(array $way): array => ['title' => $way['title'], 'description' => $way['description']],
                         ShowcasePricing::ways(),
                     ),
+                ]),
+                ShowcaseBlocks::block('desiderio_ctainline', [
+                    'header' => 'How we earn with free software',
+                    'description_text' => 'Why it is free, what always stays free and where the money goes.',
+                    'cta_text' => 'How we earn',
+                    'cta_link' => self::MODEL_PAGE_LINK,
                 ]),
                 ShowcaseBlocks::block('desiderio_textmedia', [
                     'header' => 'Agencies deliver fixed-price projects faster',

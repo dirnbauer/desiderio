@@ -57,18 +57,22 @@ final class ShowcaseAudiencePagesTest extends TestCase
         }
     }
 
-    public function testTheHubShowsTheModelRightAfterItsHero(): void
+    public function testTheHubShowsTheModelAndItsLinkRightAfterItsHero(): void
     {
         $hub = ShowcaseAudiencePages::pages()[0];
         $ctypes = array_column($hub['content'], 'ctype');
 
         self::assertSame('desiderio_hero', $ctypes[0]);
         self::assertSame('desiderio_featurecards', $ctypes[1]);
-        self::assertSame(['desiderio_textmedia', 'desiderio_textmedia', 'desiderio_textmedia', 'desiderio_ctabanner'], array_slice($ctypes, 2));
+        self::assertSame('desiderio_ctainline', $ctypes[2]);
+        self::assertSame(['desiderio_textmedia', 'desiderio_textmedia', 'desiderio_textmedia', 'desiderio_ctabanner'], array_slice($ctypes, 3));
         $model = $hub['content'][1]['fields'];
         self::assertSame('Free software, paid care', $model['header']);
-        self::assertSame(ShowcasePricing::modelSentence() . ' The full explanation is on the How we earn page.', $model['subheadline']);
+        self::assertSame(ShowcasePricing::modelSentence(), $model['subheadline']);
         self::assertSame(array_column(ShowcasePricing::ways(), 'title'), array_column(self::list($model, 'items'), 'title'));
+        $link = $hub['content'][2]['fields'];
+        self::assertSame('How we earn with free software', $link['header']);
+        self::assertSame('{{page:pricing/how-we-earn}}', $link['cta_link']);
     }
 
     public function testEveryAudiencePageFollowsTheSameOutline(): void

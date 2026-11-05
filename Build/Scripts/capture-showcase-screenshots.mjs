@@ -45,7 +45,6 @@ const SHOTS = [
     { name: 'frontend-hero-lagoon', path: '/', preset: 'lagoon', width: 1600, height: 1000 },
     { name: 'frontend-dashboards-forest', path: '/content-types/data-dashboards', preset: 'forest', width: 1600, height: 1000 },
     { name: 'frontend-features-ember-mobile', path: '/content-types/features-benefits', preset: 'ember', width: 390, height: 1000 },
-    { name: 'frontend-pricing-midnight-dark', path: '/content-types/plans-pricing', preset: 'midnight', mode: 'dark', width: 1600, height: 1000 },
     { name: 'frontend-themes-overview', path: '/themes', scrollTo: '.preset-grid', width: 1600, height: 1000 },
 ];
 

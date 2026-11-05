@@ -127,7 +127,7 @@ final class StyleguideShowcasePages
             ShowcaseBlocks::salesHero(
                 'For TYPO3 agencies',
                 'Ship TYPO3 client sites in days, not weeks',
-                '244 finished content elements and 15 theme presets, with backend previews and inline editing. Free with every release; paid plans add our time.',
+                '244 finished content elements and 15 theme presets, with backend previews and inline editing, free with every release.',
                 ['text' => 'Download the demo', 'link' => '{{page:downloads}}'],
                 ['text' => 'See pricing', 'link' => '{{page:pricing}}'],
                 ShowcaseHeroPhotos::for('home'),
@@ -186,7 +186,7 @@ final class StyleguideShowcasePages
             ShowcaseBlocks::block('desiderio_featurecards', [
                 'eyebrow' => 'Open source',
                 'header' => 'Free software, paid care',
-                'subheadline' => 'Everything is free with every release. You pay only for our time: answers, work by a date, or running your site.',
+                'subheadline' => ShowcasePricing::modelSentence(),
                 'items' => array_map(
                     static fn(array $way): array => ['title' => $way['title'], 'description' => $way['description']],
                     ShowcasePricing::ways(),
@@ -269,7 +269,7 @@ final class StyleguideShowcasePages
             ShowcaseBlocks::block('desiderio_pricingthreetier', [
                 'eyebrow' => 'Pricing',
                 'header' => 'Free to use. Paid plans add support.',
-                'subheadline' => sprintf('Desiderio is free under GPL-2.0, every release. Plans add guaranteed answer times and the maintenance promise; Care runs your site for %s a month.', ShowcasePricing::care()['price']),
+                'subheadline' => sprintf('Desiderio is free under GPL-2.0, every release. Plans add guaranteed answer times and the maintenance promise; Care runs your site for %s %s.', ShowcasePricing::care()['price'], ShowcasePricing::care()['period']),
                 'plans' => array_map(
                     static fn(array $plan): array => [
                         'name' => $plan['name'],
@@ -312,7 +312,7 @@ final class StyleguideShowcasePages
                 'items' => [
                     [
                         'title' => 'composer require webconsulting/desiderio',
-                        'content' => 'Add the GitHub repositories of Desiderio and Visual Editor Enhancements first, because neither is on Packagist. Needs TYPO3 v14.3.6 or newer and PHP 8.4 or 8.5.',
+                        'content' => 'Add the GitHub repositories of Desiderio and Visual Editor Enhancements; neither is on Packagist. Needs TYPO3 v14.3.6 or newer and PHP 8.4 or 8.5.',
                         'image' => ShowcaseBlocks::unsplash('desk-logan-weaver.jpg', 'Developer desk during installation', 'A tidy developer desk with a laptop.'),
                     ],
                     [

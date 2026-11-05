@@ -210,7 +210,7 @@ final class ShowcasePricingPages
                 // orphan (the feature-card grid has three).
                 ShowcaseBlocks::block('desiderio_benefitcards', [
                     'eyebrow' => 'The model',
-                    'header' => 'Four ways to use Desiderio',
+                    'header' => 'Four ways to work with Desiderio',
                     'subheadline' => ShowcasePricing::modelSentence(),
                     'columns' => '2',
                     'items' => array_map(
@@ -255,13 +255,13 @@ final class ShowcasePricingPages
                     ],
                 ]),
                 ShowcaseBlocks::block('desiderio_featuretimeline', [
-                    'header' => 'A typical path',
-                    'subheadline' => 'Most teams start for free and pay when a live site needs answers.',
+                    'header' => 'Free until the first live client site',
+                    'subheadline' => 'Then each step adds our time, at a fixed price.',
                     'items' => [
                         ['step' => '1', 'title' => 'Day one: install and build', 'description' => '<p>Free: every element, every preset and every release, on as many sites as you like.</p>'],
                         ['step' => '2', 'title' => 'The first live client site', 'description' => sprintf('<p>Choose %s: %s %s. It adds answers and the maintenance promise.</p>', $studio['name'], $studio['price'], $studio['period'])],
                         ['step' => '3', 'title' => 'Your brand or a new element', 'description' => sprintf('<p>A Brand Theme for %s or a custom element from %s, at a fixed price with a written scope.</p>', $rates['Brand Theme'], $rates['Custom element S'])],
-                        ['step' => '4', 'title' => 'One partner for everything', 'description' => sprintf('<p>%s runs your site: hosting, updates and monitoring, %s %s.</p>', $care['name'], $care['price'], $care['period'])],
+                        ['step' => '4', 'title' => 'One partner for everything', 'description' => sprintf('<p>%s runs your site for %s %s: hosting, updates and monitoring.</p>', $care['name'], $care['price'], $care['period'])],
                     ],
                 ]),
                 self::careBlock(),

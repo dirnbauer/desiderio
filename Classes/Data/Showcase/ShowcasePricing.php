@@ -161,10 +161,10 @@ final class ShowcasePricing
     {
         return [
             ['title' => 'Kickstart workshop', 'rate' => '€1,490', 'unit' => '', 'description' => '3 hours remote for up to 8 developers, a review of your first project and 30 days of priority questions.'],
-            ['title' => 'Brand Theme', 'rate' => '€2,490', 'unit' => '', 'description' => 'A client’s brand as a Desiderio preset, checked for WCAG 2.2 AA contrast, ready 10 business days after the brand assets arrive. Two rounds of changes.'],
+            ['title' => 'Brand Theme', 'rate' => '€2,490', 'unit' => '', 'description' => 'A client’s brand as a preset, checked for WCAG 2.2 AA contrast and ready 10 business days after the assets arrive. Two rounds of changes.'],
             ['title' => 'Custom element S', 'rate' => '€890', 'unit' => '', 'description' => 'Up to 8 fields and a fixed layout, with a backend preview and English and German labels.'],
             ['title' => 'Custom element M', 'rate' => '€1,690', 'unit' => '', 'description' => 'Repeating items, variants or interaction such as tabs, sliders or filters. Larger elements get a quote after a written spec.'],
-            ['title' => 'Upgrade audit', 'rate' => '€690', 'unit' => '', 'description' => 'A client site on TYPO3 v10 to v13: extension inventory, risks and a fixed quote for v14. Credited in full if you book the upgrade within 60 days.'],
+            ['title' => 'Upgrade audit', 'rate' => '€690', 'unit' => '', 'description' => 'Extension inventory, risks and a fixed v14 quote for a site on TYPO3 v10 to v13. Credited in full if you upgrade within 60 days.'],
             ['title' => 'Editor training', 'rate' => '€790', 'unit' => '', 'description' => '3 hours remote for up to 12 editors, under your agency’s name if you like, with a recording and a handout.'],
             ['title' => 'Support hours', 'rate' => '€690', 'unit' => '5 hours', 'description' => 'Code reviews and project questions for plan holders, valid for 12 months.'],
         ];
@@ -323,7 +323,7 @@ final class ShowcasePricing
             [
                 'icon' => 'download',
                 'title' => 'Use it',
-                'description' => 'Install it, build client sites, sell your work. Every release and every fix is free under GPL-2.0. No registration, no licence key.',
+                'description' => 'Install it from GitHub, build client sites and sell your work. Every release and every fix is free under GPL-2.0.',
                 'link' => ShowcaseBlocks::REPO_URL,
             ],
             [
@@ -343,7 +343,7 @@ final class ShowcasePricing
             [
                 'icon' => 'shield-check',
                 'title' => 'Let us take care',
-                'description' => sprintf('Plans from %s a year add answers and the maintenance promise. Care runs your site: hosting, updates, monitoring, %s %s.', self::plans()[1]['price'], $care['price'], $care['period']),
+                'description' => sprintf('Plans from %s a year add answers and the maintenance promise. Care runs your site for %s %s: hosting, updates, monitoring.', self::plans()[1]['price'], $care['price'], $care['period']),
                 'link' => '{{page:pricing}}',
             ],
         ];

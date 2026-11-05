@@ -319,8 +319,8 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
         $count = 0;
         foreach ($blocks as $block) {
             // The test installation has no other sites, and the seeder leaves
-            // out a block whose items only name sites it lacks (the
-            // homepage's "More sites on this TYPO3 installation").
+            // out a block whose items only name sites it lacks (the lab
+            // page's "More sites on this TYPO3 installation").
             if (self::onlyNamesOtherSites($block)) {
                 continue;
             }

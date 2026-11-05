@@ -92,7 +92,7 @@ final class ShowcaseTalkPages
                 ShowcaseBlocks::block('desiderio_ctabanner', [
                     'header' => 'How in-house teams publish without tickets',
                     'description' => 'Campaign pages from finished elements, with backend previews and inline editing. Your developers build the site once.',
-                    'cta_text' => 'For in-house teams',
+                    'cta_text' => 'See in-house details',
                     'cta_link' => '{{page:target-groups/for-inhouse-teams}}',
                     'bg_style' => 'primary',
                 ]),

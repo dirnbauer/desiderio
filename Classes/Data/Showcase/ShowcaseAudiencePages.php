@@ -59,7 +59,7 @@ final class ShowcaseAudiencePages
                 ShowcaseBlocks::salesHero(
                     'For every team',
                     'Built for the teams that ship TYPO3',
-                    'Agencies deliver fixed-price projects faster, in-house teams publish without tickets, freelancers get a full design system. All of it free; care when you want it.',
+                    'Agencies deliver fixed-price projects faster, in-house teams publish without tickets and freelancers get a full design system, all for free.',
                     ['text' => 'See agency details', 'link' => '{{page:target-groups/for-agencies}}'],
                     ['text' => 'See pricing', 'link' => '{{page:pricing}}'],
                     ShowcaseHeroPhotos::for('solutions'),
@@ -87,7 +87,7 @@ final class ShowcaseAudiencePages
                     'shadcn_layout' => 'media-right',
                     'subheadline' => 'Agencies and integrators',
                     'content' => '<p><strong>Every hour your team spends on templates comes out of the margin of a fixed-price TYPO3 project.</strong> Desiderio brings 244 finished and audited elements, so your quote covers content modelling and integration instead.</p>'
-                        . sprintf('<p>The software is free on every client site. The Agency plan adds answers by the next business day, for %s.</p>', self::yearly('agency')),
+                        . sprintf('<p>The software is free on every client site, and the Agency plan adds answers by the next business day for %s.</p>', self::yearly('agency')),
                     'media_rounded' => 1,
                     'button_text' => 'See agency details',
                     'button_link' => '{{page:target-groups/for-agencies}}',
@@ -98,7 +98,7 @@ final class ShowcaseAudiencePages
                     'shadcn_layout' => 'media-left',
                     'subheadline' => 'In-house marketing and product teams',
                     'content' => '<p><strong>Today every new campaign page is a developer ticket, and it waits in the queue.</strong> With Desiderio, editors build pages from 244 elements with backend previews and publish them the same day.</p>'
-                        . sprintf('<p>The software is free. We recommend Studio at %s, with an editor training for %s.</p>', self::yearly('studio'), self::rate('Editor training')),
+                        . sprintf('<p>The software is free; we recommend Studio at %s and an editor training for %s.</p>', self::yearly('studio'), self::rate('Editor training')),
                     'media_rounded' => 1,
                     'button_text' => 'See in-house details',
                     'button_link' => '{{page:target-groups/for-inhouse-teams}}',
@@ -109,7 +109,7 @@ final class ShowcaseAudiencePages
                     'shadcn_layout' => 'media-right',
                     'subheadline' => 'Freelancers and solo developers',
                     'content' => '<p><strong>On a fixed-price quote, the design and template phase is the part that overruns and goes unpaid.</strong> Desiderio gives you a design system with 244 elements and 15 theme presets, so that phase becomes an afternoon of content modelling.</p>'
-                        . sprintf('<p>Start on the free Community plan for %s. Move to Studio at %s when your first client site goes live.</p>', self::plan('community')['price'], self::yearly('studio')),
+                        . sprintf('<p>Start on the free Community plan and move to Studio at %s when your first client site goes live.</p>', self::yearly('studio')),
                     'media_rounded' => 1,
                     'button_text' => 'See freelancer details',
                     'button_link' => '{{page:target-groups/for-freelancers}}',
@@ -211,7 +211,7 @@ final class ShowcaseAudiencePages
                 ]),
                 ShowcaseBlocks::block('desiderio_ctabanner', [
                     'header' => 'Use Desiderio in your next pitch',
-                    'description' => 'Start free on your current project. Until 31 March 2027, the first 20 agencies on a paid plan keep their price for as long as it runs.',
+                    'description' => 'Start free on your current project. Until 31 March 2027, the first 20 agencies on a paid plan keep their price while it runs.',
                     'cta_text' => 'Get started free',
                     'cta_link' => ShowcaseBlocks::REPO_URL,
                     'bg_style' => 'primary',
@@ -426,19 +426,23 @@ final class ShowcaseAudiencePages
     /**
      * "What you pay, what you get": what is always free (the same list on
      * every page) and what the audience pays for, with prices, as two equal
-     * tiers. The paid tier starts at the audience's recommended plan.
+     * tiers. The paid tier shows the plan we recommend to the audience; its
+     * list names the other paid items, some cheaper, so the tier states the
+     * plan's yearly price rather than a "from" price.
      *
      * @param list<string> $paid
      * @return ShowcaseBlock
      */
     private static function payAndGet(string $planKey, array $paid): array
     {
+        $plan = self::plan($planKey);
+
         return ShowcasePricingPages::freeAndPaid(
             'Free and paid',
             'What you pay, what you get',
             ShowcasePricing::modelSentence(),
-            sprintf('from %s', self::plan($planKey)['price']),
-            'Each item is our time, at a fixed net price.',
+            self::yearly($planKey),
+            sprintf('We recommend %s. Everything else is our time, at a fixed net price.', $plan['name']),
             $paid,
         );
     }

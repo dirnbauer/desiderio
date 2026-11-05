@@ -97,7 +97,7 @@ final class ShowcaseAudiencePagesTest extends TestCase
             self::assertFalse($free['featured'], $page['slug']);
             self::assertSame('{{page:pricing}}', $paidTier['button_link'], $page['slug']);
             self::assertTrue($paidTier['featured'], $page['slug']);
-            self::assertStringStartsWith('from €', self::text($paidTier, 'price'), $page['slug']);
+            self::assertMatchesRegularExpression('/^€[0-9,]+ a year$/u', self::text($paidTier, 'price'), $page['slug']);
             $paid = array_column(self::list($paidTier, 'features'), 'text');
             foreach ($paid as $point) {
                 self::assertIsString($point);

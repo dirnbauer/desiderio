@@ -6,6 +6,33 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.29.0] — 2026-11-05
+
+### Added
+
+- A **How we earn** page (`/pricing/how-we-earn`, "Free software, paid care") that explains the open-source model: the four ways to work with us, what is always free and what costs our time, where the money goes, Care, Supporter, the sponsored feature and an honest FAQ, with a generated hero photo.
+- **Care** (€390 a month per live site), **Supporter** (€190 a year) and **sponsored features** (from €1,290) in the price source `ShowcasePricing`, together with `ways()`, `alwaysFree()`, `costsMoney()`, `modelFaq()`, `modelSentence()`, `service()` and the seller constants, so every page reads its prices and model copy from one place.
+- The talk page `/usability-slogans` is back, restored under Resources.
+- A two-tier free/paid section (`pricingtwotier`) on the model page and the audience pages, replacing the pro-and-con compare.
+- `feature-numbered` renders two columns for four or ten items (template and CSS, no schema change).
+- Unit tests for the price source, the pricing pages, the audience pages, the talk page and the home page.
+
+### Changed
+
+- The home page is trimmed to 15 sections with the model block and a link to the lab page; the films, the other sites and the sample quotes moved off it.
+- The Resources hub is now "Lab and resources" with the lab cards and the other sites.
+- The target-group hub and the three audience pages carry the model block, "Your path with Desiderio" and "What you pay, what you get".
+- The pricing page gets a Care block, eight service cards including the sponsored feature, "Other ways to support", the FAQ entries "Why is Desiderio free?" and "Who sends the invoice?", and the hero line "Paid plans add our time".
+- The order page names webconsulting GmbH as the seller; support hours cost €690 for 5 hours.
+- The dark-mode pricing screenshot shows the current plans.
+- The tech facts page carries the components and speed blocks, the product hub the integrations block.
+
+### Fixed
+
+- Prices typed by hand on the tech facts and pricing pages now come from the price source.
+- The `message-circle` icon replaces the missing `lightbulb` on the feature card.
+- A stale comment in a functional test.
+
 ## [4.28.0] — 2026-11-04
 
 ### Added

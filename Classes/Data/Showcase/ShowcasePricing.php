@@ -245,7 +245,7 @@ final class ShowcasePricing
             'period' => 'a month per live site',
             'yearly' => '€3,900 a year, two months free',
             'further_sites' => 'Every further live site of the same customer: €290 a month',
-            'description' => 'For teams that want one partner for hosting, updates and support: your site runs on its own Coolify instance in the EU. T3 Ops applies TYPO3 and extension updates within the maintenance promise and checks security four times a day.',
+            'description' => 'One partner for your site: its own Coolify instance in the EU, every update applied by T3 Ops, security checked four times a day.',
             'features' => [
                 'Hosting on your own Coolify instance in the EU',
                 'Updates and security fixes applied, with screenshots as evidence',
@@ -269,7 +269,7 @@ final class ShowcasePricing
             'name' => 'Supporter',
             'price' => '€190',
             'period' => 'a year',
-            'description' => 'No support included, on purpose. Your name or logo on our How we earn page and a thank-you in the release notes. For companies that earn with Desiderio and want to say so.',
+            'description' => 'For companies that earn with Desiderio: your name or logo on our How we earn page and in the release notes. No support included.',
             'button' => ['text' => 'Become a Supporter', 'link' => self::ORDER_LINK],
         ];
     }
@@ -286,7 +286,7 @@ final class ShowcasePricing
             'name' => 'Sponsored feature',
             'price' => 'from €1,290',
             'period' => 'per feature',
-            'description' => 'You name the feature and the date. We build it and release it free for everyone, with tests, documentation and translations, and your name in the release notes. A custom element for your own use stays €890.',
+            'description' => sprintf('You name the feature and the date. We build it and release it free for everyone, with tests, documentation and translations, and your name in the release notes. A custom element for your own use stays %s.', array_column(self::services(), 'rate', 'title')['Custom element S']),
             'button' => ['text' => 'Sponsor a feature', 'link' => self::ORDER_LINK],
         ];
     }
@@ -375,7 +375,7 @@ final class ShowcasePricing
 
         return [
             ['question' => 'What is the catch?', 'answer' => 'There is none we know of. The software is free because that is cheaper and safer for everyone, and we earn when you want our time.'],
-            ['question' => 'Do I have to pay if I earn money with Desiderio?', 'answer' => 'No. GPL-2.0 allows commercial use on unlimited sites. Pay when you want answers, work or Care.'],
+            ['question' => 'Do I pay when I earn with Desiderio?', 'answer' => 'No. GPL-2.0 allows commercial use on unlimited sites. Pay when you want answers, work or Care.'],
             ['question' => 'What if you stop maintaining it?', 'answer' => 'You keep every version and your sites keep working. Plan holders have the maintenance promise in their terms, and a missed patch extends the plan by a month.'],
             ['question' => 'Why no paid early access?', 'answer' => 'A release that waits for payment is a security fix that waits. Everyone gets every release on the same day.'],
             ['question' => 'Can I pay without needing support?', 'answer' => sprintf('Yes. Become a Supporter for %s %s, or sponsor a feature %s.', $supporter['price'], $supporter['period'], self::sponsoredFeature()['price'])],

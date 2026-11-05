@@ -15,6 +15,13 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: var(--d-spacing-lg);
 }
+/* Four or ten items (count % 3 == 1, even): two columns instead of a lone
+   last item. Above 64rem the modern base (22-modern-base.css, section 7)
+   still shows four items in one row; ten stay in five rows of two. Small
+   screens keep one column (the rule below comes later and wins). */
+.feature-numbered__grid--cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
 @media (max-width: 768px) {
     .feature-numbered__grid { grid-template-columns: minmax(0, 1fr); }
 }

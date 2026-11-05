@@ -14,7 +14,10 @@
             </d:molecule.sectionIntro>
         </f:if>
 
-        <ol class="feature-numbered__grid">
+        <f:comment>Four or ten items fill a three-column grid with one left over: they get two columns (4 = 2 + 2, 10 = 5 rows of 2). Count % 6 == 4 is exactly "count % 3 == 1 and even".</f:comment>
+        <f:variable name="itemCount" value="{data.items -> f:count()}" />
+        <f:variable name="countRemainder" value="{itemCount % 6}" />
+        <ol class="feature-numbered__grid{f:if(condition: '{countRemainder} == 4', then: ' feature-numbered__grid--cols-2')}">
             <f:for each="{data.items}" as="item" iteration="iter">
                 <li class="feature-numbered__item">
                     <span class="feature-numbered__number" aria-hidden="true">{iter.cycle -> f:format.padding(padLength: 2, padString: '0', padType: 'left')}</span>

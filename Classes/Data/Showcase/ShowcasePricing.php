@@ -330,8 +330,9 @@ final class ShowcasePricing
                 'icon' => 'heart',
                 'title' => 'Support it',
                 'description' => sprintf('Star the repository, report what breaks, write about it. Or become a Supporter for %s %s and be thanked by name.', $supporter['price'], $supporter['period']),
-                // Stars, issues and recommendations happen on GitHub; the
-                // Supporter is named on the model page, which shows this card.
+                // Stars, issues and recommendations happen on GitHub. The
+                // repository's Sponsor button (.github/FUNDING.yml) leads to
+                // the model page, which shows this card and the Supporter.
                 'link' => ShowcaseBlocks::REPO_URL,
             ],
             [

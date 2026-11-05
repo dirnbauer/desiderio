@@ -40,7 +40,8 @@ final class RetiredScreenshotTest extends TestCase
     #[DataProvider('retiredScreenshots')]
     public function testTheRetiredScreenshotIsGone(string $name): void
     {
-        self::assertSame([], glob(self::root() . '/Resources/Public/Styleguide/*/' . $name . '-*') ?: []);
+        $files = glob(self::root() . '/Resources/Public/Styleguide/*/' . $name . '-*');
+        self::assertSame([], $files === false ? [] : $files);
     }
 
     #[DataProvider('retiredScreenshots')]

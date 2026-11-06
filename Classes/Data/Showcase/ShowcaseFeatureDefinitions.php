@@ -371,20 +371,32 @@ final class ShowcaseFeatureDefinitions
             'badge' => 'Visual Editor add-on',
             'title' => 'Visual Editor Enhancements: edit more on the page',
             'navTitle' => 'Visual editing with VE Enhancements',
-            'description' => 'An element library with live previews and typo-tolerant search, a field chooser, link editing and a one-row text toolbar for the TYPO3 Visual Editor.',
-            'abstract' => 'Visual Editor Enhancements adds what editors miss on the page: an element library with live previews, a popover for layout options and link editing. Everything saves through the Visual Editor.',
+            'description' => 'Edit accordion entries, cards and lists from the page. Add a preview library, field settings and link editing to the TYPO3 Visual Editor.',
+            'abstract' => 'Choose elements from live previews, adjust their settings and manage their entries in a compact side panel. Open an entry to edit its text and media in TYPO3’s editing form.',
             'hero' => [
-                'header' => 'Add and style content right on the page',
-                'subheadline' => 'Drag finished elements from a library with live previews, change layout options in a popover and edit links in place. Everything saves through the Visual Editor.',
+                'header' => 'Edit the element. Manage its entries.',
+                'subheadline' => 'Choose elements from live previews. Change their settings beside the content. Open Entries to edit, add or remove accordion items, cards and list entries.',
                 'primaryButton' => ['text' => 'Get the extension', 'link' => 'https://github.com/dirnbauer/typo3-visual-editor-enhancements'],
                 'secondaryButton' => ['text' => 'See the manual', 'link' => 'https://github.com/dirnbauer/typo3-visual-editor-enhancements/tree/main/Documentation'],
-                'image' => ShowcaseBlocks::screenshot('feature-visual-editor-element-library-17a5d6ac.webp', 'Pick elements from a library with live previews', 'TYPO3 Visual Editor with the Add content panel open, showing element cards with rendered previews and keyword chips.', 'Live screenshot from the TYPO3 v14 lab.'),
+                'image' => ShowcaseBlocks::screenshot('feature-visual-editor-entries-64032931.webp', 'Your entries, in one clear panel', 'Accordion in the Visual Editor with the Entries panel on the right, three clickable questions and an Add entry button.', 'Live screenshot from the TYPO3 v14 lab.'),
             ],
-            'problem' => ['header' => 'Editing on the page stops at the text', 'content' => '<p>The Visual Editor lets editors type straight into the page. Adding an element still means a list without previews, and layout options, links and colours live in the backend form. Editors switch screens for every small change.</p>'],
+            'problem' => ['header' => 'One element can hold many entries', 'content' => '<p>A FAQ has questions. A card grid has cards. Editors need to manage those entries as well as the text on the page. A clear Entries action brings them together beside the preview.</p>'],
             'tour' => [
                 'header' => 'More editing, right on the page',
                 'subheadline' => 'Live screenshots from this TYPO3 v14 lab.',
                 'shots' => [
+                    [
+                        'tab' => 'Entries',
+                        'title' => 'Your entries, in one clear panel',
+                        'description' => 'Choose <strong>Entries</strong> beside the settings icon. A compact panel on the right lists the element’s entries. Open a title to edit it, or use its menu for settings, insertion and removal.',
+                        'image' => ShowcaseBlocks::screenshot('feature-visual-editor-entries-64032931.webp', 'Your entries, in one clear panel', 'Accordion in the Visual Editor with the Entries panel on the right, three clickable questions and an Add entry button.', 'Live screenshot from the TYPO3 v14 lab.'),
+                    ],
+                    [
+                        'tab' => 'Edit an entry',
+                        'title' => 'Click the title. Edit the content.',
+                        'description' => 'An entry’s title opens <strong>TYPO3’s editing form</strong> over the preview. Edit text, media and other fields, then save and close. New entries start hidden until you enable them.',
+                        'image' => ShowcaseBlocks::screenshot('feature-visual-editor-entry-form-a0bd6234.webp', 'Click the title. Edit the content.', 'TYPO3’s contextual editing form for an accordion question, with its title, answer, Save and Close controls.', 'Live screenshot from the TYPO3 v14 lab.'),
+                    ],
                     [
                         'tab' => 'Search',
                         'title' => 'Search that forgives typos',
@@ -394,8 +406,8 @@ final class ShowcaseFeatureDefinitions
                     [
                         'tab' => 'Field settings',
                         'title' => 'Change layout options without the backend form',
-                        'description' => 'The <strong>Field settings</strong> popover lists the element’s choice fields in the form’s tabs. Changes wait for the next save.',
-                        'image' => ShowcaseBlocks::screenshot('feature-visual-editor-field-chooser-a068f1c8.webp', 'Change layout options without the backend form', 'Visual Editor with the Field settings popover open on the homepage hero, showing the Background setting in the Appearance tab.', 'Live screenshot from the TYPO3 v14 lab.'),
+                        'description' => '<strong>Field settings</strong> keeps layout choices in the form’s tabs. A short collection shortcut opens the entries. Field changes wait for Save; adding or removing entries saves immediately.',
+                        'image' => ShowcaseBlocks::screenshot('feature-visual-editor-collection-settings-de17e2e1.webp', 'Change layout options without the backend form', 'Accordion field settings with General, Appearance and Categories tabs, an Allow Multiple Open checkbox and a compact entries shortcut.', 'Live screenshot from the TYPO3 v14 lab.'),
                     ],
                     [
                         'tab' => 'Rich text',
@@ -414,6 +426,8 @@ final class ShowcaseFeatureDefinitions
             'benefits' => [
                 'header' => 'What you get with Visual Editor Enhancements',
                 'items' => [
+                    ['icon' => 'list', 'title' => 'Manage the entries inside an element', 'description' => 'Questions, cards and list items appear in a compact panel. Add an entry below the list or insert one after an existing item.'],
+                    ['icon' => 'edit', 'title' => 'Open the right editing form', 'description' => 'Click an entry’s title for its text and media. Its menu holds quick settings and removal. Back keeps nested settings in the same panel.'],
                     ['icon' => 'monitor', 'title' => 'See elements before you add them', 'description' => 'Each card in the library is a rendered preview with demo content. Dropped elements arrive pre-filled, so a new section never starts empty.'],
                     ['icon' => 'search', 'title' => 'Search that forgives typos', 'description' => 'Type \'testimonal\' and the library still finds testimonials, with a \'Did you mean\' link. Elements you used recently stay at the top.'],
                     ['icon' => 'settings', 'title' => 'Layout options next to the content', 'description' => 'Selects, categories, links, checkboxes and colours open in a popover, grouped like the backend form. Nothing is written until you save.'],
@@ -424,17 +438,19 @@ final class ShowcaseFeatureDefinitions
                 'header' => 'Questions before you install',
                 'subheadline' => 'Setup, requirements, licence and data.',
                 'items' => [
-                    ['question' => 'Does it need a special theme?', 'answer' => 'Not for the field chooser, link editing, rich-text toolbar and toolbar switches: they work on any Visual Editor site. The element library also needs a catalogue provider that lists your elements and renders their previews.'],
-                    ['question' => 'Which versions does it support?', 'answer' => 'TYPO3 v14.3.7 or newer and PHP 8.4 or newer, with Visual Editor 1.10.2 or newer. Each release is checked against a named Visual Editor version, currently 1.10.3.'],
-                    ['question' => 'What does it cost to run?', 'answer' => 'It is free under GPL-2.0-or-later and ships through Composer and Git. Every feature is on by default and can be switched off per installation, per user or per page tree.'],
-                    ['question' => 'Can it change content without an editor noticing?', 'answer' => 'No. Field changes wait in the Visual Editor’s pending list until you save, and a dropped element is written by the DataHandler with your permissions. Its endpoints need a backend login and a request token.'],
+                    ['question' => 'How do I enable the Entries panel?', 'answer' => 'In User settings > Visual editor, enable Edit collection entries. The Entries action appears only on elements with collections. You can use it even when the field chooser is switched off.'],
+                    ['question' => 'When are changes saved?', 'answer' => 'Field settings wait for the Visual Editor’s Save button. Adding or removing an entry saves immediately; Reset does not undo it. Removal asks for confirmation. Save or reset pending text before changing the entry list.'],
+                    ['question' => 'Can every collection be changed here?', 'answer' => 'Supported inline collections can add and remove entries within their limits and your permissions. Media relations, connected translations and some workspace operations need the backend form. The panel explains the relevant limit and links to that form.'],
+                    ['question' => 'Does it need a special theme?', 'answer' => 'Field settings, link editing and the text toolbar work on Visual Editor sites. Collection controls use the site’s inline record definitions. The element library needs a catalogue provider for its previews.'],
+                    ['question' => 'Which versions does it support?', 'answer' => 'TYPO3 v14.3.7 or newer and PHP 8.4 or newer, with Visual Editor 1.10.2 or newer. The Entries update was checked on TYPO3 14.3.10 with Visual Editor 1.10.4.'],
+                    ['question' => 'What does it cost to run?', 'answer' => 'It is free under GPL-2.0-or-later and ships through Composer and Git. Features can be restricted per installation, user or page tree. Collection editing is opt-in for each user.'],
                 ],
             ],
             'install' => ['header' => 'Install Visual Editor Enhancements', 'code' => implode("\n", ['# Not on Packagist: add the Git repository first', 'composer config repositories.visual-editor-enhancements vcs https://github.com/dirnbauer/typo3-visual-editor-enhancements.git', 'composer require webconsulting/visual-editor-enhancements', 'vendor/bin/typo3 cache:flush'])],
             // The add-on extends the Visual Editor: vendor/friendsoftypo3/visual-editor/ext_emconf.php
             // names Matthis Vogel, its README.md credits anders und sehr
             'credits' => ['names' => ['Matthis Vogel', 'anders und sehr'], 'project' => 'The Visual Editor', 'link' => 'https://github.com/FriendsOfTYPO3/visual_editor'],
-            'cta' => ['header' => 'Give editors more to do on the page', 'description' => 'Install the extension and flush the caches. The field settings and link buttons appear in Content > Editor straight away.', 'text' => 'Get the extension', 'link' => 'https://github.com/dirnbauer/typo3-visual-editor-enhancements'],
+            'cta' => ['header' => 'Give editors more to do on the page', 'description' => 'Install the extension, flush the caches and enable Edit collection entries in your user settings. Open a page and try the Entries action.', 'text' => 'Get the extension', 'link' => 'https://github.com/dirnbauer/typo3-visual-editor-enhancements'],
         ];
     }
 

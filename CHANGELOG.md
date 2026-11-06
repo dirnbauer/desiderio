@@ -4,6 +4,13 @@ All notable changes to **webconsulting/desiderio** are documented in this
 file. The format follows [Keep a Changelog](https://keepachangelog.com/)
 and the project adheres to [Semantic Versioning](https://semver.org/).
 
+## [4.32.0] — 2026-11-06
+
+### Added
+
+- Video Feature Section supports up to ten WebVTT caption tracks. Name files with a language suffix (`film.en.vtt`, `film.de.vtt`, `film.zh.vtt`, `film.hu.vtt`); the player labels each track in its own language and selects the page language by default. Existing single-track videos remain supported.
+- Visual Editor Enhancements product page explains the Entries panel, contextual entry editing and field settings, with three live screenshots, setup instructions and the distinction between immediate entry changes and field changes saved with the page. `Build/Scripts/capture-visual-editor-entries.mjs` reproduces the screenshots using a disposable English backend session.
+
 ## [4.31.0] — 2026-11-05
 
 ### Added

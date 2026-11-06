@@ -41,7 +41,8 @@ fields:
     type: File
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:video_captions'
     allowed: vtt
-    maxitems: 1
+    maxitems: 10
+    description: 'Upload WebVTT tracks named film.en.vtt, film.de.vtt, etc. The language suffix sets the player label; the page language is selected by default.'
   -
     identifier: poster
     type: File

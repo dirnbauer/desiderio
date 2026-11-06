@@ -1,5 +1,6 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
       xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:di="http://typo3.org/ns/Webconsulting/Desiderio/ViewHelpers"
       xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
       data-namespace-typo3-fluid="true">
 
@@ -30,9 +31,10 @@
                            {f:if(condition: data.poster.0, then: 'poster="{f:uri.image(image: data.poster.0, maxWidth: 1280)}"')}
                            {f:if(condition: data.video_file.0.properties.autoplay, then: 'muted loop data-d-autoplay')}>
                         <source src="{data.video_file.0.publicUrl}" type="{data.video_file.0.mimeType}"/>
-                        <f:if condition="{data.captions_file.0}">
-                            <track kind="captions" src="{data.captions_file.0.publicUrl}" srclang="en" label="English"/>
-                        </f:if>
+                        <f:for each="{data.captions_file}" as="captionTrack">
+                            <f:variable name="track" value="{di:captionTrack(filename: captionTrack.properties.name)}"/>
+                            <track kind="captions" src="{captionTrack.publicUrl}" srclang="{track.language}" label="{track.label}" {f:if(condition: track.selected, then: 'default')}/>
+                        </f:for>
                         <a href="{data.video_file.0.publicUrl}"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:video_download"/></a>
                     </video>
                     <f:comment>

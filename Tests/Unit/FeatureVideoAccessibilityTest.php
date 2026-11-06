@@ -23,14 +23,14 @@ final class FeatureVideoAccessibilityTest extends TestCase
         self::assertIsArray($captionsField);
         self::assertSame('File', $captionsField['type'] ?? null);
         self::assertSame('vtt', $captionsField['allowed'] ?? null);
-        self::assertSame(1, $captionsField['maxitems'] ?? null);
+        self::assertSame(10, $captionsField['maxitems'] ?? null);
 
         $template = (string)file_get_contents(self::ELEMENT_DIR . '/templates/frontend.html');
         self::assertStringContainsString('controls playsinline preload="metadata"', $template);
         self::assertStringContainsString('aria-label="{videoTitle -> f:format.trim()}"', $template);
         self::assertStringContainsString('<track kind="captions"', $template);
-        self::assertStringContainsString('src="{data.captions_file.0.publicUrl}"', $template);
-        self::assertStringContainsString('srclang="en" label="English"', $template);
+        self::assertStringContainsString('src="{captionTrack.publicUrl}"', $template);
+        self::assertStringContainsString('srclang="{track.language}" label="{track.label}"', $template);
         self::assertStringContainsString('<a href="{data.video_file.0.publicUrl}">', $template);
         // The opening tag runs to the first <source>: a Fluid "->" inside it ends a [^>]* match early.
         self::assertSame(1, preg_match('/<video\b.*?(?=<source)/s', $template, $videoTag));

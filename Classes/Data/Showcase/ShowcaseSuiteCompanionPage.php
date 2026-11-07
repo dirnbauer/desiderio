@@ -78,7 +78,7 @@ final class ShowcaseSuiteCompanionPage
                     'media_rounded' => 1,
                     'button_text' => 'Explore the editor',
                     'button_link' => '{{page:features/visual-editor}}',
-                    'media' => ShowcaseBlocks::screenshot('feature-visual-editor-entries-64032931.webp', 'Entries in the Visual Editor', 'The Visual Editor entry list with compact controls for editing and adding accordion items.'),
+                    'media' => ShowcaseBlocks::screenshot('feature-visual-editor-entries-6c4254e3.webp', 'Entries in the Visual Editor', 'The Visual Editor entry list with compact controls for editing and adding accordion items.'),
                 ]),
                 ShowcaseBlocks::block('desiderio_howtosteps', [
                     'header' => 'From enquiry to your first project',

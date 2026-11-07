@@ -38,9 +38,9 @@ final class ShowcaseVisualEditorInlinePage
         $blocks = [ShowcaseBlocks::block('text', [
             'header' => 'Inline records in the Visual Editor',
             'header_layout' => 2,
-            'bodytext' => '<p>Enable collection entries in your Visual Editor user settings. Save or reset pending changes before adding or removing entries.</p>'
-                . '<p>Collection changes save immediately. Reset does not undo them. New live entries stay hidden until you enable them in the backend form.</p>'
-                . '<p>Use the backend form for required media and connected translations. This page also covers shared tables and nested lists. '
+            'bodytext' => '<p>Enable Edit collection entries in your Visual Editor user settings. Then use Add entry in an element’s toolbar, or open Entries to rename, reorder, show or hide its entries.</p>'
+                . '<p>Adding, removing and moving save immediately; Reset does not undo them. Renaming and visibility save with the page. New entries start hidden; show them with the eye, then Save.</p>'
+                . '<p>Use the backend form for required media and for removing entries with nested lists. This page also covers translations and shared tables. '
                 . '<a href="{{page:content-types/rte-combinations}}">Explore more rich-text combinations.</a></p>',
         ])];
         // Ordered matrix: cards, RTE, compact/spacious lists, shared tables,

@@ -73,7 +73,7 @@ final class ShowcaseAudiencePages
                     'media_rounded' => 1,
                     'button_text' => 'Explore Suite Companion',
                     'button_link' => ShowcaseSuiteCompanionPage::LINK,
-                    'media' => ShowcaseBlocks::screenshot('feature-visual-editor-entries-64032931.webp', 'Entries in the Visual Editor', 'The Visual Editor entry list with compact controls for editing and adding accordion items.'),
+                    'media' => ShowcaseBlocks::screenshot('feature-visual-editor-entries-6c4254e3.webp', 'Entries in the Visual Editor', 'The Visual Editor entry list with compact controls for editing and adding accordion items.'),
                 ]),
                 ShowcaseSuiteCompanionPage::promotion(),
                 // The model in the four ways of the price source. Feature

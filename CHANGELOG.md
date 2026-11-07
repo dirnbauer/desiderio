@@ -4,6 +4,18 @@ All notable changes to **webconsulting/desiderio** are documented in this
 file. The format follows [Keep a Changelog](https://keepachangelog.com/)
 and the project adheres to [Semantic Versioning](https://semver.org/).
 
+## [4.34.0] — 2026-11-07
+
+### Changed
+
+- Visual Editor Enhancements product page follows release 1.6: Add entry in the element toolbar, the Entries inspector (rename, reorder, show or hide, insert after, remove), small hover labels on toolbar buttons, translations with per-language visibility and three panel layouts. Copy keeps the words “Entries”, “Add entry” and “New entries start hidden”.
+- Inline records showcase (`/content-types/visual-editor-inline`) explains what saves immediately (adding, removing, moving) and what saves with the page (titles, visibility).
+- Live screenshots recaptured with Visual Editor Enhancements 1.6.0: Entries inspector, entry form and field settings, plus three new shots (Add entry with its label, a connected translation, the tray layout). The Packages overview and the Suite Companion page use the new Entries screenshot.
+
+### Added
+
+- `Build/Scripts/capture-visual-editor-entries.mjs` finds the accordion by its content type instead of a fixed uid, accepts the lab runtime suite's disposable session (`VE_STATE`) and takes the six 1.6 shots (`--only=` selects some). `refresh-feature-screenshots.php` accepts the six `feature-visual-editor-*` entries shots for in-place swaps.
+
 ## [4.33.0] — 2026-11-07
 
 ### Added

@@ -378,7 +378,7 @@ final class ShowcaseFeatureDefinitions
                 'subheadline' => 'Choose elements from live previews and set their options beside the content. Add an entry from the toolbar, then rename, reorder or hide it in Entries.',
                 'primaryButton' => ['text' => 'Get the extension', 'link' => 'https://github.com/dirnbauer/typo3-visual-editor-enhancements'],
                 'secondaryButton' => ['text' => 'See the manual', 'link' => 'https://github.com/dirnbauer/typo3-visual-editor-enhancements/tree/main/Documentation'],
-                'image' => ShowcaseBlocks::screenshot('feature-visual-editor-entries-6c4254e3.webp', 'Your entries, in one clear panel', 'Accordion in the Visual Editor with the Entries inspector: three questions, each with move, visibility and remove buttons.', 'Live screenshot from the TYPO3 v14 lab.'),
+                'image' => ShowcaseBlocks::screenshot('feature-visual-editor-entries-936063d6.webp', 'Your entries, in one clear panel', 'Accordion in the Visual Editor with the Entries inspector: three questions, each with move, visibility and remove buttons.', 'Live screenshot from the TYPO3 v14 lab.'),
             ],
             'problem' => ['header' => 'One element can hold many entries', 'content' => '<p>A FAQ has questions. A card grid has cards. Add entry and the Entries inspector manage them beside the preview.</p>'],
             'tour' => [
@@ -389,7 +389,7 @@ final class ShowcaseFeatureDefinitions
                         'tab' => 'Entries',
                         'title' => 'Your entries, in one clear panel',
                         'description' => 'Choose <strong>Entries</strong> in the toolbar. Each entry gets a title field, a visibility switch and buttons to move, insert or remove it.',
-                        'image' => ShowcaseBlocks::screenshot('feature-visual-editor-entries-6c4254e3.webp', 'Your entries, in one clear panel', 'Accordion in the Visual Editor with the Entries inspector: three questions, each with move, visibility and remove buttons.', 'Live screenshot from the TYPO3 v14 lab.'),
+                        'image' => ShowcaseBlocks::screenshot('feature-visual-editor-entries-936063d6.webp', 'Your entries, in one clear panel', 'Accordion in the Visual Editor with the Entries inspector: three questions, each with move, visibility and remove buttons.', 'Live screenshot from the TYPO3 v14 lab.'),
                     ],
                     [
                         'tab' => 'Add entry',
@@ -407,7 +407,7 @@ final class ShowcaseFeatureDefinitions
                         'tab' => 'Translations',
                         'title' => 'Each language keeps its own visibility',
                         'description' => 'In a translation, the inspector names the language and its link to the default language. Each language shows or hides its entries on its own.',
-                        'image' => ShowcaseBlocks::screenshot('feature-visual-editor-entries-translation-f066c6ec.webp', 'Each language keeps its own visibility', 'Entries inspector on the German accordion: live site, Austrian German, connected translation and three translated questions.', 'Live screenshot from the TYPO3 v14 lab.'),
+                        'image' => ShowcaseBlocks::screenshot('feature-visual-editor-entries-translation-0146cf72.webp', 'Each language keeps its own visibility', 'Entries inspector on the German accordion: live site, Austrian German, connected translation and three translated questions.', 'Live screenshot from the TYPO3 v14 lab.'),
                     ],
                     [
                         'tab' => 'Search',
@@ -425,7 +425,7 @@ final class ShowcaseFeatureDefinitions
                         'tab' => 'Layouts',
                         'title' => 'Inspector, tray or anchored panel',
                         'description' => 'Choose where Entries opens in your user settings: docked on the right, as a tray along the bottom, or below the element’s toolbar.',
-                        'image' => ShowcaseBlocks::screenshot('feature-visual-editor-entries-tray-948b158b.webp', 'Inspector, tray or anchored panel', 'Entries as a tray along the bottom of the Visual Editor, with title, state and action columns for three accordion questions.', 'Live screenshot from the TYPO3 v14 lab.'),
+                        'image' => ShowcaseBlocks::screenshot('feature-visual-editor-entries-tray-98e58e8d.webp', 'Inspector, tray or anchored panel', 'Entries as a tray along the bottom of the Visual Editor, with title, state and action columns for three accordion questions.', 'Live screenshot from the TYPO3 v14 lab.'),
                     ],
                     [
                         'tab' => 'Rich text',

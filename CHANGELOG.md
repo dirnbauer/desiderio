@@ -4,6 +4,12 @@ All notable changes to **webconsulting/desiderio** are documented in this
 file. The format follows [Keep a Changelog](https://keepachangelog.com/)
 and the project adheres to [Semantic Versioning](https://semver.org/).
 
+## [4.34.1] — 2026-11-07
+
+### Changed
+
+- Three live screenshots recaptured with Visual Editor Enhancements 1.6.1: the Entries inspector, the connected translation and the tray layout now show the entry count alone for lists without a limit ("3" instead of "3 / 99999") and the accordion titles in their multi-line field. The Packages overview, the Suite Companion page and `/features/visual-editor` reference the new files; the old files are removed. Text and alt text are unchanged.
+
 ## [4.34.0] — 2026-11-07
 
 ### Changed

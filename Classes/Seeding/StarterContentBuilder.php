@@ -21,6 +21,9 @@ final readonly class StarterContentBuilder
      */
     private const array SHARED_APPEARANCE_FIELDS = ['frame_class', 'space_before_class', 'space_after_class', 'layout'];
 
+    /** Native visibility dates, shared by all tt_content records. */
+    private const array SHARED_SCHEDULE_FIELDS = ['starttime', 'endtime'];
+
     private CollectionSchema $schema;
 
     public function __construct(
@@ -118,6 +121,9 @@ final readonly class StarterContentBuilder
             if (!is_array($fieldConfig)) {
                 if (in_array($field, self::SHARED_APPEARANCE_FIELDS, true) && !is_array($value)) {
                     $resolvedFields[$field] = $this->fieldNormalizer->normalizeScalarValue($value);
+                }
+                if (in_array($field, self::SHARED_SCHEDULE_FIELDS, true) && is_int($value) && $value >= 0) {
+                    $resolvedFields[$field] = $value;
                 }
                 continue;
             }

@@ -4,6 +4,18 @@ All notable changes to **webconsulting/desiderio** are documented in this
 file. The format follows [Keep a Changelog](https://keepachangelog.com/)
 and the project adheres to [Semantic Versioning](https://semver.org/).
 
+## [4.33.0] — 2026-11-07
+
+### Added
+
+- Packages overview and an independent Suite Companion page for buyers of the official TYPO3 Suite. Public software stays free; the optional add-on uses annual Studio support at €590 plus VAT. Both pages disclose that these are webconsulting offers, not official products of TYPO3 GmbH or the TYPO3 Association.
+- Year-end campaign: one 60-minute onboarding session for verified Suite buyers with annual Studio, requested by 31 December 2026 and held by 31 March 2027. Existing annual Studio customers qualify without paying twice. Native content scheduling expires the promotion at midnight in Vienna; the starter content builder now preserves nonnegative integer starttime/endtime values.
+
+### Changed
+
+- Main navigation labels the audience overview “Packages”, retaining `/target-groups/` and the existing audience pages.
+- Plan enquiries go to the real webconsulting contact page instead of the bundled demo lead form with example recipients.
+
 ## [4.32.0] — 2026-11-06
 
 ### Added

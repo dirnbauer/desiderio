@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace Webconsulting\Desiderio\Data\Showcase;
 
 /**
- * Target-group showcase pages: the audience overview plus one page per
- * audience (agency, in-house team, freelancer).
+ * Package overview, audience pages and the independent Suite companion.
  *
  * Every page follows the order of the sales model: the reader's problem,
  * what Desiderio does, what is free, and what costs money. Each audience page
@@ -35,35 +34,48 @@ final class ShowcaseAudiencePages
             self::agencyPage(),
             self::inhousePage(),
             self::freelancerPage(),
+            ShowcaseSuiteCompanionPage::page(),
         ];
     }
 
     /**
-     * Overview page above the three audience pages: the model in four cards
-     * and one link to the model page, then one condensed pitch per target group, each linking to the full
-     * story on its subpage.
+     * Package overview: the independent Suite add-on, the free-software
+     * model and one condensed pitch per audience, each linking to its page.
      *
      * @return ShowcasePage
      */
     private static function targetGroupsPage(): array
     {
         return [
-            'title' => 'Solutions',
-            'navTitle' => 'For your team',
+            'title' => 'Packages',
+            'navTitle' => 'Packages',
             'slug' => '/target-groups',
-            'seoTitle' => 'For agencies, in-house teams and freelancers',
-            'abstract' => 'Desiderio is built for agencies, in-house teams and freelancers. This page gives the short version for each group and links to its own page.',
-            'description' => 'What Desiderio does for agencies, in-house marketing teams and freelancers, with the plan we recommend and a link to each group’s own page.',
+            'seoTitle' => 'TYPO3 packages and independent Suite Companion',
+            'abstract' => 'Free software and paid support for agencies, in-house teams, freelancers and TYPO3 Suite buyers. Independent packages from webconsulting.',
+            'description' => 'Choose a webconsulting package for your TYPO3 team. Free software, paid support and an independent add-on for buyers of the official TYPO3 Suite.',
             'parentSlug' => null,
             'content' => [
                 ShowcaseBlocks::salesHero(
-                    'For every team',
-                    'Built for the teams that ship TYPO3',
-                    'Agencies deliver fixed-price projects faster, in-house teams publish without tickets and freelancers get a full design system, all for free.',
-                    ['text' => 'See agency details', 'link' => '{{page:target-groups/for-agencies}}'],
-                    ['text' => 'See pricing', 'link' => '{{page:pricing}}'],
+                    'Packages',
+                    'The right support for your TYPO3 team',
+                    'Use our software for free. Choose personal support for your agency, in-house team or freelance work, with an additional offer for TYPO3 Suite buyers.',
+                    ['text' => 'Compare plans', 'link' => '{{page:pricing}}'],
+                    ['text' => 'For Suite buyers', 'link' => ShowcaseSuiteCompanionPage::LINK],
                     ShowcaseHeroPhotos::for('solutions'),
                 ),
+                ShowcaseSuiteCompanionPage::independenceNotice(),
+                ShowcaseBlocks::block('desiderio_textmedia', [
+                    'header' => 'Bought the TYPO3 Suite? Add personal support.',
+                    'shadcn_layout' => 'media-right',
+                    'subheadline' => 'Suite Companion by webconsulting',
+                    'content' => '<p><strong>Your official TYPO3 Suite and our tools serve your project together.</strong> Use Desiderio, Astryx and our public extensions for free. Add a direct contact for questions about our tools.</p>'
+                        . sprintf('<p>Suite Companion is annual Studio support at <strong>%s plus VAT</strong>, for up to five live sites and one named developer. The official Suite is purchased separately.</p>', self::yearly('studio')),
+                    'media_rounded' => 1,
+                    'button_text' => 'Explore Suite Companion',
+                    'button_link' => ShowcaseSuiteCompanionPage::LINK,
+                    'media' => ShowcaseBlocks::screenshot('feature-visual-editor-entries-64032931.webp', 'Entries in the Visual Editor', 'The Visual Editor entry list with compact controls for editing and adding accordion items.'),
+                ]),
+                ShowcaseSuiteCompanionPage::promotion(),
                 // The model in the four ways of the price source. Feature
                 // cards carry no links, so the inline CTA below leads to the
                 // model page, as on the home page.

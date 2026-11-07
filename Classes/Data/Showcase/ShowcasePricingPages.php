@@ -473,7 +473,7 @@ final class ShowcasePricingPages
             'navTitle' => 'Order',
             'slug' => '/pricing/order',
             'abstract' => 'Tell us the plan and the number of live sites, or ask for a 20-minute demo. A maintainer answers within one business day.',
-            'description' => 'Order Studio, Agency or Partner, or book a 20-minute demo with a maintainer. We answer within one business day.',
+            'description' => 'Request Studio, Agency, Partner or Suite Companion directly from webconsulting, or book a demo. We answer within one business day.',
             'parentSlug' => 'pricing',
             'hideInNav' => true,
             'content' => [
@@ -481,21 +481,23 @@ final class ShowcasePricingPages
                     'header' => 'How ordering works',
                     'description' => 'No shop account, no card needed for yearly plans.',
                     'items' => [
-                        ['title' => 'Tell us the plan', 'content' => 'Name the plan, yearly or monthly, the number of live sites and your VAT ID.'],
+                        ['title' => 'Tell us the plan', 'content' => 'Name the plan, yearly or monthly, and the number of live sites. For Suite Companion, also name your official TYPO3 partner.'],
                         ['title' => 'Get the invoice', 'content' => sprintf(
                             'We send the invoice within one business day. The invoice comes from %s (<a href="%s">legal notice</a>, <a href="%s">terms</a>). Yearly plans are paid in advance.',
                             ShowcasePricing::SELLER_NAME,
                             ShowcasePricing::SELLER_IMPRINT_URL,
                             ShowcasePricing::SELLER_TERMS_URL,
                         )],
-                        ['title' => 'Start working', 'content' => 'Your named developers get their access and their contact at the maintainers.'],
+                        ['title' => 'Start working', 'content' => 'Your named developers get their support contact. All public software is already available for free.'],
                     ],
                 ]),
-                ShowcaseBlocks::block('desiderio_demorequest', [
-                    'eyebrow' => 'Order or demo',
-                    'header' => 'Send us a message',
-                    'description' => '<p>Write the plan and the number of live sites, or ask for a <strong>20-minute demo</strong>. A maintainer answers within one business day.</p>',
-                    'reassurance' => 'No commitment until you confirm the invoice.',
+                ShowcaseBlocks::block('desiderio_contenthighlight', [
+                    'header' => 'Send your request to webconsulting',
+                    'content' => '<p>Use the contact form on webconsulting.at. Write <strong>Suite Companion</strong> or your chosen plan in the message, and tell us about your project. You can also request a 20-minute demo.</p><p>A maintainer answers within one business day. No commitment until you confirm the offer.</p>',
+                    'variant' => 'primary',
+                    'alignment' => 'center',
+                    'link' => ShowcasePricing::SELLER_CONTACT_URL,
+                    'link_text' => 'Contact webconsulting',
                 ]),
             ],
         ];

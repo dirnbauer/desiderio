@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseAudiencePages;
 use Webconsulting\Desiderio\Data\Showcase\ShowcaseBlocks;
 use Webconsulting\Desiderio\Data\Showcase\ShowcasePricing;
+use Webconsulting\Desiderio\Data\Showcase\ShowcaseSuiteCompanionPage;
 
 /**
  * The target-group hub and its three audience pages: the model block on the
@@ -46,31 +47,31 @@ final class ShowcaseAudiencePagesTest extends TestCase
      */
     private const array READER_FIGURES = ['€75', '€120', '€90', '€1,200', '€4,500', '€7,500', '€5,400', '€10,000', '€55,000', '€249'];
 
-    public function testTheHubAndItsThreeAudiencePages(): void
+    public function testTheHubContainsTheAudiencesAndSuiteCompanion(): void
     {
         $pages = ShowcaseAudiencePages::pages();
 
-        self::assertSame(['/target-groups', ...self::SUBPAGES], array_column($pages, 'slug'));
+        self::assertSame(['/target-groups', ...self::SUBPAGES, ShowcaseSuiteCompanionPage::SLUG], array_column($pages, 'slug'));
         self::assertNull($pages[0]['parentSlug']);
+        self::assertSame('Packages', $pages[0]['navTitle']);
         foreach (array_slice($pages, 1) as $page) {
             self::assertSame('target-groups', $page['parentSlug'], $page['slug']);
         }
     }
 
-    public function testTheHubShowsTheModelAndItsLinkRightAfterItsHero(): void
+    public function testTheHubKeepsTheModelAndAudienceLinksAlongsideTheNewOffer(): void
     {
         $hub = ShowcaseAudiencePages::pages()[0];
         $ctypes = array_column($hub['content'], 'ctype');
 
         self::assertSame('desiderio_hero', $ctypes[0]);
-        self::assertSame('desiderio_featurecards', $ctypes[1]);
-        self::assertSame('desiderio_ctainline', $ctypes[2]);
-        self::assertSame(['desiderio_textmedia', 'desiderio_textmedia', 'desiderio_textmedia', 'desiderio_ctabanner'], array_slice($ctypes, 3));
-        $model = $hub['content'][1]['fields'];
+        self::assertCount(4, array_filter($ctypes, static fn(string $ctype): bool => $ctype === 'desiderio_textmedia'));
+        self::assertSame('desiderio_ctabanner', $ctypes[array_key_last($ctypes)]);
+        $model = self::block($hub, 'desiderio_featurecards');
         self::assertSame('Free software, paid care', $model['header']);
         self::assertSame(ShowcasePricing::modelSentence(), $model['subheadline']);
         self::assertSame(array_column(ShowcasePricing::ways(), 'title'), array_column(self::list($model, 'items'), 'title'));
-        $link = $hub['content'][2]['fields'];
+        $link = self::block($hub, 'desiderio_ctainline');
         self::assertSame('How we earn with free software', $link['header']);
         self::assertSame('{{page:pricing/how-we-earn}}', $link['cta_link']);
     }

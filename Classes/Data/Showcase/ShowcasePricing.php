@@ -41,6 +41,44 @@ final class ShowcasePricing
     /** The seller's terms and conditions. */
     public const string SELLER_TERMS_URL = 'https://www.webconsulting.at/agb';
 
+    /** Real enquiries go to the seller, not to a bundled demonstration form. */
+    public const string SELLER_CONTACT_URL = 'https://www.webconsulting.at/kontakt';
+
+    /** The campaign ends at midnight after 31 December, in Vienna. */
+    public const string SUITE_PROMOTION_END = '2027-01-01T00:00:00+01:00';
+
+    public const string INDEPENDENCE_NOTICE = 'Our packages are independent offers from webconsulting GmbH. They are not official products of TYPO3 GmbH or the TYPO3 Association.';
+
+    /**
+     * The companion is annual Studio with a one-off campaign bonus, not a
+     * separate licence or another price tier. Keep its price and scope in sync.
+     *
+     * @return PricingPlan
+     */
+    public static function suiteCompanion(): array
+    {
+        foreach (self::plans() as $plan) {
+            if ($plan['key'] === 'studio') {
+                return [
+                    ...$plan,
+                    'key' => 'suite-companion',
+                    'name' => 'Suite Companion by webconsulting',
+                    'period' => 'per year, plus VAT',
+                    'for' => 'Studio support for our tools alongside your official TYPO3 Suite.',
+                    'button' => ['text' => 'Request Companion', 'link' => self::ORDER_LINK],
+                    'featured' => true,
+                ];
+            }
+        }
+
+        throw new \LogicException('Suite Companion requires the Studio plan.');
+    }
+
+    public static function suitePromotionEnd(): int
+    {
+        return new \DateTimeImmutable(self::SUITE_PROMOTION_END)->getTimestamp();
+    }
+
     /**
      * @return list<PricingPlan>
      */

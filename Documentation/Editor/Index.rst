@@ -30,6 +30,18 @@ text, button label, link, icon, badge, and repeated items. Image fields
 use TYPO3 FAL; the frontend templates render them with responsive Fluid
 image ViewHelpers and ``object-fit`` rules.
 
+..  _editor-anchors:
+
+Anchors
+=======
+
+Every element can be linked directly with ``#c`` and its uid, for example
+``t3://page?uid=12#c345``. For a readable link, give the element a name in
+:guilabel:`Appearance > Anchor`, for example ``pricing``: the element is then
+also reachable as ``#pricing``. Use lowercase letters, digits, hyphens and
+underscores. The name is the same in every language, so one link with the
+anchor works on each translation of the page.
+
 ..  _editor-icons:
 
 Icons

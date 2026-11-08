@@ -101,6 +101,29 @@ selector names one page, never its subpages.
     ``sitepackage:content:translate --pages=<uids>``.
 *   ``--dry-run --pages=…`` lists the selected pages with their uids and
     element counts and writes nothing.
+*   A retired page (below) goes when its successor is among the selected
+    pages.
+
+..  _developer-styleguide-seed-retired:
+
+Retired pages and pages of other packages
+=========================================
+
+``StyleguideShowcasePages::retiredPages()`` names showcase pages that gave
+way to others, by slug, with the page that holds their content now and the
+anchor of that content there. When the successor is written (a full seed, or
+``--pages`` with the successor selected), the seeder deletes the old page,
+its translations and their content, and writes a permanent redirect from the
+old URL to the successor's anchor in every language. Redirects TYPO3 made
+when the old page changed its slug (``t3://page?uid=<old>&_language=1``) are
+pointed at the successor's anchor too. The ten one-skill pages below
+``/ai/agentic-skills`` became twelve group pages this way.
+
+``StyleguideShowcasePages::leadingChildPages()`` names pages another package
+owns that come first below a showcase page: the skill search
+``/ai/agentic-skills/find``. The seeder never writes, moves or hides them;
+it counts the sorting of its own pages below that parent from theirs, so they
+stay first.
 
 Internal links in seed data
 ===========================
@@ -127,9 +150,14 @@ once every seeded page exists:
           that slug below the root, such as the Powermail demo pages
           (``{{page:desiderio-powermail/callback}}``).
 
-A placeholder that resolves to no page becomes the GitHub repository URL.
-``StyleguideSeedCommandTest`` fails for a fixture that links a plain path or a
-placeholder the seeder cannot resolve.
+Text after the placeholder stays: ``{{page:ai/agentic-skills/code-migration}}#typo3-rector``
+links an element's anchor, and ``{{page:search}}&tx_solr%5Bq%5D=Desiderio``
+adds a query. Inside rich text, write the query separator as ``&amp;``;
+TYPO3 decodes the link before it builds the URL.
+
+A placeholder that resolves to no page becomes the GitHub repository URL, and
+the seeder names it in a warning. ``StyleguideSeedCommandTest`` fails for a
+fixture that links a plain path or a placeholder the seeder cannot resolve.
 
 ..  _developer-template-lint:
 

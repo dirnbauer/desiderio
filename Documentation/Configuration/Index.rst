@@ -86,6 +86,12 @@ Core site settings
     *   - ``desiderio.footer.style``
         - ``columns``
         - ``columns``, ``centered``, ``minimal``, or ``mega``.
+    *   - ``desiderio.footer.trademarkNotice``
+        - ``false``
+        - One line of small print under the footer: TYPO3 is a registered
+          trademark of the TYPO3 Association, and the site is independent of
+          the TYPO3 Association and TYPO3 GmbH. Words only, no logo. The text
+          is the translation label ``footer.trademarkNotice``.
     *   - ``desiderio.styleguide.enabled``
         - ``false``
         - Enables the styleguide page template.

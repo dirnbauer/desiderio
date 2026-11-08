@@ -34,7 +34,7 @@
                         value="{tabValue}"
                         id="{triggerId}"
                         controls="{panelId}"
-                        active="{f:if(condition: '{iter.index} == {defaultTabIndex}', then: 1, else: 0)}"
+                        active="{f:if(condition: '{iter.index} == {defaultTabIndex}', then: 1, else: 0)}" attributes="{item -> f:mark.item(collection: 'desiderio_tabs_items', format: 'array')}"
                     >
                         <f:if condition="{item.tab_icon}">
                             <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="{item.tab_icon}" size="sm"/></span>
@@ -53,7 +53,7 @@
                     id="{panelId}"
                     labelledBy="{triggerId}"
                     active="{f:if(condition: '{iter.index} == {defaultTabIndex}', then: 1, else: 0)}"
-                    class="tabs__content d-richtext"
+                    class="tabs__content d-richtext" attributes="{item -> f:mark.item(collection: 'desiderio_tabs_items', format: 'array')}"
                 >
                     {item -> f:render.text(field: 'tab_content')}
                 </d:molecule.tabsContent>

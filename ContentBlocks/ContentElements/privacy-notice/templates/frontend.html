@@ -20,7 +20,7 @@
             <f:if condition="{data.sections}">
                 <div class="privacy-notice__sections">
                     <f:for each="{data.sections}" as="section">
-                        <details class="privacy-notice__section">
+                        <details class="privacy-notice__section"{section -> f:mark.item(collection: 'desiderio_privacynotice_sections')}>
                             <summary class="privacy-notice__section-title">
                                 <span class="privacy-notice__section-label">{section -> f:render.text(field: 'title')}</span>
                                 <d:atom.icon name="chevron-down" size="default" class="privacy-notice__icon" />

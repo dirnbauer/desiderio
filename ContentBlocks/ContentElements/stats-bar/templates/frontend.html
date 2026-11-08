@@ -24,7 +24,7 @@
 
             <dl class="stats-bar__items">
                 <f:for each="{data.items}" as="item">
-                    <div class="stats-bar__item" data-astro-reveal="slide-up">
+                    <div class="stats-bar__item" data-astro-reveal="slide-up"{item -> f:mark.item(collection: 'desiderio_statsbar_items')}>
                         <div class="stats-bar__meta">
                             <dt class="stats-bar__label">{item -> f:render.text(field: 'label')}</dt>
                             <dd class="stats-bar__value">{item -> f:render.text(field: 'value')}</dd>

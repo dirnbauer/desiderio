@@ -23,7 +23,7 @@
 
         <div class="awards__grid">
             <f:for each="{data.awards}" as="award">
-                <article class="awards__item">
+                <article class="awards__item"{award -> f:mark.item(collection: 'desiderio_awards_awards')}>
                     <f:if condition="{award.image}">
                         <div class="awards__media">
                             <f:for each="{award.image}" as="fileReference">

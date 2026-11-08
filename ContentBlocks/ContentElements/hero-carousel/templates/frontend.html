@@ -30,7 +30,7 @@
                      data-astro-carousel-slide
                      role="group"
                      aria-roledescription="{slideLabel}"
-                     aria-label="{iter.cycle} / {iter.total}">
+                     aria-label="{iter.cycle} / {iter.total}"{slide -> f:mark.item(collection: 'desiderio_herocarousel_slides')}>
                     <div class="hero-carousel__content">
                         <f:if condition="{slide.title}">
                             <d:atom.typography tag="h3" variant="h2" class="hero-carousel__title">{slide -> f:render.text(field: 'title')}</d:atom.typography>

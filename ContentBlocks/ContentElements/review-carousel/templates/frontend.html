@@ -32,7 +32,7 @@
                          role="group"
                          aria-roledescription="{slideLabel}"
                          aria-label="{iter.cycle} / {iter.total}"
-                         aria-hidden="{f:if(condition: iter.isFirst, then: 'false', else: 'true')}">
+                         aria-hidden="{f:if(condition: iter.isFirst, then: 'false', else: 'true')}"{review -> f:mark.item(collection: 'desiderio_reviewcarousel_reviews')}>
                     <div class="review-carousel__stars" aria-hidden="true">
                         <f:for each="{0: 1, 1: 2, 2: 3, 3: 4, 4: 5}" as="star">
                             <d:atom.icon name="star" size="sm" class="review-carousel__star {f:if(condition: '{star} <= {review.rating}', then: 'review-carousel__star--filled')}" />

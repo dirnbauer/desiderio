@@ -27,7 +27,7 @@
             <ul class="status-indicator__list" role="list">
                 <f:for each="{data.items}" as="item">
                     <f:variable name="itemStatus" value="{item.status -> f:or(alternative: 'operational')}" />
-                    <li class="status-indicator__item status-indicator__dot--{itemStatus}">
+                    <li class="status-indicator__item status-indicator__dot--{itemStatus}"{item -> f:mark.item(collection: 'desiderio_statusindicator_items')}>
                         <div class="status-indicator__service">
                             <span class="status-indicator__service-name">{item -> f:render.text(field: 'name')}</span>
                             <f:if condition="{item.detail}">

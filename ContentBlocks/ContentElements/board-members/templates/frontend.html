@@ -16,7 +16,7 @@
 
         <d:layout.grid cols="3" gap="lg" class="board-members__grid">
             <f:for each="{data.members}" as="member">
-                <article class="board-members__card">
+                <article class="board-members__card"{member -> f:mark.item(collection: 'desiderio_boardmembers_members')}>
                     <f:if condition="{member.image}">
                         <f:then>
                             <figure class="board-members__image-wrapper">

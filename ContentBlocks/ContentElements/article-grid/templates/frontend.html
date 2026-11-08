@@ -13,7 +13,7 @@
         </d:molecule.sectionIntro>
         <div class="article-grid__grid">
             <f:for each="{data.items}" as="item">
-                <d:molecule.card class="article-grid__item">
+                <d:molecule.card class="article-grid__item" attributes="{item -> f:mark.item(collection: 'desiderio_articlegrid_items', format: 'array')}">
                     <div class="article-grid__body flex min-w-0 flex-col gap-1.5">
                         <f:if condition="{item.category}"><p class="article-grid__category">{item -> f:render.text(field: 'category')}</p></f:if>
                         <d:atom.typography tag="h3" variant="h3" class="article-grid__title">

@@ -13,7 +13,7 @@
 
         <dl class="definition-list definition-list--{data.shadcn_layout -> f:or(alternative: 'stacked')}">
             <f:for each="{data.items}" as="item">
-                <div class="definition-list__entry">
+                <div class="definition-list__entry"{item -> f:mark.item(collection: 'desiderio_definitionlist_items')}>
                     <dt class="definition-list__term">{item -> f:render.text(field: 'term')}</dt>
                     <dd class="definition-list__definition">{item -> f:render.text(field: 'definition')}</dd>
                 </div>

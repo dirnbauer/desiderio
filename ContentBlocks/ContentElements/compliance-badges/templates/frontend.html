@@ -13,7 +13,7 @@
             </f:if>
             <ul class="compliance-badges__list" role="list">
                 <f:for each="{data.items}" as="item">
-                    <li class="compliance-badges__item">
+                    <li class="compliance-badges__item"{item -> f:mark.item(collection: 'desiderio_compliancebadges_items')}>
                         <f:if condition="{item.link}">
                             <f:then>
                                 <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" variant="muted" class="compliance-badges__link" target="_blank">

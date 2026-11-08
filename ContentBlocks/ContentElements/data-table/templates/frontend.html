@@ -32,14 +32,14 @@
                                     <f:defaultCase>text-left</f:defaultCase>
                                 </f:switch>
                             </f:variable>
-                            <d:molecule.tableCell header="{true}" class="{alignClass -> f:format.trim()}">{col -> f:render.text(field: 'column_label')}</d:molecule.tableCell>
+                            <d:molecule.tableCell header="{true}" class="{alignClass -> f:format.trim()}" attributes="{col -> f:mark.item(collection: 'desiderio_datatable_column_definitions', format: 'array')}">{col -> f:render.text(field: 'column_label')}</d:molecule.tableCell>
                         </f:for>
                     </d:molecule.tableRow>
                 </d:molecule.tableHeader>
             </f:if>
             <tbody>
                 <f:for each="{data.rows}" as="row">
-                    <d:molecule.tableRow>
+                    <d:molecule.tableRow attributes="{row -> f:mark.item(collection: 'desiderio_datatable_rows', format: 'array')}">
                         <f:if condition="{row.row_label}">
                             <th scope="row" data-slot="table-cell" class="data-table__row-head">{row -> f:render.text(field: 'row_label')}</th>
                         </f:if>
@@ -52,7 +52,7 @@
                                     <f:defaultCase>text-left</f:defaultCase>
                                 </f:switch>
                             </f:variable>
-                            <d:molecule.tableCell class="{cellAlignClass -> f:format.trim()}">{cell -> f:render.text(field: 'value')}</d:molecule.tableCell>
+                            <d:molecule.tableCell class="{cellAlignClass -> f:format.trim()}" attributes="{cell -> f:mark.item(collection: 'cells', format: 'array')}">{cell -> f:render.text(field: 'value')}</d:molecule.tableCell>
                         </f:for>
                     </d:molecule.tableRow>
                 </f:for>

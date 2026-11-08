@@ -14,7 +14,7 @@
             <f:if condition="{data.items}">
                 <nav class="footer-social__icons" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:social.aria', default: 'Social media')}">
                     <f:for each="{data.items}" as="item">
-                        <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" variant="muted" class="footer-social__icon" target="_blank">
+                        <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" variant="muted" class="footer-social__icon" target="_blank" attributes="{item -> f:mark.item(collection: 'desiderio_footersocial_items', format: 'array')}">
                             <f:switch expression="{item.platform_name}">
                                 <f:case value="facebook"><d:atom.icon name="brand-facebook" size="default" /></f:case>
                                 <f:case value="twitter"><d:atom.icon name="brand-x" size="default" /></f:case>

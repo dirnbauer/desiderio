@@ -16,7 +16,7 @@
 
         <ol class="company-history__timeline" role="list">
             <f:for each="{data.events}" as="event">
-                <li class="company-history__event">
+                <li class="company-history__event"{event -> f:mark.item(collection: 'desiderio_companyhistory_events')}>
                     <span class="company-history__year">{event -> f:render.text(field: 'year')}</span>
                     <div class="company-history__body">
                         <d:atom.typography tag="h3" variant="large" class="company-history__title">{event -> f:render.text(field: 'title')}</d:atom.typography>

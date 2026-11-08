@@ -17,7 +17,7 @@
 
         <ul class="team-with-bio__list" role="list">
             <f:for each="{data.members}" as="member">
-                <li>
+                <li{member -> f:mark.item(collection: 'desiderio_teamwithbio_members')}>
                     <article class="team-with-bio__member">
                         <div class="team-with-bio__image-wrapper">
                             <f:if condition="{member.image}">

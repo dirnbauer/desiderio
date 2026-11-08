@@ -44,7 +44,7 @@
                         <ul class="team-member__socials" role="list">
                             <f:for each="{data.social_links}" as="item">
                                 <f:if condition="{item.url.url}">
-                                    <li>
+                                    <li{item -> f:mark.item(collection: 'desiderio_teammember_social_links')}>
                                         <d:atom.link href="{f:uri.typolink(parameter: item.url.url)}" target="{item.url.target}" variant="muted" class="team-member__social-link">{item -> f:render.text(field: 'platform')}<f:if condition="{item.url.target} == '_blank'"><span class="sr-only"> {f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:social.newTab', default: '(opens in a new tab)')}</span></f:if></d:atom.link>
                                     </li>
                                 </f:if>

@@ -21,7 +21,7 @@
         <dl class="metric-dashboard__grid">
             <f:for each="{data.items}" as="item">
                 <f:variable name="metricTrend">{item.trend -> f:or(alternative: 'neutral')}</f:variable>
-                <div class="metric-dashboard__card">
+                <div class="metric-dashboard__card"{item -> f:mark.item(collection: 'desiderio_metricdashboard_items')}>
                     <dt class="metric-dashboard__label">{item -> f:render.text(field: 'label')}</dt>
                     <dd class="metric-dashboard__value">{item -> f:render.text(field: 'value')}</dd>
                     <f:if condition="{item.change}">

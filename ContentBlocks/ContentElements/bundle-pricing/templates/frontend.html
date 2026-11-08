@@ -23,7 +23,7 @@
             <d:molecule.cardContent class="bundle-pricing__content">
                 <ul class="bundle-pricing__items" role="list">
                     <f:for each="{data.items}" as="item">
-                        <li class="bundle-pricing__item">
+                        <li class="bundle-pricing__item"{item -> f:mark.item(collection: 'desiderio_bundlepricing_items')}>
                             <div class="bundle-pricing__item-info">
                                 <d:atom.typography tag="span" variant="small" class="bundle-pricing__item-name">{item -> f:render.text(field: 'name')}</d:atom.typography>
                                 <f:if condition="{item.description_text}">

@@ -13,7 +13,7 @@
 
         <div class="file-download__list">
             <f:for each="{data.items}" as="item">
-                <d:molecule.card class="file-download__item">
+                <d:molecule.card class="file-download__item" attributes="{item -> f:mark.item(collection: 'desiderio_filedownload_items', format: 'array')}">
                     <div class="file-download__icon" aria-hidden="true">
                         <d:atom.icon name="download" size="lg" />
                     </div>

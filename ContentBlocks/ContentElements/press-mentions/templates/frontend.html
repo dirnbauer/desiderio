@@ -20,7 +20,7 @@
 
         <div class="press-mentions__grid">
             <f:for each="{data.mentions}" as="mention">
-                <article class="press-mentions__item">
+                <article class="press-mentions__item"{mention -> f:mark.item(collection: 'desiderio_pressmentions_mentions')}>
                     <f:if condition="{mention.logo}">
                         <div class="press-mentions__logo">
                             <f:for each="{mention.logo}" as="fileReference">

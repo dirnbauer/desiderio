@@ -23,7 +23,7 @@
 
         <ul class="pricing-toggle__grid" role="list">
             <f:for each="{data.plans}" as="plan" iteration="iter">
-                <li class="pricing-toggle__item">
+                <li class="pricing-toggle__item"{plan -> f:mark.item(collection: 'desiderio_pricingtoggle_plans')}>
                     <article class="pricing-toggle__plan" aria-labelledby="pricing-toggle-{data.uid}-{iter.cycle}">
                         <d:atom.typography tag="h3" variant="h3" class="pricing-toggle__title" attributes="{id: 'pricing-toggle-{data.uid}-{iter.cycle}'}">{plan -> f:render.text(field: 'title')}</d:atom.typography>
                         <div class="pricing-toggle__prices">
@@ -42,7 +42,7 @@
                             <ul class="pricing-toggle__features" role="list">
                                 <f:for each="{plan.features}" as="feature">
                                     <f:if condition="{feature.text}">
-                                        <d:molecule.checkedListItem class="pricing-toggle__feature" iconClass="pricing-toggle__check">
+                                        <d:molecule.checkedListItem class="pricing-toggle__feature" iconClass="pricing-toggle__check" attributes="{feature -> f:mark.item(collection: 'features', format: 'array')}">
                                             {feature -> f:render.text(field: 'text')}
                                         </d:molecule.checkedListItem>
                                     </f:if>

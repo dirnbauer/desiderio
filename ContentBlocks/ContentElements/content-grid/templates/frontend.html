@@ -13,7 +13,7 @@
 
         <d:layout.grid cols="{data.columns -> f:or(alternative: '2')}" gap="lg">
             <f:for each="{data.items}" as="item">
-                <d:molecule.card class="content-grid__item">
+                <d:molecule.card class="content-grid__item" attributes="{item -> f:mark.item(collection: 'desiderio_contentgrid_items', format: 'array')}">
                     <div class="content-grid__body flex min-w-0 flex-col gap-1.5">
                         <f:if condition="{item.title}">
                             <d:atom.typography tag="h3" variant="h3" class="content-grid__title">

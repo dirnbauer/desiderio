@@ -16,7 +16,7 @@
 
         <div class="feature-grid-4__grid">
             <f:for each="{data.items}" as="item">
-                <d:molecule.featureItem prefix="feature-grid-4" class="feature-grid-4__item" icon="{item.icon}" iconSize="lg">
+                <d:molecule.featureItem prefix="feature-grid-4" class="feature-grid-4__item" icon="{item.icon}" iconSize="lg" attributes="{item -> f:mark.item(collection: 'desiderio_featuregrid4_items', format: 'array')}">
                     <f:fragment name="title">{item -> f:render.text(field: 'title')}</f:fragment>
                     <f:fragment name="text"><f:if condition="{item.description_text}">{item -> f:render.text(field: 'description_text')}</f:if></f:fragment>
                 </d:molecule.featureItem>

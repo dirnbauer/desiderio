@@ -12,7 +12,7 @@
         </f:if>
         <div class="stat-cards__grid stat-cards__grid--cols-{data.columns -> f:or(alternative: '4')}">
             <f:for each="{data.items}" as="item">
-                <article class="stat-cards__item" data-astro-reveal="slide-up" data-astro-tilt="2">
+                <article class="stat-cards__item" data-astro-reveal="slide-up" data-astro-tilt="2"{item -> f:mark.item(collection: 'desiderio_statcards_items')}>
                     <dl class="stat-cards__dl">
                         <dt class="stat-cards__label">{item -> f:render.text(field: 'label')}</dt>
                         <dd class="stat-cards__value" data-astro-counter>{item -> f:render.text(field: 'value')}</dd>

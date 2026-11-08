@@ -35,7 +35,7 @@
                 <input id="pricing-slider-range-{data.uid}" type="range" class="pricing-slider__range" min="0" max="{tierCount - 1}" step="1" value="0" data-d-pricing-slider-range/>
                 <div class="pricing-slider__ticks" aria-hidden="true">
                     <f:for each="{data.tiers}" as="tier" iteration="iter">
-                        <button type="button" tabindex="-1" class="pricing-slider__tick {f:if(condition: iter.isFirst, then: 'pricing-slider__tick--active')}" data-d-pricing-slider-tick="{iter.index}">{tier -> f:render.text(field: 'volume')}</button>
+                        <button type="button" tabindex="-1" class="pricing-slider__tick {f:if(condition: iter.isFirst, then: 'pricing-slider__tick--active')}" data-d-pricing-slider-tick="{iter.index}"{tier -> f:mark.item(collection: 'desiderio_pricingslider_tiers')}>{tier -> f:render.text(field: 'volume')}</button>
                     </f:for>
                 </div>
             </div>
@@ -43,7 +43,7 @@
             <div class="pricing-slider__result">
                 <div class="pricing-slider__tiers" aria-live="polite">
                     <f:for each="{data.tiers}" as="tier" iteration="iter">
-                        <div class="pricing-slider__tier {f:if(condition: iter.isFirst, then: 'pricing-slider__tier--active')}" data-d-pricing-slider-tier aria-current="{f:if(condition: iter.isFirst, then: 'true', else: 'false')}">
+                        <div class="pricing-slider__tier {f:if(condition: iter.isFirst, then: 'pricing-slider__tier--active')}" data-d-pricing-slider-tier aria-current="{f:if(condition: iter.isFirst, then: 'true', else: 'false')}"{tier -> f:mark.item(collection: 'desiderio_pricingslider_tiers')}>
                             <p class="pricing-slider__amount">
                                 <span class="pricing-slider__volume">{tier -> f:render.text(field: 'volume')}</span>
                                 <span class="pricing-slider__unit">{unitLabel -> f:format.trim()}</span>

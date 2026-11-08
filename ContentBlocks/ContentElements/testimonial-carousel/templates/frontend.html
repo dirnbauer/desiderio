@@ -35,7 +35,7 @@
                          role="group"
                          aria-roledescription="{slideLabel}"
                          aria-label="{iter.cycle} / {iter.total}"
-                         aria-hidden="{f:if(condition: iter.isFirst, then: 'false', else: 'true')}">
+                         aria-hidden="{f:if(condition: iter.isFirst, then: 'false', else: 'true')}"{item -> f:mark.item(collection: 'desiderio_testimonialcarousel_testimonials')}>
                     <f:if condition="{item.rating} > 0">
                         <div class="testimonial-carousel__rating" role="img" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:rating.sr.rated', arguments: {0: item.rating}, default: 'Rated {item.rating} out of 5')}">
                             <f:for each="{0: 1, 1: 2, 2: 3, 3: 4, 4: 5}" as="star">

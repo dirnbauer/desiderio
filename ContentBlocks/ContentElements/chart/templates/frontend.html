@@ -143,7 +143,7 @@
                         </thead>
                         <tbody>
                             <f:for each="{data.data_points}" as="point">
-                                <tr>
+                                <tr{point -> f:mark.item(collection: 'desiderio_chart_data_points')}>
                                     <th scope="row">{point -> f:render.text(field: 'point_label')}</th>
                                     <td><f:format.number decimals="0">{point.point_value}</f:format.number><f:if condition="{unit}"> {unit}</f:if></td>
                                 </tr>

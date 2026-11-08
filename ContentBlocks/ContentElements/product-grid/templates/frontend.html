@@ -8,7 +8,7 @@
 <f:section name="products">
     <div class="product-grid__items product-grid__items--cols-{data.columns -> f:or(alternative: '3')}">
         <f:for each="{data.products}" as="product">
-            <article class="product-grid__card">
+            <article class="product-grid__card"{product -> f:mark.item(collection: 'desiderio_productgrid_products')}>
                 <f:if condition="{product.image}">
                     <div class="product-grid__media">
                         <f:for each="{product.image}" as="fileReference">

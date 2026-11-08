@@ -22,7 +22,7 @@
 
         <ol class="infographic__steps infographic__steps--{data.shadcn_layout -> f:or(alternative: 'horizontal')}" role="list">
             <f:for each="{data.items}" as="item" iteration="iter">
-                <li class="infographic__step">
+                <li class="infographic__step"{item -> f:mark.item(collection: 'desiderio_infographic_items')}>
                     <figure class="infographic__visual">
                         <span class="infographic__number" aria-hidden="true"><f:if condition="{item.number}"><f:then>{item -> f:render.text(field: 'number')}</f:then><f:else>{iter.cycle}</f:else></f:if></span>
                         <f:if condition="{item.image}">

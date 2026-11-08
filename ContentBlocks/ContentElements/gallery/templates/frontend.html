@@ -48,7 +48,7 @@
                                 data-thumb-credit="{fileReference.description}"
                                 data-thumb-alt="{fileReference.alternative -> f:or(alternative: item.title)}"
                                 data-thumb-link="{f:uri.typolink(parameter: item.link.url)}"
-                                aria-current="{f:if(condition: galleryIteration.isFirst, then: 'true', else: 'false')}">
+                                aria-current="{f:if(condition: galleryIteration.isFirst, then: 'true', else: 'false')}"{item -> f:mark.item(collection: 'desiderio_gallery_items')}>
                             <f:image image="{fileReference}" maxWidth="480" alt="{f:if(condition: item.title, then: fileReference.alternative, else: '{fileReference.alternative -> f:or(alternative: fileReference.title)}')}" loading="lazy" decoding="async" class="gallery__thumb-image"/>
                             <f:if condition="{item.title}">
                                 <span class="gallery__thumb-label">{item -> f:render.text(field: 'title')}</span>

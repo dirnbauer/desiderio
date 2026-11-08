@@ -23,7 +23,7 @@
 
         <div class="category-cards__grid category-cards__grid--cols-{data.columns -> f:or(alternative: '3')}">
             <f:for each="{data.items}" as="item">
-                <article class="category-cards__card">
+                <article class="category-cards__card"{item -> f:mark.item(collection: 'desiderio_categorycards_items')}>
                     <div class="category-cards__header">
                         <d:atom.typography tag="h3" variant="h3" class="category-cards__title">{item -> f:render.text(field: 'title')}</d:atom.typography>
                         <f:if condition="{item.count}">

@@ -16,7 +16,7 @@
 
         <div class="timeline__list">
             <f:for each="{data.items}" as="item" iteration="iteration">
-                <article class="timeline__item">
+                <article class="timeline__item"{item -> f:mark.item(collection: 'desiderio_timeline_items')}>
                     <div class="timeline__marker" aria-hidden="true">
                         <span class="timeline__dot">{iteration.cycle}</span>
                     </div>

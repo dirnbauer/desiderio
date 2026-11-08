@@ -28,7 +28,7 @@
 
         <div class="product-reviews__list">
             <f:for each="{data.reviews}" as="review">
-                <article class="product-reviews__review">
+                <article class="product-reviews__review"{review -> f:mark.item(collection: 'desiderio_productreviews_reviews')}>
                     <div class="product-reviews__review-header">
                         <div class="product-reviews__review-stars">
                             <span class="sr-only"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:rating.sr.rated" arguments="{0: review.rating}">Rated {review.rating} out of 5</f:translate></span>

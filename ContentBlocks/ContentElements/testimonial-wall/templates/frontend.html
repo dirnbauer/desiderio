@@ -23,7 +23,7 @@
 
         <div class="testimonial-wall__masonry" role="list">
             <f:for each="{data.testimonials}" as="item">
-                <figure class="testimonial-wall__card" role="listitem">
+                <figure class="testimonial-wall__card" role="listitem"{item -> f:mark.item(collection: 'desiderio_testimonialwall_testimonials')}>
                     <blockquote class="testimonial-wall__quote">
                         <p>{item -> f:render.text(field: 'quote')}</p>
                     </blockquote>

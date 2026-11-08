@@ -23,7 +23,7 @@
 
         <ul class="certifications__grid" role="list">
             <f:for each="{data.certifications}" as="cert">
-                <li class="certifications__item">
+                <li class="certifications__item"{cert -> f:mark.item(collection: 'desiderio_certifications_certifications')}>
                     <f:if condition="{cert.badge_image}">
                         <div class="certifications__media">
                             <f:for each="{cert.badge_image}" as="fileReference">

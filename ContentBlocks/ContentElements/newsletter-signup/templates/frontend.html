@@ -27,7 +27,7 @@
             <f:if condition="{data.points}">
                 <ul class="newsletter-signup__points" role="list">
                     <f:for each="{data.points}" as="point">
-                        <li class="newsletter-signup__point">
+                        <li class="newsletter-signup__point"{point -> f:mark.item(collection: 'desiderio_newslettersignup_points')}>
                             <span class="newsletter-signup__check" aria-hidden="true"><d:atom.icon name="check" size="sm"/></span>
                             <span>{point -> f:render.text(field: 'text')}</span>
                         </li>

@@ -101,7 +101,7 @@
                         <ul class="product-gallery__highlights" role="list">
                             <f:for each="{data.highlights}" as="highlight">
                                 <f:if condition="{highlight.text}">
-                                    <li class="product-gallery__highlight">
+                                    <li class="product-gallery__highlight"{highlight -> f:mark.item(collection: 'desiderio_productgallery_highlights')}>
                                         <d:atom.icon name="check" size="sm" class="product-gallery__highlight-icon"/>
                                         <span>{highlight -> f:render.text(field: 'text')}</span>
                                     </li>

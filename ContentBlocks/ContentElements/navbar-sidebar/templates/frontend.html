@@ -17,7 +17,7 @@
             </div>
             <nav class="navbar-sidebar__nav">
                 <f:for each="{data.sections}" as="section">
-                    <div class="navbar-sidebar__section">
+                    <div class="navbar-sidebar__section"{section -> f:mark.item(collection: 'desiderio_navbarsidebar_sections')}>
                         <f:if condition="{section.title}">
                             <d:atom.typography tag="h2" variant="h2" class="navbar-sidebar__section-title">{section -> f:render.text(field: 'title')}</d:atom.typography>
                         </f:if>

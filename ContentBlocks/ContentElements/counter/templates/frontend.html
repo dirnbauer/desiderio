@@ -12,7 +12,7 @@
         </f:if>
         <dl class="counter__grid counter__grid--cols-{data.columns -> f:or(alternative: '3')}">
             <f:for each="{data.items}" as="item">
-                <div class="counter__item" data-astro-reveal="slide-up">
+                <div class="counter__item" data-astro-reveal="slide-up"{item -> f:mark.item(collection: 'desiderio_counter_items')}>
                     <dt class="counter__value">
                         <f:if condition="{item.prefix}">
                             <span class="counter__prefix">{item -> f:render.text(field: 'prefix')}</span>

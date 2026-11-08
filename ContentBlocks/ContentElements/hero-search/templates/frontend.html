@@ -24,7 +24,7 @@
                 <nav class="hero-search__categories" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:search.categories.aria', default: 'Popular categories')}">
                     <f:for each="{data.category_filters}" as="cat">
                         <f:if condition="{cat.link.url}">
-                            <d:atom.link href="{f:uri.typolink(parameter: cat.link.url)}" target="{cat.link.target}" variant="muted" class="hero-search__category">{cat -> f:render.text(field: 'label')}</d:atom.link>
+                            <d:atom.link href="{f:uri.typolink(parameter: cat.link.url)}" target="{cat.link.target}" variant="muted" class="hero-search__category" attributes="{cat -> f:mark.item(collection: 'desiderio_herosearch_category_filters', format: 'array')}">{cat -> f:render.text(field: 'label')}</d:atom.link>
                         </f:if>
                     </f:for>
                 </nav>

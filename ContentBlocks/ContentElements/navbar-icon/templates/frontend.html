@@ -16,7 +16,7 @@
             </div>
             <ul class="navbar-icon__nav" role="list">
                 <f:for each="{data.nav_items}" as="item">
-                    <li>
+                    <li{item -> f:mark.item(collection: 'desiderio_navbaricon_nav_items')}>
                         <f:if condition="{item.link.url}">
                             <f:then>
                                 <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="navbar-icon__link">

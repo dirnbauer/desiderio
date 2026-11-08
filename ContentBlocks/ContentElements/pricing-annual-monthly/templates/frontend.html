@@ -23,7 +23,7 @@
 
         <ul class="pricing-annual-monthly__grid" role="list">
             <f:for each="{data.plans}" as="tier" iteration="iter">
-                <li class="pricing-annual-monthly__item">
+                <li class="pricing-annual-monthly__item"{tier -> f:mark.item(collection: 'desiderio_pricingannualmonthly_plans')}>
                     <d:molecule.card
                         class="pricing-annual-monthly__plan {f:if(condition: tier.is_featured, then: 'pricing-annual-monthly__plan--featured')}"
                     >
@@ -72,7 +72,7 @@
                                 <ul class="pricing-annual-monthly__features" role="list">
                                     <f:for each="{tier.features}" as="feature">
                                         <f:if condition="{feature.text}">
-                                            <d:molecule.checkedListItem class="pricing-annual-monthly__feature" iconClass="pricing-annual-monthly__check">
+                                            <d:molecule.checkedListItem class="pricing-annual-monthly__feature" iconClass="pricing-annual-monthly__check" attributes="{feature -> f:mark.item(collection: 'features', format: 'array')}">
                                                 {feature -> f:render.text(field: 'text')}
                                             </d:molecule.checkedListItem>
                                         </f:if>

@@ -19,7 +19,7 @@
                 <nav class="footer__nav" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:footer.nav.aria', default: 'Footer navigation')}">
                     <ul class="footer__links" role="list">
                         <f:for each="{data.footer_links}" as="item">
-                            <li>
+                            <li{item -> f:mark.item(collection: 'desiderio_footer_footer_links')}>
                                 <f:if condition="{item.link}">
                                     <f:then>
                                         <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="footer__link">{item -> f:render.text(field: 'label')}</d:atom.link>
@@ -38,7 +38,7 @@
                 <nav class="footer__utilities" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:footer.utility.aria', default: 'Legal and utility links')}">
                     <ul class="footer__links" role="list">
                         <f:for each="{data.utility_links}" as="item">
-                            <li>
+                            <li{item -> f:mark.item(collection: 'desiderio_footer_utility_links')}>
                                 <f:if condition="{item.link}">
                                     <f:then>
                                         <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="footer__link">{item -> f:render.text(field: 'label')}</d:atom.link>

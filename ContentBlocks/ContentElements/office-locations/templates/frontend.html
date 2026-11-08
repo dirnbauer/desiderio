@@ -16,7 +16,7 @@
 
         <ul class="office-locations__grid" role="list">
             <f:for each="{data.location_items}" as="loc">
-                <li>
+                <li{loc -> f:mark.item(collection: 'desiderio_officelocations_location_items')}>
                     <d:molecule.card class="office-locations__item">
                         <div class="office-locations__body">
                             <d:atom.typography tag="h3" variant="h3" class="office-locations__city">{loc -> f:render.text(field: 'city')}</d:atom.typography>

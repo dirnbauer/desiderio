@@ -58,7 +58,7 @@
                     <f:if condition="{data.show_legend}">
                         <ul class="chart-donut__legend" role="list">
                             <f:for each="{data.segments}" as="segment" iteration="legIter">
-                                <li class="chart-donut__legend-item">
+                                <li class="chart-donut__legend-item"{segment -> f:mark.item(collection: 'desiderio_chartdonut_segments')}>
                                     <span class="chart-donut__swatch chart-donut__swatch--{legIter.cycle}" aria-hidden="true"></span>
                                     <span class="chart-donut__legend-label">{segment -> f:render.text(field: 'label')}</span>
                                     <span class="chart-donut__legend-value">{segment.value}<f:if condition="{segment.unit}"> {segment -> f:render.text(field: 'unit')}</f:if></span>
@@ -80,7 +80,7 @@
                     </thead>
                     <tbody>
                         <f:for each="{data.segments}" as="segment">
-                            <tr>
+                            <tr{segment -> f:mark.item(collection: 'desiderio_chartdonut_segments')}>
                                 <th scope="row">{segment -> f:render.text(field: 'label')}</th>
                                 <td>{segment.value}<f:if condition="{segment.unit}"> {segment -> f:render.text(field: 'unit')}</f:if></td>
                             </tr>

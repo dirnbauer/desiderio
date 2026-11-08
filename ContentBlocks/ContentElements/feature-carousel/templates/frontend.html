@@ -17,7 +17,7 @@
 
             <ul id="feature-carousel-track-{data.uid}" class="feature-carousel__track" tabindex="0" role="list" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.aria.featureSlides', default: 'Feature slides, scrollable')}">
                 <f:for each="{data.items}" as="item">
-                    <li class="feature-carousel__cell">
+                    <li class="feature-carousel__cell"{item -> f:mark.item(collection: 'desiderio_featurecarousel_items')}>
                         <d:molecule.card class="feature-carousel__slide relative has-[a:focus-visible]:ring-2 has-[a:focus-visible]:ring-ring">
                             <f:if condition="{item.icon}">
                                 <span class="feature-carousel__icon" aria-hidden="true"><d:atom.icon name="{item.icon}" size="lg"/></span>

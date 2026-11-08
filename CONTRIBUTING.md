@@ -80,6 +80,12 @@ Desiderio targets **TYPO3 14.3.6+ and PHP 8.4–8.5**. Use the
   Collection must not keep its own `fields:` (they are inert). The audit gates
   all of this; the [collection guide](Documentation/Developer/CollectionTableConsolidation.rst)
   explains the shared models and upgrade procedure.
+- Every `<f:for>` over a Content Block `Collection` marks each entry's root
+  element with `f:mark.item` (the Visual Editor's row marker, invisible
+  outside edit mode). Run `php Build/Scripts/codemod-collection-markers.php`
+  after template changes; `--check` and `ContentBlockCollectionMarkerTest`
+  fail on unmarked loops that are not listed exceptions. See the
+  [row marker guide](Documentation/Developer/CollectionRowMarkers.rst).
 - Content Block image fields render through `<f:image>` or `f:uri.image()`.
   Pass custom `data-*` attributes through structured Fluid arguments such as
   `data="{d-gallery-main: 'true'}"`; do not hand-write literal `<img>` tags for

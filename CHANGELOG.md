@@ -4,6 +4,17 @@ All notable changes to **webconsulting/desiderio** are documented in this
 file. The format follows [Keep a Changelog](https://keepachangelog.com/)
 and the project adheres to [Semantic Versioning](https://semver.org/).
 
+## [4.36.0] — unreleased
+
+### Added
+
+- Collection row markers for the Visual Editor: every `<f:for>` over a Content Block Collection marks each entry's root element with `f:mark.item` (Visual Editor Enhancements 1.6+), so the editor highlights, dims and — from Visual Editor Enhancements 1.7 — offers row controls on the page. 185 of 189 collection loops in 156 elements carry markers (149 HTML roots, 39 component roots, 2 of them merged with existing `attributes`), including the 13 loops over nested Collections; 4 loops without one element per entry are listed exceptions with reasons (chart, chart-contribution and chart-donut computation/JSON loops, the gallery's featured view). Outside edit mode the marker renders nothing: all 263 element previews render byte-identical to 4.34.1 (checked before this branch was rebased onto 4.35.0).
+- `Build/Scripts/codemod-collection-markers.php` adds missing markers (`--dry-run`, `--check`; idempotent) with the rules in `Classes/Templates/CollectionMarker`; `ContentBlockCollectionMarkerTest` gates every loop. Guide: Developer → Collection row markers.
+- `CheckedListItem`, `TableRow`, `TableCell`, `FeatureItem`, `TabsTrigger` and `TabsContent` accept an `attributes` argument and spread it onto their root tag, like `Card`.
+
+### Changed
+
+- Requires `webconsulting/visual-editor-enhancements` `^1.6` (was `^0.8 || ^1.0`). Where that extension is not loaded, desiderio registers a stand-in `f:mark.item` that renders nothing, so templates never meet an unknown ViewHelper.
 ## [4.35.0] — 2026-11-08
 
 ### Added

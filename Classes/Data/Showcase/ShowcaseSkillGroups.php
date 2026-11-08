@@ -25,7 +25,7 @@ namespace Webconsulting\Desiderio\Data\Showcase;
  * @phpstan-type SkillEntry array{name: string, owner: string, upstream: string, superfeature: bool, icon: string, title: string, line: string, headline: string, can: string, cool: string, why: string, say: string}
  * @phpstan-type SkillGroup array{slug: string, title: string, abstract: string, description: string, header: string, pitch: string, skills: non-empty-list<SkillEntry>}
  * @phpstan-type OtherSkill array{name: string, owner: string, line: string, group: string}
- * @phpstan-type CommunityTalk array{date: string, topic: string, title: string, speaker: string, event: string, eventUrl: string, materials: string, extra: array{text: string, url: string}|null, skills: non-empty-list<string>}
+ * @phpstan-type CommunityTalk array{date: string, topic: string, title: string, kind: string, speaker: string, at: string, event: string, eventUrl: string, materials: string, extra: array{text: string, url: string}|null, skills: non-empty-list<string>}
  */
 final class ShowcaseSkillGroups
 {
@@ -112,7 +112,9 @@ final class ShowcaseSkillGroups
                 'date' => '9 October 2023',
                 'topic' => 'Content types with Content Blocks',
                 'title' => 'Inhaltstypen mit Content Blocks in TYPO3 v12 erstellen',
+                'kind' => 'talk',
                 'speaker' => 'Nikita Hovratov',
+                'at' => 'an',
                 'event' => 'MTUG meeting',
                 'eventUrl' => 'https://www.mtug.de/treffen/veranstaltungen-2023/oktober.html',
                 'materials' => 'https://docs.google.com/presentation/d/1QZPMNXPM5zyvI7NEMbJfU9NV26PZpzYLFmYSmg9Iz-Y/edit',
@@ -123,7 +125,9 @@ final class ShowcaseSkillGroups
                 'date' => '13 October 2025',
                 'topic' => 'Upgrade strategy and tools',
                 'title' => 'TYPO3 Upgrades – Strategie und Tools',
+                'kind' => 'talk',
                 'speaker' => 'Marcus Schwemer',
+                'at' => 'an',
                 'event' => 'MTUG meeting',
                 'eventUrl' => 'https://www.mtug.de/treffen/veranstaltungen-2025/oktober.html',
                 'materials' => 'https://www.mtug.de/fileadmin/files/2025/MTUG_2025_10_TYPO3_Upgrades_Marcus_Schwemer.pdf',
@@ -134,7 +138,9 @@ final class ShowcaseSkillGroups
                 'date' => '13 April 2026',
                 'topic' => 'What TYPO3 v14 brings',
                 'title' => 'TYPO3 v14: Vorstellung der neuen Features und Highlights',
+                'kind' => 'talk',
                 'speaker' => 'Garvin Hicking',
+                'at' => 'an',
                 'event' => 'MTUG meeting',
                 'eventUrl' => 'https://www.mtug.de/treffen/veranstaltungen-2026/april.html',
                 'materials' => 'https://garv.in/typo3/mtug-v14/',
@@ -145,8 +151,10 @@ final class ShowcaseSkillGroups
                 'date' => '12 September 2026',
                 'topic' => 'Testing accessibility',
                 'title' => 'Barrierefreiheit testen',
+                'kind' => 'session',
                 'speaker' => 'Lukas Fritze',
-                'event' => 'TYPO3camp München session',
+                'at' => '',
+                'event' => 'TYPO3camp München 2026',
                 'eventUrl' => 'https://www.typo3camp-muenchen.de/session/barrierefreiheit-testen-93',
                 'materials' => 'https://lukasfritze.dev/assets/barrierefreiheit-testen.pdf',
                 'extra' => null,
@@ -156,8 +164,10 @@ final class ShowcaseSkillGroups
                 'date' => '13 September 2026',
                 'topic' => 'SEO and GEO with Schema.org',
                 'title' => 'SEO und GEO mit Schema.org',
+                'kind' => 'session',
                 'speaker' => 'Chris Müller',
-                'event' => 'TYPO3camp München session',
+                'at' => '',
+                'event' => 'TYPO3camp München 2026',
                 'eventUrl' => 'https://www.typo3camp-muenchen.de/session/geo-und-seo-mit-schemaorg-106',
                 'materials' => 'https://brotkrueml.dev/presentations/t3cm26/schema.html',
                 'extra' => null,

@@ -1341,7 +1341,7 @@ final class ShowcaseFeatureDefinitions
                 'project' => 'the vendored skills',
                 'link' => 'https://github.com/netresearch',
                 'text' => '<p>20 of the 61 skills are vendored unchanged and pinned: 16 from <a href="https://github.com/netresearch">Netresearch DTT GmbH</a>, the others from Anthropic, Supabase, Vercel and ehmo. Cursor shared the code-quality review. Matt Pocock, Philipp Schmid, Lev Selector and Alex Sprogis shaped how the skills are written, tested and drawn.</p>'
-                    . '<p>The talks above are the work of Nikita Hovratov, Marcus Schwemer, Garvin Hicking, Lukas Fritze and Chris Müller. Stefan Busemann and Peter Kraume organise <a href="https://www.mtug.de/">MTUG</a>, also on <a href="https://www.meetup.com/munich-typo3-user-group">Meetup</a>. Like <a href="https://www.typo3camp-muenchen.de/">TYPO3camp München</a>, it is backed by the non-profit TYPO3 User Group München e.V. Thank you very much.</p>',
+                    . '<p>The talks above are the work of Nikita Hovratov, Marcus Schwemer, Garvin Hicking, Lukas Fritze and Chris Müller. Stefan Busemann and Peter Kraume organise <a href="https://www.mtug.de/">MTUG</a>, which you can also follow on <a href="https://www.meetup.com/munich-typo3-user-group">Meetup</a>. Like <a href="https://www.typo3camp-muenchen.de/">TYPO3camp München</a>, it is backed by the non-profit TYPO3 User Group München e.V. Thank you very much.</p>',
             ],
             'cta' => ['header' => 'Give your coding agent our TYPO3 rules', 'description' => 'One clone and one install script give Claude Code, Codex, Cursor and Gemini the same TYPO3 knowledge. Start with the ten superfeatures.', 'text' => 'Get the skills', 'link' => $repo],
         ];

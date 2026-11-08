@@ -242,10 +242,16 @@ final class ShowcaseSkillPages
         }
         if ($byOwner !== []) {
             $parts = [];
+            $vendored = 0;
             foreach ($byOwner as $owner => $links) {
                 $parts[] = self::listing($links) . (count($links) === 1 ? ' comes' : ' come') . ' unchanged from ' . self::text($owner);
+                $vendored += count($links);
             }
-            $content .= '<p>' . implode('; ', $parts) . '. Suggest changes to them in their own repositories, so their authors can take them up.</p>';
+            $content .= '<p>' . implode('; ', $parts) . '. '
+                . ($vendored === 1
+                    ? 'Suggest changes to it in its own repository, so its authors can take them up.'
+                    : 'Suggest changes to them in their own repositories, so their authors can take them up.')
+                . '</p>';
         }
 
         return ShowcaseBlocks::block('desiderio_contenthighlight', [
@@ -335,8 +341,8 @@ final class ShowcaseSkillPages
             $items[] = [
                 'step' => $talk['date'],
                 'title' => $talk['topic'],
-                'content' => '<p><span lang="de">' . self::text($talk['title']) . '</span>, a talk by ' . self::text($talk['speaker'])
-                    . ' at ' . self::article($talk['event']) . ' <a href="' . $talk['eventUrl'] . '">' . self::text($talk['event']) . '</a>' . $extra . '.</p>'
+                'content' => '<p><span lang="de">' . self::text($talk['title']) . '</span>, a ' . $talk['kind'] . ' by ' . self::text($talk['speaker'])
+                    . ' at ' . ($talk['at'] === '' ? '' : $talk['at'] . ' ') . '<a href="' . $talk['eventUrl'] . '">' . self::text($talk['event']) . '</a>' . $extra . '.</p>'
                     . '<p>Related skills: ' . implode(', ', $related) . '</p>',
                 'link_text' => 'Open the slides',
                 'link' => $talk['materials'],
@@ -511,7 +517,7 @@ final class ShowcaseSkillPages
         return ShowcaseBlocks::block('desiderio_benefitcards', [
             'eyebrow' => 'More skills',
             'header' => 'Also in the collection',
-            'subheadline' => '12 more skills, each next to the group it belongs with. The last two cover webconsulting’s own branding and Austrian legal notices.',
+            'subheadline' => '12 more skills, each next to the group it belongs with. Two more, not listed here, cover webconsulting’s own branding and Austrian legal notices.',
             'columns' => '3',
             'items' => array_map(
                 static fn(array $skill): array => [
@@ -541,14 +547,6 @@ final class ShowcaseSkillPages
     private static function text(string $value): string
     {
         return htmlspecialchars($value, ENT_NOQUOTES);
-    }
-
-    /**
-     * "an MTUG meeting", "a TYPO3camp München session".
-     */
-    private static function article(string $event): string
-    {
-        return str_starts_with($event, 'MTUG') ? 'an' : 'a';
     }
 
     /**

@@ -8,13 +8,12 @@
 <f:argument name="id" type="string" />
 <f:argument name="controls" type="string" />
 <f:argument name="active" type="bool" optional="{true}" default="{false}" />
-<f:argument name="class" type="string" optional="{true}" default="" />
-<f:comment>
-    `attributes` carries what a control needs beyond the shadcn contract:
-    aria-label, aria-expanded, aria-controls, download, data-* hooks read by
-    the shared runtime. Keys are template-authored, values are escaped.
-</f:comment>
-<f:argument name="attributes" type="array" optional="{true}" default="{}" />
+<f:argument name="class" type="string" optional="{true}" default="" /><f:comment>
+    `attributes` carries what a row or control needs beyond the shadcn contract
+    (aria-*, data-* hooks, the Visual Editor's row markers). Keys are
+    template-authored, values are escaped. The comment bridges two lines so
+    the extra argument emits no whitespace.
+</f:comment><f:argument name="attributes" type="array" optional="{true}" default="{}" />
 
 <button
     type="button"

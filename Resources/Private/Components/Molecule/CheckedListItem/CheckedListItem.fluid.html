@@ -3,13 +3,12 @@
       data-namespace-typo3-fluid="true">
 <f:argument name="icon" type="string" optional="{true}" default="check" />
 <f:argument name="class" type="string" optional="{true}" default="" />
-<f:argument name="iconClass" type="string" optional="{true}" default="" />
-<f:comment>
-    `attributes` carries what a control needs beyond the shadcn contract:
-    aria-label, aria-expanded, aria-controls, download, data-* hooks read by
-    the shared runtime. Keys are template-authored, values are escaped.
-</f:comment>
-<f:argument name="attributes" type="array" optional="{true}" default="{}" />
+<f:argument name="iconClass" type="string" optional="{true}" default="" /><f:comment>
+    `attributes` carries what a row or control needs beyond the shadcn contract
+    (aria-*, data-* hooks, the Visual Editor's row markers). Keys are
+    template-authored, values are escaped. The comment bridges two lines so
+    the extra argument emits no whitespace.
+</f:comment><f:argument name="attributes" type="array" optional="{true}" default="{}" />
 
 <li data-slot="checked-list-item" class="d-checked-list-item {class -> f:format.trim()}"<f:for each="{attributes}" as="attributeValue" key="attributeName"> {attributeName}="{attributeValue}"</f:for>>
     <span class="d-checked-list-item__marker" aria-hidden="true">

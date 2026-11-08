@@ -116,7 +116,7 @@ final class MedAtlas
                     ['icon' => 'chart-column', 'title' => 'Reports the big picture', 'description' => 'The data report counts shortages, reasons, export bans and resupply delays after every nightly import.'],
                 ],
             ],
-            'sections' => [...self::researchSection(), ...self::parentsSection(), ...self::statisticsSection(), self::openDataSection()],
+            'sections' => [...self::researchSection(), ...self::parentsSection(), ...self::statisticsSection(), self::openDataSection(), ...self::apiSection()],
             'faq' => [
                 'header' => 'Questions about MedAtlas Austria',
                 'subheadline' => 'Status, stock, advice and data.',
@@ -124,7 +124,7 @@ final class MedAtlas
                     ['question' => 'Is MedAtlas Austria official?', 'answer' => 'No. It is an independent research and information project by webconsulting. Every page names its sources. There is no partnership with BASG, AGES or ELGA.'],
                     ['question' => 'Does it know my pharmacy’s stock?', 'answer' => 'No. The availability comes from the ELGA list and the BASG shortage register. It applies to all of Austria and says nothing about one pharmacy’s stock. The finder links the stock apps ApoApp and ApoScout.'],
                     ['question' => 'Is this medical advice?', 'answer' => 'No. Independent research and information project. Not medical advice. Whether a substitute suits you is for your doctor or pharmacist to decide. Texts written with AI carry a label.'],
-                    ['question' => 'Can developers use the data?', 'answer' => 'MedAtlas has a REST API with 14 read endpoints, OpenAPI 3.1 documentation and CSV or XLSX exports, with rate limits. Book a demo and we show it to you.'],
+                    ['question' => 'Can developers use the data?', 'answer' => 'Yes. MedAtlas has a REST API with 14 read endpoints, an OpenAPI 3.1 description and CSV or Excel exports, with a key and rate limits. The section “Connected through an open API” above shows how it works and why AI agents answer better with it. Book a demo and we show it to you.'],
                 ],
             ],
             'install' => null,
@@ -304,6 +304,77 @@ final class MedAtlas
                 ['title' => 'EMA leaflets', 'description' => 'German package leaflets of the European Medicines Agency for medicines authorised across the EU, used with acknowledgement.'],
             ],
         ]);
+    }
+
+    /**
+     * The open API (MedAtlas docs/API.md and src/app/api/v1, 8 November 2026):
+     * how a system connects, why that helps, and why an AI agent answers
+     * better with it. Facts only: 14 GET endpoints, OpenAPI 3.1 with the
+     * reference at /api/docs, a Bearer key from the API page, the tiers
+     * 100 / 1,000 / unlimited requests a minute, JSON errors, CSV/XLSX export,
+     * the nightly import. MedAtlas has no MCP server and no llms.txt; the page
+     * does not say otherwise. The instance is not public (basic auth), so the
+     * example uses placeholders for the address and the key.
+     *
+     * @return list<ShowcaseBlock>
+     */
+    private static function apiSection(): array
+    {
+        return [
+            ShowcaseBlocks::block('desiderio_featurecards', [
+                'eyebrow' => 'Open API',
+                'header' => 'Connected through an open API',
+                'subheadline' => 'The same registers as the website, as JSON, CSV or Excel: one documented REST API for your own systems and for AI agents.',
+                'items' => [
+                    ['title' => 'One REST API, 14 read endpoints', 'description' => 'Medicines, shortages, export bans, announcements and decisions as lists and single records, plus a search across the registers, categories and statistics. The API only reads; it never changes data.'],
+                    ['title' => 'OpenAPI 3.1, documented in the app', 'description' => 'The machine-readable description and an interactive reference sit at /api/docs. Every parameter, field and error code is described there.'],
+                    ['title' => 'A key and fair limits', 'description' => 'A Bearer key from the API page. 100 requests a minute by default, higher tiers with 1,000 or no limit. Errors come back as JSON with clear status codes: 401, 404, 429.'],
+                    ['title' => 'Fresh every morning', 'description' => 'The nightly import reads the BASG register and the ELGA list. Each shortage record carries its report date, its last change and the expected resupply date.'],
+                ],
+            ]),
+            ShowcaseBlocks::block('desiderio_codeblock', [
+                'header' => 'A request, then a spreadsheet',
+                'language' => 'bash',
+                'filename' => 'terminal',
+                'code' => implode("\n", [
+                    '# The five newest shortage reports for medicines named "Paracetamol"',
+                    'curl -H "Authorization: Bearer $MEDATLAS_KEY" \\',
+                    '  "$MEDATLAS/api/v1/shortages?q=Paracetamol&sort=shortageStartDate&direction=desc&limit=5"',
+                    '',
+                    '# The same filter as an Excel file',
+                    'curl -H "Authorization: Bearer $MEDATLAS_KEY" -o shortages.xlsx \\',
+                    '  "$MEDATLAS/api/v1/shortages?q=Paracetamol&format=xlsx"',
+                ]),
+            ]),
+            ShowcaseBlocks::block('desiderio_featurecards', [
+                'eyebrow' => 'Why it is useful',
+                'header' => 'Numbers you can work with',
+                'subheadline' => 'What the API gives a pharmacy chain, a hospital, a researcher or a newsroom.',
+                'items' => [
+                    ['title' => 'One question, five registers', 'description' => 'One search call covers medicines, shortages, export bans, announcements and decisions.'],
+                    ['title' => 'Fields instead of PDFs', 'description' => 'PZN, registration number, ATC code, status, reason and expected resupply are fields, not sentences in a notice.'],
+                    ['title' => 'Your tools, your formats', 'description' => 'JSON for code, CSV and Excel for spreadsheets. The statistics endpoint returns the figures and trends of the data report.'],
+                    ['title' => 'The website’s data, not a copy', 'description' => 'The API reads the same database as MedAtlas. What a page shows is what the API returns.'],
+                ],
+            ]),
+            ShowcaseBlocks::block('desiderio_featurenumbered', [
+                'header' => 'Why AI agents answer better with it',
+                'subheadline' => 'An agent such as Claude, ChatGPT or Codex can use the API like a tool. Five reasons that makes its answers better.',
+                'items' => [
+                    ['title' => 'A description the agent can read', 'description' => '<p>The OpenAPI 3.1 description tells the agent which endpoint answers which question and which parameters it takes. No scraping and no guessing a page layout.</p>'],
+                    ['title' => 'Today’s register, not the model’s memory', 'description' => '<p>A language model knows what it learnt in training. Through the API it answers from the current register: status, last change and expected resupply, with the record it can cite.</p>'],
+                    ['title' => 'Identifiers instead of names', 'description' => '<p>PZN, registration number and ATC code connect a shortage to its medicine and its substance, so similar product names are not mixed up.</p>'],
+                    ['title' => 'Safe to automate', 'description' => '<p>Read-only endpoints, rate limits and JSON errors: an agent can search, page and back off without changing anything.</p>'],
+                    ['title' => 'Small, precise context', 'description' => '<p>Filters, sorting and pages keep the answer short: the five newest reports instead of a whole register.</p>'],
+                ],
+            ]),
+            ShowcaseBlocks::block('desiderio_callout', [
+                'header' => 'Answers with a source and a date',
+                'content' => '<p>Ask an agent with the API, for example: “Which paracetamol products are reported as not available in Austria, and when are they expected back? Name the source and the date.” It searches the shortage register and answers with the records it found.</p>'
+                    . '<p>Independent research and information project. Not medical advice. The data applies to all of Austria and says nothing about a single pharmacy’s stock.</p>',
+                'variant' => 'info',
+            ]),
+        ];
     }
 
     /**

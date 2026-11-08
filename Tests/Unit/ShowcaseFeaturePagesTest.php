@@ -113,12 +113,14 @@ final class ShowcaseFeaturePagesTest extends TestCase
     public function testEveryFeaturePageFollowsTheSameOutline(): void
     {
         $credited = [];
+        $installs = [];
         $sections = [];
         foreach (['features' => ShowcaseFeatureDefinitions::categories(), 'ai' => ShowcaseFeatureDefinitions::aiCategories(), 'software' => ShowcaseSoftwareDefinitions::categories()] as $section => $categories) {
             foreach ($categories as $category) {
                 foreach ($category['features'] as $feature) {
                     $slug = '/' . $section . '/' . $feature['slug'];
                     $credited[$slug] = isset($feature['credits']);
+                    $installs[$slug] = ($feature['install'] ?? null) !== null;
                     $sections[$slug] = array_map(static fn(array $block): string => $block['ctype'], $feature['sections'] ?? []);
                 }
             }
@@ -130,7 +132,8 @@ final class ShowcaseFeaturePagesTest extends TestCase
             $ctypes = array_map(static fn(array $block): string => $block['ctype'], $page['content']);
             // The page's own sections, as declared, between benefits and questions.
             $expected = ['desiderio_herosaas', 'desiderio_contenthighlight', 'desiderio_gallery', 'desiderio_benefitcards', ...$sections[$page['slug']], 'desiderio_faq'];
-            if (in_array('desiderio_codeblock', $ctypes, true)) {
+            // The install commands after the questions (a section may hold code blocks of its own).
+            if ($installs[$page['slug']] ?? false) {
                 $expected[] = 'desiderio_codeblock';
             }
             if ($credited[$page['slug']] ?? false) {

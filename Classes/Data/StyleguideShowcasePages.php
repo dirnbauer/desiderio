@@ -113,6 +113,33 @@ final class StyleguideShowcasePages
     }
 
     /**
+     * Showcase pages that gave way to others, by their slug: the page that
+     * holds their content now and the anchor of that content on it. Once the
+     * successor is written, the seeder deletes the old page with its
+     * translations and content, and redirects its URL to the successor's
+     * anchor in every language.
+     *
+     * @return array<string, array{successor: string, anchor: string}>
+     */
+    public static function retiredPages(): array
+    {
+        return [];
+    }
+
+    /**
+     * Pages another package owns that come first below a showcase page, by
+     * slug => the slug of that showcase page (without the leading slash).
+     * The seeder never writes, moves or hides them; it sorts its own pages
+     * below the same parent after them.
+     *
+     * @return array<string, string>
+     */
+    public static function leadingChildPages(): array
+    {
+        return [];
+    }
+
+    /**
      * @return array<int, ShowcasePage>
      */
     public static function blogSupportPages(): array

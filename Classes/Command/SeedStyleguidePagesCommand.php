@@ -384,6 +384,10 @@ final class SeedStyleguidePagesCommand extends Command
                     ),
                     $pageFilter->slugs()
                 ));
+                $retiring = self::retirementListing(StyleguideShowcasePages::retiredPages(), $pageFilter->includes(...));
+                if ($retiring !== []) {
+                    $io->listing($retiring);
+                }
                 $io->success(sprintf(
                     'Would reseed %d selected pages and %d content elements below page uid %d.',
                     count($pageFilter->slugs()),
@@ -417,6 +421,7 @@ final class SeedStyleguidePagesCommand extends Command
             foreach (self::CONTENT_TYPE_SUPPORT_PAGES as $page) {
                 $listing[] = sprintf('%s: 1 breadcrumb demo element', $page['title']);
             }
+            array_push($listing, ...self::retirementListing(StyleguideShowcasePages::retiredPages(), static fn(string $slug): bool => true));
             $io->listing($listing);
             if (!$skipPowermail) {
                 $powermailForms = $this->getPowermailDemoSeeder()->getDemoForms();
@@ -603,6 +608,10 @@ final class SeedStyleguidePagesCommand extends Command
         $linkTargets['home'] = $parentPid;
         $showcaseBlocks = [];
         $blogPostsToRelate = [];
+        // Pages another package owns that lead a showcase page's children
+        // (the skill search below the skills hub). Read only: never written,
+        // moved or hidden; the seeded siblings sort after them.
+        $leadingPlacements = $this->leadingChildPlacements(StyleguideShowcasePages::leadingChildPages(), $parentPid, $pageColumns);
         foreach ($showcasePages as $index => $page) {
             if (!$isSelected($page['slug'])) {
                 if (($existingUids[$page['slug']] ?? null) !== null) {
@@ -668,6 +677,10 @@ final class SeedStyleguidePagesCommand extends Command
             if (is_string($parentSlug) && isset($linkTargets[$parentSlug])) {
                 $pagePid = $linkTargets[$parentSlug];
             }
+            $leading = is_string($parentSlug) ? ($leadingPlacements[$parentSlug] ?? null) : null;
+            if ($leading !== null && $leading['pid'] === $pagePid) {
+                $sorting = self::sortingAfterLeadingChild($sorting, $leading['sorting']);
+            }
 
             $pageUid = $pageUpserter->findExistingPageUid($pagePid, $page['title'], $page['slug'], $pageColumns);
             if ($pageUid === null) {
@@ -726,6 +739,17 @@ final class SeedStyleguidePagesCommand extends Command
         $deletedLegacyPages = $pageFilter === null
             ? $this->softDeleteLegacyRootPages($parentPid, self::LEGACY_ROOT_PAGE_SLUGS, $now, $pageColumns, $contentCleaner)
             : 0;
+        // Pages that gave way to others go once their successor is written:
+        // in a full run always, with --pages when the successor is selected.
+        $retirement = $this->retireShowcasePages(
+            StyleguideShowcasePages::retiredPages(),
+            $linkTargets,
+            $isSelected,
+            $parentPid,
+            $now,
+            $pageColumns,
+            $contentCleaner
+        );
 
         // Categories and tags live next to the posts on their list page so the
         // whole blog section stays inside the seeded subtree.
@@ -775,6 +799,17 @@ final class SeedStyleguidePagesCommand extends Command
             $pageUpserter,
             $pageColumns
         );
+        // A {{page:}} target that does not exist becomes a link to the
+        // Desiderio repository. Say so, so a page another package owns (the
+        // skill search) can be created first and the pages reseeded.
+        $unresolved = self::unresolvedPagePlaceholders([$chapterContent, $supportPageBlocks, $showcaseBlocks], $linkTargets);
+        if ($unresolved !== []) {
+            $io->warning(sprintf(
+                'These link targets do not exist below page uid %d, so their links point to the Desiderio repository: %s. Create the pages, then reseed the pages that link to them.',
+                $parentPid,
+                implode(', ', $unresolved)
+            ));
+        }
 
         foreach ($chapterContent as $content) {
             $contentElementSeeder->insert($content['pageUid'], $now, $this->getFixtureResolver()->buildContentInsert(
@@ -923,7 +958,7 @@ final class SeedStyleguidePagesCommand extends Command
             sort($uidList);
             $uidList = implode(',', $uidList);
             $io->success(sprintf(
-                'Reseeded %d selected pages (%d new, %d moved, %d redirects kept) and inserted %d content elements below page uid %d. '
+                'Reseeded %d selected pages (%d new, %d moved, %d redirects kept) and inserted %d content elements below page uid %d.%s '
                 . 'Reseeding removed the translated content of these pages; re-create it with sitepackage:content:translate --pages=%s.',
                 count($reseededUids),
                 $createdPages,
@@ -931,6 +966,7 @@ final class SeedStyleguidePagesCommand extends Command
                 $redirects,
                 $createdContentElements,
                 $parentPid,
+                self::retirementSummary($retirement),
                 $uidList
             ));
             $output->writeln('Reseeded pages: ' . $uidList);
@@ -939,7 +975,7 @@ final class SeedStyleguidePagesCommand extends Command
         }
 
         $io->success(sprintf(
-            'Created or updated %d styleguide pages (%d new, %d moved, %d redirects kept) and inserted %d content elements below page uid %d%s%s%s.',
+            'Created or updated %d styleguide pages (%d new, %d moved, %d redirects kept) and inserted %d content elements below page uid %d%s%s%s%s.',
             count($groups) + count(self::CONTENT_TYPE_SUPPORT_PAGES) + count($showcasePages),
             $createdPages,
             $movedPages,
@@ -948,7 +984,8 @@ final class SeedStyleguidePagesCommand extends Command
             $parentPid,
             $powermailSummary['skipped'] ? '' : sprintf(' Added %d powermail demo forms across %d EN/DE pages.', $powermailSummary['forms'], $powermailSummary['pages']),
             $newsSummary['skipped'] ? '' : sprintf(' Added %d news demo records (%d article content elements) across %d news pages.', $newsSummary['records'], $newsSummary['contentElements'], $newsSummary['pages']),
-            $deletedLegacyPages > 0 ? sprintf(' Deleted %d legacy root pages.', $deletedLegacyPages) : ''
+            $deletedLegacyPages > 0 ? sprintf(' Deleted %d legacy root pages.', $deletedLegacyPages) : '',
+            self::retirementSummary($retirement)
         ));
 
         return self::SUCCESS;
@@ -1294,44 +1331,335 @@ final class SeedStyleguidePagesCommand extends Command
         }
 
         [$basePath, $prefixes] = $this->languagePathPrefixes($rootPid);
-        // The optional group always takes part, so $1 is empty for the
-        // default language instead of staying literal in the target.
-        $languageGroup = '((?:' . implode('|', array_map(static fn(string $prefix): string => preg_quote($prefix, '#'), $prefixes)) . ')?)';
-        $connection = $this->connectionPool->getConnectionForTable('sys_redirect');
         $count = 0;
         foreach ($moves as $formerSlug => $slug) {
-            $sourcePath = '#^' . preg_quote($basePath, '#') . $languageGroup . preg_quote(ltrim($formerSlug, '/'), '#') . '/?$#';
-            $row = $this->databaseSchema->filterRow([
-                'pid' => 0,
-                'updatedon' => $now,
-                'source_host' => '*',
-                'source_path' => $sourcePath,
-                'is_regexp' => 1,
-                'target' => $basePath . '$1' . ltrim($slug, '/'),
-                'target_statuscode' => 301,
-                'description' => sprintf('Desiderio showcase: %s moved to %s.', $formerSlug, $slug),
-            ], $columns);
-
-            $queryBuilder = $this->connectionPool->getQueryBuilderForTable('sys_redirect');
-            $queryBuilder->getRestrictions()->removeAll();
-            $existing = $queryBuilder
-                ->select('uid')
-                ->from('sys_redirect')
-                ->where(
-                    $queryBuilder->expr()->eq('source_path', $queryBuilder->createNamedParameter($sourcePath)),
-                    $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER))
-                )
-                ->executeQuery()
-                ->fetchOne();
-            if (is_numeric($existing)) {
-                $connection->update('sys_redirect', $row, ['uid' => (int)$existing]);
-            } else {
-                $connection->insert('sys_redirect', [...$row, ...$this->databaseSchema->filterRow(['createdon' => $now], $columns)]);
-            }
+            $this->upsertSlugRedirect(
+                self::slugRedirectRow($formerSlug, $slug, sprintf('Desiderio showcase: %s moved to %s.', $formerSlug, $slug), $basePath, $prefixes),
+                $now,
+                $columns
+            );
             $count++;
         }
 
         return $count;
+    }
+
+    /**
+     * A permanent redirect from a slug of this site to a path below its base,
+     * in every language: one regular expression covers the language prefixes,
+     * and the target may end in an anchor. The optional group always takes
+     * part, so $1 is empty for the default language instead of staying
+     * literal in the target.
+     *
+     * @param list<string> $prefixes Language path prefixes relative to the base ("de/")
+     * @return array{source_host: string, source_path: string, is_regexp: int, target: string, target_statuscode: int, description: string}
+     */
+    private static function slugRedirectRow(string $fromSlug, string $toPath, string $description, string $basePath, array $prefixes): array
+    {
+        $languageGroup = '((?:' . implode('|', array_map(static fn(string $prefix): string => preg_quote($prefix, '#'), $prefixes)) . ')?)';
+
+        return [
+            'source_host' => '*',
+            'source_path' => '#^' . preg_quote($basePath, '#') . $languageGroup . preg_quote(ltrim($fromSlug, '/'), '#') . '/?$#',
+            'is_regexp' => 1,
+            'target' => $basePath . '$1' . ltrim($toPath, '/'),
+            'target_statuscode' => 301,
+            'description' => $description,
+        ];
+    }
+
+    /**
+     * Writes a redirect row, found again by its source path, so reseeding
+     * keeps one row per redirect.
+     *
+     * @param array{source_host: string, source_path: string, is_regexp: int, target: string, target_statuscode: int, description: string} $redirect
+     * @param array<string, true> $columns
+     */
+    private function upsertSlugRedirect(array $redirect, int $now, array $columns): void
+    {
+        $row = $this->databaseSchema->filterRow(['pid' => 0, 'updatedon' => $now, ...$redirect], $columns);
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('sys_redirect');
+        $queryBuilder->getRestrictions()->removeAll();
+        $existing = $queryBuilder
+            ->select('uid')
+            ->from('sys_redirect')
+            ->where(
+                $queryBuilder->expr()->eq('source_path', $queryBuilder->createNamedParameter($redirect['source_path'])),
+                $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER))
+            )
+            ->executeQuery()
+            ->fetchOne();
+        $connection = $this->connectionPool->getConnectionForTable('sys_redirect');
+        if (is_numeric($existing)) {
+            $connection->update('sys_redirect', $row, ['uid' => (int)$existing]);
+        } else {
+            $connection->insert('sys_redirect', [...$row, ...$this->databaseSchema->filterRow(['createdon' => $now], $columns)]);
+        }
+    }
+
+    /**
+     * Deletes the showcase pages that gave way to others once their
+     * successor is written (a full run, or --pages with the successor
+     * selected): the old page, its translations and their content. The old
+     * URL then redirects to the successor's anchor in every language, and
+     * the redirects TYPO3 made when the old page changed its slug point
+     * there as well instead of at a deleted page. A rerun finds a page an
+     * earlier run deleted and only refreshes its redirects.
+     *
+     * @param array<string, array{successor: string, anchor: string}> $retiredPages
+     * @param array<string, int> $linkTargets
+     * @param \Closure(string): bool $isSelected
+     * @param array<string, true> $pageColumns
+     * @return array{pages: int, redirects: int, repointed: int}
+     */
+    private function retireShowcasePages(
+        array $retiredPages,
+        array $linkTargets,
+        \Closure $isSelected,
+        int $rootPid,
+        int $now,
+        array $pageColumns,
+        DesiderioContentCleaner $contentCleaner,
+    ): array {
+        $result = ['pages' => 0, 'redirects' => 0, 'repointed' => 0];
+        if ($retiredPages === []) {
+            return $result;
+        }
+        $redirectColumns = $this->databaseSchema->getColumnNames('sys_redirect');
+        [$basePath, $prefixes] = $this->languagePathPrefixes($rootPid);
+        $pagesConnection = $this->connectionPool->getConnectionForTable('pages');
+        $deletedRow = $this->databaseSchema->filterRow(['deleted' => 1, 'tstamp' => $now], $pageColumns);
+        foreach ($retiredPages as $slug => $retirement) {
+            $successorUid = $linkTargets[ltrim($retirement['successor'], '/')] ?? null;
+            if ($successorUid === null || !$isSelected($retirement['successor'])) {
+                continue;
+            }
+            foreach ($this->findRetiredPageUids($rootPid, $slug) as $retiredUid => $alreadyDeleted) {
+                if ($retiredUid === $successorUid) {
+                    continue;
+                }
+                if (!$alreadyDeleted) {
+                    $contentCleaner->softDeleteSeededContent($retiredUid, $now, self::SHOWCASE_ADDITIONAL_CLEANUP_CTYPES, true);
+                    $pagesConnection->update('pages', $deletedRow, ['uid' => $retiredUid]);
+                    if (isset($pageColumns['l10n_parent'])) {
+                        $pagesConnection->update('pages', $deletedRow, ['l10n_parent' => $retiredUid]);
+                    }
+                    $result['pages']++;
+                }
+                if ($redirectColumns !== []) {
+                    $result['repointed'] += $this->repointRedirects($retiredUid, $successorUid, $retirement['anchor'], $now, $redirectColumns);
+                }
+            }
+            if ($redirectColumns !== []) {
+                $this->upsertSlugRedirect(
+                    self::slugRedirectRow(
+                        $slug,
+                        ltrim($retirement['successor'], '/') . '#' . $retirement['anchor'],
+                        sprintf('Desiderio showcase: %s became %s#%s.', $slug, $retirement['successor'], $retirement['anchor']),
+                        $basePath,
+                        $prefixes
+                    ),
+                    $now,
+                    $redirectColumns
+                );
+                $result['redirects']++;
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * The default-language pages with this slug below the root, live or
+     * already deleted (value true).
+     *
+     * @return array<int, bool>
+     */
+    private function findRetiredPageUids(int $rootPid, string $slug): array
+    {
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('pages');
+        $queryBuilder->getRestrictions()->removeAll();
+        $constraints = [
+            $queryBuilder->expr()->eq('slug', $queryBuilder->createNamedParameter($slug)),
+            ...new LiveWorkspaceQueryHelper($this->databaseSchema)->buildLiveWorkspaceConstraints($queryBuilder, 'pages'),
+        ];
+        if ($this->databaseSchema->tableHasColumn('pages', 'sys_language_uid')) {
+            $constraints[] = $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER));
+        }
+        $rows = $queryBuilder
+            ->select('uid', 'pid', 'deleted')
+            ->from('pages')
+            ->where(...$constraints)
+            ->executeQuery()
+            ->fetchAllAssociative();
+
+        $uids = [];
+        foreach ($rows as $row) {
+            $uid = is_numeric($row['uid'] ?? null) ? (int)$row['uid'] : 0;
+            $pid = is_numeric($row['pid'] ?? null) ? (int)$row['pid'] : 0;
+            if ($uid > 0 && $this->isPageBelow($pid, $rootPid)) {
+                $uids[$uid] = is_numeric($row['deleted'] ?? null) && (int)$row['deleted'] === 1;
+            }
+        }
+
+        return $uids;
+    }
+
+    /**
+     * Points every live redirect at the retired page (t3://page?uid=N, with
+     * or without parameters such as _language) at the successor's anchor.
+     *
+     * @param array<string, true> $columns
+     */
+    private function repointRedirects(int $retiredUid, int $successorUid, string $anchor, int $now, array $columns): int
+    {
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('sys_redirect');
+        $queryBuilder->getRestrictions()->removeAll();
+        $rows = $queryBuilder
+            ->select('uid', 'target')
+            ->from('sys_redirect')
+            ->where(
+                $queryBuilder->expr()->like('target', $queryBuilder->createNamedParameter($queryBuilder->escapeLikeWildcards('t3://page?uid=' . $retiredUid) . '%')),
+                $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER))
+            )
+            ->executeQuery()
+            ->fetchAllAssociative();
+
+        $connection = $this->connectionPool->getConnectionForTable('sys_redirect');
+        $count = 0;
+        foreach ($rows as $row) {
+            $target = self::repointedRedirectTarget(is_string($row['target'] ?? null) ? $row['target'] : '', $retiredUid, $successorUid, $anchor);
+            if ($target === null || !is_numeric($row['uid'] ?? null)) {
+                continue;
+            }
+            $connection->update('sys_redirect', $this->databaseSchema->filterRow(['target' => $target, 'updatedon' => $now], $columns), ['uid' => (int)$row['uid']]);
+            $count++;
+        }
+
+        return $count;
+    }
+
+    /**
+     * A redirect target at a retired page, pointed at the successor's anchor:
+     * the parameters stay (the language, for one), an old anchor goes. Null
+     * for a target at another page (uid 82440 is not uid 8244).
+     */
+    private static function repointedRedirectTarget(string $target, int $retiredUid, int $successorUid, string $anchor): ?string
+    {
+        if (preg_match('/^t3:\/\/page\?uid=' . $retiredUid . '(?=$|[&#])([^#]*)/', $target, $match) !== 1) {
+            return null;
+        }
+
+        return 't3://page?uid=' . $successorUid . $match[1] . '#' . $anchor;
+    }
+
+    /**
+     * What a dry run reports for the retired pages whose successor it writes.
+     *
+     * @param array<string, array{successor: string, anchor: string}> $retiredPages
+     * @param callable(string): bool $isSelected
+     * @return list<string>
+     */
+    private static function retirementListing(array $retiredPages, callable $isSelected): array
+    {
+        $listing = [];
+        foreach ($retiredPages as $slug => $retirement) {
+            if ($isSelected($retirement['successor'])) {
+                $listing[] = sprintf('Retires %s (page, translations, content) and redirects it to %s#%s', $slug, $retirement['successor'], $retirement['anchor']);
+            }
+        }
+
+        return $listing;
+    }
+
+    /**
+     * @param array{pages: int, redirects: int, repointed: int} $retirement
+     */
+    private static function retirementSummary(array $retirement): string
+    {
+        if ($retirement['redirects'] === 0 && $retirement['pages'] === 0) {
+            return '';
+        }
+
+        return sprintf(
+            ' Retired %d replaced pages, wrote %d redirects to their successors and re-pointed %d older redirects.',
+            $retirement['pages'],
+            $retirement['redirects'],
+            $retirement['repointed']
+        );
+    }
+
+    /**
+     * Where the pages another package owns lead a showcase page's children,
+     * keyed by that showcase page's slug: their parent and the highest
+     * sorting among them. Read only.
+     *
+     * @param array<string, string> $leadingChildren slug => parent slug without the leading slash
+     * @param array<string, true> $pageColumns
+     * @return array<string, array{pid: int, sorting: int}>
+     */
+    private function leadingChildPlacements(array $leadingChildren, int $rootPid, array $pageColumns): array
+    {
+        $placements = [];
+        foreach ($leadingChildren as $slug => $parentSlug) {
+            $uid = $this->getPageUpserter()->findPageBySlugBelow($rootPid, $slug, $pageColumns);
+            if ($uid === null) {
+                continue;
+            }
+            $queryBuilder = $this->connectionPool->getQueryBuilderForTable('pages');
+            $queryBuilder->getRestrictions()->removeAll();
+            $row = $queryBuilder
+                ->select('pid', 'sorting')
+                ->from('pages')
+                ->where($queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, ParameterType::INTEGER)))
+                ->executeQuery()
+                ->fetchAssociative();
+            if (!is_array($row) || !is_numeric($row['pid'] ?? null) || !is_numeric($row['sorting'] ?? null)) {
+                continue;
+            }
+            $sorting = (int)$row['sorting'];
+            if (isset($placements[$parentSlug]) && $placements[$parentSlug]['sorting'] > $sorting) {
+                $sorting = $placements[$parentSlug]['sorting'];
+            }
+            $placements[$parentSlug] = ['pid' => (int)$row['pid'], 'sorting' => $sorting];
+        }
+
+        return $placements;
+    }
+
+    /**
+     * The sorting of a seeded page below a parent whose first children
+     * another package owns: its planned value counted from theirs, so the
+     * seeded pages keep their order and all follow those children.
+     */
+    private static function sortingAfterLeadingChild(int $planned, int $leadingSorting): int
+    {
+        return $leadingSorting + $planned;
+    }
+
+    /**
+     * The {{page:<slug>}} targets in the values that no page answers.
+     *
+     * @param list<array<array-key, mixed>> $valueSets
+     * @param array<string, int> $linkTargets
+     * @return list<string>
+     */
+    private static function unresolvedPagePlaceholders(array $valueSets, array $linkTargets): array
+    {
+        $unresolved = [];
+        array_walk_recursive($valueSets, static function (mixed $value) use (&$unresolved, $linkTargets): void {
+            if (is_string($value) && preg_match_all('/\{\{page:([^}]+)\}\}/', $value, $matches) > 0) {
+                foreach ($matches[1] as $slug) {
+                    if (!isset($linkTargets[$slug])) {
+                        $unresolved[$slug] = true;
+                    }
+                }
+            }
+        });
+        $slugs = array_keys($unresolved);
+        sort($slugs);
+
+        return array_map(strval(...), $slugs);
     }
 
     /**

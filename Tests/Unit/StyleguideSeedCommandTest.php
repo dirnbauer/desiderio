@@ -215,6 +215,106 @@ final class StyleguideSeedCommandTest extends AbstractStyleguideSeedingTestCase
         self::assertSame('https://github.com/dirnbauer/desiderio', $fields['gone_link'] ?? null);
     }
 
+    /**
+     * Links into a page section keep their anchor, and rich text may carry a
+     * query string as &amp; (parseFunc decodes the href before typolink).
+     */
+    public function testPagePlaceholdersKeepAnchorsAndQueryStrings(): void
+    {
+        $block = [
+            'ctype' => 'desiderio_contentsidebar',
+            'colPos' => 0,
+            'fields' => [
+                'sidebar_content' => '<p><a href="{{page:ai/agentic-skills/find}}&amp;tx_solr%5Bq%5D=typo3-upgrade-run">Search</a></p>',
+                'items' => [['link' => '{{page:ai/agentic-skills/proven-site-upgrade}}#typo3-upgrade-run']],
+            ],
+        ];
+
+        $resolved = $this->invokeMethod($this->createCommand(), 'substituteLinkPlaceholders', [
+            $block,
+            ['ai/agentic-skills/find' => 1030, 'ai/agentic-skills/proven-site-upgrade' => 9001],
+        ]);
+
+        self::assertIsArray($resolved);
+        $fields = $resolved['fields'] ?? null;
+        self::assertIsArray($fields);
+        self::assertSame('<p><a href="t3://page?uid=1030&amp;tx_solr%5Bq%5D=typo3-upgrade-run">Search</a></p>', $fields['sidebar_content'] ?? null);
+        self::assertSame([['link' => 't3://page?uid=9001#typo3-upgrade-run']], $fields['items'] ?? null);
+    }
+
+    public function testARetiredPageRedirectsToItsSuccessorsAnchorInEveryLanguage(): void
+    {
+        $row = $this->invokeMethod($this->createCommand(), 'slugRedirectRow', [
+            '/ai/agentic-skills/typo3-upgrade-run',
+            'ai/agentic-skills/proven-site-upgrade#typo3-upgrade-run',
+            'Desiderio showcase: retired.',
+            '/',
+            ['de/', 'zh/', 'hu/'],
+        ]);
+
+        self::assertIsArray($row);
+        self::assertSame('#^/((?:de/|zh/|hu/)?)ai/agentic\-skills/typo3\-upgrade\-run/?$#', $row['source_path'] ?? null);
+        self::assertSame('/$1ai/agentic-skills/proven-site-upgrade#typo3-upgrade-run', $row['target'] ?? null);
+        self::assertSame(1, $row['is_regexp'] ?? null);
+        self::assertSame(301, $row['target_statuscode'] ?? null);
+        self::assertSame('*', $row['source_host'] ?? null);
+
+        $sourcePath = $row['source_path'] ?? '';
+        self::assertIsString($sourcePath);
+        foreach (['/ai/agentic-skills/typo3-upgrade-run' => '', '/de/ai/agentic-skills/typo3-upgrade-run/' => 'de/', '/hu/ai/agentic-skills/typo3-upgrade-run' => 'hu/'] as $path => $prefix) {
+            self::assertSame(1, preg_match($sourcePath, $path, $match), $path);
+            self::assertSame($prefix, $match[1]);
+        }
+        self::assertSame(0, preg_match($sourcePath, '/ai/agentic-skills/typo3-upgrade-run-x'));
+        self::assertSame(0, preg_match($sourcePath, '/ai/agentic-skills/find'));
+    }
+
+    public function testRedirectsAtARetiredPageMoveToTheSuccessorsAnchor(): void
+    {
+        $command = $this->createCommand();
+        $repoint = fn(string $target): mixed => $this->invokeMethod($command, 'repointedRedirectTarget', [$target, 8244, 9001, 'typo3-upgrade-run']);
+
+        self::assertSame('t3://page?uid=9001#typo3-upgrade-run', $repoint('t3://page?uid=8244'));
+        self::assertSame('t3://page?uid=9001&_language=1#typo3-upgrade-run', $repoint('t3://page?uid=8244&_language=1'));
+        self::assertSame('t3://page?uid=9001&_language=3#typo3-upgrade-run', $repoint('t3://page?uid=8244&_language=3#c12'));
+        self::assertNull($repoint('t3://page?uid=82440&_language=1'), 'Another page whose uid starts the same.');
+        self::assertNull($repoint('t3://page?uid=8243&_language=1'));
+        self::assertNull($repoint('/ai/agentic-skills/typo3-upgrade-run'));
+    }
+
+    public function testSeededPagesFollowAPageAnotherPackagePutFirst(): void
+    {
+        $command = $this->createCommand();
+        // The skill search sits first below the hub at sorting 304; the
+        // seeded group pages planned at 608, 624 … keep their order after it.
+        self::assertSame(912, $this->invokeMethod($command, 'sortingAfterLeadingChild', [608, 304]));
+        self::assertSame(928, $this->invokeMethod($command, 'sortingAfterLeadingChild', [624, 304]));
+        self::assertGreaterThan(5000, $this->invokeMethod($command, 'sortingAfterLeadingChild', [16, 5000]));
+    }
+
+    public function testUnresolvedPagePlaceholdersAreNamed(): void
+    {
+        $unresolved = $this->invokeMethod($this->createCommand(), 'unresolvedPagePlaceholders', [
+            [[['fields' => ['link' => '{{page:ai/agentic-skills/find}}&tx_solr%5Bq%5D=x', 'other' => '{{page:pricing}}', 'site' => '{{site:astryx-typo3}}']]]],
+            ['pricing' => 12],
+        ]);
+
+        self::assertSame(['ai/agentic-skills/find'], $unresolved);
+    }
+
+    public function testADryRunListsTheRetiredPagesOfTheSelectedSuccessors(): void
+    {
+        $listing = $this->invokeMethod($this->createCommand(), 'retirementListing', [
+            [
+                '/ai/agentic-skills/typo3-webmcp' => ['successor' => '/ai/agentic-skills/search-seo-agents', 'anchor' => 'typo3-webmcp'],
+                '/ai/agentic-skills/typo3-rector' => ['successor' => '/ai/agentic-skills/code-migration', 'anchor' => 'typo3-rector'],
+            ],
+            static fn(string $slug): bool => $slug === '/ai/agentic-skills/code-migration',
+        ]);
+
+        self::assertSame(['Retires /ai/agentic-skills/typo3-rector (page, translations, content) and redirects it to /ai/agentic-skills/code-migration#typo3-rector'], $listing);
+    }
+
     public function testNoShowcaseDefinitionLinksAPlainPath(): void
     {
         // A plain "/path" never gets a language prefix: from /de/ it opened

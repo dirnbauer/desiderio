@@ -104,7 +104,8 @@ final class CollectionMarkerRewriter
         if (preg_match('/^\{\s*([A-Za-z_][A-Za-z0-9_.]*)\s*\}$/', $value, $match) === 1) {
             return $match[1];
         }
-        if (str_starts_with($value, '{') && str_ends_with($value, '}') && !str_contains($value, '->') && preg_match('/^\{\s*[\'"]?[A-Za-z_-][A-Za-z0-9_-]*[\'"]?\s*:/', $value) === 1) {
+        $isViewHelperCall = preg_match('/^\{\s*[A-Za-z][A-Za-z0-9]*:[A-Za-z][A-Za-z0-9.]*\s*\(/', $value) === 1;
+        if (!$isViewHelperCall && str_ends_with($value, '}') && !str_contains($value, '->') && preg_match('/^\{\s*[\'"]?[A-Za-z_-][A-Za-z0-9_-]*[\'"]?\s*:/', $value) === 1) {
             return $value;
         }
         return null;

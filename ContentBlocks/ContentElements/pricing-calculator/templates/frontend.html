@@ -33,7 +33,7 @@
                 </d:molecule.tableHeader>
                 <tbody>
                     <f:for each="{data.tiers}" as="tier">
-                        <d:molecule.tableRow>
+                        <d:molecule.tableRow attributes="{tier -> f:mark.item(collection: 'desiderio_pricingcalculator_tiers', format: 'array')}">
                             <d:molecule.tableCell class="pricing-calculator__tier">{tier -> f:render.text(field: 'label')}</d:molecule.tableCell>
                             <d:molecule.tableCell class="pricing-calculator__cell pricing-calculator__cell--start pricing-calculator__num">{tier -> f:render.text(field: 'up_to')} <f:if condition="{data.unit_label}"><f:then>{data -> f:render.text(field: 'unit_label')}</f:then><f:else><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:calc.units" default="units"/></f:else></f:if></d:molecule.tableCell>
                             <d:molecule.tableCell class="pricing-calculator__cell pricing-calculator__cell--end pricing-calculator__num">{tier -> f:render.text(field: 'price_per_unit')}</d:molecule.tableCell>

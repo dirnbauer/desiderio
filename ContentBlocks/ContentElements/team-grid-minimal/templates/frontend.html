@@ -16,7 +16,7 @@
 
         <d:layout.grid cols="{data.columns -> f:or(alternative: '4')}" gap="lg" class="team-grid-minimal__grid">
             <f:for each="{data.members}" as="member">
-                <article class="team-grid-minimal__member">
+                <article class="team-grid-minimal__member"{member -> f:mark.item(collection: 'desiderio_teamgridminimal_members')}>
                     <f:if condition="{member.image}">
                         <f:then>
                             <f:for each="{member.image}" as="fileReference">

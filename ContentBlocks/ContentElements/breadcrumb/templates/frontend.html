@@ -12,7 +12,7 @@
         <nav class="breadcrumb__nav" aria-label="{navLabel -> f:format.stripTags() -> f:format.trim()}" data-slot="breadcrumb">
             <ol class="breadcrumb__list" role="list" data-slot="breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
                 <f:for each="{data.items}" as="item" iteration="iterator">
-                    <li class="breadcrumb__item" data-slot="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <li class="breadcrumb__item" data-slot="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"{item -> f:mark.item(collection: 'desiderio_breadcrumb_items')}>
                         <f:if condition="{iterator.isLast}">
                             <f:then>
                                 <span class="breadcrumb__current" data-slot="breadcrumb-page" aria-current="page" itemprop="name">{item -> f:render.text(field: 'label')}</span>

@@ -20,7 +20,7 @@
 
         <ul class="trust-badges__row" role="list">
             <f:for each="{data.badge_items}" as="badge">
-                <li class="trust-badges__item">
+                <li class="trust-badges__item"{badge -> f:mark.item(collection: 'desiderio_trustbadges_badge_items')}>
                     <f:if condition="{badge.icon_name} && {badge.icon_name} != 'none'">
                         <f:then>
                             <span class="trust-badges__seal" aria-hidden="true"><d:atom.icon name="{badge.icon_name}" size="lg"/></span>

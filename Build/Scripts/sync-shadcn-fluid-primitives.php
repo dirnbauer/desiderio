@@ -554,6 +554,21 @@ function renderAttributesArgument(): string
         . '<f:argument name="attributes" type="array" optional="{true}" default="{}" />' . "\n";
 }
 
+/**
+ * The same argument for a component whose markup must not change: the comment
+ * continues the previous argument's line, so no extra newline is rendered.
+ */
+function renderBridgedAttributesArgument(): string
+{
+    return "<f:comment>\n"
+        . "    `attributes` carries what a row or control needs beyond the shadcn contract\n"
+        . "    (aria-*, data-* hooks, the Visual Editor's row markers). Keys are\n"
+        . "    template-authored, values are escaped. The comment bridges two lines so\n"
+        . "    the extra argument emits no whitespace.\n"
+        . "</f:comment>"
+        . '<f:argument name="attributes" type="array" optional="{true}" default="{}" />' . "\n";
+}
+
 function extraAttributes(): string
 {
     return '<f:for each="{attributes}" as="attributeValue" key="attributeName"> {attributeName}="{attributeValue}"</f:for>';
@@ -1121,7 +1136,9 @@ function renderTabsTrigger(array $recipe, string $header): string
         . '<f:argument name="id" type="string" />' . "\n"
         . '<f:argument name="controls" type="string" />' . "\n"
         . '<f:argument name="active" type="bool" optional="{true}" default="{false}" />' . "\n"
-        . '<f:argument name="class" type="string" optional="{true}" default="" />' . "\n\n"
+        . '<f:argument name="class" type="string" optional="{true}" default="" />'
+        . renderBridgedAttributesArgument()
+        . "\n"
         . '<button' . "\n"
         . '    type="button"' . "\n"
         . '    role="tab"' . "\n"
@@ -1133,7 +1150,7 @@ function renderTabsTrigger(array $recipe, string $header): string
         . sprintf('    class="%s {class}"', attr($recipe['trigger'])) . "\n"
         . '    data-slot="tabs-trigger"' . "\n"
         . '    data-d-tabs-trigger' . "\n"
-        . '    data-value="{value}"' . "\n"
+        . '    data-value="{value}"' . extraAttributes() . "\n"
         . '    {f:if(condition: active, then: \'data-active\')}' . "\n"
         . '>' . "\n"
         . '    <f:slot />' . "\n"
@@ -1147,7 +1164,9 @@ function renderTabsContent(array $recipe, string $header): string
         . '<f:argument name="id" type="string" />' . "\n"
         . '<f:argument name="labelledBy" type="string" />' . "\n"
         . '<f:argument name="active" type="bool" optional="{true}" default="{false}" />' . "\n"
-        . '<f:argument name="class" type="string" optional="{true}" default="" />' . "\n\n"
+        . '<f:argument name="class" type="string" optional="{true}" default="" />'
+        . renderBridgedAttributesArgument()
+        . "\n"
         . '<div' . "\n"
         . '    role="tabpanel"' . "\n"
         . '    id="{id}"' . "\n"
@@ -1158,7 +1177,7 @@ function renderTabsContent(array $recipe, string $header): string
         . sprintf('    class="%s {class}"', attr($recipe['content'])) . "\n"
         . '    data-slot="tabs-content"' . "\n"
         . '    data-d-tabs-content' . "\n"
-        . '    data-value="{value}"' . "\n"
+        . '    data-value="{value}"' . extraAttributes() . "\n"
         . '>' . "\n"
         . '    <f:slot />' . "\n"
         . '</div>' . "\n";

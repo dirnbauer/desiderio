@@ -25,7 +25,7 @@
             <div class="navbar-stacked__bottom">
                 <ul class="navbar-stacked__nav" role="list">
                     <f:for each="{data.nav_items}" as="item">
-                        <li><f:if condition="{item.link.url}"><f:then><d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="navbar-stacked__link">{item -> f:render.text(field: 'label')}</d:atom.link></f:then><f:else><span class="navbar-stacked__link navbar-stacked__link--static">{item -> f:render.text(field: 'label')}</span></f:else></f:if></li>
+                        <li{item -> f:mark.item(collection: 'desiderio_navbarstacked_nav_items')}><f:if condition="{item.link.url}"><f:then><d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="navbar-stacked__link">{item -> f:render.text(field: 'label')}</d:atom.link></f:then><f:else><span class="navbar-stacked__link navbar-stacked__link--static">{item -> f:render.text(field: 'label')}</span></f:else></f:if></li>
                     </f:for>
                 </ul>
             </div>

@@ -16,7 +16,7 @@
 
         <ol class="feature-timeline__list">
             <f:for each="{data.items}" as="item" iteration="iter">
-                <li class="feature-timeline__item">
+                <li class="feature-timeline__item"{item -> f:mark.item(collection: 'desiderio_featuretimeline_items')}>
                     <f:variable name="stepLength" value="{item.step -> f:format.trim() -> f:length()}"/>
                     <div class="feature-timeline__marker">
                         <span class="feature-timeline__dot{f:if(condition: '{stepLength} > 3', then: ' feature-timeline__dot--long')}">{item -> f:render.text(field: 'step')}</span>

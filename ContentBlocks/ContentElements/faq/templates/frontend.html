@@ -16,7 +16,7 @@
 
         <div class="faq__list" itemscope itemtype="https://schema.org/FAQPage">
             <f:for each="{data.items}" as="item">
-                <details class="faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                <details class="faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"{item -> f:mark.item(collection: 'desiderio_faq_items')}>
                     <summary class="faq__question">
                         <d:atom.typography tag="h3" variant="h3" class="faq__question-text" attributes="{itemprop: 'name'}">{item -> f:render.text(field: 'question')}</d:atom.typography>
                         <span class="faq__chevron" aria-hidden="true">

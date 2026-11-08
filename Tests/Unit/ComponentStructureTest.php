@@ -167,6 +167,40 @@ final class ComponentStructureTest extends TestCase
         self::assertStringContainsString('mt-6 border-l-2 pl-6 italic', $typography);
     }
 
+    /**
+     * The molecules a collection loop renders as one entry's root take the
+     * Visual Editor's row marker through `attributes` (like Card): declared
+     * argument, spread onto every root tag, and the argument emits no
+     * whitespace so the published markup did not change when it was added.
+     */
+    public function testRowRootMoleculesDeclareAttributes(): void
+    {
+        $spread = '<f:for each="{attributes}" as="attributeValue" key="attributeName"> {attributeName}="{attributeValue}"</f:for>';
+        $rootTags = [
+            'CheckedListItem' => ['<li data-slot="checked-list-item"'],
+            'TableRow' => ['<tr data-slot="table-row"'],
+            'TableCell' => ['<th data-slot="table-head"', '<td data-slot="table-cell"'],
+            'FeatureItem' => ['<div data-slot="feature-item"'],
+            'TabsTrigger' => ['<button'],
+            'TabsContent' => ['<div'],
+        ];
+        foreach ($rootTags as $molecule => $tags) {
+            $source = (string)file_get_contents(self::COMPONENTS_DIR . '/Molecule/' . $molecule . '/' . $molecule . '.fluid.html');
+            self::assertMatchesRegularExpression(
+                '#/>(?:<f:comment>.*?</f:comment>)?<f:argument name="attributes" type="array" optional="\{true\}" default="\{\}" />\n#s',
+                $source,
+                $molecule . ' declares attributes on the line of the previous argument',
+            );
+            self::assertSame(count($tags), substr_count($source, $spread), $molecule . ' spreads attributes once per root tag');
+            foreach ($tags as $tag) {
+                $start = strpos($source, $tag);
+                self::assertIsInt($start, $molecule . ': ' . $tag);
+                $openTag = substr($source, $start, (int)strpos($source, '</f:for>', $start) - $start);
+                self::assertStringContainsString('<f:for each="{attributes}"', $openTag, $molecule . ': the spread sits in ' . $tag);
+            }
+        }
+    }
+
     public function testFluidPrimitiveRecipesAreGeneratedFromConfiguredShadcnPreset(): void
     {
         $script = __DIR__ . '/../../Build/Scripts/sync-shadcn-fluid-primitives.php';

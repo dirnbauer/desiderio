@@ -14,7 +14,7 @@
             </d:molecule.sectionIntro>
             <ul class="feature-minimal__list" role="list">
                 <f:for each="{data.items}" as="item">
-                    <li class="feature-minimal__item">
+                    <li class="feature-minimal__item"{item -> f:mark.item(collection: 'desiderio_featureminimal_items')}>
                         <d:atom.typography tag="h3" variant="large" class="feature-minimal__title">{item -> f:render.text(field: 'title')}</d:atom.typography>
                         <f:if condition="{item.description_text}">
                             <d:atom.typography variant="muted" class="feature-minimal__description">{item -> f:render.text(field: 'description_text')}</d:atom.typography>

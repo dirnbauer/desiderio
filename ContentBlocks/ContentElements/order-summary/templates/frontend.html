@@ -14,7 +14,7 @@
 
             <ul class="order-summary__items" role="list">
                 <f:for each="{data.items}" as="item">
-                    <li class="order-summary__line">
+                    <li class="order-summary__line"{item -> f:mark.item(collection: 'desiderio_ordersummary_items')}>
                         <span class="order-summary__line-info">
                             <span class="order-summary__line-name">{item -> f:render.text(field: 'name')}</span>
                             <f:if condition="{item.quantity}">

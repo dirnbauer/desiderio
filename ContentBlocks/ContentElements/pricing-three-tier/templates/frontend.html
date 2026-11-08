@@ -23,7 +23,7 @@
 
         <ul class="pricing-three-tier__grid" role="list">
             <f:for each="{data.plans}" as="tier" iteration="iter">
-                <li class="pricing-three-tier__item">
+                <li class="pricing-three-tier__item"{tier -> f:mark.item(collection: 'desiderio_pricingthreetier_plans')}>
                     <d:molecule.card
                         class="pricing-three-tier__plan {f:if(condition: tier.is_recommended, then: 'pricing-three-tier__plan--recommended')}"
                     >
@@ -53,7 +53,7 @@
                                 <ul class="pricing-three-tier__features" role="list">
                                     <f:for each="{tier.features}" as="feature">
                                         <f:if condition="{feature.text}">
-                                            <d:molecule.checkedListItem class="pricing-three-tier__feature" iconClass="pricing-three-tier__check">
+                                            <d:molecule.checkedListItem class="pricing-three-tier__feature" iconClass="pricing-three-tier__check" attributes="{feature -> f:mark.item(collection: 'features', format: 'array')}">
                                                 {feature -> f:render.text(field: 'text')}
                                             </d:molecule.checkedListItem>
                                         </f:if>

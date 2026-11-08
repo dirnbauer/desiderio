@@ -38,7 +38,7 @@
                 <f:if condition="{data.metrics}">
                     <dl class="case-study-featured__metrics">
                         <f:for each="{data.metrics}" as="metric">
-                            <div class="case-study-featured__metric">
+                            <div class="case-study-featured__metric"{metric -> f:mark.item(collection: 'desiderio_casestudyfeatured_metrics')}>
                                 <dt class="case-study-featured__metric-label">{metric -> f:render.text(field: 'label')}</dt>
                                 <dd class="case-study-featured__metric-value">{metric -> f:render.text(field: 'value')}</dd>
                             </div>

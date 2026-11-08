@@ -20,7 +20,7 @@
 
         <div class="case-study-grid__items case-study-grid__items--cols-{data.columns -> f:or(alternative: '3')}">
             <f:for each="{data.cases}" as="item">
-                <article class="case-study-grid__card">
+                <article class="case-study-grid__card"{item -> f:mark.item(collection: 'desiderio_casestudygrid_cases')}>
                     <f:if condition="{item.image}">
                         <div class="case-study-grid__media">
                             <f:for each="{item.image}" as="fileReference">

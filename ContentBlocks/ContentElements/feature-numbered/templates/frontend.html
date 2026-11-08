@@ -19,7 +19,7 @@
         <f:variable name="countRemainder" value="{itemCount % 6}" />
         <ol class="feature-numbered__grid{f:if(condition: '{countRemainder} == 4', then: ' feature-numbered__grid--cols-2')}">
             <f:for each="{data.items}" as="item" iteration="iter">
-                <li class="feature-numbered__item">
+                <li class="feature-numbered__item"{item -> f:mark.item(collection: 'desiderio_featurenumbered_items')}>
                     <span class="feature-numbered__number" aria-hidden="true">{iter.cycle -> f:format.padding(padLength: 2, padString: '0', padType: 'left')}</span>
                     <d:atom.typography tag="h3" variant="large" class="feature-numbered__title">{item -> f:render.text(field: 'title')}</d:atom.typography>
                     <f:if condition="{item.description}">

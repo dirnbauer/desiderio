@@ -28,7 +28,7 @@
                 <table class="product-specs__table" aria-labelledby="{f:if(condition: data.header, then: specsTitleId)}">
                     <tbody>
                         <f:for each="{data.specs}" as="spec">
-                            <tr>
+                            <tr{spec -> f:mark.item(collection: 'desiderio_productspecs_specs')}>
                                 <th scope="row" class="product-specs__label">{spec -> f:render.text(field: 'label')}</th>
                                 <td class="product-specs__value">{spec -> f:render.text(field: 'value')}</td>
                             </tr>

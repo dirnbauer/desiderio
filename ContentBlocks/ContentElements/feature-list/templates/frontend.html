@@ -17,7 +17,7 @@
 
         <div class="feature-list__items">
             <f:for each="{data.items}" as="item">
-                <d:molecule.card class="feature-list__item">
+                <d:molecule.card class="feature-list__item" attributes="{item -> f:mark.item(collection: 'desiderio_featurelist_items', format: 'array')}">
                     <div class="feature-list__icon" aria-hidden="true"><d:atom.icon name="{item.icon -> f:or(alternative: 'check')}" size="sm"/></div>
                     <div class="feature-list__copy flex min-w-0 flex-col gap-1.5">
                         <d:atom.typography tag="h3" variant="large" class="feature-list__title">{item -> f:render.text(field: 'title')}</d:atom.typography>

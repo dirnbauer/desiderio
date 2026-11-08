@@ -12,8 +12,20 @@ use Webconsulting\Desiderio\Data\Showcase\ShowcaseVisualEditorInlinePage;
 
 final class SeedVisualEditorInlinePageFunctionalTest extends FunctionalTestCase
 {
-    protected array $coreExtensionsToLoad = ['fluid_styled_content', 'form', 'workspaces'];
-    protected array $testExtensionsToLoad = ['friendsoftypo3/content-blocks', 'friendsoftypo3/visual-editor', 'webconsulting/desiderio'];
+    use ShowcasePreviewRendering;
+
+    protected array $coreExtensionsToLoad = ['fluid_styled_content', 'form', 'workspaces', 'rte_ckeditor'];
+    protected array $testExtensionsToLoad = ['friendsoftypo3/content-blocks', 'friendsoftypo3/visual-editor', 'webconsulting/visual-editor-enhancements', 'praetorius/vite-asset-collector', 'webconsulting/desiderio'];
+
+    protected array $configurationToUseInTestInstance = [
+        // The preview page type is signed with a cHash in production; the
+        // test builds its URLs by hand. Vite: no manifest in the test instance.
+        'FE' => ['cacheHash' => ['enforceValidation' => false]],
+        // Edit mode needs a real backend session (the Visual Editor creates
+        // form tokens); the sub-request carries its cookie from no fixed IP.
+        'BE' => ['lockIP' => 0, 'lockIPv6' => 0],
+        'EXTENSIONS' => ['vite_asset_collector' => ['useDevServer' => '1']],
+    ];
 
     public function testTargetedSeedAndReseedPreserveOtherPagesAndLeaveNoDescendants(): void
     {
@@ -85,6 +97,54 @@ final class SeedVisualEditorInlinePageFunctionalTest extends FunctionalTestCase
         self::assertSame(1, $connection->count('*', 'tt_content', ['uid' => $foreignUid, 'header' => 'Keep me', 'deleted' => 0]));
         self::assertSame(7, $connection->count('*', 'pages', ['deleted' => 0]));
     }
+    /**
+     * The Visual Editor finds collection entries on the page through the
+     * f:mark.item row markers: in edit mode every visible child of every
+     * element on the showcase page is marked as one row (data-ve-item) under
+     * its parent's inline column, including the nested data table cells and
+     * the gallery thumbnails; for a visitor the page carries no data-ve-*
+     * attribute at all.
+     */
+    public function testEditModeMarksEveryVisibleCollectionEntryAndVisitorsSeeNoMarkers(): void
+    {
+        $pageUid = $this->seedShowcaseWithPreviewSite();
+        $connection = $this->getConnectionPool()->getConnectionForTable('tt_content');
+        self::assertNotContains('Webconsulting\\Desiderio\\ViewHelpers\\RowMarkerFallback', $GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['f'], 'with Visual Editor Enhancements loaded its f:mark.item is used');
+
+        $elements = $connection->executeQuery('SELECT uid, CType FROM tt_content WHERE pid = ? AND deleted = 0 AND hidden = 0 ORDER BY sorting', [$pageUid])->fetchAllAssociative();
+        $checked = [];
+        foreach ($elements as $element) {
+            $uid = (int)$element['uid'];
+            $cType = (string)$element['CType'];
+            $expected = $this->visibleChildren('tt_content', $uid);
+            $anonymous = $this->renderElement($uid, false);
+            self::assertStringContainsString('desiderio-element-preview', $anonymous, $cType . ' renders through the preview page type');
+            self::assertStringNotContainsString('data-ve-', $anonymous, $cType . ': no Visual Editor attribute reaches visitors');
+            if ($expected === []) {
+                continue;
+            }
+            $edit = $this->renderElement($uid, true);
+            preg_match_all('/data-ve-item="([a-z0-9_]+:\d+)" data-ve-item-live="\d+" data-ve-collection="([a-z0-9_]+)"/', $edit, $matches, PREG_SET_ORDER);
+            $rows = [];
+            foreach ($matches as [, $item, $collection]) {
+                $rows[$collection][$item] = $item;
+            }
+            foreach ($rows as &$items) {
+                $items = array_values($items);
+                sort($items);
+            }
+            unset($items);
+            ksort($rows);
+            self::assertSame($expected, $rows, $cType . ': one marked row per visible child of every collection');
+            $checked[$cType] = array_sum(array_map(count(...), $rows));
+        }
+        // The elements the plan names, with the seeded entry counts.
+        foreach (['desiderio_featurecards', 'desiderio_productspecs', 'desiderio_definitionlist', 'desiderio_datatable', 'desiderio_gallery'] as $cType) {
+            self::assertGreaterThan(0, $checked[$cType] ?? 0, $cType . ' was rendered with marked rows');
+        }
+        self::assertSame(3 + 3 + 9, $checked['desiderio_datatable'], 'data table: 3 column definitions, 3 rows and their 9 nested cells');
+    }
+
     /** @param array<string, list<int>> $old */
     private function assertPreviousChildrenRemoved(array $old): void
     {

@@ -16,14 +16,14 @@
 
         <div class="org-chart__levels">
             <f:for each="{data.levels}" as="level" iteration="levelIter">
-                <div class="org-chart__level {f:if(condition: levelIter.isFirst, then: 'org-chart__level--root')}">
+                <div class="org-chart__level {f:if(condition: levelIter.isFirst, then: 'org-chart__level--root')}"{level -> f:mark.item(collection: 'desiderio_orgchart_levels')}>
                     <f:if condition="{level.level_label}">
                         <d:atom.badge variant="{f:if(condition: levelIter.isFirst, then: 'default', else: 'secondary')}" class="org-chart__level-label">{level -> f:render.text(field: 'level_label')}</d:atom.badge>
                     </f:if>
                     <ul class="org-chart__row" role="list">
                         <f:for each="{level.people}" as="person">
                             <f:if condition="{person.name}">
-                                <li class="org-chart__person">
+                                <li class="org-chart__person"{person -> f:mark.item(collection: 'people')}>
                                     <d:molecule.card class="org-chart__card">
                                         <div class="org-chart__person-body">
                                             <d:atom.typography tag="h3" variant="h3" class="org-chart__name">{person -> f:render.text(field: 'name')}</d:atom.typography>

@@ -15,7 +15,7 @@
 
         <div class="accordion" data-d-accordion>
             <f:for each="{data.items}" as="item" iteration="iter">
-                <details class="accordion__item" name="{groupName}" {f:if(condition: item.open_by_default, then: 'open')}>
+                <details class="accordion__item" name="{groupName}" {f:if(condition: item.open_by_default, then: 'open')}{item -> f:mark.item(collection: 'desiderio_accordion_items')}>
                     <summary class="accordion__trigger">
                         <d:atom.typography tag="h3" variant="h3" class="accordion__title">{item -> f:render.text(field: 'title')}</d:atom.typography>
                         <span class="accordion__icon" aria-hidden="true">

@@ -21,7 +21,7 @@
             </header>
             <dl class="terms-summary__list">
                 <f:for each="{data.items}" as="item">
-                    <div class="terms-summary__item">
+                    <div class="terms-summary__item"{item -> f:mark.item(collection: 'desiderio_termssummary_items')}>
                         <dt class="terms-summary__item-title">{item -> f:render.text(field: 'title')}</dt>
                         <dd class="terms-summary__item-text d-richtext">{item -> f:render.text(field: 'summary')}</dd>
                     </div>

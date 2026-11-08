@@ -22,7 +22,7 @@
             <f:if condition="{data.nav_items}">
                 <ul class="navbar__nav" role="list">
                     <f:for each="{data.nav_items}" as="item">
-                        <li class="navbar__nav-item">
+                        <li class="navbar__nav-item"{item -> f:mark.item(collection: 'desiderio_navbar_nav_items')}>
                             <f:if condition="{item.link.url}">
                                 <f:then>
                                     <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="navbar__nav-link">{item -> f:render.text(field: 'label')}</d:atom.link>

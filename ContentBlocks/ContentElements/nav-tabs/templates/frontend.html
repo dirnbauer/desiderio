@@ -13,16 +13,16 @@
                     <f:then>
                         <f:if condition="{tab.link.url}">
                             <f:then>
-                                <a href="{f:uri.typolink(parameter: tab.link.url)}" target="{tab.link.target}" aria-current="page" data-slot="link" class="nav-tabs__tab nav-tabs__tab--active">{tab -> f:render.text(field: 'label')}</a>
+                                <a href="{f:uri.typolink(parameter: tab.link.url)}" target="{tab.link.target}" aria-current="page" data-slot="link" class="nav-tabs__tab nav-tabs__tab--active"{tab -> f:mark.item(collection: 'desiderio_navtabs_tabs')}>{tab -> f:render.text(field: 'label')}</a>
                             </f:then>
                             <f:else>
-                                <span class="nav-tabs__tab nav-tabs__tab--active" aria-current="page">{tab -> f:render.text(field: 'label')}</span>
+                                <span class="nav-tabs__tab nav-tabs__tab--active" aria-current="page"{tab -> f:mark.item(collection: 'desiderio_navtabs_tabs')}>{tab -> f:render.text(field: 'label')}</span>
                             </f:else>
                         </f:if>
                     </f:then>
                     <f:else>
                         <f:if condition="{tab.link.url}">
-                            <d:atom.link href="{f:uri.typolink(parameter: tab.link.url)}" target="{tab.link.target}" variant="muted" class="nav-tabs__tab">{tab -> f:render.text(field: 'label')}</d:atom.link>
+                            <d:atom.link href="{f:uri.typolink(parameter: tab.link.url)}" target="{tab.link.target}" variant="muted" class="nav-tabs__tab" attributes="{tab -> f:mark.item(collection: 'desiderio_navtabs_tabs', format: 'array')}">{tab -> f:render.text(field: 'label')}</d:atom.link>
                         </f:if>
                     </f:else>
                 </f:if>

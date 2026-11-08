@@ -16,7 +16,7 @@
 
         <ul class="directions__list" role="list">
             <f:for each="{data.routes}" as="route">
-                <li class="directions__item">
+                <li class="directions__item"{route -> f:mark.item(collection: 'desiderio_directions_routes')}>
                     <d:molecule.card class="directions__route">
                         <d:atom.typography tag="h3" variant="large" class="directions__mode">
                             <span class="directions__icon" aria-hidden="true"><d:atom.icon name="map-pin" size="lg"/></span>

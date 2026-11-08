@@ -21,7 +21,7 @@
             <f:case value="list">
                 <ul class="team__list" role="list">
                     <f:for each="{data.members}" as="member">
-                        <li class="team__list-item">
+                        <li class="team__list-item"{member -> f:mark.item(collection: 'desiderio_team_members')}>
                             <f:if condition="{member.image}">
                                 <f:then>
                                     <f:for each="{member.image}" as="fileReference">
@@ -57,7 +57,7 @@
             <f:case value="minimal">
                 <d:layout.grid cols="{data.columns -> f:or(alternative: '4')}" gap="lg" class="team__minimal">
                     <f:for each="{data.members}" as="member">
-                        <div class="team__minimal-item">
+                        <div class="team__minimal-item"{member -> f:mark.item(collection: 'desiderio_team_members')}>
                             <f:if condition="{member.image}">
                                 <f:then>
                                     <f:for each="{member.image}" as="fileReference">
@@ -83,7 +83,7 @@
                 <f:comment>Grid variant (default)</f:comment>
                 <d:layout.grid cols="{data.columns -> f:or(alternative: '3')}" gap="lg" class="team__grid">
                     <f:for each="{data.members}" as="member">
-                        <div class="team__cell">
+                        <div class="team__cell"{member -> f:mark.item(collection: 'desiderio_team_members')}>
                             <d:molecule.card class="team__member">
                             <f:if condition="{member.image}">
                                 <f:for each="{member.image}" as="fileReference">

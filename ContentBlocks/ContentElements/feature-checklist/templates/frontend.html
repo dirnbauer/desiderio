@@ -18,7 +18,7 @@
                 <d:molecule.card class="feature-checklist__list">
                     <ul class="feature-checklist__items" role="list">
                         <f:for each="{data.items}" as="item">
-                            <li class="feature-checklist__item">
+                            <li class="feature-checklist__item"{item -> f:mark.item(collection: 'desiderio_featurechecklist_items')}>
                                 <span class="feature-checklist__marker" aria-hidden="true">
                                     <d:atom.icon name="check" size="sm"/>
                                 </span>

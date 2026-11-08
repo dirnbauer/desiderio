@@ -18,7 +18,7 @@
 
                 <div class="feature-accordion__list">
                     <f:for each="{data.items}" as="item" iteration="iter">
-                        <details class="feature-accordion__item" name="feature-accordion-{data.uid}" {f:if(condition: iter.isFirst, then: 'open')}>
+                        <details class="feature-accordion__item" name="feature-accordion-{data.uid}" {f:if(condition: iter.isFirst, then: 'open')}{item -> f:mark.item(collection: 'desiderio_featureaccordion_items')}>
                             <summary class="feature-accordion__trigger">
                                 <d:atom.typography tag="h3" variant="large" class="feature-accordion__title">{item -> f:render.text(field: 'title')}</d:atom.typography>
                                 <span class="feature-accordion__chevron" aria-hidden="true">

@@ -26,7 +26,7 @@
                 <f:if condition="{data.contact_items}">
                     <dl class="contact__list">
                         <f:for each="{data.contact_items}" as="item">
-                            <div class="contact__list-item">
+                            <div class="contact__list-item"{item -> f:mark.item(collection: 'desiderio_contact_contact_items')}>
                                 <dt class="contact__list-label">{item -> f:render.text(field: 'label')}</dt>
                                 <dd class="contact__list-value-wrap">
                                     <f:if condition="{item.link.url}">

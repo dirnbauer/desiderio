@@ -16,7 +16,7 @@
 
         <d:layout.grid cols="4" gap="lg" class="investor-grid__items">
             <f:for each="{data.investors}" as="inv">
-                <div class="investor-grid__item">
+                <div class="investor-grid__item"{inv -> f:mark.item(collection: 'desiderio_investorgrid_investors')}>
                     <div class="investor-grid__logo-wrap">
                         <f:if condition="{inv.logo}">
                             <f:then>

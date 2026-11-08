@@ -17,7 +17,7 @@
         <dl class="social-proof-counter__row social-proof-counter__row--{data.shadcn_layout -> f:or(alternative: 'inline')}"
             aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:stats.aria')}">
             <f:for each="{data.counters}" as="counter">
-                <div class="social-proof-counter__item" data-astro-reveal="slide-up">
+                <div class="social-proof-counter__item" data-astro-reveal="slide-up"{counter -> f:mark.item(collection: 'desiderio_socialproofcounter_counters')}>
                     <dt class="social-proof-counter__label">{counter -> f:render.text(field: 'label')}</dt>
                     <f:comment>The icon sits inside the dd: a dl group may only hold dt and dd. The counter runs on its own span, because it replaces its element's children.</f:comment>
                     <dd class="social-proof-counter__value">

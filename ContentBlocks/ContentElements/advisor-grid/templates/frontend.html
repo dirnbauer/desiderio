@@ -16,7 +16,7 @@
 
         <d:layout.grid cols="3" gap="lg" class="advisor-grid__items">
             <f:for each="{data.advisors}" as="advisor">
-                <article class="advisor-grid__card">
+                <article class="advisor-grid__card"{advisor -> f:mark.item(collection: 'desiderio_advisorgrid_advisors')}>
                     <f:if condition="{advisor.image}">
                         <f:then>
                             <f:for each="{advisor.image}" as="fileReference">

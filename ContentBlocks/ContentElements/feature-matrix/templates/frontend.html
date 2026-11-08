@@ -28,7 +28,7 @@
                 </d:molecule.tableHeader>
                 <tbody data-slot="table-body" class="[&_tr:last-child]:border-0">
                     <f:for each="{data.rows}" as="row">
-                        <d:molecule.tableRow>
+                        <d:molecule.tableRow attributes="{row -> f:mark.item(collection: 'desiderio_featurematrix_rows', format: 'array')}">
                             <th scope="row" data-slot="table-head" class="feature-matrix__head feature-matrix__head--left">{row -> f:render.text(field: 'label')}</th>
                             <d:molecule.tableCell class="feature-matrix__value">{row -> f:render.text(field: 'left_value')}</d:molecule.tableCell>
                             <d:molecule.tableCell class="feature-matrix__value">{row -> f:render.text(field: 'right_value')}</d:molecule.tableCell>

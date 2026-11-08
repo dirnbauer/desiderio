@@ -8,7 +8,7 @@
 <f:section name="rates">
     <ul class="pricing-usage__grid" role="list">
         <f:for each="{data.items}" as="item" iteration="iter">
-            <li class="pricing-usage__item">
+            <li class="pricing-usage__item"{item -> f:mark.item(collection: 'desiderio_pricingusage_items')}>
                 <article class="pricing-usage__card" aria-labelledby="pricing-usage-{data.uid}-{iter.cycle}">
                     <d:atom.typography tag="h3" variant="h3" class="pricing-usage__title" attributes="{id: 'pricing-usage-{data.uid}-{iter.cycle}'}">{item -> f:render.text(field: 'title')}</d:atom.typography>
                     <p class="pricing-usage__rate-row">

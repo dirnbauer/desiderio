@@ -15,7 +15,7 @@
         </f:if>
         <ul class="badge-grid__list" role="list">
             <f:for each="{data.items}" as="item">
-                <li class="badge-grid__cell badge-grid__cell--style-{data.variant -> f:or(alternative: 'default')}">
+                <li class="badge-grid__cell badge-grid__cell--style-{data.variant -> f:or(alternative: 'default')}"{item -> f:mark.item(collection: 'desiderio_badgegrid_items')}>
                     <f:if condition="{item.link.url}">
                         <f:then>
                             <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="badge-grid__link rounded-2xl focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/30">

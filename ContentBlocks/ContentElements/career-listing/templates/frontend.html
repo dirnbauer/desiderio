@@ -17,7 +17,7 @@
 
         <ul class="career-listing__jobs" role="list">
             <f:for each="{data.jobs}" as="job">
-                <li class="career-listing__job">
+                <li class="career-listing__job"{job -> f:mark.item(collection: 'desiderio_careerlisting_jobs')}>
                     <div class="career-listing__info">
                         <d:atom.typography tag="h3" variant="h3" class="career-listing__title">
                             <f:if condition="{job.apply_link.url}">

@@ -15,7 +15,7 @@
             <ul class="navbar-transparent__nav" role="list">
                 <f:for each="{data.nav_items}" as="item">
                     <f:if condition="{item.link.url}">
-                        <li class="navbar-transparent__item">
+                        <li class="navbar-transparent__item"{item -> f:mark.item(collection: 'desiderio_navbartransparent_nav_items')}>
                             <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="navbar-transparent__link">{item -> f:render.text(field: 'label')}</d:atom.link>
                         </li>
                     </f:if>

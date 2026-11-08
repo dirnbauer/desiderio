@@ -29,7 +29,7 @@
                         <f:then>
                             <f:variable name="submenuId" value="navbar-dropdown-{data.uid}-{navIteration.cycle}"/>
                             <f:variable name="toggleLabel" value="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/locallang.xlf:a11y.nav.submenu', arguments: {title: item.label}, default: 'Submenu')}"/>
-                            <li class="navbar-dropdown__item navbar-dropdown__item--parent" data-d-nav-sub="">
+                            <li class="navbar-dropdown__item navbar-dropdown__item--parent" data-d-nav-sub=""{item -> f:mark.item(collection: 'desiderio_navbardropdown_nav_items')}>
                                 <span class="navbar-dropdown__trigger">
                                     <f:if condition="{item.link.url}">
                                         <f:then><d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="navbar-dropdown__link">{item -> f:render.text(field: 'label')}</d:atom.link></f:then>
@@ -46,7 +46,7 @@
                             </li>
                         </f:then>
                         <f:else>
-                            <li class="navbar-dropdown__item">
+                            <li class="navbar-dropdown__item"{item -> f:mark.item(collection: 'desiderio_navbardropdown_nav_items')}>
                                 <f:if condition="{item.link.url}">
                                     <f:then><d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="navbar-dropdown__link">{item -> f:render.text(field: 'label')}</d:atom.link></f:then>
                                     <f:else><span class="navbar-dropdown__link">{item -> f:render.text(field: 'label')}</span></f:else>

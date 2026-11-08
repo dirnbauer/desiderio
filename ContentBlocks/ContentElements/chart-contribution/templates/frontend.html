@@ -60,7 +60,7 @@
                         </thead>
                         <tbody>
                             <f:for each="{data.points}" as="point">
-                                <tr>
+                                <tr{point -> f:mark.item(collection: 'desiderio_chartcontribution_points')}>
                                     <th scope="row">{point -> f:render.text(field: 'point_label')}</th>
                                     <td>{point.point_value}<f:if condition="{unitLabel}"> {unitLabel}</f:if></td>
                                 </tr>

@@ -20,7 +20,7 @@
 
         <ul class="rating-display__grid" role="list">
             <f:for each="{data.rating_items}" as="rating">
-                <li class="rating-display__item">
+                <li class="rating-display__item"{rating -> f:mark.item(collection: 'desiderio_ratingdisplay_rating_items')}>
                     <article class="rating-display__card">
                         <f:if condition="{rating.logo}">
                             <div class="rating-display__logo">

@@ -19,7 +19,7 @@
 
             <ol class="how-to-steps__list" role="list">
                 <f:for each="{data.items}" as="item" iteration="iter">
-                    <li class="how-to-steps__item" itemscope itemprop="step" itemtype="https://schema.org/HowToStep">
+                    <li class="how-to-steps__item" itemscope itemprop="step" itemtype="https://schema.org/HowToStep"{item -> f:mark.item(collection: 'desiderio_howtosteps_items')}>
                         <div class="how-to-steps__number" aria-hidden="true">{iter.cycle}</div>
                         <div class="how-to-steps__content">
                             <meta itemprop="position" content="{iter.cycle}" />

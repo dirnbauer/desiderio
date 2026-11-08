@@ -23,7 +23,7 @@
 
         <ul class="pricing-two-tier__grid" role="list">
             <f:for each="{data.plans}" as="tier" iteration="iter">
-                <li class="pricing-two-tier__item">
+                <li class="pricing-two-tier__item"{tier -> f:mark.item(collection: 'desiderio_pricingtwotier_plans')}>
                     <d:molecule.card
                         class="pricing-two-tier__plan {f:if(condition: tier.featured, then: 'pricing-two-tier__plan--featured')}"
                     >
@@ -54,7 +54,7 @@
                                 <ul class="pricing-two-tier__features" role="list">
                                     <f:for each="{tier.features}" as="feature">
                                         <f:if condition="{feature.text}">
-                                            <d:molecule.checkedListItem class="pricing-two-tier__feature" iconClass="pricing-two-tier__check">
+                                            <d:molecule.checkedListItem class="pricing-two-tier__feature" iconClass="pricing-two-tier__check" attributes="{feature -> f:mark.item(collection: 'features', format: 'array')}">
                                                 {feature -> f:render.text(field: 'text')}
                                             </d:molecule.checkedListItem>
                                         </f:if>

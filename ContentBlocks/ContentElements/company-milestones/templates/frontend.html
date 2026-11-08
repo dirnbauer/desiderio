@@ -16,7 +16,7 @@
 
         <ol class="company-milestones__grid" role="list">
             <f:for each="{data.milestones}" as="ms" iteration="i">
-                <li class="company-milestones__item">
+                <li class="company-milestones__item"{ms -> f:mark.item(collection: 'desiderio_companymilestones_milestones')}>
                     <f:comment>Fluid 5 renders nothing for the then-branch of an f:if that has an f:else but no f:then, so the year needs its own f:then.</f:comment>
                     <f:if condition="{ms.year}">
                         <f:then>

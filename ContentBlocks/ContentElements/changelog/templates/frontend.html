@@ -12,7 +12,7 @@
         </f:if>
         <ol class="changelog__list" role="list">
             <f:for each="{data.items}" as="item">
-                <li class="changelog__entry">
+                <li class="changelog__entry"{item -> f:mark.item(collection: 'desiderio_changelog_items')}>
                     <div class="changelog__meta">
                         <span class="changelog__version">{item -> f:render.text(field: 'version')}</span>
                         <f:if condition="{item.date}">

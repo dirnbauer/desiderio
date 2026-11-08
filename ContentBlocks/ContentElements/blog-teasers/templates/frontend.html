@@ -17,7 +17,7 @@
         <div class="blog-teasers__collection">
             <ul class="blog-teasers__grid blog-teasers__grid--cols-{data.columns -> f:or(alternative: '3')}" role="list">
                 <f:for each="{data.posts}" as="post">
-                    <li class="blog-teasers__cell">
+                    <li class="blog-teasers__cell"{post -> f:mark.item(collection: 'desiderio_blogteasers_posts')}>
                         <article class="blog-teasers__item">
                             <f:if condition="{post.image.0}">
                                 <div class="blog-teasers__image-wrapper">

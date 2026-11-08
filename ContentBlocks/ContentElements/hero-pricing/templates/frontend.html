@@ -22,7 +22,7 @@
                 <f:if condition="{data.feature_items}">
                     <ul class="hero-pricing__features" role="list">
                         <f:for each="{data.feature_items}" as="feature">
-                            <li class="hero-pricing__feature">
+                            <li class="hero-pricing__feature"{feature -> f:mark.item(collection: 'desiderio_heropricing_feature_items')}>
                                 <d:atom.icon name="check" class="hero-pricing__feature-icon" />
                                 <span>{feature -> f:render.text(field: 'label')}</span>
                             </li>

@@ -20,7 +20,7 @@
 
         <ul class="testimonial-grid__items testimonial-grid__items--cols-{data.columns -> f:or(alternative: '3')}" role="list">
             <f:for each="{data.testimonials}" as="item">
-                <li>
+                <li{item -> f:mark.item(collection: 'desiderio_testimonialgrid_testimonials')}>
                     <figure class="testimonial-grid__card">
                         <blockquote class="testimonial-grid__quote">{item -> f:render.text(field: 'quote')}</blockquote>
                         <figcaption class="testimonial-grid__author">

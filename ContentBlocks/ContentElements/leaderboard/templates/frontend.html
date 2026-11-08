@@ -20,7 +20,7 @@
             </f:if>
             <ol class="leaderboard__list" role="list">
                 <f:for each="{data.items}" as="item" iteration="iter">
-                    <li class="leaderboard__item">
+                    <li class="leaderboard__item"{item -> f:mark.item(collection: 'desiderio_leaderboard_items')}>
                         <f:if condition="{data.show_rank}">
                             <span class="leaderboard__rank" aria-hidden="true">{iter.cycle}</span>
                         </f:if>

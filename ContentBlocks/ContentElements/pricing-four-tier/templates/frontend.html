@@ -23,7 +23,7 @@
 
         <ul class="pricing-four-tier__grid" role="list">
             <f:for each="{data.plans}" as="tier" iteration="iter">
-                <li class="pricing-four-tier__item">
+                <li class="pricing-four-tier__item"{tier -> f:mark.item(collection: 'desiderio_pricingfourtier_plans')}>
                     <d:molecule.card
                         class="pricing-four-tier__plan {f:if(condition: tier.featured, then: 'pricing-four-tier__plan--featured')}"
                     >
@@ -48,7 +48,7 @@
                                 <ul class="pricing-four-tier__features" role="list">
                                     <f:for each="{tier.features}" as="feature">
                                         <f:if condition="{feature.text}">
-                                            <d:molecule.checkedListItem class="pricing-four-tier__feature" iconClass="pricing-four-tier__check">
+                                            <d:molecule.checkedListItem class="pricing-four-tier__feature" iconClass="pricing-four-tier__check" attributes="{feature -> f:mark.item(collection: 'features', format: 'array')}">
                                                 {feature -> f:render.text(field: 'text')}
                                             </d:molecule.checkedListItem>
                                         </f:if>

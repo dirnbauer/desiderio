@@ -15,7 +15,7 @@
 
         <div class="feature-icons__grid feature-icons__grid--cols-{data.columns -> f:or(alternative: '4')}">
             <f:for each="{data.items}" as="item">
-                <d:molecule.featureItem prefix="feature-icons" class="feature-icons__item" icon="{item.icon}" iconSize="xl">
+                <d:molecule.featureItem prefix="feature-icons" class="feature-icons__item" icon="{item.icon}" iconSize="xl" attributes="{item -> f:mark.item(collection: 'desiderio_featureicons_items', format: 'array')}">
                     <f:fragment name="title">{item -> f:render.text(field: 'title')}</f:fragment>
                     <f:fragment name="text"><f:if condition="{item.description_text}">{item -> f:render.text(field: 'description_text')}</f:if></f:fragment>
                 </d:molecule.featureItem>

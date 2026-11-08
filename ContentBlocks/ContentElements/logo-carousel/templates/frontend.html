@@ -26,7 +26,7 @@
         >
             <ul class="logo-carousel__slide-group" role="list">
                 <f:for each="{data.logo_items}" as="logo">
-                    <li class="logo-carousel__item">
+                    <li class="logo-carousel__item"{logo -> f:mark.item(collection: 'desiderio_logocarousel_logo_items')}>
                         <f:if condition="{logo.link.url}">
                             <f:then>
                                 <d:atom.link href="{f:uri.typolink(parameter: logo.link.url)}" target="{logo.link.target}" variant="muted" class="logo-carousel__link">
@@ -46,7 +46,7 @@
             </ul>
             <ul class="logo-carousel__slide-group" aria-hidden="true">
                 <f:for each="{data.logo_items}" as="logo">
-                    <li class="logo-carousel__item">
+                    <li class="logo-carousel__item"{logo -> f:mark.item(collection: 'desiderio_logocarousel_logo_items')}>
                         <f:for each="{logo.image}" as="fileReference">
                             <f:image image="{fileReference}" maxWidth="260" alt="{fileReference.alternative}" class="logo-carousel__image" loading="lazy" decoding="async"/>
                         </f:for>

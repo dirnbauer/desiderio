@@ -19,7 +19,7 @@
 
         <ul id="team-carousel-track-{data.uid}" class="team-carousel__track" role="list" tabindex="0" aria-label="{regionLabel}">
             <f:for each="{data.members}" as="member">
-                <li class="team-carousel__slide">
+                <li class="team-carousel__slide"{member -> f:mark.item(collection: 'desiderio_teamcarousel_members')}>
                     <d:molecule.card class="team-carousel__card">
                         <f:if condition="{member.image}">
                             <div class="team-carousel__media">

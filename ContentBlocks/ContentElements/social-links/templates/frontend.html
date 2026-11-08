@@ -14,7 +14,7 @@
                 <ul class="social-links__list" role="list">
                     <f:for each="{data.link_items}" as="item">
                         <f:if condition="{item.url.url}">
-                            <li class="social-links__entry">
+                            <li class="social-links__entry"{item -> f:mark.item(collection: 'desiderio_sociallinks_link_items')}>
                                 <d:atom.link href="{f:uri.typolink(parameter: item.url.url)}" target="{item.url.target}" variant="muted" class="social-links__item">
                                     <f:if condition="{item.icon}">
                                         <f:switch expression="{item.icon}">

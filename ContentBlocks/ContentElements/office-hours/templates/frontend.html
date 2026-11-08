@@ -17,7 +17,7 @@
             <f:if condition="{data.description_text}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'description_text')}</d:atom.typography></f:if>
             <dl class="office-hours__list">
                 <f:for each="{data.hours_items}" as="entry">
-                    <div class="office-hours__row">
+                    <div class="office-hours__row"{entry -> f:mark.item(collection: 'desiderio_officehours_hours_items')}>
                         <dt class="office-hours__day">{entry -> f:render.text(field: 'day')}</dt>
                         <dd class="office-hours__time">{entry -> f:render.text(field: 'time')}</dd>
                     </div>

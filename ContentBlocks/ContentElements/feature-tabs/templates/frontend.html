@@ -24,7 +24,7 @@
                         id="{triggerId}"
                         controls="{panelId}"
                         active="{iter.isFirst}"
-                        class="feature-tabs__trigger before:absolute before:inset-x-0 before:-inset-y-2.5 before:content-['']"
+                        class="feature-tabs__trigger before:absolute before:inset-x-0 before:-inset-y-2.5 before:content-['']" attributes="{item -> f:mark.item(collection: 'desiderio_featuretabs_items', format: 'array')}"
                     >{item -> f:render.text(field: 'tab_label')}</d:molecule.tabsTrigger>
                 </f:for>
             </d:molecule.tabsList>
@@ -37,7 +37,7 @@
                     id="{panelId}"
                     labelledBy="{triggerId}"
                     active="{iter.isFirst}"
-                    class="feature-tabs__panel"
+                    class="feature-tabs__panel" attributes="{item -> f:mark.item(collection: 'desiderio_featuretabs_items', format: 'array')}"
                 >
                     <div class="feature-tabs__content">
                         <div class="feature-tabs__copy">

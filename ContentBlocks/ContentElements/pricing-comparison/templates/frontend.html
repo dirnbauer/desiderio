@@ -31,7 +31,7 @@
                     <d:molecule.tableRow>
                         <th scope="col" data-slot="table-head" class="pricing-comparison__feature-col"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:feature"/></th>
                         <f:for each="{data.plans}" as="plan">
-                            <th scope="col" data-slot="table-head" class="pricing-comparison__plan-col">
+                            <th scope="col" data-slot="table-head" class="pricing-comparison__plan-col"{plan -> f:mark.item(collection: 'desiderio_pricingcomparison_plans')}>
                                 <span class="pricing-comparison__plan-name">{plan -> f:render.text(field: 'name')}</span>
                                 <f:if condition="{plan.price}">
                                     <span class="pricing-comparison__plan-price">{plan -> f:render.text(field: 'price')}</span>
@@ -42,10 +42,10 @@
                 </d:molecule.tableHeader>
                 <tbody>
                     <f:for each="{data.pricing_feature_items}" as="row">
-                        <d:molecule.tableRow>
+                        <d:molecule.tableRow attributes="{row -> f:mark.item(collection: 'desiderio_pricingcomparison_pricing_feature_items', format: 'array')}">
                             <th scope="row" data-slot="table-head" class="pricing-comparison__feature-name">{row -> f:render.text(field: 'feature_name')}</th>
                             <f:for each="{row.tier_values}" as="val">
-                                <d:molecule.tableCell class="pricing-comparison__cell">{val -> f:render.text(field: 'value')}</d:molecule.tableCell>
+                                <d:molecule.tableCell class="pricing-comparison__cell" attributes="{val -> f:mark.item(collection: 'tier_values', format: 'array')}">{val -> f:render.text(field: 'value')}</d:molecule.tableCell>
                             </f:for>
                         </d:molecule.tableRow>
                     </f:for>

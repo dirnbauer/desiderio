@@ -16,7 +16,7 @@
 
         <div class="features__grid features__grid--cols-{data.columns -> f:or(alternative: '3')} features__grid--{data.variant -> f:or(alternative: 'icon-top')}">
             <f:for each="{data.feature_items}" as="feature">
-                <div class="features__item relative {f:if(condition: '{data.variant} == \'card\'', then: 'features__item--card')}">
+                <div class="features__item relative {f:if(condition: '{data.variant} == \'card\'', then: 'features__item--card')}"{feature -> f:mark.item(collection: 'desiderio_features_feature_items')}>
                     <div class="features__icon" aria-hidden="true">
                         <d:atom.icon name="{feature.icon_name}" size="lg"/>
                     </div>

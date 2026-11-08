@@ -31,7 +31,7 @@
                     <tr>
                         <th scope="col" class="comparison-table__feature-col">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:feature', default: 'Feature')}</th>
                         <f:for each="{data.column_items}" as="col">
-                            <th scope="col" class="{f:if(condition: col.highlighted, then: 'comparison-table__col--highlighted')}">
+                            <th scope="col" class="{f:if(condition: col.highlighted, then: 'comparison-table__col--highlighted')}"{col -> f:mark.item(collection: 'desiderio_comparisontable_column_items')}>
                                 {col -> f:render.text(field: 'name')}
                                 <f:if condition="{col.highlighted}"><span class="sr-only"> ({f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:plan.recommended', default: 'Recommended plan')})</span></f:if>
                             </th>
@@ -40,11 +40,11 @@
                 </thead>
                 <tbody>
                     <f:for each="{data.comparison_feature_items}" as="feature">
-                        <tr>
+                        <tr{feature -> f:mark.item(collection: 'desiderio_comparisontable_comparison_feature_items')}>
                             <th scope="row" class="comparison-table__feature-name">{feature -> f:render.text(field: 'name')}</th>
                             <f:for each="{feature.tier_values}" as="value" iteration="valueIter">
                                 <f:variable name="columnHighlighted" value="{data.column_items.{valueIter.index}.highlighted}"/>
-                                <td class="comparison-table__cell{f:if(condition: columnHighlighted, then: ' comparison-table__cell--highlighted')}">{value -> f:render.text(field: 'value')}</td>
+                                <td class="comparison-table__cell{f:if(condition: columnHighlighted, then: ' comparison-table__cell--highlighted')}"{value -> f:mark.item(collection: 'tier_values')}>{value -> f:render.text(field: 'value')}</td>
                             </f:for>
                         </tr>
                     </f:for>

@@ -18,7 +18,7 @@
             <f:for each="{data.items}" as="item">
                 <f:variable name="bentoCardSize" value="sm"/>
                 <f:if condition="{item.size} == 'wide' || {item.size} == 'tall'"><f:variable name="bentoCardSize" value="default"/></f:if>
-                <d:molecule.card size="{bentoCardSize}" class="feature-bento__item feature-bento__item--{item.size -> f:or(alternative: 'small')}">
+                <d:molecule.card size="{bentoCardSize}" class="feature-bento__item feature-bento__item--{item.size -> f:or(alternative: 'small')}" attributes="{item -> f:mark.item(collection: 'desiderio_featurebento_items', format: 'array')}">
                     <f:if condition="{item.image.0}">
                         <div class="feature-bento__bg">
                             <f:image image="{item.image.0}" alt="{item.image.0.alternative}" maxWidth="800" class="feature-bento__bg-image" loading="lazy" decoding="async"/>

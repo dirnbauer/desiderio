@@ -102,3 +102,16 @@ if (ExtensionManagementUtility::isLoaded('styleguide')) {
     $desiderioDisabledFormSets[] = 'typo3/styleguide-form-set';
     $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['form']['disabledSets'] = array_values(array_unique($desiderioDisabledFormSets));
 }
+
+// Row markers: the Content Block templates mark each collection entry with
+// `{entry -> f:mark.item(collection: '…')}` (Build/Scripts/codemod-collection-markers.php).
+// The ViewHelper ships with Visual Editor Enhancements 1.6+, which writes the
+// data-ve-* attributes in edit mode only. Should that extension not be loaded
+// (a classic-mode install, a test or project setup without it, an older
+// release), register a stand-in that renders nothing, like the real one does
+// outside edit mode, so no template fails on an unknown ViewHelper.
+if (!ExtensionManagementUtility::isLoaded('visual_editor_enhancements')
+    || !class_exists('Webconsulting\\VisualEditorEnhancements\\ViewHelpers\\Mark\\ItemViewHelper')
+) {
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['f'][] = 'Webconsulting\\Desiderio\\ViewHelpers\\RowMarkerFallback';
+}

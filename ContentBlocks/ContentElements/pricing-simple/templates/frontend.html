@@ -28,7 +28,7 @@
                     <ul class="pricing-simple__features" role="list">
                         <f:for each="{data.features}" as="feature">
                             <f:if condition="{feature.text}">
-                                <d:molecule.checkedListItem class="pricing-simple__feature" iconClass="pricing-simple__check">
+                                <d:molecule.checkedListItem class="pricing-simple__feature" iconClass="pricing-simple__check" attributes="{feature -> f:mark.item(collection: 'desiderio_pricingsimple_features', format: 'array')}">
                                     {feature -> f:render.text(field: 'text')}
                                 </d:molecule.checkedListItem>
                             </f:if>

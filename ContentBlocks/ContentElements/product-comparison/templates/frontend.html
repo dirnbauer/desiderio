@@ -20,7 +20,7 @@
 
         <ul class="product-comparison__grid" role="list">
             <f:for each="{data.products}" as="product" iteration="iter">
-                <li class="product-comparison__item">
+                <li class="product-comparison__item"{product -> f:mark.item(collection: 'desiderio_productcomparison_products')}>
                     <article class="product-comparison__card {f:if(condition: product.is_recommended, then: 'product-comparison__card--recommended')}" aria-labelledby="product-comparison-{data.uid}-{iter.cycle}">
                         <f:if condition="{product.is_recommended}">
                             <span class="product-comparison__badge"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:plan.recommended" default="Recommended plan"/></span>
@@ -38,7 +38,7 @@
                             <ul class="product-comparison__specs" role="list">
                                 <f:for each="{product.specs}" as="spec">
                                     <f:if condition="{spec.text}">
-                                        <li class="product-comparison__spec">{spec -> f:render.text(field: 'text')}</li>
+                                        <li class="product-comparison__spec"{spec -> f:mark.item(collection: 'specs')}>{spec -> f:render.text(field: 'text')}</li>
                                     </f:if>
                                 </f:for>
                             </ul>

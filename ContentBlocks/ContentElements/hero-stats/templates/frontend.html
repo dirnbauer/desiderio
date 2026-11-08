@@ -28,7 +28,7 @@
             </div>
             <dl class="hero-stats__cards">
                 <f:for each="{data.stats}" as="stat">
-                    <div class="hero-stats__stat" data-astro-reveal="slide-up" data-astro-tilt="2">
+                    <div class="hero-stats__stat" data-astro-reveal="slide-up" data-astro-tilt="2"{stat -> f:mark.item(collection: 'desiderio_herostats_stats')}>
                         <dt class="hero-stats__stat-label">{stat -> f:render.text(field: 'label')}</dt>
                         <dd class="hero-stats__stat-value" data-astro-counter>{stat -> f:render.text(field: 'value')}</dd>
                         <f:if condition="{stat.stat_description}">

@@ -2281,6 +2281,16 @@
         <source>Reserved for a future version — currently has no visual effect.</source>
       </segment>
     </unit>
+    <unit id="appearance.anchor">
+      <segment>
+        <source>Anchor</source>
+      </segment>
+    </unit>
+    <unit id="appearance.anchor.description">
+      <segment>
+        <source>A name for links to this element, for example pricing for #pricing. Lowercase letters, digits, hyphens and underscores; the same in every language.</source>
+      </segment>
+    </unit>
     <unit id="pricingSlider.request">
       <segment>
         <source>Request this estimate</source>

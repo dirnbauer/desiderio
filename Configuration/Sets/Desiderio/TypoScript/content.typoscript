@@ -194,3 +194,13 @@ tt_content.solr_pi_frequentlysearched.templateName = SolrPiFrequentlySearched
 # the core types render their id in the ClassicContent layout instead.
 lib.contentBlock.stdWrap.prepend = TEXT
 lib.contentBlock.stdWrap.prepend.dataWrap = <a id="c{field:uid}"></a>
+# An editor's own anchor name (tt_content.tx_desiderio_anchor, Appearance
+# tab) follows it, so t3://page?uid=12#pricing works as well as #c345. The
+# value is escaped here although the form only accepts a-z, 0-9, _ and -.
+lib.contentBlock.stdWrap.prepend.append = TEXT
+lib.contentBlock.stdWrap.prepend.append {
+  field = tx_desiderio_anchor
+  htmlSpecialChars = 1
+  wrap = <a id="|"></a>
+  if.isTrue.field = tx_desiderio_anchor
+}

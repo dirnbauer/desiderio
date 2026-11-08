@@ -16,10 +16,12 @@ final readonly class StarterContentBuilder
     /**
      * Fields of the shared Desiderio/Appearance basic (tt_content columns every
      * element has) that a definition may set although no block lists them in
-     * its own config.yaml: the frame (the surface a section sits on) and the
-     * spacing. Anything else outside a block's own fields is still dropped.
+     * its own config.yaml: the frame (the surface a section sits on), the
+     * spacing and the anchor name links can jump to (tx_desiderio_anchor,
+     * written only where the column exists). Anything else outside a block's
+     * own fields is still dropped.
      */
-    private const array SHARED_APPEARANCE_FIELDS = ['frame_class', 'space_before_class', 'space_after_class', 'layout'];
+    private const array SHARED_APPEARANCE_FIELDS = ['frame_class', 'space_before_class', 'space_after_class', 'layout', 'tx_desiderio_anchor'];
 
     /** Native visibility dates, shared by all tt_content records. */
     private const array SHARED_SCHEDULE_FIELDS = ['starttime', 'endtime'];

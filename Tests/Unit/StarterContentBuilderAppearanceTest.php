@@ -64,6 +64,33 @@ final class StarterContentBuilderAppearanceTest extends TestCase
     }
 
     #[Test]
+    public function theAnchorNameIsWrittenWhereTheColumnExists(): void
+    {
+        ContentBlockDefinitionRegistry::setDefinitionsForTesting([
+            'desiderio_contentsidebar' => [
+                'fields' => [
+                    'header' => ['identifier' => 'header', 'type' => 'Textarea'],
+                ],
+                'collections' => [],
+            ],
+        ]);
+        $builder = new StarterContentBuilder(new DatabaseSchemaHelper(self::createStub(ConnectionPool::class)));
+        $block = [
+            'ctype' => 'desiderio_contentsidebar',
+            'colPos' => 0,
+            'fields' => ['header' => 'typo3-upgrade-run', 'tx_desiderio_anchor' => 'typo3-upgrade-run'],
+        ];
+
+        $insert = $builder->buildContentInsert(12, $block, 256, 1_762_250_000, ['header' => true, 'tx_desiderio_anchor' => true]);
+        self::assertSame('typo3-upgrade-run', $insert['row']['tx_desiderio_anchor']);
+
+        // Before the schema update adds the column, the element is seeded
+        // without its anchor instead of failing.
+        $insert = $builder->buildContentInsert(12, $block, 256, 1_762_250_000, ['header' => true]);
+        self::assertArrayNotHasKey('tx_desiderio_anchor', $insert['row']);
+    }
+
+    #[Test]
     public function nativeScheduleFieldsSurviveWithoutAllowingOtherAccessOverrides(): void
     {
         ContentBlockDefinitionRegistry::setDefinitionsForTesting([

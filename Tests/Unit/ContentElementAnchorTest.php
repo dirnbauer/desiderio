@@ -23,6 +23,41 @@ final class ContentElementAnchorTest extends TestCase
         self::assertStringContainsString('lib.contentBlock.stdWrap.prepend.dataWrap = <a id="c{field:uid}"></a>', $typoScript);
     }
 
+    /**
+     * An editor may name an element (tt_content.tx_desiderio_anchor, for
+     * example "pricing"), so links can say #pricing instead of #c345. The
+     * name follows the c<uid> anchor, escaped, and only when it is set.
+     */
+    public function testANamedAnchorFollowsTheCoreAnchor(): void
+    {
+        $typoScript = (string)file_get_contents(self::ROOT . '/Configuration/Sets/Desiderio/TypoScript/content.typoscript');
+
+        self::assertMatchesRegularExpression(
+            '/lib\.contentBlock\.stdWrap\.prepend\.append = TEXT\s+lib\.contentBlock\.stdWrap\.prepend\.append \{\s+field = tx_desiderio_anchor\s+htmlSpecialChars = 1\s+wrap = <a id="\|"><\/a>\s+if\.isTrue\.field = tx_desiderio_anchor\s+\}/',
+            $typoScript
+        );
+    }
+
+    /**
+     * The name is the same in every language (l10n_mode exclude), so one link
+     * with the anchor works on each translation; the form accepts only
+     * characters an id and a URL fragment take as they are.
+     */
+    public function testTheAnchorFieldIsSharedByEveryLanguage(): void
+    {
+        $tca = (string)file_get_contents(self::ROOT . '/Configuration/TCA/Overrides/tt_content.php');
+
+        self::assertMatchesRegularExpression(
+            "/\\\$GLOBALS\['TCA'\]\['tt_content'\]\['columns'\]\['tx_desiderio_anchor'\] = \[\s+'exclude' => true,\s+'l10n_mode' => 'exclude',/",
+            $tca
+        );
+        self::assertStringContainsString("'eval' => 'trim,lower,alphanum_x',", $tca);
+        self::assertStringContainsString("'max' => 64,", $tca);
+        self::assertMatchesRegularExpression("/addFieldsToPalette\(\s+'tt_content',\s+'desiderio_frames_palette',\s+'tx_desiderio_anchor',/", $tca);
+        // The palette exists: it is the one the Appearance basic declares.
+        self::assertStringContainsString('identifier: desiderio_frames_palette', (string)file_get_contents(self::ROOT . '/ContentBlocks/Basics/Appearance.yaml'));
+    }
+
     public function testNoElementTemplateRendersTheAnchorIdItself(): void
     {
         $found = glob(self::ROOT . '/ContentBlocks/ContentElements/*/templates/frontend.html');

@@ -2737,6 +2737,18 @@
         <target>Für eine spätere Version reserviert — hat derzeit keine visuelle Auswirkung.</target>
       </segment>
     </unit>
+    <unit id="appearance.anchor">
+      <segment state="final">
+        <source>Anchor</source>
+        <target>Anker</target>
+      </segment>
+    </unit>
+    <unit id="appearance.anchor.description">
+      <segment state="final">
+        <source>A name for links to this element, for example pricing for #pricing. Lowercase letters, digits, hyphens and underscores; the same in every language.</source>
+        <target>Ein Name für Links auf dieses Element, zum Beispiel preise für #preise. Kleinbuchstaben, Ziffern, Binde- und Unterstriche; in allen Sprachen gleich.</target>
+      </segment>
+    </unit>
     <unit id="pricingSlider.request">
       <segment state="final">
         <source>Request this estimate</source>

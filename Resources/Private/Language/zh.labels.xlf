@@ -2720,15 +2720,15 @@
       </segment>
     </unit>
     <unit id="appearance.anchor">
-      <segment state="initial">
+      <segment state="translated">
         <source>Anchor</source>
-        <target>Anchor</target>
+        <target>锚点</target>
       </segment>
     </unit>
     <unit id="appearance.anchor.description">
-      <segment state="initial">
+      <segment state="translated">
         <source>A name for links to this element, for example pricing for #pricing. Lowercase letters, digits, hyphens and underscores; the same in every language.</source>
-        <target>A name for links to this element, for example pricing for #pricing. Lowercase letters, digits, hyphens and underscores; the same in every language.</target>
+        <target>用于链接到此元素的名称，例如 #pricing 对应的 pricing。使用小写字母、数字、连字符和下划线；所有语言均相同。</target>
       </segment>
     </unit>
     <unit id="pricingSlider.request">

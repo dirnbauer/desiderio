@@ -2720,15 +2720,15 @@
       </segment>
     </unit>
     <unit id="appearance.anchor">
-      <segment state="initial">
+      <segment state="translated">
         <source>Anchor</source>
-        <target>Anchor</target>
+        <target>Horgony</target>
       </segment>
     </unit>
     <unit id="appearance.anchor.description">
-      <segment state="initial">
+      <segment state="translated">
         <source>A name for links to this element, for example pricing for #pricing. Lowercase letters, digits, hyphens and underscores; the same in every language.</source>
-        <target>A name for links to this element, for example pricing for #pricing. Lowercase letters, digits, hyphens and underscores; the same in every language.</target>
+        <target>Az erre az elemre mutató hivatkozások neve, például pricing a #pricing hivatkozáshoz. Kisbetűk, számjegyek, kötőjelek és aláhúzásjelek; minden nyelven azonos.</target>
       </segment>
     </unit>
     <unit id="pricingSlider.request">

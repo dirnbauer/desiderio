@@ -20,6 +20,12 @@
 <f:argument name="prefix" type="string" optional="{true}" default="" />
 <f:argument name="class" type="string" optional="{true}" default="" />
 <f:argument name="textClass" type="string" optional="{true}" default="" />
+<f:comment>
+    `attributes` carries what a control needs beyond the shadcn contract:
+    aria-label, aria-expanded, aria-controls, download, data-* hooks read by
+    the shared runtime. Keys are template-authored, values are escaped.
+</f:comment>
+<f:argument name="attributes" type="array" optional="{true}" default="{}" />
 
 <f:variable name="titleContent"><f:slot name="title" /></f:variable>
 <f:variable name="textContent"><f:slot name="text" /></f:variable>
@@ -29,7 +35,7 @@
 <f:variable name="titleClass">d-feature-item__title {f:if(condition: bem, then: '{bem}title')}</f:variable>
 <f:variable name="href">{f:if(condition: link, then: '{f:uri.typolink(parameter: link)}', else: href)}</f:variable>
 
-<div data-slot="feature-item" class="d-feature-item {class -> f:format.trim()}">
+<div data-slot="feature-item" class="d-feature-item {class -> f:format.trim()}"<f:for each="{attributes}" as="attributeValue" key="attributeName"> {attributeName}="{attributeValue}"</f:for>>
     <f:if condition="{icon}">
         <span data-slot="feature-item-icon" class="d-feature-item__icon {f:if(condition: bem, then: '{bem}icon')}" aria-hidden="true"><d:atom.icon name="{icon}" size="{iconSize}" /></span>
     </f:if>

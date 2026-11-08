@@ -1,11 +1,17 @@
 <f:argument name="header" type="bool" optional="{true}" default="{false}" />
 <f:argument name="class" type="string" optional="{true}" default="" />
+<f:comment>
+    `attributes` carries what a control needs beyond the shadcn contract:
+    aria-label, aria-expanded, aria-controls, download, data-* hooks read by
+    the shared runtime. Keys are template-authored, values are escaped.
+</f:comment>
+<f:argument name="attributes" type="array" optional="{true}" default="{}" />
 
 <f:if condition="{header}">
     <f:then>
-        <th data-slot="table-head" class="h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&:has([role=checkbox])]:pr-0 {class}"><f:slot /></th>
+        <th data-slot="table-head" class="h-10 px-2 text-left align-middle font-medium whitespace-nowrap text-foreground [&:has([role=checkbox])]:pr-0 {class}"<f:for each="{attributes}" as="attributeValue" key="attributeName"> {attributeName}="{attributeValue}"</f:for>><f:slot /></th>
     </f:then>
     <f:else>
-        <td data-slot="table-cell" class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 {class}"><f:slot /></td>
+        <td data-slot="table-cell" class="p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 {class}"<f:for each="{attributes}" as="attributeValue" key="attributeName"> {attributeName}="{attributeValue}"</f:for>><f:slot /></td>
     </f:else>
 </f:if>

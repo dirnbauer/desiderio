@@ -76,6 +76,16 @@
                 </ul>
             </nav>
         </div>
+        <f:comment>
+            The TYPO3 trademark notice (desiderio.footer.trademarkNotice): one
+            line of small print below the bar, in words only. The TYPO3
+            Association owns the word mark; the logo is not registered and is
+            never shown here. The wording lives in the translation label
+            footer.trademarkNotice.
+        </f:comment>
+        <f:if condition="{site.configuration.settings.desiderio.footer.trademarkNotice}">
+            <p class="desiderio-footer__trademark"><small>{f:translate(extensionName: 'desiderio', key: 'footer.trademarkNotice')}</small></p>
+        </f:if>
     </d:layout.container>
 </footer>
 

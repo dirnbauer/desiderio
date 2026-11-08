@@ -100,6 +100,23 @@
     text-underline-offset: 0.2em;
 }
 
+/* TYPO3 trademark notice (desiderio.footer.trademarkNotice): one line of
+   small print under the whole bar, centred and muted like the copyright, so
+   it never competes with the legal links for the centre track. */
+.desiderio-footer__trademark {
+    margin: 1.5rem auto 0;
+    max-width: 90ch;
+    color: var(--muted-foreground);
+    font-size: var(--d-text-xs, 0.75rem);
+    line-height: 1.55;
+    text-align: center;
+    text-wrap: pretty;
+}
+
+.desiderio-footer__trademark small {
+    font-size: inherit;
+}
+
 /* Small links get a full tap target on phones. */
 @media (max-width: 767px) {
     .desiderio-footer__legal-link {

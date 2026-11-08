@@ -185,6 +185,13 @@ settings:
     default: false
     category: desiderio.footer
 
+  desiderio.footer.trademarkNotice:
+    label: 'TYPO3 trademark notice'
+    description: 'Show one small line in the footer: TYPO3 is a registered trademark of the TYPO3 Association, and this site is independent of the TYPO3 Association and TYPO3 GmbH. The text comes from the translation label footer.trademarkNotice.'
+    type: bool
+    default: false
+    category: desiderio.footer
+
   # --------------------------------------------------------------- Search
   desiderio.search.enabled:
     label: 'Show search in header'

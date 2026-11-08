@@ -343,6 +343,12 @@
         <target>本网站的部分图片（包括人物照片）由人工智能（AI）生成，图中人物并不真实存在。文本和译文借助 AI 创作，由网站运营方承担编辑责任。本说明依据欧盟《人工智能法》（条例 (EU) 2024/1689）第 50 条作出。</target>
       </segment>
     </unit>
+    <unit id="footer.trademarkNotice">
+      <segment state="initial">
+        <source>TYPO3 is a registered trademark of the TYPO3 Association. This site is independent and not affiliated with or endorsed by the TYPO3 Association or TYPO3 GmbH.</source>
+        <target>TYPO3 is a registered trademark of the TYPO3 Association. This site is independent and not affiliated with or endorsed by the TYPO3 Association or TYPO3 GmbH.</target>
+      </segment>
+    </unit>
     <unit id="consent.label">
       <segment state="final">
         <source>Cookie consent</source>

@@ -454,9 +454,12 @@ final class ShowcaseSkillPages
         return ShowcaseBlocks::block('desiderio_textmedia', [
             'frame_class' => 'muted',
             'header' => 'The TYPO3 Dev Companion and our skills',
-            'shadcn_layout' => 'media-below',
+            'shadcn_layout' => 'media-above',
             'subheadline' => 'A local, read-only MCP server from the TYPO3 project, introduced by Benjamin Kott on 5 October 2026.',
-            'content' => '<p>As <a href="' . self::DEV_COMPANION_ARTICLE . '">Benjamin Kott’s article on news.typo3.com</a> puts it, coding agents read a TYPO3 project well but know TYPO3 badly. '
+            // The diagram is Benjamin Kott's, redrawn: the credit sits in the image and opens the text below it.
+            'content' => '<p><strong>Diagram © Benjamin Kott.</strong> The original is part of his article <a href="' . self::DEV_COMPANION_ARTICLE . '">“Meet the TYPO3 Dev Companion”</a> on news.typo3.com (5 October 2026). '
+                . 'We redrew it in TYPO3 colours and added one card for typo3-skills. The drawing, the idea and the Dev Companion itself are the work of Benjamin Kott and the TYPO3 project.</p>'
+                . '<p>As <a href="' . self::DEV_COMPANION_ARTICLE . '">Benjamin Kott’s article on news.typo3.com</a> puts it, coding agents read a TYPO3 project well but know TYPO3 badly. '
                 . 'The TYPO3 Dev Companion gives Claude Code, Cursor, GitHub Copilot, Codex and other MCP clients that knowledge. '
                 . 'It covers TYPO3 12.4, 13.4, 14.3 and main, answers from your own installation and guides tasks step by step. Every answer names its source.</p>'
                 . '<p>It runs on your machine and writes nothing into your installation. Its only outside connection is a read-only lookup in docs.typo3.org and the official TYPO3 services: Forge, Gerrit and the TER. '
@@ -465,10 +468,10 @@ final class ShowcaseSkillPages
                 . 'A skill knows the procedure for a whole job, such as a proven upgrade or an accessibility scan with a CI gate. '
                 . 'Your agent can use both: the Dev Companion to look things up, a skill to finish the job.</p>',
             'media' => [
-                'file' => 'Resources/Public/Styleguide/Frontend/frontend-dev-companion-skills-8f5c759d.webp',
-                'title' => 'TYPO3 Dev Companion with typo3-skills',
-                'alternative' => 'Diagram of the TYPO3 Dev Companion. On your machine, your coding agent asks the TYPO3 Dev Companion, which reads bundled knowledge and your installation and writes nothing. Outside, docs.typo3.org and TYPO3 services are read-only, and the new typo3-skills collection gives the agent 61 open TYPO3 skills.',
-                'description' => 'Based on the diagram in Benjamin Kott’s article on news.typo3.com, generated with AI, with the typo3-skills collection added.',
+                'file' => 'Resources/Public/Styleguide/Frontend/frontend-dev-companion-skills-34483469.webp',
+                'title' => 'TYPO3 Dev Companion with typo3-skills. Original diagram © Benjamin Kott',
+                'alternative' => 'Diagram of the TYPO3 Dev Companion. On your machine, your coding agent asks the TYPO3 Dev Companion, which reads bundled knowledge and your installation and writes nothing. Outside, docs.typo3.org and TYPO3 services are read-only, and the new typo3-skills collection gives the agent 61 open TYPO3 skills. Original diagram © Benjamin Kott, redrawn by webconsulting.',
+                'description' => 'Original diagram © Benjamin Kott, from his article on news.typo3.com (5 October 2026). Redrawn in TYPO3 colours with AI by webconsulting, with the typo3-skills card added.',
                 'source' => self::DEV_COMPANION_ARTICLE,
             ],
             'media_rounded' => 1,

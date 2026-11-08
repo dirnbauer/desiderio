@@ -99,7 +99,7 @@ final class ShowcaseSkillPagesTest extends TestCase
     ];
 
     /** The coordinator's alt text, in sentences of at most 25 words (canon). */
-    private const string DIAGRAM_ALT = 'Diagram of the TYPO3 Dev Companion. On your machine, your coding agent asks the TYPO3 Dev Companion, which reads bundled knowledge and your installation and writes nothing. Outside, docs.typo3.org and TYPO3 services are read-only, and the new typo3-skills collection gives the agent 61 open TYPO3 skills.';
+    private const string DIAGRAM_ALT = 'Diagram of the TYPO3 Dev Companion. On your machine, your coding agent asks the TYPO3 Dev Companion, which reads bundled knowledge and your installation and writes nothing. Outside, docs.typo3.org and TYPO3 services are read-only, and the new typo3-skills collection gives the agent 61 open TYPO3 skills. Original diagram © Benjamin Kott, redrawn by webconsulting.';
 
     public function testTwelveGroupPagesSitBelowTheHub(): void
     {
@@ -356,9 +356,13 @@ final class ShowcaseSkillPagesTest extends TestCase
         self::assertStringContainsString('https://news.typo3.com/article/meet-the-typo3-dev-companion-typo3-knowledge-for-your-coding-agent', (string)($block['content'] ?? ''));
         $media = $block['media'] ?? null;
         self::assertIsArray($media);
-        self::assertSame('Resources/Public/Styleguide/Frontend/frontend-dev-companion-skills-8f5c759d.webp', $media['file'] ?? null);
-        self::assertSame('TYPO3 Dev Companion with typo3-skills', $media['title'] ?? null);
+        self::assertSame('Resources/Public/Styleguide/Frontend/frontend-dev-companion-skills-34483469.webp', $media['file'] ?? null);
+        self::assertSame('TYPO3 Dev Companion with typo3-skills. Original diagram © Benjamin Kott', $media['title'] ?? null);
         self::assertSame(self::DIAGRAM_ALT, $media['alternative'] ?? null);
+        // The diagram is Benjamin Kott's, redrawn: the credit is in the text, the caption data and the alt text.
+        self::assertStringContainsString('<strong>Diagram © Benjamin Kott.</strong>', (string)($block['content'] ?? ''));
+        self::assertStringStartsWith('Original diagram © Benjamin Kott', (string)($media['description'] ?? ''));
+        self::assertSame('media-above', $block['shadcn_layout'] ?? null);
     }
 
     public function testTheOldSkillPagesRedirectToTheirSection(): void

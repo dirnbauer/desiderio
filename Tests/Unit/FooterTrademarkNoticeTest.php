@@ -36,7 +36,7 @@ final class FooterTrademarkNoticeTest extends TestCase
         $template = (string)file_get_contents(self::ROOT . '/Resources/Private/Components/Organism/SiteFooter/SiteFooter.fluid.html');
 
         self::assertMatchesRegularExpression(
-            '#<f:if condition="\{site\.configuration\.settings\.desiderio\.footer\.trademarkNotice\}">\s*<p class="desiderio-footer__trademark"><small>\{f:translate\(extensionName: \'desiderio\', key: \'footer\.trademarkNotice\'\)\}</small></p>\s*</f:if>#',
+            '#<f:if condition="\{site\.configuration\.settings\.desiderio\.footer\.trademarkNotice\}">\s*<p class="desiderio-footer__trademark" data-trademark-notice><small>\{f:translate\(extensionName: \'desiderio\', key: \'footer\.trademarkNotice\'\)\}</small></p>\s*</f:if>#',
             $template
         );
         // Inside the footer element, after the legal navigation.

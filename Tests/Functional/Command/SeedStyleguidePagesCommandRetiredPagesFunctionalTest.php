@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Webconsulting\Desiderio\Tests\Functional\Command;
 
+use Doctrine\DBAL\Schema\Table;
+use Doctrine\DBAL\Types\Types;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
@@ -34,13 +36,24 @@ final class SeedStyleguidePagesCommandRetiredPagesFunctionalTest extends Functio
         parent::setUp();
         $this->importCSVDataSet(__DIR__ . '/Fixtures/SeedingBase.csv');
         // EXT:redirects is no dependency of Desiderio; its table, as far as
-        // the seeder writes it, before the first seed reads the schema.
-        $this->getConnectionPool()->getConnectionForTable('pages')->executeStatement(
-            'CREATE TABLE sys_redirect (uid INTEGER PRIMARY KEY AUTOINCREMENT, pid INTEGER NOT NULL DEFAULT 0, deleted INTEGER NOT NULL DEFAULT 0,'
-            . ' createdon INTEGER NOT NULL DEFAULT 0, updatedon INTEGER NOT NULL DEFAULT 0, source_host VARCHAR(255) NOT NULL DEFAULT \'\','
-            . ' source_path VARCHAR(2048) NOT NULL DEFAULT \'\', is_regexp INTEGER NOT NULL DEFAULT 0, target VARCHAR(2048) NOT NULL DEFAULT \'\','
-            . ' target_statuscode INTEGER NOT NULL DEFAULT 307, description TEXT)'
-        );
+        // the seeder writes it, before the first seed reads the schema. Built
+        // with the schema API so it works on SQLite, MariaDB and PostgreSQL;
+        // MariaDB and PostgreSQL keep tables between the tests of a class
+        // (they are only truncated), so it is created once.
+        $schemaManager = $this->getConnectionPool()->getConnectionForTable('pages')->createSchemaManager();
+        if (!$schemaManager->tablesExist(['sys_redirect'])) {
+            $table = new Table('sys_redirect');
+            $table->addColumn('uid', Types::INTEGER, ['autoincrement' => true, 'unsigned' => true]);
+            foreach (['pid' => 0, 'deleted' => 0, 'createdon' => 0, 'updatedon' => 0, 'is_regexp' => 0, 'target_statuscode' => 307] as $name => $default) {
+                $table->addColumn($name, Types::INTEGER, ['default' => $default]);
+            }
+            foreach (['source_host' => 255, 'source_path' => 2048, 'target' => 2048] as $name => $length) {
+                $table->addColumn($name, Types::STRING, ['length' => $length, 'default' => '']);
+            }
+            $table->addColumn('description', Types::TEXT, ['notnull' => false]);
+            $table->setPrimaryKey(['uid']);
+            $schemaManager->createTable($table);
+        }
     }
 
     public function testAFullSeedRetiresAnOldSkillPageAndKeepsTheSearchFirst(): void

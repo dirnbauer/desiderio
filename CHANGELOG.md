@@ -4,6 +4,21 @@ All notable changes to **webconsulting/desiderio** are documented in this
 file. The format follows [Keep a Changelog](https://keepachangelog.com/)
 and the project adheres to [Semantic Versioning](https://semver.org/).
 
+## [4.35.0] — 2026-11-08
+
+### Added
+
+- `/ai/agentic-skills` rebuilt around twelve skill groups. The hub reads short first: the ten superfeature skills as its second element (each opens the skill search), what a skill is and why it helps, the community talks the skills build on (MTUG and TYPO3camp München, credited and linked to their slides), three ways to install and call a skill, calling by name versus pasting a SKILL.md link, and the TYPO3 Dev Companion. Twelve group pages show three or four skills each: what you can do, what is cool, why to use it, how to call it, and an invitation to improve them.
+- TYPO3 Dev Companion section with Benjamin Kott’s diagram from his article on news.typo3.com, redrawn in TYPO3 colours with a typo3-skills card. The credit “Original diagram © Benjamin Kott” is part of the image and opens the text below it; title, alt text and description name him too.
+- Retired showcase pages: `StyleguideShowcasePages::retiredPages()` names pages that gave way to others. The seeder deletes them with their translations and content, writes regex redirects to the successor’s anchor in every language and re-points TYPO3’s own slug redirects. The ten one-skill pages now lead to their group pages. A page of another package that leads a showcase page’s children (the skill search) stays first.
+- Element anchors: `tt_content.tx_desiderio_anchor` (Appearance tab) renders a readable anchor such as `#pricing` next to `#c345`, the same in every language.
+- Optional TYPO3 trademark notice under the footer (`desiderio.footer.trademarkNotice`, off by default), marked `data-trademark-notice` so a site-wide notice does not repeat it. Words only, never the logo. Labels in English, German, Chinese and Hungarian.
+- MedAtlas Austria: how a system connects through the open API (OpenAPI 3.1, a Bearer key, rate limits, JSON errors, CSV and Excel), a request with its spreadsheet export, why the numbers are useful, and five reasons AI agents answer better with it.
+
+### Changed
+
+- Documentation covers the trademark notice setting, the Anchor field, anchors and queries after `{{page:}}` placeholders, and retired showcase pages.
+
 ## [4.34.1] — 2026-11-07
 
 ### Changed

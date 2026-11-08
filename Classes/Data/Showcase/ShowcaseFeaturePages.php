@@ -14,6 +14,7 @@ namespace Webconsulting\Desiderio\Data\Showcase;
  *  2. the problem the reader has today
  *  3. a tour: the other live screenshots in a gallery with a lightbox
  *  4. four benefits
+ *     (2 to 4 may be left out by a page whose own sections say more)
  *  5. the page's own sections, if the definition declares any (a product
  *     page shows its statistics, its hosting offer or its API story here)
  *  6. the questions people ask before they install
@@ -182,18 +183,25 @@ final class ShowcaseFeaturePages
                 'secondary_button_link' => $feature['hero']['secondaryButton']['link'],
                 'dashboard_image' => $feature['hero']['image'],
             ]),
-            ShowcaseBlocks::block('desiderio_contenthighlight', [
+        ];
+        // A page whose own sections say more leaves out the problem, the
+        // tour and the benefits (the agentic-skills page leads with its
+        // superfeatures right after the hero).
+        if ($feature['problem'] !== null) {
+            $content[] = ShowcaseBlocks::block('desiderio_contenthighlight', [
                 'header' => $feature['problem']['header'],
                 'content' => $feature['problem']['content'],
                 'variant' => 'muted',
                 'alignment' => 'center',
                 'link' => '',
                 'link_text' => '',
-            ]),
+            ]);
+        }
+        if ($feature['tour'] !== null) {
             // The hero shows one screenshot, the gallery the others: a large
             // featured image with its caption, thumbnails to switch, and a
             // lightbox with the full resolution.
-            ShowcaseBlocks::block('desiderio_gallery', [
+            $content[] = ShowcaseBlocks::block('desiderio_gallery', [
                 'header' => $feature['tour']['header'],
                 'subheadline' => $feature['tour']['subheadline'],
                 'columns' => (string)min(4, max(2, count($feature['tour']['shots']))),
@@ -207,8 +215,10 @@ final class ShowcaseFeaturePages
                     ],
                     $feature['tour']['shots'],
                 ),
-            ]),
-            ShowcaseBlocks::block('desiderio_benefitcards', [
+            ]);
+        }
+        if ($feature['benefits'] !== null) {
+            $content[] = ShowcaseBlocks::block('desiderio_benefitcards', [
                 'header' => $feature['benefits']['header'],
                 'eyebrow' => $feature['badge'],
                 'columns' => '2',
@@ -221,8 +231,8 @@ final class ShowcaseFeaturePages
                     ],
                     $feature['benefits']['items'],
                 ),
-            ]),
-        ];
+            ]);
+        }
         // The page's own sections sit between the shared benefits and the
         // shared questions, so every page still reads in the same order.
         foreach ($feature['sections'] ?? [] as $block) {

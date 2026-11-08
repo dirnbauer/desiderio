@@ -119,11 +119,14 @@ final class StyleguideShowcasePages
      * translations and content, and redirects its URL to the successor's
      * anchor in every language.
      *
+     * The ten one-skill pages below /ai/agentic-skills gave way to twelve
+     * group pages (ShowcaseSkillPages); each redirects to its skill's section.
+     *
      * @return array<string, array{successor: string, anchor: string}>
      */
     public static function retiredPages(): array
     {
-        return [];
+        return ShowcaseSkillPages::retiredPages();
     }
 
     /**
@@ -132,11 +135,14 @@ final class StyleguideShowcasePages
      * The seeder never writes, moves or hides them; it sorts its own pages
      * below the same parent after them.
      *
+     * The skill search (/ai/agentic-skills/find, Skillflow and the site
+     * package) is the first page below the skills hub.
+     *
      * @return array<string, string>
      */
     public static function leadingChildPages(): array
     {
-        return [];
+        return ShowcaseSkillPages::leadingChildPages();
     }
 
     /**

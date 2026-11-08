@@ -113,13 +113,23 @@ final class ShowcaseFeaturePagesTest extends TestCase
     public function testEveryFeaturePageFollowsTheSameOutline(): void
     {
         $credited = [];
+        $installed = [];
         $sections = [];
+        $opening = [];
         foreach (['features' => ShowcaseFeatureDefinitions::categories(), 'ai' => ShowcaseFeatureDefinitions::aiCategories(), 'software' => ShowcaseSoftwareDefinitions::categories()] as $section => $categories) {
             foreach ($categories as $category) {
                 foreach ($category['features'] as $feature) {
                     $slug = '/' . $section . '/' . $feature['slug'];
                     $credited[$slug] = isset($feature['credits']);
+                    $installed[$slug] = $feature['install'] !== null;
                     $sections[$slug] = array_map(static fn(array $block): string => $block['ctype'], $feature['sections'] ?? []);
+                    // The problem, the tour and the benefits, unless the
+                    // page's own sections replace them (null).
+                    $opening[$slug] = [
+                        ...($feature['problem'] !== null ? ['desiderio_contenthighlight'] : []),
+                        ...($feature['tour'] !== null ? ['desiderio_gallery'] : []),
+                        ...($feature['benefits'] !== null ? ['desiderio_benefitcards'] : []),
+                    ];
                 }
             }
         }
@@ -129,8 +139,8 @@ final class ShowcaseFeaturePagesTest extends TestCase
         foreach ($featurePages as $page) {
             $ctypes = array_map(static fn(array $block): string => $block['ctype'], $page['content']);
             // The page's own sections, as declared, between benefits and questions.
-            $expected = ['desiderio_herosaas', 'desiderio_contenthighlight', 'desiderio_gallery', 'desiderio_benefitcards', ...$sections[$page['slug']], 'desiderio_faq'];
-            if (in_array('desiderio_codeblock', $ctypes, true)) {
+            $expected = ['desiderio_herosaas', ...$opening[$page['slug']], ...$sections[$page['slug']], 'desiderio_faq'];
+            if ($installed[$page['slug']] ?? false) {
                 $expected[] = 'desiderio_codeblock';
             }
             if ($credited[$page['slug']] ?? false) {
@@ -182,7 +192,9 @@ final class ShowcaseFeaturePagesTest extends TestCase
     public function testEveryScreenshotExists(string $file, string $name): void
     {
         self::assertFileExists(dirname(__DIR__, 2) . '/' . $file);
-        self::assertMatchesRegularExpression('/^((frontend-)?feature-[a-z0-9-]+|hero-[a-z]+)-[0-9a-f]{8}\.webp$/', $name);
+        // frontend-dev-companion-* is a diagram, not a capture; its hash is
+        // the start of its SHA-256 like the captures'.
+        self::assertMatchesRegularExpression('/^((frontend-)?feature-[a-z0-9-]+|frontend-dev-companion-[a-z0-9-]+|hero-[a-z]+)-[0-9a-f]{8}\.webp$/', $name);
     }
 
     public function testTheCopyNamesNoRealContactData(): void

@@ -18,15 +18,18 @@ namespace Webconsulting\Desiderio\Data\Showcase;
  * extensions have no credits.
  *
  * A definition may add its own sections: blocks the page shows between the
- * benefits and the questions. A category may ask for another column count on
- * its hub, and a hub may add sections before its closing call to action.
+ * benefits and the questions. A page whose own sections say more may leave
+ * out the problem, the tour and the benefits (null): the agentic-skills page
+ * leads with its superfeatures instead. A category may ask for another
+ * column count on its hub, and a hub may add sections before its closing
+ * call to action.
  *
  * @phpstan-import-type ShowcaseBlock from ShowcaseBlocks
  * @phpstan-import-type ShowcaseMedia from ShowcaseBlocks
  * @phpstan-import-type ShowcaseCredits from ShowcaseBlocks
  * @phpstan-type FeatureButton array{text: string, link: string}
  * @phpstan-type FeatureShot array{tab: string, title: string, description: string, image: ShowcaseMedia}
- * @phpstan-type FeatureDefinition array{slug: string, product: string, badge: string, title: string, navTitle: string, description: string, abstract: string, hero: array{header: string, subheadline: string, primaryButton: FeatureButton, secondaryButton: FeatureButton, image: ShowcaseMedia}, problem: array{header: string, content: string}, tour: array{header: string, subheadline: string, shots: list<FeatureShot>}, benefits: array{header: string, items: list<array{icon: string, title: string, description: string}>}, faq: array{header: string, subheadline: string, items: list<array{question: string, answer: string}>}, sections?: list<ShowcaseBlock>, install: array{header: string, code: string}|null, credits?: ShowcaseCredits, cta: array{header: string, description: string, text: string, link: string}}
+ * @phpstan-type FeatureDefinition array{slug: string, product: string, badge: string, title: string, navTitle: string, description: string, abstract: string, hero: array{header: string, subheadline: string, primaryButton: FeatureButton, secondaryButton: FeatureButton, image: ShowcaseMedia}, problem: array{header: string, content: string}|null, tour: array{header: string, subheadline: string, shots: list<FeatureShot>}|null, benefits: array{header: string, items: list<array{icon: string, title: string, description: string}>}|null, faq: array{header: string, subheadline: string, items: list<array{question: string, answer: string}>}, sections?: list<ShowcaseBlock>, install: array{header: string, code: string}|null, credits?: ShowcaseCredits, cta: array{header: string, description: string, text: string, link: string}}
  * @phpstan-type FeatureCategory array{label: string, header: string, subheadline: string, columns?: string, features: list<FeatureDefinition>}
  * @phpstan-type FeatureHub array{title: string, navTitle: string, seoTitle: string, description: string, abstract: string, badge: string, header: string, subheadline: string, primaryButton: FeatureButton, secondaryButton: FeatureButton, image: ShowcaseMedia, sections?: list<ShowcaseBlock>, cta: array{header: string, description: string, text: string, link: string}}
  */
@@ -1284,22 +1287,19 @@ final class ShowcaseFeatureDefinitions
     }
 
     /**
-     * The typo3-skills collection: the skills our coding agents work with,
-     * the upgrade family in its own section and ten skills with a page each
-     * (ShowcaseSkillPages). Every figure comes from the public repository
-     * as of 4 November 2026; 20 of the skills are other people's work and
-     * the page thanks them.
+     * The typo3-skills collection: what skills are, the ten superfeatures,
+     * the community talks they build on, how to install and call them, the
+     * TYPO3 Dev Companion beside them, and the twelve group pages
+     * (ShowcaseSkillPages, copy in ShowcaseSkillGroups). Short at the top,
+     * the details further down. Every figure comes from the public
+     * repository; 20 of the skills are other people's work, and the talks
+     * are the speakers' own, so the page thanks them.
      *
      * @return FeatureDefinition
      */
     private static function agenticSkills(): array
     {
-        $repo = 'https://github.com/dirnbauer/typo3-skills';
-        $shot = static fn(string $file, string $title, string $alternative): array => ShowcaseBlocks::screenshot($file, $title, $alternative, 'Screenshot of the typo3-skills repository, 4 November 2026.');
-        $skillCards = [];
-        foreach (ShowcaseSkillPages::cards() as $card) {
-            $skillCards[] = ['icon' => $card['icon'], 'title' => $card['title'], 'description' => $card['description'], 'link' => '{{page:ai/agentic-skills/' . $card['slug'] . '}}'];
-        }
+        $repo = ShowcaseSkillGroups::REPO_URL;
 
         return [
             'slug' => 'agentic-skills',
@@ -1307,119 +1307,43 @@ final class ShowcaseFeatureDefinitions
             'badge' => 'typo3-skills',
             'title' => 'Agentic skills: 61 TYPO3 skills for agents',
             'navTitle' => 'Agentic skills',
-            'description' => '61 open-source TYPO3 skills for Claude Code, Codex, Cursor and Gemini, with 22 rules and the upgrade skills that prove a TYPO3 v14.3 update.',
-            'abstract' => 'Open-source skills that teach Claude Code, Codex and Cursor how we work with TYPO3, including the upgrade skills that prove an update invisible.',
+            'description' => '61 open-source TYPO3 skills for Claude Code, Codex, Cursor and Gemini in 12 groups: upgrades, content, editing, design, accessibility and security.',
+            'abstract' => 'Open-source skills that teach coding agents TYPO3 v14: what skills are, how to install them, ten superfeatures and 12 groups of skills.',
             'hero' => [
-                'header' => 'Teach coding agents how we work with TYPO3',
-                'subheadline' => '61 open-source skills for Claude Code, Codex, Cursor and Gemini: upgrades, accessibility, security, Content Blocks, Solr and structured data. One clone, one install script.',
-                'primaryButton' => ['text' => 'Get the skills', 'link' => $repo],
-                'secondaryButton' => ['text' => 'Meet ten skills', 'link' => '{{page:ai/agentic-skills/typo3-upgrade-run}}'],
-                'image' => $shot('frontend-feature-skills-install-64d548d2.webp', 'One script for every client', 'Terminal running ./install.sh --generate-only: catalogue and instruction files for 61 skills written for each client.'),
+                'header' => 'Skills that teach your coding agent TYPO3 v14',
+                'subheadline' => 'A skill is a folder of instructions, references and scripts that your agent loads when a task matches. 61 open-source skills for Claude Code, Codex, Cursor and Gemini.',
+                'primaryButton' => ['text' => 'Find a skill', 'link' => '{{page:' . ShowcaseSkillGroups::SEARCH . '}}'],
+                'secondaryButton' => ['text' => 'Install the skills', 'link' => '{{page:' . ShowcaseSkillGroups::HUB . '}}#' . ShowcaseSkillPages::INSTALL_ANCHOR],
+                'image' => ShowcaseBlocks::screenshot('frontend-feature-skills-install-64d548d2.webp', 'One script for every client', 'Terminal running ./install.sh --generate-only: catalogue and instruction files for 61 skills written for each client.', 'Screenshot of the typo3-skills repository, 4 November 2026.'),
             ],
-            'problem' => ['header' => 'An agent knows TYPO3 in general', 'content' => '<p>Your project needs TYPO3 v14.3 in particular: which API replaced which hook, how an upgrade is proven. A model’s training data often predates the v14 removals.</p>'],
-            'tour' => [
-                'header' => 'From install to the upgrade graph',
-                'subheadline' => 'Screens from the repository and this lab, as of 4 November 2026.',
-                'shots' => [
-                    [
-                        'tab' => 'Catalogue',
-                        'title' => 'Searchable in TYPO3 with Skillflow',
-                        'description' => 'This lab imports the collection into a <strong>Solr catalogue</strong> with facets for source, tools and licence.',
-                        'image' => ShowcaseBlocks::screenshot('frontend-feature-skills-catalogue-ce0b02d1.webp', 'Searchable in TYPO3 with Skillflow', 'Skill catalogue on a TYPO3 page: a search for typo3-upgrade with 25 results and facets for source, tools and licence.', 'Live screenshot from the TYPO3 v14 lab.'),
-                    ],
-                    [
-                        'tab' => 'Upgrade graph',
-                        'title' => '72 nodes, 206 edges',
-                        'description' => 'The upgrade run follows a <strong>sealed graph</strong>. Its safety contract view shows intake, Baseline A, plan, the A gate and handover.',
-                        'image' => $shot('frontend-feature-skills-upgrade-graph-8578eafb.webp', '72 nodes, 206 edges', 'Archify diagram of the TYPO3 v14.3 upgrade run, Safety contract view: Intake, Baseline A, Plan, A gate and Handover.'),
-                    ],
-                    [
-                        'tab' => 'Rules',
-                        'title' => '22 always-on rules',
-                        'description' => 'Short rules apply to every change they match. Three govern the <strong>agent itself</strong>, for example: no claim without evidence.',
-                        'image' => $shot('frontend-feature-skills-rules-c7be1a89.webp', '22 always-on rules', 'Terminal listing the 22 rule files of typo3-skills next to the head of the rule security-no-claim-without-evidence.'),
-                    ],
-                ],
-            ],
-            'benefits' => [
-                'header' => 'What you get with typo3-skills',
-                'items' => [
-                    ['icon' => 'download', 'title' => 'Installed in every client', 'description' => 'install.sh links the skill folders into Claude Code, Codex, Cursor, Gemini and Windsurf, per user or per project. ChatGPT desktop gets a local plugin.'],
-                    ['icon' => 'compass', 'title' => 'Routed by task', 'description' => 'AGENTS.md maps each task to the skill that owns it, so an agent loads the right instructions and leaves the rest closed.'],
-                    ['icon' => 'shield-check', 'title' => 'Checked before they run', 'description' => 'CI runs eight check groups on every push. The 20 vendored skills are pinned by upstream commit and a SHA-256 hash per file.'],
-                    ['icon' => 'list-checks', 'title' => 'Preferences and capabilities', 'description' => '35 skills record our house conventions. Six teach capabilities and are retired once models have learned them.'],
-                ],
-            ],
-            'sections' => [
-                ShowcaseBlocks::block('desiderio_featuretimeline', [
-                    'header' => 'The upgrade skills, in order',
-                    'subheadline' => 'typo3-upgrade-run controls the graph. Five skills own its stages, and each one does a single job.',
-                    'items' => [
-                        ['step' => '1', 'title' => 'Intake', 'description' => '<p>A read-only preflight proves the repository, the DDEV project, the database, the files and the dataset date. One round of owner decisions fixes the scope.</p>'],
-                        ['step' => '2', 'title' => 'Baseline', 'description' => '<p>Fresh browsers capture the untouched site twice, and both captures must match at zero differences. The second is sealed with a manifest and a lock.</p>'],
-                        ['step' => '3', 'title' => 'Migration', 'description' => '<p>One cause per node, each with a rollback anchor. First the 13.4 rung, Rector, Fractor and data migrations, then 14.3 with 15 known breakers fixed.</p>'],
-                        ['step' => '4', 'title' => 'Closure', 'description' => '<p>Every URL is compared over HTTP, then DOM, then pixels, followed by 13 closure checks with Lighthouse and axe. A person accepts the certificate.</p>'],
-                        ['step' => '5', 'title' => 'Retrospective', 'description' => '<p>A read-only audit of finished runs names each root cause and the node that owns the fix. The skills were hardened on twelve real projects.</p>'],
-                    ],
-                ]),
-                ShowcaseBlocks::block('desiderio_featurestats', [
-                    'header' => 'The graph in numbers',
-                    'description' => 'Counted in the typo3-upgrade-run skill on 4 November 2026.',
-                    'items' => [
-                        ['value' => '72', 'label' => 'Graph nodes', 'description_text' => 'Each node is one job with a done condition and an evidence file.'],
-                        ['value' => '206', 'label' => 'Edges', 'description_text' => 'Outcomes activate exactly the edges that match them.'],
-                        ['value' => '37', 'label' => 'Bounded retry edges', 'description_text' => 'At most three attempts per node and twelve retries per run.'],
-                        ['value' => '13', 'label' => 'Closure checks', 'description_text' => 'From HTTP and DOM to pixels at strict zero, Lighthouse and axe.'],
-                    ],
-                ]),
-                ShowcaseBlocks::block('desiderio_featurecards', [
-                    'eyebrow' => 'Two contracts',
-                    'header' => 'Prove the same site first, then improve it',
-                    'subheadline' => 'An upgrade run keeps two promises apart, so an improvement never hides a regression.',
-                    'items' => [
-                        ['title' => 'Contract A: nothing visible changes', 'description' => '<p>The same data, configuration, request and browser produce the same visitor-facing result before and after the upgrade. Every unexplained difference blocks the run.</p>'],
-                        ['title' => 'Contract B: structured data and WebMCP', 'description' => '<p>After Contract A is signed off, every run adds honest JSON-LD and typed WebMCP tools for browser agents, as a standard step.</p>'],
-                    ],
-                ]),
-                ShowcaseBlocks::block('desiderio_benefitcards', [
-                    'eyebrow' => 'Read more',
-                    'header' => 'The upgrade skills in practice',
-                    'subheadline' => 'Articles on webconsulting.at, in German, and the skill’s own page.',
-                    'columns' => '2',
-                    'items' => [
-                        ['icon' => 'book-open', 'title' => 'saferinternet.at on TYPO3 v14', 'description' => 'How the upgrade skill moved from a loop to a graph in a real project.', 'link' => 'https://www.webconsulting.at/blog/saferinternet-typo3-14-update-evolution'],
-                        ['icon' => 'git-branch', 'title' => 'TYPO3 Updater for many sites', 'description' => 'Automated updates for multi-site environments, the work the skills grew from.', 'link' => 'https://www.webconsulting.at/blog/typo3-updater'],
-                        ['icon' => 'message-circle', 'title' => 'Agent skills: 30 questions', 'description' => 'What agent skills are, how they load and where they stop.', 'link' => 'https://www.webconsulting.at/blog/agent-skills-faq'],
-                        ['icon' => 'rocket', 'title' => 'The upgrade-run skill', 'description' => 'Its commands, prerequisites and output on one page.', 'link' => '{{page:ai/agentic-skills/typo3-upgrade-run}}'],
-                    ],
-                ]),
-                ShowcaseBlocks::block('desiderio_benefitcards', [
-                    'eyebrow' => 'Ten skills',
-                    'header' => 'Ten skills in detail',
-                    'subheadline' => 'What each one does, how to start it and what comes back.',
-                    'columns' => '2',
-                    'items' => $skillCards,
-                ]),
-            ],
+            // The superfeatures follow the hero directly; what skills are,
+            // why they help and how to install them come right after.
+            'problem' => null,
+            'tour' => null,
+            'benefits' => null,
+            'sections' => ShowcaseSkillPages::hubSections(),
             'faq' => [
                 'header' => 'Questions before you install',
-                'subheadline' => 'Clients, licence, testing and limits.',
+                'subheadline' => 'Clients, licence, testing, limits and how to help.',
                 'items' => [
                     ['question' => 'Which clients does it support?', 'answer' => 'Claude Code, Codex, Cursor, Gemini and Windsurf, per user or per project. ChatGPT desktop uses a local plugin that the repository builds for you.'],
                     ['question' => 'Is it free?', 'answer' => 'Yes. The code is MIT and the content CC BY-SA 4.0. The 20 vendored skills keep their own licences.'],
                     ['question' => 'Is every skill tested?', 'answer' => 'The collection has 619 eval cases across 46 skills. A person has reviewed 52 of them, in five skills. The CI gate runs on every push.'],
                     ['question' => 'Does the upgrade skill deploy?', 'answer' => 'No. It works in a local DDEV copy and never touches the live site. A staging deployment needs a person who authorises it.'],
+                    ['question' => 'How can I help improve a skill?', 'answer' => 'Open an issue or a pull request on <a href="' . ShowcaseSkillGroups::ISSUES_URL . '">GitHub</a>. An eval helps most: a request where the skill should load, and one where it should not. Vendored skills are improved upstream, by their authors.'],
+                    ['question' => 'Where can I read more?', 'answer' => 'In German on webconsulting.at: <a href="https://www.webconsulting.at/blog/agent-skills-faq">30 questions on agent skills</a>, and <a href="https://www.webconsulting.at/blog/saferinternet-typo3-14-update-evolution">how the upgrade skill moved from a loop to a graph</a>.'],
                 ],
             ],
-            'install' => ['header' => 'Install the skills', 'code' => 'git clone https://github.com/dirnbauer/typo3-skills.git && cd typo3-skills && ./install.sh'],
+            'install' => null,
             'credits' => [
-                // The heading thanks Netresearch by name; the text names all ten.
-                'names' => ['Netresearch DTT GmbH', 'nine others'],
+                // The heading thanks Netresearch and the community by name; the text names everyone.
+                'names' => ['Netresearch', 'the TYPO3 community'],
                 'project' => 'the vendored skills',
                 'link' => 'https://github.com/netresearch',
-                'text' => '<p>20 of the 61 skills are vendored unchanged and pinned: 16 from <a href="https://github.com/netresearch">Netresearch DTT GmbH</a>, the others from Anthropic, Supabase, Vercel and ehmo. Cursor shared the code-quality review. Matt Pocock, Philipp Schmid, Lev Selector and Alex Sprogis shaped how the skills are written, tested and drawn. Thank you very much.</p>',
+                'text' => '<p>20 of the 61 skills are vendored unchanged and pinned: 16 from <a href="https://github.com/netresearch">Netresearch DTT GmbH</a>, the others from Anthropic, Supabase, Vercel and ehmo. Cursor shared the code-quality review. Matt Pocock, Philipp Schmid, Lev Selector and Alex Sprogis shaped how the skills are written, tested and drawn.</p>'
+                    . '<p>The talks above are the work of Nikita Hovratov, Marcus Schwemer, Garvin Hicking, Lukas Fritze and Chris Müller. Stefan Busemann and Peter Kraume organise <a href="https://www.mtug.de/">MTUG</a>, also on <a href="https://www.meetup.com/munich-typo3-user-group">Meetup</a>. Like <a href="https://www.typo3camp-muenchen.de/">TYPO3camp München</a>, it is backed by the non-profit TYPO3 User Group München e.V. Thank you very much.</p>',
             ],
-            'cta' => ['header' => 'Give your coding agent our TYPO3 rules', 'description' => 'One clone and one install script give Claude Code, Codex, Cursor and Gemini the same TYPO3 knowledge. Start with the upgrade run.', 'text' => 'Get the skills', 'link' => $repo],
+            'cta' => ['header' => 'Give your coding agent our TYPO3 rules', 'description' => 'One clone and one install script give Claude Code, Codex, Cursor and Gemini the same TYPO3 knowledge. Start with the ten superfeatures.', 'text' => 'Get the skills', 'link' => $repo],
         ];
     }
 
